@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Example Site</title>
+        <title>Jiny Island.</title>
         <link>https://yondo123.github.io/</link>
-        <description>Recent content on Example Site</description>
+        <description>Recent content on Jiny Island.</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Mon, 04 Jan 2021 23:09:26 +0900</lastBuildDate><atom:link href="https://yondo123.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
