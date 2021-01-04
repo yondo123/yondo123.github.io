@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Example Site</title>
+        <link>https://yondo123.github.io/</link>
+        <description>Recent content on Example Site</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Mon, 04 Jan 2021 23:09:26 +0900</lastBuildDate><atom:link href="https://yondo123.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Fist Psot</title>
+        <link>https://yondo123.github.io/p/fist-psot/</link>
+        <pubDate>Mon, 04 Jan 2021 23:09:26 +0900</pubDate>
+        
+        <guid>https://yondo123.github.io/p/fist-psot/</guid>
+        <description>&lt;h3 id=&#34;첫글&#34;&gt;첫글&lt;/h3&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
