@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Jiny Island.</title>
-    <link>https://yondo123.github.io/post/</link>
-    <description>Recent content in Posts on Jiny Island.</description>
+    <title>javascript on Jiny Island.</title>
+    <link>https://yondo123.github.io/categories/javascript/</link>
+    <description>Recent content in javascript on Jiny Island.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Jan 2021 22:50:16 +0900</lastBuildDate><atom:link href="https://yondo123.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Jan 2021 22:50:16 +0900</lastBuildDate><atom:link href="https://yondo123.github.io/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>자바스크립트 타이머</title>
       <link>https://yondo123.github.io/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%ED%83%80%EC%9D%B4%EB%A8%B8/</link>
