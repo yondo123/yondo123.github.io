@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Jiny Island.</title>
-    <link>https://jinyisland.kr/tags/</link>
+    <link>https://www.jinyisland.kr/tags/</link>
     <description>Recent content in Tags on Jiny Island.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Jan 2021 22:43:29 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Jan 2021 22:43:29 +0900</lastBuildDate><atom:link href="https://www.jinyisland.kr/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>event</title>
-      <link>https://jinyisland.kr/tags/event/</link>
+      <link>https://www.jinyisland.kr/tags/event/</link>
       <pubDate>Tue, 05 Jan 2021 22:43:29 +0900</pubDate>
       
-      <guid>https://jinyisland.kr/tags/event/</guid>
+      <guid>https://www.jinyisland.kr/tags/event/</guid>
       <description></description>
     </item>
     
     <item>
       <title>lifecycle</title>
-      <link>https://jinyisland.kr/tags/lifecycle/</link>
+      <link>https://www.jinyisland.kr/tags/lifecycle/</link>
       <pubDate>Tue, 05 Jan 2021 22:38:11 +0900</pubDate>
       
-      <guid>https://jinyisland.kr/tags/lifecycle/</guid>
+      <guid>https://www.jinyisland.kr/tags/lifecycle/</guid>
       <description></description>
     </item>
     
