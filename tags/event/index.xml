@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>event on Jiny Island.</title>
-    <link>https://www.jinyisland.kr/tags/event/</link>
+    <link>jinyisland.kr/tags/event/</link>
     <description>Recent content in event on Jiny Island.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Jan 2021 22:43:29 +0900</lastBuildDate><atom:link href="https://www.jinyisland.kr/tags/event/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Jan 2021 22:43:29 +0900</lastBuildDate><atom:link href="jinyisland.kr/tags/event/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>자바스크립트 스크롤 이벤트</title>
-      <link>https://www.jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8/</link>
+      <link>jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8/</link>
       <pubDate>Tue, 05 Jan 2021 22:43:29 +0900</pubDate>
       
-      <guid>https://www.jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8/</guid>
+      <guid>jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8/</guid>
       <description>스크롤 이벤트  마우스를 움직이면 스크롤 이벤트가 발생한다. x-value 는 마우스의 가로축, y-value는 문서의 세로축을 따른는 픽셀 window.scroll(x-value, y-value); window.scroll(options);   (1)문서의 상.하단으로 이동시키기  scrollTop() 메서드를 이용한다. $(&amp;#34;body&amp;#34;).scrollTop(0); //간혹 &amp;#39;body&amp;#39;가 먹히지 않는다면 전체 위임 $(&amp;#39;html, body&amp;#39;).scrollTop(0); //순수 자바스크립트 function goTop(){ document.documentElement.scrollTop = 0; }   (2) 새로고침시 스크롤 상단으로 이동하기 setTimeout(function () { scrollTop(0, 0); }, 100); (3) 무한 스크롤링 구현 $(document).ready(function () { for (var i = 0; i &amp;lt; 20; i++) { $(&amp;#39;&amp;lt;h1&amp;gt;Sample TextLine &amp;gt;&amp;gt; &amp;#39; + i + &amp;#39;&amp;lt;/h1&amp;gt;&amp;#39;).</description>
     </item>
     

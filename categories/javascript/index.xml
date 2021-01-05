@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>javascript on Jiny Island.</title>
-    <link>https://www.jinyisland.kr/categories/javascript/</link>
+    <link>jinyisland.kr/categories/javascript/</link>
     <description>Recent content in javascript on Jiny Island.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Jan 2021 22:50:16 +0900</lastBuildDate><atom:link href="https://www.jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Jan 2021 22:50:16 +0900</lastBuildDate><atom:link href="jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>자바스크립트 타이머</title>
-      <link>https://www.jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%ED%83%80%EC%9D%B4%EB%A8%B8/</link>
+      <link>jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%ED%83%80%EC%9D%B4%EB%A8%B8/</link>
       <pubDate>Tue, 05 Jan 2021 22:50:16 +0900</pubDate>
       
-      <guid>https://www.jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%ED%83%80%EC%9D%B4%EB%A8%B8/</guid>
+      <guid>jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%ED%83%80%EC%9D%B4%EB%A8%B8/</guid>
       <description>Javscript Timer  자바스크립트는 기본적으로 싱글 스레드로 동작한다.  자바스크립트 타이머는 비동기 이벤트 핸들러로 실행중인 핸들러가 없을 경우에만 동작하는 방식이다. (물론 브라우저의 처리 방식에 따라 다를 수 있다.) 즉, FIFO(선입선출) 형태로 메시지 큐에 전달된다음, 실행중인 블록이 없을 때 비로소 실행된다. 만약 이 과정에서, 타이머가 실행되기 전 코드 블록에서 다른 타이머나 지연 함수가 발생한다면, 그 시간만큼 지연된다.    (1) 타이머 생성과 제거  Window에 속한 메소드     Method Description     setTimeout(fn, delay) 일정 시간이 진행되면 전달받은 콜백을 실행시킨다.</description>
     </item>
     
     <item>
       <title>자바스크립트 스크롤 이벤트</title>
-      <link>https://www.jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8/</link>
+      <link>jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8/</link>
       <pubDate>Tue, 05 Jan 2021 22:43:29 +0900</pubDate>
       
-      <guid>https://www.jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8/</guid>
+      <guid>jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8/</guid>
       <description>스크롤 이벤트  마우스를 움직이면 스크롤 이벤트가 발생한다. x-value 는 마우스의 가로축, y-value는 문서의 세로축을 따른는 픽셀 window.scroll(x-value, y-value); window.scroll(options);   (1)문서의 상.하단으로 이동시키기  scrollTop() 메서드를 이용한다. $(&amp;#34;body&amp;#34;).scrollTop(0); //간혹 &amp;#39;body&amp;#39;가 먹히지 않는다면 전체 위임 $(&amp;#39;html, body&amp;#39;).scrollTop(0); //순수 자바스크립트 function goTop(){ document.documentElement.scrollTop = 0; }   (2) 새로고침시 스크롤 상단으로 이동하기 setTimeout(function () { scrollTop(0, 0); }, 100); (3) 무한 스크롤링 구현 $(document).ready(function () { for (var i = 0; i &amp;lt; 20; i++) { $(&amp;#39;&amp;lt;h1&amp;gt;Sample TextLine &amp;gt;&amp;gt; &amp;#39; + i + &amp;#39;&amp;lt;/h1&amp;gt;&amp;#39;).</description>
     </item>
     
     <item>
       <title>자바스크립트 실행 컨텍스트</title>
-      <link>https://www.jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/</link>
+      <link>jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/</link>
       <pubDate>Tue, 05 Jan 2021 22:38:11 +0900</pubDate>
       
-      <guid>https://www.jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/</guid>
+      <guid>jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/</guid>
       <description>실행 컨텍스트  실행 컨텍스트란 자바스크립트 내에서 실행 가능한 코드블록들이 실행되는 환경이라고 볼 수 있다. console.log(&amp;#39;global Context&amp;#39;); //전역 컨텍스트 function executeContext1(){ console.log(&amp;#39;context 1&amp;#39;); } function executeContext2(){ executeContext1() //context1 함수를 호출  console.log(&amp;#39;context 2&amp;#39;); } executeContext2(); //함수 단위로 실행되므로 context2를 먼저 실행  /*result globacl Context context 1 context 2 */   (1)함수 실행시 컨텍스트 생성 과정 function execute(param1, param2){ var a=1, b=2; function internalFunc(){ return a+b; } return internalFunc() + a, b; } execute(3,4);   활성 객체 생성</description>
     </item>
     
