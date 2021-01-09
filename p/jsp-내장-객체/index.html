@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='JSP 기본객체    객체 내용     request / response 서버-클라이언트 간 요청 및 응답 정보   pageContext JSP페이지에 대한 정보   session 세션정보   application 웹 어클리케이션에 대한 정보   out JSP 페이지가 생성한 컨텐츠 내용을 출력   config JSP 페이지에 대한 설정 정보등을 저장   exception 에러페이지 처리    Rqeust 클라이언트가 요청한 정보를 담고 있는 객체. IP, 요청 경로, 포트 번호 등 요청에 관한 값을 담고 있다.'><title>JSP 내장 객체</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='JSP 기본객체    객체 내용     request / response 서버-클라이언트 간 요청 및 응답 정보   pageContext JSP페이지에 대한 정보   session 세션정보   application 웹 어클리케이션에 대한 정보   out JSP 페이지가 생성한 컨텐츠 내용을 출력   config JSP 페이지에 대한 설정 정보등을 저장   exception 에러페이지 처리    Rqeust
+클라이언트가 요청한 정보를 담고 있는 객체. IP, 요청 경로, 포트 번호 등 요청에 관한 값을 담고 있다.'><title>JSP 내장 객체</title>
 
 <link rel='canonical' href='https://jinyisland.kr/p/jsp-%EB%82%B4%EC%9E%A5-%EA%B0%9D%EC%B2%B4/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='JSP 내장 객체'>
-<meta property='og:description' content='JSP 기본객체    객체 내용     request / response 서버-클라이언트 간 요청 및 응답 정보   pageContext JSP페이지에 대한 정보   session 세션정보   application 웹 어클리케이션에 대한 정보   out JSP 페이지가 생성한 컨텐츠 내용을 출력   config JSP 페이지에 대한 설정 정보등을 저장   exception 에러페이지 처리    Rqeust 클라이언트가 요청한 정보를 담고 있는 객체. IP, 요청 경로, 포트 번호 등 요청에 관한 값을 담고 있다.'>
+<meta property='og:description' content='JSP 기본객체    객체 내용     request / response 서버-클라이언트 간 요청 및 응답 정보   pageContext JSP페이지에 대한 정보   session 세션정보   application 웹 어클리케이션에 대한 정보   out JSP 페이지가 생성한 컨텐츠 내용을 출력   config JSP 페이지에 대한 설정 정보등을 저장   exception 에러페이지 처리    Rqeust
+클라이언트가 요청한 정보를 담고 있는 객체. IP, 요청 경로, 포트 번호 등 요청에 관한 값을 담고 있다.'>
 <meta property='og:url' content='https://jinyisland.kr/p/jsp-%EB%82%B4%EC%9E%A5-%EA%B0%9D%EC%B2%B4/'>
 <meta property='og:site_name' content='Jiny Island.'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2021-01-09T15:48:14&#43;09:00'/><meta property='article:modified_time' content='2021-01-09T15:48:14&#43;09:00'/>
 <meta name="twitter:title" content="JSP 내장 객체">
-<meta name="twitter:description" content="JSP 기본객체    객체 내용     request / response 서버-클라이언트 간 요청 및 응답 정보   pageContext JSP페이지에 대한 정보   session 세션정보   application 웹 어클리케이션에 대한 정보   out JSP 페이지가 생성한 컨텐츠 내용을 출력   config JSP 페이지에 대한 설정 정보등을 저장   exception 에러페이지 처리    Rqeust 클라이언트가 요청한 정보를 담고 있는 객체. IP, 요청 경로, 포트 번호 등 요청에 관한 값을 담고 있다.">
+<meta name="twitter:description" content="JSP 기본객체    객체 내용     request / response 서버-클라이언트 간 요청 및 응답 정보   pageContext JSP페이지에 대한 정보   session 세션정보   application 웹 어클리케이션에 대한 정보   out JSP 페이지가 생성한 컨텐츠 내용을 출력   config JSP 페이지에 대한 설정 정보등을 저장   exception 에러페이지 처리    Rqeust
+클라이언트가 요청한 정보를 담고 있는 객체. IP, 요청 경로, 포트 번호 등 요청에 관한 값을 담고 있다.">
     </head>
     <body class="">
     <script>
@@ -252,77 +255,77 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Rqeust</strong>
+<p><strong>Rqeust</strong><br>
 클라이언트가 요청한 정보를 담고 있는 객체.
 IP, 요청 경로, 포트 번호 등 요청에 관한 값을 담고 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">	<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>IP : <span class="err">&lt;</span>%=request.getRemoteAddr() %&gt; : <span class="err">&lt;</span>%=request.getServerPort() %&gt;<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-	<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Url Path : <span class="err">&lt;</span>%=request.getRequestURI() %&gt;<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-	<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>request type : <span class="err">&lt;</span>%=request.getMethod() %&gt;<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">IP</span> <span class="o">:</span> <span class="o">&lt;%=</span><span class="n">request</span><span class="o">.</span><span class="na">getRemoteAddr</span><span class="o">()</span> <span class="o">%&gt;</span> <span class="o">:</span> <span class="o">&lt;%=</span><span class="n">request</span><span class="o">.</span><span class="na">getServerPort</span><span class="o">()</span> <span class="o">%&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Url</span> <span class="n">Path</span> <span class="o">:</span> <span class="o">&lt;%=</span><span class="n">request</span><span class="o">.</span><span class="na">getRequestURI</span><span class="o">()</span> <span class="o">%&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">request</span> <span class="n">type</span> <span class="o">:</span> <span class="o">&lt;%=</span><span class="n">request</span><span class="o">.</span><span class="na">getMethod</span><span class="o">()</span> <span class="o">%&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </code></pre></div><p>또한 페이지 간 요청 데이터를 처리할 때도 사용한다.
 <code>getParameter()</code>와 <code>getParameterValues()</code>로 얻어올 수 있으며, 차이점은 문자열로 받느냐 문자열 배열로 받느냐의 차이이다. (checkbox와 같은 다중 요청값을 받을 때 사용)</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">	String userName = request.getParameter(&#34;user_name&#34;);
-	String userId = request.getParameter(&#34;user_id&#34;);
-	String[] userHobby = request.getParameterValues(&#34;user_hobby&#34;); <span class="err">&lt;</span>%--String 배열로 받아야 한다.--&gt;
-</code></pre></div><p><em><strong>Response</strong></em>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">String userName = request.getParameter(&#34;user_name&#34;);
+String userId = request.getParameter(&#34;user_id&#34;);
+String[] userHobby = request.getParameterValues(&#34;user_hobby&#34;); <span class="err">&lt;</span>%--String 배열로 받아야 한다.--&gt;
+</code></pre></div><p><em><strong>Response</strong></em><br>
 request 객체와 반대로 클라이언트에게 응답에 관한 객체이다.
 리다이렉트, 헤더정보 입력에 주로 사용한다.</p>
-<p><strong>Out</strong>
+<p><strong>Out</strong><br>
 out 객체는 기본적으로 JSP에서 담고있는 모든 내용을 <code>out</code>객체를 통해 전송한다.
 서블릿 클래스에서 out 객체를 통해 html을 생성하는 원리</p>
-<p><strong>Conftig</strong>
+<p><strong>Conftig</strong><br>
 <code>web.xml</code>에 공통적으로 사용하는 데이터를 명시하고 <code>getInitParameter()</code> 메소드를 이용해 가져올 수 있다.
 해당 서블릿에서만 사용할 수 있다. (서블릿 매핑 필요)</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"> 	<span class="nt">&lt;servlet&gt;</span>
-		<span class="nt">&lt;servlet-name&gt;</span>servletTest<span class="nt">&lt;/servlet-name&gt;</span>
-		<span class="nt">&lt;jsp-file&gt;</span>/index.jsp<span class="nt">&lt;/jsp-file&gt;</span>
-		<span class="nt">&lt;init-param&gt;</span>
-			<span class="nt">&lt;param-name&gt;</span>dbaId<span class="nt">&lt;/param-name&gt;</span>
-			<span class="nt">&lt;param-value&gt;</span>jsp-user<span class="nt">&lt;/param-value&gt;</span>
-		<span class="nt">&lt;/init-param&gt;</span>
-	<span class="nt">&lt;/servlet&gt;</span>
-	<span class="nt">&lt;servlet-mapping&gt;</span>
-		<span class="nt">&lt;servlet-name&gt;</span>servletTest<span class="nt">&lt;/servlet-name&gt;</span>
-		<span class="nt">&lt;url-pattern&gt;</span>/index.jsp<span class="nt">&lt;/url-pattern&gt;</span>
-	<span class="nt">&lt;/servlet-mapping&gt;</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">config</span><span class="o">.</span><span class="na">getInitParameter</span><span class="o">(</span><span class="s">&#34;dbaId&#34;</span><span class="o">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;servlet&gt;</span>
+	<span class="nt">&lt;servlet-name&gt;</span>servletTest<span class="nt">&lt;/servlet-name&gt;</span>
+	<span class="nt">&lt;jsp-file&gt;</span>/index.jsp<span class="nt">&lt;/jsp-file&gt;</span>
+	<span class="nt">&lt;init-param&gt;</span>
+		<span class="nt">&lt;param-name&gt;</span>dbaId<span class="nt">&lt;/param-name&gt;</span>
+		<span class="nt">&lt;param-value&gt;</span>jsp-user<span class="nt">&lt;/param-value&gt;</span>
+	<span class="nt">&lt;/init-param&gt;</span>
+<span class="nt">&lt;/servlet&gt;</span>
+<span class="nt">&lt;servlet-mapping&gt;</span>
+	<span class="nt">&lt;servlet-name&gt;</span>servletTest<span class="nt">&lt;/servlet-name&gt;</span>
+	<span class="nt">&lt;url-pattern&gt;</span>/index.jsp<span class="nt">&lt;/url-pattern&gt;</span>
+<span class="nt">&lt;/servlet-mapping&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">config</span><span class="o">.</span><span class="na">getInitParameter</span><span class="o">(</span><span class="s">&#34;dbaId&#34;</span><span class="o">);</span>
 </code></pre></div><p><strong>Application</strong>
 웹 어플리케이션 내부에 있는 전체 서블릿에서 사용할 수 있는 데이터등을 공유할 때 사용한다. <code>web.xml</code>에 <code>context-param</code>을 정의하고 <code>getInitParameter()</code>메소드를 통해 가져온다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml">	<span class="c">&lt;!--웹 속성 정의 --&gt;</span>
-	<span class="nt">&lt;context-param&gt;</span>
-		<span class="nt">&lt;param-name&gt;</span>dbmsInfo<span class="nt">&lt;/param-name&gt;</span>
-		<span class="nt">&lt;param-value&gt;</span>oracle 11g<span class="nt">&lt;/param-value&gt;</span>
-	<span class="nt">&lt;/context-param&gt;</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">String</span> <span class="n">dbmsname</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="na">getInitParameter</span><span class="o">(</span><span class="s">&#34;dbmsInfo&#34;</span><span class="o">);</span>
+<span class="nt">&lt;context-param&gt;</span>
+	<span class="nt">&lt;param-name&gt;</span>dbmsInfo<span class="nt">&lt;/param-name&gt;</span>
+	<span class="nt">&lt;param-value&gt;</span>oracle 11g<span class="nt">&lt;/param-value&gt;</span>
+<span class="nt">&lt;/context-param&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span> <span class="n">dbmsname</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="na">getInitParameter</span><span class="o">(</span><span class="s">&#34;dbmsInfo&#34;</span><span class="o">);</span>
 </code></pre></div><p><strong>Exception</strong>
 오류 관련 처리를 담당하는 객체, 웹 서버에서 오류가 발생하면 자체적으로 오류 페이지를 띄우는데 직접 구성할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="o">&lt;%</span><span class="err">@</span> <span class="n">page</span> <span class="n">language</span><span class="o">=</span><span class="s">&#34;java&#34;</span> <span class="n">contentType</span><span class="o">=</span><span class="s">&#34;text/html; charset=UTF-8&#34;</span>
-    <span class="n">pageEncoding</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="o">%&gt;</span>
-    <span class="o">&lt;%</span><span class="nd">@page</span> <span class="n">errorPage</span><span class="o">=</span><span class="s">&#34;/common/error.jsp&#34;</span> <span class="o">%&gt;</span> <span class="o">&lt;--</span><span class="n">오류</span> <span class="n">페이지</span> <span class="n">경로를</span> <span class="n">지정</span><span class="o">--&gt;</span>
-    <span class="o">&lt;!</span><span class="n">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="n">Error</span> <span class="n">Page</span> <span class="n">Test</span><span class="o">&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
-    <span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">가짜</span> <span class="n">파라미터</span> <span class="o">:</span> <span class="o">&lt;%=</span><span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&#34;error&#34;</span><span class="o">).</span><span class="na">toUpperCase</span><span class="o">()</span> <span class="o">%&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-    <span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
-    <span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="o">&lt;%</span><span class="err">@</span> <span class="n">page</span> <span class="n">language</span><span class="o">=</span><span class="s">&#34;java&#34;</span> <span class="n">contentType</span><span class="o">=</span><span class="s">&#34;text/html; charset=UTF-8&#34;</span>
-    <span class="n">pageEncoding</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="o">%&gt;</span>
-    <span class="o">&lt;%</span><span class="err">@</span> <span class="n">page</span> <span class="n">isErrorPage</span><span class="o">=</span><span class="s">&#34;true&#34;</span> <span class="o">%&gt;</span> <span class="o">&lt;!--</span> <span class="n">에러페이지</span> <span class="n">설정</span> <span class="o">--&gt;</span>
-    <span class="o">&lt;!</span><span class="n">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="n">Error</span> <span class="n">Page</span><span class="o">&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
-    <span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">Error</span><span class="o">!!&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="n">hr</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;%=</span><span class="n">exception</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">%&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-    <span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
-    <span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="o">&lt;%</span><span class="err">@</span> <span class="n">page</span> <span class="n">language</span><span class="o">=</span><span class="s">&#34;java&#34;</span> <span class="n">contentType</span><span class="o">=</span><span class="s">&#34;text/html; charset=UTF-8&#34;</span>
+<span class="n">pageEncoding</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="o">%&gt;</span>
+<span class="o">&lt;%</span><span class="nd">@page</span> <span class="n">errorPage</span><span class="o">=</span><span class="s">&#34;/common/error.jsp&#34;</span> <span class="o">%&gt;</span> <span class="o">&lt;--</span><span class="n">오류</span> <span class="n">페이지</span> <span class="n">경로를</span> <span class="n">지정</span><span class="o">--&gt;</span>
+<span class="o">&lt;!</span><span class="n">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="n">Error</span> <span class="n">Page</span> <span class="n">Test</span><span class="o">&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">가짜</span> <span class="n">파라미터</span> <span class="o">:</span> <span class="o">&lt;%=</span><span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&#34;error&#34;</span><span class="o">).</span><span class="na">toUpperCase</span><span class="o">()</span> <span class="o">%&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="o">&lt;%</span><span class="err">@</span> <span class="n">page</span> <span class="n">language</span><span class="o">=</span><span class="s">&#34;java&#34;</span> <span class="n">contentType</span><span class="o">=</span><span class="s">&#34;text/html; charset=UTF-8&#34;</span>
+<span class="n">pageEncoding</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="o">%&gt;</span>
+<span class="o">&lt;%</span><span class="err">@</span> <span class="n">page</span> <span class="n">isErrorPage</span><span class="o">=</span><span class="s">&#34;true&#34;</span> <span class="o">%&gt;</span> <span class="o">&lt;!--</span> <span class="n">에러페이지</span> <span class="n">설정</span> <span class="o">--&gt;</span>
+<span class="o">&lt;!</span><span class="n">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="n">Error</span> <span class="n">Page</span><span class="o">&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">Error</span><span class="o">!!&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">hr</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;%=</span><span class="n">exception</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">%&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
 </code></pre></div>
 </section>
 

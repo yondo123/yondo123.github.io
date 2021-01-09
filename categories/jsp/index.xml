@@ -13,7 +13,8 @@
       <pubDate>Sat, 09 Jan 2021 15:48:14 +0900</pubDate>
       
       <guid>https://jinyisland.kr/p/jsp-%EB%82%B4%EC%9E%A5-%EA%B0%9D%EC%B2%B4/</guid>
-      <description>JSP 기본객체    객체 내용     request / response 서버-클라이언트 간 요청 및 응답 정보   pageContext JSP페이지에 대한 정보   session 세션정보   application 웹 어클리케이션에 대한 정보   out JSP 페이지가 생성한 컨텐츠 내용을 출력   config JSP 페이지에 대한 설정 정보등을 저장   exception 에러페이지 처리    Rqeust 클라이언트가 요청한 정보를 담고 있는 객체. IP, 요청 경로, 포트 번호 등 요청에 관한 값을 담고 있다.</description>
+      <description>JSP 기본객체    객체 내용     request / response 서버-클라이언트 간 요청 및 응답 정보   pageContext JSP페이지에 대한 정보   session 세션정보   application 웹 어클리케이션에 대한 정보   out JSP 페이지가 생성한 컨텐츠 내용을 출력   config JSP 페이지에 대한 설정 정보등을 저장   exception 에러페이지 처리    Rqeust
+클라이언트가 요청한 정보를 담고 있는 객체. IP, 요청 경로, 포트 번호 등 요청에 관한 값을 담고 있다.</description>
     </item>
     
     <item>
