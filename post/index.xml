@@ -6,7 +6,26 @@
     <description>Recent content in Posts on Jiny Island.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Jan 2021 22:50:16 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 09 Jan 2021 15:48:14 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JSP 내장 객체</title>
+      <link>https://jinyisland.kr/p/jsp-%EB%82%B4%EC%9E%A5-%EA%B0%9D%EC%B2%B4/</link>
+      <pubDate>Sat, 09 Jan 2021 15:48:14 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/p/jsp-%EB%82%B4%EC%9E%A5-%EA%B0%9D%EC%B2%B4/</guid>
+      <description>JSP 기본객체    객체 내용     request / response 서버-클라이언트 간 요청 및 응답 정보   pageContext JSP페이지에 대한 정보   session 세션정보   application 웹 어클리케이션에 대한 정보   out JSP 페이지가 생성한 컨텐츠 내용을 출력   config JSP 페이지에 대한 설정 정보등을 저장   exception 에러페이지 처리    Rqeust 클라이언트가 요청한 정보를 담고 있는 객체. IP, 요청 경로, 포트 번호 등 요청에 관한 값을 담고 있다.</description>
+    </item>
+    
+    <item>
+      <title>JSP 처리과정</title>
+      <link>https://jinyisland.kr/p/jsp-%EC%B2%98%EB%A6%AC%EA%B3%BC%EC%A0%95/</link>
+      <pubDate>Sat, 09 Jan 2021 15:46:29 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/p/jsp-%EC%B2%98%EB%A6%AC%EA%B3%BC%EC%A0%95/</guid>
+      <description>JSP 처리 과정 JSP 페이지를 요청할 때는, JSP를 직접 실행하는 것이 아니라 자바소스로 변환 한뒤 컴파일하여 생성한 서블릿을 실행한다. 만약 요청 URL이 서블릿 클래스가 매핑되어있을 경우 , 즉시 request/response가 이루어지지만 해당 클래스(Servlet)이 없는 경우는 JSP 페이지에서 직접 JAVA 소스로 컴파일해 서블릿 클래스로 반환한다. 프로젝트 폴더 구성 웹 프로젝트를 생성하면 기본적인 디렉토리 구조는 아래와 같다.
+│ ├─src │ │ │ └─WebContent │ │ │ │ │ ├─META-INF │ │ MANIFEST.MF │ └─WEB-INF │ │ web.</description>
+    </item>
+    
     <item>
       <title>자바스크립트 타이머</title>
       <link>https://jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%ED%83%80%EC%9D%B4%EB%A8%B8/</link>

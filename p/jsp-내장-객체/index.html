@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='JSP 기본객체    객체 내용     request / response 서버-클라이언트 간 요청 및 응답 정보   pageContext JSP페이지에 대한 정보   session 세션정보   application 웹 어클리케이션에 대한 정보   out JSP 페이지가 생성한 컨텐츠 내용을 출력   config JSP 페이지에 대한 설정 정보등을 저장   exception 에러페이지 처리    Rqeust 클라이언트가 요청한 정보를 담고 있는 객체. IP, 요청 경로, 포트 번호 등 요청에 관한 값을 담고 있다.'><title>JSP 내장 객체</title>
+
+<link rel='canonical' href='https://jinyisland.kr/p/jsp-%EB%82%B4%EC%9E%A5-%EA%B0%9D%EC%B2%B4/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='JSP 내장 객체'>
+<meta property='og:description' content='JSP 기본객체    객체 내용     request / response 서버-클라이언트 간 요청 및 응답 정보   pageContext JSP페이지에 대한 정보   session 세션정보   application 웹 어클리케이션에 대한 정보   out JSP 페이지가 생성한 컨텐츠 내용을 출력   config JSP 페이지에 대한 설정 정보등을 저장   exception 에러페이지 처리    Rqeust 클라이언트가 요청한 정보를 담고 있는 객체. IP, 요청 경로, 포트 번호 등 요청에 관한 값을 담고 있다.'>
+<meta property='og:url' content='https://jinyisland.kr/p/jsp-%EB%82%B4%EC%9E%A5-%EA%B0%9D%EC%B2%B4/'>
+<meta property='og:site_name' content='Jiny Island.'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2021-01-09T15:48:14&#43;09:00'/><meta property='article:modified_time' content='2021-01-09T15:48:14&#43;09:00'/>
+<meta name="twitter:title" content="JSP 내장 객체">
+<meta name="twitter:description" content="JSP 기본객체    객체 내용     request / response 서버-클라이언트 간 요청 및 응답 정보   pageContext JSP페이지에 대한 정보   session 세션정보   application 웹 어클리케이션에 대한 정보   out JSP 페이지가 생성한 컨텐츠 내용을 출력   config JSP 페이지에 대한 설정 정보등을 저장   exception 에러페이지 처리    Rqeust 클라이언트가 요청한 정보를 담고 있는 객체. IP, 요청 경로, 포트 번호 등 요청에 관한 값을 담고 있다.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu27f5d19c1be56bb251fe038bd8d72e2a_48621_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">👾</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny Island.</a></h1>
+        <h2 class="site-description">Junior Developer.</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/jsp/" style="background-color: #2a9d8f; color: #fff;">
+                jsp
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/jsp-%EB%82%B4%EC%9E%A5-%EA%B0%9D%EC%B2%B4/">JSP 내장 객체</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jan 09, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h3 id="jsp-기본객체">JSP 기본객체</h3>
+<table>
+<thead>
+<tr>
+<th>객체</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>request / response</td>
+<td>서버-클라이언트 간 요청 및 응답 정보</td>
+</tr>
+<tr>
+<td>pageContext</td>
+<td>JSP페이지에 대한 정보</td>
+</tr>
+<tr>
+<td>session</td>
+<td>세션정보</td>
+</tr>
+<tr>
+<td>application</td>
+<td>웹 어클리케이션에 대한 정보</td>
+</tr>
+<tr>
+<td>out</td>
+<td>JSP 페이지가 생성한 컨텐츠 내용을 출력</td>
+</tr>
+<tr>
+<td>config</td>
+<td>JSP 페이지에 대한 설정 정보등을 저장</td>
+</tr>
+<tr>
+<td>exception</td>
+<td>에러페이지 처리</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rqeust</strong>
+클라이언트가 요청한 정보를 담고 있는 객체.
+IP, 요청 경로, 포트 번호 등 요청에 관한 값을 담고 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">	<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>IP : <span class="err">&lt;</span>%=request.getRemoteAddr() %&gt; : <span class="err">&lt;</span>%=request.getServerPort() %&gt;<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+	<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Url Path : <span class="err">&lt;</span>%=request.getRequestURI() %&gt;<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+	<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>request type : <span class="err">&lt;</span>%=request.getMethod() %&gt;<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div><p>또한 페이지 간 요청 데이터를 처리할 때도 사용한다.
+<code>getParameter()</code>와 <code>getParameterValues()</code>로 얻어올 수 있으며, 차이점은 문자열로 받느냐 문자열 배열로 받느냐의 차이이다. (checkbox와 같은 다중 요청값을 받을 때 사용)</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">	String userName = request.getParameter(&#34;user_name&#34;);
+	String userId = request.getParameter(&#34;user_id&#34;);
+	String[] userHobby = request.getParameterValues(&#34;user_hobby&#34;); <span class="err">&lt;</span>%--String 배열로 받아야 한다.--&gt;
+</code></pre></div><p><em><strong>Response</strong></em>
+request 객체와 반대로 클라이언트에게 응답에 관한 객체이다.
+리다이렉트, 헤더정보 입력에 주로 사용한다.</p>
+<p><strong>Out</strong>
+out 객체는 기본적으로 JSP에서 담고있는 모든 내용을 <code>out</code>객체를 통해 전송한다.
+서블릿 클래스에서 out 객체를 통해 html을 생성하는 원리</p>
+<p><strong>Conftig</strong>
+<code>web.xml</code>에 공통적으로 사용하는 데이터를 명시하고 <code>getInitParameter()</code> 메소드를 이용해 가져올 수 있다.
+해당 서블릿에서만 사용할 수 있다. (서블릿 매핑 필요)</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"> 	<span class="nt">&lt;servlet&gt;</span>
+		<span class="nt">&lt;servlet-name&gt;</span>servletTest<span class="nt">&lt;/servlet-name&gt;</span>
+		<span class="nt">&lt;jsp-file&gt;</span>/index.jsp<span class="nt">&lt;/jsp-file&gt;</span>
+		<span class="nt">&lt;init-param&gt;</span>
+			<span class="nt">&lt;param-name&gt;</span>dbaId<span class="nt">&lt;/param-name&gt;</span>
+			<span class="nt">&lt;param-value&gt;</span>jsp-user<span class="nt">&lt;/param-value&gt;</span>
+		<span class="nt">&lt;/init-param&gt;</span>
+	<span class="nt">&lt;/servlet&gt;</span>
+	<span class="nt">&lt;servlet-mapping&gt;</span>
+		<span class="nt">&lt;servlet-name&gt;</span>servletTest<span class="nt">&lt;/servlet-name&gt;</span>
+		<span class="nt">&lt;url-pattern&gt;</span>/index.jsp<span class="nt">&lt;/url-pattern&gt;</span>
+	<span class="nt">&lt;/servlet-mapping&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">config</span><span class="o">.</span><span class="na">getInitParameter</span><span class="o">(</span><span class="s">&#34;dbaId&#34;</span><span class="o">);</span>
+</code></pre></div><p><strong>Application</strong>
+웹 어플리케이션 내부에 있는 전체 서블릿에서 사용할 수 있는 데이터등을 공유할 때 사용한다. <code>web.xml</code>에 <code>context-param</code>을 정의하고 <code>getInitParameter()</code>메소드를 통해 가져온다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml">	<span class="c">&lt;!--웹 속성 정의 --&gt;</span>
+	<span class="nt">&lt;context-param&gt;</span>
+		<span class="nt">&lt;param-name&gt;</span>dbmsInfo<span class="nt">&lt;/param-name&gt;</span>
+		<span class="nt">&lt;param-value&gt;</span>oracle 11g<span class="nt">&lt;/param-value&gt;</span>
+	<span class="nt">&lt;/context-param&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">String</span> <span class="n">dbmsname</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="na">getInitParameter</span><span class="o">(</span><span class="s">&#34;dbmsInfo&#34;</span><span class="o">);</span>
+</code></pre></div><p><strong>Exception</strong>
+오류 관련 처리를 담당하는 객체, 웹 서버에서 오류가 발생하면 자체적으로 오류 페이지를 띄우는데 직접 구성할 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="o">&lt;%</span><span class="err">@</span> <span class="n">page</span> <span class="n">language</span><span class="o">=</span><span class="s">&#34;java&#34;</span> <span class="n">contentType</span><span class="o">=</span><span class="s">&#34;text/html; charset=UTF-8&#34;</span>
+    <span class="n">pageEncoding</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="o">%&gt;</span>
+    <span class="o">&lt;%</span><span class="nd">@page</span> <span class="n">errorPage</span><span class="o">=</span><span class="s">&#34;/common/error.jsp&#34;</span> <span class="o">%&gt;</span> <span class="o">&lt;--</span><span class="n">오류</span> <span class="n">페이지</span> <span class="n">경로를</span> <span class="n">지정</span><span class="o">--&gt;</span>
+    <span class="o">&lt;!</span><span class="n">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="n">Error</span> <span class="n">Page</span> <span class="n">Test</span><span class="o">&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">가짜</span> <span class="n">파라미터</span> <span class="o">:</span> <span class="o">&lt;%=</span><span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&#34;error&#34;</span><span class="o">).</span><span class="na">toUpperCase</span><span class="o">()</span> <span class="o">%&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="o">&lt;%</span><span class="err">@</span> <span class="n">page</span> <span class="n">language</span><span class="o">=</span><span class="s">&#34;java&#34;</span> <span class="n">contentType</span><span class="o">=</span><span class="s">&#34;text/html; charset=UTF-8&#34;</span>
+    <span class="n">pageEncoding</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="o">%&gt;</span>
+    <span class="o">&lt;%</span><span class="err">@</span> <span class="n">page</span> <span class="n">isErrorPage</span><span class="o">=</span><span class="s">&#34;true&#34;</span> <span class="o">%&gt;</span> <span class="o">&lt;!--</span> <span class="n">에러페이지</span> <span class="n">설정</span> <span class="o">--&gt;</span>
+    <span class="o">&lt;!</span><span class="n">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="n">Error</span> <span class="n">Page</span><span class="o">&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">Error</span><span class="o">!!&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">hr</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;%=</span><span class="n">exception</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">%&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
+</code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/jsp-%EC%B2%98%EB%A6%AC%EA%B3%BC%EC%A0%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JSP 처리과정</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Jiny Island.
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
