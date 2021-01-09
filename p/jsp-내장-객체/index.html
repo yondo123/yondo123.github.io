@@ -263,9 +263,9 @@ IP, 요청 경로, 포트 번호 등 요청에 관한 값을 담고 있다.</p>
 <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">request</span> <span class="n">type</span> <span class="o">:</span> <span class="o">&lt;%=</span><span class="n">request</span><span class="o">.</span><span class="na">getMethod</span><span class="o">()</span> <span class="o">%&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </code></pre></div><p>또한 페이지 간 요청 데이터를 처리할 때도 사용한다.
 <code>getParameter()</code>와 <code>getParameterValues()</code>로 얻어올 수 있으며, 차이점은 문자열로 받느냐 문자열 배열로 받느냐의 차이이다. (checkbox와 같은 다중 요청값을 받을 때 사용)</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">String userName = request.getParameter(&#34;user_name&#34;);
-String userId = request.getParameter(&#34;user_id&#34;);
-String[] userHobby = request.getParameterValues(&#34;user_hobby&#34;); <span class="err">&lt;</span>%--String 배열로 받아야 한다.--&gt;
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span> <span class="n">userName</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&#34;user_name&#34;</span><span class="o">);</span>
+<span class="n">String</span> <span class="n">userId</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&#34;user_id&#34;</span><span class="o">);</span>
+<span class="n">String</span><span class="o">[]</span> <span class="n">userHobby</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameterValues</span><span class="o">(</span><span class="s">&#34;user_hobby&#34;</span><span class="o">);</span> <span class="o">&lt;%--</span><span class="n">String</span> <span class="n">배열로</span> <span class="n">받아야</span> <span class="n">한다</span><span class="o">.--&gt;</span>
 </code></pre></div><p><em><strong>Response</strong></em><br>
 request 객체와 반대로 클라이언트에게 응답에 관한 객체이다.
 리다이렉트, 헤더정보 입력에 주로 사용한다.</p>
@@ -288,7 +288,7 @@ out 객체는 기본적으로 JSP에서 담고있는 모든 내용을 <code>out<
 	<span class="nt">&lt;url-pattern&gt;</span>/index.jsp<span class="nt">&lt;/url-pattern&gt;</span>
 <span class="nt">&lt;/servlet-mapping&gt;</span>
 </code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">config</span><span class="o">.</span><span class="na">getInitParameter</span><span class="o">(</span><span class="s">&#34;dbaId&#34;</span><span class="o">);</span>
-</code></pre></div><p><strong>Application</strong>
+</code></pre></div><p><strong>Application</strong><br>
 웹 어플리케이션 내부에 있는 전체 서블릿에서 사용할 수 있는 데이터등을 공유할 때 사용한다. <code>web.xml</code>에 <code>context-param</code>을 정의하고 <code>getInitParameter()</code>메소드를 통해 가져온다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml">	<span class="c">&lt;!--웹 속성 정의 --&gt;</span>
 <span class="nt">&lt;context-param&gt;</span>
@@ -296,7 +296,7 @@ out 객체는 기본적으로 JSP에서 담고있는 모든 내용을 <code>out<
 	<span class="nt">&lt;param-value&gt;</span>oracle 11g<span class="nt">&lt;/param-value&gt;</span>
 <span class="nt">&lt;/context-param&gt;</span>
 </code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span> <span class="n">dbmsname</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="na">getInitParameter</span><span class="o">(</span><span class="s">&#34;dbmsInfo&#34;</span><span class="o">);</span>
-</code></pre></div><p><strong>Exception</strong>
+</code></pre></div><p><strong>Exception</strong><br>
 오류 관련 처리를 담당하는 객체, 웹 서버에서 오류가 발생하면 자체적으로 오류 페이지를 띄우는데 직접 구성할 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="o">&lt;%</span><span class="err">@</span> <span class="n">page</span> <span class="n">language</span><span class="o">=</span><span class="s">&#34;java&#34;</span> <span class="n">contentType</span><span class="o">=</span><span class="s">&#34;text/html; charset=UTF-8&#34;</span>
 <span class="n">pageEncoding</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="o">%&gt;</span>
