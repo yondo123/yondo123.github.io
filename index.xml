@@ -147,13 +147,13 @@ out 객체는 기본적으로 JSP에서 담고있는 모든 내용을 &lt;code&g
     │          │  web.xml
     │          └─lib
     └─Servers
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;src&lt;/strong&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;src&lt;/strong&gt;&lt;br&gt;
 자바 소스를 다루는 디렉토리, 컴파일 해야할 java파일은 모두 이곳에 위치한다.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;WebContent&lt;/strong&gt;
+&lt;p&gt;&lt;strong&gt;WebContent&lt;/strong&gt;&lt;br&gt;
 실제 웹 컨텐츠 파일들이 존재하는 디렉토리&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;META-IMF&lt;/strong&gt;
-프로젝트를 JAR로 패키징 할 떄 일종의 설명서라고 볼 수 있는 `&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;META-IMF&lt;/strong&gt;&lt;br&gt;
+프로젝트를 JAR로 패키징 할 떄 일종의 설명서라고 볼 수 있는 &lt;code&gt;MANIFEST.MF&lt;/code&gt; 파일이 위치해있다.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         </item>
