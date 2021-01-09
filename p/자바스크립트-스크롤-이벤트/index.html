@@ -11,7 +11,11 @@
 <meta property='og:site_name' content='Jiny Island.'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='event' /><meta property='article:published_time' content='2021-01-05T22:43:29&#43;09:00'/><meta property='article:modified_time' content='2021-01-05T22:43:29&#43;09:00'/>
 <meta name="twitter:title" content="자바스크립트 스크롤 이벤트">
-<meta name="twitter:description" content="스크롤 이벤트  마우스를 움직이면 스크롤 이벤트가 발생한다. x-value 는 마우스의 가로축, y-value는 문서의 세로축을 따른는 픽셀 window.scroll(x-value, y-value); window.scroll(options);   (1)문서의 상.하단으로 이동시키기  scrollTop() 메서드를 이용한다. $(&amp;#34;body&amp;#34;).scrollTop(0); //간혹 &amp;#39;body&amp;#39;가 먹히지 않는다면 전체 위임 $(&amp;#39;html, body&amp;#39;).scrollTop(0); //순수 자바스크립트 function goTop(){ document.documentElement.scrollTop = 0; }   (2) 새로고침시 스크롤 상단으로 이동하기 setTimeout(function () { scrollTop(0, 0); }, 100); (3) 무한 스크롤링 구현 $(document).ready(function () { for (var i = 0; i &amp;lt; 20; i&#43;&#43;) { $(&amp;#39;&amp;lt;h1&amp;gt;Sample TextLine &amp;gt;&amp;gt; &amp;#39; &#43; i &#43; &amp;#39;&amp;lt;/h1&amp;gt;&amp;#39;).">
+<meta name="twitter:description" content="스크롤 이벤트  마우스를 움직이면 스크롤 이벤트가 발생한다. x-value 는 마우스의 가로축, y-value는 문서의 세로축을 따른는 픽셀 window.scroll(x-value, y-value); window.scroll(options);   (1)문서의 상.하단으로 이동시키기  scrollTop() 메서드를 이용한다. $(&amp;#34;body&amp;#34;).scrollTop(0); //간혹 &amp;#39;body&amp;#39;가 먹히지 않는다면 전체 위임 $(&amp;#39;html, body&amp;#39;).scrollTop(0); //순수 자바스크립트 function goTop(){ document.documentElement.scrollTop = 0; }   (2) 새로고침시 스크롤 상단으로 이동하기 setTimeout(function () { scrollTop(0, 0); }, 100); (3) 무한 스크롤링 구현 $(document).ready(function () { for (var i = 0; i &amp;lt; 20; i&#43;&#43;) { $(&amp;#39;&amp;lt;h1&amp;gt;Sample TextLine &amp;gt;&amp;gt; &amp;#39; &#43; i &#43; &amp;#39;&amp;lt;/h1&amp;gt;&amp;#39;)."><style>
+    .article-content code {
+        word-wrap:break-word;
+    }
+</style>
     </head>
     <body class="">
     <script>
