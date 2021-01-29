@@ -6,7 +6,20 @@
     <description>Recent content in javascript on Jiny Island.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Jan 2021 22:50:16 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 29 Jan 2021 22:49:38 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>펼침연산자 사용해보기</title>
+      <link>https://jinyisland.kr/p/%ED%8E%BC%EC%B9%A8%EC%97%B0%EC%82%B0%EC%9E%90-%EC%82%AC%EC%9A%A9%ED%95%B4%EB%B3%B4%EA%B8%B0/</link>
+      <pubDate>Fri, 29 Jan 2021 22:49:38 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/p/%ED%8E%BC%EC%B9%A8%EC%97%B0%EC%82%B0%EC%9E%90-%EC%82%AC%EC%9A%A9%ED%95%B4%EB%B3%B4%EA%B8%B0/</guid>
+      <description>펼침연산자란 기존 배열 조작(splice, slice..) 메소드들을 사용할 때, 원본배열을 조작할 수 있는 가능성이 있는데 이를 방지 (기존 컬렉션을 조작하지 않는다.)
+특히, 함수에서 배열을 조작할 때 부수효과 방지에 유용하다.
+사용법
+마침표 세 개(&amp;hellip;)를 이용해 작성할 수 있다.
+const fruits = [&amp;#39;apple&amp;#39;, &amp;#39;mango&amp;#39;]; const copyFruits = [...fruits]; //[&amp;#39;apple&amp;#39;, &amp;#39;mango&amp;#39;] 펼침연산자를 이용한 복사 만일 배열의 원소를 삭제하려는 함수를 사용하려하려면, 단순하게 반복문을 돌려 삭제할 값과 비교후 일치하면 삭제후 return 배열에 push하는 방식으로 할 수 있다.</description>
+    </item>
+    
     <item>
       <title>자바스크립트 타이머</title>
       <link>https://jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%ED%83%80%EC%9D%B4%EB%A8%B8/</link>
