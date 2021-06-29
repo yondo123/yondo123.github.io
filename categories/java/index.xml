@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>java on Jiny Island.</title>
+    <title>Java on Jiny Island.</title>
     <link>https://jinyisland.kr/categories/java/</link>
-    <description>Recent content in java on Jiny Island.</description>
+    <description>Recent content in Java on Jiny Island.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 17 Jan 2021 21:51:37 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/java/index.xml" rel="self" type="application/rss+xml" />

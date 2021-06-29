@@ -48,21 +48,6 @@
   </url>
   
   <url>
-    <loc>https://jinyisland.kr/categories/jsp/</loc>
-    <lastmod>2021-01-09T15:48:14+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/p/jsp-%EB%82%B4%EC%9E%A5-%EA%B0%9D%EC%B2%B4/</loc>
-    <lastmod>2021-01-09T15:48:14+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/p/jsp-%EC%B2%98%EB%A6%AC%EA%B3%BC%EC%A0%95/</loc>
-    <lastmod>2021-01-09T15:46:29+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%ED%83%80%EC%9D%B4%EB%A8%B8/</loc>
     <lastmod>2021-01-05T22:50:16+09:00</lastmod>
   </url>
@@ -100,6 +85,10 @@
   <url>
     <loc>https://jinyisland.kr/about/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/categories/jsp/</loc>
   </url>
   
   <url>
