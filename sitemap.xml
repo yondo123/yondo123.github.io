@@ -3,73 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://jinyisland.kr/categories/book/</loc>
+    <lastmod>2021-06-29T22:16:05+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jinyisland.kr/categories/</loc>
-    <lastmod>2021-01-29T22:49:38+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/tags/es6/</loc>
-    <lastmod>2021-01-29T22:49:38+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/categories/javascript/</loc>
-    <lastmod>2021-01-29T22:49:38+09:00</lastmod>
+    <lastmod>2021-06-29T22:16:05+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/</loc>
-    <lastmod>2021-01-29T22:49:38+09:00</lastmod>
+    <lastmod>2021-06-29T22:16:05+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/p/js-test/</loc>
+    <lastmod>2021-06-29T22:16:05+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/post/</loc>
-    <lastmod>2021-01-29T22:49:38+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/tags/</loc>
-    <lastmod>2021-01-29T22:49:38+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/p/%ED%8E%BC%EC%B9%A8%EC%97%B0%EC%82%B0%EC%9E%90-%EC%82%AC%EC%9A%A9%ED%95%B4%EB%B3%B4%EA%B8%B0/</loc>
-    <lastmod>2021-01-29T22:49:38+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/categories/java/</loc>
-    <lastmod>2021-01-17T21:51:37+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/p/java%EC%99%80-javascript-%EA%B0%84-%EB%B0%B0%EC%97%B4-%EB%B9%84%EA%B5%90/</loc>
-    <lastmod>2021-01-17T21:51:37+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%ED%83%80%EC%9D%B4%EB%A8%B8/</loc>
-    <lastmod>2021-01-05T22:50:16+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/tags/event/</loc>
-    <lastmod>2021-01-05T22:43:29+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8/</loc>
-    <lastmod>2021-01-05T22:43:29+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/tags/lifecycle/</loc>
-    <lastmod>2021-01-05T22:38:11+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/p/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/</loc>
-    <lastmod>2021-01-05T22:38:11+09:00</lastmod>
+    <lastmod>2021-06-29T22:16:05+09:00</lastmod>
   </url>
   
   <url>
@@ -88,11 +43,23 @@
   </url>
   
   <url>
-    <loc>https://jinyisland.kr/categories/jsp/</loc>
+    <loc>https://jinyisland.kr/categories/java/</loc>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/categories/javascript/</loc>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/search/</loc>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/categories/vue/</loc>
   </url>
   
 </urlset>
