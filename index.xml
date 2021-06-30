@@ -6,25 +6,211 @@
         <description>Recent content on Jiny Island.</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 29 Jun 2021 22:16:05 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Js Test</title>
-        <link>https://jinyisland.kr/p/js-test/</link>
-        <pubDate>Tue, 29 Jun 2021 22:16:05 +0900</pubDate>
+        <lastBuildDate>Wed, 30 Jun 2021 20:20:49 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Vue 설치하기 및 프로젝트 구조</title>
+        <link>https://jinyisland.kr/p/vue-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0-%EB%B0%8F-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0/</link>
+        <pubDate>Wed, 30 Jun 2021 20:20:49 +0900</pubDate>
         
-        <guid>https://jinyisland.kr/p/js-test/</guid>
-        <description>&lt;h2 id=&#34;테스트&#34;&gt;테스트&lt;/h2&gt;
-&lt;h3 id=&#34;code-test&#34;&gt;code test&lt;/h3&gt;
+        <guid>https://jinyisland.kr/p/vue-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0-%EB%B0%8F-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0/</guid>
+        <description>&lt;h2 id=&#34;vue-설치하기-및-프로젝트-구조&#34;&gt;Vue 설치하기 및 프로젝트 구조&lt;/h2&gt;
+&lt;h3 id=&#34;cli&#34;&gt;CLI?&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;cli&lt;/code&gt;란 Command Line Interface, 즉 명령어 기반의 인터페이스 환경을 의미한다.&lt;br&gt;
+vue 프로젝트 도입시 전체적인 웹애플레이케이션을 관리하려면 지금 소개하는 &lt;code&gt;cli&lt;/code&gt;패키지를 설치하면 되고,&lt;br&gt;
+별도의 페이지에서 국한적으로 사용하려면 &lt;code&gt;cdn&lt;/code&gt;방식으로도 사용할 수 있다.&lt;br&gt;
+CDN 방식을 사용하려면 아래 소스를 참고하면 된다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 1
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 2
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 3
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 4
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 5
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 6
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 7
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 8
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 9
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;10
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;11
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;12
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;13
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;14
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;15
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;16
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;17
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;18
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;19
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;20
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;21
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
+&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#000&#34;&gt;head&lt;/span&gt;&amp;gt;
+    &lt;span style=&#34;color:#177500&#34;&gt;&amp;lt;!-- Vue-CDN --&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#000&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#836c28&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#34;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#000&#34;&gt;script&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#000&#34;&gt;head&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#000&#34;&gt;body&lt;/span&gt;&amp;gt;
+    &lt;span style=&#34;color:#177500&#34;&gt;&amp;lt;!-- template --&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#000&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#836c28&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;
+         &amp;lt;&lt;span style=&#34;color:#000&#34;&gt;app-footer&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#000&#34;&gt;app-footer&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#000&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#000&#34;&gt;body&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#000&#34;&gt;script&lt;/span&gt;&amp;gt;
+        &lt;span style=&#34;color:#177500&#34;&gt;//vue 인스턴스 생성
+&lt;/span&gt;&lt;span style=&#34;color:#177500&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#a90d91&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;Vue&lt;/span&gt;({
+            &lt;span style=&#34;color:#000&#34;&gt;el&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#39;#app&amp;#39;&lt;/span&gt;, 
+            &lt;span style=&#34;color:#000&#34;&gt;components&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;:&lt;/span&gt; {
+                &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#39;app-footer&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;:&lt;/span&gt; {
+                    &lt;span style=&#34;color:#000&#34;&gt;template&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#39;&amp;lt;footer&amp;gt;Footer!&amp;lt;/footer&amp;gt;&amp;#39;&lt;/span&gt;
+                }
+            }
+        });
+&amp;lt;/&lt;span style=&#34;color:#000&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;vue-설치하기&#34;&gt;Vue 설치하기&lt;/h3&gt;
+&lt;p&gt;먼저 &lt;strong&gt;npm (node package manager)&lt;/strong&gt; 및 &lt;a class=&#34;link&#34; href=&#34;https://nodejs.org/en/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;strong&gt;node&lt;/strong&gt;&lt;/a&gt;가 설치되어있어야 한다.&lt;br&gt;
+특히 &lt;strong&gt;node 는 vue에서 10.X 버전 이상을 권장하기 때문에, 버전을 확인하고 10.X이상 버전을 준비하는 것이 필수이다.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
+&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;    node -v &lt;span style=&#34;color:#177500&#34;&gt;#현재 node 버전 확인 (LTS 10.X 버전 이상을 설치해야 한다.)&lt;/span&gt;
+    npm -v &lt;span style=&#34;color:#177500&#34;&gt;#npm 버전 확인&lt;/span&gt;
+    npm install -g @vue/cli &lt;span style=&#34;color:#177500&#34;&gt;#vue-cli install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;vue-cli-버전-별-프로젝트-생성&#34;&gt;Vue-cli 버전 별 프로젝트 생성&lt;/h3&gt;
+&lt;p&gt;vue cli 버전마다 프로젝트 생성 방법이 조금 다르다.&lt;br&gt;
+혹시 2.X 환경으로 vue를 생성해야 한다면, 직접 프로젝트 템플릿을 지정해주어야 한다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;2.X&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;vue-webpack-boilerplate&lt;/strong&gt; : 대형 프로젝트 규모에 적합 (hot-reload, router, unit test, linting 포함)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;webpack-simple&lt;/strong&gt;  : 빠른 프로토타입 구축 목적에 적합&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;vue-simple-boilerplate&lt;/strong&gt; : 하나의 html만 존재 (튜토리얼 수준에 적합)&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
 &lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
 &lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
 &lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
-&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a90d91&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;message&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#39;hello hugo!&amp;#39;&lt;/span&gt;;
-&lt;span style=&#34;color:#a90d91&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#000&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#000&#34;&gt;message&lt;/span&gt;);
+&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; &lt;span style=&#34;color:#177500&#34;&gt;# vue init &amp;#39;project-template-type&amp;#39; &amp;#39;project-directory&amp;#39;&lt;/span&gt;
+ vue init webpack-simple vue-project
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description>
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;3.X~&lt;/strong&gt;&lt;br&gt;
+3버전 들어서 프로젝트 생성이 간편하게 되었다.&lt;br&gt;
+&lt;code&gt;create&lt;/code&gt;로 프로젝트 경로만 잡아주고 생성하고 직접 필요한 모듈을 선택해서 설치할 수 있다.&lt;br&gt;
+물론 &lt;code&gt;default&lt;/code&gt;로 필수 모듈(babel, linting)만 설치하고 필요한 모듈은 알아서 설치해도 상관없다.
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
+&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;  &lt;span style=&#34;color:#177500&#34;&gt;# vue create &amp;#39;project-directory&amp;#39;&lt;/span&gt;
+  vue create vue-project
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;프로젝트-구조&#34;&gt;프로젝트 구조&lt;/h3&gt;
+&lt;p&gt;vue 프로젝트 필수 구조&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;3
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;4
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;5
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;6
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;7
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
+&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;    root
+    ├─public
+    │  └─index.html : 로컬 서버 실행시 제일 처음 참조되는 페이지
+    ├─src
+    │  └─main.js : 프로젝트 전체에 대한 정보 (vue 인스턴스 생성)
+    │  └─app.vue : 메인 컴포넌트    
+    ├─package.json : 프로젝트 모듈 및 의존성 설정 정보
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;index.html&lt;/strong&gt;&lt;br&gt;
+&lt;code&gt;webpack&lt;/code&gt;을 통해 여러 컴포넌트 vue, 리소스들이 통합해 주입되는 페이지이다. &lt;br&gt;
+즉 페이지 내용이 변경될 때 마다 페이지를 reload하는 것이 아닌 변경된 요소만을 탐색해 내용을 변경한다.&lt;br&gt;
+vue는 이러한 &lt;strong&gt;가상 DOM을 활용하기에 최적화된 framework&lt;/strong&gt;이고 이러한 구조를 SPA (Single Page Application)라 한다.
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
+&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#000&#34;&gt;body&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#000&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#836c28&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#000&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#000&#34;&gt;body&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;main.js&lt;/strong&gt;&lt;br&gt;
+프로젝트에 대한 전체 정보를 담고 있는 main 스크립트 파일이다.&lt;br&gt;
+최상위 인스턴스로써, 여러 컴포넌트들을 공유할 수 있고 상태&lt;code&gt;state&lt;/code&gt;들을 관리한다.
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;3
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;4
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
+&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a90d91&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;App&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#39;./App.vue&amp;#39;&lt;/span&gt;; &lt;span style=&#34;color:#177500&#34;&gt;//main component
+&lt;/span&gt;&lt;span style=&#34;color:#177500&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a90d91&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;Vue&lt;/span&gt;({
+    &lt;span style=&#34;color:#000&#34;&gt;el&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#39;#app&amp;#39;&lt;/span&gt;,
+    &lt;span style=&#34;color:#000&#34;&gt;render&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;h&lt;/span&gt; =&amp;gt; &lt;span style=&#34;color:#000&#34;&gt;h&lt;/span&gt;(&lt;span style=&#34;color:#000&#34;&gt;App&lt;/span&gt;)
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;package.json&lt;/strong&gt;&lt;br&gt;
+프로젝트에서 사용중인 여러 모듈을 관리하는 곳이다.&lt;br&gt;
+특히, &lt;code&gt;devDependencies&lt;/code&gt;에서 프로젝트에서 사용중인 여러 플러그인들을 확인할 수 있다. &lt;strong&gt;(의존성 관리)&lt;/strong&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;3
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;4
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;5
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;6
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;7
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;8
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
+&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#34;devDependencies&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;:&lt;/span&gt; {
+    &lt;span style=&#34;color:#000&#34;&gt;&amp;#34;@vue/cli-plugin-babel&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#34;~4.5.0&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#000&#34;&gt;&amp;#34;@vue/cli-plugin-eslint&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#34;~4.5.0&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#000&#34;&gt;&amp;#34;@vue/cli-service&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#34;~4.5.0&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#000&#34;&gt;&amp;#34;babel-eslint&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#34;^10.1.0&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#000&#34;&gt;&amp;#34;eslint&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#34;^6.7.2&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#000&#34;&gt;&amp;#34;eslint-plugin-vue&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#34;^6.2.2&amp;#34;&lt;/span&gt;,
+    &lt;span style=&#34;color:#000&#34;&gt;&amp;#34;vue-template-compiler&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#c41a16&#34;&gt;&amp;#34;^2.6.11&amp;#34;&lt;/span&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
         </item>
         
     </channel>
