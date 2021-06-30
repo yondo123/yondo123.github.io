@@ -13,11 +13,11 @@
       <pubDate>Wed, 30 Jun 2021 20:20:49 +0900</pubDate>
       
       <guid>https://jinyisland.kr/p/vue-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0-%EB%B0%8F-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0/</guid>
-      <description>Vue 설치하기 및 프로젝트 구조 CLI? cli란 Command Line Interface, 즉 명령어 기반의 인터페이스 환경을 의미한다.
+      <description>CLI? cli란 Command Line Interface, 즉 명령어 기반의 인터페이스 환경을 의미한다.
 vue 프로젝트 도입시 전체적인 웹애플레이케이션을 관리하려면 지금 소개하는 cli패키지를 설치하면 되고,
 별도의 페이지에서 국한적으로 사용하려면 cdn방식으로도 사용할 수 있다.
 CDN 방식을 사용하려면 아래 소스를 참고하면 된다.
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  &amp;lt;head&amp;gt; &amp;lt;!-- Vue-CDN --&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;!</description>
+&amp;lt;head&amp;gt; &amp;lt;!-- Vue-CDN --&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;!-- template --&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;app-footer&amp;gt;&amp;lt;/app-footer&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;script&amp;gt; //vue 인스턴스 생성  new Vue({ el: &amp;#39;#app&amp;#39;, components: { &amp;#39;app-footer&amp;#39; : { template : &amp;#39;&amp;lt;footer&amp;gt;Footer!&amp;lt;/footer&amp;gt;&amp;#39; } } }); &amp;lt;/script&amp;gt; Vue 설치하기 먼저 npm (node package manager) 및 node가 설치되어있어야 한다.</description>
     </item>
     
   </channel>

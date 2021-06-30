@@ -5,7 +5,8 @@
 
 <link rel='canonical' href='https://jinyisland.kr/about/'>
 
-<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='About'>
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='About'>
 <meta property='og:description' content='Hugo, the world&#39;s fastest framework for building websites'>
 <meta property='og:url' content='https://jinyisland.kr/about/'>
 <meta property='og:site_name' content='Jiny Island.'>
@@ -68,7 +69,6 @@
         <h1 class="site-name"><a href="https://jinyisland.kr">Jiny Island.</a></h1>
         <h2 class="site-description">Junior Developer.</h2>
     </header>
-
     <ol class="menu" id="main-menu">
         
         
@@ -146,7 +146,6 @@
             </a>
         </li>
         
-
         
             <li id="dark-mode-toggle">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -170,7 +169,6 @@
         
     </ol>
 </aside>
-
             <main class="main full-width">
     <article class="main-article">
     <header class="article-header">
@@ -199,7 +197,8 @@
     </footer></div>
 </header>
 
-    <section class="article-content">
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
     <p>Written in Go, Hugo is an open source static site generator available under the <a class="link" href="https://github.com/gohugoio/hugo/blob/master/LICENSE"  target="_blank" rel="noopener"
     >Apache Licence 2.0.</a> Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.</p>
 <p>Hugo makes use of a variety of open source projects including:</p>
@@ -217,7 +216,68 @@
     >GitHub</a>.</p>
 
 </section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false,
+    });
+</script>
+<style>
+     
+    @media all and (min-width:1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+    }
 
+    @media all and (max-width:1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: "목차";
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+
+    .toc-link::before {
+        width: 0;
+    }
+
+</style>
 
     <footer class="article-footer">
     
