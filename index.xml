@@ -6,7 +6,174 @@
         <description>Recent content on Jiny Island.</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 30 Jun 2021 20:20:49 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 01 Jul 2021 21:27:40 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Vue 컴포넌트에 대한 개념</title>
+        <link>https://jinyisland.kr/p/vue-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B0%9C%EB%85%90/</link>
+        <pubDate>Thu, 01 Jul 2021 21:27:40 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/p/vue-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B0%9C%EB%85%90/</guid>
+        <description>&lt;h2 id=&#34;컴포넌트-개념&#34;&gt;컴포넌트 개념&lt;/h2&gt;
+&lt;p&gt;화면의 영역을 분리하여 개발하는 것, Vue에서 최상위 컴포넌트는 &lt;code&gt;root&lt;/code&gt;이다.&lt;br&gt;
+컴포넌트 구성의 장점은 요소들을 재사용함으로써 개발 생산성이 향상되고, 컴포넌트들은 서로 관계가 형성된다.&lt;/p&gt;
+&lt;h3 id=&#34;전역-컴포넌트&#34;&gt;전역 컴포넌트&lt;/h3&gt;
+&lt;p&gt;주로 플러그인, 라이브러리 등 앱 전역에서 사용 할 공통 컴포넌트를 작성한다.&lt;br&gt;
+전역 컴포넌트를 생성하면 &lt;strong&gt;새 인스턴스를 생성할 때 마다 기본적으로 생성한다.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//컴포넌트 생성
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Vue&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;component&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;app-header&amp;#39;&lt;/span&gt;, {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;template&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;lt;h1&amp;gt;header&amp;lt;/h1&amp;gt;&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;//component Template
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;});
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;Vue&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;component&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;app-content&amp;#39;&lt;/span&gt;, {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;template&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;lt;p&amp;gt;This is Vue-Component Write&amp;lt;/p&amp;gt;&amp;#39;&lt;/span&gt;
+});
+
+&lt;span style=&#34;color:#75715e&#34;&gt;//인스턴스 생성
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Vue&lt;/span&gt;({
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;el&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#app&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;//selector
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;지역-컴포넌트&#34;&gt;지역 컴포넌트&lt;/h3&gt;
+&lt;p&gt;Vue 인스턴스 내에 직접 삽입하는 방식이다. &lt;code&gt;components&lt;/code&gt;로 정의한다.&lt;br&gt;
+Tree 구조로 구성할 수 있으며, 부모-자식 간 컴포넌트 사이 통신이 가능하다.&lt;br&gt;
+지역 컴포넌트는 해당 인스턴스에서만 동작한다. 따라서 인스턴스를 새로 생성할 때 마다 컴포넌트를 등록해주어야 한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Vue&lt;/span&gt;({
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;el&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#app&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#75715e&#34;&gt;//selector
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;components&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+        &lt;span style=&#34;color:#75715e&#34;&gt;//지역 컴포넌트 정의
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;app-footer&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;template&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;lt;footer&amp;gt;Footer!&amp;lt;/footer&amp;gt;&amp;#39;&lt;/span&gt;
+        }
+    }
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;template&#34;&gt;Template&lt;/h3&gt;
+&lt;p&gt;템플릿 내에 생성한 컴포넌트를 태그로 지정한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;
+        &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!--컴포넌트에 등록한 템플릿 지정--&amp;gt;&lt;/span&gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;app-header&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;app-header&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;app-content&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;app-content&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;컴포넌트-통신-방식&#34;&gt;컴포넌트 통신 방식&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/46988995/124051330-4041dc00-da57-11eb-9132-9c411b842f3a.png&#34; alt=&#34;components&#34;  /&gt;&lt;br&gt;
+Vue 컴포넌트는 각 고유한 데이터 유효범위를 갖는다.&lt;br&gt;
+부모 컴포넌트의 데이터가 바뀌면 하위 컴포넌트의 데이터가 바뀌지만, 반대로 하위 컴포넌트의 데이터가 바뀌면 부모 컴포넌트가 바뀌지 않는다. &lt;code&gt;(단방향 흐름)&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;props&#34;&gt;props&lt;/h3&gt;
+&lt;p&gt;상위 컴포넌트에서 하위 컴포넌트로 데이터 전달 시 사용한다.&lt;br&gt;
+vue에서는 &lt;code&gt;v-bind&lt;/code&gt;디렉티브로 속성에 접근할 수 있는데, 하위 컴포넌트에서 상위 컴포넌트의 데이터 속성에 접근이 가능하다.&lt;br&gt;
+자세하게 말하면, v-bind로 &lt;strong&gt;해당 컴포넌트에서 정의된 props&lt;/strong&gt; 속성에 접근할 수 있고 &lt;code&gt;props&lt;/code&gt;의 역할은 부모의 &lt;code&gt;data&lt;/code&gt;영역에 접근할 수 있게 해주는 속성이라고 볼 수 있다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!--template--&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;
+	&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;app-header&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;v-bind:propsdata&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;message&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;app-header&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//하위 컴포넌트
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;appHeader&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;template&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;lt;h1&amp;gt;header&amp;lt;/h1&amp;gt;&amp;#39;&lt;/span&gt;,
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;props&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;propsdata&amp;#39;&lt;/span&gt;]
+}
+
+&lt;span style=&#34;color:#75715e&#34;&gt;// Vue 인스턴스 (root 컴포넌트)
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Vue&lt;/span&gt;({
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;el&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#app&amp;#39;&lt;/span&gt;,
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;components&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;app-header&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;appHeader&lt;/span&gt;
+    },
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;message&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;hello Vue~~!!&amp;#39;&lt;/span&gt;
+    }
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;emit&#34;&gt;emit&lt;/h3&gt;
+&lt;p&gt;props와는 반대로 하위 컴포넌트에서 상위 컴포넌트로 이벤트를 전달할 수 있다.&lt;br&gt;
+이벤트를 전달함으로써, 콜백내 &lt;code&gt;this&lt;/code&gt;를 통해 상위 데이터에 접근하는 방법이다.&lt;br&gt;
+컴포넌트 &lt;code&gt;methods&lt;/code&gt; 속성 내에 여러 이벤트들을 정의할 수 있는데, 정의한 &lt;code&gt;custom event&lt;/code&gt;를 트리거하려면 &lt;code&gt;$emit&lt;/code&gt;메서드에 이벤트 이름을 전달하면 된다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;app-content&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;v-on:add&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;addNumber&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;app-content&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;number : {{number}}&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;//하위 컴포넌트
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;appContent&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;template&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;lt;button v-on:add=&amp;#34;addNumber&amp;#34;&amp;gt;add&amp;lt;/button&amp;gt;&amp;#39;&lt;/span&gt;, 
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;methods&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;addNumber&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;params&lt;/span&gt;) {
+                &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;$emit&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;add&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//상위 컴포넌트에 binding 할 이벤트
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            }
+        }
+    }
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;//Vue 인스턴스 (root)
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;vueObject&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Vue&lt;/span&gt;({
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;el&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#app&amp;#39;&lt;/span&gt;,
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;components&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; { &lt;span style=&#34;color:#75715e&#34;&gt;//local component
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;app-content&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;appContent&lt;/span&gt;
+        },
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;methods&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;addNumber&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; () {
+                &lt;span style=&#34;color:#75715e&#34;&gt;//this 키워드로 정의한 data에 접근 가능
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;                &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;number&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;);
+            }
+        },
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+            &lt;span style=&#34;color:#a6e22e&#34;&gt;number&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        }
+    });
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;동등-컴포넌트-간-통신&#34;&gt;동등 컴포넌트 간 통신&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;내가 생각하는 컴포넌트 통신&lt;/strong&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/46988995/124051372-594a8d00-da57-11eb-8f33-0098bb609870.png&#34; alt=&#34;same-level&#34;  /&gt;&lt;br&gt;
+실제로 기존 DOM 조작 방식(JQuery)에 익숙한 나는 위의 사진처럼 종속관계가 아니어도 값을 주고받을 수 있을줄 알았으나, 아래와 같이 해야한다고 한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;실제 컴포넌트 통신 방법&lt;/strong&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/46988995/124051382-5fd90480-da57-11eb-8a4d-7c7ba02b3f41.png&#34; alt=&#34;components-com&#34;  /&gt;&lt;br&gt;
+위에 설명했던 컴포넌트의 특성을 살려 동등 레벨의 컴포넌트(부모가 동일한)가 데이터를 전달하려면, &lt;strong&gt;emit(상위 컴포넌트로 전달) -&amp;gt; props(하위 컴포넌트로 전달)&lt;/strong&gt; 과정을 거쳐야 한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;만일 같은 레벨의 header와 footer 사이 데이터 전달이 필요하다면 먼저 &lt;code&gt;body&lt;/code&gt;에 데이터를 전달해야한다. &lt;code&gt;($emit)&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;body&amp;#34;&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;app-header&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;app-header&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;app-footer&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;v-on:message&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;bindData&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;app-footer&lt;/span&gt;&amp;gt; 
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//footer 컴포넌트
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;footer&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;template&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;lt;div&amp;gt;&amp;lt;h3&amp;gt;FOOTER&amp;lt;/h3&amp;gt;&amp;lt;button v-on:click=&amp;#34;passData&amp;#34;&amp;gt;trans-data&amp;lt;/button&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;&lt;/span&gt;,
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;methods&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;passData&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; () {
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;$emit&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;message&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;footer-data&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//해당 이벤트에 파라미터 전달
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        }
+    },
+}
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Vue&lt;/span&gt;({
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;el&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#body&amp;#39;&lt;/span&gt;,
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;components&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;app-header&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;header&lt;/span&gt;,
+        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;app-footer&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;footer&lt;/span&gt;
+    },
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;message&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;test&amp;#39;&lt;/span&gt;
+    },
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;methods&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;bindData&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;param&lt;/span&gt;) {
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;message&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;param&lt;/span&gt;;
+        }
+    },
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이제 부모의 message는 하위 컴포넌트에서 전달한 데이터로 변경이 되어있다.&lt;br&gt;
+&lt;code&gt;props&lt;/code&gt;속성을 통해 접근하면된다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;app-header&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;v-bind:headerdata&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;message&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;app-header&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//header 컴포넌트
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;header&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;template&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;lt;h2&amp;gt;Header&amp;lt;/h2&amp;gt;&amp;#39;&lt;/span&gt;,
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;props&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;headerdata&amp;#39;&lt;/span&gt;]
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;참고자료&#34;&gt;참고자료&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://vuejs.org/v2/api/#vm-emit&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;strong&gt;Vue 공식문서 - vm-emit&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.inflearn.com/course/Age-of-Vuejs/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;strong&gt;캡틴판교님의 Vue 기초 강의&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>Vue 설치하기 및 프로젝트 구조</title>
         <link>https://jinyisland.kr/p/vue-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0-%EB%B0%8F-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0/</link>
         <pubDate>Wed, 30 Jun 2021 20:20:49 +0900</pubDate>

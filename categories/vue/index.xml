@@ -6,7 +6,20 @@
     <description>Recent content in Vue on Jiny Island.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Jun 2021 20:20:49 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/vue/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Jul 2021 21:27:40 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/vue/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vue 컴포넌트에 대한 개념</title>
+      <link>https://jinyisland.kr/p/vue-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B0%9C%EB%85%90/</link>
+      <pubDate>Thu, 01 Jul 2021 21:27:40 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/p/vue-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B0%9C%EB%85%90/</guid>
+      <description>컴포넌트 개념 화면의 영역을 분리하여 개발하는 것, Vue에서 최상위 컴포넌트는 root이다.
+컴포넌트 구성의 장점은 요소들을 재사용함으로써 개발 생산성이 향상되고, 컴포넌트들은 서로 관계가 형성된다.
+전역 컴포넌트 주로 플러그인, 라이브러리 등 앱 전역에서 사용 할 공통 컴포넌트를 작성한다.
+전역 컴포넌트를 생성하면 새 인스턴스를 생성할 때 마다 기본적으로 생성한다.
+//컴포넌트 생성 Vue.component(&amp;#39;app-header&amp;#39;, { template: &amp;#39;&amp;lt;h1&amp;gt;header&amp;lt;/h1&amp;gt;&amp;#39; //component Template }); Vue.component(&amp;#39;app-content&amp;#39;, { template: &amp;#39;&amp;lt;p&amp;gt;This is Vue-Component Write&amp;lt;/p&amp;gt;&amp;#39; }); //인스턴스 생성 new Vue({ el: &amp;#39;#app&amp;#39; //selector }); 지역 컴포넌트 Vue 인스턴스 내에 직접 삽입하는 방식이다.</description>
+    </item>
+    
     <item>
       <title>Vue 설치하기 및 프로젝트 구조</title>
       <link>https://jinyisland.kr/p/vue-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0-%EB%B0%8F-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0/</link>
