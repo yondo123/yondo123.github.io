@@ -6,7 +6,17 @@
     <description>Recent content in vue on Jiny Island.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Jul 2021 21:27:40 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/vue/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Jul 2021 23:09:02 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/vue/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>외부 Vue 프로젝트 불러오기</title>
+      <link>https://jinyisland.kr/p/%EC%99%B8%EB%B6%80-vue-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0/</link>
+      <pubDate>Sun, 18 Jul 2021 23:09:02 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/p/%EC%99%B8%EB%B6%80-vue-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0/</guid>
+      <description>윈도우에서 작업한 Vue 프로젝트를 mac 환경에서 확인하려던 중 git clone 후 프로젝트를 실행해보니 아래와 같은 에러가 나왔다.
+&amp;gt; vue-todo@0.1.0 serve /Users/sjchoi/Mydoc/02_Code/05_vue/vue-practice/vue-todo &amp;gt; vue-cli-service serve sh: vue-cli-service: command not found npm ERR! code ELIFECYCLE npm ERR! syscall spawn npm ERR! file sh npm ERR! errno ENOENT npm ERR! vue-todo@0.1.0 serve: `vue-cli-service serve` npm ERR! spawn ENOENT npm ERR! npm ERR! Failed at the vue-todo@0.1.0 serve script. npm ERR! This is probably not a problem with npm.</description>
+    </item>
+    
     <item>
       <title>Vue 컴포넌트에 대한 개념</title>
       <link>https://jinyisland.kr/p/vue-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B0%9C%EB%85%90/</link>

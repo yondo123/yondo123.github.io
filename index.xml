@@ -6,7 +6,36 @@
         <description>Recent content on Jiny Island.</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 01 Jul 2021 21:27:40 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 18 Jul 2021 23:09:02 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>외부 Vue 프로젝트 불러오기</title>
+        <link>https://jinyisland.kr/p/%EC%99%B8%EB%B6%80-vue-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0/</link>
+        <pubDate>Sun, 18 Jul 2021 23:09:02 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/p/%EC%99%B8%EB%B6%80-vue-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0/</guid>
+        <description>&lt;p&gt;윈도우에서 작업한 Vue 프로젝트를 mac 환경에서 확인하려던 중 git clone 후 프로젝트를 실행해보니 아래와 같은 에러가 나왔다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&amp;gt; vue-todo@0.1.0 serve /Users/sjchoi/Mydoc/02_Code/05_vue/vue-practice/vue-todo
+&amp;gt; vue-cli-service serve
+
+sh: vue-cli-service: command not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! vue-todo@0.1.0 serve: &lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;vue-cli-service serve&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the vue-todo@0.1.0 serve script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;npm은 당연히 설치되어있는데 왜그러는지 몰라 한참을 찾아보다가 npm 캐시를 지워주면 된다는 말을 듣고 캐시를 지우고 다시 &lt;code&gt;package.json&lt;/code&gt;에 정의된 모듈을 설치하였더니 잘 된다!&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;npm cache clean --force &lt;span style=&#34;color:#75715e&#34;&gt;#npm 캐시 삭제&lt;/span&gt;
+npm install &lt;span style=&#34;color:#75715e&#34;&gt;#package.json 의존하는 모듈 설치&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;만약 &lt;code&gt;npm install&lt;/code&gt;을 시행해도, 프로젝트 실행이 안된다면, npm run serve 중 필요한 라이브러리를 설치하라고 뜰테니 해당 라이브러리를 설치하고 시행하면 잘 된다.&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Vue 컴포넌트에 대한 개념</title>
         <link>https://jinyisland.kr/p/vue-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B0%9C%EB%85%90/</link>
         <pubDate>Thu, 01 Jul 2021 21:27:40 +0900</pubDate>
