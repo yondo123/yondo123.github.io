@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Vue의 핵심인 컴포넌트 이해하기'><title>Vue 컴포넌트에 대한 개념</title>
+
+<link rel='canonical' href='https://jinyisland.kr/post/vue-component/'>
+
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='Vue 컴포넌트에 대한 개념'>
+<meta property='og:description' content='Vue의 핵심인 컴포넌트 이해하기'>
+<meta property='og:url' content='https://jinyisland.kr/post/vue-component/'>
+<meta property='og:site_name' content='Jiny Island'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='vue' /><meta property='article:published_time' content='2021-07-01T21:27:40&#43;09:00'/><meta property='article:modified_time' content='2021-07-01T21:27:40&#43;09:00'/>
+<meta name="twitter:title" content="Vue 컴포넌트에 대한 개념">
+<meta name="twitter:description" content="Vue의 핵심인 컴포넌트 이해하기"><style>
+    .article-content code {
+        word-wrap:break-word;
+    }
+</style>
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub38313664a67c625b5c64f3cb8dc247e_143597_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny Island</a></h1>
+        <h2 class="site-description">🌈Junior Developer.</h2>
+    </header>
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/vue/" style="background-color: #00b894; color: #fff;">
+                Vue
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/vue-component/">Vue 컴포넌트에 대한 개념</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        Vue의 핵심인 컴포넌트 이해하기
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jul 01, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
+    <h2 id="컴포넌트-개념">컴포넌트 개념</h2>
+<p>화면의 영역을 분리하여 개발하는 것, Vue에서 최상위 컴포넌트는 <code>root</code>이다.<br>
+컴포넌트 구성의 장점은 요소들을 재사용함으로써 개발 생산성이 향상되고, 컴포넌트들은 서로 관계가 형성된다.</p>
+<h3 id="전역-컴포넌트">전역 컴포넌트</h3>
+<p>주로 플러그인, 라이브러리 등 앱 전역에서 사용 할 공통 컴포넌트를 작성한다.<br>
+전역 컴포넌트를 생성하면 <strong>새 인스턴스를 생성할 때 마다 기본적으로 생성한다.</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//컴포넌트 생성
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">component</span>(<span style="color:#e6db74">&#39;app-header&#39;</span>, {
+    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&lt;h1&gt;header&lt;/h1&gt;&#39;</span> <span style="color:#75715e">//component Template
+</span><span style="color:#75715e"></span>});
+
+<span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">component</span>(<span style="color:#e6db74">&#39;app-content&#39;</span>, {
+    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&lt;p&gt;This is Vue-Component Write&lt;/p&gt;&#39;</span>
+});
+
+<span style="color:#75715e">//인스턴스 생성
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#app&#39;</span> <span style="color:#75715e">//selector
+</span><span style="color:#75715e"></span>});
+</code></pre></div><h3 id="지역-컴포넌트">지역 컴포넌트</h3>
+<p>Vue 인스턴스 내에 직접 삽입하는 방식이다. <code>components</code>로 정의한다.<br>
+Tree 구조로 구성할 수 있으며, 부모-자식 간 컴포넌트 사이 통신이 가능하다.<br>
+지역 컴포넌트는 해당 인스턴스에서만 동작한다. 따라서 인스턴스를 새로 생성할 때 마다 컴포넌트를 등록해주어야 한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#app&#39;</span>, <span style="color:#75715e">//selector
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">components</span><span style="color:#f92672">:</span> {
+        <span style="color:#75715e">//지역 컴포넌트 정의
+</span><span style="color:#75715e"></span>        <span style="color:#e6db74">&#39;app-footer&#39;</span><span style="color:#f92672">:</span> {
+            <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&lt;footer&gt;Footer!&lt;/footer&gt;&#39;</span>
+        }
+    }
+});
+</code></pre></div><h3 id="template">Template</h3>
+<p>템플릿 내에 생성한 컴포넌트를 태그로 지정한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+        <span style="color:#75715e">&lt;!--컴포넌트에 등록한 템플릿 지정--&gt;</span>
+        &lt;<span style="color:#f92672">app-header</span>&gt;&lt;/<span style="color:#f92672">app-header</span>&gt;
+        &lt;<span style="color:#f92672">app-content</span>&gt;&lt;/<span style="color:#f92672">app-content</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><h2 id="컴포넌트-통신-방식">컴포넌트 통신 방식</h2>
+<p><img src="https://user-images.githubusercontent.com/46988995/124051330-4041dc00-da57-11eb-9132-9c411b842f3a.png" alt="components"  /><br>
+Vue 컴포넌트는 각 고유한 데이터 유효범위를 갖는다.<br>
+부모 컴포넌트의 데이터가 바뀌면 하위 컴포넌트의 데이터가 바뀌지만, 반대로 하위 컴포넌트의 데이터가 바뀌면 부모 컴포넌트가 바뀌지 않는다. <code>(단방향 흐름)</code></p>
+<h3 id="props">props</h3>
+<p>상위 컴포넌트에서 하위 컴포넌트로 데이터 전달 시 사용한다.<br>
+vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는데, 하위 컴포넌트에서 상위 컴포넌트의 데이터 속성에 접근이 가능하다.<br>
+자세하게 말하면, v-bind로 <strong>해당 컴포넌트에서 정의된 props</strong> 속성에 접근할 수 있고 <code>props</code>의 역할은 부모의 <code>data</code>영역에 접근할 수 있게 해주는 속성이라고 볼 수 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!--template--&gt;</span>
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+	&lt;<span style="color:#f92672">app-header</span> <span style="color:#a6e22e">v-bind:propsdata</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;message&#34;</span>&gt;&lt;/<span style="color:#f92672">app-header</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//하위 컴포넌트
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">appHeader</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&lt;h1&gt;header&lt;/h1&gt;&#39;</span>,
+    <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;propsdata&#39;</span>]
+}
+
+<span style="color:#75715e">// Vue 인스턴스 (root 컴포넌트)
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#app&#39;</span>,
+    <span style="color:#a6e22e">components</span><span style="color:#f92672">:</span> {
+        <span style="color:#e6db74">&#39;app-header&#39;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">appHeader</span>
+    },
+    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;hello Vue~~!!&#39;</span>
+    }
+});
+</code></pre></div><h3 id="emit">emit</h3>
+<p>props와는 반대로 하위 컴포넌트에서 상위 컴포넌트로 이벤트를 전달할 수 있다.<br>
+이벤트를 전달함으로써, 콜백내 <code>this</code>를 통해 상위 데이터에 접근하는 방법이다.<br>
+컴포넌트 <code>methods</code> 속성 내에 여러 이벤트들을 정의할 수 있는데, 정의한 <code>custom event</code>를 트리거하려면 <code>$emit</code>메서드에 이벤트 이름을 전달하면 된다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+        &lt;<span style="color:#f92672">app-content</span> <span style="color:#a6e22e">v-on:add</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;addNumber&#34;</span>&gt;&lt;/<span style="color:#f92672">app-content</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;number : {{number}}&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">    <span style="color:#75715e">//하위 컴포넌트
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">appContent</span> <span style="color:#f92672">=</span> {
+        <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&lt;button v-on:add=&#34;addNumber&#34;&gt;add&lt;/button&gt;&#39;</span>, 
+        <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+            <span style="color:#a6e22e">addNumber</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">params</span>) {
+                <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$emit</span>(<span style="color:#e6db74">&#39;add&#39;</span>); <span style="color:#75715e">//상위 컴포넌트에 binding 할 이벤트
+</span><span style="color:#75715e"></span>            }
+        }
+    }
+
+    <span style="color:#75715e">//Vue 인스턴스 (root)
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vueObject</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+        <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#app&#39;</span>,
+        <span style="color:#a6e22e">components</span><span style="color:#f92672">:</span> { <span style="color:#75715e">//local component
+</span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#39;app-content&#39;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">appContent</span>
+        },
+        <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+            <span style="color:#a6e22e">addNumber</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> () {
+                <span style="color:#75715e">//this 키워드로 정의한 data에 접근 가능
+</span><span style="color:#75715e"></span>                <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">number</span><span style="color:#f92672">++</span>);
+            }
+        },
+        <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+            <span style="color:#a6e22e">number</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>
+        }
+    });
+</code></pre></div><h2 id="동등-컴포넌트-간-통신">동등 컴포넌트 간 통신</h2>
+<ul>
+<li>
+<p><strong>내가 생각하는 컴포넌트 통신</strong>
+<img src="https://user-images.githubusercontent.com/46988995/124051372-594a8d00-da57-11eb-8f33-0098bb609870.png" alt="same-level"  /><br>
+실제로 기존 DOM 조작 방식(JQuery)에 익숙한 나는 위의 사진처럼 종속관계가 아니어도 값을 주고받을 수 있을줄 알았으나, 아래와 같이 해야한다고 한다.</p>
+</li>
+<li>
+<p><strong>실제 컴포넌트 통신 방법</strong>
+<img src="https://user-images.githubusercontent.com/46988995/124051382-5fd90480-da57-11eb-8a4d-7c7ba02b3f41.png" alt="components-com"  /><br>
+위에 설명했던 컴포넌트의 특성을 살려 동등 레벨의 컴포넌트(부모가 동일한)가 데이터를 전달하려면, <strong>emit(상위 컴포넌트로 전달) -&gt; props(하위 컴포넌트로 전달)</strong> 과정을 거쳐야 한다.</p>
+</li>
+</ul>
+<p>만일 같은 레벨의 header와 footer 사이 데이터 전달이 필요하다면 먼저 <code>body</code>에 데이터를 전달해야한다. <code>($emit)</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;body&#34;</span>&gt;
+        &lt;<span style="color:#f92672">app-header</span>&gt;&lt;/<span style="color:#f92672">app-header</span>&gt;
+        &lt;<span style="color:#f92672">app-footer</span> <span style="color:#a6e22e">v-on:message</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bindData&#34;</span>&gt;&lt;/<span style="color:#f92672">app-footer</span>&gt; 
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//footer 컴포넌트
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">footer</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&lt;div&gt;&lt;h3&gt;FOOTER&lt;/h3&gt;&lt;button v-on:click=&#34;passData&#34;&gt;trans-data&lt;/button&gt;&lt;/div&gt;&#39;</span>,
+    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">passData</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> () {
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$emit</span>(<span style="color:#e6db74">&#39;message&#39;</span>, <span style="color:#e6db74">&#39;footer-data&#39;</span>); <span style="color:#75715e">//해당 이벤트에 파라미터 전달
+</span><span style="color:#75715e"></span>        }
+    },
+}
+
+<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+    <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#body&#39;</span>,
+    <span style="color:#a6e22e">components</span><span style="color:#f92672">:</span> {
+        <span style="color:#e6db74">&#39;app-header&#39;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">header</span>,
+        <span style="color:#e6db74">&#39;app-footer&#39;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">footer</span>
+    },
+    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;test&#39;</span>
+    },
+    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">bindData</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">param</span>) {
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">param</span>;
+        }
+    },
+});
+</code></pre></div><p>이제 부모의 message는 하위 컴포넌트에서 전달한 데이터로 변경이 되어있다.<br>
+<code>props</code>속성을 통해 접근하면된다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">app-header</span> <span style="color:#a6e22e">v-bind:headerdata</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;message&#34;</span>&gt;&lt;/<span style="color:#f92672">app-header</span>&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//header 컴포넌트
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">header</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">template</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&lt;h2&gt;Header&lt;/h2&gt;&#39;</span>,
+    <span style="color:#a6e22e">props</span> <span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;headerdata&#39;</span>]
+}
+</code></pre></div><h2 id="참고자료">참고자료</h2>
+<ul>
+<li><a class="link" href="https://vuejs.org/v2/api/#vm-emit"  target="_blank" rel="noopener"
+    ><strong>Vue 공식문서 - vm-emit</strong></a></li>
+<li><a class="link" href="https://www.inflearn.com/course/Age-of-Vuejs/"  target="_blank" rel="noopener"
+    ><strong>캡틴판교님의 Vue 기초 강의</strong></a></li>
+</ul>
+
+</section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false,
+    });
+</script>
+<style>
+     
+    @media all and (min-width:1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+    }
+
+    @media all and (max-width:1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: "목차";
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+
+    .toc-link::before {
+        width: 0;
+    }
+
+</style>
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/vue/">vue</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/post/vue-import/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">외부 Vue 프로젝트 불러오기</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/vue-start/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Vue 설치하기 및 프로젝트 구조</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jinyisland-kr" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Jiny Island
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

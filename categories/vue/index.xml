@@ -9,20 +9,20 @@
     <lastBuildDate>Sun, 18 Jul 2021 23:09:02 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/vue/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>외부 Vue 프로젝트 불러오기</title>
-      <link>https://jinyisland.kr/p/%EC%99%B8%EB%B6%80-vue-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0/</link>
+      <link>https://jinyisland.kr/post/vue-import/</link>
       <pubDate>Sun, 18 Jul 2021 23:09:02 +0900</pubDate>
       
-      <guid>https://jinyisland.kr/p/%EC%99%B8%EB%B6%80-vue-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0/</guid>
+      <guid>https://jinyisland.kr/post/vue-import/</guid>
       <description>윈도우에서 작업한 Vue 프로젝트를 mac 환경에서 확인하려던 중 git clone 후 프로젝트를 실행해보니 아래와 같은 에러가 나왔다.
 &amp;gt; vue-todo@0.1.0 serve /Users/sjchoi/Mydoc/02_Code/05_vue/vue-practice/vue-todo &amp;gt; vue-cli-service serve sh: vue-cli-service: command not found npm ERR! code ELIFECYCLE npm ERR! syscall spawn npm ERR! file sh npm ERR! errno ENOENT npm ERR! vue-todo@0.1.0 serve: `vue-cli-service serve` npm ERR! spawn ENOENT npm ERR! npm ERR! Failed at the vue-todo@0.1.0 serve script. npm ERR! This is probably not a problem with npm.</description>
     </item>
     
     <item>
       <title>Vue 컴포넌트에 대한 개념</title>
-      <link>https://jinyisland.kr/p/vue-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B0%9C%EB%85%90/</link>
+      <link>https://jinyisland.kr/post/vue-component/</link>
       <pubDate>Thu, 01 Jul 2021 21:27:40 +0900</pubDate>
       
-      <guid>https://jinyisland.kr/p/vue-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B0%9C%EB%85%90/</guid>
+      <guid>https://jinyisland.kr/post/vue-component/</guid>
       <description>컴포넌트 개념 화면의 영역을 분리하여 개발하는 것, Vue에서 최상위 컴포넌트는 root이다.
 컴포넌트 구성의 장점은 요소들을 재사용함으로써 개발 생산성이 향상되고, 컴포넌트들은 서로 관계가 형성된다.
 전역 컴포넌트 주로 플러그인, 라이브러리 등 앱 전역에서 사용 할 공통 컴포넌트를 작성한다.
@@ -32,10 +32,10 @@
     
     <item>
       <title>Vue 설치하기 및 프로젝트 구조</title>
-      <link>https://jinyisland.kr/p/vue-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0-%EB%B0%8F-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0/</link>
+      <link>https://jinyisland.kr/post/vue-start/</link>
       <pubDate>Wed, 30 Jun 2021 20:20:49 +0900</pubDate>
       
-      <guid>https://jinyisland.kr/p/vue-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0-%EB%B0%8F-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0/</guid>
+      <guid>https://jinyisland.kr/post/vue-start/</guid>
       <description>CLI? cli란 Command Line Interface, 즉 명령어 기반의 인터페이스 환경을 의미한다.
 vue 프로젝트 도입시 전체적인 웹애플레이케이션을 관리하려면 지금 소개하는 cli패키지를 설치하면 되고,
 별도의 페이지에서 국한적으로 사용하려면 cdn방식으로도 사용할 수 있다.
