@@ -5,77 +5,93 @@
   <url>
     <loc>https://jinyisland.kr/categories/</loc>
     <lastmod>2021-07-18T23:09:02+09:00</lastmod>
+    <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/</loc>
     <lastmod>2021-07-18T23:09:02+09:00</lastmod>
+    <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/post/</loc>
     <lastmod>2021-07-18T23:09:02+09:00</lastmod>
+    <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/tags/</loc>
     <lastmod>2021-07-18T23:09:02+09:00</lastmod>
+    <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/categories/vue/</loc>
     <lastmod>2021-07-18T23:09:02+09:00</lastmod>
+    <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/tags/vue/</loc>
     <lastmod>2021-07-18T23:09:02+09:00</lastmod>
+    <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/post/vue-import/</loc>
     <lastmod>2021-07-18T23:09:02+09:00</lastmod>
+    <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/post/vue-component/</loc>
     <lastmod>2021-07-01T21:27:40+09:00</lastmod>
+    <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/post/vue-start/</loc>
     <lastmod>2021-06-30T20:20:49+09:00</lastmod>
+    <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/about/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/page/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/categories/book/</loc>
+    <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/categories/java/</loc>
+    <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/categories/javascript/</loc>
+    <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/search/</loc>
+    <changefreq>weekly</changefreq>
   </url>
   
 </urlset>
