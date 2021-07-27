@@ -6,7 +6,20 @@
     <description>Recent content in Posts on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Jul 2021 23:09:02 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 27 Jul 2021 23:47:42 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>자바스크립트는 어떻게 동작할까?</title>
+      <link>https://jinyisland.kr/post/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C/</link>
+      <pubDate>Tue, 27 Jul 2021 23:47:42 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C/</guid>
+      <description>자바스크립트의 특징 나는 주로 자바스크립트를 이용해 개발을하는 것을 좋아한다.
+내 기준 가장 자신있는 언어이기도 하고, 배우면서 흥미로움을 느낀 프로그래밍 언어 중 하나였다.
+하지만 자바스크립트는 쓰면 쓸수록 헷갈리는 개념도 많고, 처음엔 만만하게 보였지만 깊이 들어갈수록 난해한..언어이기도 하다.. (아직도 어렵다 ㅠㅠ)😵
+자바스크립트에 대한 핵심적인 내용을 짚고 넘어가고자 해당 시리즈를 포스팅하기로 마음 먹었다! 첫 번째는 자바스크립트는 어떻게 동작할까?
+유연한 언어 자바스크립트에서의 타입 체크는 타 언어보다 굉장히 유연하고 느슨하다. 아래 예시를 보면 보통의 언어 같으면 컴파일 단계에서 들어오지 않은 값에 대해 오류를 내뿜어내지만, 자바스크립트에서는 일단 처리를 한다.</description>
+    </item>
+    
     <item>
       <title>외부 Vue 프로젝트 불러오기</title>
       <link>https://jinyisland.kr/post/vue-import/</link>

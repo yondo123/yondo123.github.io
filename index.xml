@@ -6,7 +6,181 @@
         <description>Recent content on Jiny Island</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 18 Jul 2021 23:09:02 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 27 Jul 2021 23:47:42 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>자바스크립트는 어떻게 동작할까?</title>
+        <link>https://jinyisland.kr/post/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C/</link>
+        <pubDate>Tue, 27 Jul 2021 23:47:42 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C/</guid>
+        <description>&lt;h2 id=&#34;자바스크립트의-특징&#34;&gt;자바스크립트의 특징&lt;/h2&gt;
+&lt;p&gt;나는 주로 자바스크립트를 이용해 개발을하는 것을 좋아한다.&lt;br&gt;
+내 기준 가장 자신있는 언어이기도 하고, 배우면서 흥미로움을 느낀 프로그래밍 언어 중 하나였다.&lt;br&gt;
+하지만 자바스크립트는 쓰면 쓸수록 헷갈리는 개념도 많고, 처음엔 만만하게 보였지만 깊이 들어갈수록 난해한..언어이기도 하다.. (아직도 어렵다 ㅠㅠ)😵&lt;br&gt;
+자바스크립트에 대한 핵심적인 내용을 짚고 넘어가고자 해당 시리즈를 포스팅하기로 마음 먹었다!
+첫 번째는 &lt;strong&gt;자바스크립트는 어떻게 동작할까?&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;유연한-언어&#34;&gt;유연한 언어&lt;/h3&gt;
+&lt;p&gt;자바스크립트에서의 타입 체크는 타 언어보다 굉장히 &lt;strong&gt;유연하고 느슨하다.&lt;/strong&gt;
+아래 예시를 보면 보통의 언어 같으면 컴파일 단계에서 들어오지 않은 값에 대해 오류를 내뿜어내지만, 자바스크립트에서는 일단 처리를 한다.&lt;br&gt;
+제대로 타입체크를 하지 않으면 &lt;code&gt;undefined(알 수 없음), NaN(숫자가 아님)&lt;/code&gt;등의 원치않는 값들이 런타임 단계에서 출력되기도 한다.&lt;br&gt;
+이런 유연함과 느슨함이 장점이자 단점이 되는것이 개발자에게 자유를 보장하지만, 자칫 검증을 제대로 하지 않을 경우  그 책임도 개발자에게 발생한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;;
+}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//3
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;1&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//&amp;#39;12&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//NaN
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;객체와-함수가-핵심&#34;&gt;객체와 함수가 핵심&lt;/h3&gt;
+&lt;p&gt;자바스크립트의 거의 모든 것은 객체이다.
+객체는 값의 속성을 나타내는 &lt;code&gt;key&lt;/code&gt;와 속성을 표현하는 &lt;code&gt;value&lt;/code&gt;로 구성되어 있다.&lt;br&gt;
+객체는 리터럴 방식으로 생성하는 방식과, 생성자 방식으로 생성하는 방식이 있다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fruit&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;apple&amp;#39;&lt;/span&gt;,
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1200&lt;/span&gt;
+}
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;food&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Object();
+&lt;span style=&#34;color:#a6e22e&#34;&gt;food&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ramen&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#a6e22e&#34;&gt;food&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1500&lt;/span&gt;;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;//동적으로 추가 및 삭제도 가능하다.
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;fruit&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;color&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;red&amp;#39;&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;//fruit 객체에 color 속성 추가 
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;delete&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;food&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//food 객체의 price 속성 삭제
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;boolean, number, string, null, undefined&lt;/code&gt;타입을 제외한 나머지는 모두 객체로 구성되어 있다.&lt;br&gt;
+심지어 함수도 객체이다. &lt;strong&gt;일반적인 객체보다 더 많은 기능이 있는 객체&lt;/strong&gt; 정도로 생각하면 된다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;] &lt;span style=&#34;color:#75715e&#34;&gt;//&amp;#34;object&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt; {&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;jiny&amp;#39;&lt;/span&gt;} &lt;span style=&#34;color:#75715e&#34;&gt;//&amp;#34;object&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Date() &lt;span style=&#34;color:#75715e&#34;&gt;//&amp;#34;object&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;funtion&lt;/span&gt;(){} &lt;span style=&#34;color:#75715e&#34;&gt;// &amp;#34;function&amp;#34;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;위의 예제를 보면 배열은 객체로 취급하는것을 알 수 있지만, 함수는 자료형 검사시 &amp;ldquo;function&amp;quot;으로 출력되기 때문에 객체로 자료형을 인식하지 않는다고 생각할 수 있다.&lt;br&gt;
+하지만 함수도 엄연하게 &lt;code&gt;객체&lt;/code&gt;로 취급받는다. 이유는 여러가지가 있지만 아래 2가지 핵심적인 이유가 있다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;함수도 변수에 할당 가능하다.
+자바스크립트에서의 일반 객체&lt;code&gt;Object&lt;/code&gt;처럼 취급할 수 있다.
+함수에 사용자 정의 속성을 추가하는 것도 가능하다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;msg&lt;/span&gt;){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;msg&lt;/span&gt;;
+}
+&lt;span style=&#34;color:#75715e&#34;&gt;//함수 log에 속성 추가
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;author&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;jiny&amp;#39;&lt;/span&gt;; 
+&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;execute&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;hello&amp;#39;&lt;/span&gt;);
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;author&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//&amp;#39;jiny&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;execute&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//&amp;#39;hello&amp;#39;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;함수도 값으로 취급한다.
+함수를 이용해 할 수 있는 것은 마치 객체를 이용해 할 수 있는 것과 같다. &lt;strong&gt;(이를 일급 객체라고 정의한다.)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;리터럴 생성&lt;/strong&gt;
+마치 객체 리터럴 생성 방식과 유사하게 함수도 선언과 동시에 빠르게 작성할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;,&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;변수나 배열의 요소 혹은 객체의 속성에 할당할 수도 있다.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//변수에 할당
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;,&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;;
+}
+
+&lt;span style=&#34;color:#75715e&#34;&gt;//객체 속성에 할당
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;calculator&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;
+}
+&lt;span style=&#34;color:#75715e&#34;&gt;//배열에도 할당
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sampleArray&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;1,&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;함수의 인자로 전달가능하고, 리턴값으로도 사용할 수 있다.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;success&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;success&amp;#34;&lt;/span&gt;);
+}
+
+&lt;span style=&#34;color:#75715e&#34;&gt;//add 함수에 success 함수를 3번째 인자로 넘기는 코드
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;callback&lt;/span&gt;){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;result&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;isNaN(&lt;span style=&#34;color:#a6e22e&#34;&gt;result&lt;/span&gt;){
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;callback&lt;/span&gt;()
+	}
+}
+
+&lt;span style=&#34;color:#75715e&#34;&gt;//함수 실행
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,&lt;span style=&#34;color:#a6e22e&#34;&gt;success&lt;/span&gt;); 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;자바스크립트가-실행되는-과정&#34;&gt;자바스크립트가 실행되는 과정&lt;/h2&gt;
+&lt;h3 id=&#34;콜스택&#34;&gt;콜스택&lt;/h3&gt;
+&lt;p&gt;자바스크립트에서는 &lt;code&gt;실행 컨텍스트&lt;/code&gt;라는 콜스택 처리 방식으로 코드들을 실행한다.&lt;br&gt;
+콜스택은 함수들을 호출(Call)하는 호출 정보들을 스택(Stack)에 차곡차곡 쌓여 있는 것을 의미한다.&lt;br&gt;
+제일 나중에 올려져있는 스택부터 처리하기 때문에 선언한 코드들을 블록단위로 호출 스택에 쌓아놓고 하나씩 반환하면서 코드들을 실행한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;global stack&amp;#34;&lt;/span&gt;);
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;firstExecute&lt;/span&gt;(){
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;first!&amp;#34;&lt;/span&gt;);
+}
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;secondExecute&lt;/span&gt;(){
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;firstExecute&lt;/span&gt;()
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;second!&amp;#34;&lt;/span&gt;);
+}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;secondExecute&lt;/span&gt;();
+
+&lt;span style=&#34;color:#75715e&#34;&gt;/*
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;global stack
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;first!
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;second!
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;위 코드를 콜스택 구조로 표현하자면 아래와 같다.&lt;br&gt;
+&lt;img src=&#34;../../assets/js/callstack_1.png&#34; alt=&#34;callstack&#34;  /&gt;&lt;br&gt;
+설명을 하자면 먼저 유호범위 최상위에 있는 console.log 메서드 부터 스택에 삽입된다.
+호출스택에 모두 쌓이고 실행을 시키는 것이아니라 스택에 쌓는 순간 해당 컨텍스트가 실행된다.&lt;br&gt;
+실행이 끝나면 다시 콜스택에서 반환이 되면서 콜스택에 쌓인 컨텍스트를 모두 비워내게 되는것이다.&lt;/p&gt;
+&lt;h3 id=&#34;실행-컨텍스트&#34;&gt;실행 컨텍스트&lt;/h3&gt;
+&lt;p&gt;그럼 좀 더 자세하게, 실행 컨텍스트에는 어떤일이 일어날까?&lt;br&gt;
+먼저, 해당 실행 컨텍스트에서 사용할 &lt;strong&gt;매개변수나 정의한 변수들이 생성된다.&lt;/strong&gt; 즉, 실행 컨텍스트를 수행하기 위한 사전 작업을 하는 것이다.
+(이는 자바스크립트 엔진 내부에서 일어난다.)&lt;br&gt;
+그리고 &lt;strong&gt;arguement 객체&lt;/strong&gt;를 생성하는데 이는 호출할 때 넘긴 인자들이 저장되어 있는 객체라고 보면 된다. (배열이지만 객체다!)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;){
+	&lt;span style=&#34;color:#75715e&#34;&gt;//code
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;../../assets/js/callstack_2.png&#34; alt=&#34;ec&#34;  /&gt;&lt;br&gt;
+그 다음, 현재 컨텍스트의 유효 범위를 나타내는 스코프 정보를 생성하는 작업을 하게된다.&lt;br&gt;
+리스트 형태로 만들어지는데 이 스코프 리스트를 활용해 상위 컨텍스트의 변수에 접근하거나, 해당 컨텍스트의 변수에 접근할 수 있다.&lt;br&gt;
+이 스코프 리스트는 서로 연결되어 있어 (해당 컨텍스트 범위에 없으면 상위 컨텍스트 범위에서 찾는다..)&lt;strong&gt;스코프 체인&lt;/strong&gt;으로 불린다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;number&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;number&lt;/span&gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;../../assets/js/callstack_3.png&#34; alt=&#34;scope&#34;  /&gt;&lt;br&gt;
+해당 함수안에서 매개변수를 사용 할 수 있고, 스코프 체인을 통해 외부의 변수들도 사용할 수 있는 상태이다.&lt;br&gt;
+이제 생성된 &lt;strong&gt;지역 변수가&lt;/strong&gt; 변수 객체로 만들어진 후에 해당 코드 범위안에 있는 여러 계산실행이 이루어진다.&lt;br&gt;
+만약 값이 할당되지 않았거나, 넘겨 받지 못했다면 &lt;code&gt;undefined&lt;/code&gt;로 할당되어버린다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;number&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;result&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;number&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;result&lt;/span&gt;;
+}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;../../assets/js/eo.png&#34; alt=&#34;eo&#34;  /&gt;&lt;/p&gt;
+&lt;p&gt;그동안 얕게나마 알고 있는 이 중요한 개념들을 다시 책을 찾아보고 정리하느라 애먹었다..&lt;br&gt;
+더 깊게 들어가면 끝도 없이 여러 개념들이 즐비하게 나온다..ㅠㅠ
+이 장에서는 2가지만 기억하면 될 것 같다!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;1. 자바스크립트는 거의 모든 것들이 객체로 구성되어 있다. (심지어 함수까지도..)&lt;/em&gt;&lt;br&gt;
+&lt;em&gt;2. 자바스크립트 엔진은 콜스택 기반의 실행컨텍스트(Execution Context)를 생성하며 코드들을 실행한다.&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;참고자료&#34;&gt;참고자료&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;모던웹을 위한 자바스크립트 + JQuery 입문 - 객체 (윤인성 저)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/typeof&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MDN - typeof&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;인사이드 자바스크립트 - arguments 객체 및 실행 컨텍스트 (송형주, 고현준 저)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>외부 Vue 프로젝트 불러오기</title>
         <link>https://jinyisland.kr/post/vue-import/</link>
         <pubDate>Sun, 18 Jul 2021 23:09:02 +0900</pubDate>
