@@ -6,7 +6,69 @@
         <description>Recent content on Jiny Island</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 27 Jul 2021 23:47:42 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 30 Jul 2021 22:15:51 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>GoogleAnalytics 4 휴고 블로그에 적용 시키기</title>
+        <link>https://jinyisland.kr/post/hugo-ga/</link>
+        <pubDate>Fri, 30 Jul 2021 22:15:51 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/hugo-ga/</guid>
+        <description>&lt;h2 id=&#34;google-analytics-4&#34;&gt;Google Analytics 4&lt;/h2&gt;
+&lt;p&gt;내 블로그의 정적 웹사이트 호스팅 플랫폼은 &lt;code&gt;hugo&lt;/code&gt;를 쓰고 있다.&lt;br&gt;
+예전에 잠깐 썼던 Jekyll 플랫폼과 비교했을 때 배포속도도 빠르고 테마 문서도 잘 되어있어서 편하다 ㅎㅎ&lt;br&gt;
+원래 SEO에 대해 신경 쓰지 않고있다가, GoogleAnaytics와 GoogleSearchConsle을 적용시켜보려고 이것저것 시도해봤지만, 아직도 구글 애널리틱스 보고서에는 방문자가 0이다..&lt;br&gt;
+(사실 진짜 0명인줄 알았으나 내가 들어와있어도 실시간에는 0이다..)&lt;/p&gt;
+&lt;h3 id=&#34;새로운-추적-id&#34;&gt;새로운 추적 ID&lt;/h3&gt;
+&lt;p&gt;구글링을 통해 알아본 휴고에 구글 애널리틱스 적용하는 글들을 보면, config.toml에 GoogleAnalytics변수에 그냥 추적 ID를 넣으면 끝이라는 내용이 많아 실제로 그렇게 해보았는데 적용이 안되고 있다.&lt;br&gt;
+그리고 대다수의 사용자 추적 ID는 &lt;code&gt;GA-XXXXXXX..&lt;/code&gt;으로 되어있는데 나는 &lt;code&gt;G-XXXXXXXX..&lt;/code&gt; 이렇게 조금 다르기도 하다.&lt;br&gt;
+다시 구글링을 해 본 결과, 현재 시점에선 GoogleAnaytics의 버전이 4이며 휴고 테마에서 GA 설정을 지원해주지 않는 이상 스크립트 태그를 직접 넣어야된다는 사실을 알게 되었다..&lt;/p&gt;
+&lt;h3 id=&#34;goole-analytics4-적용-방법&#34;&gt;Goole Analytics4 적용 방법&lt;/h3&gt;
+&lt;p&gt;먼저 필자의 Hugo 테마는 &lt;a class=&#34;link&#34; href=&#34;https://docs.stack.jimmycai.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;strong&gt;stack theme&lt;/strong&gt;&lt;/a&gt;를 사용하고 있다.&lt;br&gt;
+이 테마는 아직 GoogleAnaytics에 대한 설정 컴포넌트가 존재하지 않아 직접 해보기로 하였다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. GoogleAnalytics4 가입하기&lt;/strong&gt;&lt;br&gt;
+먼저 구글 계정으로 &lt;a class=&#34;link&#34; href=&#34;https://analytics.google.com/analytics/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;strong&gt;GoogleAnalyticd4&lt;/strong&gt;&lt;/a&gt; 페이지에서 로그인한다.&lt;br&gt;
+로그인 후 측정시작 버튼을 눌러 구글애널리틱스 계정을 생성하면된다.&lt;br&gt;
+참고로 구글 ID와 별개로 계정을 생성할 수 있으며 원하는 ID로 만들면된다. 그 후 속성 이름도 사이트에 걸맞는 속성이름으로 짓자.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 추적 ID 가져오기&lt;/strong&gt;&lt;br&gt;
+GA에는 고유적으로 추적에 사용할 ID가 주어지는데 GA관리자 화면서 하단 관리 -&amp;gt; 데이터 스트림 -&amp;gt; 스트림 항목을 클릭하면 측정 ID를 얻을 수 있다. &lt;strong&gt;(양식은 G-XXXXXXXXX)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. Hugo에 적용시키기&lt;/strong&gt;&lt;br&gt;
+이제 이 추적 ID를 휴고에 적용시키면 끝!&lt;br&gt;
+&lt;code&gt;config.toml&lt;/code&gt;에 추적 ID를 사용 할 변수로 지정해놓는다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;params&lt;/span&gt;]
+&lt;span style=&#34;color:#a6e22e&#34;&gt;googleAnalytics&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;G-XXXXXX&amp;#34;&lt;/span&gt;
+.
+.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;구글 애널리틱스에서 제공하는 온페이지 태그를 추가해야한다.&lt;br&gt;
+휴고에서는 보통 &lt;code&gt;./layout/partials&lt;/code&gt;디렉토리에 사이드 html을 작성해주기 때문에 구글 애널리틱스 스크립트를 위한 html을 작성한다.&lt;br&gt;
+&lt;code&gt;Site.Params&lt;/code&gt;부분에 config.toml에 정의한 추적 ID 변수를 적어주면 된다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- layout/partials/google-analytics.md--&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleAnalytics }}&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+    window.&lt;span style=&#34;color:#a6e22e&#34;&gt;dataLayer&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; window.&lt;span style=&#34;color:#a6e22e&#34;&gt;dataLayer&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;||&lt;/span&gt; [];
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;gtag&lt;/span&gt;() {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;dataLayer&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;push&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;arguments&lt;/span&gt;);
+    }
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;gtag&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;js&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Date());
+
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;gtag&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;config&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;{{ .Site.Params.googleAnalytics }}&amp;#39;&lt;/span&gt;);
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이제 휴고 블로그에 모든 페이지에서 이 스크립트를 로드해주면 된다.&lt;br&gt;
+보통 전역에서 사용할 html은 &lt;code&gt;/layout/_default/baseof.html&lt;/code&gt;에 작성한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+    {{ if .Site.Params.googleAnalytics }}
+    {{ partial &amp;#34;google-analytics.html&amp;#34; . }}
+    {{ end }}
+    {{- partial &amp;#34;head/head.html&amp;#34; . -}}
+    {{- block &amp;#34;head&amp;#34; . -}}{{ end }}
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;head&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;여기까지 설정하면 구글애널리틱스에서 접속 현황이 잘 노출이된다!&lt;br&gt;
+깃에 배포하고 다시 블로그에 들어가면  아래 사진 처럼 잘 나오는 것을 확인할 수 있다.&lt;br&gt;
+&lt;img src=&#34;../../assets/web/visit.png&#34; alt=&#34;ga-visit&#34;  /&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>자바스크립트는 어떻게 동작할까?</title>
         <link>https://jinyisland.kr/post/how-js-work/</link>
         <pubDate>Tue, 27 Jul 2021 23:47:42 +0900</pubDate>

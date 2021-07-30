@@ -6,7 +6,20 @@
     <description>Recent content in Posts on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 27 Jul 2021 23:47:42 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Jul 2021 22:15:51 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GoogleAnalytics 4 휴고 블로그에 적용 시키기</title>
+      <link>https://jinyisland.kr/post/hugo-ga/</link>
+      <pubDate>Fri, 30 Jul 2021 22:15:51 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/hugo-ga/</guid>
+      <description>Google Analytics 4 내 블로그의 정적 웹사이트 호스팅 플랫폼은 hugo를 쓰고 있다.
+예전에 잠깐 썼던 Jekyll 플랫폼과 비교했을 때 배포속도도 빠르고 테마 문서도 잘 되어있어서 편하다 ㅎㅎ
+원래 SEO에 대해 신경 쓰지 않고있다가, GoogleAnaytics와 GoogleSearchConsle을 적용시켜보려고 이것저것 시도해봤지만, 아직도 구글 애널리틱스 보고서에는 방문자가 0이다..
+(사실 진짜 0명인줄 알았으나 내가 들어와있어도 실시간에는 0이다..)
+새로운 추적 ID 구글링을 통해 알아본 휴고에 구글 애널리틱스 적용하는 글들을 보면, config.toml에 GoogleAnalytics변수에 그냥 추적 ID를 넣으면 끝이라는 내용이 많아 실제로 그렇게 해보았는데 적용이 안되고 있다.</description>
+    </item>
+    
     <item>
       <title>자바스크립트는 어떻게 동작할까?</title>
       <link>https://jinyisland.kr/post/how-js-work/</link>

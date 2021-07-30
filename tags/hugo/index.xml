@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Web on Jiny Island</title>
-    <link>https://jinyisland.kr/categories/web/</link>
-    <description>Recent content in Web on Jiny Island</description>
+    <title>hugo on Jiny Island</title>
+    <link>https://jinyisland.kr/tags/hugo/</link>
+    <description>Recent content in hugo on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Jul 2021 22:15:51 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/web/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Jul 2021 22:15:51 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GoogleAnalytics 4 휴고 블로그에 적용 시키기</title>
       <link>https://jinyisland.kr/post/hugo-ga/</link>
