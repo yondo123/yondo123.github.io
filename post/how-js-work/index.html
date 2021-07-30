@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TN7PCJZTQ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6TN7PCJZTQ');
+</script>
+        <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='자바스크립트에서 중요한 객체와 함수, 동작하는 원리'><title>자바스크립트는 어떻게 동작할까?</title>
+
+<link rel='canonical' href='https://jinyisland.kr/post/how-js-work/'>
+
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='자바스크립트는 어떻게 동작할까?'>
+<meta property='og:description' content='자바스크립트에서 중요한 객체와 함수, 동작하는 원리'>
+<meta property='og:url' content='https://jinyisland.kr/post/how-js-work/'>
+<meta property='og:site_name' content='Jiny Island'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='javascript' /><meta property='article:published_time' content='2021-07-27T23:47:42&#43;09:00'/><meta property='article:modified_time' content='2021-07-27T23:47:42&#43;09:00'/>
+<meta name="twitter:title" content="자바스크립트는 어떻게 동작할까?">
+<meta name="twitter:description" content="자바스크립트에서 중요한 객체와 함수, 동작하는 원리"><style>
+    .article-content code {
+        word-wrap:break-word;
+    }
+</style>
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub38313664a67c625b5c64f3cb8dc247e_143597_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny Island</a></h1>
+        <h2 class="site-description">🌈Junior Developer.</h2>
+    </header>
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #636e72;">
+                Java Script
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/how-js-work/">자바스크립트는 어떻게 동작할까?</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        자바스크립트에서 중요한 객체와 함수, 동작하는 원리
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jul 27, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
+    <h2 id="자바스크립트의-특징">자바스크립트의 특징</h2>
+<p>나는 주로 자바스크립트를 이용해 개발을하는 것을 좋아한다.<br>
+내 기준 가장 자신있는 언어이기도 하고, 배우면서 흥미로움을 느낀 프로그래밍 언어 중 하나였다.<br>
+하지만 자바스크립트는 쓰면 쓸수록 헷갈리는 개념도 많고, 처음엔 만만하게 보였지만 깊이 들어갈수록 난해한..언어이기도 하다.. (아직도 어렵다 ㅠㅠ)😵<br>
+자바스크립트에 대한 핵심적인 내용을 짚고 넘어가고자 해당 시리즈를 포스팅하기로 마음 먹었다!
+첫 번째는 <strong>자바스크립트는 어떻게 동작할까?</strong></p>
+<h3 id="유연한-언어">유연한 언어</h3>
+<p>자바스크립트에서의 타입 체크는 타 언어보다 굉장히 <strong>유연하고 느슨하다.</strong>
+아래 예시를 보면 보통의 언어 같으면 컴파일 단계에서 들어오지 않은 값에 대해 오류를 내뿜어내지만, 자바스크립트에서는 일단 처리를 한다.<br>
+제대로 타입체크를 하지 않으면 <code>undefined(알 수 없음), NaN(숫자가 아님)</code>등의 원치않는 값들이 런타임 단계에서 출력되기도 한다.<br>
+이런 유연함과 느슨함이 장점이자 단점이 되는것이 개발자에게 자유를 보장하지만, 자칫 검증을 제대로 하지 않을 경우  그 책임도 개발자에게 발생한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>){
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+}
+
+<span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>); <span style="color:#75715e">//3
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;1&#39;</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>); <span style="color:#75715e">//&#39;12&#39;
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">1</span>); <span style="color:#75715e">//NaN
+</span></code></pre></div><h3 id="객체와-함수가-핵심">객체와 함수가 핵심</h3>
+<p>자바스크립트의 거의 모든 것은 객체이다.
+객체는 값의 속성을 나타내는 <code>key</code>와 속성을 표현하는 <code>value</code>로 구성되어 있다.<br>
+객체는 리터럴 방식으로 생성하는 방식과, 생성자 방식으로 생성하는 방식이 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fruit</span> <span style="color:#f92672">=</span> {
+	<span style="color:#a6e22e">name</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;apple&#39;</span>,
+	<span style="color:#a6e22e">price</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">1200</span>
+}
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">food</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object();
+<span style="color:#a6e22e">food</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;ramen&#39;</span>;
+<span style="color:#a6e22e">food</span>.<span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1500</span>;
+
+<span style="color:#75715e">//동적으로 추가 및 삭제도 가능하다.
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">fruit</span>.<span style="color:#a6e22e">color</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;red&#39;</span>; <span style="color:#75715e">//fruit 객체에 color 속성 추가 
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">delete</span>(<span style="color:#a6e22e">food</span>.<span style="color:#a6e22e">price</span>); <span style="color:#75715e">//food 객체의 price 속성 삭제
+</span></code></pre></div><p><code>boolean, number, string, null, undefined</code>타입을 제외한 나머지는 모두 객체로 구성되어 있다.<br>
+심지어 함수도 객체이다. <strong>일반적인 객체보다 더 많은 기능이 있는 객체</strong> 정도로 생각하면 된다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">typeof</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>] <span style="color:#75715e">//&#34;object&#34;
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">typeof</span> {<span style="color:#a6e22e">name</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;jiny&#39;</span>} <span style="color:#75715e">//&#34;object&#34;
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">typeof</span> <span style="color:#66d9ef">new</span> Date() <span style="color:#75715e">//&#34;object&#34;
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">funtion</span>(){} <span style="color:#75715e">// &#34;function&#34;
+</span></code></pre></div><p>위의 예제를 보면 배열은 객체로 취급하는것을 알 수 있지만, 함수는 자료형 검사시 &ldquo;function&quot;으로 출력되기 때문에 객체로 자료형을 인식하지 않는다고 생각할 수 있다.<br>
+하지만 함수도 엄연하게 <code>객체</code>로 취급받는다. 이유는 여러가지가 있지만 아래 2가지 핵심적인 이유가 있다.</p>
+<ol>
+<li>함수도 변수에 할당 가능하다.
+자바스크립트에서의 일반 객체<code>Object</code>처럼 취급할 수 있다.
+함수에 사용자 정의 속성을 추가하는 것도 가능하다.</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">msg</span>){
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">msg</span>;
+}
+<span style="color:#75715e">//함수 log에 속성 추가
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">author</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;jiny&#39;</span>; 
+<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">execute</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;hello&#39;</span>);
+
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">author</span>); <span style="color:#75715e">//&#39;jiny&#39;
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">execute</span>); <span style="color:#75715e">//&#39;hello&#39;
+</span></code></pre></div><ol start="2">
+<li>함수도 값으로 취급한다.
+함수를 이용해 할 수 있는 것은 마치 객체를 이용해 할 수 있는 것과 같다. <strong>(이를 일급 객체라고 정의한다.)</strong></li>
+</ol>
+<ul>
+<li><strong>리터럴 생성</strong>
+마치 객체 리터럴 생성 방식과 유사하게 함수도 선언과 동시에 빠르게 작성할 수 있다.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>){
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+}
+</code></pre></div><ul>
+<li><strong>변수나 배열의 요소 혹은 객체의 속성에 할당할 수도 있다.</strong></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//변수에 할당
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">add</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>){
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+}
+
+<span style="color:#75715e">//객체 속성에 할당
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">calculator</span> <span style="color:#f92672">=</span> {
+	<span style="color:#a6e22e">add</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">add</span>
+}
+<span style="color:#75715e">//배열에도 할당
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sampleArray</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;1,&#39;</span>, <span style="color:#a6e22e">add</span>]
+</code></pre></div><ul>
+<li><strong>함수의 인자로 전달가능하고, 리턴값으로도 사용할 수 있다.</strong></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">success</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;success&#34;</span>);
+}
+
+<span style="color:#75715e">//add 함수에 success 함수를 3번째 인자로 넘기는 코드
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">callback</span>){
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+	<span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>isNaN(<span style="color:#a6e22e">result</span>){
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">callback</span>()
+	}
+}
+
+<span style="color:#75715e">//함수 실행
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#a6e22e">success</span>); 
+</code></pre></div><h2 id="자바스크립트가-실행되는-과정">자바스크립트가 실행되는 과정</h2>
+<h3 id="콜스택">콜스택</h3>
+<p>자바스크립트에서는 <code>실행 컨텍스트</code>라는 콜스택 처리 방식으로 코드들을 실행한다.<br>
+콜스택은 함수들을 호출(Call)하는 호출 정보들을 스택(Stack)에 차곡차곡 쌓여 있는 것을 의미한다.<br>
+제일 나중에 올려져있는 스택부터 처리하기 때문에 선언한 코드들을 블록단위로 호출 스택에 쌓아놓고 하나씩 반환하면서 코드들을 실행한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;global stack&#34;</span>);
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">firstExecute</span>(){
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;first!&#34;</span>);
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">secondExecute</span>(){
+	<span style="color:#a6e22e">firstExecute</span>()
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;second!&#34;</span>);
+}
+
+<span style="color:#a6e22e">secondExecute</span>();
+
+<span style="color:#75715e">/*
+</span><span style="color:#75715e">global stack
+</span><span style="color:#75715e">first!
+</span><span style="color:#75715e">second!
+</span><span style="color:#75715e">*/</span>
+</code></pre></div><p>위 코드를 콜스택 구조로 표현하자면 아래와 같다.<br>
+<img src="../../assets/js/callstack_1.png" alt="callstack"  /><br>
+설명을 하자면 먼저 유호범위 최상위에 있는 console.log 메서드 부터 스택에 삽입된다.
+호출스택에 모두 쌓이고 실행을 시키는 것이아니라 스택에 쌓는 순간 해당 컨텍스트가 실행된다.<br>
+실행이 끝나면 다시 콜스택에서 반환이 되면서 콜스택에 쌓인 컨텍스트를 모두 비워내게 되는것이다.</p>
+<h3 id="실행-컨텍스트">실행 컨텍스트</h3>
+<p>그럼 좀 더 자세하게, 실행 컨텍스트에는 어떤일이 일어날까?<br>
+먼저, 해당 실행 컨텍스트에서 사용할 <strong>매개변수나 정의한 변수들이 생성된다.</strong> 즉, 실행 컨텍스트를 수행하기 위한 사전 작업을 하는 것이다.
+(이는 자바스크립트 엔진 내부에서 일어난다.)<br>
+그리고 <strong>arguement 객체</strong>를 생성하는데 이는 호출할 때 넘긴 인자들이 저장되어 있는 객체라고 보면 된다. (배열이지만 객체다!)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>){
+	<span style="color:#75715e">//code
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p><img src="../../assets/js/callstack_2.png" alt="ec"  /><br>
+그 다음, 현재 컨텍스트의 유효 범위를 나타내는 스코프 정보를 생성하는 작업을 하게된다.<br>
+리스트 형태로 만들어지는데 이 스코프 리스트를 활용해 상위 컨텍스트의 변수에 접근하거나, 해당 컨텍스트의 변수에 접근할 수 있다.<br>
+이 스코프 리스트는 서로 연결되어 있어 (해당 컨텍스트 범위에 없으면 상위 컨텍스트 범위에서 찾는다..)<strong>스코프 체인</strong>으로 불린다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">number</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>){
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">number</span>;
+}
+</code></pre></div><p><img src="../../assets/js/callstack_3.png" alt="scope"  /><br>
+해당 함수안에서 매개변수를 사용 할 수 있고, 스코프 체인을 통해 외부의 변수들도 사용할 수 있는 상태이다.<br>
+이제 생성된 <strong>지역 변수가</strong> 변수 객체로 만들어진 후에 해당 코드 범위안에 있는 여러 계산실행이 이루어진다.<br>
+만약 값이 할당되지 않았거나, 넘겨 받지 못했다면 <code>undefined</code>로 할당되어버린다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">number</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>){
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">number</span>;
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>;
+}
+
+<span style="color:#a6e22e">add</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>);
+</code></pre></div><p><img src="../../assets/js/eo.png" alt="eo"  /></p>
+<p>그동안 얕게나마 알고 있는 이 중요한 개념들을 다시 책을 찾아보고 정리하느라 애먹었다..<br>
+더 깊게 들어가면 끝도 없이 여러 개념들이 즐비하게 나온다..ㅠㅠ
+이 장에서는 2가지만 기억하면 될 것 같다!</p>
+<p><em>1. 자바스크립트는 거의 모든 것들이 객체로 구성되어 있다. (심지어 함수까지도..)</em><br>
+<em>2. 자바스크립트 엔진은 콜스택 기반의 실행컨텍스트(Execution Context)를 생성하며 코드들을 실행한다.</em></p>
+<h2 id="참고자료">참고자료</h2>
+<ul>
+<li><strong>모던웹을 위한 자바스크립트 + JQuery 입문 - 객체 (윤인성 저)</strong></li>
+<li><strong><a class="link" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/typeof"  target="_blank" rel="noopener"
+    >MDN - typeof</a></strong></li>
+<li><strong>인사이드 자바스크립트 - arguments 객체 및 실행 컨텍스트 (송형주, 고현준 저)</strong></li>
+</ul>
+
+</section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false,
+    });
+</script>
+<style>
+     
+    @media all and (min-width:1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+    }
+
+    @media all and (max-width:1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: "목차";
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+
+    .toc-link::before {
+        width: 0;
+    }
+
+</style>
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/javascript/">javascript</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jinyisland-kr" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Jiny Island
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

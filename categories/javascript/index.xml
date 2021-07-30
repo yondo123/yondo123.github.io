@@ -9,10 +9,10 @@
     <lastBuildDate>Tue, 27 Jul 2021 23:47:42 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>자바스크립트는 어떻게 동작할까?</title>
-      <link>https://jinyisland.kr/post/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C/</link>
+      <link>https://jinyisland.kr/post/how-js-work/</link>
       <pubDate>Tue, 27 Jul 2021 23:47:42 +0900</pubDate>
       
-      <guid>https://jinyisland.kr/post/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C/</guid>
+      <guid>https://jinyisland.kr/post/how-js-work/</guid>
       <description>자바스크립트의 특징 나는 주로 자바스크립트를 이용해 개발을하는 것을 좋아한다.
 내 기준 가장 자신있는 언어이기도 하고, 배우면서 흥미로움을 느낀 프로그래밍 언어 중 하나였다.
 하지만 자바스크립트는 쓰면 쓸수록 헷갈리는 개념도 많고, 처음엔 만만하게 보였지만 깊이 들어갈수록 난해한..언어이기도 하다.. (아직도 어렵다 ㅠㅠ)😵

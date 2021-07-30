@@ -39,7 +39,7 @@
   </url>
   
   <url>
-    <loc>https://jinyisland.kr/post/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%8F%99%EC%9E%91%ED%95%A0%EA%B9%8C/</loc>
+    <loc>https://jinyisland.kr/post/how-js-work/</loc>
     <lastmod>2021-07-27T23:47:42+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -104,6 +104,11 @@
   
   <url>
     <loc>https://jinyisland.kr/search/</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/categories/web/</loc>
     <changefreq>weekly</changefreq>
   </url>
   
