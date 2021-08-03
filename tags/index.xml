@@ -6,7 +6,16 @@
     <description>Recent content in Tags on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Jul 2021 22:15:51 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Aug 2021 21:38:58 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>javascript</title>
+      <link>https://jinyisland.kr/tags/javascript/</link>
+      <pubDate>Tue, 03 Aug 2021 21:38:58 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>google analytics</title>
       <link>https://jinyisland.kr/tags/google-analytics/</link>
@@ -22,15 +31,6 @@
       <pubDate>Fri, 30 Jul 2021 22:15:51 +0900</pubDate>
       
       <guid>https://jinyisland.kr/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>javascript</title>
-      <link>https://jinyisland.kr/tags/javascript/</link>
-      <pubDate>Tue, 27 Jul 2021 23:47:42 +0900</pubDate>
-      
-      <guid>https://jinyisland.kr/tags/javascript/</guid>
       <description></description>
     </item>
     

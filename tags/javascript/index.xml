@@ -6,7 +6,20 @@
     <description>Recent content in javascript on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 27 Jul 2021 23:47:42 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Aug 2021 21:38:58 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>자바스크립트에서의 데이터 타입</title>
+      <link>https://jinyisland.kr/post/javascript-datatype/</link>
+      <pubDate>Tue, 03 Aug 2021 21:38:58 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/javascript-datatype/</guid>
+      <description>원시타입과 참조타입 자바스크립트에서는 원시타입과 참조타입이 존재한다. 원시타입 그 자체가 값인 데이터 타입을 말한다.
+변수에 접근할 때 해당 변수에 저장된 실제 값을 조작한다.
+기본 값의 유형을 확인하려면 typeof연산자를 사용해서 확인할 수 있다.
+자바스크립트에서는 배열과 객체 모두 object로 취급한다는 사실을 꼭 잊지말자.
+const typeNumeric = typeof 1; //number const typeBoolean = typeof true; //boolean const typeString = typeof &amp;#39;hello&amp;#39;; //string const typeFunction = typeof function(){ return;} //function const typeUndefined = typeof undefined; //undefined  const typeObject = typeof {}; //object const typeArray = typeof [&amp;#39;1&amp;#39;]; //object const typeNull = typeof null; //object 참조타입 원시 값과는 달리 해당 객체의 참조에 대해서 작업한다.</description>
+    </item>
+    
     <item>
       <title>자바스크립트는 어떻게 동작할까?</title>
       <link>https://jinyisland.kr/post/how-js-work/</link>
