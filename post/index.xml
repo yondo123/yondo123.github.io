@@ -6,7 +6,20 @@
     <description>Recent content in Posts on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Aug 2021 21:38:58 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 04 Aug 2021 23:34:14 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>자바스크립트 함수, 이것만은 꼭 기억하자</title>
+      <link>https://jinyisland.kr/post/js-function/</link>
+      <pubDate>Wed, 04 Aug 2021 23:34:14 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/js-function/</guid>
+      <description>함수 자바스크립트의 함수는 객체로 취급 받는다. (일급객체)
+따라서 객체처럼 리터럴 방식으로 선언할 수 있고, new 연산자로 선언할 수도 있다. (대부분.. 리터럴 방식을 선호한다.)
+//new 연산자 선언 var sum = new Function(&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;return a+b&amp;#39;); sum(1,3) //4 익명함수와 선언함수 익명 함수는 말 그대로 &amp;lsquo;이름을 갖지 않는&amp;rsquo; 함수이다.
+보통 변수에 저장해서 선언 후 호출한다.
+add(2,3) //result : type error  var add = function(x,y){ //익명함수 	return x+y; } add(3,7); //result : 10 선언 함수는 함수 선언 시 이름을 지명한다.</description>
+    </item>
+    
     <item>
       <title>자바스크립트에서의 데이터 타입</title>
       <link>https://jinyisland.kr/post/datatype/</link>

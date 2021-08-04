@@ -6,7 +6,178 @@
         <description>Recent content on Jiny Island</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 03 Aug 2021 21:38:58 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 04 Aug 2021 23:34:14 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>자바스크립트 함수, 이것만은 꼭 기억하자</title>
+        <link>https://jinyisland.kr/post/js-function/</link>
+        <pubDate>Wed, 04 Aug 2021 23:34:14 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/js-function/</guid>
+        <description>&lt;h2 id=&#34;함수&#34;&gt;함수&lt;/h2&gt;
+&lt;p&gt;자바스크립트의 함수는 객체로 취급 받는다. (일급객체)&lt;br&gt;
+따라서 객체처럼 리터럴 방식으로 선언할 수 있고, new 연산자로 선언할 수도 있다. (대부분.. 리터럴 방식을 선호한다.)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//new 연산자 선언
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sum&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Function(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;b&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;return a+b&amp;#39;&lt;/span&gt;);
+&lt;span style=&#34;color:#a6e22e&#34;&gt;sum&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;) &lt;span style=&#34;color:#75715e&#34;&gt;//4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;익명함수와-선언함수&#34;&gt;익명함수와 선언함수&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;익명 함수&lt;/strong&gt;는 말 그대로 &amp;lsquo;이름을 갖지 않는&amp;rsquo; 함수이다.&lt;br&gt;
+보통 변수에 저장해서 선언 후 호출한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;) &lt;span style=&#34;color:#75715e&#34;&gt;//result : type error
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;,&lt;span style=&#34;color:#a6e22e&#34;&gt;y&lt;/span&gt;){ &lt;span style=&#34;color:#75715e&#34;&gt;//익명함수
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;y&lt;/span&gt;;
+}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//result : 10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;선언 함수&lt;/strong&gt;는 함수 선언 시 이름을 지명한다.&lt;br&gt;
+자바스크립트에서는 함수 선언을 변수를 지정하기 전 메모리에 미리 저장시키기 때문에  익명 함수 특성상 코드 상단에서도 실행시킬 수 있다.&lt;br&gt;
+(이를 호이스팅이라 지칭하는데 단순히 코드 상단으로 옮겨지는 과정이라 생각하면 안되고, 실행 컨텍스트 입장에서 생각하여야 한다.)&lt;br&gt;
+따라서 익명 함수는 변수에 저장 하기 때문에 미리 선언할 수 없고,  익명 함수는 선언하기 전에 실행문이 위치해도 문제가 없다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//result : 5
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;,&lt;span style=&#34;color:#a6e22e&#34;&gt;y&lt;/span&gt;){ &lt;span style=&#34;color:#75715e&#34;&gt;//선언함수
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;y&lt;/span&gt;;
+}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//result : 10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;리턴-값&#34;&gt;리턴 값&lt;/h3&gt;
+&lt;p&gt;자바스크립트 함수는 &lt;code&gt;return&lt;/code&gt;을 생략이 가능하다.&lt;br&gt;
+return 문을 생략하는 함수는 반환물을 &lt;code&gt;undefined&lt;/code&gt;로 반환한다.&lt;br&gt;
+제어를 끝내려는 (단순 반환 지점으로 되돌림) 용도로 쓰이는 경우 undefined → boolean 값으로 &lt;code&gt;false&lt;/code&gt;에 해당하므로 명확하게 표기하는 것은 &lt;strong&gt;return false&lt;/strong&gt;로 표현하는 것이 낫다.&lt;br&gt;
+함수는 &lt;strong&gt;객체로 취급받기 때문에&lt;/strong&gt; 함수 반환 시 함수로도 반환해줄 수 있다는 것을 기억하자!&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;notReturn&lt;/span&gt;(){
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;😝 돌려줄게 없다&amp;#39;&lt;/span&gt;);
+}
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;notReturn&lt;/span&gt;()){ &lt;span style=&#34;color:#75715e&#34;&gt;//return 생략 시 undefined로 반환
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;true&amp;#39;&lt;/span&gt;);
+}&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;{
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;false&amp;#39;&lt;/span&gt;);
+}
+
+&lt;span style=&#34;color:#75715e&#34;&gt;//result : false
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;매개변수&#34;&gt;매개변수&lt;/h3&gt;
+&lt;p&gt;자바스크립트의 함수에도 역시나 유연한 성질을 갖고 있다.&lt;br&gt;
+선언한 매개변수보다 많거나 더 작은 매개변수를 허용한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;displayFruit&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;fruits&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt;){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;||&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fruits&lt;/span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;원&amp;#39;&lt;/span&gt;;
+}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;displayFruit&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;🍒&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//&amp;#34;🍒0원&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;displayFruit&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;🍒&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2000&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//&amp;#34;🍒2000원&amp;#34;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;내부함수&#34;&gt;내부함수&lt;/h3&gt;
+&lt;p&gt;함수 내부에 또 함수를 작성하는 패턴, 주로 여러 함수를 사용시 충돌 위험을 최소화하려고 사용한다.&lt;br&gt;
+만약 외부함수와 내부함수의 이름이 갖다면 내부 함수부터 우선적으로 실행한다.&lt;br&gt;
+&lt;strong&gt;(내부함수는 외부에서 접근할 수 없다,  자바스크립트는 함수 단위로 블록 스코프를 형성하기 때문이다.)&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;pythagoras&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;wid&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;hei&lt;/span&gt;){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;square&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;) { &lt;span style=&#34;color:#75715e&#34;&gt;//내부함수 생성
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;;
+	}
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; Math.&lt;span style=&#34;color:#a6e22e&#34;&gt;sqrt&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;square&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;wid&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;square&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;hei&lt;/span&gt;)); &lt;span style=&#34;color:#75715e&#34;&gt;//내부함수 호출 후 return 값 반환
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;pythagoras&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;즉시실행함수-iife&#34;&gt;즉시실행함수 (IIFE)&lt;/h3&gt;
+&lt;p&gt;함수를 정의함과 바로 동시에 실행되는 함수이다.&lt;br&gt;
+최초  한 번의 실행만을 필요로 하는 함수에 사용할 수 있다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;){
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//test
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;})(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;test&amp;#39;&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;유명한 프레임워크인 &lt;code&gt;jQuery&lt;/code&gt;에서도 즉시실행함수가 사용되었다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(window, &lt;span style=&#34;color:#66d9ef&#34;&gt;undefined&lt;/span&gt;){
+ ..&lt;span style=&#34;color:#a6e22e&#34;&gt;code&lt;/span&gt;
+})(window);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;즉시실행함수도 &lt;code&gt;함수&lt;/code&gt;이므로 변수에 저장이 가능하다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;mySquare&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;) {
+ &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;); 
+})(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;); 
+&lt;span style=&#34;color:#a6e22e&#34;&gt;mySquare&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;);
+
+&lt;span style=&#34;color:#75715e&#34;&gt;//result : 즉시실행함수 &amp;#39;mySquare&amp;#39;가 즉시 호출(2*2 = 4)되고, 곧이어 매개변수 &amp;#39;3&amp;#39;을 넘겨 재호출된다, 즉 재호출 가능하다.
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;mySquare&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;) {
+ &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;); 
+})(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;); 
+&lt;span style=&#34;color:#a6e22e&#34;&gt;mySquare&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;);
+&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;mySquare&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)); 
+
+&lt;span style=&#34;color:#75715e&#34;&gt;//result : 특정 스코프 변수에 즉시실행함수를 담아두어 호출할 때만 사용할 수 있다. 
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;this&#34;&gt;this&lt;/h2&gt;
+&lt;p&gt;일반적으로 객체 내부에 정의된 함수를 메서드라고 지칭하는데, 함수에서 this키워드를 사용하면 해당 객체에 접근할 수 있다.&lt;br&gt;
+반면 객체 내 함수의 &lt;strong&gt;내부 함수에서 this 키워드 호출 시 최상위 객체로 접근한다.&lt;/strong&gt;&lt;br&gt;
+만약 웹브라우저에서 특정 객체의 메서드가아닌 일반  함수를 호출한다면, 브라우저 최상위 객체인 &lt;code&gt;window&lt;/code&gt;에 접근하는 것이다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;apple&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;🍎&amp;#39;&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;//자바스크립트에선 변수 생략 시 window 객체에 저장한다.
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;callApple&lt;/span&gt;(){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;apple&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;//최상위 객체인 window.apple 호출 
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;callApple&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;//&amp;#39;🍎&amp;#39;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;반면 특정 객체내의 메서드 호출 시 해당 객체의 요소에 접근한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;grape&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;🫐&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fruits&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;grape&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;🍇&amp;#39;&lt;/span&gt;,
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;callGrape&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;innerFunction&lt;/span&gt;(){
+			&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;grape&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//&amp;#39;🫐&amp;#39;;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;		}
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;innerFunction&lt;/span&gt;();
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;grape&lt;/span&gt;;
+	}
+}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;fruits&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;callGrape&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;//&amp;#39;🍇&amp;#39;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;위 예제를 그림으로 표현하면 아래와 같다.&lt;/em&gt;
+&lt;img src=&#34;../../assets/js/this-types.png&#34; alt=&#34;js-this&#34;  /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;함수를-호출하는-방법&#34;&gt;함수를 호출하는 방법&lt;/h2&gt;
+&lt;p&gt;지금까지 예제에선 &lt;code&gt;( )&lt;/code&gt;를 통해 함수를 호출했지만 &lt;code&gt;call, apply&lt;/code&gt;메서드를 통해 함수를 호출할 수 있다.&lt;br&gt;
+call, apply 메서드를 사용하는 이유는 &lt;strong&gt;this 바인딩&lt;/strong&gt;을 명시적으로 지정해줄 수  있기 때문이다.&lt;/p&gt;
+&lt;h3 id=&#34;call&#34;&gt;call()&lt;/h3&gt;
+&lt;p&gt;call 메서드를 이용하여 함수를 호출시키고, &lt;code&gt;this&lt;/code&gt;바인딩을 변경할 수 있다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;🍏&amp;#39;&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;//window객체
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;nameObj&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {&lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;🍌&amp;#39;&lt;/span&gt;};
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;gender&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {&lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;🍓&amp;#39;&lt;/span&gt;};
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;getInfo&lt;/span&gt;() {
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt;;
+}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;getInfo&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;//일반 호출시 window.value(전역객체 value 출력) -&amp;gt; &amp;#39;🍏&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;getInfo&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;call&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;//마찬가지로 window.value -&amp;gt; &amp;#39;🍏&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;getInfo&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;call&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;nameObj&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// nameObj.value -&amp;gt; &amp;#39;🍌&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;getInfo&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;call&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;gender&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//nameObj.value -&amp;gt; &amp;#39;🍓&amp;#39;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;apply&#34;&gt;apply()&lt;/h3&gt;
+&lt;p&gt;call() 메서드와 역할은 동일하나 리스트 형태로 프로퍼티들을 전달할 수 있다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Person&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;age&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;gender&lt;/span&gt;){ &lt;span style=&#34;color:#75715e&#34;&gt;//생성자 함수 
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;age&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;age&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;gender&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;gender&lt;/span&gt;;
+}
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;bindObj&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {} &lt;span style=&#34;color:#75715e&#34;&gt;//빈 객체 생성(bind 할 오브젝트)
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#a6e22e&#34;&gt;Person&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;apply&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;bindObj&lt;/span&gt;, [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;name&amp;#39;&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;25&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;man&amp;#39;&lt;/span&gt;]); &lt;span style=&#34;color:#75715e&#34;&gt;//Person 함수를 호출하고, this는 bindObj 객체에 바인딩, 해당 프로퍼티를 Person에 전달
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;dir&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;bindObj&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//{name: &amp;#34;name&amp;#34;, age: 25, gender: &amp;#34;man&amp;#34;};
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;프로토타입&#34;&gt;프로토타입&lt;/h2&gt;
+&lt;p&gt;프로토타입을 통해 객체가 가진 속성들에게 메서드를 공유할 수 있다.&lt;br&gt;
+모든 함수는 객체이기 때문에, &lt;code&gt;prototype&lt;/code&gt; 속성을 가지고 있는데 생성자 함수로 생성한 객체들도 그역시 프로토타입 객체를 참조한다.&lt;br&gt;
+즉, 모든 자바스크립트 객체는 &lt;code&gt;Object.prototype&lt;/code&gt;객체가 가진 프로퍼티와 메서드들을 서로 공유한다.&lt;br&gt;
+(모든 객체들은 __proto__라는 부모 역할의 상위 프로토타입을 지니며, 최상위 프로토타입은 Object.prototype이다.)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//String 객체에 introduce 라는 메서드 정의, 모든 String 객체들은 이 메서드를 공유한다.
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;String.&lt;span style=&#34;color:#a6e22e&#34;&gt;prototype&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;introduce&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;My Name is &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt; ;
+}
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;choi&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;introduce&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;//&amp;#34;My Name is choi&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kim&amp;#39;&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;introduce&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;//&amp;#34;My Name is kim&amp;#34;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;참고자료&#34;&gt;참고자료&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;자바스크립트 닌자 비급 - 함수를 자유자재로 휘두르기 (John Resig)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;인사이드 자바스크립트 - 함수와 프로토타입 체이닝 (송형주, 고현준 저)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>자바스크립트에서의 데이터 타입</title>
         <link>https://jinyisland.kr/post/datatype/</link>
         <pubDate>Tue, 03 Aug 2021 21:38:58 +0900</pubDate>
