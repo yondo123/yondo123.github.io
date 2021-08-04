@@ -8,10 +8,10 @@
         <language>en-us</language>
         <lastBuildDate>Tue, 03 Aug 2021 21:38:58 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>자바스크립트에서의 데이터 타입</title>
-        <link>https://jinyisland.kr/post/javascript-datatype/</link>
+        <link>https://jinyisland.kr/post/datatype/</link>
         <pubDate>Tue, 03 Aug 2021 21:38:58 +0900</pubDate>
         
-        <guid>https://jinyisland.kr/post/javascript-datatype/</guid>
+        <guid>https://jinyisland.kr/post/datatype/</guid>
         <description>&lt;h2 id=&#34;원시타입과-참조타입&#34;&gt;원시타입과 참조타입&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;자바스크립트에서는 원시타입과 참조타입이 존재한다.&lt;/em&gt;
 &lt;img src=&#34;../../assets/js/datatypes.png&#34; alt=&#34;datatypes&#34;  /&gt;&lt;/p&gt;
@@ -96,7 +96,7 @@ null을 확인하고자 할 때 &lt;code&gt;typeof&lt;/code&gt;의 결과는 obj
 &lt;li&gt;배열에서 &lt;code&gt;delete()&lt;/code&gt;메서드로 요소를 삭제하면 오직 undefined로 초기화만 해준다, 실질적으로 삭제하려면 &lt;code&gt;splice()&lt;/code&gt;메서드를 사용해야만 한다.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h4 id=&#34;배열-반복문&#34;&gt;배열 반복문&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;for&lt;/strong&gt;
+&lt;p&gt;&lt;strong&gt;for&lt;/strong&gt;&lt;br&gt;
 지정한 길이(array.length) 만큼 반복하며 요소에 접근할 수 있다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fruits&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;apple&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;mango&amp;#39;&lt;/span&gt;];
 &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;fruits&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;){
@@ -231,7 +231,12 @@ return 값은 &lt;code&gt;제거된 요소&lt;/code&gt;만 담어서 반환한�
 
 &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;getImagePath&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;path&lt;/span&gt;)); &lt;span style=&#34;color:#75715e&#34;&gt;// http://root/img/app.jpg
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;getImagePath&lt;/span&gt;()) &lt;span style=&#34;color:#75715e&#34;&gt;// http://root/img/default.jpg
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;참고자료&#34;&gt;참고자료&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;모던웹을 위한 자바스크립트 + JQuery 입문 - 자료형 (윤인성 저)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;인사이드 자바스크립트 - 데이터 타입과 연산자 (송형주, 고현준 저)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
         </item>
         <item>
         <title>GoogleAnalytics 4 휴고 블로그에 적용 시키기</title>
