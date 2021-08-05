@@ -12,7 +12,7 @@
         <pubDate>Wed, 04 Aug 2021 23:34:14 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/js-function/</guid>
-        <description>&lt;h2 id=&#34;함수&#34;&gt;함수&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post 자바스크립트 함수, 이것만은 꼭 기억하자" /&gt;&lt;h2 id=&#34;함수&#34;&gt;함수&lt;/h2&gt;
 &lt;p&gt;자바스크립트의 함수는 객체로 취급 받는다. (일급객체)&lt;br&gt;
 따라서 객체처럼 리터럴 방식으로 선언할 수 있고, new 연산자로 선언할 수도 있다. (대부분.. 리터럴 방식을 선호한다.)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//new 연산자 선언
@@ -183,7 +183,7 @@ call, apply 메서드를 사용하는 이유는 &lt;strong&gt;this 바인딩&lt;
         <pubDate>Tue, 03 Aug 2021 21:38:58 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/datatype/</guid>
-        <description>&lt;h2 id=&#34;원시타입과-참조타입&#34;&gt;원시타입과 참조타입&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post 자바스크립트에서의 데이터 타입" /&gt;&lt;h2 id=&#34;원시타입과-참조타입&#34;&gt;원시타입과 참조타입&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;자바스크립트에서는 원시타입과 참조타입이 존재한다.&lt;/em&gt;
 &lt;img src=&#34;../../assets/js/datatypes.png&#34; alt=&#34;datatypes&#34;  /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;원시타입&#34;&gt;원시타입&lt;/h3&gt;
@@ -415,7 +415,7 @@ return 값은 &lt;code&gt;제거된 요소&lt;/code&gt;만 담어서 반환한�
         <pubDate>Fri, 30 Jul 2021 22:15:51 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/hugo-ga/</guid>
-        <description>&lt;h2 id=&#34;google-analytics-4&#34;&gt;Google Analytics 4&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/web/web.png" alt="Featured image of post GoogleAnalytics 4 휴고 블로그에 적용 시키기" /&gt;&lt;h2 id=&#34;google-analytics-4&#34;&gt;Google Analytics 4&lt;/h2&gt;
 &lt;p&gt;내 블로그의 정적 웹사이트 호스팅 플랫폼은 &lt;code&gt;hugo&lt;/code&gt;를 쓰고 있다.&lt;br&gt;
 예전에 잠깐 썼던 Jekyll 플랫폼과 비교했을 때 배포속도도 빠르고 테마 문서도 잘 되어있어서 편하다 ㅎㅎ&lt;br&gt;
 원래 SEO에 대해 신경 쓰지 않고있다가, GoogleAnaytics와 GoogleSearchConsle을 적용시켜보려고 이것저것 시도해봤지만, 아직도 구글 애널리틱스 보고서에는 방문자가 0이다..&lt;br&gt;
@@ -477,7 +477,7 @@ GA에는 고유적으로 추적에 사용할 ID가 주어지는데 GA관리자 �
         <pubDate>Tue, 27 Jul 2021 23:47:42 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/how-js-work/</guid>
-        <description>&lt;h2 id=&#34;자바스크립트의-특징&#34;&gt;자바스크립트의 특징&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post 자바스크립트는 어떻게 동작할까?" /&gt;&lt;h2 id=&#34;자바스크립트의-특징&#34;&gt;자바스크립트의 특징&lt;/h2&gt;
 &lt;p&gt;나는 주로 자바스크립트를 이용해 개발을하는 것을 좋아한다.&lt;br&gt;
 내 기준 가장 자신있는 언어이기도 하고, 배우면서 흥미로움을 느낀 프로그래밍 언어 중 하나였다.&lt;br&gt;
 하지만 자바스크립트는 쓰면 쓸수록 헷갈리는 개념도 많고, 처음엔 만만하게 보였지만 깊이 들어갈수록 난해한..언어이기도 하다.. (아직도 어렵다 ㅠㅠ)😵&lt;br&gt;
@@ -651,7 +651,7 @@ GA에는 고유적으로 추적에 사용할 ID가 주어지는데 GA관리자 �
         <pubDate>Sun, 18 Jul 2021 23:09:02 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/vue-import/</guid>
-        <description>&lt;p&gt;윈도우에서 작업한 Vue 프로젝트를 mac 환경에서 확인하려던 중 git clone 후 프로젝트를 실행해보니 아래와 같은 에러가 나왔다.&lt;/p&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/vue/vue.png" alt="Featured image of post 외부 Vue 프로젝트 불러오기" /&gt;&lt;p&gt;윈도우에서 작업한 Vue 프로젝트를 mac 환경에서 확인하려던 중 git clone 후 프로젝트를 실행해보니 아래와 같은 에러가 나왔다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&amp;gt; vue-todo@0.1.0 serve /Users/sjchoi/Mydoc/02_Code/05_vue/vue-practice/vue-todo
 &amp;gt; vue-cli-service serve
 
@@ -680,7 +680,7 @@ npm install &lt;span style=&#34;color:#75715e&#34;&gt;#package.json 의존하는
         <pubDate>Thu, 01 Jul 2021 21:27:40 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/vue-component/</guid>
-        <description>&lt;h2 id=&#34;컴포넌트-개념&#34;&gt;컴포넌트 개념&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/vue/vue.png" alt="Featured image of post Vue 컴포넌트에 대한 개념" /&gt;&lt;h2 id=&#34;컴포넌트-개념&#34;&gt;컴포넌트 개념&lt;/h2&gt;
 &lt;p&gt;화면의 영역을 분리하여 개발하는 것, Vue에서 최상위 컴포넌트는 &lt;code&gt;root&lt;/code&gt;이다.&lt;br&gt;
 컴포넌트 구성의 장점은 요소들을 재사용함으로써 개발 생산성이 향상되고, 컴포넌트들은 서로 관계가 형성된다.&lt;/p&gt;
 &lt;h3 id=&#34;전역-컴포넌트&#34;&gt;전역 컴포넌트&lt;/h3&gt;
@@ -847,7 +847,7 @@ vue에서는 &lt;code&gt;v-bind&lt;/code&gt;디렉티브로 속성에 접근할 
         <pubDate>Wed, 30 Jun 2021 20:20:49 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/vue-start/</guid>
-        <description>&lt;h3 id=&#34;cli&#34;&gt;CLI?&lt;/h3&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/vue/vue.png" alt="Featured image of post Vue 설치하기 및 프로젝트 구조" /&gt;&lt;h3 id=&#34;cli&#34;&gt;CLI?&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;cli&lt;/code&gt;란 Command Line Interface, 즉 명령어 기반의 인터페이스 환경을 의미한다.&lt;br&gt;
 vue 프로젝트 도입시 전체적인 웹애플레이케이션을 관리하려면 지금 소개하는 &lt;code&gt;cli&lt;/code&gt;패키지를 설치하면 되고,&lt;br&gt;
 별도의 페이지에서 국한적으로 사용하려면 &lt;code&gt;cdn&lt;/code&gt;방식으로도 사용할 수 있다.&lt;br&gt;
