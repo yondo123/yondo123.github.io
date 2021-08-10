@@ -6,7 +6,135 @@
         <description>Recent content on Jiny Island</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 04 Aug 2021 23:34:14 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 10 Aug 2021 23:51:20 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>자바스크립트 클로저</title>
+        <link>https://jinyisland.kr/post/js-closure/</link>
+        <pubDate>Tue, 10 Aug 2021 23:51:20 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/js-closure/</guid>
+        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post 자바스크립트 클로저" /&gt;&lt;h2 id=&#34;클로저&#34;&gt;클로저&lt;/h2&gt;
+&lt;h3 id=&#34;개념&#34;&gt;개념&lt;/h3&gt;
+&lt;p&gt;클로저는 쉽게말해 함수 선언시 생성되는 &lt;code&gt;유효 범위&lt;/code&gt;이다.&lt;br&gt;
+먼저 자바스크립트에서 클로저를 이해하려면 &lt;strong&gt;범위 지정(Lexical Scoping)을&lt;/strong&gt; 이해하여야 한다.&lt;br&gt;
+아래 코드를 보자.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;apple&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;🍎&amp;#39;&lt;/span&gt;;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;displayApple&lt;/span&gt;(){
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;apple&lt;/span&gt;);
+}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;displayApple&lt;/span&gt;();
+&lt;span style=&#34;color:#75715e&#34;&gt;//result : 🍎
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;간단하게 사과를 출력해주는 함수다.&lt;br&gt;
+하지만,  정작 함수안에는 apple이라는 변수가 없는데도 불구하고 사과가 출력되었다.&lt;br&gt;
+지난번 실행컨텍스트에서 언급했듯이 해당 유효범위에서 식별자를 찾지 못하면 점점 상위 ~ 전역으로 탐색한다. &lt;code&gt;Scope Chain&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;displayPrice&lt;/span&gt;;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;apple&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;🍎&amp;#39;&lt;/span&gt;;&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;displayApple&lt;/span&gt;(){ 
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1000&lt;/span&gt;;
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;**🍎&amp;#39;&lt;/span&gt;);&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;setPrice&lt;/span&gt;(){ 
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; won!!&amp;#39;&lt;/span&gt;);
+	}
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;displayPrice&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;setPrice&lt;/span&gt;;
+}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;displayApple&lt;/span&gt;();
+&lt;span style=&#34;color:#a6e22e&#34;&gt;noticePrice&lt;/span&gt;();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;그럼 위의 코드를 보면 맨 처음 사과를 보여주는 함수 내부에 사과 가격을 출력해주는 함수도 추가해보았다.&lt;br&gt;
+이 함수는 전역 스코프에 정의되어있는 &lt;code&gt;displayPrice&lt;/code&gt;에 할당하여 &lt;code&gt;displayApple&lt;/code&gt;함수가 시행한 후 호출하였다.&lt;br&gt;
+결론적으로 displayApple이 끝난 뒤 호출하는 noticePrice 함수 시행시 유효범위가 끝난 줄 알았던 내부함수가 잘 시행이 되었다!!&lt;br&gt;
+어떤 원리로 이미 끝난 함수의 내부 함수를 호출할 수 있는 것일까?&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/*
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;**🍎** 
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;**🍎 
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;1000 won!!**
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;특징&#34;&gt;특징&lt;/h3&gt;
+&lt;p&gt;먼저 외부함수(displayApple)내에서 내부함수(setPrice)를 선언하였을 때, 함수만 정의되는 것이 아니라 &lt;strong&gt;해당 시점의 유효 범위에 포함하는 모든 변수들도 같이 생성된다.&lt;/strong&gt;&lt;br&gt;
+따라서 외부함수를 먼저 실행하고 끝난 뒤 &lt;code&gt;displayPrice&lt;/code&gt;가 참조하고있는 내부함수(setPrice)에 이미 끝난 시점임에도 불구하고 그 시점의 유효 범위에 접근할 수있게된다.&lt;br&gt;
+클로저는 언제 어디서든 해당 함수 내부에 있는 스코프에 접근이 가능하지만, 그 만큼 비용이 발생된다는 것을 꼭 명심하자.&lt;br&gt;
+&lt;strong&gt;(더 이상 해당 함수를 사용하는 곳이 없을 때나 페이지가 언로드될 때 까지 계속 메모리에 남아있는 일종의 족쇄같은 녀석이다.)&lt;/strong&gt;&lt;br&gt;
+또한 클로저는 단순히 해당 시점의 유효 범위 상태를 간직하고 있는 것이 아니라, 외부에 노출하지 않고 해당 유효 범위 상태를 수정할 수도 있다!&lt;/p&gt;
+&lt;h2 id=&#34;클로저는-대체-언제사용할까&#34;&gt;클로저는 대체 언제사용할까?&lt;/h2&gt;
+&lt;p&gt;그럼 클로저에 대한 개념은 알겠는데, 이 클로저를 언제 유용하게 사용할 수 있을까?&lt;/p&gt;
+&lt;h3 id=&#34;은닉화&#34;&gt;은닉화&lt;/h3&gt;
+&lt;p&gt;자바스크립트에서는 여타 언어와는 달리 &lt;code&gt;접근 제어자&lt;/code&gt;를 명확하게 지원하지 않는다.&lt;br&gt;
+클로저를 통해 변수의 유효 범위를 세밀하게 제어할 수 있다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Fruits&lt;/span&gt;(){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fruit&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;🍎&amp;#39;&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;//private 
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getFruit&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fruit&lt;/span&gt;;
+	}
+
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;setFruit&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;item&lt;/span&gt;){
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;fruit&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;item&lt;/span&gt;;
+	}
+}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;fruits&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getFruit&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;//🍎
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;fruits&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;fruit&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;//undefined
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;fruits&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;setFruit&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;🍇&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//사과를 포도로 바꾼다.
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;fruits&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getFruit&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;//🍇
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;위 함수는 과일을 관리하는 생성자 함수이다.&lt;br&gt;
+과일을 가져오는 getFruit()메서드와 설정하는 setFruit() 메서드가 존재한다.&lt;br&gt;
+함수 수행결과와 같이 &lt;code&gt;getFruit&lt;/code&gt;와 &lt;code&gt;setFruit&lt;/code&gt;를 통해 함수 내부의 변수에 접근하는 것은 가능하지만,  직접적인 변수 접근엔 불가하다.&lt;br&gt;
+즉, getFruit와 setFruit가 선언되면서 클로저를 생성함으로써 해당 유효범위에 있는 변수에 접근이 가능해진 것이다.&lt;/p&gt;
+&lt;h3 id=&#34;참조형-반복문&#34;&gt;참조형 반복문&lt;/h3&gt;
+&lt;p&gt;반복문 내에 변수가 특정 변수를 계속 참조하고 있는 상황에서도 클로저를 활용해 유리하게 풀어나갈 수 있다.&lt;br&gt;
+만약 &lt;code&gt;setTimeout()&lt;/code&gt;함수에서 1초간격으로 특정 코드를 수행하는 로직을 짠다면 (예시로 각 초를 출력하도록..)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;countSec&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;seconds&lt;/span&gt;){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;seconds&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;){
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;setTimeout&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){
+			&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;);
+		}, &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1000&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//setTimeout에 인자로 들어가는 함수는 변수 i를 참조하지만, 이미 countSet()함수가 종료된 시점이라 최종 값으로 할당되었다..
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	}
+};
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;countSec&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//4..4..4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;예상과 달리 &amp;lsquo;4&amp;rsquo;만 3초동안 반복한다.&lt;br&gt;
+이유는 setTimeout() 내부함수에서 생성한 변수가 자신 &lt;strong&gt;(생성하는 시점에 저장되어 있던 i)&lt;/strong&gt; 을 기억하는 것이 아닌 생성된 i를 계속 참조하고 있기 때문에 이런 현상이 발생하는 것이다.&lt;br&gt;
+이는 즉시실행함수를 통해 올바르게 동작시킬 수 있는데 반복할 때 마다 유효 범위에 &lt;code&gt;i&lt;/code&gt;가 새로 정의되고 원하는 연산 값이 출력되는 것을 볼 수 있다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;countSec&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;seconds&lt;/span&gt;){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;seconds&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;){
+		(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;curNum&lt;/span&gt;){ &lt;span style=&#34;color:#75715e&#34;&gt;//즉시실행함수를 이용해 외부 변수 i를 복사하여 setTimout() 지역 변수로 끌어와 정상적으로 1,2,3 입력된다!
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;			&lt;span style=&#34;color:#a6e22e&#34;&gt;setTimeout&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){
+				&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;curNum&lt;/span&gt;);
+			}, &lt;span style=&#34;color:#a6e22e&#34;&gt;curNum&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1000&lt;/span&gt;);
+		}(&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;));
+	}
+};
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;countSec&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//1..2..3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이러한 현상은 DOM 조작시에서도 발생할 수 있는데, 만약 특정 요소를 반복하면서 접근하는 경우에 발생된다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
+	&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;button&lt;/span&gt;&amp;gt;First&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;button&lt;/span&gt;&amp;gt;
+	&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;button&lt;/span&gt;&amp;gt;Second&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;button&lt;/span&gt;&amp;gt;
+	&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;button&lt;/span&gt;&amp;gt;Third&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;button&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;body&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;buttons&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; document.&lt;span style=&#34;color:#a6e22e&#34;&gt;getElemnetByTagName&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;button&amp;#39;&lt;/span&gt;);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;buttons&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;){
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;buttons&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;].&lt;span style=&#34;color:#a6e22e&#34;&gt;addEventListener&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){
+			&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;clicked!&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; button!!&amp;#39;&lt;/span&gt;);
+		})
+	}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;만약 위와같이 단순하게 반복문으로 요소들의 이벤트를 트리거하는 상황이면,  이벤트 핸들러가 코드를 수행할 때 마지막에 저장된 &lt;code&gt;i&lt;/code&gt;를 참조하게 된다.&lt;br&gt;
+어떠한 버튼을 눌러도 3번째 버튼이라고 출력 될 것이다.&lt;br&gt;
+이 역시 즉시시행함수로 바꿀 수 있다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;buttons&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; document.&lt;span style=&#34;color:#a6e22e&#34;&gt;getElemnetByTagName&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;button&amp;#39;&lt;/span&gt;);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;buttons&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;)(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;n&lt;/span&gt;){
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;buttons&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;].&lt;span style=&#34;color:#a6e22e&#34;&gt;addEventListener&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){
+			&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;clicked!&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;n&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; button!!&amp;#39;&lt;/span&gt;);
+		});
+	})(&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;참고자료&#34;&gt;참고자료&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;자바스크립트 닌자 비급 - 클로저와 가까워지기 (John Resig 저)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>자바스크립트 함수, 이것만은 꼭 기억하자</title>
         <link>https://jinyisland.kr/post/js-function/</link>
         <pubDate>Wed, 04 Aug 2021 23:34:14 +0900</pubDate>

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TN7PCJZTQ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6TN7PCJZTQ');
+</script>
+        <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='크롤저는 무엇이고 어떠한 경우에 사용할까?'><title>자바스크립트 클로저</title>
+
+<link rel='canonical' href='https://jinyisland.kr/post/js-closure/'>
+<link rel="icon" href="/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='자바스크립트 클로저'>
+<meta property='og:description' content='크롤저는 무엇이고 어떠한 경우에 사용할까?'>
+<meta property='og:url' content='https://jinyisland.kr/post/js-closure/'>
+<meta property='og:site_name' content='Jiny Island'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='closure' /><meta property='article:published_time' content='2021-08-10T23:51:20&#43;09:00'/><meta property='article:modified_time' content='2021-08-10T23:51:20&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta name="twitter:title" content="자바스크립트 클로저">
+<meta name="twitter:description" content="크롤저는 무엇이고 어떠한 경우에 사용할까?"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
+    .article-content code {
+        word-wrap:break-word;
+    }
+</style>
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub38313664a67c625b5c64f3cb8dc247e_143597_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny Island</a></h1>
+        <h2 class="site-description">🌈Junior Developer.</h2>
+    </header>
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span></span>
+            </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/js-closure/">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" alt="Featured image of post 자바스크립트 클로저" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #636e72;">
+                Java Script
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/js-closure/">자바스크립트 클로저</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        크롤저는 무엇이고 어떠한 경우에 사용할까?
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Aug 10, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
+    <h2 id="클로저">클로저</h2>
+<h3 id="개념">개념</h3>
+<p>클로저는 쉽게말해 함수 선언시 생성되는 <code>유효 범위</code>이다.<br>
+먼저 자바스크립트에서 클로저를 이해하려면 <strong>범위 지정(Lexical Scoping)을</strong> 이해하여야 한다.<br>
+아래 코드를 보자.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">apple</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;🍎&#39;</span>;
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">displayApple</span>(){
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">apple</span>);
+}
+
+<span style="color:#a6e22e">displayApple</span>();
+<span style="color:#75715e">//result : 🍎
+</span></code></pre></div><p>간단하게 사과를 출력해주는 함수다.<br>
+하지만,  정작 함수안에는 apple이라는 변수가 없는데도 불구하고 사과가 출력되었다.<br>
+지난번 실행컨텍스트에서 언급했듯이 해당 유효범위에서 식별자를 찾지 못하면 점점 상위 ~ 전역으로 탐색한다. <code>Scope Chain</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">displayPrice</span>;
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">apple</span> <span style="color:#f92672">=</span> <span style="color:#f92672">**</span><span style="color:#e6db74">&#39;🍎&#39;</span>;<span style="color:#f92672">**</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">displayApple</span>(){ 
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>;
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;**🍎&#39;</span>);<span style="color:#f92672">**</span>
+	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setPrice</span>(){ 
+		<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">price</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; won!!&#39;</span>);
+	}
+	<span style="color:#a6e22e">displayPrice</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">setPrice</span>;
+}
+
+<span style="color:#a6e22e">displayApple</span>();
+<span style="color:#a6e22e">noticePrice</span>();
+</code></pre></div><p>그럼 위의 코드를 보면 맨 처음 사과를 보여주는 함수 내부에 사과 가격을 출력해주는 함수도 추가해보았다.<br>
+이 함수는 전역 스코프에 정의되어있는 <code>displayPrice</code>에 할당하여 <code>displayApple</code>함수가 시행한 후 호출하였다.<br>
+결론적으로 displayApple이 끝난 뒤 호출하는 noticePrice 함수 시행시 유효범위가 끝난 줄 알았던 내부함수가 잘 시행이 되었다!!<br>
+어떤 원리로 이미 끝난 함수의 내부 함수를 호출할 수 있는 것일까?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">/*
+</span><span style="color:#75715e">**🍎** 
+</span><span style="color:#75715e">**🍎 
+</span><span style="color:#75715e">1000 won!!**
+</span><span style="color:#75715e">*/</span>
+</code></pre></div><h3 id="특징">특징</h3>
+<p>먼저 외부함수(displayApple)내에서 내부함수(setPrice)를 선언하였을 때, 함수만 정의되는 것이 아니라 <strong>해당 시점의 유효 범위에 포함하는 모든 변수들도 같이 생성된다.</strong><br>
+따라서 외부함수를 먼저 실행하고 끝난 뒤 <code>displayPrice</code>가 참조하고있는 내부함수(setPrice)에 이미 끝난 시점임에도 불구하고 그 시점의 유효 범위에 접근할 수있게된다.<br>
+클로저는 언제 어디서든 해당 함수 내부에 있는 스코프에 접근이 가능하지만, 그 만큼 비용이 발생된다는 것을 꼭 명심하자.<br>
+<strong>(더 이상 해당 함수를 사용하는 곳이 없을 때나 페이지가 언로드될 때 까지 계속 메모리에 남아있는 일종의 족쇄같은 녀석이다.)</strong><br>
+또한 클로저는 단순히 해당 시점의 유효 범위 상태를 간직하고 있는 것이 아니라, 외부에 노출하지 않고 해당 유효 범위 상태를 수정할 수도 있다!</p>
+<h2 id="클로저는-대체-언제사용할까">클로저는 대체 언제사용할까?</h2>
+<p>그럼 클로저에 대한 개념은 알겠는데, 이 클로저를 언제 유용하게 사용할 수 있을까?</p>
+<h3 id="은닉화">은닉화</h3>
+<p>자바스크립트에서는 여타 언어와는 달리 <code>접근 제어자</code>를 명확하게 지원하지 않는다.<br>
+클로저를 통해 변수의 유효 범위를 세밀하게 제어할 수 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Fruits</span>(){
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fruit</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;🍎&#39;</span>; <span style="color:#75715e">//private 
+</span><span style="color:#75715e"></span>	
+	<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getFruit</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fruit</span>;
+	}
+
+	<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">setFruit</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">item</span>){
+		<span style="color:#a6e22e">fruit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>;
+	}
+}
+
+<span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">getFruit</span>(); <span style="color:#75715e">//🍎
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">fruit</span>; <span style="color:#75715e">//undefined
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">setFruit</span>(<span style="color:#e6db74">&#39;🍇&#39;</span>); <span style="color:#75715e">//사과를 포도로 바꾼다.
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">getFruit</span>(); <span style="color:#75715e">//🍇
+</span></code></pre></div><p>위 함수는 과일을 관리하는 생성자 함수이다.<br>
+과일을 가져오는 getFruit()메서드와 설정하는 setFruit() 메서드가 존재한다.<br>
+함수 수행결과와 같이 <code>getFruit</code>와 <code>setFruit</code>를 통해 함수 내부의 변수에 접근하는 것은 가능하지만,  직접적인 변수 접근엔 불가하다.<br>
+즉, getFruit와 setFruit가 선언되면서 클로저를 생성함으로써 해당 유효범위에 있는 변수에 접근이 가능해진 것이다.</p>
+<h3 id="참조형-반복문">참조형 반복문</h3>
+<p>반복문 내에 변수가 특정 변수를 계속 참조하고 있는 상황에서도 클로저를 활용해 유리하게 풀어나갈 수 있다.<br>
+만약 <code>setTimeout()</code>함수에서 1초간격으로 특정 코드를 수행하는 로직을 짠다면 (예시로 각 초를 출력하도록..)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">countSec</span>(<span style="color:#a6e22e">seconds</span>){
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">&lt;=</span><span style="color:#a6e22e">seconds</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>){
+		<span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span>(){
+			<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">i</span>);
+		}, <span style="color:#a6e22e">i</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1000</span>); <span style="color:#75715e">//setTimeout에 인자로 들어가는 함수는 변수 i를 참조하지만, 이미 countSet()함수가 종료된 시점이라 최종 값으로 할당되었다..
+</span><span style="color:#75715e"></span>	}
+};
+
+<span style="color:#a6e22e">countSec</span>(<span style="color:#ae81ff">3</span>); <span style="color:#75715e">//4..4..4
+</span></code></pre></div><p>예상과 달리 &lsquo;4&rsquo;만 3초동안 반복한다.<br>
+이유는 setTimeout() 내부함수에서 생성한 변수가 자신 <strong>(생성하는 시점에 저장되어 있던 i)</strong> 을 기억하는 것이 아닌 생성된 i를 계속 참조하고 있기 때문에 이런 현상이 발생하는 것이다.<br>
+이는 즉시실행함수를 통해 올바르게 동작시킬 수 있는데 반복할 때 마다 유효 범위에 <code>i</code>가 새로 정의되고 원하는 연산 값이 출력되는 것을 볼 수 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">countSec</span>(<span style="color:#a6e22e">seconds</span>){
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">&lt;=</span><span style="color:#a6e22e">seconds</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>){
+		(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">curNum</span>){ <span style="color:#75715e">//즉시실행함수를 이용해 외부 변수 i를 복사하여 setTimout() 지역 변수로 끌어와 정상적으로 1,2,3 입력된다!
+</span><span style="color:#75715e"></span>			<span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span>(){
+				<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">curNum</span>);
+			}, <span style="color:#a6e22e">curNum</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1000</span>);
+		}(<span style="color:#a6e22e">i</span>));
+	}
+};
+
+<span style="color:#a6e22e">countSec</span>(<span style="color:#ae81ff">3</span>); <span style="color:#75715e">//1..2..3
+</span></code></pre></div><p>이러한 현상은 DOM 조작시에서도 발생할 수 있는데, 만약 특정 요소를 반복하면서 접근하는 경우에 발생된다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">body</span>&gt;
+	&lt;<span style="color:#f92672">button</span>&gt;First&lt;/<span style="color:#f92672">button</span>&gt;
+	&lt;<span style="color:#f92672">button</span>&gt;Second&lt;/<span style="color:#f92672">button</span>&gt;
+	&lt;<span style="color:#f92672">button</span>&gt;Third&lt;/<span style="color:#f92672">button</span>&gt;
+&lt;/<span style="color:#f92672">body</span>&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">buttons</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElemnetByTagName</span>(<span style="color:#e6db74">&#39;button&#39;</span>);
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">buttons</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>){
+		<span style="color:#a6e22e">buttons</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, <span style="color:#66d9ef">function</span>(){
+			<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;clicked!&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; button!!&#39;</span>);
+		})
+	}
+</code></pre></div><p>만약 위와같이 단순하게 반복문으로 요소들의 이벤트를 트리거하는 상황이면,  이벤트 핸들러가 코드를 수행할 때 마지막에 저장된 <code>i</code>를 참조하게 된다.<br>
+어떠한 버튼을 눌러도 3번째 버튼이라고 출력 될 것이다.<br>
+이 역시 즉시시행함수로 바꿀 수 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">buttons</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElemnetByTagName</span>(<span style="color:#e6db74">&#39;button&#39;</span>);
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">buttons</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>)(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">n</span>){
+		<span style="color:#a6e22e">buttons</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, <span style="color:#66d9ef">function</span>(){
+			<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;clicked!&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; button!!&#39;</span>);
+		});
+	})(<span style="color:#a6e22e">i</span>);
+</code></pre></div><h2 id="참고자료">참고자료</h2>
+<ul>
+<li><strong>자바스크립트 닌자 비급 - 클로저와 가까워지기 (John Resig 저)</strong></li>
+</ul>
+
+</section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false,
+    });
+</script>
+<style>
+     
+    @media all and (min-width:1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+    }
+
+    @media all and (max-width:1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: "목차";
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+
+    .toc-link::before {
+        width: 0;
+    }
+
+</style>
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/closure/">closure</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title"></h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/js-function/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="js-function" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">자바스크립트 함수, 이것만은 꼭 기억하자</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/datatype/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="datatype" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">자바스크립트에서의 데이터 타입</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/how-js-work/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="how-js-work" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">자바스크립트는 어떻게 동작할까?</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jinyisland-kr" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Jiny Island
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
