@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TN7PCJZTQ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6TN7PCJZTQ');
+</script>
+        <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='라우팅의 필요성과 vue-router 사용법'><title>Vue 라우터 개념 및 사용방법</title>
+
+<link rel='canonical' href='https://jinyisland.kr/post/vue-router/'>
+<link rel="icon" href="/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='Vue 라우터 개념 및 사용방법'>
+<meta property='og:description' content='라우팅의 필요성과 vue-router 사용법'>
+<meta property='og:url' content='https://jinyisland.kr/post/vue-router/'>
+<meta property='og:site_name' content='Jiny Island'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='라우팅' /><meta property='article:published_time' content='2021-08-23T22:54:41&#43;09:00'/><meta property='article:modified_time' content='2021-08-23T22:54:41&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/vue/vue.png' />
+<meta name="twitter:title" content="Vue 라우터 개념 및 사용방법">
+<meta name="twitter:description" content="라우팅의 필요성과 vue-router 사용법"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/vue/vue.png' /><style>
+    .article-content code {
+        word-wrap:break-word;
+    }
+</style>
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub38313664a67c625b5c64f3cb8dc247e_143597_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny Island</a></h1>
+        <h2 class="site-description">🌈Junior Developer.</h2>
+    </header>
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span></span>
+            </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/vue-router/">
+                
+                    <img src="../../assets/vue/vue.png" loading="lazy" alt="Featured image of post Vue 라우터 개념 및 사용방법" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/vue/" style="background-color: #00b894; color: #fff;">
+                Vue
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/vue-router/">Vue 라우터 개념 및 사용방법</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        라우팅의 필요성과 vue-router 사용법
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Aug 23, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
+    <h2 id="라우터">라우터</h2>
+<p>클라이언트의 요청 경로에 따라 해당하는 컴포넌트를 불러와 페이지를 구성할 수 있다.<br>
+URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트를 가지고 있다가 <strong>변경된 요소영역만 갱신한다.(SPA 언어의 큰 특징)</strong><br>
+따라서 유연하게 페이지 젼환이 가능하다. vue 프레임워크에서는 <code>vue-router</code>라는 라우팅 라이브러리를 지원한다.</p>
+<h3 id="설치하기">설치하기</h3>
+<p><code>vue-router</code>를 설치하고, package.json파일에서 모듈이 잘 추가되었는지 확인하자</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm install vue-router --save
+</code></pre></div><h3 id="라우터-속성">라우터 속성</h3>
+<p>다음은 라우터 인스턴스를 생성할 때 설정하는 값이다.</p>
+<ul>
+<li><code>String</code> <strong>mode</strong> : 기본 값은 Hash 모드 (history 모드를 사용하면 브라우저 히스토리 스택에 기록된다.)</li>
+<li><code>String</code> <strong>redirect :</strong>  리다이렉팅 (주로 메인 페이지 등에 사용한다.)</li>
+<li><code>array</code> <strong>routes</strong> : 페이지 라우팅 정보
+<ul>
+<li><code>String</code> <strong>path</strong> : 페이지 경로 (url)</li>
+<li><code>Object</code> <strong>component</strong> : 해당 url 페이지에 사용 할 Component</li>
+<li><code>Array</code> <strong>children :</strong> 중첩 라우팅을 위한 배열</li>
+</ul>
+</li>
+</ul>
+<h2 id="라우터-생성하기">라우터 생성하기</h2>
+<p>라우터를 생성하는 방식은 <strong>인스턴스 방식, vue-router4 이후에 도입된 create 방식 두 가지가 존재한다.</strong></p>
+<h3 id="인스턴스-방식으로-생성">인스턴스 방식으로 생성</h3>
+<p>먼저 <code>vue-router</code>를 임포트하여 라우터 인스턴스를 새로 생성한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//📁router/router.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Vue</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">VueRouter</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue-router&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Main</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../views/Main.vue&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Info</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../views/Info.vue&#39;</span>;
+
+<span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">VueRouter</span>);
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">router</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">VueRouter</span>({
+	<span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;history&#39;</span>, <span style="color:#75715e">//해쉬값 제거 방식
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">routes</span><span style="color:#f92672">:</span> [{
+        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/&#39;</span>, 
+        <span style="color:#a6e22e">redirect</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/home&#39;</span> 
+    }, {
+        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/home&#39;</span>,
+        <span style="color:#a6e22e">component</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Main</span>
+    }, {
+        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/Info&#39;</span>,
+        <span style="color:#a6e22e">component</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Info</span>
+    }]
+});
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//📁main.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Vue</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">App</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./App.vue&#39;</span>;
+<span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">router</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./router/index.js&#39;</span>;
+
+<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
+  <span style="color:#a6e22e">router</span>,
+  <span style="color:#a6e22e">render</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">h</span> =&gt; <span style="color:#a6e22e">h</span>(<span style="color:#a6e22e">App</span>),
+}).<span style="color:#a6e22e">$mount</span>(<span style="color:#e6db74">&#39;#app&#39;</span>)
+</code></pre></div><h3 id="create-방식으로-생성">Create 방식으로 생성</h3>
+<p><code>router 4</code>버전에서는 더 이상 인스턴스를 호출하지 않고, <code>createRouter</code>메서드를 사용해 라우터를 생성한다. (마치 Vue 3에서의 createApp을 따라가는 느낌..?) 개인적인 생각이지만 이런 메서드 생성 방식이 인스턴스 생성 방식 보다 가독성이 더 좋다고 느껴진다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#75715e">//📁router/router.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createWebHistory</span>, <span style="color:#a6e22e">createRouter</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;vue-router&#34;</span>; 
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">routes</span> <span style="color:#f92672">=</span> [{ <span style="color:#75715e">/*route config*/</span> }] <span style="color:#75715e">//라우팅 패스, 컴포넌트 등 정의
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">router</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createRouter</span>({
+	<span style="color:#a6e22e">history</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">createWebHistory</span>(),
+	<span style="color:#a6e22e">routes</span>
+});
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">router</span>;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#75715e">//📁main.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createApp</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">App</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./App.vue&#39;</span>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">router</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./router&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myApp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createApp</span>(<span style="color:#a6e22e">App</span>);
+<span style="color:#a6e22e">myApp</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">router</span>);
+<span style="color:#a6e22e">reckeyApp</span>.<span style="color:#a6e22e">mount</span>(<span style="color:#e6db74">&#39;#app&#39;</span>);
+</code></pre></div><h3 id="렌더링">렌더링</h3>
+<p>라우터를 생성한 컴포넌트에 <code>router-view</code>태그를 선언하면 URL에 맞게 컴포넌트들이 맵핑된다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">template</span>&gt;
+	&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+		&lt;<span style="color:#f92672">router-view</span>&gt;&lt;/<span style="color:#f92672">router-view</span>&gt;	
+	&lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">template</span>&gt;
+</code></pre></div><h2 id="라우터-링크">라우터 링크</h2>
+<p>사용자에게 라우팅 된 경로로 이동하게끔 앵커태그를 생성하는 속성이다. <code>router-link</code>속성을 통해 앵커 태그 기능을 수행하게한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">router-link</span> <span style="color:#a6e22e">to</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/main&#34;</span>&gt;main&lt;/<span style="color:#f92672">router-link</span>&gt;
+<span style="color:#75715e">&lt;!-- convert --&gt;</span>
+&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#/main&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;main&lt;/<span style="color:#f92672">a</span>&gt;
+</code></pre></div><p><code>to</code>속성에 동적으로 라우팅 경로를 생성시킬 수 있다. <code>v-bind</code>속성은 동적 경로를 생성하고 싶을 때 유용하다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">router-link</span> <span style="color:#a6e22e">v-bind:to</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;`/user/${item.username}`&#34;</span>&gt;User-Info&lt;/<span style="color:#f92672">router-link</span>&gt; <span style="color:#75715e">&lt;!--./user/username --&gt;</span>
+&lt;<span style="color:#f92672">router-link</span> <span style="color:#a6e22e">to</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/user/&#34;</span>&gt;USER&lt;/<span style="color:#f92672">router-link</span>&gt; <span style="color:#75715e">&lt;!--./user/ --&gt;</span>
+</code></pre></div><h3 id="스타일링">스타일링</h3>
+<p><code>scoped</code>속성을 통해 에서 해당 컴포넌트에서만 독립하게 사용하는 스타일을 입힐 수 있는데, 라우터 링크에서 사용되는 앵커태그의 기본 값은 <code>router-link-exact-active</code>이며, active-class속성을 통해 따로 정의할 수도 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">template</span>&gt;
+	&lt;<span style="color:#f92672">router-link</span> <span style="color:#a6e22e">to</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;profile&#34;</span>&gt;
+	     &lt;<span style="color:#f92672">h1</span>&gt;profile&lt;/<span style="color:#f92672">h1</span>&gt;
+	&lt;/<span style="color:#f92672">router-link</span>&gt;
+&lt;/<span style="color:#f92672">template</span>&gt;
+&lt;<span style="color:#f92672">style</span> <span style="color:#a6e22e">scoped</span>&gt;
+	.<span style="color:#a6e22e">router-link-exact-active</span> {
+		<span style="color:#66d9ef">color</span> : <span style="color:#66d9ef">red</span>;
+	}
+&lt;/<span style="color:#f92672">style</span>&gt;
+</code></pre></div><h2 id="동적-라우팅">동적 라우팅</h2>
+<p>url-path를 동적으로 요청받아 데이터를 넘길 수 있는 라우팅 방식이다. <code>path</code>끝에 <code>:id</code>를 붙이면 된다. <strong>(파라미터로 전달)</strong>
+반대로 해당 파라미터 정보를 가져올 때는 <code>$route</code> 객체를 참조하면 된다. 만약 post/라는 url에 파라미터로 post id를 넘겨야한다고 생각해보자.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">AskItem</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../views/PostItem.vue&#39;</span>;
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">router</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">VueRouter</span>({
+	<span style="color:#a6e22e">routes</span><span style="color:#f92672">:</span> [{
+		<span style="color:#a6e22e">path</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/post/:id&#39;</span>
+        <span style="color:#a6e22e">component</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">PostItem</span>
+	}]
+});
+</code></pre></div><p>이제 사용자가 /post/123 이라는 url을 입력한다면, <strong>PostItem</strong> 컴포넌트에서는 &lsquo;123&rsquo;이라는 ID를 가진 내용을 API를 통해 요청받아야 할 것이다. <code>this.$route.params.id</code>를 통해 가져올 수 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">created</span>() {
+  <span style="color:#a6e22e">getPost</span>(<span style="color:#e6db74">&#39;requestPost&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$route</span>.<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">id</span>);
+}
+</code></pre></div><h2 id="참고자료">참고자료</h2>
+<ul>
+<li><a class="link" href="https://www.inflearn.com/course/Age-of-Vuejs/"  target="_blank" rel="noopener"
+    ><strong>캡틴판교님의 Vue 기초 강의</strong></a></li>
+<li><a class="link" href="https://www.inflearn.com/course/Age-of-Vuejs/dashboard"  target="_blank" rel="noopener"
+    ><strong>Vue Router - Vue 라우터 마이그레이션</strong></a></li>
+<li><a class="link" href="https://next.router.vuejs.org/guide/"  target="_blank" rel="noopener"
+    ><strong>Vue Router - 시작하기</strong></a></li>
+</ul>
+
+</section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false,
+    });
+</script>
+<style>
+     
+    @media all and (min-width:1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+    }
+
+    @media all and (max-width:1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: "목차";
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+
+    .toc-link::before {
+        width: 0;
+    }
+
+</style>
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%EB%9D%BC%EC%9A%B0%ED%8C%85/">라우팅</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title"></h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/vue-import/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/vue/vue.png" loading="lazy" data-key="vue-import" data-hash="../../assets/vue/vue.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">외부 Vue 프로젝트 불러오기</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/vue-component/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/vue/vue.png" loading="lazy" data-key="vue-component" data-hash="../../assets/vue/vue.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Vue 컴포넌트에 대한 개념</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/vue-start/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/vue/vue.png" loading="lazy" data-key="vue-start" data-hash="../../assets/vue/vue.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Vue 설치하기 및 프로젝트 구조</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jinyisland-kr" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Jiny Island
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -6,7 +6,140 @@
         <description>Recent content on Jiny Island</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 10 Aug 2021 23:51:20 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 23 Aug 2021 22:54:41 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Vue 라우터 개념 및 사용방법</title>
+        <link>https://jinyisland.kr/post/vue-router/</link>
+        <pubDate>Mon, 23 Aug 2021 22:54:41 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/vue-router/</guid>
+        <description>&lt;img src="https://jinyisland.kr/../../assets/vue/vue.png" alt="Featured image of post Vue 라우터 개념 및 사용방법" /&gt;&lt;h2 id=&#34;라우터&#34;&gt;라우터&lt;/h2&gt;
+&lt;p&gt;클라이언트의 요청 경로에 따라 해당하는 컴포넌트를 불러와 페이지를 구성할 수 있다.&lt;br&gt;
+URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트를 가지고 있다가 &lt;strong&gt;변경된 요소영역만 갱신한다.(SPA 언어의 큰 특징)&lt;/strong&gt;&lt;br&gt;
+따라서 유연하게 페이지 젼환이 가능하다. vue 프레임워크에서는 &lt;code&gt;vue-router&lt;/code&gt;라는 라우팅 라이브러리를 지원한다.&lt;/p&gt;
+&lt;h3 id=&#34;설치하기&#34;&gt;설치하기&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;vue-router&lt;/code&gt;를 설치하고, package.json파일에서 모듈이 잘 추가되었는지 확인하자&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;npm install vue-router --save
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;라우터-속성&#34;&gt;라우터 속성&lt;/h3&gt;
+&lt;p&gt;다음은 라우터 인스턴스를 생성할 때 설정하는 값이다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;String&lt;/code&gt; &lt;strong&gt;mode&lt;/strong&gt; : 기본 값은 Hash 모드 (history 모드를 사용하면 브라우저 히스토리 스택에 기록된다.)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;String&lt;/code&gt; &lt;strong&gt;redirect :&lt;/strong&gt;  리다이렉팅 (주로 메인 페이지 등에 사용한다.)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;array&lt;/code&gt; &lt;strong&gt;routes&lt;/strong&gt; : 페이지 라우팅 정보
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;String&lt;/code&gt; &lt;strong&gt;path&lt;/strong&gt; : 페이지 경로 (url)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Object&lt;/code&gt; &lt;strong&gt;component&lt;/strong&gt; : 해당 url 페이지에 사용 할 Component&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Array&lt;/code&gt; &lt;strong&gt;children :&lt;/strong&gt; 중첩 라우팅을 위한 배열&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;라우터-생성하기&#34;&gt;라우터 생성하기&lt;/h2&gt;
+&lt;p&gt;라우터를 생성하는 방식은 &lt;strong&gt;인스턴스 방식, vue-router4 이후에 도입된 create 방식 두 가지가 존재한다.&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;인스턴스-방식으로-생성&#34;&gt;인스턴스 방식으로 생성&lt;/h3&gt;
+&lt;p&gt;먼저 &lt;code&gt;vue-router&lt;/code&gt;를 임포트하여 라우터 인스턴스를 새로 생성한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//📁router/router.js
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Vue&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;vue&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;VueRouter&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;vue-router&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Main&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;../views/Main.vue&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Info&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;../views/Info.vue&amp;#39;&lt;/span&gt;;
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;Vue&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;use&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;VueRouter&lt;/span&gt;);
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;router&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;VueRouter&lt;/span&gt;({
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;mode&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;history&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#75715e&#34;&gt;//해쉬값 제거 방식
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;routes&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; [{
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;path&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;, 
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;redirect&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/home&amp;#39;&lt;/span&gt; 
+    }, {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;path&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/home&amp;#39;&lt;/span&gt;,
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;component&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Main&lt;/span&gt;
+    }, {
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;path&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/Info&amp;#39;&lt;/span&gt;,
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;component&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Info&lt;/span&gt;
+    }]
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//📁main.js
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Vue&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;vue&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;App&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;./App.vue&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; {&lt;span style=&#34;color:#a6e22e&#34;&gt;router&lt;/span&gt;} &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;./router/index.js&amp;#39;&lt;/span&gt;;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Vue&lt;/span&gt;({
+  &lt;span style=&#34;color:#a6e22e&#34;&gt;router&lt;/span&gt;,
+  &lt;span style=&#34;color:#a6e22e&#34;&gt;render&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt; =&amp;gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;h&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;App&lt;/span&gt;),
+}).&lt;span style=&#34;color:#a6e22e&#34;&gt;$mount&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#app&amp;#39;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;create-방식으로-생성&#34;&gt;Create 방식으로 생성&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;router 4&lt;/code&gt;버전에서는 더 이상 인스턴스를 호출하지 않고, &lt;code&gt;createRouter&lt;/code&gt;메서드를 사용해 라우터를 생성한다. (마치 Vue 3에서의 createApp을 따라가는 느낌..?) 개인적인 생각이지만 이런 메서드 생성 방식이 인스턴스 생성 방식 보다 가독성이 더 좋다고 느껴진다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//📁router/router.js
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; { &lt;span style=&#34;color:#a6e22e&#34;&gt;createWebHistory&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;createRouter&lt;/span&gt; } &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;vue-router&amp;#34;&lt;/span&gt;; 
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;routes&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [{ &lt;span style=&#34;color:#75715e&#34;&gt;/*route config*/&lt;/span&gt; }] &lt;span style=&#34;color:#75715e&#34;&gt;//라우팅 패스, 컴포넌트 등 정의
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;router&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;createRouter&lt;/span&gt;({
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;history&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;createWebHistory&lt;/span&gt;(),
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;routes&lt;/span&gt;
+});
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;router&lt;/span&gt;;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//📁main.js
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; { &lt;span style=&#34;color:#a6e22e&#34;&gt;createApp&lt;/span&gt; } &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;vue&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;App&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;./App.vue&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;router&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;./router&amp;#39;&lt;/span&gt;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;myApp&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;createApp&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;App&lt;/span&gt;);
+&lt;span style=&#34;color:#a6e22e&#34;&gt;myApp&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;use&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;router&lt;/span&gt;);
+&lt;span style=&#34;color:#a6e22e&#34;&gt;reckeyApp&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;mount&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;#app&amp;#39;&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;렌더링&#34;&gt;렌더링&lt;/h3&gt;
+&lt;p&gt;라우터를 생성한 컴포넌트에 &lt;code&gt;router-view&lt;/code&gt;태그를 선언하면 URL에 맞게 컴포넌트들이 맵핑된다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;template&lt;/span&gt;&amp;gt;
+	&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;
+		&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;router-view&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;router-view&lt;/span&gt;&amp;gt;	
+	&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;template&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;라우터-링크&#34;&gt;라우터 링크&lt;/h2&gt;
+&lt;p&gt;사용자에게 라우팅 된 경로로 이동하게끔 앵커태그를 생성하는 속성이다. &lt;code&gt;router-link&lt;/code&gt;속성을 통해 앵커 태그 기능을 수행하게한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;router-link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;to&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/main&amp;#34;&lt;/span&gt;&amp;gt;main&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;router-link&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- convert --&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#/main&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&amp;gt;main&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;to&lt;/code&gt;속성에 동적으로 라우팅 경로를 생성시킬 수 있다. &lt;code&gt;v-bind&lt;/code&gt;속성은 동적 경로를 생성하고 싶을 때 유용하다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;router-link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;v-bind:to&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;`/user/${item.username}`&amp;#34;&lt;/span&gt;&amp;gt;User-Info&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;router-link&lt;/span&gt;&amp;gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!--./user/username --&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;router-link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;to&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/user/&amp;#34;&lt;/span&gt;&amp;gt;USER&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;router-link&lt;/span&gt;&amp;gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!--./user/ --&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;스타일링&#34;&gt;스타일링&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;scoped&lt;/code&gt;속성을 통해 에서 해당 컴포넌트에서만 독립하게 사용하는 스타일을 입힐 수 있는데, 라우터 링크에서 사용되는 앵커태그의 기본 값은 &lt;code&gt;router-link-exact-active&lt;/code&gt;이며, active-class속성을 통해 따로 정의할 수도 있다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;template&lt;/span&gt;&amp;gt;
+	&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;router-link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;to&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;profile&amp;#34;&lt;/span&gt;&amp;gt;
+	     &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;h1&lt;/span&gt;&amp;gt;profile&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;h1&lt;/span&gt;&amp;gt;
+	&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;router-link&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;template&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;style&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;scoped&lt;/span&gt;&amp;gt;
+	.&lt;span style=&#34;color:#a6e22e&#34;&gt;router-link-exact-active&lt;/span&gt; {
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;color&lt;/span&gt; : &lt;span style=&#34;color:#66d9ef&#34;&gt;red&lt;/span&gt;;
+	}
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;style&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;동적-라우팅&#34;&gt;동적 라우팅&lt;/h2&gt;
+&lt;p&gt;url-path를 동적으로 요청받아 데이터를 넘길 수 있는 라우팅 방식이다. &lt;code&gt;path&lt;/code&gt;끝에 &lt;code&gt;:id&lt;/code&gt;를 붙이면 된다. &lt;strong&gt;(파라미터로 전달)&lt;/strong&gt;
+반대로 해당 파라미터 정보를 가져올 때는 &lt;code&gt;$route&lt;/code&gt; 객체를 참조하면 된다. 만약 post/라는 url에 파라미터로 post id를 넘겨야한다고 생각해보자.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;AskItem&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;../views/PostItem.vue&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;router&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;VueRouter&lt;/span&gt;({
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;routes&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; [{
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;path&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/post/:id&amp;#39;&lt;/span&gt;
+        &lt;span style=&#34;color:#a6e22e&#34;&gt;component&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;PostItem&lt;/span&gt;
+	}]
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이제 사용자가 /post/123 이라는 url을 입력한다면, &lt;strong&gt;PostItem&lt;/strong&gt; 컴포넌트에서는 &amp;lsquo;123&amp;rsquo;이라는 ID를 가진 내용을 API를 통해 요청받아야 할 것이다. &lt;code&gt;this.$route.params.id&lt;/code&gt;를 통해 가져올 수 있다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;created&lt;/span&gt;() {
+  &lt;span style=&#34;color:#a6e22e&#34;&gt;getPost&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;requestPost&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;$route&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;params&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;참고자료&#34;&gt;참고자료&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.inflearn.com/course/Age-of-Vuejs/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;strong&gt;캡틴판교님의 Vue 기초 강의&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.inflearn.com/course/Age-of-Vuejs/dashboard&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;strong&gt;Vue Router - Vue 라우터 마이그레이션&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://next.router.vuejs.org/guide/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;strong&gt;Vue Router - 시작하기&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>자바스크립트 클로저</title>
         <link>https://jinyisland.kr/post/js-closure/</link>
         <pubDate>Tue, 10 Aug 2021 23:51:20 +0900</pubDate>

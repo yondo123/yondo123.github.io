@@ -4,7 +4,43 @@
   
   <url>
     <loc>https://jinyisland.kr/categories/</loc>
-    <lastmod>2021-08-10T23:51:20+09:00</lastmod>
+    <lastmod>2021-08-23T22:54:41+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/</loc>
+    <lastmod>2021-08-23T22:54:41+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/</loc>
+    <lastmod>2021-08-23T22:54:41+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/</loc>
+    <lastmod>2021-08-23T22:54:41+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/categories/vue/</loc>
+    <lastmod>2021-08-23T22:54:41+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/vue-router/</loc>
+    <lastmod>2021-08-23T22:54:41+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/%EB%9D%BC%EC%9A%B0%ED%8C%85/</loc>
+    <lastmod>2021-08-23T22:54:41+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
@@ -16,24 +52,6 @@
   
   <url>
     <loc>https://jinyisland.kr/categories/javascript/</loc>
-    <lastmod>2021-08-10T23:51:20+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/</loc>
-    <lastmod>2021-08-10T23:51:20+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/post/</loc>
-    <lastmod>2021-08-10T23:51:20+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/tags/</loc>
     <lastmod>2021-08-10T23:51:20+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -95,12 +113,6 @@
   <url>
     <loc>https://jinyisland.kr/post/how-js-work/</loc>
     <lastmod>2021-07-27T23:47:42+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/categories/vue/</loc>
-    <lastmod>2021-07-18T23:09:02+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
