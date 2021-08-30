@@ -17,7 +17,7 @@
 &lt;h2 id=&#34;블록범위&#34;&gt;블록범위&lt;/h2&gt;
 &lt;p&gt;먼저 let과 const를 제대로 이해하려면 &lt;code&gt;블록범위&lt;/code&gt;를 제대로 알고넘어가야한다!&lt;br&gt;
 블록범위 내에서 let과 const를 사용하면  해당 변수를 재할당할 수 없도록 지정할 수 있다.
-&lt;strong&gt;자바스크립트에서의 블록유효범위는 if블록이나 for반복문, 함수등과 같이 중괄호로 둘러싸인 범위를 의미한다.&lt;/strong&gt;
+&lt;strong&gt;자바스크립트에서의 블록유효범위는 if블록이나 for 반복문과 같이 중괄호로 둘러싸인 범위를 의미한다.&lt;/strong&gt;
 지금까지 사용했던 &lt;code&gt;var&lt;/code&gt;로 변수를 선언하는 방식은, 중복되는 변수이어도 재할당을 하면서 코드가 많아질 경우 값이 바뀌는것을 파악해야하는 문제가 있었다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;choi&amp;#39;&lt;/span&gt;;
 &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;kim&amp;#39;&lt;/span&gt;;
