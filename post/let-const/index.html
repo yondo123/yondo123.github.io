@@ -246,7 +246,7 @@
 <h2 id="블록범위">블록범위</h2>
 <p>먼저 let과 const를 제대로 이해하려면 <code>블록범위</code>를 제대로 알고넘어가야한다!<br>
 블록범위 내에서 let과 const를 사용하면  해당 변수를 재할당할 수 없도록 지정할 수 있다.
-<strong>자바스크립트에서의 블록은 if블록이나 for반복문, 함수등과 같이 중괄호로 둘러싸인 범위를 의미한다.</strong>
+<strong>자바스크립트에서의 블록유효범위는 if블록이나 for반복문, 함수등과 같이 중괄호로 둘러싸인 범위를 의미한다.</strong>
 지금까지 사용했던 <code>var</code>로 변수를 선언하는 방식은, 중복되는 변수이어도 재할당을 하면서 코드가 많아질 경우 값이 바뀌는것을 파악해야하는 문제가 있었다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;choi&#39;</span>;
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;kim&#39;</span>;
@@ -260,7 +260,7 @@
 <span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#39;🍓&#39;</span>);
 <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">fruits</span>); <span style="color:#75715e">//&#39;🍎&#39;, &#39;🍌&#39;, &#39;🍓&#39;
 </span></code></pre></div><h3 id="let">let</h3>
-<p>기존 <code>var</code>과 유사한 점은 변수를 재할당할 수 있는 점이다. 하지만 var로 선언한 변수는 **어휘적 유효범위(lexical sope)**를 따르지만, <code>let</code>은 블록 유효범위를 따른다.
+<p>기존 <code>var</code>과 유사한 점은 변수를 재할당할 수 있는 점이다. 하지만 <strong>var로 선언한 변수는 어휘적 유효범위(lexical sope)</strong> 를 따르지만, <code>let</code>은 블록 유효범위를 따른다.
 아래 예제를 보면  아이템의 가격을 반환해주는 함수이다. 만약 정가(price)와 갯수(inventory)가 존재하면 정가를 반환하고, 세일 가격(salePrice)와 세일중인 아이템 갯수(saleInventory)가 존재하면 할인가격을 반환한다. 이 예제에서 핵심은 <code>let</code>임에도 불구하고 변수를 2번 재할당하고 있다. <strong>블록 유효범위를 따르기때문에 가능한 일이다.</strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getPriceOfItems</span>(<span style="color:#a6e22e">item</span>) {
     <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">stack</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">inventory</span>;
