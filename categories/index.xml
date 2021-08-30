@@ -6,22 +6,22 @@
     <description>Recent content in Categories on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Aug 2021 22:54:41 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 Aug 2021 23:39:26 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Script</title>
+      <link>https://jinyisland.kr/categories/javascript/</link>
+      <pubDate>Mon, 30 Aug 2021 23:39:26 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/categories/javascript/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Vue</title>
       <link>https://jinyisland.kr/categories/vue/</link>
       <pubDate>Mon, 23 Aug 2021 22:54:41 +0900</pubDate>
       
       <guid>https://jinyisland.kr/categories/vue/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Java Script</title>
-      <link>https://jinyisland.kr/categories/javascript/</link>
-      <pubDate>Tue, 10 Aug 2021 23:51:20 +0900</pubDate>
-      
-      <guid>https://jinyisland.kr/categories/javascript/</guid>
       <description></description>
     </item>
     

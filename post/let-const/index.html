@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TN7PCJZTQ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6TN7PCJZTQ');
+</script>
+        <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='변수 관리를 더욱 효율적으로 해주는 let,const를 사용해보자.'><title>let, const와 기존 var의 차이</title>
+
+<link rel='canonical' href='https://jinyisland.kr/post/let-const/'>
+<link rel="icon" href="/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='let, const와 기존 var의 차이'>
+<meta property='og:description' content='변수 관리를 더욱 효율적으로 해주는 let,const를 사용해보자.'>
+<meta property='og:url' content='https://jinyisland.kr/post/let-const/'>
+<meta property='og:site_name' content='Jiny Island'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='javascript' /><meta property='article:tag' content='es6&#43;' /><meta property='article:published_time' content='2021-08-30T23:39:26&#43;09:00'/><meta property='article:modified_time' content='2021-08-30T23:39:26&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta name="twitter:title" content="let, const와 기존 var의 차이">
+<meta name="twitter:description" content="변수 관리를 더욱 효율적으로 해주는 let,const를 사용해보자."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
+    .article-content code {
+        word-wrap:break-word;
+    }
+</style>
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub38313664a67c625b5c64f3cb8dc247e_143597_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny Island</a></h1>
+        <h2 class="site-description">🌈Junior Developer.</h2>
+    </header>
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span></span>
+            </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/let-const/">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" alt="Featured image of post let, const와 기존 var의 차이" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #636e72;">
+                Java Script
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/let-const/">let, const와 기존 var의 차이</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        변수 관리를 더욱 효율적으로 해주는 let,const를 사용해보자.
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Aug 30, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
+    <p>요즘 공부하고 있는 vue.js 프레임워크를 사용하다보면 자연스럽게 es6 이상의 트렌디한 자바스크립트 문법이 눈에 띈다. 🧐<br>
+물론 vue 코드를 빠르게 짤 수 있는 스니펫 플러그인에서도 기본적으로 es6+ 문법으로 안내해주기도하고.. vue를 사용해서가 아니라 이렇게 트렌디한~자바스크립트에서는 어떤 문법이 있는지 차례차례 짚고 넘어가고자 한다. (물론 내 기준 현업 또는 개인적으로 많이 쓰는 문법 위주로~ㅎㅎ)</p>
+<h2 id="블록범위">블록범위</h2>
+<p>먼저 let과 const를 제대로 이해하려면 <code>블록범위</code>를 제대로 알고넘어가야한다!<br>
+블록범위 내에서 let과 const를 사용하면  해당 변수를 재할당할 수 없도록 지정할 수 있다.
+<strong>자바스크립트에서의 블록은 if블록이나 for반복문, 함수등과 같이 중괄호로 둘러싸인 범위를 의미한다.</strong>
+지금까지 사용했던 <code>var</code>로 변수를 선언하는 방식은, 중복되는 변수이어도 재할당을 하면서 코드가 많아질 경우 값이 바뀌는것을 파악해야하는 문제가 있었다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;choi&#39;</span>;
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;kim&#39;</span>;
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">name</span>); <span style="color:#75715e">//&#39;kim&#39;
+</span></code></pre></div><h3 id="const">const</h3>
+<p>값을 재할당할 수 없지만, 참조된 값을 변경할 수는 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;choi&#39;</span>;
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;kim&#39;</span>; <span style="color:#75715e">//error
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fruits</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;🍎&#39;</span>, <span style="color:#e6db74">&#39;🍌&#39;</span>];
+<span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#39;🍓&#39;</span>);
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">fruits</span>); <span style="color:#75715e">//&#39;🍎&#39;, &#39;🍌&#39;, &#39;🍓&#39;
+</span></code></pre></div><h3 id="let">let</h3>
+<p>기존 <code>var</code>과 유사한 점은 변수를 재할당할 수 있는 점이다. 하지만 var로 선언한 변수는 **어휘적 유효범위(lexical sope)**를 따르지만, <code>let</code>은 블록 유효범위를 따른다.
+아래 예제를 보면  아이템의 가격을 반환해주는 함수이다. 만약 정가(price)와 갯수(inventory)가 존재하면 정가를 반환하고, 세일 가격(salePrice)와 세일중인 아이템 갯수(saleInventory)가 존재하면 할인가격을 반환한다. 이 예제에서 핵심은 <code>let</code>임에도 불구하고 변수를 2번 재할당하고 있다. <strong>블록 유효범위를 따르기때문에 가능한 일이다.</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getPriceOfItems</span>(<span style="color:#a6e22e">item</span>) {
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">stack</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">inventory</span>;
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">price</span>;
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">salePrice</span>) {
+        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">stack</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">saleInventory</span>; <span style="color:#75715e">//다른 유효범위
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">stack</span>); <span style="color:#75715e">//1
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">stack</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+            <span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">salePrice</span>;
+        }
+    }
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">stack</span>) {
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">stack</span>); <span style="color:#75715e">//3
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">price</span>;
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+<span style="color:#a6e22e">getPriceOfItems</span>({
+    <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3600</span>,
+    <span style="color:#a6e22e">inventory</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3</span>,
+    <span style="color:#a6e22e">salePrice</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1800</span>,
+    <span style="color:#a6e22e">saleInventory</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>
+}); 
+<span style="color:#75715e">//1800 
+</span></code></pre></div><h2 id="반복문에서의-유효범위-충돌-방지">반복문에서의 유효범위 충돌 방지</h2>
+<p>지난번 클로저를 소개할 때 사용했던 예제이긴하지만..  어휘적 유효범위를 따르는 <code>var</code>로 선언한 변수 때문에 비동기 로직에서 마지막 값만 계속 참조되는 현상이 일어났던 코드이다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">countSec</span>(<span style="color:#a6e22e">seconds</span>) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">seconds</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+        <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span> () {
+            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">i</span>); <span style="color:#75715e">//3..3..3..
+</span><span style="color:#75715e"></span>        }, <span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>); 
+    }
+};
+<span style="color:#a6e22e">countSec</span>(<span style="color:#ae81ff">3</span>);
+</code></pre></div><p>아래처엄 클로저로 해결할 수 있었다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">countSec</span>(<span style="color:#a6e22e">seconds</span>) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">seconds</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+        (<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">curNum</span>) { <span style="color:#75715e">//즉시실행함수를 이용해 외부 변수 i를 복사하여 setTimout() 지역 변수로 끌어와 정상적으로 1,2,3 입력된다!
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span> () {
+                <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">curNum</span>);
+            }, <span style="color:#a6e22e">curNum</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
+        }(<span style="color:#a6e22e">i</span>));
+    }
+};
+
+<span style="color:#a6e22e">countSec</span>(<span style="color:#ae81ff">3</span>);
+</code></pre></div><p><code>let</code>을 활용해서 더욱 간단히 해결할 수 있다.<br>
+블록유효범위를 따르기 때문에 해당 블록에서만 유효하다는 특징을 잊지말자!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">countSec</span>(<span style="color:#a6e22e">seconds</span>) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">seconds</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+        <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span> () {
+            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">i</span>);
+        }, <span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
+    }
+};
+
+<span style="color:#a6e22e">countSec</span>(<span style="color:#ae81ff">3</span>); <span style="color:#75715e">//1..2..3..
+</span></code></pre></div><h2 id="정리">정리</h2>
+<p>이렇게 기존 가장 많이 사용하였던 var과 const, let의 차이를 알아보았다.</p>
+<ul>
+<li><strong>var :</strong> 어휘적 유효범위 (코드를 작성한 위치 기준에서의 참조되고 있는 범위)를 따르는 변수, 재할당과 값수정 모두 제한이 없다.</li>
+<li><strong>const :</strong> 블록 유효범위를 따르며, 변수의 재할당 및 재선언이 불가능하다.</li>
+<li><strong>let :</strong> 블록 유효범위를 따르며, 변수의 재할당은 불가능하지만, 재선언은 가능하다!</li>
+</ul>
+<p>최대한 <code>const</code>를 사용해 변수들을 선언하는것이 바람직하며, 재할당이 필요한 경우에만 <code>let</code>을 사용하는것을 추천한다.</p>
+
+</section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false,
+    });
+</script>
+<style>
+     
+    @media all and (min-width:1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+    }
+
+    @media all and (max-width:1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: "목차";
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+
+    .toc-link::before {
+        width: 0;
+    }
+
+</style>
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/javascript/">javascript</a>
+        
+            <a href="/tags/es6&#43;/">es6&#43;</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title"></h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/js-function/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="js-function" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">자바스크립트 함수, 이것만은 꼭 기억하자</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/datatype/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="datatype" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">자바스크립트에서의 데이터 타입</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/how-js-work/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="how-js-work" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">자바스크립트는 어떻게 동작할까?</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/js-closure/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="js-closure" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">자바스크립트 클로저</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jinyisland-kr" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Jiny Island
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

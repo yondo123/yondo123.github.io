@@ -6,7 +6,19 @@
     <description>Recent content in Java Script on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Aug 2021 23:51:20 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 Aug 2021 23:39:26 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>let, const와 기존 var의 차이</title>
+      <link>https://jinyisland.kr/post/let-const/</link>
+      <pubDate>Mon, 30 Aug 2021 23:39:26 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/let-const/</guid>
+      <description>요즘 공부하고 있는 vue.js 프레임워크를 사용하다보면 자연스럽게 es6 이상의 트렌디한 자바스크립트 문법이 눈에 띈다. 🧐
+물론 vue 코드를 빠르게 짤 수 있는 스니펫 플러그인에서도 기본적으로 es6+ 문법으로 안내해주기도하고.. vue를 사용해서가 아니라 이렇게 트렌디한~자바스크립트에서는 어떤 문법이 있는지 차례차례 짚고 넘어가고자 한다. (물론 내 기준 현업 또는 개인적으로 많이 쓰는 문법 위주로~ㅎㅎ)
+블록범위 먼저 let과 const를 제대로 이해하려면 블록범위를 제대로 알고넘어가야한다!
+블록범위 내에서 let과 const를 사용하면 해당 변수를 재할당할 수 없도록 지정할 수 있다.</description>
+    </item>
+    
     <item>
       <title>자바스크립트 클로저</title>
       <link>https://jinyisland.kr/post/js-closure/</link>
