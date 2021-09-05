@@ -6,7 +6,29 @@
     <description>Recent content in es6&#43; on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Aug 2021 23:39:26 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/es6+/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Sep 2021 19:45:01 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/es6+/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>자바스크립트 화살표 함수</title>
+      <link>https://jinyisland.kr/post/arrow-function/</link>
+      <pubDate>Sun, 05 Sep 2021 19:45:01 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/arrow-function/</guid>
+      <description>화살표 함수 기존 함수 표기법을 화살표(⇒)형태로 간단하게 표기하는 함수 표기법
+기존 함수 표현식과의 차이 //기존 함수 표현식 function name(){ //code.. } //화살표 함수 () =&amp;gt; { //code.. } 화살표 함수 특징 괄호 생략 매개변수가 1개라면 괄호()도 생략이 가능하다.
+const logMessage = message =&amp;gt; { console.log(message) } logMessage(&amp;#39;hello&amp;#39;); //&amp;#39;hello&amp;#39; Lexical this 일반 함수 표기에서는 this사용 시 동적으로 해당 함수를 실행한 객체로 바인딩되었다.
+하지만 화살표 함수에서는 자신을 소유하고 있는 객체로 바인딩되는게 아니라 해당 화살표함수를 소유하고 있는 상위 환경의 this를 그대로 계승한다.</description>
+    </item>
+    
+    <item>
+      <title>자바스크립트 템플릿리터럴</title>
+      <link>https://jinyisland.kr/post/template-literals/</link>
+      <pubDate>Sun, 05 Sep 2021 19:36:27 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/template-literals/</guid>
+      <description>Temlate literals 기존 문자열 결합 시 연산자(+)를 사용하였는데 백틱(`) 기호를 사용하여 쉽게 결합할 수 있다.
+기존 연산자 사용 const fruit = &amp;#39;apple&amp;#39;; const color = &amp;#39;red&amp;#39;; console.log(&amp;#39;My Favorite Fruit is&amp;#39; + fruit + &amp;#39;, color is &amp;#39; + color ); //&amp;#34;My Favorite Fruit isapple, color is red&amp;#34; 템플릿리터럴 사용 const fruit = &amp;#39;apple&amp;#39;; const color = &amp;#39;red&amp;#39;; console.log(`My favorite Fruit is ${fruit}, color is ${color}`); 장점 보통 복잡한 문자열이거나 html 코드등을 직접 스크립트상에서 삽입할 때 쌍따옴표-홀따옴표등과 같이 사용하는 경우에 상당히 복잡했었다.</description>
+    </item>
+    
     <item>
       <title>let, const와 기존 var의 차이</title>
       <link>https://jinyisland.kr/post/let-const/</link>

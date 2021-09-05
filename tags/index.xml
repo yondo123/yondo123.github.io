@@ -6,7 +6,34 @@
     <description>Recent content in Tags on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 Sep 2021 22:57:27 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Sep 2021 19:45:01 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>es6&#43;</title>
+      <link>https://jinyisland.kr/tags/es6&#43;/</link>
+      <pubDate>Sun, 05 Sep 2021 19:45:01 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/tags/es6&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>function</title>
+      <link>https://jinyisland.kr/tags/function/</link>
+      <pubDate>Sun, 05 Sep 2021 19:45:01 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/tags/function/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>javascript</title>
+      <link>https://jinyisland.kr/tags/javascript/</link>
+      <pubDate>Sun, 05 Sep 2021 19:45:01 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>java</title>
       <link>https://jinyisland.kr/tags/java/</link>
@@ -26,24 +53,6 @@
     </item>
     
     <item>
-      <title>es6&#43;</title>
-      <link>https://jinyisland.kr/tags/es6&#43;/</link>
-      <pubDate>Mon, 30 Aug 2021 23:39:26 +0900</pubDate>
-      
-      <guid>https://jinyisland.kr/tags/es6&#43;/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>javascript</title>
-      <link>https://jinyisland.kr/tags/javascript/</link>
-      <pubDate>Mon, 30 Aug 2021 23:39:26 +0900</pubDate>
-      
-      <guid>https://jinyisland.kr/tags/javascript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>라우팅</title>
       <link>https://jinyisland.kr/tags/%EB%9D%BC%EC%9A%B0%ED%8C%85/</link>
       <pubDate>Mon, 23 Aug 2021 22:54:41 +0900</pubDate>
@@ -58,15 +67,6 @@
       <pubDate>Tue, 10 Aug 2021 23:51:20 +0900</pubDate>
       
       <guid>https://jinyisland.kr/tags/closure/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>function</title>
-      <link>https://jinyisland.kr/tags/function/</link>
-      <pubDate>Wed, 04 Aug 2021 23:34:14 +0900</pubDate>
-      
-      <guid>https://jinyisland.kr/tags/function/</guid>
       <description></description>
     </item>
     

@@ -4,7 +4,61 @@
   
   <url>
     <loc>https://jinyisland.kr/categories/</loc>
-    <lastmod>2021-09-04T22:57:27+09:00</lastmod>
+    <lastmod>2021-09-05T19:45:01+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/es6&#43;/</loc>
+    <lastmod>2021-09-05T19:45:01+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/function/</loc>
+    <lastmod>2021-09-05T19:45:01+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/categories/javascript/</loc>
+    <lastmod>2021-09-05T19:45:01+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/javascript/</loc>
+    <lastmod>2021-09-05T19:45:01+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/</loc>
+    <lastmod>2021-09-05T19:45:01+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/</loc>
+    <lastmod>2021-09-05T19:45:01+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/</loc>
+    <lastmod>2021-09-05T19:45:01+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/arrow-function/</loc>
+    <lastmod>2021-09-05T19:45:01+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/template-literals/</loc>
+    <lastmod>2021-09-05T19:36:27+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
@@ -27,44 +81,8 @@
   </url>
   
   <url>
-    <loc>https://jinyisland.kr/</loc>
-    <lastmod>2021-09-04T22:57:27+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/post/</loc>
-    <lastmod>2021-09-04T22:57:27+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/tags/</loc>
-    <lastmod>2021-09-04T22:57:27+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
     <loc>https://jinyisland.kr/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/</loc>
     <lastmod>2021-09-04T22:57:27+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/tags/es6&#43;/</loc>
-    <lastmod>2021-08-30T23:39:26+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/categories/javascript/</loc>
-    <lastmod>2021-08-30T23:39:26+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/tags/javascript/</loc>
-    <lastmod>2021-08-30T23:39:26+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
@@ -101,12 +119,6 @@
   <url>
     <loc>https://jinyisland.kr/post/js-closure/</loc>
     <lastmod>2021-08-10T23:51:20+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/tags/function/</loc>
-    <lastmod>2021-08-04T23:34:14+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   

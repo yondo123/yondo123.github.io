@@ -14,19 +14,19 @@
     gtag('config', 'G-6TN7PCJZTQ');
 </script>
         <meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='변수 관리를 더욱 효율적으로 해주는 let,const를 사용해보자'><title>let, const와 기존 var의 차이</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='문자열 처리를 더욱 쉽게 할 수 있는 방법'><title>자바스크립트 템플릿리터럴</title>
 
-<link rel='canonical' href='https://jinyisland.kr/post/let-const/'>
+<link rel='canonical' href='https://jinyisland.kr/post/template-literals/'>
 <link rel="icon" href="/favicon.png" type="image/png">
 
 <link rel="stylesheet" href="/scss/style.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='let, const와 기존 var의 차이'>
-<meta property='og:description' content='변수 관리를 더욱 효율적으로 해주는 let,const를 사용해보자'>
-<meta property='og:url' content='https://jinyisland.kr/post/let-const/'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='자바스크립트 템플릿리터럴'>
+<meta property='og:description' content='문자열 처리를 더욱 쉽게 할 수 있는 방법'>
+<meta property='og:url' content='https://jinyisland.kr/post/template-literals/'>
 <meta property='og:site_name' content='Jiny Island'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='javascript' /><meta property='article:tag' content='es6&#43;' /><meta property='article:published_time' content='2021-08-30T23:39:26&#43;09:00'/><meta property='article:modified_time' content='2021-08-30T23:39:26&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
-<meta name="twitter:title" content="let, const와 기존 var의 차이">
-<meta name="twitter:description" content="변수 관리를 더욱 효율적으로 해주는 let,const를 사용해보자"><meta name="twitter:card" content="summary_large_image">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='javascript' /><meta property='article:tag' content='es6&#43;' /><meta property='article:published_time' content='2021-09-05T19:36:27&#43;09:00'/><meta property='article:modified_time' content='2021-09-05T19:36:27&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta name="twitter:title" content="자바스크립트 템플릿리터럴">
+<meta name="twitter:description" content="문자열 처리를 더욱 쉽게 할 수 있는 방법"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
     .article-content code {
         word-wrap:break-word;
@@ -199,9 +199,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/post/let-const/">
+            <a href="/post/template-literals/">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" alt="Featured image of post let, const와 기존 var의 차이" />
+                    <img src="../../assets/js/js.png" loading="lazy" alt="Featured image of post 자바스크립트 템플릿리터럴" />
                 
             </a>
         </div>
@@ -219,12 +219,12 @@
     
 
     <h2 class="article-title">
-        <a href="/post/let-const/">let, const와 기존 var의 차이</a>
+        <a href="/post/template-literals/">자바스크립트 템플릿리터럴</a>
     </h2>
 
     
     <h3 class="article-subtitle">
-        변수 관리를 더욱 효율적으로 해주는 let,const를 사용해보자
+        문자열 처리를 더욱 쉽게 할 수 있는 방법
     </h3>
     <footer class="article-time">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -235,98 +235,28 @@
 
 
 
-        <time class="article-time--published">Aug 30, 2021</time>
+        <time class="article-time--published">Sep 05, 2021</time>
     </footer></div>
 </header>
 
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
-    <p>요즘 공부하고 있는 vue.js 프레임워크를 사용하다보면 자연스럽게 es6 이상의 트렌디한 자바스크립트 문법이 눈에 띈다. 🧐<br>
-물론 vue 코드를 빠르게 짤 수 있는 스니펫 플러그인에서도 기본적으로 es6+ 문법으로 안내해주기도하고.. vue를 사용해서가 아니라 이렇게 트렌디한~자바스크립트에서는 어떤 문법이 있는지 차례차례 짚고 넘어가고자 한다. (물론 내 기준 현업 또는 개인적으로 많이 쓰는 문법 위주로~ㅎㅎ)</p>
-<h2 id="블록범위">블록범위</h2>
-<p>먼저 let과 const를 제대로 이해하려면 <code>블록범위</code>를 제대로 알고넘어가야한다!<br>
-블록범위 내에서 let과 const를 사용하면  해당 변수를 재할당할 수 없도록 지정할 수 있다.
-<strong>자바스크립트에서의 블록유효범위는 if블록이나 for 반복문과 같이 중괄호로 둘러싸인 범위를 의미한다.</strong>
-지금까지 사용했던 <code>var</code>로 변수를 선언하는 방식은, 중복되는 변수이어도 재할당을 하면서 코드가 많아질 경우 값이 바뀌는것을 파악해야하는 문제가 있었다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;choi&#39;</span>;
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;kim&#39;</span>;
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">name</span>); <span style="color:#75715e">//&#39;kim&#39;
-</span></code></pre></div><h3 id="const">const</h3>
-<p>값을 재할당할 수 없지만, 참조된 값을 변경할 수는 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;choi&#39;</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;kim&#39;</span>; <span style="color:#75715e">//error
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fruits</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;🍎&#39;</span>, <span style="color:#e6db74">&#39;🍌&#39;</span>];
-<span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#39;🍓&#39;</span>);
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">fruits</span>); <span style="color:#75715e">//&#39;🍎&#39;, &#39;🍌&#39;, &#39;🍓&#39;
-</span></code></pre></div><h3 id="let">let</h3>
-<p>기존 <code>var</code>과 유사한 점은 변수를 재할당할 수 있는 점이다. 하지만 <strong>var로 선언한 변수는 어휘적 유효범위(lexical sope)</strong> 를 따르지만, <code>let</code>은 블록 유효범위를 따른다.
-아래 예제를 보면  아이템의 가격을 반환해주는 함수이다. 만약 정가(price)와 갯수(inventory)가 존재하면 정가를 반환하고, 세일 가격(salePrice)와 세일중인 아이템 갯수(saleInventory)가 존재하면 할인가격을 반환한다. 이 예제에서 핵심은 <code>let</code>임에도 불구하고 변수를 2번 재할당하고 있다. <strong>블록 유효범위를 따르기때문에 가능한 일이다.</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getPriceOfItems</span>(<span style="color:#a6e22e">item</span>) {
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">stack</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">inventory</span>;
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">price</span>;
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">salePrice</span>) {
-        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">stack</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">saleInventory</span>; <span style="color:#75715e">//다른 유효범위
-</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">stack</span>); <span style="color:#75715e">//1
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">stack</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
-            <span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">salePrice</span>;
-        }
-    }
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">stack</span>) {
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">stack</span>); <span style="color:#75715e">//3
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">price</span>;
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-<span style="color:#a6e22e">getPriceOfItems</span>({
-    <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3600</span>,
-    <span style="color:#a6e22e">inventory</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3</span>,
-    <span style="color:#a6e22e">salePrice</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1800</span>,
-    <span style="color:#a6e22e">saleInventory</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>
-}); 
-<span style="color:#75715e">//1800 
-</span></code></pre></div><h2 id="반복문에서의-유효범위-충돌-방지">반복문에서의 유효범위 충돌 방지</h2>
-<p>지난번 클로저를 소개할 때 사용했던 예제이긴하지만..  어휘적 유효범위를 따르는 <code>var</code>로 선언한 변수 때문에 비동기 로직에서 마지막 값만 계속 참조되는 현상이 일어났던 코드이다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">countSec</span>(<span style="color:#a6e22e">seconds</span>) {
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">seconds</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
-        <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span> () {
-            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">i</span>); <span style="color:#75715e">//3..3..3..
-</span><span style="color:#75715e"></span>        }, <span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>); 
-    }
-};
-<span style="color:#a6e22e">countSec</span>(<span style="color:#ae81ff">3</span>);
-</code></pre></div><p>아래처엄 클로저로 해결할 수 있었다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">countSec</span>(<span style="color:#a6e22e">seconds</span>) {
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">seconds</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
-        (<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">curNum</span>) { <span style="color:#75715e">//즉시실행함수를 이용해 외부 변수 i를 복사하여 setTimout() 지역 변수로 끌어와 정상적으로 1,2,3 입력된다!
-</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span> () {
-                <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">curNum</span>);
-            }, <span style="color:#a6e22e">curNum</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
-        }(<span style="color:#a6e22e">i</span>));
-    }
-};
-
-<span style="color:#a6e22e">countSec</span>(<span style="color:#ae81ff">3</span>);
-</code></pre></div><p><code>let</code>을 활용해서 더욱 간단히 해결할 수 있다.<br>
-블록유효범위를 따르기 때문에 해당 블록에서만 유효하다는 특징을 잊지말자!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">countSec</span>(<span style="color:#a6e22e">seconds</span>) {
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">seconds</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
-        <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span> () {
-            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">i</span>);
-        }, <span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
-    }
-};
-
-<span style="color:#a6e22e">countSec</span>(<span style="color:#ae81ff">3</span>); <span style="color:#75715e">//1..2..3..
-</span></code></pre></div><h2 id="정리">정리</h2>
-<p>이렇게 기존 가장 많이 사용하였던 var과 const, let의 차이를 알아보았다.</p>
-<ul>
-<li><strong>var :</strong> 어휘적 유효범위 (코드를 작성한 위치 기준에서의 참조되고 있는 범위)를 따르는 변수, 재할당과 값수정 모두 제한이 없다.</li>
-<li><strong>const :</strong> 블록 유효범위를 따르며, 변수의 재할당 및 재선언이 불가능하다.</li>
-<li><strong>let :</strong> 블록 유효범위를 따르며, 변수의 재할당은 불가능하지만, 재선언은 가능하다!</li>
-</ul>
-<p>최대한 <code>const</code>를 사용해 변수들을 선언하는것이 바람직하며, 재할당이 필요한 경우에만 <code>let</code>을 사용하는것을 추천한다.</p>
-<h2 id="참고자료">참고자료</h2>
+    <h2 id="temlate-literals">Temlate literals</h2>
+<p>기존 문자열 결합 시 연산자(+)를 사용하였는데 백틱(`) 기호를 사용하여 쉽게 결합할 수 있다.</p>
+<h3 id="기존-연산자-사용">기존 연산자 사용</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fruit</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;apple&#39;</span>;
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">color</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;red&#39;</span>;
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;My Favorite Fruit is&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">fruit</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;, color is &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">color</span> ); <span style="color:#75715e">//&#34;My Favorite Fruit isapple, color is red&#34;
+</span></code></pre></div><h3 id="템플릿리터럴-사용">템플릿리터럴 사용</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fruit</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;apple&#39;</span>;
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">color</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;red&#39;</span>;
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`My favorite Fruit is </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">fruit</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, color is </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">color</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</code></pre></div><h3 id="장점">장점</h3>
+<p>보통 복잡한 문자열이거나 html 코드등을 직접 스크립트상에서 삽입할 때 쌍따옴표-홀따옴표등과 같이 사용하는 경우에 상당히 복잡했었다. (따옴표 종료 위치를 일일이 신경써야했기에)<br>
+템플릿리터럴을 사용하면 일반 텍스트를 작성하듯 변수 위치만 신경써주면되니까 이런점이 편하다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Jiny&#39;</span>;
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">template</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`&lt;p class=&#34;user-name&#34;&gt;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&lt;/p&gt;`</span>
+</code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong>자바스크립트 코딩의 기술 - 조모건 저</strong></li>
 </ul>
@@ -438,18 +368,18 @@
                 
                     
 <article class="has-image">
-    <a href="/post/template-literals/">
+    <a href="/post/let-const/">
         
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="template-literals" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="let-const" data-hash="../../assets/js/js.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">자바스크립트 템플릿리터럴</h2>
+            <h2 class="article-title">let, const와 기존 var의 차이</h2>
         </div>
     </a>
 </article>

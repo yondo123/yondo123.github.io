@@ -14,19 +14,19 @@
     gtag('config', 'G-6TN7PCJZTQ');
 </script>
         <meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='변수 관리를 더욱 효율적으로 해주는 let,const를 사용해보자'><title>let, const와 기존 var의 차이</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='자바스크립트 화살표 함수 소개 및 주의사항!'><title>자바스크립트 화살표 함수</title>
 
-<link rel='canonical' href='https://jinyisland.kr/post/let-const/'>
+<link rel='canonical' href='https://jinyisland.kr/post/arrow-function/'>
 <link rel="icon" href="/favicon.png" type="image/png">
 
 <link rel="stylesheet" href="/scss/style.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='let, const와 기존 var의 차이'>
-<meta property='og:description' content='변수 관리를 더욱 효율적으로 해주는 let,const를 사용해보자'>
-<meta property='og:url' content='https://jinyisland.kr/post/let-const/'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='자바스크립트 화살표 함수'>
+<meta property='og:description' content='자바스크립트 화살표 함수 소개 및 주의사항!'>
+<meta property='og:url' content='https://jinyisland.kr/post/arrow-function/'>
 <meta property='og:site_name' content='Jiny Island'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='javascript' /><meta property='article:tag' content='es6&#43;' /><meta property='article:published_time' content='2021-08-30T23:39:26&#43;09:00'/><meta property='article:modified_time' content='2021-08-30T23:39:26&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
-<meta name="twitter:title" content="let, const와 기존 var의 차이">
-<meta name="twitter:description" content="변수 관리를 더욱 효율적으로 해주는 let,const를 사용해보자"><meta name="twitter:card" content="summary_large_image">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='javascript' /><meta property='article:tag' content='function' /><meta property='article:tag' content='es6&#43;' /><meta property='article:published_time' content='2021-09-05T19:45:01&#43;09:00'/><meta property='article:modified_time' content='2021-09-05T19:45:01&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta name="twitter:title" content="자바스크립트 화살표 함수">
+<meta name="twitter:description" content="자바스크립트 화살표 함수 소개 및 주의사항!"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
     .article-content code {
         word-wrap:break-word;
@@ -199,9 +199,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/post/let-const/">
+            <a href="/post/arrow-function/">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" alt="Featured image of post let, const와 기존 var의 차이" />
+                    <img src="../../assets/js/js.png" loading="lazy" alt="Featured image of post 자바스크립트 화살표 함수" />
                 
             </a>
         </div>
@@ -219,12 +219,12 @@
     
 
     <h2 class="article-title">
-        <a href="/post/let-const/">let, const와 기존 var의 차이</a>
+        <a href="/post/arrow-function/">자바스크립트 화살표 함수</a>
     </h2>
 
     
     <h3 class="article-subtitle">
-        변수 관리를 더욱 효율적으로 해주는 let,const를 사용해보자
+        자바스크립트 화살표 함수 소개 및 주의사항!
     </h3>
     <footer class="article-time">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -235,101 +235,60 @@
 
 
 
-        <time class="article-time--published">Aug 30, 2021</time>
+        <time class="article-time--published">Sep 05, 2021</time>
     </footer></div>
 </header>
 
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
-    <p>요즘 공부하고 있는 vue.js 프레임워크를 사용하다보면 자연스럽게 es6 이상의 트렌디한 자바스크립트 문법이 눈에 띈다. 🧐<br>
-물론 vue 코드를 빠르게 짤 수 있는 스니펫 플러그인에서도 기본적으로 es6+ 문법으로 안내해주기도하고.. vue를 사용해서가 아니라 이렇게 트렌디한~자바스크립트에서는 어떤 문법이 있는지 차례차례 짚고 넘어가고자 한다. (물론 내 기준 현업 또는 개인적으로 많이 쓰는 문법 위주로~ㅎㅎ)</p>
-<h2 id="블록범위">블록범위</h2>
-<p>먼저 let과 const를 제대로 이해하려면 <code>블록범위</code>를 제대로 알고넘어가야한다!<br>
-블록범위 내에서 let과 const를 사용하면  해당 변수를 재할당할 수 없도록 지정할 수 있다.
-<strong>자바스크립트에서의 블록유효범위는 if블록이나 for 반복문과 같이 중괄호로 둘러싸인 범위를 의미한다.</strong>
-지금까지 사용했던 <code>var</code>로 변수를 선언하는 방식은, 중복되는 변수이어도 재할당을 하면서 코드가 많아질 경우 값이 바뀌는것을 파악해야하는 문제가 있었다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;choi&#39;</span>;
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;kim&#39;</span>;
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">name</span>); <span style="color:#75715e">//&#39;kim&#39;
-</span></code></pre></div><h3 id="const">const</h3>
-<p>값을 재할당할 수 없지만, 참조된 값을 변경할 수는 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;choi&#39;</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;kim&#39;</span>; <span style="color:#75715e">//error
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fruits</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;🍎&#39;</span>, <span style="color:#e6db74">&#39;🍌&#39;</span>];
-<span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#39;🍓&#39;</span>);
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">fruits</span>); <span style="color:#75715e">//&#39;🍎&#39;, &#39;🍌&#39;, &#39;🍓&#39;
-</span></code></pre></div><h3 id="let">let</h3>
-<p>기존 <code>var</code>과 유사한 점은 변수를 재할당할 수 있는 점이다. 하지만 <strong>var로 선언한 변수는 어휘적 유효범위(lexical sope)</strong> 를 따르지만, <code>let</code>은 블록 유효범위를 따른다.
-아래 예제를 보면  아이템의 가격을 반환해주는 함수이다. 만약 정가(price)와 갯수(inventory)가 존재하면 정가를 반환하고, 세일 가격(salePrice)와 세일중인 아이템 갯수(saleInventory)가 존재하면 할인가격을 반환한다. 이 예제에서 핵심은 <code>let</code>임에도 불구하고 변수를 2번 재할당하고 있다. <strong>블록 유효범위를 따르기때문에 가능한 일이다.</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getPriceOfItems</span>(<span style="color:#a6e22e">item</span>) {
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">stack</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">inventory</span>;
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">price</span>;
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">salePrice</span>) {
-        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">stack</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">saleInventory</span>; <span style="color:#75715e">//다른 유효범위
-</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">stack</span>); <span style="color:#75715e">//1
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">stack</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
-            <span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">salePrice</span>;
-        }
+    <h2 id="화살표-함수">화살표 함수</h2>
+<p>기존 함수 표기법을 화살표(⇒)형태로 간단하게 표기하는 함수 표기법</p>
+<h3 id="기존-함수-표현식과의-차이">기존 함수 표현식과의 차이</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//기존 함수 표현식 
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">name</span>(){
+   <span style="color:#75715e">//code..
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#75715e">//화살표 함수
+</span><span style="color:#75715e"></span>() =&gt; {
+	<span style="color:#75715e">//code..
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h2 id="화살표-함수-특징">화살표 함수 특징</h2>
+<h3 id="괄호-생략">괄호 생략</h3>
+<p><strong>매개변수가 1개</strong>라면 괄호()도 생략이 가능하다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">logMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">message</span> =&gt; { <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">message</span>) }
+<span style="color:#a6e22e">logMessage</span>(<span style="color:#e6db74">&#39;hello&#39;</span>); <span style="color:#75715e">//&#39;hello&#39;
+</span></code></pre></div><h3 id="lexical-this">Lexical this</h3>
+<p>일반 함수 표기에서는 <code>this</code>사용 시 동적으로 해당 함수를 실행한 객체로 바인딩되었다.<br>
+하지만 화살표 함수에서는 자신을 소유하고 있는 객체로 바인딩되는게 아니라 해당 화살표함수를 소유하고 있는 상위 환경의 this를 그대로 계승한다. <strong>(이 개념을 Lexical this라고 한다..)</strong><br>
+따라서 해당 객체의 속성에 접근이 필요한 메서드에서는 화살표 함수를 쓰지말자..</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">person</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">name</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;choi&#39;</span>,
+    <span style="color:#a6e22e">getName</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>);
     }
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">stack</span>) {
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">stack</span>); <span style="color:#75715e">//3
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">price</span>;
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-<span style="color:#a6e22e">getPriceOfItems</span>({
-    <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3600</span>,
-    <span style="color:#a6e22e">inventory</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3</span>,
-    <span style="color:#a6e22e">salePrice</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1800</span>,
-    <span style="color:#a6e22e">saleInventory</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>
-}); 
-<span style="color:#75715e">//1800 
-</span></code></pre></div><h2 id="반복문에서의-유효범위-충돌-방지">반복문에서의 유효범위 충돌 방지</h2>
-<p>지난번 클로저를 소개할 때 사용했던 예제이긴하지만..  어휘적 유효범위를 따르는 <code>var</code>로 선언한 변수 때문에 비동기 로직에서 마지막 값만 계속 참조되는 현상이 일어났던 코드이다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">countSec</span>(<span style="color:#a6e22e">seconds</span>) {
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">seconds</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
-        <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span> () {
-            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">i</span>); <span style="color:#75715e">//3..3..3..
-</span><span style="color:#75715e"></span>        }, <span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>); 
+<span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">getName</span>(); <span style="color:#75715e">//choi
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">food</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">name</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;kimchi&#39;</span>,
+    <span style="color:#a6e22e">getName</span> <span style="color:#f92672">:</span> () =&gt; { <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>) }
+}
+<span style="color:#a6e22e">food</span>.<span style="color:#a6e22e">getName</span>(); <span style="color:#75715e">// &#39;&#39;
+</span></code></pre></div><h3 id="콜백-함수에서의-유용성">콜백 함수에서의 유용성</h3>
+<p>메서드 함수로 사용하는 대신, 함수를 반환하는 콜백 함수 용도로 사용하면 기존 함수 표현식 보다 깔끔해진다.<br>
+이미 문맥이 존재하고 함수 내부에서 이 함수를 사용하려고 할 때 유용하다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#75715e">//배열로 구성된 원소들에 대한 값을 검증하는 함수
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">validator</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">message</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;is valid.&#39;</span>,
+    <span style="color:#a6e22e">checkElement</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">elements</span>){
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">elements</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">element</span> =&gt; {
+            <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">element</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">message</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span>;
+        });
     }
-};
-<span style="color:#a6e22e">countSec</span>(<span style="color:#ae81ff">3</span>);
-</code></pre></div><p>아래처엄 클로저로 해결할 수 있었다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">countSec</span>(<span style="color:#a6e22e">seconds</span>) {
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">seconds</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
-        (<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">curNum</span>) { <span style="color:#75715e">//즉시실행함수를 이용해 외부 변수 i를 복사하여 setTimout() 지역 변수로 끌어와 정상적으로 1,2,3 입력된다!
-</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span> () {
-                <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">curNum</span>);
-            }, <span style="color:#a6e22e">curNum</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
-        }(<span style="color:#a6e22e">i</span>));
-    }
-};
-
-<span style="color:#a6e22e">countSec</span>(<span style="color:#ae81ff">3</span>);
-</code></pre></div><p><code>let</code>을 활용해서 더욱 간단히 해결할 수 있다.<br>
-블록유효범위를 따르기 때문에 해당 블록에서만 유효하다는 특징을 잊지말자!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">countSec</span>(<span style="color:#a6e22e">seconds</span>) {
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">seconds</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
-        <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span> () {
-            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">i</span>);
-        }, <span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
-    }
-};
-
-<span style="color:#a6e22e">countSec</span>(<span style="color:#ae81ff">3</span>); <span style="color:#75715e">//1..2..3..
-</span></code></pre></div><h2 id="정리">정리</h2>
-<p>이렇게 기존 가장 많이 사용하였던 var과 const, let의 차이를 알아보았다.</p>
-<ul>
-<li><strong>var :</strong> 어휘적 유효범위 (코드를 작성한 위치 기준에서의 참조되고 있는 범위)를 따르는 변수, 재할당과 값수정 모두 제한이 없다.</li>
-<li><strong>const :</strong> 블록 유효범위를 따르며, 변수의 재할당 및 재선언이 불가능하다.</li>
-<li><strong>let :</strong> 블록 유효범위를 따르며, 변수의 재할당은 불가능하지만, 재선언은 가능하다!</li>
-</ul>
-<p>최대한 <code>const</code>를 사용해 변수들을 선언하는것이 바람직하며, 재할당이 필요한 경우에만 <code>let</code>을 사용하는것을 추천한다.</p>
-<h2 id="참고자료">참고자료</h2>
-<ul>
-<li><strong>자바스크립트 코딩의 기술 - 조모건 저</strong></li>
-</ul>
+}
+<span style="color:#a6e22e">validator</span>.<span style="color:#a6e22e">checkElement</span>([<span style="color:#e6db74">&#34;값&#34;</span>, <span style="color:#e6db74">&#34;값2&#34;</span>]);
+</code></pre></div><p>만약 위 메서드 <code>checkElement</code>에서 화살표 함수가 아니라 일반 함수 표현식을 사용했다면, 내부함수에서의 <code>this</code>는 상위 컨텍스트를 바라보기 때문에  validator의 message를 가져오지 못하고 undefined를 출력 할 것이다. 따라서 화살표 함수를 사용하게된다면, 이러한 this 바인딩 범위를 잘 생각해야 한다.</p>
 
 </section>
 <script type="text/javascript">
@@ -401,6 +360,8 @@
         
             <a href="/tags/javascript/">javascript</a>
         
+            <a href="/tags/function/">function</a>
+        
             <a href="/tags/es6&#43;/">es6&#43;</a>
         
     </section>
@@ -420,24 +381,6 @@
                 
                     
 <article class="has-image">
-    <a href="/post/arrow-function/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="arrow-function" data-hash="../../assets/js/js.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">자바스크립트 화살표 함수</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
     <a href="/post/template-literals/">
         
         
@@ -450,6 +393,24 @@
 
         <div class="article-details">
             <h2 class="article-title">자바스크립트 템플릿리터럴</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/let-const/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="let-const" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">let, const와 기존 var의 차이</h2>
         </div>
     </a>
 </article>
