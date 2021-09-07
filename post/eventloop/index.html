@@ -14,19 +14,19 @@
     gtag('config', 'G-6TN7PCJZTQ');
 </script>
         <meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='자바스크립트 화살표 함수 소개 및 주의사항!'><title>자바스크립트 화살표 함수</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='이벤트 루프를 알아야 비동기를 이해할 수 있다.'><title>비동기와 이벤트 루프</title>
 
-<link rel='canonical' href='https://jinyisland.kr/post/arrow-function/'>
+<link rel='canonical' href='https://jinyisland.kr/post/eventloop/'>
 <link rel="icon" href="/favicon.png" type="image/png">
 
 <link rel="stylesheet" href="/scss/style.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='자바스크립트 화살표 함수'>
-<meta property='og:description' content='자바스크립트 화살표 함수 소개 및 주의사항!'>
-<meta property='og:url' content='https://jinyisland.kr/post/arrow-function/'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='비동기와 이벤트 루프'>
+<meta property='og:description' content='이벤트 루프를 알아야 비동기를 이해할 수 있다.'>
+<meta property='og:url' content='https://jinyisland.kr/post/eventloop/'>
 <meta property='og:site_name' content='Jiny Island'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='javascript' /><meta property='article:tag' content='function' /><meta property='article:tag' content='es6&#43;' /><meta property='article:published_time' content='2021-09-05T19:45:01&#43;09:00'/><meta property='article:modified_time' content='2021-09-05T19:45:01&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
-<meta name="twitter:title" content="자바스크립트 화살표 함수">
-<meta name="twitter:description" content="자바스크립트 화살표 함수 소개 및 주의사항!"><meta name="twitter:card" content="summary_large_image">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='javascript' /><meta property='article:published_time' content='2021-09-07T21:59:08&#43;09:00'/><meta property='article:modified_time' content='2021-09-07T21:59:08&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta name="twitter:title" content="비동기와 이벤트 루프">
+<meta name="twitter:description" content="이벤트 루프를 알아야 비동기를 이해할 수 있다."><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
     .article-content code {
         word-wrap:break-word;
@@ -199,9 +199,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/post/arrow-function/">
+            <a href="/post/eventloop/">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" alt="Featured image of post 자바스크립트 화살표 함수" />
+                    <img src="../../assets/js/js.png" loading="lazy" alt="Featured image of post 비동기와 이벤트 루프" />
                 
             </a>
         </div>
@@ -219,12 +219,12 @@
     
 
     <h2 class="article-title">
-        <a href="/post/arrow-function/">자바스크립트 화살표 함수</a>
+        <a href="/post/eventloop/">비동기와 이벤트 루프</a>
     </h2>
 
     
     <h3 class="article-subtitle">
-        자바스크립트 화살표 함수 소개 및 주의사항!
+        이벤트 루프를 알아야 비동기를 이해할 수 있다.
     </h3>
     <footer class="article-time">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -235,60 +235,48 @@
 
 
 
-        <time class="article-time--published">Sep 05, 2021</time>
+        <time class="article-time--published">Sep 07, 2021</time>
     </footer></div>
 </header>
 
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
-    <h2 id="화살표-함수">화살표 함수</h2>
-<p>기존 함수 표기법을 화살표(⇒)형태로 간단하게 표기하는 함수 표기법</p>
-<h3 id="기존-함수-표현식과의-차이">기존 함수 표현식과의 차이</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//기존 함수 표현식 
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">name</span>(){
-   <span style="color:#75715e">//code..
+    <h2 id="비동기-처리">비동기 처리</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//대충 이런 구조의 코드..
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">checkValue</span>(){
+	<span style="color:#75715e">//로직검사..
 </span><span style="color:#75715e"></span>}
 
-<span style="color:#75715e">//화살표 함수
-</span><span style="color:#75715e"></span>() =&gt; {
-	<span style="color:#75715e">//code..
-</span><span style="color:#75715e"></span>}
-</code></pre></div><h2 id="화살표-함수-특징">화살표 함수 특징</h2>
-<h3 id="괄호-생략">괄호 생략</h3>
-<p><strong>매개변수가 1개</strong>라면 괄호()도 생략이 가능하다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">logMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">message</span> =&gt; { <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">message</span>) }
-<span style="color:#a6e22e">logMessage</span>(<span style="color:#e6db74">&#39;hello&#39;</span>); <span style="color:#75715e">//&#39;hello&#39;
-</span></code></pre></div><h3 id="lexical-this">Lexical this</h3>
-<p>일반 함수 표기에서는 <code>this</code>사용 시 동적으로 해당 함수를 실행한 객체로 바인딩되었다.<br>
-하지만 화살표 함수에서는 자신을 소유하고 있는 객체로 바인딩되는게 아니라 해당 화살표함수를 소유하고 있는 상위 환경의 this를 그대로 계승한다. <strong>(이 개념을 Lexical this라고 한다..)</strong><br>
-따라서 해당 객체의 속성에 접근이 필요한 메서드에서는 화살표 함수를 쓰지말자..</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">person</span> <span style="color:#f92672">=</span> {
-    <span style="color:#a6e22e">name</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;choi&#39;</span>,
-    <span style="color:#a6e22e">getName</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
-        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>);
-    }
-}
-<span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">getName</span>(); <span style="color:#75715e">//choi
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">food</span> <span style="color:#f92672">=</span> {
-    <span style="color:#a6e22e">name</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;kimchi&#39;</span>,
-    <span style="color:#a6e22e">getName</span> <span style="color:#f92672">:</span> () =&gt; { <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>) }
-}
-<span style="color:#a6e22e">food</span>.<span style="color:#a6e22e">getName</span>(); <span style="color:#75715e">// &#39;&#39;
-</span></code></pre></div><h3 id="콜백-함수에서의-유용성">콜백 함수에서의 유용성</h3>
-<p>메서드 함수로 사용하는 대신, 함수를 반환하는 콜백 함수 용도로 사용하면 기존 함수 표현식 보다 깔끔해진다.<br>
-이미 문맥이 존재하고 함수 내부에서 이 함수를 사용하려고 할 때 유용하다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#75715e">//배열로 구성된 원소들에 대한 값을 검증하는 함수
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">validator</span> <span style="color:#f92672">=</span> {
-    <span style="color:#a6e22e">message</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;is valid.&#39;</span>,
-    <span style="color:#a6e22e">checkElement</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">elements</span>){
-        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">elements</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">element</span> =&gt; {
-            <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">element</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">message</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span>;
-        });
-    }
-}
-<span style="color:#a6e22e">validator</span>.<span style="color:#a6e22e">checkElement</span>([<span style="color:#e6db74">&#34;값&#34;</span>, <span style="color:#e6db74">&#34;값2&#34;</span>]);
-</code></pre></div><p>만약 위 메서드 <code>checkElement</code>에서 화살표 함수가 아니라 일반 함수 표현식을 사용했다면, 내부함수에서의 <code>this</code>는 상위 컨텍스트를 바라보기 때문에  validator의 message를 가져오지 못하고 undefined를 출력 할 것이다. 따라서 화살표 함수를 사용하게된다면, 이러한 this 바인딩 범위를 잘 생각해야 한다.</p>
+<span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span>(){
+	<span style="color:#a6e22e">checkValue</span>();
+}, <span style="color:#ae81ff">500</span>);
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getData</span>(){
+	<span style="color:#75715e">//AJAX로 소스를 받아오는 코드..
+</span><span style="color:#75715e"></span>};
+
+<span style="color:#a6e22e">getData</span>();
+</code></pre></div><p>자바스크립트를 처음 접했을 때, setTimeout이 왜 순서대로 시행 안되지??.. (why 나중에 시행되는거야..🤔)해서비동기에 대한 개념을 숙지했다. 대충 콜백함수로 넘겨서 호출해 해결하고 비동기 프로세스에 대한 개념 자체를 더 배우려하지 않았다. 이번에 Node.js 스터디를 하면서 비동기 프로세스를 꼭 알아야 성능 향상에 도움이 된다는 사실을 알게되었고 책과 강의를 통해 내가 이해한 비동기 처리과정을 최대한 간략하게 정리해보았다.</p>
+<p><img src="../assets/js/../../../assets/js/js-eventloop.png" alt="javascript-eventloop"  /></p>
+<p>이벤트 루프는 비동기 프로세스를 이해하기 위해 꼭 알아야 하는 자바스크립트 런타임 구성요소이다.
+보통 실행 컨텍스트에 의해 선언한 코드들이 콜스택에 차곡차곡 모여지는데,  여기서 비동기 요청(setTimeout 또는 AJAX 비동기 통신 등등..)들은 백그라운드 영역으로 보낸다.</p>
+<p>그러면 해당 함수는 콜스택에서 빠져나오게되고, 해당 비동기 API와 함께 백그라운드 영역에 담게된다. (대표적인 예로 타이머를 그렸지만, DOM Event 및 AJAX통신도 해당된다.)</p>
+<p>여기서 백그라운드 영역은 JavaScript가 처리하는것이 아니라 실행 환경에서의 런타임 엔진(V8과 같은)에서 처리된다는 것을 꼭 명심하자.  비동기 함수들은 모두 Background영역에서 이루어지게된다. 서버에서 값을 수신해오거나, 특정 시간 뒤에 콜백을 처리하거나.. 이런 API동작이 완료되면  TaskQueue로 콜백 함수를 보내면서 콜스택이 비어져있는지 확인 후 TaskQueue에 있는 함수들을 하나 씩 콜스택으로 옮겨 시행하게된다.</p>
+<h3 id="callstack">Callstack</h3>
+<p>실행 할 함수들을 담아놓은 영역,  변수와 스코프 정보들이 담겨있는 <code>실행 컨텍스트</code>가 스택 구조로 이루어져있다.</p>
+<h3 id="eventloop">Eventloop</h3>
+<p>콜스택과 태스크 큐들을 감시하면서 콜스택이 비워져있으면 태스크 큐에 담겨져있는 함수를 가져와 실행시킬 수 있게 해준다. 따라서 콜스택이 비워져있지 않으면 비워질 때 까지 대기하는데  이러한 대기 시간 차이가 비동기 함수들의 완료 시간을 지연시키게 만든다.</p>
+<h3 id="taskqueue">TaskQueue</h3>
+<p>백그라운드 영역에서 보낸 콜백 함수들을 받아 Queue구조로 저장되어있는 공간이다. 보통 완료된 순서대로 위치하지만 특정 경우에는 바뀌기도한다. (예를들면 Promise 객체의 then 이행 함수가 우선적으로 수행된다.)</p>
+<h2 id="정리">정리</h2>
+<p>아직도 어렵긴하지만 예전에 내가 생각한대로 되지 않았던 코드들이 왜 안되었는지 고개를 끄덕이게 만들었다..<br>
+특히, Node.js 환경에서는 저 백그라운드 영역이 <code>non-blocking</code>처리가되는 영역이라고하니 이런 흐름을 꼭 숙지해야할 것 같다.</p>
+<h2 id="참고자료">참고자료</h2>
+<ul>
+<li>Node.js 교과서 - 조현영 저</li>
+<li><a class="link" href="https://www.youtube.com/watch?v=8aGhZQkoFbQ&amp;t=1213s"  target="_blank" rel="noopener"
+    >What the heck is the event loop anyway?</a> - Philip Roberts</li>
+</ul>
 
 </section>
 <script type="text/javascript">
@@ -360,10 +348,6 @@
         
             <a href="/tags/javascript/">javascript</a>
         
-            <a href="/tags/function/">function</a>
-        
-            <a href="/tags/es6&#43;/">es6&#43;</a>
-        
     </section>
 
 
@@ -378,6 +362,24 @@
         <h2 class="section-title"></h2>
         <div class="related-contents">
             <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/arrow-function/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="arrow-function" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">자바스크립트 화살표 함수</h2>
+        </div>
+    </a>
+</article>
                 
                     
 <article class="has-image">
@@ -429,24 +431,6 @@
 
         <div class="article-details">
             <h2 class="article-title">자바스크립트 함수, 이것만은 꼭 기억하자</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/post/eventloop/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="eventloop" data-hash="../../assets/js/js.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">비동기와 이벤트 루프</h2>
         </div>
     </a>
 </article>

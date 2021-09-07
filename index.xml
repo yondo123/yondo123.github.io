@@ -6,7 +6,51 @@
         <description>Recent content on Jiny Island</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 05 Sep 2021 19:45:01 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 07 Sep 2021 21:59:08 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>비동기와 이벤트 루프</title>
+        <link>https://jinyisland.kr/post/eventloop/</link>
+        <pubDate>Tue, 07 Sep 2021 21:59:08 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/eventloop/</guid>
+        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post 비동기와 이벤트 루프" /&gt;&lt;h2 id=&#34;비동기-처리&#34;&gt;비동기 처리&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//대충 이런 구조의 코드..
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;checkValue&lt;/span&gt;(){
+	&lt;span style=&#34;color:#75715e&#34;&gt;//로직검사..
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;setTimeout&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;checkValue&lt;/span&gt;();
+}, &lt;span style=&#34;color:#ae81ff&#34;&gt;500&lt;/span&gt;);
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;getData&lt;/span&gt;(){
+	&lt;span style=&#34;color:#75715e&#34;&gt;//AJAX로 소스를 받아오는 코드..
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;};
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;getData&lt;/span&gt;();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;자바스크립트를 처음 접했을 때, setTimeout이 왜 순서대로 시행 안되지??.. (why 나중에 시행되는거야..🤔)해서비동기에 대한 개념을 숙지했다. 대충 콜백함수로 넘겨서 호출해 해결하고 비동기 프로세스에 대한 개념 자체를 더 배우려하지 않았다. 이번에 Node.js 스터디를 하면서 비동기 프로세스를 꼭 알아야 성능 향상에 도움이 된다는 사실을 알게되었고 책과 강의를 통해 내가 이해한 비동기 처리과정을 최대한 간략하게 정리해보았다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../assets/js/../../../assets/js/js-eventloop.png&#34; alt=&#34;javascript-eventloop&#34;  /&gt;&lt;/p&gt;
+&lt;p&gt;이벤트 루프는 비동기 프로세스를 이해하기 위해 꼭 알아야 하는 자바스크립트 런타임 구성요소이다.
+보통 실행 컨텍스트에 의해 선언한 코드들이 콜스택에 차곡차곡 모여지는데,  여기서 비동기 요청(setTimeout 또는 AJAX 비동기 통신 등등..)들은 백그라운드 영역으로 보낸다.&lt;/p&gt;
+&lt;p&gt;그러면 해당 함수는 콜스택에서 빠져나오게되고, 해당 비동기 API와 함께 백그라운드 영역에 담게된다. (대표적인 예로 타이머를 그렸지만, DOM Event 및 AJAX통신도 해당된다.)&lt;/p&gt;
+&lt;p&gt;여기서 백그라운드 영역은 JavaScript가 처리하는것이 아니라 실행 환경에서의 런타임 엔진(V8과 같은)에서 처리된다는 것을 꼭 명심하자.  비동기 함수들은 모두 Background영역에서 이루어지게된다. 서버에서 값을 수신해오거나, 특정 시간 뒤에 콜백을 처리하거나.. 이런 API동작이 완료되면  TaskQueue로 콜백 함수를 보내면서 콜스택이 비어져있는지 확인 후 TaskQueue에 있는 함수들을 하나 씩 콜스택으로 옮겨 시행하게된다.&lt;/p&gt;
+&lt;h3 id=&#34;callstack&#34;&gt;Callstack&lt;/h3&gt;
+&lt;p&gt;실행 할 함수들을 담아놓은 영역,  변수와 스코프 정보들이 담겨있는 &lt;code&gt;실행 컨텍스트&lt;/code&gt;가 스택 구조로 이루어져있다.&lt;/p&gt;
+&lt;h3 id=&#34;eventloop&#34;&gt;Eventloop&lt;/h3&gt;
+&lt;p&gt;콜스택과 태스크 큐들을 감시하면서 콜스택이 비워져있으면 태스크 큐에 담겨져있는 함수를 가져와 실행시킬 수 있게 해준다. 따라서 콜스택이 비워져있지 않으면 비워질 때 까지 대기하는데  이러한 대기 시간 차이가 비동기 함수들의 완료 시간을 지연시키게 만든다.&lt;/p&gt;
+&lt;h3 id=&#34;taskqueue&#34;&gt;TaskQueue&lt;/h3&gt;
+&lt;p&gt;백그라운드 영역에서 보낸 콜백 함수들을 받아 Queue구조로 저장되어있는 공간이다. 보통 완료된 순서대로 위치하지만 특정 경우에는 바뀌기도한다. (예를들면 Promise 객체의 then 이행 함수가 우선적으로 수행된다.)&lt;/p&gt;
+&lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
+&lt;p&gt;아직도 어렵긴하지만 예전에 내가 생각한대로 되지 않았던 코드들이 왜 안되었는지 고개를 끄덕이게 만들었다..&lt;br&gt;
+특히, Node.js 환경에서는 저 백그라운드 영역이 &lt;code&gt;non-blocking&lt;/code&gt;처리가되는 영역이라고하니 이런 흐름을 꼭 숙지해야할 것 같다.&lt;/p&gt;
+&lt;h2 id=&#34;참고자료&#34;&gt;참고자료&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Node.js 교과서 - 조현영 저&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.youtube.com/watch?v=8aGhZQkoFbQ&amp;amp;t=1213s&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;What the heck is the event loop anyway?&lt;/a&gt; - Philip Roberts&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>자바스크립트 화살표 함수</title>
         <link>https://jinyisland.kr/post/arrow-function/</link>
         <pubDate>Sun, 05 Sep 2021 19:45:01 +0900</pubDate>

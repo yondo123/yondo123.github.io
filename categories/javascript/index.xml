@@ -6,7 +6,16 @@
     <description>Recent content in Java Script on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Sep 2021 19:45:01 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Sep 2021 21:59:08 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>비동기와 이벤트 루프</title>
+      <link>https://jinyisland.kr/post/eventloop/</link>
+      <pubDate>Tue, 07 Sep 2021 21:59:08 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/eventloop/</guid>
+      <description>비동기 처리 //대충 이런 구조의 코드.. function checkValue(){ //로직검사.. } setTimeout(function(){ checkValue(); }, 500); function getData(){ //AJAX로 소스를 받아오는 코드.. }; getData(); 자바스크립트를 처음 접했을 때, setTimeout이 왜 순서대로 시행 안되지??.. (why 나중에 시행되는거야..🤔)해서비동기에 대한 개념을 숙지했다. 대충 콜백함수로 넘겨서 호출해 해결하고 비동기 프로세스에 대한 개념 자체를 더 배우려하지 않았다. 이번에 Node.js 스터디를 하면서 비동기 프로세스를 꼭 알아야 성능 향상에 도움이 된다는 사실을 알게되었고 책과 강의를 통해 내가 이해한 비동기 처리과정을 최대한 간략하게 정리해보았다.</description>
+    </item>
+    
     <item>
       <title>자바스크립트 화살표 함수</title>
       <link>https://jinyisland.kr/post/arrow-function/</link>
