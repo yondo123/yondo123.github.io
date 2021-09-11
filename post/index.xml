@@ -6,7 +6,19 @@
     <description>Recent content in Posts on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Sep 2021 23:18:33 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Sep 2021 23:36:33 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>자바스크리트 모듈화</title>
+      <link>https://jinyisland.kr/post/js-module/</link>
+      <pubDate>Sat, 11 Sep 2021 23:36:33 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/js-module/</guid>
+      <description>Module module객체를 통해 각각의 기능이나 js파일들을 쉽게 모듈화가 가능하다.
+export 코드를 외부에 내보내고 싶다면 export문을 사용한다. 함수, 변수, 클래스 등을 내보낼 수 있다.
+//📁module/util.js const constants = { message : &amp;#39;simple message&amp;#39;; } const requestUrl = &amp;#39;/xyz-url&amp;#39;; const private = { privateKey : &amp;#39;1234&amp;#39; } export {constants, requestUrl}; //배열로도 export가 가능하다. (1~2개 모듈은 보통 객체형식으로 많이 사용) 각각의 모듈 대상에 export 예약어를 붙여 내보낼 수도 있다.
+export function constants = { message : &amp;#39;simple message&amp;#39;; } import import를 통해 상대 경로에 위치한 모듈 파일을 가져올 수 있다.</description>
+    </item>
+    
     <item>
       <title>Promise와 Async/await</title>
       <link>https://jinyisland.kr/post/promise-async-await/</link>
