@@ -14,19 +14,19 @@
     gtag('config', 'G-6TN7PCJZTQ');
 </script>
         <meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='문자열 처리를 더욱 쉽게 할 수 있는 방법'><title>자바스크립트 템플릿리터럴</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='선형탐색과 이진탐색'><title>탐색 알고리즘 (선형, 이진)</title>
 
-<link rel='canonical' href='https://jinyisland.kr/post/template-literals/'>
+<link rel='canonical' href='https://jinyisland.kr/post/algorithm-search/'>
 <link rel="icon" href="/favicon.png" type="image/png">
 
 <link rel="stylesheet" href="/scss/style.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='자바스크립트 템플릿리터럴'>
-<meta property='og:description' content='문자열 처리를 더욱 쉽게 할 수 있는 방법'>
-<meta property='og:url' content='https://jinyisland.kr/post/template-literals/'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='탐색 알고리즘 (선형, 이진)'>
+<meta property='og:description' content='선형탐색과 이진탐색'>
+<meta property='og:url' content='https://jinyisland.kr/post/algorithm-search/'>
 <meta property='og:site_name' content='Jiny Island'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='javascript' /><meta property='article:tag' content='es6&#43;' /><meta property='article:published_time' content='2021-09-05T19:36:27&#43;09:00'/><meta property='article:modified_time' content='2021-09-05T19:36:27&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
-<meta name="twitter:title" content="자바스크립트 템플릿리터럴">
-<meta name="twitter:description" content="문자열 처리를 더욱 쉽게 할 수 있는 방법"><meta name="twitter:card" content="summary_large_image">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='algorithm' /><meta property='article:tag' content='javascript' /><meta property='article:published_time' content='2021-09-14T23:25:12&#43;09:00'/><meta property='article:modified_time' content='2021-09-14T23:25:12&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta name="twitter:title" content="탐색 알고리즘 (선형, 이진)">
+<meta name="twitter:description" content="선형탐색과 이진탐색"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
     .article-content code {
         word-wrap:break-word;
@@ -199,9 +199,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/post/template-literals/">
+            <a href="/post/algorithm-search/">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" alt="Featured image of post 자바스크립트 템플릿리터럴" />
+                    <img src="../../assets/js/js.png" loading="lazy" alt="Featured image of post 탐색 알고리즘 (선형, 이진)" />
                 
             </a>
         </div>
@@ -219,12 +219,12 @@
     
 
     <h2 class="article-title">
-        <a href="/post/template-literals/">자바스크립트 템플릿리터럴</a>
+        <a href="/post/algorithm-search/">탐색 알고리즘 (선형, 이진)</a>
     </h2>
 
     
     <h3 class="article-subtitle">
-        문자열 처리를 더욱 쉽게 할 수 있는 방법
+        선형탐색과 이진탐색
     </h3>
     <footer class="article-time">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -235,30 +235,61 @@
 
 
 
-        <time class="article-time--published">Sep 05, 2021</time>
+        <time class="article-time--published">Sep 14, 2021</time>
     </footer></div>
 </header>
 
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
-    <h2 id="temlate-literals">Temlate literals</h2>
-<p>기존 문자열 결합 시 연산자(+)를 사용하였는데 백틱(`) 기호를 사용하여 쉽게 결합할 수 있다.</p>
-<h3 id="기존-연산자-사용">기존 연산자 사용</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fruit</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;apple&#39;</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">color</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;red&#39;</span>;
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;My Favorite Fruit is&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">fruit</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;, color is &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">color</span> ); <span style="color:#75715e">//&#34;My Favorite Fruit isapple, color is red&#34;
-</span></code></pre></div><h3 id="템플릿리터럴-사용">템플릿리터럴 사용</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fruit</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;apple&#39;</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">color</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;red&#39;</span>;
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`My favorite Fruit is </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">fruit</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, color is </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">color</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
-</code></pre></div><h3 id="장점">장점</h3>
-<p>보통 복잡한 문자열이거나 html 코드등을 직접 스크립트상에서 삽입할 때 쌍따옴표-홀따옴표등과 같이 사용하는 경우에 상당히 복잡했었다. (따옴표 종료 위치를 일일이 신경써야했기에)<br>
-템플릿리터럴을 사용하면 일반 텍스트를 작성하듯 변수 위치만 신경써주면되니까 이런점이 편하다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Jiny&#39;</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">template</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`&lt;p class=&#34;user-name&#34;&gt;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&lt;/p&gt;`</span>
-</code></pre></div><h2 id="참고자료">참고자료</h2>
+    <h2 id="선형검색">선형검색</h2>
+<p>배열에서 원하는 키 값 요소를 만날 때까지 순서대로 요소 검색,  값을 찾지 못하고 배열을 모두 순회하거나 값을 찾는다면 바로 종료한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">linearSearch</span>(<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">arr</span>) {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">index</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">index</span><span style="color:#f92672">++</span>) {
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">key</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">index</span>]) {
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
+        }
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+}
+
+<span style="color:#a6e22e">linearSearch</span>(<span style="color:#ae81ff">2811</span>, [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">304</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">1</span>]); <span style="color:#75715e">//false
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">linearSearch</span>(<span style="color:#ae81ff">16</span>, [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">304</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">1</span>]); <span style="color:#75715e">//true
+</span></code></pre></div><h2 id="이진검색">이진검색</h2>
+<p><img src="../../assets/js/algorithm-search.png" alt="탐색 알고리즘"  />
+이미 정렬되어 있는 배열(전제 조건)에서 범위를 좁혀가며 값을  찾는 탐색법 선형 탐색보다 속도가 빠르긴하지만 정렬되어 있는 리스트에 적용할 수 있다.<br>
+<strong>left = 탐색 시작 위치, center = 팀색 중앙 위치((n-1) / 2), right = 탐색 끝 위치 (n-1)로 초기화</strong>하여 점차적으로 좁혀나간다.<br>
+정렬된 배열이라는 전제 조건이 붙기는 하지만, 선형 검색보다 순회 횟수가 크게 줄어 성능적으로 더 효율적이다.</p>
 <ul>
-<li><strong>자바스크립트 코딩의 기술 - 조모건 저</strong></li>
+<li>중앙 요소가 찾는 Key보다 작을 때 기존 (center + 1) ~ right 까지 탐색 범위를 좁힌다.</li>
+<li>중앙 요소가 찾는 Key보다 클 때 left ~ (center - 1) 까지 탐색 범위를 좁힌다.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">binarySearch</span>(<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">array</span>) {
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">left</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">right</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">array</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">left</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">right</span>) {
+        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">center</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">floor</span>((<span style="color:#a6e22e">left</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">right</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>);
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">item</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">array</span>[<span style="color:#a6e22e">center</span>];
+        <span style="color:#a6e22e">count</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">item</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">key</span>) {
+            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;true, &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">count</span>);
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">item</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">key</span>) {
+            <span style="color:#a6e22e">left</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">center</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#a6e22e">right</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">center</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+        }
+    }
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;false, &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">count</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+}
+
+<span style="color:#a6e22e">binarySearch</span>(<span style="color:#ae81ff">10</span>, [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>]); <span style="color:#75715e">//false, 4
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">binarySearch</span>(<span style="color:#ae81ff">8</span>, [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>]); <span style="color:#75715e">//true, 3
+</span></code></pre></div><h2 id="참고자료">참고자료</h2>
+<ul>
+<li>자료구조와 함께 배우는 알고리즘 입문 - 검색 알고리즘 (Bohyoh Shibata 저)</li>
 </ul>
 
 </section>
@@ -329,9 +360,9 @@
     
     <section class="article-tags">
         
-            <a href="/tags/javascript/">javascript</a>
+            <a href="/tags/algorithm/">algorithm</a>
         
-            <a href="/tags/es6&#43;/">es6&#43;</a>
+            <a href="/tags/javascript/">javascript</a>
         
     </section>
 
@@ -350,6 +381,24 @@
                 
                     
 <article class="has-image">
+    <a href="/post/js-module/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="js-module" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">자바스크리트 모듈화</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
     <a href="/post/promise-async-await/">
         
         
@@ -362,6 +411,24 @@
 
         <div class="article-details">
             <h2 class="article-title">Promise와 Async/await</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/eventloop/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="eventloop" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">비동기와 이벤트 루프</h2>
         </div>
     </a>
 </article>
@@ -386,54 +453,18 @@
                 
                     
 <article class="has-image">
-    <a href="/post/let-const/">
+    <a href="/post/template-literals/">
         
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="let-const" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="template-literals" data-hash="../../assets/js/js.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">let, const와 기존 var의 차이</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/post/algorithm-search/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="algorithm-search" data-hash="../../assets/js/js.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">탐색 알고리즘 (선형, 이진)</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/post/js-module/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="js-module" data-hash="../../assets/js/js.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">자바스크리트 모듈화</h2>
+            <h2 class="article-title">자바스크립트 템플릿리터럴</h2>
         </div>
     </a>
 </article>
