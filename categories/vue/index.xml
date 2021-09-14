@@ -17,7 +17,7 @@
 URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트를 가지고 있다가 변경된 요소영역만 갱신한다.(SPA 언어의 큰 특징)
 따라서 유연하게 페이지 젼환이 가능하다. vue 프레임워크에서는 vue-router라는 라우팅 라이브러리를 지원한다.
 설치하기 vue-router를 설치하고, package.json파일에서 모듈이 잘 추가되었는지 확인하자
-npm install vue-router --save 라우터 속성 다음은 라우터 인스턴스를 생성할 때 설정하는 값이다.
+1  npm install vue-router --save   라우터 속성 다음은 라우터 인스턴스를 생성할 때 설정하는 값이다.
  String mode : 기본 값은 Hash 모드 (history 모드를 사용하면 브라우저 히스토리 스택에 기록된다.</description>
     </item>
     
@@ -28,7 +28,7 @@ npm install vue-router --save 라우터 속성 다음은 라우터 인스턴스�
       
       <guid>https://jinyisland.kr/post/vue-import/</guid>
       <description>윈도우에서 작업한 Vue 프로젝트를 mac 환경에서 확인하려던 중 git clone 후 프로젝트를 실행해보니 아래와 같은 에러가 나왔다.
-&amp;gt; vue-todo@0.1.0 serve /Users/sjchoi/Mydoc/02_Code/05_vue/vue-practice/vue-todo &amp;gt; vue-cli-service serve sh: vue-cli-service: command not found npm ERR! code ELIFECYCLE npm ERR! syscall spawn npm ERR! file sh npm ERR! errno ENOENT npm ERR! vue-todo@0.1.0 serve: `vue-cli-service serve` npm ERR! spawn ENOENT npm ERR! npm ERR! Failed at the vue-todo@0.1.0 serve script. npm ERR! This is probably not a problem with npm.</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  &amp;gt; vue-todo@0.1.0 serve /Users/sjchoi/Mydoc/02_Code/05_vue/vue-practice/vue-todo &amp;gt; vue-cli-service serve sh: vue-cli-service: command not found npm ERR! code ELIFECYCLE npm ERR! syscall spawn npm ERR! file sh npm ERR! errno ENOENT npm ERR! vue-todo@0.1.0 serve: `vue-cli-service serve` npm ERR! spawn ENOENT npm ERR!</description>
     </item>
     
     <item>
@@ -41,7 +41,7 @@ npm install vue-router --save 라우터 속성 다음은 라우터 인스턴스�
 컴포넌트 구성의 장점은 요소들을 재사용함으로써 개발 생산성이 향상되고, 컴포넌트들은 서로 관계가 형성된다.
 전역 컴포넌트 주로 플러그인, 라이브러리 등 앱 전역에서 사용 할 공통 컴포넌트를 작성한다.
 전역 컴포넌트를 생성하면 새 인스턴스를 생성할 때 마다 기본적으로 생성한다.
-//컴포넌트 생성 Vue.component(&amp;#39;app-header&amp;#39;, { template: &amp;#39;&amp;lt;h1&amp;gt;header&amp;lt;/h1&amp;gt;&amp;#39; //component Template }); Vue.component(&amp;#39;app-content&amp;#39;, { template: &amp;#39;&amp;lt;p&amp;gt;This is Vue-Component Write&amp;lt;/p&amp;gt;&amp;#39; }); //인스턴스 생성 new Vue({ el: &amp;#39;#app&amp;#39; //selector }); 지역 컴포넌트 Vue 인스턴스 내에 직접 삽입하는 방식이다.</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13  //컴포넌트 생성 Vue.component(&amp;#39;app-header&amp;#39;, { template: &amp;#39;&amp;lt;h1&amp;gt;header&amp;lt;/h1&amp;gt;&amp;#39; //component Template }); Vue.component(&amp;#39;app-content&amp;#39;, { template: &amp;#39;&amp;lt;p&amp;gt;This is Vue-Component Write&amp;lt;/p&amp;gt;&amp;#39; }); //인스턴스 생성 new Vue({ el: &amp;#39;#app&amp;#39; //selector });   지역 컴포넌트 Vue 인스턴스 내에 직접 삽입하는 방식이다.</description>
     </item>
     
     <item>
@@ -54,7 +54,7 @@ npm install vue-router --save 라우터 속성 다음은 라우터 인스턴스�
 vue 프로젝트 도입시 전체적인 웹애플레이케이션을 관리하려면 지금 소개하는 cli패키지를 설치하면 되고,
 별도의 페이지에서 국한적으로 사용하려면 cdn방식으로도 사용할 수 있다.
 CDN 방식을 사용하려면 아래 소스를 참고하면 된다.
-&amp;lt;head&amp;gt; &amp;lt;!-- Vue-CDN --&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;!-- template --&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;app-footer&amp;gt;&amp;lt;/app-footer&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;script&amp;gt; //vue 인스턴스 생성  new Vue({ el: &amp;#39;#app&amp;#39;, components: { &amp;#39;app-footer&amp;#39; : { template : &amp;#39;&amp;lt;footer&amp;gt;Footer!&amp;lt;/footer&amp;gt;&amp;#39; } } }); &amp;lt;/script&amp;gt; Vue 설치하기 먼저 npm (node package manager) 및 node가 설치되어있어야 한다.</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  &amp;lt;head&amp;gt; &amp;lt;!-- Vue-CDN --&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;!-- template --&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;app-footer&amp;gt;&amp;lt;/app-footer&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;script&amp;gt; //vue 인스턴스 생성  new Vue({ el: &amp;#39;#app&amp;#39;, components: { &amp;#39;app-footer&amp;#39; : { template : &amp;#39;&amp;lt;footer&amp;gt;Footer!</description>
     </item>
     
   </channel>

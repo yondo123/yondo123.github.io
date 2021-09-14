@@ -248,77 +248,173 @@
 블록범위 내에서 let과 const를 사용하면  해당 변수를 재할당할 수 없도록 지정할 수 있다.
 <strong>자바스크립트에서의 블록유효범위는 if블록이나 for 반복문과 같이 중괄호로 둘러싸인 범위를 의미한다.</strong>
 지금까지 사용했던 <code>var</code>로 변수를 선언하는 방식은, 중복되는 변수이어도 재할당을 하면서 코드가 많아질 경우 값이 바뀌는것을 파악해야하는 문제가 있었다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;choi&#39;</span>;
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;kim&#39;</span>;
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">name</span>); <span style="color:#75715e">//&#39;kim&#39;
-</span></code></pre></div><h3 id="const">const</h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;choi&#39;</span>;
+<span style="color:#8be9fd;font-style:italic">var</span> name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;kim&#39;</span>;
+console.log(name); <span style="color:#6272a4">//&#39;kim&#39;
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="const">const</h3>
 <p>값을 재할당할 수 없지만, 참조된 값을 변경할 수는 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;choi&#39;</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;kim&#39;</span>; <span style="color:#75715e">//error
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fruits</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;🍎&#39;</span>, <span style="color:#e6db74">&#39;🍌&#39;</span>];
-<span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#39;🍓&#39;</span>);
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">fruits</span>); <span style="color:#75715e">//&#39;🍎&#39;, &#39;🍌&#39;, &#39;🍓&#39;
-</span></code></pre></div><h3 id="let">let</h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;choi&#39;</span>;
+<span style="color:#ff79c6">const</span> name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;kim&#39;</span>; <span style="color:#6272a4">//error
+</span><span style="color:#6272a4"></span>
+<span style="color:#ff79c6">const</span> fruits <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;🍎&#39;</span>, <span style="color:#f1fa8c">&#39;🍌&#39;</span>];
+fruits.push(<span style="color:#f1fa8c">&#39;🍓&#39;</span>);
+console.log(fruits); <span style="color:#6272a4">//&#39;🍎&#39;, &#39;🍌&#39;, &#39;🍓&#39;
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="let">let</h3>
 <p>기존 <code>var</code>과 유사한 점은 변수를 재할당할 수 있는 점이다. 하지만 <strong>var로 선언한 변수는 어휘적 유효범위(lexical sope)</strong> 를 따르지만, <code>let</code>은 블록 유효범위를 따른다.
 아래 예제를 보면  아이템의 가격을 반환해주는 함수이다. 만약 정가(price)와 갯수(inventory)가 존재하면 정가를 반환하고, 세일 가격(salePrice)와 세일중인 아이템 갯수(saleInventory)가 존재하면 할인가격을 반환한다. 이 예제에서 핵심은 <code>let</code>임에도 불구하고 변수를 2번 재할당하고 있다. <strong>블록 유효범위를 따르기때문에 가능한 일이다.</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getPriceOfItems</span>(<span style="color:#a6e22e">item</span>) {
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">stack</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">inventory</span>;
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">price</span>;
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">salePrice</span>) {
-        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">stack</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">saleInventory</span>; <span style="color:#75715e">//다른 유효범위
-</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">stack</span>); <span style="color:#75715e">//1
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">stack</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
-            <span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">salePrice</span>;
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> getPriceOfItems(item) {
+    <span style="color:#8be9fd;font-style:italic">let</span> stack <span style="color:#ff79c6">=</span> item.inventory;
+    <span style="color:#8be9fd;font-style:italic">let</span> price <span style="color:#ff79c6">=</span> item.price;
+    <span style="color:#ff79c6">if</span> (item.salePrice) {
+        <span style="color:#8be9fd;font-style:italic">let</span> stack <span style="color:#ff79c6">=</span> item.saleInventory; <span style="color:#6272a4">//다른 유효범위
+</span><span style="color:#6272a4"></span>        console.log(stack); <span style="color:#6272a4">//1
+</span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">if</span> (stack <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>) {
+            price <span style="color:#ff79c6">=</span> item.salePrice;
         }
     }
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">stack</span>) {
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">stack</span>); <span style="color:#75715e">//3
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">price</span>;
+    <span style="color:#ff79c6">if</span> (stack) {
+        console.log(stack); <span style="color:#6272a4">//3
+</span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">return</span> price;
     }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
 }
-<span style="color:#a6e22e">getPriceOfItems</span>({
-    <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3600</span>,
-    <span style="color:#a6e22e">inventory</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3</span>,
-    <span style="color:#a6e22e">salePrice</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1800</span>,
-    <span style="color:#a6e22e">saleInventory</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>
+getPriceOfItems({
+    price<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">3600</span>,
+    inventory<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">3</span>,
+    salePrice<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1800</span>,
+    saleInventory<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1</span>
 }); 
-<span style="color:#75715e">//1800 
-</span></code></pre></div><h2 id="반복문에서의-유효범위-충돌-방지">반복문에서의 유효범위 충돌 방지</h2>
+<span style="color:#6272a4">//1800 
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="반복문에서의-유효범위-충돌-방지">반복문에서의 유효범위 충돌 방지</h2>
 <p>지난번 클로저를 소개할 때 사용했던 예제이긴하지만..  어휘적 유효범위를 따르는 <code>var</code>로 선언한 변수 때문에 비동기 로직에서 마지막 값만 계속 참조되는 현상이 일어났던 코드이다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">countSec</span>(<span style="color:#a6e22e">seconds</span>) {
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">seconds</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
-        <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span> () {
-            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">i</span>); <span style="color:#75715e">//3..3..3..
-</span><span style="color:#75715e"></span>        }, <span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>); 
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> countSec(seconds) {
+    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">var</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&lt;=</span> seconds; i<span style="color:#ff79c6">++</span>) {
+        setTimeout(<span style="color:#8be9fd;font-style:italic">function</span> () {
+            console.log(i); <span style="color:#6272a4">//3..3..3..
+</span><span style="color:#6272a4"></span>        }, i <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">1000</span>); 
     }
 };
-<span style="color:#a6e22e">countSec</span>(<span style="color:#ae81ff">3</span>);
-</code></pre></div><p>아래처엄 클로저로 해결할 수 있었다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">countSec</span>(<span style="color:#a6e22e">seconds</span>) {
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">seconds</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
-        (<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">curNum</span>) { <span style="color:#75715e">//즉시실행함수를 이용해 외부 변수 i를 복사하여 setTimout() 지역 변수로 끌어와 정상적으로 1,2,3 입력된다!
-</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span> () {
-                <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">curNum</span>);
-            }, <span style="color:#a6e22e">curNum</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
-        }(<span style="color:#a6e22e">i</span>));
+countSec(<span style="color:#bd93f9">3</span>);
+</code></pre></td></tr></table>
+</div>
+</div><p>아래처엄 클로저로 해결할 수 있었다.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> countSec(seconds) {
+    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">var</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&lt;=</span> seconds; i<span style="color:#ff79c6">++</span>) {
+        (<span style="color:#8be9fd;font-style:italic">function</span> (curNum) { <span style="color:#6272a4">//즉시실행함수를 이용해 외부 변수 i를 복사하여 setTimout() 지역 변수로 끌어와 정상적으로 1,2,3 입력된다!
+</span><span style="color:#6272a4"></span>            setTimeout(<span style="color:#8be9fd;font-style:italic">function</span> () {
+                console.log(curNum);
+            }, curNum <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">1000</span>);
+        }(i));
     }
 };
 
-<span style="color:#a6e22e">countSec</span>(<span style="color:#ae81ff">3</span>);
-</code></pre></div><p><code>let</code>을 활용해서 더욱 간단히 해결할 수 있다.<br>
+countSec(<span style="color:#bd93f9">3</span>);
+</code></pre></td></tr></table>
+</div>
+</div><p><code>let</code>을 활용해서 더욱 간단히 해결할 수 있다.<br>
 블록유효범위를 따르기 때문에 해당 블록에서만 유효하다는 특징을 잊지말자!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">countSec</span>(<span style="color:#a6e22e">seconds</span>) {
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">seconds</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
-        <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span> () {
-            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">i</span>);
-        }, <span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> countSec(seconds) {
+    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&lt;=</span> seconds; i<span style="color:#ff79c6">++</span>) {
+        setTimeout(<span style="color:#8be9fd;font-style:italic">function</span> () {
+            console.log(i);
+        }, i <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">1000</span>);
     }
 };
 
-<span style="color:#a6e22e">countSec</span>(<span style="color:#ae81ff">3</span>); <span style="color:#75715e">//1..2..3..
-</span></code></pre></div><h2 id="정리">정리</h2>
+countSec(<span style="color:#bd93f9">3</span>); <span style="color:#6272a4">//1..2..3..
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="정리">정리</h2>
 <p>이렇게 기존 가장 많이 사용하였던 var과 const, let의 차이를 알아보았다.</p>
 <ul>
 <li><strong>var :</strong> 어휘적 유효범위 (코드를 작성한 위치 기준에서의 참조되고 있는 범위)를 따르는 변수, 재할당과 값수정 모두 제한이 없다.</li>

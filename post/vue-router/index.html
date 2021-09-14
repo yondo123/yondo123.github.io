@@ -247,8 +247,15 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
 따라서 유연하게 페이지 젼환이 가능하다. vue 프레임워크에서는 <code>vue-router</code>라는 라우팅 라이브러리를 지원한다.</p>
 <h3 id="설치하기">설치하기</h3>
 <p><code>vue-router</code>를 설치하고, package.json파일에서 모듈이 잘 추가되었는지 확인하자</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm install vue-router --save
-</code></pre></div><h3 id="라우터-속성">라우터 속성</h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm install vue-router --save
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="라우터-속성">라우터 속성</h3>
 <p>다음은 라우터 인스턴스를 생성할 때 설정하는 값이다.</p>
 <ul>
 <li><code>String</code> <strong>mode</strong> : 기본 값은 Hash 모드 (history 모드를 사용하면 브라우저 히스토리 스택에 기록된다.)</li>
@@ -265,99 +272,238 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
 <p>라우터를 생성하는 방식은 <strong>인스턴스 방식, vue-router4 이후에 도입된 create 방식 두 가지가 존재한다.</strong></p>
 <h3 id="인스턴스-방식으로-생성">인스턴스 방식으로 생성</h3>
 <p>먼저 <code>vue-router</code>를 임포트하여 라우터 인스턴스를 새로 생성한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//📁router/router.js
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Vue</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue&#39;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">VueRouter</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue-router&#39;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Main</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../views/Main.vue&#39;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Info</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../views/Info.vue&#39;</span>;
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//📁router/router.js
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">import</span> Vue from <span style="color:#f1fa8c">&#39;vue&#39;</span>;
+<span style="color:#ff79c6">import</span> VueRouter from <span style="color:#f1fa8c">&#39;vue-router&#39;</span>;
+<span style="color:#ff79c6">import</span> Main from <span style="color:#f1fa8c">&#39;../views/Main.vue&#39;</span>;
+<span style="color:#ff79c6">import</span> Info from <span style="color:#f1fa8c">&#39;../views/Info.vue&#39;</span>;
 
-<span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">VueRouter</span>);
+Vue.use(VueRouter);
 
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">router</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">VueRouter</span>({
-	<span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;history&#39;</span>, <span style="color:#75715e">//해쉬값 제거 방식
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">routes</span><span style="color:#f92672">:</span> [{
-        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/&#39;</span>, 
-        <span style="color:#a6e22e">redirect</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/home&#39;</span> 
+<span style="color:#ff79c6">const</span> router <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> VueRouter({
+	mode<span style="color:#ff79c6">:</span><span style="color:#f1fa8c">&#39;history&#39;</span>, <span style="color:#6272a4">//해쉬값 제거 방식
+</span><span style="color:#6272a4"></span>    routes<span style="color:#ff79c6">:</span> [{
+        path<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;/&#39;</span>, 
+        redirect<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;/home&#39;</span> 
     }, {
-        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/home&#39;</span>,
-        <span style="color:#a6e22e">component</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Main</span>
+        path<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;/home&#39;</span>,
+        component<span style="color:#ff79c6">:</span> Main
     }, {
-        <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/Info&#39;</span>,
-        <span style="color:#a6e22e">component</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Info</span>
+        path<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;/Info&#39;</span>,
+        component<span style="color:#ff79c6">:</span> Info
     }]
 });
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//📁main.js
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Vue</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue&#39;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">App</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./App.vue&#39;</span>;
-<span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">router</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./router/index.js&#39;</span>;
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//📁main.js
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">import</span> Vue from <span style="color:#f1fa8c">&#39;vue&#39;</span>;
+<span style="color:#ff79c6">import</span> App from <span style="color:#f1fa8c">&#39;./App.vue&#39;</span>;
+<span style="color:#ff79c6">import</span> {router} from <span style="color:#f1fa8c">&#39;./router/index.js&#39;</span>;
 
-<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Vue</span>({
-  <span style="color:#a6e22e">router</span>,
-  <span style="color:#a6e22e">render</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">h</span> =&gt; <span style="color:#a6e22e">h</span>(<span style="color:#a6e22e">App</span>),
-}).<span style="color:#a6e22e">$mount</span>(<span style="color:#e6db74">&#39;#app&#39;</span>)
-</code></pre></div><h3 id="create-방식으로-생성">Create 방식으로 생성</h3>
+<span style="color:#ff79c6">new</span> Vue({
+  router,
+  render<span style="color:#ff79c6">:</span> h =&gt; h(App),
+}).$mount(<span style="color:#f1fa8c">&#39;#app&#39;</span>)
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="create-방식으로-생성">Create 방식으로 생성</h3>
 <p><code>router 4</code>버전에서는 더 이상 인스턴스를 호출하지 않고, <code>createRouter</code>메서드를 사용해 라우터를 생성한다. (마치 Vue 3에서의 createApp을 따라가는 느낌..?) 개인적인 생각이지만 이런 메서드 생성 방식이 인스턴스 생성 방식 보다 가독성이 더 좋다고 느껴진다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#75715e">//📁router/router.js
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createWebHistory</span>, <span style="color:#a6e22e">createRouter</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;vue-router&#34;</span>; 
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#6272a4">//📁router/router.js
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">import</span> { createWebHistory, createRouter } from <span style="color:#f1fa8c">&#34;vue-router&#34;</span>; 
 
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">routes</span> <span style="color:#f92672">=</span> [{ <span style="color:#75715e">/*route config*/</span> }] <span style="color:#75715e">//라우팅 패스, 컴포넌트 등 정의
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">router</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createRouter</span>({
-	<span style="color:#a6e22e">history</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">createWebHistory</span>(),
-	<span style="color:#a6e22e">routes</span>
+<span style="color:#ff79c6">const</span> routes <span style="color:#ff79c6">=</span> [{ <span style="color:#6272a4">/*route config*/</span> }] <span style="color:#6272a4">//라우팅 패스, 컴포넌트 등 정의
+</span><span style="color:#6272a4"></span>
+<span style="color:#ff79c6">const</span> router <span style="color:#ff79c6">=</span> createRouter({
+	history <span style="color:#ff79c6">:</span> createWebHistory(),
+	routes
 });
 
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">router</span>;
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#75715e">//📁main.js
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createApp</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue&#39;</span>
-<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">App</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./App.vue&#39;</span>
-<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">router</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./router&#39;</span>
+<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> router;
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#6272a4">//📁main.js
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">import</span> { createApp } from <span style="color:#f1fa8c">&#39;vue&#39;</span>
+<span style="color:#ff79c6">import</span> App from <span style="color:#f1fa8c">&#39;./App.vue&#39;</span>
+<span style="color:#ff79c6">import</span> router from <span style="color:#f1fa8c">&#39;./router&#39;</span>
 
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myApp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createApp</span>(<span style="color:#a6e22e">App</span>);
-<span style="color:#a6e22e">myApp</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">router</span>);
-<span style="color:#a6e22e">reckeyApp</span>.<span style="color:#a6e22e">mount</span>(<span style="color:#e6db74">&#39;#app&#39;</span>);
-</code></pre></div><h3 id="렌더링">렌더링</h3>
+<span style="color:#ff79c6">const</span> myApp <span style="color:#ff79c6">=</span> createApp(App);
+myApp.use(router);
+reckeyApp.mount(<span style="color:#f1fa8c">&#39;#app&#39;</span>);
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="렌더링">렌더링</h3>
 <p>라우터를 생성한 컴포넌트에 <code>router-view</code>태그를 선언하면 URL에 맞게 컴포넌트들이 맵핑된다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">template</span>&gt;
-	&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
-		&lt;<span style="color:#f92672">router-view</span>&gt;&lt;/<span style="color:#f92672">router-view</span>&gt;	
-	&lt;/<span style="color:#f92672">div</span>&gt;
-&lt;/<span style="color:#f92672">template</span>&gt;
-</code></pre></div><h2 id="라우터-링크">라우터 링크</h2>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">template</span>&gt;
+	&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;app&#34;</span>&gt;
+		&lt;<span style="color:#ff79c6">router-view</span>&gt;&lt;/<span style="color:#ff79c6">router-view</span>&gt;	
+	&lt;/<span style="color:#ff79c6">div</span>&gt;
+&lt;/<span style="color:#ff79c6">template</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="라우터-링크">라우터 링크</h2>
 <p>사용자에게 라우팅 된 경로로 이동하게끔 앵커태그를 생성하는 속성이다. <code>router-link</code>속성을 통해 앵커 태그 기능을 수행하게한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">router-link</span> <span style="color:#a6e22e">to</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/main&#34;</span>&gt;main&lt;/<span style="color:#f92672">router-link</span>&gt;
-<span style="color:#75715e">&lt;!-- convert --&gt;</span>
-&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#/main&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;main&lt;/<span style="color:#f92672">a</span>&gt;
-</code></pre></div><p><code>to</code>속성에 동적으로 라우팅 경로를 생성시킬 수 있다. <code>v-bind</code>속성은 동적 경로를 생성하고 싶을 때 유용하다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">router-link</span> <span style="color:#a6e22e">v-bind:to</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;`/user/${item.username}`&#34;</span>&gt;User-Info&lt;/<span style="color:#f92672">router-link</span>&gt; <span style="color:#75715e">&lt;!--./user/username --&gt;</span>
-&lt;<span style="color:#f92672">router-link</span> <span style="color:#a6e22e">to</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/user/&#34;</span>&gt;USER&lt;/<span style="color:#f92672">router-link</span>&gt; <span style="color:#75715e">&lt;!--./user/ --&gt;</span>
-</code></pre></div><h3 id="스타일링">스타일링</h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">router-link</span> <span style="color:#50fa7b">to</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/main&#34;</span>&gt;main&lt;/<span style="color:#ff79c6">router-link</span>&gt;
+<span style="color:#6272a4">&lt;!-- convert --&gt;</span>
+&lt;<span style="color:#ff79c6">a</span> <span style="color:#50fa7b">href</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;#/main&#34;</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;&#34;</span>&gt;main&lt;/<span style="color:#ff79c6">a</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p><code>to</code>속성에 동적으로 라우팅 경로를 생성시킬 수 있다. <code>v-bind</code>속성은 동적 경로를 생성하고 싶을 때 유용하다.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">router-link</span> <span style="color:#50fa7b">v-bind:to</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;`/user/${item.username}`&#34;</span>&gt;User-Info&lt;/<span style="color:#ff79c6">router-link</span>&gt; <span style="color:#6272a4">&lt;!--./user/username --&gt;</span>
+&lt;<span style="color:#ff79c6">router-link</span> <span style="color:#50fa7b">to</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/user/&#34;</span>&gt;USER&lt;/<span style="color:#ff79c6">router-link</span>&gt; <span style="color:#6272a4">&lt;!--./user/ --&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="스타일링">스타일링</h3>
 <p><code>scoped</code>속성을 통해 에서 해당 컴포넌트에서만 독립하게 사용하는 스타일을 입힐 수 있는데, 라우터 링크에서 사용되는 앵커태그의 기본 값은 <code>router-link-exact-active</code>이며, active-class속성을 통해 따로 정의할 수도 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">template</span>&gt;
-	&lt;<span style="color:#f92672">router-link</span> <span style="color:#a6e22e">to</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;profile&#34;</span>&gt;
-	     &lt;<span style="color:#f92672">h1</span>&gt;profile&lt;/<span style="color:#f92672">h1</span>&gt;
-	&lt;/<span style="color:#f92672">router-link</span>&gt;
-&lt;/<span style="color:#f92672">template</span>&gt;
-&lt;<span style="color:#f92672">style</span> <span style="color:#a6e22e">scoped</span>&gt;
-	.<span style="color:#a6e22e">router-link-exact-active</span> {
-		<span style="color:#66d9ef">color</span> : <span style="color:#66d9ef">red</span>;
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">template</span>&gt;
+	&lt;<span style="color:#ff79c6">router-link</span> <span style="color:#50fa7b">to</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;profile&#34;</span>&gt;
+	     &lt;<span style="color:#ff79c6">h1</span>&gt;profile&lt;/<span style="color:#ff79c6">h1</span>&gt;
+	&lt;/<span style="color:#ff79c6">router-link</span>&gt;
+&lt;/<span style="color:#ff79c6">template</span>&gt;
+&lt;<span style="color:#ff79c6">style</span> <span style="color:#50fa7b">scoped</span>&gt;
+	.<span style="color:#50fa7b">router-link-exact-active</span> {
+		<span style="color:#ff79c6">color</span> : <span style="color:#ff79c6">red</span>;
 	}
-&lt;/<span style="color:#f92672">style</span>&gt;
-</code></pre></div><h2 id="동적-라우팅">동적 라우팅</h2>
+&lt;/<span style="color:#ff79c6">style</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="동적-라우팅">동적 라우팅</h2>
 <p>url-path를 동적으로 요청받아 데이터를 넘길 수 있는 라우팅 방식이다. <code>path</code>끝에 <code>:id</code>를 붙이면 된다. <strong>(파라미터로 전달)</strong>
 반대로 해당 파라미터 정보를 가져올 때는 <code>$route</code> 객체를 참조하면 된다. 만약 post/라는 url에 파라미터로 post id를 넘겨야한다고 생각해보자.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">AskItem</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../views/PostItem.vue&#39;</span>;
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">router</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">VueRouter</span>({
-	<span style="color:#a6e22e">routes</span><span style="color:#f92672">:</span> [{
-		<span style="color:#a6e22e">path</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/post/:id&#39;</span>
-        <span style="color:#a6e22e">component</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">PostItem</span>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">import</span> AskItem from <span style="color:#f1fa8c">&#39;../views/PostItem.vue&#39;</span>;
+<span style="color:#ff79c6">const</span> router <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> VueRouter({
+	routes<span style="color:#ff79c6">:</span> [{
+		path <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;/post/:id&#39;</span>
+        component <span style="color:#ff79c6">:</span> PostItem
 	}]
 });
-</code></pre></div><p>이제 사용자가 /post/123 이라는 url을 입력한다면, <strong>PostItem</strong> 컴포넌트에서는 &lsquo;123&rsquo;이라는 ID를 가진 내용을 API를 통해 요청받아야 할 것이다. <code>this.$route.params.id</code>를 통해 가져올 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">created</span>() {
-  <span style="color:#a6e22e">getPost</span>(<span style="color:#e6db74">&#39;requestPost&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$route</span>.<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">id</span>);
+</code></pre></td></tr></table>
+</div>
+</div><p>이제 사용자가 /post/123 이라는 url을 입력한다면, <strong>PostItem</strong> 컴포넌트에서는 &lsquo;123&rsquo;이라는 ID를 가진 내용을 API를 통해 요청받아야 할 것이다. <code>this.$route.params.id</code>를 통해 가져올 수 있다.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">created() {
+  getPost(<span style="color:#f1fa8c">&#39;requestPost&#39;</span>, <span style="color:#ff79c6">this</span>.$route.params.id);
 }
-</code></pre></div><h2 id="참고자료">참고자료</h2>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><a class="link" href="https://www.inflearn.com/course/Age-of-Vuejs/"  target="_blank" rel="noopener"
     ><strong>캡틴판교님의 Vue 기초 강의</strong></a></li>

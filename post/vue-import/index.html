@@ -242,26 +242,56 @@
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
     <p>윈도우에서 작업한 Vue 프로젝트를 mac 환경에서 확인하려던 중 git clone 후 프로젝트를 실행해보니 아래와 같은 에러가 나왔다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; vue-todo@0.1.0 serve /Users/sjchoi/Mydoc/02_Code/05_vue/vue-practice/vue-todo
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; vue-todo@0.1.0 serve /Users/sjchoi/Mydoc/02_Code/05_vue/vue-practice/vue-todo
 &gt; vue-cli-service serve
 
-sh: vue-cli-service: command not found
+sh: vue-cli-service: <span style="color:#8be9fd;font-style:italic">command</span> not found
 npm ERR! code ELIFECYCLE
 npm ERR! syscall spawn
 npm ERR! file sh
 npm ERR! errno ENOENT
-npm ERR! vue-todo@0.1.0 serve: <span style="color:#e6db74">`</span>vue-cli-service serve<span style="color:#e6db74">`</span>
+npm ERR! vue-todo@0.1.0 serve: <span style="color:#f1fa8c">`</span>vue-cli-service serve<span style="color:#f1fa8c">`</span>
 npm ERR! spawn ENOENT
 npm ERR! 
 npm ERR! Failed at the vue-todo@0.1.0 serve script.
 npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
 npm WARN Local package.json exists, but node_modules missing, did you mean to install?
 
-npm ERR! A complete log of this run can be found in:
-</code></pre></div><p>npm은 당연히 설치되어있는데 왜그러는지 몰라 한참을 찾아보다가 npm 캐시를 지워주면 된다는 말을 듣고 캐시를 지우고 다시 <code>package.json</code>에 정의된 모듈을 설치하였더니 잘 된다!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm cache clean --force <span style="color:#75715e">#npm 캐시 삭제</span>
-npm install <span style="color:#75715e">#package.json 의존하는 모듈 설치</span>
-</code></pre></div><p>만약 <code>npm install</code>을 시행해도, 프로젝트 실행이 안된다면, npm run serve 중 필요한 라이브러리를 설치하라고 뜰테니 해당 라이브러리를 설치하고 시행하면 잘 된다.</p>
+npm ERR! A <span style="color:#8be9fd;font-style:italic">complete</span> log of this run can be found in:
+</code></pre></td></tr></table>
+</div>
+</div><p>npm은 당연히 설치되어있는데 왜그러는지 몰라 한참을 찾아보다가 npm 캐시를 지워주면 된다는 말을 듣고 캐시를 지우고 다시 <code>package.json</code>에 정의된 모듈을 설치하였더니 잘 된다!</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm cache clean --force <span style="color:#6272a4">#npm 캐시 삭제</span>
+npm install <span style="color:#6272a4">#package.json 의존하는 모듈 설치</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>만약 <code>npm install</code>을 시행해도, 프로젝트 실행이 안된다면, npm run serve 중 필요한 라이브러리를 설치하라고 뜰테니 해당 라이브러리를 설치하고 시행하면 잘 된다.</p>
 
 </section>
 <script type="text/javascript">

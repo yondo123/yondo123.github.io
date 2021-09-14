@@ -14,7 +14,7 @@
       
       <guid>https://jinyisland.kr/post/algorithm-search/</guid>
       <description>선형검색 배열에서 원하는 키 값 요소를 만날 때까지 순서대로 요소 검색, 값을 찾지 못하고 배열을 모두 순회하거나 값을 찾는다면 바로 종료한다.
-function linearSearch(key, arr) { for (let index = 0; index &amp;lt; arr.length; index++) { if (key === arr[index]) { return true } } return false; } linearSearch(2811, [2, 15, 24, 28, 304, 16, 7, 1]); //false linearSearch(16, [2, 15, 24, 28, 304, 16, 7, 1]); //true 이진검색 이미 정렬되어 있는 배열(전제 조건)에서 범위를 좁혀가며 값을 찾는 탐색법 선형 탐색보다 속도가 빠르긴하지만 정렬되어 있는 리스트에 적용할 수 있다.</description>
+1 2 3 4 5 6 7 8 9 10 11  function linearSearch(key, arr) { for (let index = 0; index &amp;lt; arr.length; index++) { if (key === arr[index]) { return true } } return false; } linearSearch(2811, [2, 15, 24, 28, 304, 16, 7, 1]); //false linearSearch(16, [2, 15, 24, 28, 304, 16, 7, 1]); //true   이진검색 이미 정렬되어 있는 배열(전제 조건)에서 범위를 좁혀가며 값을 찾는 탐색법 선형 탐색보다 속도가 빠르긴하지만 정렬되어 있는 리스트에 적용할 수 있다.</description>
     </item>
     
   </channel>

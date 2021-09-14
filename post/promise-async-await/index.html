@@ -242,29 +242,57 @@
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
     <h2 id="promise">Promise</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">callbackDelay</span>(<span style="color:#a6e22e">sec</span>, <span style="color:#a6e22e">callback</span>) {
-    <span style="color:#a6e22e">setTimeout</span>(()=&gt;{
-        <span style="color:#a6e22e">callback</span>(<span style="color:#e6db74">&#34;콜백 Delay&gt;&gt;&#34;</span><span style="color:#f92672">+</span><span style="color:#66d9ef">new</span> Date().<span style="color:#a6e22e">toString</span>());
-    }, <span style="color:#a6e22e">sec</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>)
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> callbackDelay(sec, callback) {
+    setTimeout(()=&gt;{
+        callback(<span style="color:#f1fa8c">&#34;콜백 Delay&gt;&gt;&#34;</span><span style="color:#ff79c6">+</span><span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>().toString());
+    }, sec <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">1000</span>)
 }
 
-<span style="color:#a6e22e">callbackDelay</span>(<span style="color:#ae81ff">1</span>, (<span style="color:#a6e22e">result</span>)=&gt;{
-    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">result</span>);
-    <span style="color:#a6e22e">callbackDelay</span>(<span style="color:#ae81ff">1</span>, (<span style="color:#a6e22e">result</span>)=&gt;{
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">result</span>);
-        <span style="color:#a6e22e">callbackDelay</span>(<span style="color:#ae81ff">1</span>, (<span style="color:#a6e22e">result</span>)=&gt;{
-            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">3</span>, <span style="color:#a6e22e">result</span>)
+callbackDelay(<span style="color:#bd93f9">1</span>, (result)=&gt;{
+    console.log(<span style="color:#bd93f9">1</span>, result);
+    callbackDelay(<span style="color:#bd93f9">1</span>, (result)=&gt;{
+        console.log(<span style="color:#bd93f9">2</span>, result);
+        callbackDelay(<span style="color:#bd93f9">1</span>, (result)=&gt;{
+            console.log(<span style="color:#bd93f9">3</span>, result)
         })
     })
 })
-<span style="color:#75715e">/*result
-</span><span style="color:#75715e">1 콜백 Delay&gt;&gt;Sun Jun 07 2020 18:43:56 GMT+0900 (GMT+09:00)
-</span><span style="color:#75715e">promise.js:26
-</span><span style="color:#75715e">2 콜백 Delay&gt;&gt;Sun Jun 07 2020 18:43:57 GMT+0900 (GMT+09:00)
-</span><span style="color:#75715e">promise.js:28
-</span><span style="color:#75715e">3 콜백 Delay&gt;&gt;Sun Jun 07 2020 18:43:58 GMT+0900 (GMT+09:00)
-</span><span style="color:#75715e">*/</span>
-</code></pre></div><p>자바스크립트에서 비동기 동작을 할때 우리는 항상 해당 함수에 콜백 함수를 넣어줬다. 만약 타이머로 1초마다 해당 시간을 출력하는 함수를 예시로 들면..<br>
+<span style="color:#6272a4">/*result
+</span><span style="color:#6272a4">1 콜백 Delay&gt;&gt;Sun Jun 07 2020 18:43:56 GMT+0900 (GMT+09:00)
+</span><span style="color:#6272a4">promise.js:26
+</span><span style="color:#6272a4">2 콜백 Delay&gt;&gt;Sun Jun 07 2020 18:43:57 GMT+0900 (GMT+09:00)
+</span><span style="color:#6272a4">promise.js:28
+</span><span style="color:#6272a4">3 콜백 Delay&gt;&gt;Sun Jun 07 2020 18:43:58 GMT+0900 (GMT+09:00)
+</span><span style="color:#6272a4">*/</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>자바스크립트에서 비동기 동작을 할때 우리는 항상 해당 함수에 콜백 함수를 넣어줬다. 만약 타이머로 1초마다 해당 시간을 출력하는 함수를 예시로 들면..<br>
 대표적인 비동기 함수인 setTimeout을 호출할 때 이렇게 매 순간 콜백 함수를 전달해야 1..2..3..형태로 출력되는 것을 볼 수 있다. 하지만 이 코드의 불편함은 콜백이 콜백을 전달함으로써 **콜백지옥(callback hell)**이 펼쳐진다는것이다. 이를 개선하기 위해 <code>Promise</code>객체를 사용하면 더욱 간결하게 비동기 로직에 대응할 수 있다.</p>
 <h3 id="사용법">사용법</h3>
 <p>Promise에는 3가지 상태가 있다. (대기 - 이행 - 실패)</p>
@@ -272,158 +300,358 @@
 <li>
 <p>대기는 프로미스를 생성자로 호출한 순간이다.
 프로미스는 콜백 함수를 인수로 받고, 성공(resolve) - 실패(reject) 상태를 대응할 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">new</span> Promise(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>){
-    <span style="color:#75715e">//code..
-</span><span style="color:#75715e"></span>});
-</code></pre></div></li>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>(<span style="color:#8be9fd;font-style:italic">function</span>(resolve, reject){
+    <span style="color:#6272a4">//code..
+</span><span style="color:#6272a4"></span>});
+</code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p><code>resolve</code>를 호출할 시 이행 상태가 된다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">new</span> Promise(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>){
-    <span style="color:#a6e22e">resolve</span>();
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>(<span style="color:#8be9fd;font-style:italic">function</span>(resolve, reject){
+    resolve();
 });
-</code></pre></div></li>
+</code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>이행(완료) 상태가 되면 <code>then()</code>메서드로 콜백함수를 전달할 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">new</span> Promise(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>){
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;success!&#34;</span>;
-    <span style="color:#a6e22e">resolve</span>();
-}).<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">res</span>){
-    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">res</span>);
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>(<span style="color:#8be9fd;font-style:italic">function</span>(resolve, reject){
+    <span style="color:#ff79c6">const</span> result <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;success!&#34;</span>;
+    resolve();
+}).then(<span style="color:#8be9fd;font-style:italic">function</span>(res){
+    console.log(res);
 });
 
-<span style="color:#75715e">//success!
-</span></code></pre></div></li>
+<span style="color:#6272a4">//success!
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>실패 상태가 되면 <code>catch()</code>메서드로 받을 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">new</span> Promise(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>){
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fail</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fail!&#34;</span>;
-    <span style="color:#a6e22e">reject</span>(<span style="color:#66d9ef">new</span> Error(<span style="color:#a6e22e">fail</span>));
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>(<span style="color:#8be9fd;font-style:italic">function</span>(resolve, reject){
+    <span style="color:#ff79c6">const</span> fail <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;fail!&#34;</span>;
+    reject(<span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Error</span>(fail));
 })
-.<span style="color:#a6e22e">then</span>()
-.<span style="color:#66d9ef">catch</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">res</span>){
-    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">res</span>);
+.then()
+.<span style="color:#ff79c6">catch</span>(<span style="color:#8be9fd;font-style:italic">function</span>(res){
+    console.log(res);
 });
 
-<span style="color:#75715e">//fail!
-</span></code></pre></div></li>
+<span style="color:#6272a4">//fail!
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 <p>또한 여러개의 Promise들의 인스턴스를 순차적으로 연결시킬 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getData</span>(){
-	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>){
-		<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#39;success!!&#39;</span>); <span style="color:#75715e">//then method chain
-</span><span style="color:#75715e"></span>	});
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> getData(){
+	<span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>(<span style="color:#8be9fd;font-style:italic">function</span>(resolve, reject){
+		resolve(<span style="color:#f1fa8c">&#39;success!!&#39;</span>); <span style="color:#6272a4">//then method chain
+</span><span style="color:#6272a4"></span>	});
 }
 
-<span style="color:#a6e22e">getData</span>()
-    .<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">data</span>){
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;first&#34;</span>);
-        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">data</span>;
-     }) <span style="color:#75715e">//success!!first
-</span><span style="color:#75715e"></span>    .<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">data</span>){
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;second&#34;</span>);
-         <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">data</span>;
+getData()
+    .then(<span style="color:#8be9fd;font-style:italic">function</span>(data){
+        console.log(data <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;first&#34;</span>);
+        <span style="color:#ff79c6">return</span> data;
+     }) <span style="color:#6272a4">//success!!first
+</span><span style="color:#6272a4"></span>    .then(<span style="color:#8be9fd;font-style:italic">function</span>(data){
+        console.log(data <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;second&#34;</span>);
+         <span style="color:#ff79c6">return</span> data;
     })
-    .<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">data</span>){
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;third&#34;</span>);
+    .then(<span style="color:#8be9fd;font-style:italic">function</span>(data){
+        console.log(data <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;third&#34;</span>);
     });
-</code></pre></div><p>이제 기존 단순히 콜백을 전달하는 방식으로 작성한 타이머 코드를 프로미스 형태로 개선해보자.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">promiseDelay</span>(<span style="color:#a6e22e">sec</span>) {
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>)=&gt;{
-        <span style="color:#a6e22e">setTimeout</span>(()=&gt;{
-            <span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#34;프로미스 Delay&gt;&gt;&#34;</span><span style="color:#f92672">+</span><span style="color:#66d9ef">new</span> Date().<span style="color:#a6e22e">toString</span>());
-        }, <span style="color:#a6e22e">sec</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
+</code></pre></td></tr></table>
+</div>
+</div><p>이제 기존 단순히 콜백을 전달하는 방식으로 작성한 타이머 코드를 프로미스 형태로 개선해보자.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> promiseDelay(sec) {
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve, reject)=&gt;{
+        setTimeout(()=&gt;{
+            resolve(<span style="color:#f1fa8c">&#34;프로미스 Delay&gt;&gt;&#34;</span><span style="color:#ff79c6">+</span><span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>().toString());
+        }, sec <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">1000</span>);
     });
 }
 
-<span style="color:#a6e22e">promiseDelay</span>(<span style="color:#ae81ff">1</span>)
-	.<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">res</span>)=&gt;{
-    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">1</span>,<span style="color:#a6e22e">res</span>);
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">promiseDelay</span>(<span style="color:#ae81ff">1</span>); <span style="color:#75715e">//프로미스를 다시 호출하지 않으면 undefined
-</span><span style="color:#75715e"></span>	})
-	.<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">res</span>)=&gt;{
-    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#ae81ff">2</span>,<span style="color:#a6e22e">res</span>);
+promiseDelay(<span style="color:#bd93f9">1</span>)
+	.then((res)=&gt;{
+    console.log(<span style="color:#bd93f9">1</span>,res);
+    <span style="color:#ff79c6">return</span> promiseDelay(<span style="color:#bd93f9">1</span>); <span style="color:#6272a4">//프로미스를 다시 호출하지 않으면 undefined
+</span><span style="color:#6272a4"></span>	})
+	.then((res)=&gt;{
+    console.log(<span style="color:#bd93f9">2</span>,res);
 	})
-</code></pre></div><h3 id="return-활용법">return 활용법</h3>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="return-활용법">return 활용법</h3>
 <p>프로미스 내부에서는 return 을 사용하지 않고, resolve()만 시행시킨다면 후행의 코드들도 모두 실행한다.<br>
 따라서 즉시 then(이행 상태)으로 넘어가려면 <code>return</code>을 해주면 된다. (함수 return 방식과 동일하다.)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
-		<span style="color:#a6e22e">attach</span>.<span style="color:#a6e22e">readFile</span>((<span style="color:#a6e22e">data</span>) =&gt; {
-		    <span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">data</span>);
-		    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;success&#39;</span>) <span style="color:#75715e">// 출력
-</span><span style="color:#75715e"></span>    });
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve, reject) =&gt; {
+		attach.readFile((data) =&gt; {
+		    resolve(data);
+		    console.log(<span style="color:#f1fa8c">&#39;success&#39;</span>) <span style="color:#6272a4">// 출력
+</span><span style="color:#6272a4"></span>    });
 });
-</code></pre></div><p><code>catch</code>문 내부에서 return을 통해 에러를 효율적으로 처리할 수있다.<br>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>catch</code>문 내부에서 return을 통해 에러를 효율적으로 처리할 수있다.<br>
 에러가 발생하면 catch메서드에서 처리하게되는데 ,  다시 then으로 넘겨 에러 이후의 처리들도 할 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">getUserInfo</span> <span style="color:#f92672">=</span> () =&gt;
-        <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
-        <span style="color:#a6e22e">setTimeout</span>(() =&gt; <span style="color:#a6e22e">resolve</span>({<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;abc&#39;</span>, <span style="color:#a6e22e">pw</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;qwerty&#39;</span>}), <span style="color:#ae81ff">1000</span>);
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> getUserInfo <span style="color:#ff79c6">=</span> () =&gt;
+        <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve, reject) =&gt; {
+        setTimeout(() =&gt; resolve({id<span style="color:#ff79c6">:</span><span style="color:#f1fa8c">&#39;abc&#39;</span>, pw<span style="color:#ff79c6">:</span><span style="color:#f1fa8c">&#39;qwerty&#39;</span>}), <span style="color:#bd93f9">1000</span>);
 });
     
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">executeHandler</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">userInfo</span> =&gt;
-        <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">userInfo</span>));
-        <span style="color:#a6e22e">setTimeout</span>(() =&gt; <span style="color:#a6e22e">reject</span>(<span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;fail process&#39;</span>)), <span style="color:#ae81ff">1000</span>);
+<span style="color:#ff79c6">const</span> executeHandler <span style="color:#ff79c6">=</span> userInfo =&gt;
+        <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve, reject) =&gt; {
+        console.log(JSON.stringify(userInfo));
+        setTimeout(() =&gt; reject(<span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Error</span>(<span style="color:#f1fa8c">&#39;fail process&#39;</span>)), <span style="color:#bd93f9">1000</span>);
 });
 
-    <span style="color:#a6e22e">getUserInfo</span>()
-        .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">userInfo</span> =&gt; <span style="color:#a6e22e">executeHandler</span>(<span style="color:#a6e22e">userInfo</span>))
-        .<span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">error</span> =&gt; {<span style="color:#66d9ef">return</span> <span style="color:#e6db74">`&#39;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">error</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#39; handlling success!!`</span>}) <span style="color:#75715e">//promise Chain, 오류가 발생하더라도 다시 값을 처리해 .then(result)로 넘길 수 있다.
-</span><span style="color:#75715e"></span>        .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">result</span> =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>));
-</code></pre></div><h2 id="async-await">Async-await</h2>
+    getUserInfo()
+        .then(userInfo =&gt; executeHandler(userInfo))
+        .<span style="color:#ff79c6">catch</span>(error =&gt; {<span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">`&#39;</span><span style="color:#f1fa8c">${</span>error<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#39; handlling success!!`</span>}) <span style="color:#6272a4">//promise Chain, 오류가 발생하더라도 다시 값을 처리해 .then(result)로 넘길 수 있다.
+</span><span style="color:#6272a4"></span>        .then(result =&gt; console.log(result));
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="async-await">Async-await</h2>
 <p>Promise를 더욱 간결하게 처리할 수 있는 문법이다. 함수 앞에 <code>async</code> 키워드를 선언하면 된다.<br>
 <code>await</code>예약어는 해당 함수가 꼭 프로미스 객체를 반환해야 한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getlUserApi</span>(){
-	<span style="color:#75715e">//promise 반환 (비동기 함수) 
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; { <span style="color:#75715e">//..code });
-</span><span style="color:#75715e"></span>};
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> getlUserApi(){
+	<span style="color:#6272a4">//promise 반환 (비동기 함수) 
+</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve, reject) =&gt; { <span style="color:#6272a4">//..code });
+</span><span style="color:#6272a4"></span>};
 
-<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">showUser</span>(){
-	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userInfo</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">getUserApi</span>();
-	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">userInfo</span>;
+<span style="color:#ff79c6">async</span> <span style="color:#8be9fd;font-style:italic">function</span> showUser(){
+	<span style="color:#ff79c6">const</span> userInfo <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> getUserApi();
+	<span style="color:#ff79c6">return</span> userInfo;
 }
 
-</code></pre></div><p>위 코드는 아래와 같이 Promise를 반환시킨다. 따라서 프로미스와 마찬가지로 <code>then</code>을 통해 콜백 함수를 처리한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">showUser</span>(){
-	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userInfo</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getUssrApi</span>();
-	<span style="color:#66d9ef">return</span> Promise.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">userInfo</span>);
+</code></pre></td></tr></table>
+</div>
+</div><p>위 코드는 아래와 같이 Promise를 반환시킨다. 따라서 프로미스와 마찬가지로 <code>then</code>을 통해 콜백 함수를 처리한다.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">async</span> <span style="color:#8be9fd;font-style:italic">function</span> showUser(){
+	<span style="color:#ff79c6">const</span> userInfo <span style="color:#ff79c6">=</span> getUssrApi();
+	<span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">Promise</span>.resolve(userInfo);
 }
-</code></pre></div><p>만약 사용자의 정보를 받아오는 함수가 있다면 아래와 같이 사용할 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//AJAX 대신 setTimeout으로 대체;
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getUserApi</span>(){
-	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; { <span style="color:#75715e">//Promise 반환
-</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">setTimeout</span>(() =&gt; {
-				<span style="color:#a6e22e">resolve</span>({<span style="color:#a6e22e">name</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;jiny&#39;</span>, <span style="color:#a6e22e">age</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">27</span>});
-		}, <span style="color:#ae81ff">3000</span>);
+</code></pre></td></tr></table>
+</div>
+</div><p>만약 사용자의 정보를 받아오는 함수가 있다면 아래와 같이 사용할 수 있다.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//AJAX 대신 setTimeout으로 대체;
+</span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">function</span> getUserApi(){
+	<span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve, reject) =&gt; { <span style="color:#6272a4">//Promise 반환
+</span><span style="color:#6272a4"></span>		setTimeout(() =&gt; {
+				resolve({name <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;jiny&#39;</span>, age <span style="color:#ff79c6">:</span> <span style="color:#bd93f9">27</span>});
+		}, <span style="color:#bd93f9">3000</span>);
 	});
 }
 
-<span style="color:#75715e">//async 함수 내부에 await 선언
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">showUser</span>(){
-	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userInfo</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">getUserApi</span>();
-	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">userInfo</span>;
+<span style="color:#6272a4">//async 함수 내부에 await 선언
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">async</span> <span style="color:#8be9fd;font-style:italic">function</span> showUser(){
+	<span style="color:#ff79c6">const</span> userInfo <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> getUserApi();
+	<span style="color:#ff79c6">return</span> userInfo;
 }
 
-<span style="color:#75715e">//이행 처리
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">showUser</span>()
-	.<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">data</span> =&gt; { <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">data</span>)) });
+<span style="color:#6272a4">//이행 처리
+</span><span style="color:#6272a4"></span>showUser()
+	.then(data =&gt; { console.log(JSON.stringify(data)) });
 
-</code></pre></div><h3 id="에러처리">에러처리</h3>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="에러처리">에러처리</h3>
 <p>async 함수내에서 오류가 발생하면 <code>try-catch</code>문으로 에러를 핸들링해줄 수 있다.<br>
 물론 <code>catch()</code>로 프로미스에서 해결하지 못한 에러들도 추가적으로 처리가 가능하다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">showUser</span>(){
-	<span style="color:#66d9ef">try</span>{
-		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">getUserApi</span>();
-		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">userInfo</span>;
-	} <span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">error</span>) {
-		<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#a6e22e">error</span>);
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">async</span> <span style="color:#8be9fd;font-style:italic">function</span> showUser(){
+	<span style="color:#ff79c6">try</span>{
+		<span style="color:#ff79c6">const</span> result <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> getUserApi();
+		<span style="color:#ff79c6">return</span> userInfo;
+	} <span style="color:#ff79c6">catch</span>(error) {
+		console.error(error);
 	}
 }
-</code></pre></div><h3 id="top-level-await">Top-level await</h3>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="top-level-await">Top-level await</h3>
 <p>chrome 89+, Node.js 14+ 버전부터 async 함수 예외에서도 await을 사용할 수 있다고한다.<br>
 최신 브라우저에서는 async로 굳이 감싸지 않아도 될듯하다.. (실제 테스트해보았더니 잘 실행된다!)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">getUserApi</span>()
-	.<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">res</span>){ <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">res</span>) });
-</code></pre></div><h2 id="참고자료">참고자료</h2>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">await</span> getUserApi()
+	.then(<span style="color:#8be9fd;font-style:italic">function</span>(res){ console.log(JSON.stringify(res) });
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong>Node.js 교과서 - 프로미스 (조현영 저)</strong></li>
 <li><strong>자바스크립트 코딩의 기술 - async/await (조 모건 저)</strong></li>
