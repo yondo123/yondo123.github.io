@@ -252,4 +252,14 @@
     <changefreq>weekly</changefreq>
   </url>
   
+  <url>
+    <loc>https://jinyisland.kr/categories/typescript/</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/categories/cs/</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  
 </urlset>

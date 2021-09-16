@@ -112,12 +112,12 @@ binarySearch(&lt;span style=&#34;color:#bd93f9&#34;&gt;10&lt;/span&gt;, [&lt;spa
 </description>
         </item>
         <item>
-        <title>자바스크리트 모듈화</title>
+        <title>자바스크립트 모듈화</title>
         <link>https://jinyisland.kr/post/js-module/</link>
         <pubDate>Sat, 11 Sep 2021 23:36:33 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/js-module/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post 자바스크리트 모듈화" /&gt;&lt;h2 id=&#34;module&#34;&gt;Module&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post 자바스크립트 모듈화" /&gt;&lt;h2 id=&#34;module&#34;&gt;Module&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;module&lt;/code&gt;객체를 통해 각각의 기능이나 js파일들을 쉽게 모듈화가 가능하다.&lt;/p&gt;
 &lt;h3 id=&#34;export&#34;&gt;export&lt;/h3&gt;
 &lt;p&gt;코드를 외부에 내보내고 싶다면 &lt;code&gt;export&lt;/code&gt;문을 사용한다. 함수, 변수, 클래스 등을 내보낼 수 있다.&lt;/p&gt;
