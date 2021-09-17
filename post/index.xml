@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Sep 2021 23:25:12 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 Sep 2021 23:48:56 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Node.js HTTP모듈로 요청과 응답</title>
+      <link>https://jinyisland.kr/post/node-restapi/</link>
+      <pubDate>Fri, 17 Sep 2021 23:48:56 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/node-restapi/</guid>
+      <description>프레임워크 없이 Node.js 순수 http 모듈로 간단한 서버 구축해보기
+Request createServer 콜백에서 request, response 인자를 받는데 request 객체에서 요청 정보들을 받을 수 있다.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  const http = require(&amp;#34;http&amp;#34;); http.createServer(async (request, response)=&amp;gt;{ try{ const method = request.method; const url = request.url; //step 1. 요청 메소드 구분 	if(method == &amp;#34;GET&amp;#34;){ //step 2.</description>
+    </item>
+    
     <item>
       <title>탐색 알고리즘 (선형, 이진)</title>
       <link>https://jinyisland.kr/post/algorithm-search/</link>

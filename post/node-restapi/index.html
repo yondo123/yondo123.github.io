@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TN7PCJZTQ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6TN7PCJZTQ');
+</script>
+        <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='프레임워크 없이 Node.js 순수 http 모듈로 간단한 서버 구축해보기'><title>Node.js HTTP모듈로 요청과 응답</title>
+
+<link rel='canonical' href='https://jinyisland.kr/post/node-restapi/'>
+<link rel="icon" href="/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='Node.js HTTP모듈로 요청과 응답'>
+<meta property='og:description' content='프레임워크 없이 Node.js 순수 http 모듈로 간단한 서버 구축해보기'>
+<meta property='og:url' content='https://jinyisland.kr/post/node-restapi/'>
+<meta property='og:site_name' content='Jiny Island'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='node' /><meta property='article:tag' content='backend' /><meta property='article:published_time' content='2021-09-17T23:48:56&#43;09:00'/><meta property='article:modified_time' content='2021-09-17T23:48:56&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta name="twitter:title" content="Node.js HTTP모듈로 요청과 응답">
+<meta name="twitter:description" content="프레임워크 없이 Node.js 순수 http 모듈로 간단한 서버 구축해보기"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
+    .article-content code {
+        word-wrap:break-word;
+    }
+</style>
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub38313664a67c625b5c64f3cb8dc247e_143597_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny Island</a></h1>
+        <h2 class="site-description">🌈Junior FE Developer.</h2>
+    </header>
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span></span>
+            </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/node-restapi/">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" alt="Featured image of post Node.js HTTP모듈로 요청과 응답" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #636e72;">
+                Java Script
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/node-restapi/">Node.js HTTP모듈로 요청과 응답</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        프레임워크 없이 Node.js 순수 http 모듈로 간단한 서버 구축해보기
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Sep 17, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
+    <p>프레임워크 없이 Node.js 순수 http 모듈로 간단한 서버 구축해보기</p>
+<h2 id="request">Request</h2>
+<p>createServer 콜백에서 request, response 인자를 받는데 request 객체에서 요청 정보들을 받을 수 있다.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> http <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;http&#34;</span>);
+
+http.createServer(<span style="color:#ff79c6">async</span> (request, response)=&gt;{
+	<span style="color:#ff79c6">try</span>{
+		<span style="color:#ff79c6">const</span> method <span style="color:#ff79c6">=</span> request.method;
+		<span style="color:#ff79c6">const</span> url <span style="color:#ff79c6">=</span> request.url;
+		<span style="color:#6272a4">//step 1. 요청 메소드 구분
+</span><span style="color:#6272a4"></span>		<span style="color:#ff79c6">if</span>(method <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;GET&#34;</span>){
+			<span style="color:#6272a4">//step 2. URL 구분
+</span><span style="color:#6272a4"></span>			<span style="color:#ff79c6">if</span>(url <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;/&#34;</span>){
+			}<span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span>(url <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;/list&#34;</span>){
+			}
+		}<span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span>(method <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;POST&#34;</span>){
+			<span style="color:#6272a4">//code..
+</span><span style="color:#6272a4"></span>		}<span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span>(method <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;DELETE&#34;</span>){
+		}
+	} <span style="color:#ff79c6">catch</span> {
+		<span style="color:#6272a4">//step 3. 예외처리 (404, 500..)
+</span><span style="color:#6272a4"></span>	}
+}).listen(<span style="color:#bd93f9">8080</span>);
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>Method :</strong> request.method</li>
+<li><strong>url :</strong> request.url</li>
+</ul>
+<h3 id="script-및-css">script 및 css</h3>
+<p>부끄럽게도 나는 html 파일에서 스크립트와 css경로만 적어주면 알아서 갖고오겠지?? 라고 안일하게 생각했다.</p>
+<p>계속 못받아오길래 직접 로그로 띄워본 결과.. css, html 파일도 계속 request를 하는데 파일이 없으니 404 응답을 해주고있었다. (생각해보니 스프링에서도 context 경로 일일이 설정했다.)</p>
+<pre><code>../frontend/resources/css/style.css
+../frontend/resources/css/board.css
+[👻 LOGGER][method : GET, url : /resources/js/pagination.js]
+[👻 LOGGER][method : GET, url : /resources/js/board.js]
+../frontend/resources/js/pagination.js
+../frontend/resources/js/board.js
+[👻 LOGGER][method : GET, url : /list]
+[👻 LOGGER][method : GET, url : /favicon.ico]
+</code></pre><p>모든 리소스를 정적으로 일일이 구성하기에는 관리도 어렵고 부담스럽다.. url 경로를 동적으로 받아오면 된다!</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">try</span> {
+    <span style="color:#ff79c6">const</span> resource <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">`../frontend</span><span style="color:#f1fa8c">${</span>url<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>);
+    console.log(<span style="color:#f1fa8c">`../frontend</span><span style="color:#f1fa8c">${</span>url<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>);
+    <span style="color:#ff79c6">return</span> response.end(resource);
+} <span style="color:#ff79c6">catch</span> (error) {
+    <span style="color:#ff79c6">const</span> notFoundView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">&#34;../frontend/html/notFound.html&#34;</span>).<span style="color:#ff79c6">catch</span>((err) =&gt; {
+        <span style="color:#ff79c6">return</span> store.logger(<span style="color:#f1fa8c">&#34;error&#34;</span>, err);
+    });
+    response.writeHead(<span style="color:#bd93f9">404</span>, { <span style="color:#f1fa8c">&#34;content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;text/html; charset=utf-8&#34;</span>});
+    <span style="color:#ff79c6">return</span> response.end(notFoundView);
+}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="response">Response</h2>
+<p>이제 반대로 응답을 내려줄려면 response 객체를 활용하면된다.</p>
+<p><code>writeHead</code>메서드로 상태코드와 <a class="link" href="https://www.geeksforgeeks.org/http-headers-content-type/"  target="_blank" rel="noopener"
+    >HTTP ContentType</a>을 명시해주면되고 추가적으로 인코딩을 위해 <code>charset</code>도 정의해주면 좋다. (UTF-8 권장)</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#6272a4">//http 상태코드, http header 정의
+</span><span style="color:#6272a4"></span>response.writeHead(<span style="color:#bd93f9">200</span>, {<span style="color:#f1fa8c">&#34;Content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;http header; charset=utf-8&#34;</span>});
+<span style="color:#6272a4">//resource 전달 (html..json.. 등등)
+</span><span style="color:#6272a4"></span>response.end(data);
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="html-resource">HTML Resource</h3>
+<p>response.write(&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;) 형태로 직접 작성하면서 전달해줄 수 있지만 코드도 길어지고 비효율적이다.. fs 모듈로 html 파일을 갖고올 수 있다.</p>
+<p><code>fs 모듈</code>은 비동기 수행이므로 createServer 콜백을 async로 감싸는 것도 잊지말자.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx">
+<span style="color:#ff79c6">const</span> mainView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">&#34;../frontend/html/board.html&#34;</span>).<span style="color:#ff79c6">catch</span>((err)=&gt;{ console.error(err) });
+response.writeHead(<span style="color:#bd93f9">200</span>, {<span style="color:#f1fa8c">&#34;Content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;http header; charset=utf-8&#34;</span>});
+response.end(mainView);
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="json-resource">JSON Resource</h3>
+<p>restAPI 통신시 JSON 포맷 데이터를 애용하게되는데, <code>node</code>에서는 손 쉽게 객체로 내려줄 수 있다. (역시 JSON 다루는 것은 node.js가 편하다..)</p>
+<p>content-type을 JSON 형태로 맞추고 객체를 String객체로 변환시켜서 응답해주면 된다.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> list <span style="color:#ff79c6">=</span> {
+    result <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+    data <span style="color:#ff79c6">:</span> {
+        items <span style="color:#ff79c6">:</span> store.boardlist
+    }
+}
+response.writeHead(<span style="color:#bd93f9">200</span>, { <span style="color:#f1fa8c">&#34;content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Application/json; charset=utf-8&#34;</span>});
+<span style="color:#ff79c6">return</span> response.end(JSON.stringify(list));
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="후기">후기</h2>
+<p>이렇게 해서 간단한 서버를 만들어보았는데 확실히 스프링보다 생산성은 빠른것 같다.</p>
+<p>*위 내용은 공부한 내용을 축약해서 정리해보았는데 혹여나 전체 소스가 필요한 분들을 위해 아래에 정리해보았습니다.(서버소스만..)</p>
+<p><strong>파일 구조</strong></p>
+<pre><code>├── frontend
+│   ├── html
+│   │   ├── board.html
+│   │   ├── notFound.html
+│   │   └── serverError.html
+│   └── resources
+│       ├── css
+│       │   ├── board.css
+│       │   └── style.css
+│       └── js
+│           ├── board.js
+│           └── pagination.js
+└── server
+    ├── restApi.js
+    └── store.js
+</code></pre><p><strong>store.js</strong></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> store <span style="color:#ff79c6">=</span> {
+    boardlist <span style="color:#ff79c6">:</span> [{
+        title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
+        context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
+        writer <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;yondo123&#34;</span>,
+        writeDate <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;2021-09-17&#34;</span>
+    },{
+        title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
+        context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
+        writer <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;yondo123&#34;</span>,
+        writeDate <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;2021-09-17&#34;</span>
+    },{
+        title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
+        context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
+        writer <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;yondo123&#34;</span>,
+        writeDate <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;2021-09-17&#34;</span>
+    },{
+        title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
+        context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
+        writer <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;yondo123&#34;</span>,
+        writeDate <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;2021-09-17&#34;</span>
+    },{
+        title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
+        context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
+        writer <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;yondo123&#34;</span>,
+        writeDate <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;2021-09-17&#34;</span>
+    },{
+        title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
+        context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
+        writer <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;yondo123&#34;</span>,
+        writeDate <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;2021-09-17&#34;</span>
+    },{
+        title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
+        context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
+        writer <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;yondo123&#34;</span>,
+        writeDate <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;2021-09-17&#34;</span>
+    },{
+        title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
+        context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
+        writer <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;yondo123&#34;</span>,
+        writeDate <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;2021-09-17&#34;</span>
+    }],
+    logger <span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (type, message) {
+        <span style="color:#ff79c6">switch</span> (type) {
+            <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;log&#34;</span><span style="color:#ff79c6">:</span>
+                console.log(<span style="color:#f1fa8c">&#34;[👻 LOGGER]&#34;</span> <span style="color:#ff79c6">+</span> message);
+                <span style="color:#ff79c6">break</span>;
+            <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;error&#34;</span><span style="color:#ff79c6">:</span>
+                console.log(<span style="color:#f1fa8c">&#34;[⛔️ ERROR]&#34;</span> <span style="color:#ff79c6">+</span> message);
+                <span style="color:#ff79c6">break</span>;
+            <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;warn&#34;</span><span style="color:#ff79c6">:</span>
+                console.log(<span style="color:#f1fa8c">&#34;[🚸 WARN]&#34;</span> <span style="color:#ff79c6">+</span> message);
+                <span style="color:#ff79c6">break</span>;
+            <span style="color:#ff79c6">default</span><span style="color:#ff79c6">:</span>
+                console.error(<span style="color:#f1fa8c">&#34;[LOGGER] 지원하지 않는 타입&#34;</span>);
+                <span style="color:#ff79c6">break</span>;
+        }
+    }
+}
+
+module.exports <span style="color:#ff79c6">=</span> store;
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>server.js</strong></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> http <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;http&#34;</span>);
+<span style="color:#ff79c6">const</span> fs <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;fs&#34;</span>).promises;
+<span style="color:#ff79c6">const</span> store <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;./store&#34;</span>);
+
+http.createServer(<span style="color:#ff79c6">async</span> (request, response) =&gt; {
+    <span style="color:#ff79c6">try</span> {
+        <span style="color:#ff79c6">const</span> method <span style="color:#ff79c6">=</span> request.method;
+        <span style="color:#ff79c6">const</span> url <span style="color:#ff79c6">=</span> request.url;
+
+        store.logger(<span style="color:#f1fa8c">&#34;log&#34;</span>, <span style="color:#f1fa8c">`[method : </span><span style="color:#f1fa8c">${</span>method<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, url : </span><span style="color:#f1fa8c">${</span>url<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">]`</span>);
+
+        <span style="color:#6272a4">//GET Method
+</span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">if</span> (method <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;GET&#34;</span>) {
+            <span style="color:#ff79c6">if</span> (url <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;/&#34;</span>) {
+                <span style="color:#ff79c6">const</span> mainView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">&#34;../frontend/html/board.html&#34;</span>).<span style="color:#ff79c6">catch</span>((err) =&gt; {
+                    <span style="color:#ff79c6">return</span> store.logger(<span style="color:#f1fa8c">&#34;error&#34;</span>, err);
+                });
+                response.writeHead(<span style="color:#bd93f9">200</span>, { <span style="color:#f1fa8c">&#34;content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;text/html; charset=utf-8&#34;</span>});
+                <span style="color:#ff79c6">return</span> response.end(mainView);
+            }<span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span>(url <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;/list&#34;</span>){
+                <span style="color:#ff79c6">const</span> list <span style="color:#ff79c6">=</span> {
+                    result <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+                    data <span style="color:#ff79c6">:</span> {
+                        items <span style="color:#ff79c6">:</span> store.boardlist
+                    }
+                }
+                response.writeHead(<span style="color:#bd93f9">200</span>, { <span style="color:#f1fa8c">&#34;content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Application/json; charset=utf-8&#34;</span>});
+                <span style="color:#ff79c6">return</span> response.end(JSON.stringify(list));
+            }
+
+            <span style="color:#ff79c6">try</span> {
+                <span style="color:#ff79c6">const</span> view <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">`../frontend</span><span style="color:#f1fa8c">${</span>url<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>);
+                console.log(<span style="color:#f1fa8c">`../frontend</span><span style="color:#f1fa8c">${</span>url<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>);
+                <span style="color:#ff79c6">return</span> response.end(view);
+            } <span style="color:#ff79c6">catch</span> (error) {
+                <span style="color:#ff79c6">const</span> notFoundView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">&#34;../frontend/html/notFound.html&#34;</span>).<span style="color:#ff79c6">catch</span>((err) =&gt; {
+                    <span style="color:#ff79c6">return</span> store.logger(<span style="color:#f1fa8c">&#34;error&#34;</span>, err);
+                });
+                response.writeHead(<span style="color:#bd93f9">404</span>, { <span style="color:#f1fa8c">&#34;content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;text/html; charset=utf-8&#34;</span>});
+                <span style="color:#ff79c6">return</span> response.end(notFoundView);
+            }
+        }
+        <span style="color:#6272a4">//main
+</span><span style="color:#6272a4"></span>    } <span style="color:#ff79c6">catch</span> (error) {
+        store.logger(<span style="color:#f1fa8c">&#34;error&#34;</span>, error);
+    }
+}).listen(<span style="color:#bd93f9">8080</span>, ()=&gt;{
+    store.logger(<span style="color:#f1fa8c">&#34;log&#34;</span>, <span style="color:#f1fa8c">&#34;POST BOX START!!!!!&#34;</span>);
+});
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="참고자료">참고자료</h2>
+<ul>
+<li>Node.js 교과서 - http 모듈로 서버 만들기 (조현영 저)</li>
+<li><a class="link" href="https://www.geeksforgeeks.org/http-headers-content-type/"  target="_blank" rel="noopener"
+    >geeksforgeeks</a> - HTTP Content-Type</li>
+</ul>
+
+</section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false,
+    });
+</script>
+<style>
+     
+    @media all and (min-width:1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+    }
+
+    @media all and (max-width:1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: "목차";
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+
+    .toc-link::before {
+        width: 0;
+    }
+
+</style>
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/node/">node</a>
+        
+            <a href="/tags/backend/">backend</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title"></h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/js-module/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="js-module" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">자바스크립트 모듈화</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/algorithm-search/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="algorithm-search" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">탐색 알고리즘 (선형, 이진)</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/promise-async-await/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="promise-async-await" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Promise와 Async/await</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/eventloop/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="eventloop" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">비동기와 이벤트 루프</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/arrow-function/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="arrow-function" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">자바스크립트 화살표 함수</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jinyisland-kr" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Jiny Island
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
