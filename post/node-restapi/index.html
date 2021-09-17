@@ -241,7 +241,7 @@
 
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
-    <p>프레임워크 없이 Node.js 순수 http 모듈로 간단한 서버 구축해보기</p>
+    <p>Node.js HTTP 모듈을 통해 간단히 요청보내고, 주고받는 초간단 API 서버를 만들어보았다.</p>
 <h2 id="request">Request</h2>
 <p>createServer 콜백에서 request, response 인자를 받는데 request 객체에서 요청 정보들을 받을 수 있다.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
@@ -295,8 +295,8 @@ http.createServer(<span style="color:#ff79c6">async</span> (request, response)=&
 <li><strong>url :</strong> request.url</li>
 </ul>
 <h3 id="script-및-css">script 및 css</h3>
-<p>부끄럽게도 나는 html 파일에서 스크립트와 css경로만 적어주면 알아서 갖고오겠지?? 라고 안일하게 생각했다.</p>
-<p>계속 못받아오길래 직접 로그로 띄워본 결과.. css, html 파일도 계속 request를 하는데 파일이 없으니 404 응답을 해주고있었다. (생각해보니 스프링에서도 context 경로 일일이 설정했다.)</p>
+<p>부끄럽게도 나는 html 파일에서 스크립트와 css경로만 적어주면 알아서 갖고오겠지?? 라고 안일하게 생각했다.<br>
+계속 못받아오길래 직접 로그로 띄워본 결과(아래 참고).. css, html 파일도 계속 request를 하는데 파일이 없으니 404 응답을 해주고있었다. (생각해보니 스프링에서도 context 경로 일일이 설정했다..😅)</p>
 <pre><code>../frontend/resources/css/style.css
 ../frontend/resources/css/board.css
 [👻 LOGGER][method : GET, url : /resources/js/pagination.js]
@@ -335,8 +335,8 @@ http.createServer(<span style="color:#ff79c6">async</span> (request, response)=&
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="response">Response</h2>
-<p>이제 반대로 응답을 내려줄려면 response 객체를 활용하면된다.</p>
-<p><code>writeHead</code>메서드로 상태코드와 <a class="link" href="https://www.geeksforgeeks.org/http-headers-content-type/"  target="_blank" rel="noopener"
+<p>이제 반대로 응답을 내려줄려면 response 객체를 활용하면된다.<br>
+<code>writeHead</code>메서드로 상태코드와 <a class="link" href="https://www.geeksforgeeks.org/http-headers-content-type/"  target="_blank" rel="noopener"
     >HTTP ContentType</a>을 명시해주면되고 추가적으로 인코딩을 위해 <code>charset</code>도 정의해주면 좋다. (UTF-8 권장)</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -353,25 +353,22 @@ http.createServer(<span style="color:#ff79c6">async</span> (request, response)=&
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="html-resource">HTML Resource</h3>
-<p>response.write(&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;) 형태로 직접 작성하면서 전달해줄 수 있지만 코드도 길어지고 비효율적이다.. fs 모듈로 html 파일을 갖고올 수 있다.</p>
-<p><code>fs 모듈</code>은 비동기 수행이므로 createServer 콜백을 async로 감싸는 것도 잊지말자.</p>
+<p>response.write(&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;) 형태로 직접 작성하면서 전달해줄 수 있지만 코드도 길어지고 비효율적이다.. fs 모듈로 html 파일을 갖고올 수 있다. <code>fs 모듈</code>은 비동기 수행이므로 createServer 콜백을 async로 감싸는 것도 잊지말자.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx">
-<span style="color:#ff79c6">const</span> mainView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">&#34;../frontend/html/board.html&#34;</span>).<span style="color:#ff79c6">catch</span>((err)=&gt;{ console.error(err) });
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> mainView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">&#34;../frontend/html/board.html&#34;</span>).<span style="color:#ff79c6">catch</span>((err)=&gt;{ console.error(err) });
 response.writeHead(<span style="color:#bd93f9">200</span>, {<span style="color:#f1fa8c">&#34;Content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;http header; charset=utf-8&#34;</span>});
 response.end(mainView);
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="json-resource">JSON Resource</h3>
-<p>restAPI 통신시 JSON 포맷 데이터를 애용하게되는데, <code>node</code>에서는 손 쉽게 객체로 내려줄 수 있다. (역시 JSON 다루는 것은 node.js가 편하다..)</p>
-<p>content-type을 JSON 형태로 맞추고 객체를 String객체로 변환시켜서 응답해주면 된다.</p>
+<p>restAPI 통신시 JSON 포맷 데이터를 애용하게되는데, <code>node</code>에서는 손 쉽게 객체로 내려줄 수 있다. (역시 JSON 다루는 것은 node.js가 편하다..)<br>
+content-type을 JSON 형태로 맞추고 객체를 String객체로 변환시켜서 응답해주면 된다.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -395,8 +392,9 @@ response.writeHead(<span style="color:#bd93f9">200</span>, { <span style="color:
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="후기">후기</h2>
-<p>이렇게 해서 간단한 서버를 만들어보았는데 확실히 스프링보다 생산성은 빠른것 같다.</p>
-<p>*위 내용은 공부한 내용을 축약해서 정리해보았는데 혹여나 전체 소스가 필요한 분들을 위해 아래에 정리해보았습니다.(서버소스만..)</p>
+<p><img src="../../assets/js/node-rest-api.jpg" alt="node"  />
+이렇게 해서 간단한 서버를 만들어보았는데 확실히 구축 속도가 빠르긴하다.. 단 몇줄만으로 손쉽게 서버를 만들 수 있으니..<br>
+*<strong>위 내용은 공부한 내용을 축약해서 정리해보았는데 혹여나 전체 소스가 필요한 분들을 위해 아래에 정리해보았습니다.(서버소스만..)</strong></p>
 <p><strong>파일 구조</strong></p>
 <pre><code>├── frontend
 │   ├── html

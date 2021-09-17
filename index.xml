@@ -12,7 +12,7 @@
         <pubDate>Fri, 17 Sep 2021 23:48:56 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/node-restapi/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post Node.js HTTP모듈로 요청과 응답" /&gt;&lt;p&gt;프레임워크 없이 Node.js 순수 http 모듈로 간단한 서버 구축해보기&lt;/p&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post Node.js HTTP모듈로 요청과 응답" /&gt;&lt;p&gt;Node.js HTTP 모듈을 통해 간단히 요청보내고, 주고받는 초간단 API 서버를 만들어보았다.&lt;/p&gt;
 &lt;h2 id=&#34;request&#34;&gt;Request&lt;/h2&gt;
 &lt;p&gt;createServer 콜백에서 request, response 인자를 받는데 request 객체에서 요청 정보들을 받을 수 있다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
@@ -66,8 +66,8 @@ http.createServer(&lt;span style=&#34;color:#ff79c6&#34;&gt;async&lt;/span&gt; (
 &lt;li&gt;&lt;strong&gt;url :&lt;/strong&gt; request.url&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;script-및-css&#34;&gt;script 및 css&lt;/h3&gt;
-&lt;p&gt;부끄럽게도 나는 html 파일에서 스크립트와 css경로만 적어주면 알아서 갖고오겠지?? 라고 안일하게 생각했다.&lt;/p&gt;
-&lt;p&gt;계속 못받아오길래 직접 로그로 띄워본 결과.. css, html 파일도 계속 request를 하는데 파일이 없으니 404 응답을 해주고있었다. (생각해보니 스프링에서도 context 경로 일일이 설정했다.)&lt;/p&gt;
+&lt;p&gt;부끄럽게도 나는 html 파일에서 스크립트와 css경로만 적어주면 알아서 갖고오겠지?? 라고 안일하게 생각했다.&lt;br&gt;
+계속 못받아오길래 직접 로그로 띄워본 결과(아래 참고).. css, html 파일도 계속 request를 하는데 파일이 없으니 404 응답을 해주고있었다. (생각해보니 스프링에서도 context 경로 일일이 설정했다..😅)&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;../frontend/resources/css/style.css
 ../frontend/resources/css/board.css
 [👻 LOGGER][method : GET, url : /resources/js/pagination.js]
@@ -106,8 +106,8 @@ http.createServer(&lt;span style=&#34;color:#ff79c6&#34;&gt;async&lt;/span&gt; (
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;response&#34;&gt;Response&lt;/h2&gt;
-&lt;p&gt;이제 반대로 응답을 내려줄려면 response 객체를 활용하면된다.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;writeHead&lt;/code&gt;메서드로 상태코드와 &lt;a class=&#34;link&#34; href=&#34;https://www.geeksforgeeks.org/http-headers-content-type/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;p&gt;이제 반대로 응답을 내려줄려면 response 객체를 활용하면된다.&lt;br&gt;
+&lt;code&gt;writeHead&lt;/code&gt;메서드로 상태코드와 &lt;a class=&#34;link&#34; href=&#34;https://www.geeksforgeeks.org/http-headers-content-type/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;HTTP ContentType&lt;/a&gt;을 명시해주면되고 추가적으로 인코딩을 위해 &lt;code&gt;charset&lt;/code&gt;도 정의해주면 좋다. (UTF-8 권장)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
 &lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
@@ -124,25 +124,22 @@ http.createServer(&lt;span style=&#34;color:#ff79c6&#34;&gt;async&lt;/span&gt; (
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;html-resource&#34;&gt;HTML Resource&lt;/h3&gt;
-&lt;p&gt;response.write(&amp;quot;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&amp;quot;) 형태로 직접 작성하면서 전달해줄 수 있지만 코드도 길어지고 비효율적이다.. fs 모듈로 html 파일을 갖고올 수 있다.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;fs 모듈&lt;/code&gt;은 비동기 수행이므로 createServer 콜백을 async로 감싸는 것도 잊지말자.&lt;/p&gt;
+&lt;p&gt;response.write(&amp;quot;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&amp;quot;) 형태로 직접 작성하면서 전달해줄 수 있지만 코드도 길어지고 비효율적이다.. fs 모듈로 html 파일을 갖고올 수 있다. &lt;code&gt;fs 모듈&lt;/code&gt;은 비동기 수행이므로 createServer 콜백을 async로 감싸는 것도 잊지말자.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
 &lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
 &lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
 &lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2
 &lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;3
-&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;4
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
-&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; mainView &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;await&lt;/span&gt; fs.readFile(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;../frontend/html/board.html&amp;#34;&lt;/span&gt;).&lt;span style=&#34;color:#ff79c6&#34;&gt;catch&lt;/span&gt;((err)=&amp;gt;{ console.error(err) });
+&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; mainView &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;await&lt;/span&gt; fs.readFile(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;../frontend/html/board.html&amp;#34;&lt;/span&gt;).&lt;span style=&#34;color:#ff79c6&#34;&gt;catch&lt;/span&gt;((err)=&amp;gt;{ console.error(err) });
 response.writeHead(&lt;span style=&#34;color:#bd93f9&#34;&gt;200&lt;/span&gt;, {&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Content-Type&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http header; charset=utf-8&amp;#34;&lt;/span&gt;});
 response.end(mainView);
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;json-resource&#34;&gt;JSON Resource&lt;/h3&gt;
-&lt;p&gt;restAPI 통신시 JSON 포맷 데이터를 애용하게되는데, &lt;code&gt;node&lt;/code&gt;에서는 손 쉽게 객체로 내려줄 수 있다. (역시 JSON 다루는 것은 node.js가 편하다..)&lt;/p&gt;
-&lt;p&gt;content-type을 JSON 형태로 맞추고 객체를 String객체로 변환시켜서 응답해주면 된다.&lt;/p&gt;
+&lt;p&gt;restAPI 통신시 JSON 포맷 데이터를 애용하게되는데, &lt;code&gt;node&lt;/code&gt;에서는 손 쉽게 객체로 내려줄 수 있다. (역시 JSON 다루는 것은 node.js가 편하다..)&lt;br&gt;
+content-type을 JSON 형태로 맞추고 객체를 String객체로 변환시켜서 응답해주면 된다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
 &lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
 &lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
@@ -166,8 +163,9 @@ response.writeHead(&lt;span style=&#34;color:#bd93f9&#34;&gt;200&lt;/span&gt;, {
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;후기&#34;&gt;후기&lt;/h2&gt;
-&lt;p&gt;이렇게 해서 간단한 서버를 만들어보았는데 확실히 스프링보다 생산성은 빠른것 같다.&lt;/p&gt;
-&lt;p&gt;*위 내용은 공부한 내용을 축약해서 정리해보았는데 혹여나 전체 소스가 필요한 분들을 위해 아래에 정리해보았습니다.(서버소스만..)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../assets/js/node-rest-api.jpg&#34; alt=&#34;node&#34;  /&gt;
+이렇게 해서 간단한 서버를 만들어보았는데 확실히 구축 속도가 빠르긴하다.. 단 몇줄만으로 손쉽게 서버를 만들 수 있으니..&lt;br&gt;
+*&lt;strong&gt;위 내용은 공부한 내용을 축약해서 정리해보았는데 혹여나 전체 소스가 필요한 분들을 위해 아래에 정리해보았습니다.(서버소스만..)&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;파일 구조&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;├── frontend
 │   ├── html
