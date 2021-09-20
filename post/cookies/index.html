@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TN7PCJZTQ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6TN7PCJZTQ');
+</script>
+        <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='쿠키를 활용한 사용자 식별 방법 및 간단히 구현해보기'><title>Http 쿠키의 개념과 사용자 식별</title>
+
+<link rel='canonical' href='https://jinyisland.kr/post/cookies/'>
+<link rel="icon" href="/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='Http 쿠키의 개념과 사용자 식별'>
+<meta property='og:description' content='쿠키를 활용한 사용자 식별 방법 및 간단히 구현해보기'>
+<meta property='og:url' content='https://jinyisland.kr/post/cookies/'>
+<meta property='og:site_name' content='Jiny Island'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='http' /><meta property='article:tag' content='cookie' /><meta property='article:tag' content='node.js' /><meta property='article:published_time' content='2021-09-20T18:49:47&#43;09:00'/><meta property='article:modified_time' content='2021-09-20T18:49:47&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/web/web.png' />
+<meta name="twitter:title" content="Http 쿠키의 개념과 사용자 식별">
+<meta name="twitter:description" content="쿠키를 활용한 사용자 식별 방법 및 간단히 구현해보기"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/web/web.png' /><style>
+    .article-content code {
+        word-wrap:break-word;
+    }
+</style>
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub38313664a67c625b5c64f3cb8dc247e_143597_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny Island</a></h1>
+        <h2 class="site-description">🌈Junior FE Developer.</h2>
+    </header>
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span></span>
+            </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/cookies/">
+                
+                    <img src="../../assets/web/web.png" loading="lazy" alt="Featured image of post Http 쿠키의 개념과 사용자 식별" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/web/" style="background-color: #81ecec; color: #fff;">
+                Web
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/cookies/">Http 쿠키의 개념과 사용자 식별</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        쿠키를 활용한 사용자 식별 방법 및 간단히 구현해보기
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Sep 20, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
+    <h2 id="http">Http</h2>
+<p>http 트랜잭션에는 상태가 없다. 모든 사용자 요청에는 사이트 기능에 맞는 상태들을 유지하는데 (사용자 정보, 권한 등등..) 이런 무수히 많은 상태들을 관리하려면 사용자를 식별할 수 있는 방법이 필요하다. 그중에 하나가 쿠키이다. 물론 사용자를 가릴 수 있는 방법에 초창기 여러 가지 방법이 있었는데 사용자 IP를 활용한 방법 등이 있었다. IP를 활용한 방법에는 다음과 같은 문제점이 있다.</p>
+<ul>
+<li>사용자 기준이 아닌 접속 PC의 IP이기 때문에 정확한 사용자 구별이 어려움</li>
+<li>ISP가 제공하는 IP 대역을 사용하는 경우, 대부분 매번 다른 주소를 받으므로 추후 식별이 어려움</li>
+<li>NAT 장비 등, 보안을 위해 IP 주소를 private 하게 관리 → 서버에서 받는 사용자 IP가 실제 IP가 아닐 수 있음</li>
+</ul>
+<p>위와 같은 문제점으로, IP를 활용한 방식보다 아예 사용자 마다의 인증 프로세스를 부여하여 명확한 식별 요청을 할 수 있는데 이 기능이 바로 우리가 흔히 접하는 <strong>로그인 기능</strong></p>
+<h2 id="cookie">Cookie</h2>
+<p>쿠키는 사용자를 식별하고 세션을 유지시키는 방식 중에서 널리 사용되고 있는 방식이다. 유효 기간이 있으며 <code>key</code>와 <code>value</code>으로 이루어져 있다.</p>
+<h3 id="동작방식">동작방식</h3>
+<p><img src="../assets/../../assets/web/http-cookie.png" alt="http-cookie"  /></p>
+<p>사용자가 처음 웹 사이트에 방문하면 서버는 사용자가 어떤 사용자인지 전혀 알지 못한다. 해당 사용자가 다시 웹 사이트에 방문할 때 해당 사용자가 어떤 사용자인지 식별하기 위해  서버에서는 응답 헤더에 쿠키 값을 할당한다. 형식은 다음과 같다.</p>
+<pre><code>Cookie: userName=&quot;jiny&quot;; auth=&quot;1&quot;
+</code></pre><p>이제 브라우저(클라이언트)에서는 응답 헤더에서 쿠키 컨텐츠를 브라우저 쿠키 데이터베이스에 저장시킨다. 이는 <em><strong>Chrome</strong></em> 기준이며 각 브라우저별로 쿠키 보관 방식이 다르다.</p>
+<ul>
+<li>
+<p>chrome : sqlite local DB에 Cookies라는 테이블에 쿠키 정보 저장</p>
+<p>해당 테이블은 아래 필드로 이루어져 있다.</p>
+<ul>
+<li>host_key : 쿠키 도메인</li>
+<li>name : 쿠키 이름</li>
+<li>value : 쿠키 값</li>
+<li>path : 쿠키 도메인 경로</li>
+<li>expire_utc : 만료 시점 (UTC 기준 초 단위)</li>
+</ul>
+</li>
+<li>
+<p>Internet Explorer : 캐시 디렉토리에 개별 파일로 쿠키 저장</p>
+</li>
+</ul>
+<h3 id="세션-쿠키와-지속-쿠키">세션 쿠키와 지속 쿠키</h3>
+<p>세션 쿠키는 사용자가 브라우저를 닫으면 삭제되며, 지속 쿠키는 사용자 PC 드라이브에 저장되어 재시작해도 살아있다.<br>
+(Discard 파라미터 또는 만료시간 등이 설정되지 않은 쿠키는 기본적으로 세션 쿠키로 설정된다.)</p>
+<h2 id="cookie-주고받기">Cookie 주고받기</h2>
+<p>node.js를 사용한 간단한 쿠키 주고받는 소스이다.<br>
+<code>singup</code>이라는  POST 요청이 들어오면, 클라이언트에서 전송한 사용자 ID를 바로 쿠키에 set 해서 응답한다. 브라우저에서는 해당 쿠키를 저장하고 다음 요청부터는 <code>Request Headers</code>에 쿠키를 삽입해서 서버로 전송한다. 주의할 점은 한글 문자열을 사용할 때  encodeURIComponent와 decodeURIComponent로 변환 해주는 과정이 필요하다.</p>
+<h3 id="setcookie">SetCookie</h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> http <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;http&#34;</span>);
+
+http.createServer(<span style="color:#ff79c6">async</span> (request, response) =&gt; {
+<span style="color:#ff79c6">const</span> method <span style="color:#ff79c6">=</span> request.mtehod;
+<span style="color:#ff79c6">const</span> url <span style="color:#ff79c6">=</span> request.url
+
+<span style="color:#ff79c6">if</span>(method <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;POST&#34;</span> <span style="color:#ff79c6">&amp;&amp;</span> url <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;/signup&#34;</span>){
+	<span style="color:#8be9fd;font-style:italic">let</span> body <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>;
+	request.on(<span style="color:#f1fa8c">&#34;data&#34;</span>, (data)=&gt;{
+		body <span style="color:#ff79c6">+=</span> data;
+	});
+
+	<span style="color:#ff79c6">return</span> request.on(<span style="color:#f1fa8c">&#34;end&#34;</span>, ()=&gt;{
+		<span style="color:#ff79c6">const</span> result <span style="color:#ff79c6">=</span> {
+		    result<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+		    message<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;success&#34;</span>,
+		};
+		body <span style="color:#ff79c6">=</span> JSON.parse(body);
+		<span style="color:#6272a4">//응답 헤더에 쿠키 설정
+</span><span style="color:#6272a4"></span>		response.writeHead(<span style="color:#bd93f9">200</span>, {
+			<span style="color:#f1fa8c">&#34;content-Type&#34;</span><span style="color:#ff79c6">:</span><span style="color:#f1fa8c">&#34;Application/json; charset=utf-8&#34;</span>,
+			<span style="color:#f1fa8c">&#34;Set-Cookie&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">`user-id=</span><span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">encodeURIComponent</span>(body.id)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>,
+		});
+<span style="color:#ff79c6">~~~~</span>		response.end(JSON.stringify(result));
+	});
+}})}).listen(<span style="color:#bd93f9">8088</span>, () =&gt; {
+    store.logger(<span style="color:#f1fa8c">&#34;log&#34;</span>, <span style="color:#f1fa8c">&#34;POST BOX START!!!!!&#34;</span>);
+});;
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="getcookie">getCookie</h3>
+<p>이제 클라이언트에서 쿠키를 포함한 요청을 보내면 서버 측에서도 쿠키를 식별해야 한다.<br>
+아쉽게도 node.js에서는 쿠키 값을 빼내올 함수가 따로 존재하지 않는다. <code>request.headers.cookie</code>에 쿠키 정보는 확인할 수 있지만 원하는 쿠키 값을 찾으려면 직접 함수로 구현해야 한다. 여러 책이나 자료에서도 찾을 수 있지만, 한번 cookie 구조 파악 겸 직접 작성해 보았다.😅</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#6272a4">//쿠키 형식(request.headers.cookie) : _ga=GA1.1.55873572.1627649409; _ga_6TN7PCJZTQ=GS1.1.1631890653.16.1.1631891304.0; user-id=asddsa
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> getCookie <span style="color:#ff79c6">=</span> (cookies, key) =&gt; {
+    <span style="color:#ff79c6">const</span> cookieArray <span style="color:#ff79c6">=</span> cookies.split(<span style="color:#f1fa8c">&#34;;&#34;</span>);
+    <span style="color:#8be9fd;font-style:italic">let</span> value <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>;
+    cookieArray.forEach((element) =&gt; {
+        <span style="color:#ff79c6">if</span> (element.split(<span style="color:#f1fa8c">&#34;=&#34;</span>)[<span style="color:#bd93f9">0</span>].trim() <span style="color:#ff79c6">===</span> key) {
+            <span style="color:#ff79c6">return</span> (value <span style="color:#ff79c6">=</span> element.split(<span style="color:#f1fa8c">&#34;=&#34;</span>)[<span style="color:#bd93f9">1</span>]);
+        }
+    });
+    <span style="color:#ff79c6">return</span> value.length <span style="color:#ff79c6">?</span> <span style="color:#8be9fd;font-style:italic">decodeURIComponent</span>(value) <span style="color:#ff79c6">:</span> value;
+};
+</code></pre></td></tr></table>
+</div>
+</div><p>해당 함수를 바탕으로 원하는 쿠키 값이 있는지 확인할 수 있다.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">if</span> (method <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;POST&#34;</span> <span style="color:#ff79c6">&amp;&amp;</span> url <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;/write&#34;</span>) {
+		<span style="color:#6272a4">//쿠키 값 탐색 
+</span><span style="color:#6272a4"></span>		<span style="color:#ff79c6">const</span> userId <span style="color:#ff79c6">=</span> getCookie(request.headers.cookie, <span style="color:#f1fa8c">&#34;user-id&#34;</span>);
+		<span style="color:#8be9fd;font-style:italic">let</span> body <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>;
+		<span style="color:#6272a4">//쿠키 값 존재시 해당 사용자 ID, 아니면 익명 ID로 값 저장
+</span><span style="color:#6272a4"></span>		<span style="color:#8be9fd;font-style:italic">let</span> writer <span style="color:#ff79c6">=</span> userId.length <span style="color:#ff79c6">?</span> userId <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;anonymous&#34;</span>;
+		request.on(<span style="color:#f1fa8c">&#34;data&#34;</span>, (data) =&gt; {
+		    body <span style="color:#ff79c6">+=</span> data;
+		});
+		
+		<span style="color:#ff79c6">return</span> request.on(<span style="color:#f1fa8c">&#34;end&#34;</span>, () =&gt; {
+		    <span style="color:#ff79c6">if</span> (body.length) {
+		        body <span style="color:#ff79c6">=</span> JSON.parse(body);
+		        store.boardlist.push({
+		            title<span style="color:#ff79c6">:</span> body.title,
+		            context<span style="color:#ff79c6">:</span> body.context,
+		            writer<span style="color:#ff79c6">:</span> writer,
+		            writeDate<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>().toISOString().substr(<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">10</span>),
+		        });
+					
+						<span style="color:#6272a4">//응답 성공 시 메인 화면으로 redirect
+</span><span style="color:#6272a4"></span>		        response.writeHead(<span style="color:#bd93f9">302</span>, {
+		            Location<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;/&#34;</span>,
+		        });
+		        response.end();
+		    } <span style="color:#ff79c6">else</span> {
+		        response.writeHead(<span style="color:#bd93f9">500</span>, { <span style="color:#f1fa8c">&#34;content-Type&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Application/json; charset=utf-8&#34;</span> });
+		        response.end(
+		            JSON.stringify({
+		                result<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>,
+		                message<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;NOT Value&#34;</span>,
+		            })
+		        );
+		    }
+		});
+}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="여러옵션">여러옵션</h2>
+<h3 id="expire">Expire</h3>
+<p>유효기간을 설정해야 지속 쿠키로 사용할 수 있다. <code>Expires</code>키로 설정할 수 있고 GMTString 형태로 변환해 전송해야 한다.<br>
+만약 초를 입력하려면 <code>Max-age=3000</code>형태로 <strong>Max-age</strong>키를 사용해야 한다.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> minute <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span>;
+<span style="color:#ff79c6">const</span> expireTime <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>();
+expireTime.setMinutes(expireTime.getMinues() <span style="color:#ff79c6">+</span> minute);
+
+response.writeHead(<span style="color:#bd93f9">200</span>, {
+	<span style="color:#f1fa8c">&#34;Set-Cookie&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">`Expires=</span><span style="color:#f1fa8c">${</span>expireTime<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>,
+});
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="httponly">HttpOnly</h3>
+<p>스크립트로 접근할 수 없음, 로그인 등 보안이 필요한 요청에 필수적으로 사용 권장하며 조작을 방지할 수 있다.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#f1fa8c">&#34;Set-Cookie&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;name=test; HttpOnly;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="path">Path</h3>
+<p>해당 경로 이하 도메인에 쿠키 사용, 예를들어 Path = /user라면, /user 하위의 도메인에만 쿠키를 사용한다. (root 도메인에선 쿠키 사용 안함)</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#f1fa8c">&#34;Set-Cookie&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;name=test; HttpOnly Path=/;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="domain">Domain</h3>
+<p>쿠키가 전송될 도메인을 지정한다. (default 값은 현재 도메인)</p>
+<h3 id="secure">Secure</h3>
+<p>HTTPS일 경우에만 쿠키가 전송된다.</p>
+<h2 id="정리">정리</h2>
+<p>이렇게 쿠키에 대해서 정리를 해보았다. 쿠키는 용도가 명확하다, 어떤 사용자인지 쉽게 식별할 수 있고 도메인 내에서 쿠키 권한을 각각 다르게 함으로써 분기 처리도 쉽게 할 수 있다.</p>
+<p>만약 로그인 기능을 구현한다면 로그인했을 때 해당 사용자가 어떠한 권한이 있는지, 해당 사용자의 로그인 기간은 얼마나 줄 것인지 이렇게 사용자 식별을 위해 도입된 로그인 기능을 좀 더 세밀하게 사용할 수 있다. 물론 브라우저와 디스크에 저장되기 때문에 예민한 정보들은 사용자가 알아볼 수 없도록 내부 키값을 따로 지정해 사용하는 등 여러 고민들도 해봐야 할 것 같다.</p>
+<h2 id="참고-자료">참고 자료</h2>
+<ul>
+<li>HTTP 완벽 가이드 - 클라이언트 식별과 쿠키</li>
+<li>Node.js 교과서 - 쿠키와 세션 이해하기 (조현영 저)</li>
+</ul>
+
+</section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false,
+    });
+</script>
+<style>
+     
+    @media all and (min-width:1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+    }
+
+    @media all and (max-width:1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: "목차";
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+
+    .toc-link::before {
+        width: 0;
+    }
+
+</style>
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/http/">http</a>
+        
+            <a href="/tags/cookie/">cookie</a>
+        
+            <a href="/tags/node.js/">node.js</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title"></h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/hugo-ga/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/web/web.png" loading="lazy" data-key="hugo-ga" data-hash="../../assets/web/web.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">GoogleAnalytics 4 휴고 블로그에 적용 시키기</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jinyisland-kr" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 Jiny Island
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

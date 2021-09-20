@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Web on Jiny Island</title>
-    <link>https://jinyisland.kr/categories/web/</link>
-    <description>Recent content in Web on Jiny Island</description>
+    <title>node.js on Jiny Island</title>
+    <link>https://jinyisland.kr/tags/node.js/</link>
+    <description>Recent content in node.js on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Sep 2021 18:49:47 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/web/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Sep 2021 18:49:47 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/node.js/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Http 쿠키의 개념과 사용자 식별</title>
       <link>https://jinyisland.kr/post/cookies/</link>
@@ -15,19 +15,6 @@
       <guid>https://jinyisland.kr/post/cookies/</guid>
       <description>Http http 트랜잭션에는 상태가 없다. 모든 사용자 요청에는 사이트 기능에 맞는 상태들을 유지하는데 (사용자 정보, 권한 등등..) 이런 무수히 많은 상태들을 관리하려면 사용자를 식별할 수 있는 방법이 필요하다. 그중에 하나가 쿠키이다. 물론 사용자를 가릴 수 있는 방법에 초창기 여러 가지 방법이 있었는데 사용자 IP를 활용한 방법 등이 있었다. IP를 활용한 방법에는 다음과 같은 문제점이 있다.
  사용자 기준이 아닌 접속 PC의 IP이기 때문에 정확한 사용자 구별이 어려움 ISP가 제공하는 IP 대역을 사용하는 경우, 대부분 매번 다른 주소를 받으므로 추후 식별이 어려움 NAT 장비 등, 보안을 위해 IP 주소를 private 하게 관리 → 서버에서 받는 사용자 IP가 실제 IP가 아닐 수 있음  위와 같은 문제점으로, IP를 활용한 방식보다 아예 사용자 마다의 인증 프로세스를 부여하여 명확한 식별 요청을 할 수 있는데 이 기능이 바로 우리가 흔히 접하는 로그인 기능</description>
-    </item>
-    
-    <item>
-      <title>GoogleAnalytics 4 휴고 블로그에 적용 시키기</title>
-      <link>https://jinyisland.kr/post/hugo-ga/</link>
-      <pubDate>Fri, 30 Jul 2021 22:15:51 +0900</pubDate>
-      
-      <guid>https://jinyisland.kr/post/hugo-ga/</guid>
-      <description>Google Analytics 4 내 블로그의 정적 웹사이트 호스팅 플랫폼은 hugo를 쓰고 있다.
-예전에 잠깐 썼던 Jekyll 플랫폼과 비교했을 때 배포속도도 빠르고 테마 문서도 잘 되어있어서 편하다 ㅎㅎ
-원래 SEO에 대해 신경 쓰지 않고있다가, GoogleAnaytics와 GoogleSearchConsle을 적용시켜보려고 이것저것 시도해봤지만, 아직도 구글 애널리틱스 보고서에는 방문자가 0이다..
-(사실 진짜 0명인줄 알았으나 내가 들어와있어도 실시간에는 0이다..)
-새로운 추적 ID 구글링을 통해 알아본 휴고에 구글 애널리틱스 적용하는 글들을 보면, config.toml에 GoogleAnalytics변수에 그냥 추적 ID를 넣으면 끝이라는 내용이 많아 실제로 그렇게 해보았는데 적용이 안되고 있다.</description>
     </item>
     
   </channel>

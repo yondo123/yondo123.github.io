@@ -3,25 +3,67 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://jinyisland.kr/categories/</loc>
+    <lastmod>2021-09-20T18:49:47+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/cookie/</loc>
+    <lastmod>2021-09-20T18:49:47+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/http/</loc>
+    <lastmod>2021-09-20T18:49:47+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/cookies/</loc>
+    <lastmod>2021-09-20T18:49:47+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/</loc>
+    <lastmod>2021-09-20T18:49:47+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/node.js/</loc>
+    <lastmod>2021-09-20T18:49:47+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/</loc>
+    <lastmod>2021-09-20T18:49:47+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/</loc>
+    <lastmod>2021-09-20T18:49:47+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/categories/web/</loc>
+    <lastmod>2021-09-20T18:49:47+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
     <loc>https://jinyisland.kr/tags/backend/</loc>
     <lastmod>2021-09-17T23:48:56+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
-    <loc>https://jinyisland.kr/categories/</loc>
-    <lastmod>2021-09-17T23:48:56+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
     <loc>https://jinyisland.kr/categories/javascript/</loc>
-    <lastmod>2021-09-17T23:48:56+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/</loc>
     <lastmod>2021-09-17T23:48:56+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -34,18 +76,6 @@
   
   <url>
     <loc>https://jinyisland.kr/post/node-restapi/</loc>
-    <lastmod>2021-09-17T23:48:56+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/post/</loc>
-    <lastmod>2021-09-17T23:48:56+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/tags/</loc>
     <lastmod>2021-09-17T23:48:56+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -196,12 +226,6 @@
   
   <url>
     <loc>https://jinyisland.kr/tags/hugo/</loc>
-    <lastmod>2021-07-30T22:15:51+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/categories/web/</loc>
     <lastmod>2021-07-30T22:15:51+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>

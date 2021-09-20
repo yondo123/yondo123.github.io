@@ -6,7 +6,283 @@
         <description>Recent content on Jiny Island</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 17 Sep 2021 23:48:56 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 20 Sep 2021 18:49:47 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Http 쿠키의 개념과 사용자 식별</title>
+        <link>https://jinyisland.kr/post/cookies/</link>
+        <pubDate>Mon, 20 Sep 2021 18:49:47 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/cookies/</guid>
+        <description>&lt;img src="https://jinyisland.kr/../../assets/web/web.png" alt="Featured image of post Http 쿠키의 개념과 사용자 식별" /&gt;&lt;h2 id=&#34;http&#34;&gt;Http&lt;/h2&gt;
+&lt;p&gt;http 트랜잭션에는 상태가 없다. 모든 사용자 요청에는 사이트 기능에 맞는 상태들을 유지하는데 (사용자 정보, 권한 등등..) 이런 무수히 많은 상태들을 관리하려면 사용자를 식별할 수 있는 방법이 필요하다. 그중에 하나가 쿠키이다. 물론 사용자를 가릴 수 있는 방법에 초창기 여러 가지 방법이 있었는데 사용자 IP를 활용한 방법 등이 있었다. IP를 활용한 방법에는 다음과 같은 문제점이 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;사용자 기준이 아닌 접속 PC의 IP이기 때문에 정확한 사용자 구별이 어려움&lt;/li&gt;
+&lt;li&gt;ISP가 제공하는 IP 대역을 사용하는 경우, 대부분 매번 다른 주소를 받으므로 추후 식별이 어려움&lt;/li&gt;
+&lt;li&gt;NAT 장비 등, 보안을 위해 IP 주소를 private 하게 관리 → 서버에서 받는 사용자 IP가 실제 IP가 아닐 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;위와 같은 문제점으로, IP를 활용한 방식보다 아예 사용자 마다의 인증 프로세스를 부여하여 명확한 식별 요청을 할 수 있는데 이 기능이 바로 우리가 흔히 접하는 &lt;strong&gt;로그인 기능&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;cookie&#34;&gt;Cookie&lt;/h2&gt;
+&lt;p&gt;쿠키는 사용자를 식별하고 세션을 유지시키는 방식 중에서 널리 사용되고 있는 방식이다. 유효 기간이 있으며 &lt;code&gt;key&lt;/code&gt;와 &lt;code&gt;value&lt;/code&gt;으로 이루어져 있다.&lt;/p&gt;
+&lt;h3 id=&#34;동작방식&#34;&gt;동작방식&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;../assets/../../assets/web/http-cookie.png&#34; alt=&#34;http-cookie&#34;  /&gt;&lt;/p&gt;
+&lt;p&gt;사용자가 처음 웹 사이트에 방문하면 서버는 사용자가 어떤 사용자인지 전혀 알지 못한다. 해당 사용자가 다시 웹 사이트에 방문할 때 해당 사용자가 어떤 사용자인지 식별하기 위해  서버에서는 응답 헤더에 쿠키 값을 할당한다. 형식은 다음과 같다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Cookie: userName=&amp;quot;jiny&amp;quot;; auth=&amp;quot;1&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;이제 브라우저(클라이언트)에서는 응답 헤더에서 쿠키 컨텐츠를 브라우저 쿠키 데이터베이스에 저장시킨다. 이는 &lt;em&gt;&lt;strong&gt;Chrome&lt;/strong&gt;&lt;/em&gt; 기준이며 각 브라우저별로 쿠키 보관 방식이 다르다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;chrome : sqlite local DB에 Cookies라는 테이블에 쿠키 정보 저장&lt;/p&gt;
+&lt;p&gt;해당 테이블은 아래 필드로 이루어져 있다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;host_key : 쿠키 도메인&lt;/li&gt;
+&lt;li&gt;name : 쿠키 이름&lt;/li&gt;
+&lt;li&gt;value : 쿠키 값&lt;/li&gt;
+&lt;li&gt;path : 쿠키 도메인 경로&lt;/li&gt;
+&lt;li&gt;expire_utc : 만료 시점 (UTC 기준 초 단위)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Internet Explorer : 캐시 디렉토리에 개별 파일로 쿠키 저장&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;세션-쿠키와-지속-쿠키&#34;&gt;세션 쿠키와 지속 쿠키&lt;/h3&gt;
+&lt;p&gt;세션 쿠키는 사용자가 브라우저를 닫으면 삭제되며, 지속 쿠키는 사용자 PC 드라이브에 저장되어 재시작해도 살아있다.&lt;br&gt;
+(Discard 파라미터 또는 만료시간 등이 설정되지 않은 쿠키는 기본적으로 세션 쿠키로 설정된다.)&lt;/p&gt;
+&lt;h2 id=&#34;cookie-주고받기&#34;&gt;Cookie 주고받기&lt;/h2&gt;
+&lt;p&gt;node.js를 사용한 간단한 쿠키 주고받는 소스이다.&lt;br&gt;
+&lt;code&gt;singup&lt;/code&gt;이라는  POST 요청이 들어오면, 클라이언트에서 전송한 사용자 ID를 바로 쿠키에 set 해서 응답한다. 브라우저에서는 해당 쿠키를 저장하고 다음 요청부터는 &lt;code&gt;Request Headers&lt;/code&gt;에 쿠키를 삽입해서 서버로 전송한다. 주의할 점은 한글 문자열을 사용할 때  encodeURIComponent와 decodeURIComponent로 변환 해주는 과정이 필요하다.&lt;/p&gt;
+&lt;h3 id=&#34;setcookie&#34;&gt;SetCookie&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 1
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 2
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 3
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 4
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 5
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 6
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 7
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 8
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 9
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;10
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;11
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;12
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;13
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;14
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;15
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;16
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;17
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;18
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;19
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;20
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;21
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;22
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;23
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;24
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;25
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;26
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;27
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;28
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;29
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; http &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http&amp;#34;&lt;/span&gt;);
+
+http.createServer(&lt;span style=&#34;color:#ff79c6&#34;&gt;async&lt;/span&gt; (request, response) =&amp;gt; {
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; method &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; request.mtehod;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; url &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; request.url
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt;(method &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;POST&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; url &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;/signup&amp;#34;&lt;/span&gt;){
+	&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; body &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;;
+	request.on(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;data&amp;#34;&lt;/span&gt;, (data)=&amp;gt;{
+		body &lt;span style=&#34;color:#ff79c6&#34;&gt;+=&lt;/span&gt; data;
+	});
+
+	&lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; request.on(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;end&amp;#34;&lt;/span&gt;, ()=&amp;gt;{
+		&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; result &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+		    result&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;,
+		    message&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;success&amp;#34;&lt;/span&gt;,
+		};
+		body &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; JSON.parse(body);
+		&lt;span style=&#34;color:#6272a4&#34;&gt;//응답 헤더에 쿠키 설정
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;		response.writeHead(&lt;span style=&#34;color:#bd93f9&#34;&gt;200&lt;/span&gt;, {
+			&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;content-Type&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Application/json; charset=utf-8&amp;#34;&lt;/span&gt;,
+			&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Set-Cookie&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;`user-id=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;encodeURIComponent&lt;/span&gt;(body.id)&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;,
+		});
+&lt;span style=&#34;color:#ff79c6&#34;&gt;~~~~&lt;/span&gt;		response.end(JSON.stringify(result));
+	});
+}})}).listen(&lt;span style=&#34;color:#bd93f9&#34;&gt;8088&lt;/span&gt;, () =&amp;gt; {
+    store.logger(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;log&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;POST BOX START!!!!!&amp;#34;&lt;/span&gt;);
+});;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;getcookie&#34;&gt;getCookie&lt;/h3&gt;
+&lt;p&gt;이제 클라이언트에서 쿠키를 포함한 요청을 보내면 서버 측에서도 쿠키를 식별해야 한다.&lt;br&gt;
+아쉽게도 node.js에서는 쿠키 값을 빼내올 함수가 따로 존재하지 않는다. &lt;code&gt;request.headers.cookie&lt;/code&gt;에 쿠키 정보는 확인할 수 있지만 원하는 쿠키 값을 찾으려면 직접 함수로 구현해야 한다. 여러 책이나 자료에서도 찾을 수 있지만, 한번 cookie 구조 파악 겸 직접 작성해 보았다.😅&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 1
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 2
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 3
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 4
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 5
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 6
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 7
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 8
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 9
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;10
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;//쿠키 형식(request.headers.cookie) : _ga=GA1.1.55873572.1627649409; _ga_6TN7PCJZTQ=GS1.1.1631890653.16.1.1631891304.0; user-id=asddsa
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; getCookie &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; (cookies, key) =&amp;gt; {
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; cookieArray &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; cookies.split(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;;&amp;#34;&lt;/span&gt;);
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;;
+    cookieArray.forEach((element) =&amp;gt; {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (element.split(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;=&amp;#34;&lt;/span&gt;)[&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;].trim() &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; key) {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; (value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; element.split(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;=&amp;#34;&lt;/span&gt;)[&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;]);
+        }
+    });
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; value.length &lt;span style=&#34;color:#ff79c6&#34;&gt;?&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;decodeURIComponent&lt;/span&gt;(value) &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; value;
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;해당 함수를 바탕으로 원하는 쿠키 값이 있는지 확인할 수 있다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 1
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 2
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 3
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 4
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 5
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 6
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 7
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 8
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 9
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;10
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;11
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;12
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;13
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;14
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;15
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;16
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;17
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;18
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;19
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;20
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;21
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;22
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;23
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;24
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;25
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;26
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;27
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;28
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;29
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;30
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;31
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;32
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;33
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;34
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;35
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;36
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (method &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;POST&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; url &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;/write&amp;#34;&lt;/span&gt;) {
+		&lt;span style=&#34;color:#6272a4&#34;&gt;//쿠키 값 탐색 
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;		&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; userId &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; getCookie(request.headers.cookie, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;user-id&amp;#34;&lt;/span&gt;);
+		&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; body &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;;
+		&lt;span style=&#34;color:#6272a4&#34;&gt;//쿠키 값 존재시 해당 사용자 ID, 아니면 익명 ID로 값 저장
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;		&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; writer &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; userId.length &lt;span style=&#34;color:#ff79c6&#34;&gt;?&lt;/span&gt; userId &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;anonymous&amp;#34;&lt;/span&gt;;
+		request.on(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;data&amp;#34;&lt;/span&gt;, (data) =&amp;gt; {
+		    body &lt;span style=&#34;color:#ff79c6&#34;&gt;+=&lt;/span&gt; data;
+		});
+		
+		&lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; request.on(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;end&amp;#34;&lt;/span&gt;, () =&amp;gt; {
+		    &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (body.length) {
+		        body &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; JSON.parse(body);
+		        store.boardlist.push({
+		            title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; body.title,
+		            context&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; body.context,
+		            writer&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; writer,
+		            writeDate&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;().toISOString().substr(&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#bd93f9&#34;&gt;10&lt;/span&gt;),
+		        });
+					
+						&lt;span style=&#34;color:#6272a4&#34;&gt;//응답 성공 시 메인 화면으로 redirect
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;		        response.writeHead(&lt;span style=&#34;color:#bd93f9&#34;&gt;302&lt;/span&gt;, {
+		            Location&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;,
+		        });
+		        response.end();
+		    } &lt;span style=&#34;color:#ff79c6&#34;&gt;else&lt;/span&gt; {
+		        response.writeHead(&lt;span style=&#34;color:#bd93f9&#34;&gt;500&lt;/span&gt;, { &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;content-Type&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Application/json; charset=utf-8&amp;#34;&lt;/span&gt; });
+		        response.end(
+		            JSON.stringify({
+		                result&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;,
+		                message&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;NOT Value&amp;#34;&lt;/span&gt;,
+		            })
+		        );
+		    }
+		});
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;여러옵션&#34;&gt;여러옵션&lt;/h2&gt;
+&lt;h3 id=&#34;expire&#34;&gt;Expire&lt;/h3&gt;
+&lt;p&gt;유효기간을 설정해야 지속 쿠키로 사용할 수 있다. &lt;code&gt;Expires&lt;/code&gt;키로 설정할 수 있고 GMTString 형태로 변환해 전송해야 한다.&lt;br&gt;
+만약 초를 입력하려면 &lt;code&gt;Max-age=3000&lt;/code&gt;형태로 &lt;strong&gt;Max-age&lt;/strong&gt;키를 사용해야 한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;3
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;4
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;5
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;6
+&lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; minute &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; expireTime &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;();
+expireTime.setMinutes(expireTime.getMinues() &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; minute);
+
+response.writeHead(&lt;span style=&#34;color:#bd93f9&#34;&gt;200&lt;/span&gt;, {
+	&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Set-Cookie&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;`Expires=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;expireTime&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;,
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;httponly&#34;&gt;HttpOnly&lt;/h3&gt;
+&lt;p&gt;스크립트로 접근할 수 없음, 로그인 등 보안이 필요한 요청에 필수적으로 사용 권장하며 조작을 방지할 수 있다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Set-Cookie&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;name=test; HttpOnly;&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;path&#34;&gt;Path&lt;/h3&gt;
+&lt;p&gt;해당 경로 이하 도메인에 쿠키 사용, 예를들어 Path = /user라면, /user 하위의 도메인에만 쿠키를 사용한다. (root 도메인에선 쿠키 사용 안함)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
+&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Set-Cookie&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;name=test; HttpOnly Path=/;&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;domain&#34;&gt;Domain&lt;/h3&gt;
+&lt;p&gt;쿠키가 전송될 도메인을 지정한다. (default 값은 현재 도메인)&lt;/p&gt;
+&lt;h3 id=&#34;secure&#34;&gt;Secure&lt;/h3&gt;
+&lt;p&gt;HTTPS일 경우에만 쿠키가 전송된다.&lt;/p&gt;
+&lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
+&lt;p&gt;이렇게 쿠키에 대해서 정리를 해보았다. 쿠키는 용도가 명확하다, 어떤 사용자인지 쉽게 식별할 수 있고 도메인 내에서 쿠키 권한을 각각 다르게 함으로써 분기 처리도 쉽게 할 수 있다.&lt;/p&gt;
+&lt;p&gt;만약 로그인 기능을 구현한다면 로그인했을 때 해당 사용자가 어떠한 권한이 있는지, 해당 사용자의 로그인 기간은 얼마나 줄 것인지 이렇게 사용자 식별을 위해 도입된 로그인 기능을 좀 더 세밀하게 사용할 수 있다. 물론 브라우저와 디스크에 저장되기 때문에 예민한 정보들은 사용자가 알아볼 수 없도록 내부 키값을 따로 지정해 사용하는 등 여러 고민들도 해봐야 할 것 같다.&lt;/p&gt;
+&lt;h2 id=&#34;참고-자료&#34;&gt;참고 자료&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP 완벽 가이드 - 클라이언트 식별과 쿠키&lt;/li&gt;
+&lt;li&gt;Node.js 교과서 - 쿠키와 세션 이해하기 (조현영 저)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>Node.js HTTP모듈로 요청과 응답</title>
         <link>https://jinyisland.kr/post/node-restapi/</link>
         <pubDate>Fri, 17 Sep 2021 23:48:56 +0900</pubDate>
