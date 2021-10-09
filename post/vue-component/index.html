@@ -24,7 +24,7 @@
 <meta property='og:description' content='Vue의 핵심인 컴포넌트 이해하기'>
 <meta property='og:url' content='https://jinyisland.kr/post/vue-component/'>
 <meta property='og:site_name' content='Jiny Island'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='vue' /><meta property='article:published_time' content='2021-07-01T21:27:40&#43;09:00'/><meta property='article:modified_time' content='2021-07-01T21:27:40&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/vue/vue.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='frontend' /><meta property='article:published_time' content='2021-07-01T21:27:40&#43;09:00'/><meta property='article:modified_time' content='2021-07-01T21:27:40&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/vue/vue.png' />
 <meta name="twitter:title" content="Vue 컴포넌트에 대한 개념">
 <meta name="twitter:description" content="Vue의 핵심인 컴포넌트 이해하기"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jinyisland.kr/../../assets/vue/vue.png' /><style>
@@ -247,24 +247,7 @@
 <h3 id="전역-컴포넌트">전역 컴포넌트</h3>
 <p>주로 플러그인, 라이브러리 등 앱 전역에서 사용 할 공통 컴포넌트를 작성한다.<br>
 전역 컴포넌트를 생성하면 <strong>새 인스턴스를 생성할 때 마다 기본적으로 생성한다.</strong></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//컴포넌트 생성
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//컴포넌트 생성
 </span><span style="color:#6272a4"></span>Vue.component(<span style="color:#f1fa8c">&#39;app-header&#39;</span>, {
     template<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&lt;h1&gt;header&lt;/h1&gt;&#39;</span> <span style="color:#6272a4">//component Template
 </span><span style="color:#6272a4"></span>});
@@ -277,26 +260,11 @@ Vue.component(<span style="color:#f1fa8c">&#39;app-content&#39;</span>, {
 </span><span style="color:#6272a4"></span><span style="color:#ff79c6">new</span> Vue({
     el<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;#app&#39;</span> <span style="color:#6272a4">//selector
 </span><span style="color:#6272a4"></span>});
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="지역-컴포넌트">지역 컴포넌트</h3>
+</code></pre></div><h3 id="지역-컴포넌트">지역 컴포넌트</h3>
 <p>Vue 인스턴스 내에 직접 삽입하는 방식이다. <code>components</code>로 정의한다.<br>
 Tree 구조로 구성할 수 있으며, 부모-자식 간 컴포넌트 사이 통신이 가능하다.<br>
 지역 컴포넌트는 해당 인스턴스에서만 동작한다. 따라서 인스턴스를 새로 생성할 때 마다 컴포넌트를 등록해주어야 한다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">new</span> Vue({
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">new</span> Vue({
     el<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;#app&#39;</span>, <span style="color:#6272a4">//selector
 </span><span style="color:#6272a4"></span>    components<span style="color:#ff79c6">:</span> {
         <span style="color:#6272a4">//지역 컴포넌트 정의
@@ -305,27 +273,14 @@ Tree 구조로 구성할 수 있으며, 부모-자식 간 컴포넌트 사이 �
         }
     }
 });
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="template">Template</h3>
+</code></pre></div><h3 id="template">Template</h3>
 <p>템플릿 내에 생성한 컴포넌트를 태그로 지정한다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;app&#34;</span>&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;app&#34;</span>&gt;
         <span style="color:#6272a4">&lt;!--컴포넌트에 등록한 템플릿 지정--&gt;</span>
         &lt;<span style="color:#ff79c6">app-header</span>&gt;&lt;/<span style="color:#ff79c6">app-header</span>&gt;
         &lt;<span style="color:#ff79c6">app-content</span>&gt;&lt;/<span style="color:#ff79c6">app-content</span>&gt;
 &lt;/<span style="color:#ff79c6">div</span>&gt;
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="컴포넌트-통신-방식">컴포넌트 통신 방식</h2>
+</code></pre></div><h2 id="컴포넌트-통신-방식">컴포넌트 통신 방식</h2>
 <p><img src="https://user-images.githubusercontent.com/46988995/124051330-4041dc00-da57-11eb-9132-9c411b842f3a.png" alt="components"  /><br>
 Vue 컴포넌트는 각 고유한 데이터 유효범위를 갖는다.<br>
 부모 컴포넌트의 데이터가 바뀌면 하위 컴포넌트의 데이터가 바뀌지만, 반대로 하위 컴포넌트의 데이터가 바뀌면 부모 컴포넌트가 바뀌지 않는다. <code>(단방향 흐름)</code></p>
@@ -333,41 +288,11 @@ Vue 컴포넌트는 각 고유한 데이터 유효범위를 갖는다.<br>
 <p>상위 컴포넌트에서 하위 컴포넌트로 데이터 전달 시 사용한다.<br>
 vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는데, 하위 컴포넌트에서 상위 컴포넌트의 데이터 속성에 접근이 가능하다.<br>
 자세하게 말하면, v-bind로 <strong>해당 컴포넌트에서 정의된 props</strong> 속성에 접근할 수 있고 <code>props</code>의 역할은 부모의 <code>data</code>영역에 접근할 수 있게 해주는 속성이라고 볼 수 있다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#6272a4">&lt;!--template--&gt;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#6272a4">&lt;!--template--&gt;</span>
 &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;app&#34;</span>&gt;
 	&lt;<span style="color:#ff79c6">app-header</span> <span style="color:#50fa7b">v-bind:propsdata</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;message&#34;</span>&gt;&lt;/<span style="color:#ff79c6">app-header</span>&gt;
 &lt;/<span style="color:#ff79c6">div</span>&gt;
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//하위 컴포넌트
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//하위 컴포넌트
 </span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">var</span> appHeader <span style="color:#ff79c6">=</span> {
     template<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&lt;h1&gt;header&lt;/h1&gt;&#39;</span>,
     props<span style="color:#ff79c6">:</span> [<span style="color:#f1fa8c">&#39;propsdata&#39;</span>]
@@ -383,57 +308,15 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
         message<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;hello Vue~~!!&#39;</span>
     }
 });
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="emit">emit</h3>
+</code></pre></div><h3 id="emit">emit</h3>
 <p>props와는 반대로 하위 컴포넌트에서 상위 컴포넌트로 이벤트를 전달할 수 있다.<br>
 이벤트를 전달함으로써, 콜백내 <code>this</code>를 통해 상위 데이터에 접근하는 방법이다.<br>
 컴포넌트 <code>methods</code> 속성 내에 여러 이벤트들을 정의할 수 있는데, 정의한 <code>custom event</code>를 트리거하려면 <code>$emit</code>메서드에 이벤트 이름을 전달하면 된다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;app&#34;</span>&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;app&#34;</span>&gt;
         &lt;<span style="color:#ff79c6">app-content</span> <span style="color:#50fa7b">v-on:add</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;addNumber&#34;</span>&gt;&lt;/<span style="color:#ff79c6">app-content</span>&gt;
         &lt;<span style="color:#ff79c6">p</span>&gt;number : {{number}}&lt;/<span style="color:#ff79c6">p</span>&gt;
     &lt;/<span style="color:#ff79c6">div</span>&gt;
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">    <span style="color:#6272a4">//하위 컴포넌트
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">    <span style="color:#6272a4">//하위 컴포넌트
 </span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">const</span> appContent <span style="color:#ff79c6">=</span> {
         template<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&lt;button v-on:add=&#34;addNumber&#34;&gt;add&lt;/button&gt;&#39;</span>, 
         methods<span style="color:#ff79c6">:</span> {
@@ -459,9 +342,7 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
             number<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1</span>
         }
     });
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="동등-컴포넌트-간-통신">동등 컴포넌트 간 통신</h2>
+</code></pre></div><h2 id="동등-컴포넌트-간-통신">동등 컴포넌트 간 통신</h2>
 <ul>
 <li>
 <p><strong>내가 생각하는 컴포넌트 통신</strong>
@@ -475,50 +356,11 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
 </li>
 </ul>
 <p>만일 같은 레벨의 header와 footer 사이 데이터 전달이 필요하다면 먼저 <code>body</code>에 데이터를 전달해야한다. <code>($emit)</code></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;body&#34;</span>&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;body&#34;</span>&gt;
         &lt;<span style="color:#ff79c6">app-header</span>&gt;&lt;/<span style="color:#ff79c6">app-header</span>&gt;
         &lt;<span style="color:#ff79c6">app-footer</span> <span style="color:#50fa7b">v-on:message</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;bindData&#34;</span>&gt;&lt;/<span style="color:#ff79c6">app-footer</span>&gt; 
 &lt;/<span style="color:#ff79c6">div</span>&gt;
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//footer 컴포넌트
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//footer 컴포넌트
 </span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> footer <span style="color:#ff79c6">=</span> {
     template<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&lt;div&gt;&lt;h3&gt;FOOTER&lt;/h3&gt;&lt;button v-on:click=&#34;passData&#34;&gt;trans-data&lt;/button&gt;&lt;/div&gt;&#39;</span>,
     methods<span style="color:#ff79c6">:</span> {
@@ -543,35 +385,15 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
         }
     },
 });
-</code></pre></td></tr></table>
-</div>
-</div><p>이제 부모의 message는 하위 컴포넌트에서 전달한 데이터로 변경이 되어있다.<br>
+</code></pre></div><p>이제 부모의 message는 하위 컴포넌트에서 전달한 데이터로 변경이 되어있다.<br>
 <code>props</code>속성을 통해 접근하면된다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">app-header</span> <span style="color:#50fa7b">v-bind:headerdata</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;message&#34;</span>&gt;&lt;/<span style="color:#ff79c6">app-header</span>&gt;
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//header 컴포넌트
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">app-header</span> <span style="color:#50fa7b">v-bind:headerdata</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;message&#34;</span>&gt;&lt;/<span style="color:#ff79c6">app-header</span>&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//header 컴포넌트
 </span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> header <span style="color:#ff79c6">=</span> {
     template <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&lt;h2&gt;Header&lt;/h2&gt;&#39;</span>,
     props <span style="color:#ff79c6">:</span> [<span style="color:#f1fa8c">&#39;headerdata&#39;</span>]
 }
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="참고자료">참고자료</h2>
+</code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><a class="link" href="https://vuejs.org/v2/api/#vm-emit"  target="_blank" rel="noopener"
     ><strong>Vue 공식문서 - vm-emit</strong></a></li>
@@ -647,7 +469,7 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
     
     <section class="article-tags">
         
-            <a href="/tags/vue/">vue</a>
+            <a href="/tags/frontend/">frontend</a>
         
     </section>
 
@@ -663,6 +485,42 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
         <h2 class="section-title"></h2>
         <div class="related-contents">
             <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/computed-watch/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/vue/vue.png" loading="lazy" data-key="computed-watch" data-hash="../../assets/vue/vue.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">computed와 Watch</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/vue-router/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/vue/vue.png" loading="lazy" data-key="vue-router" data-hash="../../assets/vue/vue.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Vue 라우터 개념 및 사용방법</h2>
+        </div>
+    </a>
+</article>
                 
                     
 <article class="has-image">
@@ -696,24 +554,6 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
 
         <div class="article-details">
             <h2 class="article-title">Vue 설치하기 및 프로젝트 구조</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/post/vue-router/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/vue/vue.png" loading="lazy" data-key="vue-router" data-hash="../../assets/vue/vue.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Vue 라우터 개념 및 사용방법</h2>
         </div>
     </a>
 </article>

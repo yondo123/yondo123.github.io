@@ -16,9 +16,10 @@
       <description>클로저 개념 클로저는 쉽게말해 함수 선언시 생성되는 유효 범위이다.
 먼저 자바스크립트에서 클로저를 이해하려면 범위 지정(Lexical Scoping)을 이해하여야 한다.
 아래 코드를 보자.
-1 2 3 4 5 6 7 8  var apple = &amp;#39;🍎&amp;#39;; function displayApple(){ console.log(apple); } displayApple(); //result : 🍎   간단하게 사과를 출력해주는 함수다.
+var apple = &amp;#39;🍎&amp;#39;; function displayApple(){ console.log(apple); } displayApple(); //result : 🍎 간단하게 사과를 출력해주는 함수다.
 하지만, 정작 함수안에는 apple이라는 변수가 없는데도 불구하고 사과가 출력되었다.
-지난번 실행컨텍스트에서 언급했듯이 해당 유효범위에서 식별자를 찾지 못하면 점점 상위 ~ 전역으로 탐색한다. Scope Chain</description>
+지난번 실행컨텍스트에서 언급했듯이 해당 유효범위에서 식별자를 찾지 못하면 점점 상위 ~ 전역으로 탐색한다. Scope Chain
+var displayPrice; var apple = **&amp;#39;🍎&amp;#39;;** function displayApple(){ var price = 1000; console.</description>
     </item>
     
   </channel>

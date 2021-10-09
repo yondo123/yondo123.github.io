@@ -264,40 +264,14 @@ GA에는 고유적으로 추적에 사용할 ID가 주어지는데 GA관리자 �
 <p><strong>3. Hugo에 적용시키기</strong><br>
 이제 이 추적 ID를 휴고에 적용시키면 끝!<br>
 <code>config.toml</code>에 추적 ID를 사용 할 변수로 지정해놓는다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[params]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[params]
 googleAnalytics = <span style="color:#f1fa8c">&#34;G-XXXXXX&#34;</span>
 .
 .
-</code></pre></td></tr></table>
-</div>
-</div><p>구글 애널리틱스에서 제공하는 온페이지 태그를 추가해야한다.<br>
+</code></pre></div><p>구글 애널리틱스에서 제공하는 온페이지 태그를 추가해야한다.<br>
 휴고에서는 보통 <code>./layout/partials</code>디렉토리에 사이드 html을 작성해주기 때문에 구글 애널리틱스 스크립트를 위한 html을 작성한다.<br>
 <code>Site.Params</code>부분에 config.toml에 정의한 추적 ID 변수를 적어주면 된다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#6272a4">&lt;!-- layout/partials/google-analytics.md--&gt;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#6272a4">&lt;!-- layout/partials/google-analytics.md--&gt;</span>
 &lt;<span style="color:#ff79c6">script</span> <span style="color:#50fa7b">async</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleAnalytics }}&#34;</span>&gt;&lt;/<span style="color:#ff79c6">script</span>&gt;
 &lt;<span style="color:#ff79c6">script</span>&gt;
     <span style="color:#8be9fd;font-style:italic">window</span>.dataLayer <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">window</span>.dataLayer <span style="color:#ff79c6">||</span> [];
@@ -309,31 +283,16 @@ googleAnalytics = <span style="color:#f1fa8c">&#34;G-XXXXXX&#34;</span>
 
     gtag(<span style="color:#f1fa8c">&#39;config&#39;</span>, <span style="color:#f1fa8c">&#39;{{ .Site.Params.googleAnalytics }}&#39;</span>);
 &lt;/<span style="color:#ff79c6">script</span>&gt;
-</code></pre></td></tr></table>
-</div>
-</div><p>이제 휴고 블로그에 모든 페이지에서 이 스크립트를 로드해주면 된다.<br>
+</code></pre></div><p>이제 휴고 블로그에 모든 페이지에서 이 스크립트를 로드해주면 된다.<br>
 보통 전역에서 사용할 html은 <code>/layout/_default/baseof.html</code>에 작성한다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">head</span>&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">head</span>&gt;
     {{ if .Site.Params.googleAnalytics }}
     {{ partial &#34;google-analytics.html&#34; . }}
     {{ end }}
     {{- partial &#34;head/head.html&#34; . -}}
     {{- block &#34;head&#34; . -}}{{ end }}
 &lt;/<span style="color:#ff79c6">head</span>&gt;
-</code></pre></td></tr></table>
-</div>
-</div><p>여기까지 설정하면 구글애널리틱스에서 접속 현황이 잘 노출이된다!<br>
+</code></pre></div><p>여기까지 설정하면 구글애널리틱스에서 접속 현황이 잘 노출이된다!<br>
 깃에 배포하고 다시 블로그에 들어가면  아래 사진 처럼 잘 나오는 것을 확인할 수 있다.<br>
 <img src="../../assets/web/visit.png" alt="ga-visit"  /></p>
 

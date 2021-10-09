@@ -6,7 +6,17 @@
     <description>Recent content in node on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Sep 2021 23:48:56 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/node/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Sep 2021 18:49:47 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/node/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Http 쿠키의 개념과 사용자 식별</title>
+      <link>https://jinyisland.kr/post/cookies/</link>
+      <pubDate>Mon, 20 Sep 2021 18:49:47 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/cookies/</guid>
+      <description>Http http 트랜잭션에는 상태가 없다. 모든 사용자 요청에는 사이트 기능에 맞는 상태들을 유지하는데 (사용자 정보, 권한 등등..) 이런 무수히 많은 상태들을 관리하려면 사용자를 식별할 수 있는 방법이 필요하다. 그중에 하나가 쿠키이다. 물론 사용자를 가릴 수 있는 방법에 초창기 여러 가지 방법이 있었는데 사용자 IP를 활용한 방법 등이 있었다. IP를 활용한 방법에는 다음과 같은 문제점이 있다.
+ 사용자 기준이 아닌 접속 PC의 IP이기 때문에 정확한 사용자 구별이 어려움 ISP가 제공하는 IP 대역을 사용하는 경우, 대부분 매번 다른 주소를 받으므로 추후 식별이 어려움 NAT 장비 등, 보안을 위해 IP 주소를 private 하게 관리 → 서버에서 받는 사용자 IP가 실제 IP가 아닐 수 있음  위와 같은 문제점으로, IP를 활용한 방식보다 아예 사용자 마다의 인증 프로세스를 부여하여 명확한 식별 요청을 할 수 있는데 이 기능이 바로 우리가 흔히 접하는 로그인 기능</description>
+    </item>
+    
     <item>
       <title>Node.js HTTP모듈로 요청과 응답</title>
       <link>https://jinyisland.kr/post/node-restapi/</link>
@@ -15,7 +25,7 @@
       <guid>https://jinyisland.kr/post/node-restapi/</guid>
       <description>Node.js HTTP 모듈을 통해 간단히 요청보내고, 주고받는 초간단 API 서버를 만들어보았다.
 Request createServer 콜백에서 request, response 인자를 받는데 request 객체에서 요청 정보들을 받을 수 있다.
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  const http = require(&amp;#34;http&amp;#34;); http.createServer(async (request, response)=&amp;gt;{ try{ const method = request.method; const url = request.url; //step 1. 요청 메소드 구분 	if(method == &amp;#34;GET&amp;#34;){ //step 2.</description>
+const http = require(&amp;#34;http&amp;#34;); http.createServer(async (request, response)=&amp;gt;{ try{ const method = request.method; const url = request.url; //step 1. 요청 메소드 구분 	if(method == &amp;#34;GET&amp;#34;){ //step 2. URL 구분 	if(url == &amp;#34;/&amp;#34;){ }else if(url == &amp;#34;/list&amp;#34;){ } }else if(method == &amp;#34;POST&amp;#34;){ //code.. 	}else if(method == &amp;#34;DELETE&amp;#34;){ } } catch { //step 3.</description>
     </item>
     
     <item>
@@ -26,7 +36,8 @@ Request createServer 콜백에서 request, response 인자를 받는데 request 
       <guid>https://jinyisland.kr/post/js-module/</guid>
       <description>Module module객체를 통해 각각의 기능이나 js파일들을 쉽게 모듈화가 가능하다.
 export 코드를 외부에 내보내고 싶다면 export문을 사용한다. 함수, 변수, 클래스 등을 내보낼 수 있다.
-1 2 3 4 5 6 7 8 9 10 11 12  //📁module/util.js const constants = { message : &amp;#39;simple message&amp;#39;; } const requestUrl = &amp;#39;/xyz-url&amp;#39;; const private = { privateKey : &amp;#39;1234&amp;#39; } export {constants, requestUrl}; //배열로도 export가 가능하다. (1~2개 모듈은 보통 객체형식으로 많이 사용)   각각의 모듈 대상에 export 예약어를 붙여 내보낼 수도 있다.</description>
+//📁module/util.js const constants = { message : &amp;#39;simple message&amp;#39;; } const requestUrl = &amp;#39;/xyz-url&amp;#39;; const private = { privateKey : &amp;#39;1234&amp;#39; } export {constants, requestUrl}; //배열로도 export가 가능하다. (1~2개 모듈은 보통 객체형식으로 많이 사용) 각각의 모듈 대상에 export 예약어를 붙여 내보낼 수도 있다.
+export function constants = { message : &amp;#39;simple message&amp;#39;; } import import를 통해 상대 경로에 위치한 모듈 파일을 가져올 수 있다.</description>
     </item>
     
   </channel>

@@ -24,7 +24,7 @@
 <meta property='og:description' content='문자열 처리를 더욱 쉽게 할 수 있는 방법'>
 <meta property='og:url' content='https://jinyisland.kr/post/template-literals/'>
 <meta property='og:site_name' content='Jiny Island'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='javascript' /><meta property='article:tag' content='es6&#43;' /><meta property='article:published_time' content='2021-09-05T19:36:27&#43;09:00'/><meta property='article:modified_time' content='2021-09-05T19:36:27&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='es6&#43;' /><meta property='article:published_time' content='2021-09-05T19:36:27&#43;09:00'/><meta property='article:modified_time' content='2021-09-05T19:36:27&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
 <meta name="twitter:title" content="자바스크립트 템플릿리터럴">
 <meta name="twitter:description" content="문자열 처리를 더욱 쉽게 할 수 있는 방법"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
@@ -244,45 +244,19 @@
     <h2 id="temlate-literals">Temlate literals</h2>
 <p>기존 문자열 결합 시 연산자(+)를 사용하였는데 백틱(`) 기호를 사용하여 쉽게 결합할 수 있다.</p>
 <h3 id="기존-연산자-사용">기존 연산자 사용</h3>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> fruit <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;apple&#39;</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> fruit <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;apple&#39;</span>;
 <span style="color:#ff79c6">const</span> color <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;red&#39;</span>;
 console.log(<span style="color:#f1fa8c">&#39;My Favorite Fruit is&#39;</span> <span style="color:#ff79c6">+</span> fruit <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#39;, color is &#39;</span> <span style="color:#ff79c6">+</span> color ); <span style="color:#6272a4">//&#34;My Favorite Fruit isapple, color is red&#34;
-</span></code></pre></td></tr></table>
-</div>
-</div><h3 id="템플릿리터럴-사용">템플릿리터럴 사용</h3>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> fruit <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;apple&#39;</span>;
+</span></code></pre></div><h3 id="템플릿리터럴-사용">템플릿리터럴 사용</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> fruit <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;apple&#39;</span>;
 <span style="color:#ff79c6">const</span> color <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;red&#39;</span>;
 console.log(<span style="color:#f1fa8c">`My favorite Fruit is </span><span style="color:#f1fa8c">${</span>fruit<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, color is </span><span style="color:#f1fa8c">${</span>color<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>);
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="장점">장점</h3>
+</code></pre></div><h3 id="장점">장점</h3>
 <p>보통 복잡한 문자열이거나 html 코드등을 직접 스크립트상에서 삽입할 때 쌍따옴표-홀따옴표등과 같이 사용하는 경우에 상당히 복잡했었다. (따옴표 종료 위치를 일일이 신경써야했기에)<br>
 템플릿리터럴을 사용하면 일반 텍스트를 작성하듯 변수 위치만 신경써주면되니까 이런점이 편하다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;Jiny&#39;</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;Jiny&#39;</span>;
 <span style="color:#ff79c6">const</span> template <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">`&lt;p class=&#34;user-name&#34;&gt;</span><span style="color:#f1fa8c">${</span>name<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&lt;/p&gt;`</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="참고자료">참고자료</h2>
+</code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong>자바스크립트 코딩의 기술 - 조모건 저</strong></li>
 </ul>
@@ -354,8 +328,6 @@ console.log(<span style="color:#f1fa8c">`My favorite Fruit is </span><span style
     <footer class="article-footer">
     
     <section class="article-tags">
-        
-            <a href="/tags/javascript/">javascript</a>
         
             <a href="/tags/es6&#43;/">es6&#43;</a>
         
@@ -430,6 +402,24 @@ console.log(<span style="color:#f1fa8c">`My favorite Fruit is </span><span style
                 
                     
 <article class="has-image">
+    <a href="/post/node-restapi/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="node-restapi" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Node.js HTTP모듈로 요청과 응답</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
     <a href="/post/algorithm-search/">
         
         
@@ -442,24 +432,6 @@ console.log(<span style="color:#f1fa8c">`My favorite Fruit is </span><span style
 
         <div class="article-details">
             <h2 class="article-title">탐색 알고리즘 (선형, 이진)</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/post/js-module/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="js-module" data-hash="../../assets/js/js.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">자바스크립트 모듈화</h2>
         </div>
     </a>
 </article>

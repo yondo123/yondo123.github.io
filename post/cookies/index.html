@@ -24,7 +24,7 @@
 <meta property='og:description' content='쿠키를 활용한 사용자 식별 방법 및 간단히 구현해보기'>
 <meta property='og:url' content='https://jinyisland.kr/post/cookies/'>
 <meta property='og:site_name' content='Jiny Island'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='http' /><meta property='article:tag' content='cookie' /><meta property='article:tag' content='node.js' /><meta property='article:published_time' content='2021-09-20T18:49:47&#43;09:00'/><meta property='article:modified_time' content='2021-09-20T18:49:47&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/web/web.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='http' /><meta property='article:tag' content='cookie' /><meta property='article:tag' content='node' /><meta property='article:published_time' content='2021-09-20T18:49:47&#43;09:00'/><meta property='article:modified_time' content='2021-09-20T18:49:47&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/web/web.png' />
 <meta name="twitter:title" content="Http 쿠키의 개념과 사용자 식별">
 <meta name="twitter:description" content="쿠키를 활용한 사용자 식별 방법 및 간단히 구현해보기"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jinyisland.kr/../../assets/web/web.png' /><style>
@@ -279,40 +279,7 @@
 <p>node.js를 사용한 간단한 쿠키 주고받는 소스이다.<br>
 <code>singup</code>이라는  POST 요청이 들어오면, 클라이언트에서 전송한 사용자 ID를 바로 쿠키에 set 해서 응답한다. 브라우저에서는 해당 쿠키를 저장하고 다음 요청부터는 <code>Request Headers</code>에 쿠키를 삽입해서 서버로 전송한다. 주의할 점은 한글 문자열을 사용할 때  encodeURIComponent와 decodeURIComponent로 변환 해주는 과정이 필요하다.</p>
 <h3 id="setcookie">SetCookie</h3>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> http <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;http&#34;</span>);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> http <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;http&#34;</span>);
 
 http.createServer(<span style="color:#ff79c6">async</span> (request, response) =&gt; {
 <span style="color:#ff79c6">const</span> method <span style="color:#ff79c6">=</span> request.mtehod;
@@ -341,27 +308,10 @@ http.createServer(<span style="color:#ff79c6">async</span> (request, response) =
     store.logger(<span style="color:#f1fa8c">&#34;log&#34;</span>, <span style="color:#f1fa8c">&#34;POST BOX START!!!!!&#34;</span>);
 });;
 
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="getcookie">getCookie</h3>
+</code></pre></div><h3 id="getcookie">getCookie</h3>
 <p>이제 클라이언트에서 쿠키를 포함한 요청을 보내면 서버 측에서도 쿠키를 식별해야 한다.<br>
 아쉽게도 node.js에서는 쿠키 값을 빼내올 함수가 따로 존재하지 않는다. <code>request.headers.cookie</code>에 쿠키 정보는 확인할 수 있지만 원하는 쿠키 값을 찾으려면 직접 함수로 구현해야 한다. 여러 책이나 자료에서도 찾을 수 있지만, 한번 cookie 구조 파악 겸 직접 작성해 보았다.😅</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#6272a4">//쿠키 형식(request.headers.cookie) : _ga=GA1.1.55873572.1627649409; _ga_6TN7PCJZTQ=GS1.1.1631890653.16.1.1631891304.0; user-id=asddsa
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#6272a4">//쿠키 형식(request.headers.cookie) : _ga=GA1.1.55873572.1627649409; _ga_6TN7PCJZTQ=GS1.1.1631890653.16.1.1631891304.0; user-id=asddsa
 </span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> getCookie <span style="color:#ff79c6">=</span> (cookies, key) =&gt; {
     <span style="color:#ff79c6">const</span> cookieArray <span style="color:#ff79c6">=</span> cookies.split(<span style="color:#f1fa8c">&#34;;&#34;</span>);
     <span style="color:#8be9fd;font-style:italic">let</span> value <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>;
@@ -372,50 +322,8 @@ http.createServer(<span style="color:#ff79c6">async</span> (request, response) =
     });
     <span style="color:#ff79c6">return</span> value.length <span style="color:#ff79c6">?</span> <span style="color:#8be9fd;font-style:italic">decodeURIComponent</span>(value) <span style="color:#ff79c6">:</span> value;
 };
-</code></pre></td></tr></table>
-</div>
-</div><p>해당 함수를 바탕으로 원하는 쿠키 값이 있는지 확인할 수 있다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">if</span> (method <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;POST&#34;</span> <span style="color:#ff79c6">&amp;&amp;</span> url <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;/write&#34;</span>) {
+</code></pre></div><p>해당 함수를 바탕으로 원하는 쿠키 값이 있는지 확인할 수 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">if</span> (method <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;POST&#34;</span> <span style="color:#ff79c6">&amp;&amp;</span> url <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;/write&#34;</span>) {
 		<span style="color:#6272a4">//쿠키 값 탐색 
 </span><span style="color:#6272a4"></span>		<span style="color:#ff79c6">const</span> userId <span style="color:#ff79c6">=</span> getCookie(request.headers.cookie, <span style="color:#f1fa8c">&#34;user-id&#34;</span>);
 		<span style="color:#8be9fd;font-style:italic">let</span> body <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>;
@@ -451,53 +359,24 @@ http.createServer(<span style="color:#ff79c6">async</span> (request, response) =
 		    }
 		});
 }
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="여러옵션">여러옵션</h2>
+</code></pre></div><h2 id="여러옵션">여러옵션</h2>
 <h3 id="expire">Expire</h3>
 <p>유효기간을 설정해야 지속 쿠키로 사용할 수 있다. <code>Expires</code>키로 설정할 수 있고 GMTString 형태로 변환해 전송해야 한다.<br>
 만약 초를 입력하려면 <code>Max-age=3000</code>형태로 <strong>Max-age</strong>키를 사용해야 한다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> minute <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span>;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> minute <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span>;
 <span style="color:#ff79c6">const</span> expireTime <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>();
 expireTime.setMinutes(expireTime.getMinues() <span style="color:#ff79c6">+</span> minute);
 
 response.writeHead(<span style="color:#bd93f9">200</span>, {
 	<span style="color:#f1fa8c">&#34;Set-Cookie&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">`Expires=</span><span style="color:#f1fa8c">${</span>expireTime<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>,
 });
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="httponly">HttpOnly</h3>
+</code></pre></div><h3 id="httponly">HttpOnly</h3>
 <p>스크립트로 접근할 수 없음, 로그인 등 보안이 필요한 요청에 필수적으로 사용 권장하며 조작을 방지할 수 있다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#f1fa8c">&#34;Set-Cookie&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;name=test; HttpOnly;&#34;</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="path">Path</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#f1fa8c">&#34;Set-Cookie&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;name=test; HttpOnly;&#34;</span>
+</code></pre></div><h3 id="path">Path</h3>
 <p>해당 경로 이하 도메인에 쿠키 사용, 예를들어 Path = /user라면, /user 하위의 도메인에만 쿠키를 사용한다. (root 도메인에선 쿠키 사용 안함)</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#f1fa8c">&#34;Set-Cookie&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;name=test; HttpOnly Path=/;&#34;</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="domain">Domain</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#f1fa8c">&#34;Set-Cookie&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;name=test; HttpOnly Path=/;&#34;</span>
+</code></pre></div><h3 id="domain">Domain</h3>
 <p>쿠키가 전송될 도메인을 지정한다. (default 값은 현재 도메인)</p>
 <h3 id="secure">Secure</h3>
 <p>HTTPS일 경우에만 쿠키가 전송된다.</p>
@@ -582,7 +461,7 @@ response.writeHead(<span style="color:#bd93f9">200</span>, {
         
             <a href="/tags/cookie/">cookie</a>
         
-            <a href="/tags/node.js/">node.js</a>
+            <a href="/tags/node/">node</a>
         
     </section>
 
@@ -598,6 +477,24 @@ response.writeHead(<span style="color:#bd93f9">200</span>, {
         <h2 class="section-title"></h2>
         <div class="related-contents">
             <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/node-restapi/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="node-restapi" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Node.js HTTP모듈로 요청과 응답</h2>
+        </div>
+    </a>
+</article>
                 
                     
 <article class="has-image">

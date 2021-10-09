@@ -14,20 +14,20 @@
     gtag('config', 'G-6TN7PCJZTQ');
 </script>
         <meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='변수 관리를 더욱 효율적으로 해주는 let,const를 사용해보자'><title>let, const와 기존 var의 차이</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Vue에서 데이터 변화를 감지하는 방법'><title>computed와 Watch</title>
 
-<link rel='canonical' href='https://jinyisland.kr/post/let-const/'>
+<link rel='canonical' href='https://jinyisland.kr/post/computed-watch/'>
 <link rel="icon" href="/favicon.png" type="image/png">
 
 <link rel="stylesheet" href="/scss/style.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='let, const와 기존 var의 차이'>
-<meta property='og:description' content='변수 관리를 더욱 효율적으로 해주는 let,const를 사용해보자'>
-<meta property='og:url' content='https://jinyisland.kr/post/let-const/'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='computed와 Watch'>
+<meta property='og:description' content='Vue에서 데이터 변화를 감지하는 방법'>
+<meta property='og:url' content='https://jinyisland.kr/post/computed-watch/'>
 <meta property='og:site_name' content='Jiny Island'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='es6&#43;' /><meta property='article:published_time' content='2021-08-30T23:39:26&#43;09:00'/><meta property='article:modified_time' content='2021-08-30T23:39:26&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
-<meta name="twitter:title" content="let, const와 기존 var의 차이">
-<meta name="twitter:description" content="변수 관리를 더욱 효율적으로 해주는 let,const를 사용해보자"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='frontend' /><meta property='article:published_time' content='2021-10-09T23:17:34&#43;09:00'/><meta property='article:modified_time' content='2021-10-09T23:17:34&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/vue/vue.png' />
+<meta name="twitter:title" content="computed와 Watch">
+<meta name="twitter:description" content="Vue에서 데이터 변화를 감지하는 방법"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/vue/vue.png' /><style>
     .article-content code {
         word-wrap:break-word;
     }
@@ -199,9 +199,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/post/let-const/">
+            <a href="/post/computed-watch/">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" alt="Featured image of post let, const와 기존 var의 차이" />
+                    <img src="../../assets/vue/vue.png" loading="lazy" alt="Featured image of post computed와 Watch" />
                 
             </a>
         </div>
@@ -211,20 +211,20 @@
     
     <header class="article-category">
         
-            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #636e72;">
-                Java Script
+            <a href="/categories/vue/" style="background-color: #00b894; color: #fff;">
+                Vue
             </a>
         
     </header>
     
 
     <h2 class="article-title">
-        <a href="/post/let-const/">let, const와 기존 var의 차이</a>
+        <a href="/post/computed-watch/">computed와 Watch</a>
     </h2>
 
     
     <h3 class="article-subtitle">
-        변수 관리를 더욱 효율적으로 해주는 let,const를 사용해보자
+        Vue에서 데이터 변화를 감지하는 방법
     </h3>
     <footer class="article-time">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -235,100 +235,69 @@
 
 
 
-        <time class="article-time--published">Aug 30, 2021</time>
+        <time class="article-time--published">Oct 09, 2021</time>
     </footer></div>
 </header>
 
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
-    <p>요즘 공부하고 있는 vue.js 프레임워크를 사용하다보면 자연스럽게 es6 이상의 트렌디한 자바스크립트 문법이 눈에 띈다. 🧐<br>
-물론 vue 코드를 빠르게 짤 수 있는 스니펫 플러그인에서도 기본적으로 es6+ 문법으로 안내해주기도하고.. vue를 사용해서가 아니라 이렇게 트렌디한~자바스크립트에서는 어떤 문법이 있는지 차례차례 짚고 넘어가고자 한다. (물론 내 기준 현업 또는 개인적으로 많이 쓰는 문법 위주로~ㅎㅎ)</p>
-<h2 id="블록범위">블록범위</h2>
-<p>먼저 let과 const를 제대로 이해하려면 <code>블록범위</code>를 제대로 알고넘어가야한다!<br>
-블록범위 내에서 let과 const를 사용하면  해당 변수를 재할당할 수 없도록 지정할 수 있다.
-<strong>자바스크립트에서의 블록유효범위는 if블록이나 for 반복문과 같이 중괄호로 둘러싸인 범위를 의미한다.</strong>
-지금까지 사용했던 <code>var</code>로 변수를 선언하는 방식은, 중복되는 변수이어도 재할당을 하면서 코드가 많아질 경우 값이 바뀌는것을 파악해야하는 문제가 있었다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;choi&#39;</span>;
-<span style="color:#8be9fd;font-style:italic">var</span> name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;kim&#39;</span>;
-console.log(name); <span style="color:#6272a4">//&#39;kim&#39;
-</span></code></pre></div><h3 id="const">const</h3>
-<p>값을 재할당할 수 없지만, 참조된 값을 변경할 수는 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;choi&#39;</span>;
-<span style="color:#ff79c6">const</span> name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;kim&#39;</span>; <span style="color:#6272a4">//error
-</span><span style="color:#6272a4"></span>
-<span style="color:#ff79c6">const</span> fruits <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;🍎&#39;</span>, <span style="color:#f1fa8c">&#39;🍌&#39;</span>];
-fruits.push(<span style="color:#f1fa8c">&#39;🍓&#39;</span>);
-console.log(fruits); <span style="color:#6272a4">//&#39;🍎&#39;, &#39;🍌&#39;, &#39;🍓&#39;
-</span></code></pre></div><h3 id="let">let</h3>
-<p>기존 <code>var</code>과 유사한 점은 변수를 재할당할 수 있는 점이다. 하지만 <strong>var로 선언한 변수는 어휘적 유효범위(lexical sope)</strong> 를 따르지만, <code>let</code>은 블록 유효범위를 따른다.
-아래 예제를 보면  아이템의 가격을 반환해주는 함수이다. 만약 정가(price)와 갯수(inventory)가 존재하면 정가를 반환하고, 세일 가격(salePrice)와 세일중인 아이템 갯수(saleInventory)가 존재하면 할인가격을 반환한다. 이 예제에서 핵심은 <code>let</code>임에도 불구하고 변수를 2번 재할당하고 있다. <strong>블록 유효범위를 따르기때문에 가능한 일이다.</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> getPriceOfItems(item) {
-    <span style="color:#8be9fd;font-style:italic">let</span> stack <span style="color:#ff79c6">=</span> item.inventory;
-    <span style="color:#8be9fd;font-style:italic">let</span> price <span style="color:#ff79c6">=</span> item.price;
-    <span style="color:#ff79c6">if</span> (item.salePrice) {
-        <span style="color:#8be9fd;font-style:italic">let</span> stack <span style="color:#ff79c6">=</span> item.saleInventory; <span style="color:#6272a4">//다른 유효범위
-</span><span style="color:#6272a4"></span>        console.log(stack); <span style="color:#6272a4">//1
-</span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">if</span> (stack <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>) {
-            price <span style="color:#ff79c6">=</span> item.salePrice;
+    <p>vue에서 <code>data</code> 속성에 있는 값을 사용하고자 할 때, 값이 변화할 때 마다 자동적으로 리렌더링 해주는 인스턴스 속성이 2개가 있다. 바로 <code>computed</code>와 <code>watch</code>, 이 두 속성의 공통점은 값을 감지하다가 변경되면 메서드를 호출함으로써 값을 바로 반환해준다. 이 비슷한 두 속성에 대해 차이점에 대해서 알아보았다.</p>
+<h2 id="computed">computed</h2>
+<p>사용법은 아래 코드를 참고, <code>computed</code>속성 내에 메서드를 정의하고 템플릿내에 호출을 하면 해당 값이 바뀔 때 마다 재호출을 해준다. 이는 캐싱이되는 성질이 있어 해당 값이 바뀌지 않는다면 호출을 절대 하지 않는다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    &lt;<span style="color:#ff79c6">template</span>&gt;
+        &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;app&#34;</span>&gt;
+            &lt;<span style="color:#ff79c6">p</span>&gt; {{ formatDate }} &lt;/<span style="color:#ff79c6">p</span>&gt; <span style="color:#6272a4">&lt;!--2021년 10월 08일 --&gt;</span>
+        &lt;/<span style="color:#ff79c6">div</span>&gt;
+    &lt;/<span style="color:#ff79c6">template</span>&gt;
+    &lt;<span style="color:#ff79c6">script</span>&gt;
+    <span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> {
+        data(){
+            <span style="color:#ff79c6">return</span> {
+                today <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;20211008&#39;</span>
+            }
+        },
+        computed <span style="color:#ff79c6">:</span> {
+            formatDate <span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span>(){
+                <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">`</span><span style="color:#f1fa8c">${</span>date.substr(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">4</span>)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">년 </span><span style="color:#f1fa8c">${</span>date.substr(<span style="color:#bd93f9">4</span>,<span style="color:#bd93f9">2</span>)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">월 </span><span style="color:#f1fa8c">${</span>date.substr(<span style="color:#bd93f9">6</span>,<span style="color:#bd93f9">2</span>)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">일`</span>;
+            }
         }
     }
-    <span style="color:#ff79c6">if</span> (stack) {
-        console.log(stack); <span style="color:#6272a4">//3
-</span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">return</span> price;
+    &lt;/<span style="color:#ff79c6">script</span>&gt;
+</code></pre></div><h2 id="watch">watch</h2>
+<p>watch도 computed와 사용법은 유사하다. 하지만 watch는 메서드 트리거의 역할로 사용하는 느낌이 더욱 강하다. computed는 직접 template내에 출력을 해야 해당 메서드가 실행되지만, watch는 값의 변화에만 의존해 메서드를 호출 시키기 때문이다. 웬만한 데이터 포맷팅이나 단순히 보여지는 영역을 컨트롤해야 한다면 <code>computed</code>를 사용하고 더욱 복잡한 로직 (API 통신 및 data 분기 처리)등은 <code>watch</code>를 사용하는 것을 권장하고 있는 것 같다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    &lt;<span style="color:#ff79c6">template</span>&gt;
+        &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;app&#34;</span>&gt;
+            &lt;<span style="color:#ff79c6">input</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;button&#34;</span> <span style="color:#50fa7b">value</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;increase&#34;</span> <span style="color:#50fa7b">v-on:click</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;increaseNumber&#34;</span>&gt;
+            &lt;<span style="color:#ff79c6">p</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;log&#34;</span>&gt;{{ number }}&lt;/<span style="color:#ff79c6">p</span>&gt; 
+        &lt;/<span style="color:#ff79c6">div</span>&gt;
+    &lt;/<span style="color:#ff79c6">template</span>&gt;
+    &lt;<span style="color:#ff79c6">script</span>&gt;
+    <span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span>{
+        data(){
+            <span style="color:#ff79c6">return</span> {
+                number <span style="color:#ff79c6">:</span> <span style="color:#bd93f9">0</span>
+            }
+        },
+        watch<span style="color:#ff79c6">:</span> {
+            number<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span>(){
+                <span style="color:#ff79c6">if</span>(<span style="color:#ff79c6">this</span>.number <span style="color:#ff79c6">&gt;=</span> <span style="color:#bd93f9">10</span>){
+                    alert(<span style="color:#f1fa8c">&#34;10 이상 입니다!&#34;</span>);
+                }
+            }
+        },
+        methods<span style="color:#ff79c6">:</span>{
+            increaseNumber<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span>(){
+                <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">this</span>.number<span style="color:#ff79c6">++</span>;
+            }
+        }
     }
-    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
-}
-getPriceOfItems({
-    price<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">3600</span>,
-    inventory<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">3</span>,
-    salePrice<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1800</span>,
-    saleInventory<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1</span>
-}); 
-<span style="color:#6272a4">//1800 
-</span></code></pre></div><h2 id="반복문에서의-유효범위-충돌-방지">반복문에서의 유효범위 충돌 방지</h2>
-<p>지난번 클로저를 소개할 때 사용했던 예제이긴하지만..  어휘적 유효범위를 따르는 <code>var</code>로 선언한 변수 때문에 비동기 로직에서 마지막 값만 계속 참조되는 현상이 일어났던 코드이다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> countSec(seconds) {
-    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">var</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&lt;=</span> seconds; i<span style="color:#ff79c6">++</span>) {
-        setTimeout(<span style="color:#8be9fd;font-style:italic">function</span> () {
-            console.log(i); <span style="color:#6272a4">//3..3..3..
-</span><span style="color:#6272a4"></span>        }, i <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">1000</span>); 
-    }
-};
-countSec(<span style="color:#bd93f9">3</span>);
-</code></pre></div><p>아래처엄 클로저로 해결할 수 있었다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> countSec(seconds) {
-    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">var</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&lt;=</span> seconds; i<span style="color:#ff79c6">++</span>) {
-        (<span style="color:#8be9fd;font-style:italic">function</span> (curNum) { <span style="color:#6272a4">//즉시실행함수를 이용해 외부 변수 i를 복사하여 setTimout() 지역 변수로 끌어와 정상적으로 1,2,3 입력된다!
-</span><span style="color:#6272a4"></span>            setTimeout(<span style="color:#8be9fd;font-style:italic">function</span> () {
-                console.log(curNum);
-            }, curNum <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">1000</span>);
-        }(i));
-    }
-};
-
-countSec(<span style="color:#bd93f9">3</span>);
-</code></pre></div><p><code>let</code>을 활용해서 더욱 간단히 해결할 수 있다.<br>
-블록유효범위를 따르기 때문에 해당 블록에서만 유효하다는 특징을 잊지말자!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> countSec(seconds) {
-    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&lt;=</span> seconds; i<span style="color:#ff79c6">++</span>) {
-        setTimeout(<span style="color:#8be9fd;font-style:italic">function</span> () {
-            console.log(i);
-        }, i <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">1000</span>);
-    }
-};
-
-countSec(<span style="color:#bd93f9">3</span>); <span style="color:#6272a4">//1..2..3..
-</span></code></pre></div><h2 id="정리">정리</h2>
-<p>이렇게 기존 가장 많이 사용하였던 var과 const, let의 차이를 알아보았다.</p>
+    &lt;/<span style="color:#ff79c6">script</span>&gt;
+</code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
-<li><strong>var :</strong> 어휘적 유효범위 (코드를 작성한 위치 기준에서의 참조되고 있는 범위)를 따르는 변수, 재할당과 값수정 모두 제한이 없다.</li>
-<li><strong>const :</strong> 블록 유효범위를 따르며, 변수의 재할당 및 재선언이 불가능하다.</li>
-<li><strong>let :</strong> 블록 유효범위를 따르며, 변수의 재할당은 불가능하지만, 재선언은 가능하다!</li>
-</ul>
-<p>최대한 <code>const</code>를 사용해 변수들을 선언하는것이 바람직하며, 재할당이 필요한 경우에만 <code>let</code>을 사용하는것을 추천한다.</p>
-<h2 id="참고자료">참고자료</h2>
-<ul>
-<li><strong>자바스크립트 코딩의 기술 - 조모건 저</strong></li>
+<li><strong><a class="link" href="https://michaelnthiessen.com/difference-between-computed-property-and-watcher/"  target="_blank" rel="noopener"
+    >Computed Props and Watchers — What&rsquo;s the Difference?</a> - Michael Thissen</strong></li>
+<li><strong><a class="link" href="https://v3.ko.vuejs.org/guide/computed.html#computed-%E1%84%89%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A5%E1%86%BC"  target="_blank" rel="noopener"
+    >Computed 속성과 Watch</a> - Vue School</strong></li>
 </ul>
 
 </section>
@@ -399,7 +368,7 @@ countSec(<span style="color:#bd93f9">3</span>); <span style="color:#6272a4">//1.
     
     <section class="article-tags">
         
-            <a href="/tags/es6&#43;/">es6&#43;</a>
+            <a href="/tags/frontend/">frontend</a>
         
     </section>
 
@@ -418,90 +387,72 @@ countSec(<span style="color:#bd93f9">3</span>); <span style="color:#6272a4">//1.
                 
                     
 <article class="has-image">
-    <a href="/post/promise-async-await/">
+    <a href="/post/vue-router/">
         
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="promise-async-await" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/vue/vue.png" loading="lazy" data-key="vue-router" data-hash="../../assets/vue/vue.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">Promise와 Async/await</h2>
+            <h2 class="article-title">Vue 라우터 개념 및 사용방법</h2>
         </div>
     </a>
 </article>
                 
                     
 <article class="has-image">
-    <a href="/post/arrow-function/">
+    <a href="/post/vue-import/">
         
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="arrow-function" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/vue/vue.png" loading="lazy" data-key="vue-import" data-hash="../../assets/vue/vue.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">자바스크립트 화살표 함수</h2>
+            <h2 class="article-title">외부 Vue 프로젝트 불러오기</h2>
         </div>
     </a>
 </article>
                 
                     
 <article class="has-image">
-    <a href="/post/template-literals/">
+    <a href="/post/vue-component/">
         
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="template-literals" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/vue/vue.png" loading="lazy" data-key="vue-component" data-hash="../../assets/vue/vue.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">자바스크립트 템플릿리터럴</h2>
+            <h2 class="article-title">Vue 컴포넌트에 대한 개념</h2>
         </div>
     </a>
 </article>
                 
                     
 <article class="has-image">
-    <a href="/post/node-restapi/">
+    <a href="/post/vue-start/">
         
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="node-restapi" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/vue/vue.png" loading="lazy" data-key="vue-start" data-hash="../../assets/vue/vue.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">Node.js HTTP모듈로 요청과 응답</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/post/algorithm-search/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="algorithm-search" data-hash="../../assets/js/js.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">탐색 알고리즘 (선형, 이진)</h2>
+            <h2 class="article-title">Vue 설치하기 및 프로젝트 구조</h2>
         </div>
     </a>
 </article>

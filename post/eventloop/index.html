@@ -24,7 +24,7 @@
 <meta property='og:description' content='이벤트 루프를 알아야 비동기를 이해할 수 있다.'>
 <meta property='og:url' content='https://jinyisland.kr/post/eventloop/'>
 <meta property='og:site_name' content='Jiny Island'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='javascript' /><meta property='article:published_time' content='2021-09-07T21:59:08&#43;09:00'/><meta property='article:modified_time' content='2021-09-07T21:59:08&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2021-09-07T21:59:08&#43;09:00'/><meta property='article:modified_time' content='2021-09-07T21:59:08&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
 <meta name="twitter:title" content="비동기와 이벤트 루프">
 <meta name="twitter:description" content="이벤트 루프를 알아야 비동기를 이해할 수 있다."><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
@@ -242,25 +242,7 @@
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
     <h2 id="비동기-처리">비동기 처리</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//대충 이런 구조의 코드..
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//대충 이런 구조의 코드..
 </span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">function</span> checkValue(){
 	<span style="color:#6272a4">//로직검사..
 </span><span style="color:#6272a4"></span>}
@@ -274,9 +256,7 @@ setTimeout(<span style="color:#8be9fd;font-style:italic">function</span>(){
 </span><span style="color:#6272a4"></span>};
 
 getData();
-</code></pre></td></tr></table>
-</div>
-</div><p>자바스크립트를 처음 접했을 때, setTimeout이 왜 순서대로 시행 안되지??.. (why 나중에 시행되는거야..🤔)해서비동기에 대한 개념을 숙지했다. 대충 콜백함수로 넘겨서 호출해 해결하고 비동기 프로세스에 대한 개념 자체를 더 배우려하지 않았다. 이번에 Node.js 스터디를 하면서 비동기 프로세스를 꼭 알아야 성능 향상에 도움이 된다는 사실을 알게되었고 책과 강의를 통해 내가 이해한 비동기 처리과정을 최대한 간략하게 정리해보았다.</p>
+</code></pre></div><p>자바스크립트를 처음 접했을 때, setTimeout이 왜 순서대로 시행 안되지??.. (why 나중에 시행되는거야..🤔)해서비동기에 대한 개념을 숙지했다. 대충 콜백함수로 넘겨서 호출해 해결하고 비동기 프로세스에 대한 개념 자체를 더 배우려하지 않았다. 이번에 Node.js 스터디를 하면서 비동기 프로세스를 꼭 알아야 성능 향상에 도움이 된다는 사실을 알게되었고 책과 강의를 통해 내가 이해한 비동기 처리과정을 최대한 간략하게 정리해보았다.</p>
 <p><img src="../assets/js/../../../assets/js/js-eventloop.png" alt="javascript-eventloop"  /></p>
 <p>이벤트 루프는 비동기 프로세스를 이해하기 위해 꼭 알아야 하는 자바스크립트 런타임 구성요소이다.
 보통 실행 컨텍스트에 의해 선언한 코드들이 콜스택에 차곡차곡 모여지는데,  여기서 비동기 요청(setTimeout 또는 AJAX 비동기 통신 등등..)들은 백그라운드 영역으로 보낸다.</p>
@@ -364,12 +344,6 @@ getData();
 
     <footer class="article-footer">
     
-    <section class="article-tags">
-        
-            <a href="/tags/javascript/">javascript</a>
-        
-    </section>
-
 
     </footer>
 
@@ -382,6 +356,24 @@ getData();
         <h2 class="section-title"></h2>
         <div class="related-contents">
             <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/node-restapi/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="node-restapi" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Node.js HTTP모듈로 요청과 응답</h2>
+        </div>
+    </a>
+</article>
                 
                     
 <article class="has-image">
@@ -451,24 +443,6 @@ getData();
 
         <div class="article-details">
             <h2 class="article-title">자바스크립트 화살표 함수</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/post/template-literals/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="template-literals" data-hash="../../assets/js/js.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">자바스크립트 템플릿리터럴</h2>
         </div>
     </a>
 </article>

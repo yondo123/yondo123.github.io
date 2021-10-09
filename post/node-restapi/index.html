@@ -24,7 +24,7 @@
 <meta property='og:description' content='프레임워크 없이 Node.js 순수 http 모듈로 간단한 서버 구축해보기'>
 <meta property='og:url' content='https://jinyisland.kr/post/node-restapi/'>
 <meta property='og:site_name' content='Jiny Island'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='node' /><meta property='article:tag' content='backend' /><meta property='article:published_time' content='2021-09-17T23:48:56&#43;09:00'/><meta property='article:modified_time' content='2021-09-17T23:48:56&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='http' /><meta property='article:tag' content='node' /><meta property='article:tag' content='backend' /><meta property='article:published_time' content='2021-09-17T23:48:56&#43;09:00'/><meta property='article:modified_time' content='2021-09-17T23:48:56&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
 <meta name="twitter:title" content="Node.js HTTP모듈로 요청과 응답">
 <meta name="twitter:description" content="프레임워크 없이 Node.js 순수 http 모듈로 간단한 서버 구축해보기"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
@@ -244,31 +244,7 @@
     <p>Node.js HTTP 모듈을 통해 간단히 요청보내고, 주고받는 초간단 API 서버를 만들어보았다.</p>
 <h2 id="request">Request</h2>
 <p>createServer 콜백에서 request, response 인자를 받는데 request 객체에서 요청 정보들을 받을 수 있다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> http <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;http&#34;</span>);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> http <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;http&#34;</span>);
 
 http.createServer(<span style="color:#ff79c6">async</span> (request, response)=&gt;{
 	<span style="color:#ff79c6">try</span>{
@@ -288,9 +264,7 @@ http.createServer(<span style="color:#ff79c6">async</span> (request, response)=&
 		<span style="color:#6272a4">//step 3. 예외처리 (404, 500..)
 </span><span style="color:#6272a4"></span>	}
 }).listen(<span style="color:#bd93f9">8080</span>);
-</code></pre></td></tr></table>
-</div>
-</div><ul>
+</code></pre></div><ul>
 <li><strong>Method :</strong> request.method</li>
 <li><strong>url :</strong> request.url</li>
 </ul>
@@ -306,22 +280,7 @@ http.createServer(<span style="color:#ff79c6">async</span> (request, response)=&
 [👻 LOGGER][method : GET, url : /list]
 [👻 LOGGER][method : GET, url : /favicon.ico]
 </code></pre><p>모든 리소스를 정적으로 일일이 구성하기에는 관리도 어렵고 부담스럽다.. url 경로를 동적으로 받아오면 된다!</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">try</span> {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">try</span> {
     <span style="color:#ff79c6">const</span> resource <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">`../frontend</span><span style="color:#f1fa8c">${</span>url<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>);
     console.log(<span style="color:#f1fa8c">`../frontend</span><span style="color:#f1fa8c">${</span>url<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>);
     <span style="color:#ff79c6">return</span> response.end(resource);
@@ -332,56 +291,23 @@ http.createServer(<span style="color:#ff79c6">async</span> (request, response)=&
     response.writeHead(<span style="color:#bd93f9">404</span>, { <span style="color:#f1fa8c">&#34;content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;text/html; charset=utf-8&#34;</span>});
     <span style="color:#ff79c6">return</span> response.end(notFoundView);
 }
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="response">Response</h2>
+</code></pre></div><h2 id="response">Response</h2>
 <p>이제 반대로 응답을 내려줄려면 response 객체를 활용하면된다.<br>
 <code>writeHead</code>메서드로 상태코드와 <a class="link" href="https://www.geeksforgeeks.org/http-headers-content-type/"  target="_blank" rel="noopener"
     >HTTP ContentType</a>을 명시해주면되고 추가적으로 인코딩을 위해 <code>charset</code>도 정의해주면 좋다. (UTF-8 권장)</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#6272a4">//http 상태코드, http header 정의
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#6272a4">//http 상태코드, http header 정의
 </span><span style="color:#6272a4"></span>response.writeHead(<span style="color:#bd93f9">200</span>, {<span style="color:#f1fa8c">&#34;Content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;http header; charset=utf-8&#34;</span>});
 <span style="color:#6272a4">//resource 전달 (html..json.. 등등)
 </span><span style="color:#6272a4"></span>response.end(data);
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="html-resource">HTML Resource</h3>
+</code></pre></div><h3 id="html-resource">HTML Resource</h3>
 <p>response.write(&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;) 형태로 직접 작성하면서 전달해줄 수 있지만 코드도 길어지고 비효율적이다.. fs 모듈로 html 파일을 갖고올 수 있다. <code>fs 모듈</code>은 비동기 수행이므로 createServer 콜백을 async로 감싸는 것도 잊지말자.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> mainView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">&#34;../frontend/html/board.html&#34;</span>).<span style="color:#ff79c6">catch</span>((err)=&gt;{ console.error(err) });
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> mainView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">&#34;../frontend/html/board.html&#34;</span>).<span style="color:#ff79c6">catch</span>((err)=&gt;{ console.error(err) });
 response.writeHead(<span style="color:#bd93f9">200</span>, {<span style="color:#f1fa8c">&#34;Content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;http header; charset=utf-8&#34;</span>});
 response.end(mainView);
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="json-resource">JSON Resource</h3>
+</code></pre></div><h3 id="json-resource">JSON Resource</h3>
 <p>restAPI 통신시 JSON 포맷 데이터를 애용하게되는데, <code>node</code>에서는 손 쉽게 객체로 내려줄 수 있다. (역시 JSON 다루는 것은 node.js가 편하다..)<br>
 content-type을 JSON 형태로 맞추고 객체를 String객체로 변환시켜서 응답해주면 된다.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> list <span style="color:#ff79c6">=</span> {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> list <span style="color:#ff79c6">=</span> {
     result <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
     data <span style="color:#ff79c6">:</span> {
         items <span style="color:#ff79c6">:</span> store.boardlist
@@ -389,9 +315,7 @@ content-type을 JSON 형태로 맞추고 객체를 String객체로 변환시켜�
 }
 response.writeHead(<span style="color:#bd93f9">200</span>, { <span style="color:#f1fa8c">&#34;content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Application/json; charset=utf-8&#34;</span>});
 <span style="color:#ff79c6">return</span> response.end(JSON.stringify(list));
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="후기">후기</h2>
+</code></pre></div><h2 id="후기">후기</h2>
 <p><img src="../../assets/js/node-rest-api.jpg" alt="node"  />
 이렇게 해서 간단한 서버를 만들어보았는데 확실히 구축 속도가 빠르긴하다.. 단 몇줄만으로 손쉽게 서버를 만들 수 있으니..<br>
 *<strong>위 내용은 공부한 내용을 축약해서 정리해보았는데 혹여나 전체 소스가 필요한 분들을 위해 아래에 정리해보았습니다.(서버소스만..)</strong></p>
@@ -412,72 +336,7 @@ response.writeHead(<span style="color:#bd93f9">200</span>, { <span style="color:
     ├── restApi.js
     └── store.js
 </code></pre><p><strong>store.js</strong></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> store <span style="color:#ff79c6">=</span> {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> store <span style="color:#ff79c6">=</span> {
     boardlist <span style="color:#ff79c6">:</span> [{
         title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
         context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
@@ -538,63 +397,8 @@ response.writeHead(<span style="color:#bd93f9">200</span>, { <span style="color:
 }
 
 module.exports <span style="color:#ff79c6">=</span> store;
-</code></pre></td></tr></table>
-</div>
-</div><p><strong>server.js</strong></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> http <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;http&#34;</span>);
+</code></pre></div><p><strong>server.js</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> http <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;http&#34;</span>);
 <span style="color:#ff79c6">const</span> fs <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;fs&#34;</span>).promises;
 <span style="color:#ff79c6">const</span> store <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;./store&#34;</span>);
 
@@ -643,9 +447,7 @@ http.createServer(<span style="color:#ff79c6">async</span> (request, response) =
 }).listen(<span style="color:#bd93f9">8080</span>, ()=&gt;{
     store.logger(<span style="color:#f1fa8c">&#34;log&#34;</span>, <span style="color:#f1fa8c">&#34;POST BOX START!!!!!&#34;</span>);
 });
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="참고자료">참고자료</h2>
+</code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li>Node.js 교과서 - http 모듈로 서버 만들기 (조현영 저)</li>
 <li><a class="link" href="https://www.geeksforgeeks.org/http-headers-content-type/"  target="_blank" rel="noopener"
@@ -720,6 +522,8 @@ http.createServer(<span style="color:#ff79c6">async</span> (request, response) =
     
     <section class="article-tags">
         
+            <a href="/tags/http/">http</a>
+        
             <a href="/tags/node/">node</a>
         
             <a href="/tags/backend/">backend</a>
@@ -753,6 +557,24 @@ http.createServer(<span style="color:#ff79c6">async</span> (request, response) =
 
         <div class="article-details">
             <h2 class="article-title">자바스크립트 모듈화</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/cookies/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/web/web.png" loading="lazy" data-key="cookies" data-hash="../../assets/web/web.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Http 쿠키의 개념과 사용자 식별</h2>
         </div>
     </a>
 </article>
@@ -807,24 +629,6 @@ http.createServer(<span style="color:#ff79c6">async</span> (request, response) =
 
         <div class="article-details">
             <h2 class="article-title">비동기와 이벤트 루프</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/post/arrow-function/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="arrow-function" data-hash="../../assets/js/js.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">자바스크립트 화살표 함수</h2>
         </div>
     </a>
 </article>
