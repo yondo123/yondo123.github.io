@@ -14,19 +14,19 @@
     gtag('config', 'G-6TN7PCJZTQ');
 </script>
         <meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='선형탐색과 이진탐색'><title>탐색 알고리즘 (선형, 이진)</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='자바스크립트로 이해하는 힙 정렬 알고리즘'><title>힙의 개념과 힙 정렬 알고리즘</title>
 
-<link rel='canonical' href='https://jinyisland.kr/post/algorithm-search/'>
+<link rel='canonical' href='https://jinyisland.kr/post/algorithm-heap/'>
 <link rel="icon" href="/favicon.png" type="image/png">
 
 <link rel="stylesheet" href="/scss/style.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='탐색 알고리즘 (선형, 이진)'>
-<meta property='og:description' content='선형탐색과 이진탐색'>
-<meta property='og:url' content='https://jinyisland.kr/post/algorithm-search/'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='힙의 개념과 힙 정렬 알고리즘'>
+<meta property='og:description' content='자바스크립트로 이해하는 힙 정렬 알고리즘'>
+<meta property='og:url' content='https://jinyisland.kr/post/algorithm-heap/'>
 <meta property='og:site_name' content='Jiny Island'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='algorithm' /><meta property='article:published_time' content='2021-09-14T23:25:12&#43;09:00'/><meta property='article:modified_time' content='2021-09-14T23:25:12&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
-<meta name="twitter:title" content="탐색 알고리즘 (선형, 이진)">
-<meta name="twitter:description" content="선형탐색과 이진탐색"><meta name="twitter:card" content="summary_large_image">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='algorithm' /><meta property='article:published_time' content='2021-10-16T23:24:14&#43;09:00'/><meta property='article:modified_time' content='2021-10-16T23:24:14&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta name="twitter:title" content="힙의 개념과 힙 정렬 알고리즘">
+<meta name="twitter:description" content="자바스크립트로 이해하는 힙 정렬 알고리즘"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
     .article-content code {
         word-wrap:break-word;
@@ -199,9 +199,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/post/algorithm-search/">
+            <a href="/post/algorithm-heap/">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" alt="Featured image of post 탐색 알고리즘 (선형, 이진)" />
+                    <img src="../../assets/js/js.png" loading="lazy" alt="Featured image of post 힙의 개념과 힙 정렬 알고리즘" />
                 
             </a>
         </div>
@@ -219,12 +219,12 @@
     
 
     <h2 class="article-title">
-        <a href="/post/algorithm-search/">탐색 알고리즘 (선형, 이진)</a>
+        <a href="/post/algorithm-heap/">힙의 개념과 힙 정렬 알고리즘</a>
     </h2>
 
     
     <h3 class="article-subtitle">
-        선형탐색과 이진탐색
+        자바스크립트로 이해하는 힙 정렬 알고리즘
     </h3>
     <footer class="article-time">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -235,61 +235,145 @@
 
 
 
-        <time class="article-time--published">Sep 14, 2021</time>
+        <time class="article-time--published">Oct 16, 2021</time>
     </footer></div>
 </header>
 
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
-    <h2 id="선형검색">선형검색</h2>
-<p>배열에서 원하는 키 값 요소를 만날 때까지 순서대로 요소 검색,  값을 찾지 못하고 배열을 모두 순회하거나 값을 찾는다면 바로 종료한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> linearSearch(key, arr) {
-    <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> index <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; index <span style="color:#ff79c6">&lt;</span> arr.length; index<span style="color:#ff79c6">++</span>) {
-        <span style="color:#ff79c6">if</span> (key <span style="color:#ff79c6">===</span> arr[index]) {
-            <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">true</span>
-        }
-    }
-    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">false</span>;
-}
-
-linearSearch(<span style="color:#bd93f9">2811</span>, [<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">15</span>, <span style="color:#bd93f9">24</span>, <span style="color:#bd93f9">28</span>, <span style="color:#bd93f9">304</span>, <span style="color:#bd93f9">16</span>, <span style="color:#bd93f9">7</span>, <span style="color:#bd93f9">1</span>]); <span style="color:#6272a4">//false
-</span><span style="color:#6272a4"></span>linearSearch(<span style="color:#bd93f9">16</span>, [<span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">15</span>, <span style="color:#bd93f9">24</span>, <span style="color:#bd93f9">28</span>, <span style="color:#bd93f9">304</span>, <span style="color:#bd93f9">16</span>, <span style="color:#bd93f9">7</span>, <span style="color:#bd93f9">1</span>]); <span style="color:#6272a4">//true
-</span></code></pre></div><h2 id="이진검색">이진검색</h2>
-<p><img src="../../assets/js/algorithm-search.png" alt="탐색 알고리즘"  />
-이미 정렬되어 있는 배열(전제 조건)에서 범위를 좁혀가며 값을  찾는 탐색법 선형 탐색보다 속도가 빠르긴하지만 정렬되어 있는 리스트에 적용할 수 있다.<br>
-<strong>left = 탐색 시작 위치, center = 팀색 중앙 위치((n-1) / 2), right = 탐색 끝 위치 (n-1)로 초기화</strong>하여 점차적으로 좁혀나간다.<br>
-정렬된 배열이라는 전제 조건이 붙기는 하지만, 선형 검색보다 순회 횟수가 크게 줄어 성능적으로 더 효율적이다.</p>
+    <h2 id="힙-정렬">힙 정렬</h2>
+<p>완전 이진트리에서 파생된 <code>heap</code> 특성을 사용하여 정렬하는 알고리즘, 힙은 <strong>부모의 값이 자식의 값보다 항상 크거나 항상 작다</strong>라는 조건을 만족하는 완전이진트리 형태의 자료구조이다. <code>완전이진트리</code>는 자식 노드를 왼쪽부터 채워나가는 형태의 자료구조이다.
+<img src="../assets/js/../../../assets/js/heap-and-binary.png" alt="heap과완전이진트리"  /></p>
+<h3 id="힙의-개념">힙의 개념</h3>
+<p>완전이진트리와의 차이점은 큰 값이 상위, 작은 값이 하위에 위치한 트리형 자료구조로써 부모-자식 관계까 일정해야한다. 작은 값이 부모가 되는 힙 형태를 <code>min-heap(최소 힙)</code>, 큰 값이 부모가 되는 트리 구조를 <code>max-heap(최대 힙)</code>이라고 한다.
+<img src="../../assets/js/heap-sort.png" alt="heap"  />
+힙은 다음과 같은 관계를 가지고 있어야한다.</p>
 <ul>
-<li>중앙 요소가 찾는 Key보다 작을 때 기존 (center + 1) ~ right 까지 탐색 범위를 좁힌다.</li>
-<li>중앙 요소가 찾는 Key보다 클 때 left ~ (center - 1) 까지 탐색 범위를 좁힌다.</li>
+<li>부모 → a[ ( i - 1) / 2]</li>
+<li>왼쪽 자식 → a[i * 2 + 1]</li>
+<li>오른쪽 자식 → a[ i * 2 + 2]</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> binarySearch(key, array) {
-    <span style="color:#8be9fd;font-style:italic">let</span> count <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
-    <span style="color:#8be9fd;font-style:italic">let</span> left <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
-    <span style="color:#8be9fd;font-style:italic">let</span> right <span style="color:#ff79c6">=</span> array.length <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>;
+<h3 id="동작-과정">동작 과정</h3>
+<p>힙의 특성을 이용해 정렬을 구현하는 방법은 다음과 같다.</p>
+<ol>
+<li>
+<p>배열을 이등분하여 좌측 요소부터 1씩 감소시키면서 heap 형태로 변환한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">Math</span>.floor(tempArray.length <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">2</span>) <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&gt;=</span> <span style="color:#bd93f9">0</span>; i<span style="color:#ff79c6">--</span>) {
+    heap(tempArray, length, i);
+}
+</code></pre></div></li>
+<li>
+<p>(1)의 과정을 수행하면, 이등분의 <code>left</code>부분은 heap 상태가 되어지면서 정렬 상태가 되어있을 것이다.  배열의 첫번째 요소(가장 큰 값)와 정렬되지 않은 우측 요소부터 heap 형태로 변환하는 과정을 반복한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> tempArray.length <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>; i<span style="color:#ff79c6">--</span>) {
+    swap(tempArray, <span style="color:#bd93f9">0</span>, i); <span style="color:#6272a4">//가장 큰 요소와 정렬되지 않은 마지막 요소와 교환
+</span><span style="color:#6272a4"></span>    length<span style="color:#ff79c6">--</span>;
+    heap(tempArray, length, <span style="color:#bd93f9">0</span>); <span style="color:#6272a4">//배열의 나머지 부분들을 heap상태로 만들며 정렬 과정 수행
+</span><span style="color:#6272a4"></span>}
+</code></pre></div></li>
+<li>
+<p>heap 형태로 변환하는 소스는 다음과 같다. 이진 트리 형태로 배열을 받으면서, <code>root</code>요소를 자식 요소의 값에 따라 계속 바꾸어주는 방식이다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">/**
+</span><span style="color:#6272a4"> * heapify 메서드
+</span><span style="color:#6272a4"> * @param {array} heapArray : heap으로 변환 할 배열
+</span><span style="color:#6272a4"> * @param {number} length : 배열 길이
+</span><span style="color:#6272a4"> * @param {number} parent : 부모 인덱스
+</span><span style="color:#6272a4"> */</span>
+<span style="color:#8be9fd;font-style:italic">function</span> heap(heapArray, length, parent) {
+    <span style="color:#ff79c6">const</span> left <span style="color:#ff79c6">=</span> parent <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">2</span> <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>;
+    <span style="color:#ff79c6">const</span> right <span style="color:#ff79c6">=</span> left <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>;
+    <span style="color:#8be9fd;font-style:italic">let</span> root <span style="color:#ff79c6">=</span> parent;
+    <span style="color:#6272a4">//좌측 요소가 부모 값 보다 크면 부모 인덱스를 left 인덱스로 대입
+</span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">if</span> (left <span style="color:#ff79c6">&lt;</span> length <span style="color:#ff79c6">&amp;&amp;</span> heapArray[left] <span style="color:#ff79c6">&gt;</span> heapArray[root]) {
+        root <span style="color:#ff79c6">=</span> left;
+    }
+   
+    <span style="color:#6272a4">//우측 요소가 부모 값 보다 크면 부모 인덱스를 right 인덱스로 대입
+</span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">if</span> (right <span style="color:#ff79c6">&lt;</span> length <span style="color:#ff79c6">&amp;&amp;</span> heapArray[right] <span style="color:#ff79c6">&gt;</span> heapArray[root]) {
+        root <span style="color:#ff79c6">=</span> right;
+    }
+   
+    <span style="color:#6272a4">//부모 요소가 자식 요소와 바꾸어 졌으면 swap처리 및 heap 재검사
+</span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">if</span> (root <span style="color:#ff79c6">!==</span> parent) {
+        swap(heapArray, parent, root);
+        heap(heapArray, length, root);
+    }
+}
+</code></pre></div></li>
+</ol>
+<h2 id="자바스크립트로-구현한-heapsort">자바스크립트로 구현한 HeapSort</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> heapSort(array) {
+    <span style="color:#6272a4">/**
+</span><span style="color:#6272a4">     * 요소 swap 메서드
+</span><span style="color:#6272a4">     * @param {array} swapArray : swap 대상 배열
+</span><span style="color:#6272a4">     * @param {number} a : 교체 대상 인덱스
+</span><span style="color:#6272a4">     * @param {number} b : 교체 인덱스
+</span><span style="color:#6272a4">     */</span>
+    <span style="color:#8be9fd;font-style:italic">function</span> swap(swapArray, a, b) {
+        <span style="color:#ff79c6">const</span> temp <span style="color:#ff79c6">=</span> swapArray[a];
+        swapArray[a] <span style="color:#ff79c6">=</span> swapArray[b];
+        swapArray[b] <span style="color:#ff79c6">=</span> temp;
+    }
 
-    <span style="color:#ff79c6">while</span> (left <span style="color:#ff79c6">&lt;=</span> right) {
-        <span style="color:#8be9fd;font-style:italic">let</span> center <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">Math</span>.floor((left <span style="color:#ff79c6">+</span> right) <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">2</span>);
-        <span style="color:#ff79c6">const</span> item <span style="color:#ff79c6">=</span> array[center];
-        count <span style="color:#ff79c6">+=</span> <span style="color:#bd93f9">1</span>;
-        <span style="color:#ff79c6">if</span> (item <span style="color:#ff79c6">===</span> key) {
-            console.log(<span style="color:#f1fa8c">&#34;true, &#34;</span> <span style="color:#ff79c6">+</span> count);
-            <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">true</span>;
-        } <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> (item <span style="color:#ff79c6">&lt;</span> key) {
-            left <span style="color:#ff79c6">=</span> center <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>;
-        } <span style="color:#ff79c6">else</span> {
-            right <span style="color:#ff79c6">=</span> center <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>;
+    <span style="color:#6272a4">/**
+</span><span style="color:#6272a4">     * heapify 메서드
+</span><span style="color:#6272a4">     * @param {array} heapArray : heap으로 변환 할 배열
+</span><span style="color:#6272a4">     * @param {number} length : 배열 길이
+</span><span style="color:#6272a4">     * @param {number} parent : 부모 인덱스
+</span><span style="color:#6272a4">     */</span>
+    <span style="color:#8be9fd;font-style:italic">function</span> heap(heapArray, length, parent) {
+        <span style="color:#ff79c6">const</span> left <span style="color:#ff79c6">=</span> parent <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">2</span> <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>;
+        <span style="color:#ff79c6">const</span> right <span style="color:#ff79c6">=</span> left <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>;
+        <span style="color:#8be9fd;font-style:italic">let</span> root <span style="color:#ff79c6">=</span> parent;
+        <span style="color:#6272a4">//좌측 요소가 부모 값 보다 크면 부모 인덱스를 left 인덱스로 대입
+</span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">if</span> (left <span style="color:#ff79c6">&lt;</span> length <span style="color:#ff79c6">&amp;&amp;</span> heapArray[left] <span style="color:#ff79c6">&gt;</span> heapArray[root]) {
+            root <span style="color:#ff79c6">=</span> left;
+        }
+
+        <span style="color:#6272a4">//우측 요소가 부모 값 보다 크면 부모 인덱스를 right 인덱스로 대입
+</span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">if</span> (right <span style="color:#ff79c6">&lt;</span> length <span style="color:#ff79c6">&amp;&amp;</span> heapArray[right] <span style="color:#ff79c6">&gt;</span> heapArray[root]) {
+            root <span style="color:#ff79c6">=</span> right;
+        }
+
+        <span style="color:#6272a4">//부모 요소가 자식 요소와 바꾸어 졌으면 swap처리 및 heap 재검사
+</span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">if</span> (root <span style="color:#ff79c6">!==</span> parent) {
+            swap(heapArray, parent, root);
+            heap(heapArray, length, root);
         }
     }
-    console.log(<span style="color:#f1fa8c">&#34;false, &#34;</span> <span style="color:#ff79c6">+</span> count);
-    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">false</span>;
-}
 
-binarySearch(<span style="color:#bd93f9">10</span>, [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">6</span>, <span style="color:#bd93f9">7</span>, <span style="color:#bd93f9">8</span>, <span style="color:#bd93f9">9</span>]); <span style="color:#6272a4">//false, 4
-</span><span style="color:#6272a4"></span>binarySearch(<span style="color:#bd93f9">8</span>, [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">6</span>, <span style="color:#bd93f9">7</span>, <span style="color:#bd93f9">8</span>, <span style="color:#bd93f9">9</span>]); <span style="color:#6272a4">//true, 3
+    <span style="color:#6272a4">/**
+</span><span style="color:#6272a4">     * 정렬 메서드
+</span><span style="color:#6272a4">     * @param {array} tempArray : 정렬 대상 배열
+</span><span style="color:#6272a4">     * @returns
+</span><span style="color:#6272a4">     */</span>
+    <span style="color:#8be9fd;font-style:italic">function</span> sort(tempArray) {
+        <span style="color:#8be9fd;font-style:italic">let</span> length <span style="color:#ff79c6">=</span> tempArray.length;
+        <span style="color:#ff79c6">if</span> (length <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">1</span>) {
+            <span style="color:#ff79c6">return</span> tempArray;
+        } <span style="color:#ff79c6">else</span> {
+            <span style="color:#6272a4">//배열을 이등분하여 좌측 요소들을 heap 형태로 변환
+</span><span style="color:#6272a4"></span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">Math</span>.floor(tempArray.length <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">2</span>) <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&gt;=</span> <span style="color:#bd93f9">0</span>; i<span style="color:#ff79c6">--</span>) {
+                heap(tempArray, length, i);
+            }
+
+            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> tempArray.length <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>; i<span style="color:#ff79c6">--</span>) {
+                swap(tempArray, <span style="color:#bd93f9">0</span>, i); <span style="color:#6272a4">//가장 큰 요소와 정렬되지 않은 마지막 요소와 교환
+</span><span style="color:#6272a4"></span>                length<span style="color:#ff79c6">--</span>;
+                heap(tempArray, length, <span style="color:#bd93f9">0</span>); <span style="color:#6272a4">//배열의 나머지 부분들을 heap상태로 만들며 정렬 과정 수행
+</span><span style="color:#6272a4"></span>            }
+            <span style="color:#ff79c6">return</span> tempArray;
+        }
+    }
+
+    <span style="color:#ff79c6">return</span> sort(array);
+}
+<span style="color:#ff79c6">const</span> unsorted <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">9</span>, <span style="color:#bd93f9">7</span>, <span style="color:#bd93f9">8</span>];
+console.log(heapSort(unsorted)); <span style="color:#6272a4">//[1, 2 ,3 ,4 ,5]
 </span></code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li>자료구조와 함께 배우는 알고리즘 입문 - 검색 알고리즘 (Bohyoh Shibata 저)</li>
+<li><a class="link" href="https://www.notion.so/Heap-Sort-94ca25907c4544ef8fd9b0509010c81e"  target="_blank" rel="noopener"
+    >Heap Sort Solution In JavaScript (in-depth)</a> - By. Mono Li</li>
 </ul>
 
 </section>
@@ -379,18 +463,18 @@ binarySearch(<span style="color:#bd93f9">10</span>, [<span style="color:#bd93f9"
                 
                     
 <article class="has-image">
-    <a href="/post/algorithm-heap/">
+    <a href="/post/algorithm-search/">
         
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="algorithm-heap" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="algorithm-search" data-hash="../../assets/js/js.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">힙의 개념과 힙 정렬 알고리즘</h2>
+            <h2 class="article-title">탐색 알고리즘 (선형, 이진)</h2>
         </div>
     </a>
 </article>

@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 09 Oct 2021 23:17:34 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 16 Oct 2021 23:24:14 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>힙의 개념과 힙 정렬 알고리즘</title>
+      <link>https://jinyisland.kr/post/algorithm-heap/</link>
+      <pubDate>Sat, 16 Oct 2021 23:24:14 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/algorithm-heap/</guid>
+      <description>힙 정렬 완전 이진트리에서 파생된 heap 특성을 사용하여 정렬하는 알고리즘, 힙은 부모의 값이 자식의 값보다 항상 크거나 항상 작다라는 조건을 만족하는 완전이진트리 형태의 자료구조이다. 완전이진트리는 자식 노드를 왼쪽부터 채워나가는 형태의 자료구조이다. 힙의 개념 완전이진트리와의 차이점은 큰 값이 상위, 작은 값이 하위에 위치한 트리형 자료구조로써 부모-자식 관계까 일정해야한다. 작은 값이 부모가 되는 힙 형태를 min-heap(최소 힙), 큰 값이 부모가 되는 트리 구조를 max-heap(최대 힙)이라고 한다. 힙은 다음과 같은 관계를 가지고 있어야한다.</description>
+    </item>
+    
     <item>
       <title>computed와 Watch</title>
       <link>https://jinyisland.kr/post/computed-watch/</link>
