@@ -242,20 +242,20 @@
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
     <h2 id="비동기-처리">비동기 처리</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//대충 이런 구조의 코드..
-</span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">function</span> checkValue(){
-	<span style="color:#6272a4">//로직검사..
-</span><span style="color:#6272a4"></span>}
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//대충 이런 구조의 코드..
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">checkValue</span><span class="p">(){</span>
+	<span class="c1">//로직검사..
+</span><span class="c1"></span><span class="p">}</span>
 
-setTimeout(<span style="color:#8be9fd;font-style:italic">function</span>(){
-	checkValue();
-}, <span style="color:#bd93f9">500</span>);
+<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+	<span class="nx">checkValue</span><span class="p">();</span>
+<span class="p">},</span> <span class="mi">500</span><span class="p">);</span>
 
-<span style="color:#8be9fd;font-style:italic">function</span> getData(){
-	<span style="color:#6272a4">//AJAX로 소스를 받아오는 코드..
-</span><span style="color:#6272a4"></span>};
+<span class="kd">function</span> <span class="nx">getData</span><span class="p">(){</span>
+	<span class="c1">//AJAX로 소스를 받아오는 코드..
+</span><span class="c1"></span><span class="p">};</span>
 
-getData();
+<span class="nx">getData</span><span class="p">();</span>
 </code></pre></div><p>자바스크립트를 처음 접했을 때, setTimeout이 왜 순서대로 시행 안되지??.. (why 나중에 시행되는거야..🤔)해서비동기에 대한 개념을 숙지했다. 대충 콜백함수로 넘겨서 호출해 해결하고 비동기 프로세스에 대한 개념 자체를 더 배우려하지 않았다. 이번에 Node.js 스터디를 하면서 비동기 프로세스를 꼭 알아야 성능 향상에 도움이 된다는 사실을 알게되었고 책과 강의를 통해 내가 이해한 비동기 처리과정을 최대한 간략하게 정리해보았다.</p>
 <p><img src="../assets/js/../../../assets/js/js-eventloop.png" alt="javascript-eventloop"  /></p>
 <p>이벤트 루프는 비동기 프로세스를 이해하기 위해 꼭 알아야 하는 자바스크립트 런타임 구성요소이다.

@@ -246,39 +246,39 @@
 <p>클로저는 쉽게말해 함수 선언시 생성되는 <code>유효 범위</code>이다.<br>
 먼저 자바스크립트에서 클로저를 이해하려면 <strong>범위 지정(Lexical Scoping)을</strong> 이해하여야 한다.<br>
 아래 코드를 보자.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> apple <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;🍎&#39;</span>;
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">apple</span> <span class="o">=</span> <span class="s1">&#39;🍎&#39;</span><span class="p">;</span>
 
-<span style="color:#8be9fd;font-style:italic">function</span> displayApple(){
-	console.log(apple);
-}
+<span class="kd">function</span> <span class="nx">displayApple</span><span class="p">(){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">apple</span><span class="p">);</span>
+<span class="p">}</span>
 
-displayApple();
-<span style="color:#6272a4">//result : 🍎
+<span class="nx">displayApple</span><span class="p">();</span>
+<span class="c1">//result : 🍎
 </span></code></pre></div><p>간단하게 사과를 출력해주는 함수다.<br>
 하지만,  정작 함수안에는 apple이라는 변수가 없는데도 불구하고 사과가 출력되었다.<br>
 지난번 실행컨텍스트에서 언급했듯이 해당 유효범위에서 식별자를 찾지 못하면 점점 상위 ~ 전역으로 탐색한다. <code>Scope Chain</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> displayPrice;
-<span style="color:#8be9fd;font-style:italic">var</span> apple <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">**</span><span style="color:#f1fa8c">&#39;🍎&#39;</span>;<span style="color:#ff79c6">**</span>
-<span style="color:#8be9fd;font-style:italic">function</span> displayApple(){ 
-	<span style="color:#8be9fd;font-style:italic">var</span> price <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1000</span>;
-	console.log(<span style="color:#f1fa8c">&#39;**🍎&#39;</span>);<span style="color:#ff79c6">**</span>
-	<span style="color:#8be9fd;font-style:italic">function</span> setPrice(){ 
-		console.log(price <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#39; won!!&#39;</span>);
-	}
-	displayPrice <span style="color:#ff79c6">=</span> setPrice;
-}
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">displayPrice</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">apple</span> <span class="o">=</span> <span class="o">**</span><span class="s1">&#39;🍎&#39;</span><span class="p">;</span><span class="o">**</span>
+<span class="kd">function</span> <span class="nx">displayApple</span><span class="p">(){</span> 
+	<span class="kd">var</span> <span class="nx">price</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;**🍎&#39;</span><span class="p">);</span><span class="o">**</span>
+	<span class="kd">function</span> <span class="nx">setPrice</span><span class="p">(){</span> 
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">price</span> <span class="o">+</span> <span class="s1">&#39; won!!&#39;</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="nx">displayPrice</span> <span class="o">=</span> <span class="nx">setPrice</span><span class="p">;</span>
+<span class="p">}</span>
 
-displayApple();
-noticePrice();
+<span class="nx">displayApple</span><span class="p">();</span>
+<span class="nx">noticePrice</span><span class="p">();</span>
 </code></pre></div><p>그럼 위의 코드를 보면 맨 처음 사과를 보여주는 함수 내부에 사과 가격을 출력해주는 함수도 추가해보았다.<br>
 이 함수는 전역 스코프에 정의되어있는 <code>displayPrice</code>에 할당하여 <code>displayApple</code>함수가 시행한 후 호출하였다.<br>
 결론적으로 displayApple이 끝난 뒤 호출하는 noticePrice 함수 시행시 유효범위가 끝난 줄 알았던 내부함수가 잘 시행이 되었다!!<br>
 어떤 원리로 이미 끝난 함수의 내부 함수를 호출할 수 있는 것일까?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">/*
-</span><span style="color:#6272a4">**🍎** 
-</span><span style="color:#6272a4">**🍎 
-</span><span style="color:#6272a4">1000 won!!**
-</span><span style="color:#6272a4">*/</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="cm">/*
+</span><span class="cm">**🍎** 
+</span><span class="cm">**🍎 
+</span><span class="cm">1000 won!!**
+</span><span class="cm">*/</span>
 </code></pre></div><h3 id="특징">특징</h3>
 <p>먼저 외부함수(displayApple)내에서 내부함수(setPrice)를 선언하였을 때, 함수만 정의되는 것이 아니라 <strong>해당 시점의 유효 범위에 포함하는 모든 변수들도 같이 생성된다.</strong><br>
 따라서 외부함수를 먼저 실행하고 끝난 뒤 <code>displayPrice</code>가 참조하고있는 내부함수(setPrice)에 이미 끝난 시점임에도 불구하고 그 시점의 유효 범위에 접근할 수있게된다.<br>
@@ -290,22 +290,22 @@ noticePrice();
 <h3 id="은닉화">은닉화</h3>
 <p>자바스크립트에서는 여타 언어와는 달리 <code>접근 제어자</code>를 명확하게 지원하지 않는다.<br>
 클로저를 통해 변수의 유효 범위를 세밀하게 제어할 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> Fruits(){
-	<span style="color:#8be9fd;font-style:italic">var</span> fruit <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;🍎&#39;</span>; <span style="color:#6272a4">//private 
-</span><span style="color:#6272a4"></span>	
-	<span style="color:#ff79c6">this</span>.getFruit <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span>(){
-		<span style="color:#ff79c6">return</span> fruit;
-	}
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Fruits</span><span class="p">(){</span>
+	<span class="kd">var</span> <span class="nx">fruit</span> <span class="o">=</span> <span class="s1">&#39;🍎&#39;</span><span class="p">;</span> <span class="c1">//private 
+</span><span class="c1"></span>	
+	<span class="k">this</span><span class="p">.</span><span class="nx">getFruit</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+		<span class="k">return</span> <span class="nx">fruit</span><span class="p">;</span>
+	<span class="p">}</span>
 
-	<span style="color:#ff79c6">this</span>.setFruit <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span>(item){
-		fruit <span style="color:#ff79c6">=</span> item;
-	}
-}
+	<span class="k">this</span><span class="p">.</span><span class="nx">setFruit</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">){</span>
+		<span class="nx">fruit</span> <span class="o">=</span> <span class="nx">item</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
 
-fruits.getFruit(); <span style="color:#6272a4">//🍎
-</span><span style="color:#6272a4"></span>fruits.fruit; <span style="color:#6272a4">//undefined
-</span><span style="color:#6272a4"></span>fruits.setFruit(<span style="color:#f1fa8c">&#39;🍇&#39;</span>); <span style="color:#6272a4">//사과를 포도로 바꾼다.
-</span><span style="color:#6272a4"></span>fruits.getFruit(); <span style="color:#6272a4">//🍇
+<span class="nx">fruits</span><span class="p">.</span><span class="nx">getFruit</span><span class="p">();</span> <span class="c1">//🍎
+</span><span class="c1"></span><span class="nx">fruits</span><span class="p">.</span><span class="nx">fruit</span><span class="p">;</span> <span class="c1">//undefined
+</span><span class="c1"></span><span class="nx">fruits</span><span class="p">.</span><span class="nx">setFruit</span><span class="p">(</span><span class="s1">&#39;🍇&#39;</span><span class="p">);</span> <span class="c1">//사과를 포도로 바꾼다.
+</span><span class="c1"></span><span class="nx">fruits</span><span class="p">.</span><span class="nx">getFruit</span><span class="p">();</span> <span class="c1">//🍇
 </span></code></pre></div><p>위 함수는 과일을 관리하는 생성자 함수이다.<br>
 과일을 가져오는 getFruit()메서드와 설정하는 setFruit() 메서드가 존재한다.<br>
 함수 수행결과와 같이 <code>getFruit</code>와 <code>setFruit</code>를 통해 함수 내부의 변수에 접근하는 것은 가능하지만,  직접적인 변수 접근엔 불가하다.<br>
@@ -313,50 +313,50 @@ fruits.getFruit(); <span style="color:#6272a4">//🍎
 <h3 id="참조형-반복문">참조형 반복문</h3>
 <p>반복문 내에 변수가 특정 변수를 계속 참조하고 있는 상황에서도 클로저를 활용해 유리하게 풀어나갈 수 있다.<br>
 만약 <code>setTimeout()</code>함수에서 1초간격으로 특정 코드를 수행하는 로직을 짠다면 (예시로 각 초를 출력하도록..)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> countSec(seconds){
-	<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd;font-style:italic">var</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>; i<span style="color:#ff79c6">&lt;=</span>seconds; i<span style="color:#ff79c6">++</span>){
-		setTimeout(<span style="color:#8be9fd;font-style:italic">function</span>(){
-			console.log(i);
-		}, i<span style="color:#ff79c6">*</span><span style="color:#bd93f9">1000</span>); <span style="color:#6272a4">//setTimeout에 인자로 들어가는 함수는 변수 i를 참조하지만, 이미 countSet()함수가 종료된 시점이라 최종 값으로 할당되었다..
-</span><span style="color:#6272a4"></span>	}
-};
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">countSec</span><span class="p">(</span><span class="nx">seconds</span><span class="p">){</span>
+	<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;=</span><span class="nx">seconds</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+			<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+		<span class="p">},</span> <span class="nx">i</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span> <span class="c1">//setTimeout에 인자로 들어가는 함수는 변수 i를 참조하지만, 이미 countSet()함수가 종료된 시점이라 최종 값으로 할당되었다..
+</span><span class="c1"></span>	<span class="p">}</span>
+<span class="p">};</span>
 
-countSec(<span style="color:#bd93f9">3</span>); <span style="color:#6272a4">//4..4..4
+<span class="nx">countSec</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">//4..4..4
 </span></code></pre></div><p>예상과 달리 &lsquo;4&rsquo;만 3초동안 반복한다.<br>
 이유는 setTimeout() 내부함수에서 생성한 변수가 자신 <strong>(생성하는 시점에 저장되어 있던 i)</strong> 을 기억하는 것이 아닌 생성된 i를 계속 참조하고 있기 때문에 이런 현상이 발생하는 것이다.<br>
 이는 즉시실행함수를 통해 올바르게 동작시킬 수 있는데 반복할 때 마다 유효 범위에 <code>i</code>가 새로 정의되고 원하는 연산 값이 출력되는 것을 볼 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> countSec(seconds){
-	<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd;font-style:italic">var</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>; i<span style="color:#ff79c6">&lt;=</span>seconds; i<span style="color:#ff79c6">++</span>){
-		(<span style="color:#8be9fd;font-style:italic">function</span>(curNum){ <span style="color:#6272a4">//즉시실행함수를 이용해 외부 변수 i를 복사하여 setTimout() 지역 변수로 끌어와 정상적으로 1,2,3 입력된다!
-</span><span style="color:#6272a4"></span>			setTimeout(<span style="color:#8be9fd;font-style:italic">function</span>(){
-				console.log(curNum);
-			}, curNum<span style="color:#ff79c6">*</span><span style="color:#bd93f9">1000</span>);
-		}(i));
-	}
-};
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">countSec</span><span class="p">(</span><span class="nx">seconds</span><span class="p">){</span>
+	<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;=</span><span class="nx">seconds</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">curNum</span><span class="p">){</span> <span class="c1">//즉시실행함수를 이용해 외부 변수 i를 복사하여 setTimout() 지역 변수로 끌어와 정상적으로 1,2,3 입력된다!
+</span><span class="c1"></span>			<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+				<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">curNum</span><span class="p">);</span>
+			<span class="p">},</span> <span class="nx">curNum</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>
+		<span class="p">}(</span><span class="nx">i</span><span class="p">));</span>
+	<span class="p">}</span>
+<span class="p">};</span>
 
-countSec(<span style="color:#bd93f9">3</span>); <span style="color:#6272a4">//1..2..3
+<span class="nx">countSec</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">//1..2..3
 </span></code></pre></div><p>이러한 현상은 DOM 조작시에서도 발생할 수 있는데, 만약 특정 요소를 반복하면서 접근하는 경우에 발생된다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">body</span>&gt;
-	&lt;<span style="color:#ff79c6">button</span>&gt;First&lt;/<span style="color:#ff79c6">button</span>&gt;
-	&lt;<span style="color:#ff79c6">button</span>&gt;Second&lt;/<span style="color:#ff79c6">button</span>&gt;
-	&lt;<span style="color:#ff79c6">button</span>&gt;Third&lt;/<span style="color:#ff79c6">button</span>&gt;
-&lt;/<span style="color:#ff79c6">body</span>&gt;
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">  <span style="color:#8be9fd;font-style:italic">var</span> buttons <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.getElemnetByTagName(<span style="color:#f1fa8c">&#39;button&#39;</span>);
-	<span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">var</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i<span style="color:#ff79c6">&lt;</span> buttons.length; i<span style="color:#ff79c6">++</span>){
-		buttons[i].addEventListener(<span style="color:#f1fa8c">&#39;click&#39;</span>, <span style="color:#8be9fd;font-style:italic">function</span>(){
-			console.log(<span style="color:#f1fa8c">&#39;clicked!&#39;</span> <span style="color:#ff79c6">+</span> i <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#39; button!!&#39;</span>);
-		})
-	}
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+	<span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>First<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+	<span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Second<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+	<span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Third<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js">  <span class="kd">var</span> <span class="nx">buttons</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElemnetByTagName</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span> <span class="nx">buttons</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="nx">buttons</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+			<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;clicked!&#39;</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s1">&#39; button!!&#39;</span><span class="p">);</span>
+		<span class="p">})</span>
+	<span class="p">}</span>
 </code></pre></div><p>만약 위와같이 단순하게 반복문으로 요소들의 이벤트를 트리거하는 상황이면,  이벤트 핸들러가 코드를 수행할 때 마지막에 저장된 <code>i</code>를 참조하게 된다.<br>
 어떠한 버튼을 눌러도 3번째 버튼이라고 출력 될 것이다.<br>
 이 역시 즉시시행함수로 바꿀 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">  <span style="color:#8be9fd;font-style:italic">var</span> buttons <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.getElemnetByTagName(<span style="color:#f1fa8c">&#39;button&#39;</span>);
-	<span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">var</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i<span style="color:#ff79c6">&lt;</span> buttons.length; i<span style="color:#ff79c6">++</span>)(<span style="color:#8be9fd;font-style:italic">function</span>(n){
-		buttons[i].addEventListener(<span style="color:#f1fa8c">&#39;click&#39;</span>, <span style="color:#8be9fd;font-style:italic">function</span>(){
-			console.log(<span style="color:#f1fa8c">&#39;clicked!&#39;</span> <span style="color:#ff79c6">+</span> n <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#39; button!!&#39;</span>);
-		});
-	})(i);
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js">  <span class="kd">var</span> <span class="nx">buttons</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElemnetByTagName</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span> <span class="nx">buttons</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)(</span><span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">){</span>
+		<span class="nx">buttons</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+			<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;clicked!&#39;</span> <span class="o">+</span> <span class="nx">n</span> <span class="o">+</span> <span class="s1">&#39; button!!&#39;</span><span class="p">);</span>
+		<span class="p">});</span>
+	<span class="p">})(</span><span class="nx">i</span><span class="p">);</span>
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong>자바스크립트 닌자 비급 - 클로저와 가까워지기 (John Resig 저)</strong></li>

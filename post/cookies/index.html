@@ -279,103 +279,103 @@
 <p>node.js를 사용한 간단한 쿠키 주고받는 소스이다.<br>
 <code>singup</code>이라는  POST 요청이 들어오면, 클라이언트에서 전송한 사용자 ID를 바로 쿠키에 set 해서 응답한다. 브라우저에서는 해당 쿠키를 저장하고 다음 요청부터는 <code>Request Headers</code>에 쿠키를 삽입해서 서버로 전송한다. 주의할 점은 한글 문자열을 사용할 때  encodeURIComponent와 decodeURIComponent로 변환 해주는 과정이 필요하다.</p>
 <h3 id="setcookie">SetCookie</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> http <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;http&#34;</span>);
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;http&#34;</span><span class="p">);</span>
 
-http.createServer(<span style="color:#ff79c6">async</span> (request, response) =&gt; {
-<span style="color:#ff79c6">const</span> method <span style="color:#ff79c6">=</span> request.mtehod;
-<span style="color:#ff79c6">const</span> url <span style="color:#ff79c6">=</span> request.url
+<span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kr">async</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="kr">const</span> <span class="nx">method</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">mtehod</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">url</span>
 
-<span style="color:#ff79c6">if</span>(method <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;POST&#34;</span> <span style="color:#ff79c6">&amp;&amp;</span> url <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;/signup&#34;</span>){
-	<span style="color:#8be9fd;font-style:italic">let</span> body <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>;
-	request.on(<span style="color:#f1fa8c">&#34;data&#34;</span>, (data)=&gt;{
-		body <span style="color:#ff79c6">+=</span> data;
-	});
+<span class="k">if</span><span class="p">(</span><span class="nx">method</span> <span class="o">===</span> <span class="s2">&#34;POST&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">url</span> <span class="o">===</span> <span class="s2">&#34;/signup&#34;</span><span class="p">){</span>
+	<span class="kd">let</span> <span class="nx">body</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+	<span class="nx">request</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;data&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">data</span><span class="p">)=&gt;{</span>
+		<span class="nx">body</span> <span class="o">+=</span> <span class="nx">data</span><span class="p">;</span>
+	<span class="p">});</span>
 
-	<span style="color:#ff79c6">return</span> request.on(<span style="color:#f1fa8c">&#34;end&#34;</span>, ()=&gt;{
-		<span style="color:#ff79c6">const</span> result <span style="color:#ff79c6">=</span> {
-		    result<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
-		    message<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;success&#34;</span>,
-		};
-		body <span style="color:#ff79c6">=</span> JSON.parse(body);
-		<span style="color:#6272a4">//응답 헤더에 쿠키 설정
-</span><span style="color:#6272a4"></span>		response.writeHead(<span style="color:#bd93f9">200</span>, {
-			<span style="color:#f1fa8c">&#34;content-Type&#34;</span><span style="color:#ff79c6">:</span><span style="color:#f1fa8c">&#34;Application/json; charset=utf-8&#34;</span>,
-			<span style="color:#f1fa8c">&#34;Set-Cookie&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">`user-id=</span><span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">encodeURIComponent</span>(body.id)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>,
-		});
-<span style="color:#ff79c6">~~~~</span>		response.end(JSON.stringify(result));
-	});
-}})}).listen(<span style="color:#bd93f9">8088</span>, () =&gt; {
-    store.logger(<span style="color:#f1fa8c">&#34;log&#34;</span>, <span style="color:#f1fa8c">&#34;POST BOX START!!!!!&#34;</span>);
-});;
+	<span class="k">return</span> <span class="nx">request</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;end&#34;</span><span class="p">,</span> <span class="p">()=&gt;{</span>
+		<span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span>
+		    <span class="nx">result</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+		    <span class="nx">message</span><span class="o">:</span> <span class="s2">&#34;success&#34;</span><span class="p">,</span>
+		<span class="p">};</span>
+		<span class="nx">body</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+		<span class="c1">//응답 헤더에 쿠키 설정
+</span><span class="c1"></span>		<span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span>
+			<span class="s2">&#34;content-Type&#34;</span><span class="o">:</span><span class="s2">&#34;Application/json; charset=utf-8&#34;</span><span class="p">,</span>
+			<span class="s2">&#34;Set-Cookie&#34;</span><span class="o">:</span> <span class="sb">`user-id=</span><span class="si">${</span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">body</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+		<span class="p">});</span>
+<span class="o">~~~~</span>		<span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">result</span><span class="p">));</span>
+	<span class="p">});</span>
+<span class="p">}})}).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8088</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">store</span><span class="p">.</span><span class="nx">logger</span><span class="p">(</span><span class="s2">&#34;log&#34;</span><span class="p">,</span> <span class="s2">&#34;POST BOX START!!!!!&#34;</span><span class="p">);</span>
+<span class="p">});;</span>
 
 </code></pre></div><h3 id="getcookie">getCookie</h3>
 <p>이제 클라이언트에서 쿠키를 포함한 요청을 보내면 서버 측에서도 쿠키를 식별해야 한다.<br>
 아쉽게도 node.js에서는 쿠키 값을 빼내올 함수가 따로 존재하지 않는다. <code>request.headers.cookie</code>에 쿠키 정보는 확인할 수 있지만 원하는 쿠키 값을 찾으려면 직접 함수로 구현해야 한다. 여러 책이나 자료에서도 찾을 수 있지만, 한번 cookie 구조 파악 겸 직접 작성해 보았다.😅</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#6272a4">//쿠키 형식(request.headers.cookie) : _ga=GA1.1.55873572.1627649409; _ga_6TN7PCJZTQ=GS1.1.1631890653.16.1.1631891304.0; user-id=asddsa
-</span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> getCookie <span style="color:#ff79c6">=</span> (cookies, key) =&gt; {
-    <span style="color:#ff79c6">const</span> cookieArray <span style="color:#ff79c6">=</span> cookies.split(<span style="color:#f1fa8c">&#34;;&#34;</span>);
-    <span style="color:#8be9fd;font-style:italic">let</span> value <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>;
-    cookieArray.forEach((element) =&gt; {
-        <span style="color:#ff79c6">if</span> (element.split(<span style="color:#f1fa8c">&#34;=&#34;</span>)[<span style="color:#bd93f9">0</span>].trim() <span style="color:#ff79c6">===</span> key) {
-            <span style="color:#ff79c6">return</span> (value <span style="color:#ff79c6">=</span> element.split(<span style="color:#f1fa8c">&#34;=&#34;</span>)[<span style="color:#bd93f9">1</span>]);
-        }
-    });
-    <span style="color:#ff79c6">return</span> value.length <span style="color:#ff79c6">?</span> <span style="color:#8be9fd;font-style:italic">decodeURIComponent</span>(value) <span style="color:#ff79c6">:</span> value;
-};
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//쿠키 형식(request.headers.cookie) : _ga=GA1.1.55873572.1627649409; _ga_6TN7PCJZTQ=GS1.1.1631890653.16.1.1631891304.0; user-id=asddsa
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">getCookie</span> <span class="o">=</span> <span class="p">(</span><span class="nx">cookies</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">cookieArray</span> <span class="o">=</span> <span class="nx">cookies</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&#34;;&#34;</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+    <span class="nx">cookieArray</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">element</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&#34;=&#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">trim</span><span class="p">()</span> <span class="o">===</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&#34;=&#34;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="k">return</span> <span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="nb">decodeURIComponent</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">:</span> <span class="nx">value</span><span class="p">;</span>
+<span class="p">};</span>
 </code></pre></div><p>해당 함수를 바탕으로 원하는 쿠키 값이 있는지 확인할 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">if</span> (method <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;POST&#34;</span> <span style="color:#ff79c6">&amp;&amp;</span> url <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;/write&#34;</span>) {
-		<span style="color:#6272a4">//쿠키 값 탐색 
-</span><span style="color:#6272a4"></span>		<span style="color:#ff79c6">const</span> userId <span style="color:#ff79c6">=</span> getCookie(request.headers.cookie, <span style="color:#f1fa8c">&#34;user-id&#34;</span>);
-		<span style="color:#8be9fd;font-style:italic">let</span> body <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>;
-		<span style="color:#6272a4">//쿠키 값 존재시 해당 사용자 ID, 아니면 익명 ID로 값 저장
-</span><span style="color:#6272a4"></span>		<span style="color:#8be9fd;font-style:italic">let</span> writer <span style="color:#ff79c6">=</span> userId.length <span style="color:#ff79c6">?</span> userId <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;anonymous&#34;</span>;
-		request.on(<span style="color:#f1fa8c">&#34;data&#34;</span>, (data) =&gt; {
-		    body <span style="color:#ff79c6">+=</span> data;
-		});
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="k">if</span> <span class="p">(</span><span class="nx">method</span> <span class="o">===</span> <span class="s2">&#34;POST&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">url</span> <span class="o">===</span> <span class="s2">&#34;/write&#34;</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">//쿠키 값 탐색 
+</span><span class="c1"></span>		<span class="kr">const</span> <span class="nx">userId</span> <span class="o">=</span> <span class="nx">getCookie</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">cookie</span><span class="p">,</span> <span class="s2">&#34;user-id&#34;</span><span class="p">);</span>
+		<span class="kd">let</span> <span class="nx">body</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+		<span class="c1">//쿠키 값 존재시 해당 사용자 ID, 아니면 익명 ID로 값 저장
+</span><span class="c1"></span>		<span class="kd">let</span> <span class="nx">writer</span> <span class="o">=</span> <span class="nx">userId</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="nx">userId</span> <span class="o">:</span> <span class="s2">&#34;anonymous&#34;</span><span class="p">;</span>
+		<span class="nx">request</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;data&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+		    <span class="nx">body</span> <span class="o">+=</span> <span class="nx">data</span><span class="p">;</span>
+		<span class="p">});</span>
 		
-		<span style="color:#ff79c6">return</span> request.on(<span style="color:#f1fa8c">&#34;end&#34;</span>, () =&gt; {
-		    <span style="color:#ff79c6">if</span> (body.length) {
-		        body <span style="color:#ff79c6">=</span> JSON.parse(body);
-		        store.boardlist.push({
-		            title<span style="color:#ff79c6">:</span> body.title,
-		            context<span style="color:#ff79c6">:</span> body.context,
-		            writer<span style="color:#ff79c6">:</span> writer,
-		            writeDate<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>().toISOString().substr(<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">10</span>),
-		        });
+		<span class="k">return</span> <span class="nx">request</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;end&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+		    <span class="k">if</span> <span class="p">(</span><span class="nx">body</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+		        <span class="nx">body</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+		        <span class="nx">store</span><span class="p">.</span><span class="nx">boardlist</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+		            <span class="nx">title</span><span class="o">:</span> <span class="nx">body</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+		            <span class="nx">context</span><span class="o">:</span> <span class="nx">body</span><span class="p">.</span><span class="nx">context</span><span class="p">,</span>
+		            <span class="nx">writer</span><span class="o">:</span> <span class="nx">writer</span><span class="p">,</span>
+		            <span class="nx">writeDate</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">().</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+		        <span class="p">});</span>
 					
-						<span style="color:#6272a4">//응답 성공 시 메인 화면으로 redirect
-</span><span style="color:#6272a4"></span>		        response.writeHead(<span style="color:#bd93f9">302</span>, {
-		            Location<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;/&#34;</span>,
-		        });
-		        response.end();
-		    } <span style="color:#ff79c6">else</span> {
-		        response.writeHead(<span style="color:#bd93f9">500</span>, { <span style="color:#f1fa8c">&#34;content-Type&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Application/json; charset=utf-8&#34;</span> });
-		        response.end(
-		            JSON.stringify({
-		                result<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>,
-		                message<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;NOT Value&#34;</span>,
-		            })
-		        );
-		    }
-		});
-}
+						<span class="c1">//응답 성공 시 메인 화면으로 redirect
+</span><span class="c1"></span>		        <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">302</span><span class="p">,</span> <span class="p">{</span>
+		            <span class="nx">Location</span><span class="o">:</span> <span class="s2">&#34;/&#34;</span><span class="p">,</span>
+		        <span class="p">});</span>
+		        <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+		    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		        <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="p">{</span> <span class="s2">&#34;content-Type&#34;</span><span class="o">:</span> <span class="s2">&#34;Application/json; charset=utf-8&#34;</span> <span class="p">});</span>
+		        <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span>
+		            <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+		                <span class="nx">result</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+		                <span class="nx">message</span><span class="o">:</span> <span class="s2">&#34;NOT Value&#34;</span><span class="p">,</span>
+		            <span class="p">})</span>
+		        <span class="p">);</span>
+		    <span class="p">}</span>
+		<span class="p">});</span>
+<span class="p">}</span>
 </code></pre></div><h2 id="여러옵션">여러옵션</h2>
 <h3 id="expire">Expire</h3>
 <p>유효기간을 설정해야 지속 쿠키로 사용할 수 있다. <code>Expires</code>키로 설정할 수 있고 GMTString 형태로 변환해 전송해야 한다.<br>
 만약 초를 입력하려면 <code>Max-age=3000</code>형태로 <strong>Max-age</strong>키를 사용해야 한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> minute <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span>;
-<span style="color:#ff79c6">const</span> expireTime <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>();
-expireTime.setMinutes(expireTime.getMinues() <span style="color:#ff79c6">+</span> minute);
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">minute</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">expireTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+<span class="nx">expireTime</span><span class="p">.</span><span class="nx">setMinutes</span><span class="p">(</span><span class="nx">expireTime</span><span class="p">.</span><span class="nx">getMinues</span><span class="p">()</span> <span class="o">+</span> <span class="nx">minute</span><span class="p">);</span>
 
-response.writeHead(<span style="color:#bd93f9">200</span>, {
-	<span style="color:#f1fa8c">&#34;Set-Cookie&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">`Expires=</span><span style="color:#f1fa8c">${</span>expireTime<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>,
-});
+<span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span>
+	<span class="s2">&#34;Set-Cookie&#34;</span><span class="o">:</span> <span class="sb">`Expires=</span><span class="si">${</span><span class="nx">expireTime</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="p">});</span>
 </code></pre></div><h3 id="httponly">HttpOnly</h3>
 <p>스크립트로 접근할 수 없음, 로그인 등 보안이 필요한 요청에 필수적으로 사용 권장하며 조작을 방지할 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#f1fa8c">&#34;Set-Cookie&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;name=test; HttpOnly;&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="s2">&#34;Set-Cookie&#34;</span><span class="o">:</span> <span class="s2">&#34;name=test; HttpOnly;&#34;</span>
 </code></pre></div><h3 id="path">Path</h3>
 <p>해당 경로 이하 도메인에 쿠키 사용, 예를들어 Path = /user라면, /user 하위의 도메인에만 쿠키를 사용한다. (root 도메인에선 쿠키 사용 안함)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#f1fa8c">&#34;Set-Cookie&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;name=test; HttpOnly Path=/;&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="s2">&#34;Set-Cookie&#34;</span><span class="o">:</span> <span class="s2">&#34;name=test; HttpOnly Path=/;&#34;</span>
 </code></pre></div><h3 id="domain">Domain</h3>
 <p>쿠키가 전송될 도메인을 지정한다. (default 값은 현재 도메인)</p>
 <h3 id="secure">Secure</h3>

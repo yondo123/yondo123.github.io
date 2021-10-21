@@ -244,26 +244,26 @@
     <p>Node.js HTTP 모듈을 통해 간단히 요청보내고, 주고받는 초간단 API 서버를 만들어보았다.</p>
 <h2 id="request">Request</h2>
 <p>createServer 콜백에서 request, response 인자를 받는데 request 객체에서 요청 정보들을 받을 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> http <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;http&#34;</span>);
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;http&#34;</span><span class="p">);</span>
 
-http.createServer(<span style="color:#ff79c6">async</span> (request, response)=&gt;{
-	<span style="color:#ff79c6">try</span>{
-		<span style="color:#ff79c6">const</span> method <span style="color:#ff79c6">=</span> request.method;
-		<span style="color:#ff79c6">const</span> url <span style="color:#ff79c6">=</span> request.url;
-		<span style="color:#6272a4">//step 1. 요청 메소드 구분
-</span><span style="color:#6272a4"></span>		<span style="color:#ff79c6">if</span>(method <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;GET&#34;</span>){
-			<span style="color:#6272a4">//step 2. URL 구분
-</span><span style="color:#6272a4"></span>			<span style="color:#ff79c6">if</span>(url <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;/&#34;</span>){
-			}<span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span>(url <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;/list&#34;</span>){
-			}
-		}<span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span>(method <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;POST&#34;</span>){
-			<span style="color:#6272a4">//code..
-</span><span style="color:#6272a4"></span>		}<span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span>(method <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;DELETE&#34;</span>){
-		}
-	} <span style="color:#ff79c6">catch</span> {
-		<span style="color:#6272a4">//step 3. 예외처리 (404, 500..)
-</span><span style="color:#6272a4"></span>	}
-}).listen(<span style="color:#bd93f9">8080</span>);
+<span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kr">async</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)=&gt;{</span>
+	<span class="k">try</span><span class="p">{</span>
+		<span class="kr">const</span> <span class="nx">method</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">method</span><span class="p">;</span>
+		<span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">;</span>
+		<span class="c1">//step 1. 요청 메소드 구분
+</span><span class="c1"></span>		<span class="k">if</span><span class="p">(</span><span class="nx">method</span> <span class="o">==</span> <span class="s2">&#34;GET&#34;</span><span class="p">){</span>
+			<span class="c1">//step 2. URL 구분
+</span><span class="c1"></span>			<span class="k">if</span><span class="p">(</span><span class="nx">url</span> <span class="o">==</span> <span class="s2">&#34;/&#34;</span><span class="p">){</span>
+			<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">url</span> <span class="o">==</span> <span class="s2">&#34;/list&#34;</span><span class="p">){</span>
+			<span class="p">}</span>
+		<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">method</span> <span class="o">==</span> <span class="s2">&#34;POST&#34;</span><span class="p">){</span>
+			<span class="c1">//code..
+</span><span class="c1"></span>		<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">method</span> <span class="o">==</span> <span class="s2">&#34;DELETE&#34;</span><span class="p">){</span>
+		<span class="p">}</span>
+	<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+		<span class="c1">//step 3. 예외처리 (404, 500..)
+</span><span class="c1"></span>	<span class="p">}</span>
+<span class="p">}).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
 </code></pre></div><ul>
 <li><strong>Method :</strong> request.method</li>
 <li><strong>url :</strong> request.url</li>
@@ -280,41 +280,41 @@ http.createServer(<span style="color:#ff79c6">async</span> (request, response)=&
 [👻 LOGGER][method : GET, url : /list]
 [👻 LOGGER][method : GET, url : /favicon.ico]
 </code></pre><p>모든 리소스를 정적으로 일일이 구성하기에는 관리도 어렵고 부담스럽다.. url 경로를 동적으로 받아오면 된다!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">try</span> {
-    <span style="color:#ff79c6">const</span> resource <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">`../frontend</span><span style="color:#f1fa8c">${</span>url<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>);
-    console.log(<span style="color:#f1fa8c">`../frontend</span><span style="color:#f1fa8c">${</span>url<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>);
-    <span style="color:#ff79c6">return</span> response.end(resource);
-} <span style="color:#ff79c6">catch</span> (error) {
-    <span style="color:#ff79c6">const</span> notFoundView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">&#34;../frontend/html/notFound.html&#34;</span>).<span style="color:#ff79c6">catch</span>((err) =&gt; {
-        <span style="color:#ff79c6">return</span> store.logger(<span style="color:#f1fa8c">&#34;error&#34;</span>, err);
-    });
-    response.writeHead(<span style="color:#bd93f9">404</span>, { <span style="color:#f1fa8c">&#34;content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;text/html; charset=utf-8&#34;</span>});
-    <span style="color:#ff79c6">return</span> response.end(notFoundView);
-}
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="k">try</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">resource</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="sb">`../frontend</span><span class="si">${</span><span class="nx">url</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`../frontend</span><span class="si">${</span><span class="nx">url</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">resource</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">notFoundView</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s2">&#34;../frontend/html/notFound.html&#34;</span><span class="p">).</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">store</span><span class="p">.</span><span class="nx">logger</span><span class="p">(</span><span class="s2">&#34;error&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="p">{</span> <span class="s2">&#34;content-Type&#34;</span> <span class="o">:</span> <span class="s2">&#34;text/html; charset=utf-8&#34;</span><span class="p">});</span>
+    <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">notFoundView</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div><h2 id="response">Response</h2>
 <p>이제 반대로 응답을 내려줄려면 response 객체를 활용하면된다.<br>
 <code>writeHead</code>메서드로 상태코드와 <a class="link" href="https://www.geeksforgeeks.org/http-headers-content-type/"  target="_blank" rel="noopener"
     >HTTP ContentType</a>을 명시해주면되고 추가적으로 인코딩을 위해 <code>charset</code>도 정의해주면 좋다. (UTF-8 권장)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#6272a4">//http 상태코드, http header 정의
-</span><span style="color:#6272a4"></span>response.writeHead(<span style="color:#bd93f9">200</span>, {<span style="color:#f1fa8c">&#34;Content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;http header; charset=utf-8&#34;</span>});
-<span style="color:#6272a4">//resource 전달 (html..json.. 등등)
-</span><span style="color:#6272a4"></span>response.end(data);
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//http 상태코드, http header 정의
+</span><span class="c1"></span><span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;Content-Type&#34;</span> <span class="o">:</span> <span class="s2">&#34;http header; charset=utf-8&#34;</span><span class="p">});</span>
+<span class="c1">//resource 전달 (html..json.. 등등)
+</span><span class="c1"></span><span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 </code></pre></div><h3 id="html-resource">HTML Resource</h3>
 <p>response.write(&quot;<!-- raw HTML omitted --><!-- raw HTML omitted -->&quot;) 형태로 직접 작성하면서 전달해줄 수 있지만 코드도 길어지고 비효율적이다.. fs 모듈로 html 파일을 갖고올 수 있다. <code>fs 모듈</code>은 비동기 수행이므로 createServer 콜백을 async로 감싸는 것도 잊지말자.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> mainView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">&#34;../frontend/html/board.html&#34;</span>).<span style="color:#ff79c6">catch</span>((err)=&gt;{ console.error(err) });
-response.writeHead(<span style="color:#bd93f9">200</span>, {<span style="color:#f1fa8c">&#34;Content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;http header; charset=utf-8&#34;</span>});
-response.end(mainView);
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">mainView</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s2">&#34;../frontend/html/board.html&#34;</span><span class="p">).</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)=&gt;{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">});</span>
+<span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;Content-Type&#34;</span> <span class="o">:</span> <span class="s2">&#34;http header; charset=utf-8&#34;</span><span class="p">});</span>
+<span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">mainView</span><span class="p">);</span>
 </code></pre></div><h3 id="json-resource">JSON Resource</h3>
 <p>restAPI 통신시 JSON 포맷 데이터를 애용하게되는데, <code>node</code>에서는 손 쉽게 객체로 내려줄 수 있다. (역시 JSON 다루는 것은 node.js가 편하다..)<br>
 content-type을 JSON 형태로 맞추고 객체를 String객체로 변환시켜서 응답해주면 된다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> list <span style="color:#ff79c6">=</span> {
-    result <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
-    data <span style="color:#ff79c6">:</span> {
-        items <span style="color:#ff79c6">:</span> store.boardlist
-    }
-}
-response.writeHead(<span style="color:#bd93f9">200</span>, { <span style="color:#f1fa8c">&#34;content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Application/json; charset=utf-8&#34;</span>});
-<span style="color:#ff79c6">return</span> response.end(JSON.stringify(list));
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">result</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">data</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="nx">items</span> <span class="o">:</span> <span class="nx">store</span><span class="p">.</span><span class="nx">boardlist</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span> <span class="s2">&#34;content-Type&#34;</span> <span class="o">:</span> <span class="s2">&#34;Application/json; charset=utf-8&#34;</span><span class="p">});</span>
+<span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">list</span><span class="p">));</span>
 </code></pre></div><h2 id="후기">후기</h2>
 <p><img src="../../assets/js/node-rest-api.jpg" alt="node"  />
 이렇게 해서 간단한 서버를 만들어보았는데 확실히 구축 속도가 빠르긴하다.. 단 몇줄만으로 손쉽게 서버를 만들 수 있으니..<br>
@@ -336,117 +336,117 @@ response.writeHead(<span style="color:#bd93f9">200</span>, { <span style="color:
     ├── restApi.js
     └── store.js
 </code></pre><p><strong>store.js</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> store <span style="color:#ff79c6">=</span> {
-    boardlist <span style="color:#ff79c6">:</span> [{
-        title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
-        context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
-        writer <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;yondo123&#34;</span>,
-        writeDate <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;2021-09-17&#34;</span>
-    },{
-        title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
-        context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
-        writer <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;yondo123&#34;</span>,
-        writeDate <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;2021-09-17&#34;</span>
-    },{
-        title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
-        context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
-        writer <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;yondo123&#34;</span>,
-        writeDate <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;2021-09-17&#34;</span>
-    },{
-        title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
-        context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
-        writer <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;yondo123&#34;</span>,
-        writeDate <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;2021-09-17&#34;</span>
-    },{
-        title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
-        context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
-        writer <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;yondo123&#34;</span>,
-        writeDate <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;2021-09-17&#34;</span>
-    },{
-        title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
-        context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
-        writer <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;yondo123&#34;</span>,
-        writeDate <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;2021-09-17&#34;</span>
-    },{
-        title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
-        context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
-        writer <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;yondo123&#34;</span>,
-        writeDate <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;2021-09-17&#34;</span>
-    },{
-        title <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;재미있는 요시아일랜드&#34;</span>,
-        context <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span>,
-        writer <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;yondo123&#34;</span>,
-        writeDate <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;2021-09-17&#34;</span>
-    }],
-    logger <span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (type, message) {
-        <span style="color:#ff79c6">switch</span> (type) {
-            <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;log&#34;</span><span style="color:#ff79c6">:</span>
-                console.log(<span style="color:#f1fa8c">&#34;[👻 LOGGER]&#34;</span> <span style="color:#ff79c6">+</span> message);
-                <span style="color:#ff79c6">break</span>;
-            <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;error&#34;</span><span style="color:#ff79c6">:</span>
-                console.log(<span style="color:#f1fa8c">&#34;[⛔️ ERROR]&#34;</span> <span style="color:#ff79c6">+</span> message);
-                <span style="color:#ff79c6">break</span>;
-            <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#34;warn&#34;</span><span style="color:#ff79c6">:</span>
-                console.log(<span style="color:#f1fa8c">&#34;[🚸 WARN]&#34;</span> <span style="color:#ff79c6">+</span> message);
-                <span style="color:#ff79c6">break</span>;
-            <span style="color:#ff79c6">default</span><span style="color:#ff79c6">:</span>
-                console.error(<span style="color:#f1fa8c">&#34;[LOGGER] 지원하지 않는 타입&#34;</span>);
-                <span style="color:#ff79c6">break</span>;
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">boardlist</span> <span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="s2">&#34;재미있는 요시아일랜드&#34;</span><span class="p">,</span>
+        <span class="nx">context</span> <span class="o">:</span> <span class="s2">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span><span class="p">,</span>
+        <span class="nx">writer</span> <span class="o">:</span> <span class="s2">&#34;yondo123&#34;</span><span class="p">,</span>
+        <span class="nx">writeDate</span> <span class="o">:</span> <span class="s2">&#34;2021-09-17&#34;</span>
+    <span class="p">},{</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="s2">&#34;재미있는 요시아일랜드&#34;</span><span class="p">,</span>
+        <span class="nx">context</span> <span class="o">:</span> <span class="s2">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span><span class="p">,</span>
+        <span class="nx">writer</span> <span class="o">:</span> <span class="s2">&#34;yondo123&#34;</span><span class="p">,</span>
+        <span class="nx">writeDate</span> <span class="o">:</span> <span class="s2">&#34;2021-09-17&#34;</span>
+    <span class="p">},{</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="s2">&#34;재미있는 요시아일랜드&#34;</span><span class="p">,</span>
+        <span class="nx">context</span> <span class="o">:</span> <span class="s2">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span><span class="p">,</span>
+        <span class="nx">writer</span> <span class="o">:</span> <span class="s2">&#34;yondo123&#34;</span><span class="p">,</span>
+        <span class="nx">writeDate</span> <span class="o">:</span> <span class="s2">&#34;2021-09-17&#34;</span>
+    <span class="p">},{</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="s2">&#34;재미있는 요시아일랜드&#34;</span><span class="p">,</span>
+        <span class="nx">context</span> <span class="o">:</span> <span class="s2">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span><span class="p">,</span>
+        <span class="nx">writer</span> <span class="o">:</span> <span class="s2">&#34;yondo123&#34;</span><span class="p">,</span>
+        <span class="nx">writeDate</span> <span class="o">:</span> <span class="s2">&#34;2021-09-17&#34;</span>
+    <span class="p">},{</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="s2">&#34;재미있는 요시아일랜드&#34;</span><span class="p">,</span>
+        <span class="nx">context</span> <span class="o">:</span> <span class="s2">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span><span class="p">,</span>
+        <span class="nx">writer</span> <span class="o">:</span> <span class="s2">&#34;yondo123&#34;</span><span class="p">,</span>
+        <span class="nx">writeDate</span> <span class="o">:</span> <span class="s2">&#34;2021-09-17&#34;</span>
+    <span class="p">},{</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="s2">&#34;재미있는 요시아일랜드&#34;</span><span class="p">,</span>
+        <span class="nx">context</span> <span class="o">:</span> <span class="s2">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span><span class="p">,</span>
+        <span class="nx">writer</span> <span class="o">:</span> <span class="s2">&#34;yondo123&#34;</span><span class="p">,</span>
+        <span class="nx">writeDate</span> <span class="o">:</span> <span class="s2">&#34;2021-09-17&#34;</span>
+    <span class="p">},{</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="s2">&#34;재미있는 요시아일랜드&#34;</span><span class="p">,</span>
+        <span class="nx">context</span> <span class="o">:</span> <span class="s2">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span><span class="p">,</span>
+        <span class="nx">writer</span> <span class="o">:</span> <span class="s2">&#34;yondo123&#34;</span><span class="p">,</span>
+        <span class="nx">writeDate</span> <span class="o">:</span> <span class="s2">&#34;2021-09-17&#34;</span>
+    <span class="p">},{</span>
+        <span class="nx">title</span> <span class="o">:</span> <span class="s2">&#34;재미있는 요시아일랜드&#34;</span><span class="p">,</span>
+        <span class="nx">context</span> <span class="o">:</span> <span class="s2">&#34;혹시 요시아일랜드 해보셨나요? 해보셨다고요?&#34;</span><span class="p">,</span>
+        <span class="nx">writer</span> <span class="o">:</span> <span class="s2">&#34;yondo123&#34;</span><span class="p">,</span>
+        <span class="nx">writeDate</span> <span class="o">:</span> <span class="s2">&#34;2021-09-17&#34;</span>
+    <span class="p">}],</span>
+    <span class="nx">logger</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="s2">&#34;log&#34;</span><span class="o">:</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;[👻 LOGGER]&#34;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="s2">&#34;error&#34;</span><span class="o">:</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;[⛔️ ERROR]&#34;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="s2">&#34;warn&#34;</span><span class="o">:</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;[🚸 WARN]&#34;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">default</span><span class="o">:</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&#34;[LOGGER] 지원하지 않는 타입&#34;</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-module.exports <span style="color:#ff79c6">=</span> store;
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">store</span><span class="p">;</span>
 </code></pre></div><p><strong>server.js</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#ff79c6">const</span> http <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;http&#34;</span>);
-<span style="color:#ff79c6">const</span> fs <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;fs&#34;</span>).promises;
-<span style="color:#ff79c6">const</span> store <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#34;./store&#34;</span>);
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;http&#34;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;fs&#34;</span><span class="p">).</span><span class="nx">promises</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;./store&#34;</span><span class="p">);</span>
 
-http.createServer(<span style="color:#ff79c6">async</span> (request, response) =&gt; {
-    <span style="color:#ff79c6">try</span> {
-        <span style="color:#ff79c6">const</span> method <span style="color:#ff79c6">=</span> request.method;
-        <span style="color:#ff79c6">const</span> url <span style="color:#ff79c6">=</span> request.url;
+<span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kr">async</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">method</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">method</span><span class="p">;</span>
+        <span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">;</span>
 
-        store.logger(<span style="color:#f1fa8c">&#34;log&#34;</span>, <span style="color:#f1fa8c">`[method : </span><span style="color:#f1fa8c">${</span>method<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, url : </span><span style="color:#f1fa8c">${</span>url<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">]`</span>);
+        <span class="nx">store</span><span class="p">.</span><span class="nx">logger</span><span class="p">(</span><span class="s2">&#34;log&#34;</span><span class="p">,</span> <span class="sb">`[method : </span><span class="si">${</span><span class="nx">method</span><span class="si">}</span><span class="sb">, url : </span><span class="si">${</span><span class="nx">url</span><span class="si">}</span><span class="sb">]`</span><span class="p">);</span>
 
-        <span style="color:#6272a4">//GET Method
-</span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">if</span> (method <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;GET&#34;</span>) {
-            <span style="color:#ff79c6">if</span> (url <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#34;/&#34;</span>) {
-                <span style="color:#ff79c6">const</span> mainView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">&#34;../frontend/html/board.html&#34;</span>).<span style="color:#ff79c6">catch</span>((err) =&gt; {
-                    <span style="color:#ff79c6">return</span> store.logger(<span style="color:#f1fa8c">&#34;error&#34;</span>, err);
-                });
-                response.writeHead(<span style="color:#bd93f9">200</span>, { <span style="color:#f1fa8c">&#34;content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;text/html; charset=utf-8&#34;</span>});
-                <span style="color:#ff79c6">return</span> response.end(mainView);
-            }<span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span>(url <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;/list&#34;</span>){
-                <span style="color:#ff79c6">const</span> list <span style="color:#ff79c6">=</span> {
-                    result <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
-                    data <span style="color:#ff79c6">:</span> {
-                        items <span style="color:#ff79c6">:</span> store.boardlist
-                    }
-                }
-                response.writeHead(<span style="color:#bd93f9">200</span>, { <span style="color:#f1fa8c">&#34;content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;Application/json; charset=utf-8&#34;</span>});
-                <span style="color:#ff79c6">return</span> response.end(JSON.stringify(list));
-            }
+        <span class="c1">//GET Method
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="nx">method</span> <span class="o">===</span> <span class="s2">&#34;GET&#34;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">url</span> <span class="o">===</span> <span class="s2">&#34;/&#34;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kr">const</span> <span class="nx">mainView</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s2">&#34;../frontend/html/board.html&#34;</span><span class="p">).</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="nx">store</span><span class="p">.</span><span class="nx">logger</span><span class="p">(</span><span class="s2">&#34;error&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+                <span class="p">});</span>
+                <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span> <span class="s2">&#34;content-Type&#34;</span> <span class="o">:</span> <span class="s2">&#34;text/html; charset=utf-8&#34;</span><span class="p">});</span>
+                <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">mainView</span><span class="p">);</span>
+            <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">url</span> <span class="o">==</span> <span class="s2">&#34;/list&#34;</span><span class="p">){</span>
+                <span class="kr">const</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="nx">result</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                    <span class="nx">data</span> <span class="o">:</span> <span class="p">{</span>
+                        <span class="nx">items</span> <span class="o">:</span> <span class="nx">store</span><span class="p">.</span><span class="nx">boardlist</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span> <span class="s2">&#34;content-Type&#34;</span> <span class="o">:</span> <span class="s2">&#34;Application/json; charset=utf-8&#34;</span><span class="p">});</span>
+                <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">list</span><span class="p">));</span>
+            <span class="p">}</span>
 
-            <span style="color:#ff79c6">try</span> {
-                <span style="color:#ff79c6">const</span> view <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">`../frontend</span><span style="color:#f1fa8c">${</span>url<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>);
-                console.log(<span style="color:#f1fa8c">`../frontend</span><span style="color:#f1fa8c">${</span>url<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>);
-                <span style="color:#ff79c6">return</span> response.end(view);
-            } <span style="color:#ff79c6">catch</span> (error) {
-                <span style="color:#ff79c6">const</span> notFoundView <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(<span style="color:#f1fa8c">&#34;../frontend/html/notFound.html&#34;</span>).<span style="color:#ff79c6">catch</span>((err) =&gt; {
-                    <span style="color:#ff79c6">return</span> store.logger(<span style="color:#f1fa8c">&#34;error&#34;</span>, err);
-                });
-                response.writeHead(<span style="color:#bd93f9">404</span>, { <span style="color:#f1fa8c">&#34;content-Type&#34;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;text/html; charset=utf-8&#34;</span>});
-                <span style="color:#ff79c6">return</span> response.end(notFoundView);
-            }
-        }
-        <span style="color:#6272a4">//main
-</span><span style="color:#6272a4"></span>    } <span style="color:#ff79c6">catch</span> (error) {
-        store.logger(<span style="color:#f1fa8c">&#34;error&#34;</span>, error);
-    }
-}).listen(<span style="color:#bd93f9">8080</span>, ()=&gt;{
-    store.logger(<span style="color:#f1fa8c">&#34;log&#34;</span>, <span style="color:#f1fa8c">&#34;POST BOX START!!!!!&#34;</span>);
-});
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="kr">const</span> <span class="nx">view</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="sb">`../frontend</span><span class="si">${</span><span class="nx">url</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`../frontend</span><span class="si">${</span><span class="nx">url</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+                <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">view</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kr">const</span> <span class="nx">notFoundView</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s2">&#34;../frontend/html/notFound.html&#34;</span><span class="p">).</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="nx">store</span><span class="p">.</span><span class="nx">logger</span><span class="p">(</span><span class="s2">&#34;error&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+                <span class="p">});</span>
+                <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="p">{</span> <span class="s2">&#34;content-Type&#34;</span> <span class="o">:</span> <span class="s2">&#34;text/html; charset=utf-8&#34;</span><span class="p">});</span>
+                <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">notFoundView</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">//main
+</span><span class="c1"></span>    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">store</span><span class="p">.</span><span class="nx">logger</span><span class="p">(</span><span class="s2">&#34;error&#34;</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="p">()=&gt;{</span>
+    <span class="nx">store</span><span class="p">.</span><span class="nx">logger</span><span class="p">(</span><span class="s2">&#34;log&#34;</span><span class="p">,</span> <span class="s2">&#34;POST BOX START!!!!!&#34;</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li>Node.js 교과서 - http 모듈로 서버 만들기 (조현영 저)</li>

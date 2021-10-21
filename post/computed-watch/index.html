@@ -244,54 +244,54 @@
     <p>vue에서 <code>data</code> 속성에 있는 값을 사용하고자 할 때, 값이 변화할 때 마다 자동적으로 리렌더링 해주는 인스턴스 속성이 2개가 있다. 바로 <code>computed</code>와 <code>watch</code>, 이 두 속성의 공통점은 값을 감지하다가 변경되면 메서드를 호출함으로써 값을 바로 반환해준다. 이 비슷한 두 속성에 대해 차이점에 대해서 알아보았다.</p>
 <h2 id="computed">computed</h2>
 <p>사용법은 아래 코드를 참고, <code>computed</code>속성 내에 메서드를 정의하고 템플릿내에 호출을 하면 해당 값이 바뀔 때 마다 재호출을 해준다. 이는 캐싱이되는 성질이 있어 해당 값이 바뀌지 않는다면 호출을 절대 하지 않는다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    &lt;<span style="color:#ff79c6">template</span>&gt;
-        &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;app&#34;</span>&gt;
-            &lt;<span style="color:#ff79c6">p</span>&gt; {{ formatDate }} &lt;/<span style="color:#ff79c6">p</span>&gt; <span style="color:#6272a4">&lt;!--2021년 10월 08일 --&gt;</span>
-        &lt;/<span style="color:#ff79c6">div</span>&gt;
-    &lt;/<span style="color:#ff79c6">template</span>&gt;
-    &lt;<span style="color:#ff79c6">script</span>&gt;
-    <span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> {
-        data(){
-            <span style="color:#ff79c6">return</span> {
-                today <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;20211008&#39;</span>
-            }
-        },
-        computed <span style="color:#ff79c6">:</span> {
-            formatDate <span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span>(){
-                <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">`</span><span style="color:#f1fa8c">${</span>date.substr(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">4</span>)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">년 </span><span style="color:#f1fa8c">${</span>date.substr(<span style="color:#bd93f9">4</span>,<span style="color:#bd93f9">2</span>)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">월 </span><span style="color:#f1fa8c">${</span>date.substr(<span style="color:#bd93f9">6</span>,<span style="color:#bd93f9">2</span>)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">일`</span>;
-            }
-        }
-    }
-    &lt;/<span style="color:#ff79c6">script</span>&gt;
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">    <span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span> {{ formatDate }} <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> <span class="c">&lt;!--2021년 10월 08일 --&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+        <span class="nx">data</span><span class="p">(){</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="nx">today</span> <span class="o">:</span> <span class="s1">&#39;20211008&#39;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="nx">computed</span> <span class="o">:</span> <span class="p">{</span>
+            <span class="nx">formatDate</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+                <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">date</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="sb">년 </span><span class="si">${</span><span class="nx">date</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="sb">월 </span><span class="si">${</span><span class="nx">date</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="sb">일`</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </code></pre></div><h2 id="watch">watch</h2>
 <p>watch도 computed와 사용법은 유사하다. 하지만 watch는 메서드 트리거의 역할로 사용하는 느낌이 더욱 강하다. computed는 직접 template내에 출력을 해야 해당 메서드가 실행되지만, watch는 값의 변화에만 의존해 메서드를 호출 시키기 때문이다. 웬만한 데이터 포맷팅이나 단순히 보여지는 영역을 컨트롤해야 한다면 <code>computed</code>를 사용하고 더욱 복잡한 로직 (API 통신 및 data 분기 처리)등은 <code>watch</code>를 사용하는 것을 권장하고 있는 것 같다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    &lt;<span style="color:#ff79c6">template</span>&gt;
-        &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;app&#34;</span>&gt;
-            &lt;<span style="color:#ff79c6">input</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;button&#34;</span> <span style="color:#50fa7b">value</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;increase&#34;</span> <span style="color:#50fa7b">v-on:click</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;increaseNumber&#34;</span>&gt;
-            &lt;<span style="color:#ff79c6">p</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;log&#34;</span>&gt;{{ number }}&lt;/<span style="color:#ff79c6">p</span>&gt; 
-        &lt;/<span style="color:#ff79c6">div</span>&gt;
-    &lt;/<span style="color:#ff79c6">template</span>&gt;
-    &lt;<span style="color:#ff79c6">script</span>&gt;
-    <span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span>{
-        data(){
-            <span style="color:#ff79c6">return</span> {
-                number <span style="color:#ff79c6">:</span> <span style="color:#bd93f9">0</span>
-            }
-        },
-        watch<span style="color:#ff79c6">:</span> {
-            number<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span>(){
-                <span style="color:#ff79c6">if</span>(<span style="color:#ff79c6">this</span>.number <span style="color:#ff79c6">&gt;=</span> <span style="color:#bd93f9">10</span>){
-                    alert(<span style="color:#f1fa8c">&#34;10 이상 입니다!&#34;</span>);
-                }
-            }
-        },
-        methods<span style="color:#ff79c6">:</span>{
-            increaseNumber<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span>(){
-                <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">this</span>.number<span style="color:#ff79c6">++</span>;
-            }
-        }
-    }
-    &lt;/<span style="color:#ff79c6">script</span>&gt;
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">    <span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;increase&#34;</span> <span class="na">v-on:click</span><span class="o">=</span><span class="s">&#34;increaseNumber&#34;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;log&#34;</span><span class="p">&gt;</span>{{ number }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> 
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="kr">export</span> <span class="k">default</span><span class="p">{</span>
+        <span class="nx">data</span><span class="p">(){</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="nx">number</span> <span class="o">:</span> <span class="mi">0</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="nx">watch</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">number</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+                <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">number</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">){</span>
+                    <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;10 이상 입니다!&#34;</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="nx">methods</span><span class="o">:</span><span class="p">{</span>
+            <span class="nx">increaseNumber</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">number</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong><a class="link" href="https://michaelnthiessen.com/difference-between-computed-property-and-watcher/"  target="_blank" rel="noopener"
@@ -384,6 +384,24 @@
         <h2 class="section-title"></h2>
         <div class="related-contents">
             <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/vue-tailwind/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/vue/vue.png" loading="lazy" data-key="vue-tailwind" data-hash="../../assets/vue/vue.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Vue에 Tailwind CSS 적용하기</h2>
+        </div>
+    </a>
+</article>
                 
                     
 <article class="has-image">

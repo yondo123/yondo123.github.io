@@ -6,7 +6,19 @@
     <description>Recent content in frontend on Jiny Island</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 09 Oct 2021 23:17:34 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/frontend/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Oct 2021 23:05:04 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/frontend/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vue에 Tailwind CSS 적용하기</title>
+      <link>https://jinyisland.kr/post/vue-tailwind/</link>
+      <pubDate>Thu, 21 Oct 2021 23:05:04 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/vue-tailwind/</guid>
+      <description>tailwind? tailwind는 CSS 프레임워크이다. 사용방법은 공식 문서를 보면 잘 나와있다. 기본적으로 태그 내에 inline형태로 클래스 형태로 스타일을 입히는 방식이다. 기존 css로 작업했을 때와 tailwind를 사용했을 때를 비교해 보자면 다음과 같다.
+  브라우징 최적화
+autoprefixer를 내장해서 사용하고 있기 때문에, 브라우저별로 상이한 스타일 문제로 골머리를 앓지 않아도 된다.
+  클래스 기반 스타일 tailwind 기본 사용법은 태그 내에 클래스로 스타일을 입히는 방식이다. 예를 들어 특정 태그에 배경색을 입히려면 아래와 같이 작성한다. 클래스 명도 이해하기 쉽도록 구성되어 있기 때문에 대충 이름만 봐도 어떠한 역할인지는 파악이 된다.</description>
+    </item>
+    
     <item>
       <title>computed와 Watch</title>
       <link>https://jinyisland.kr/post/computed-watch/</link>

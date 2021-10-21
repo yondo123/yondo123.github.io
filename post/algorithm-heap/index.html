@@ -242,10 +242,11 @@
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
     <h2 id="힙-정렬">힙 정렬</h2>
-<p>완전 이진트리에서 파생된 <code>heap</code> 특성을 사용하여 정렬하는 알고리즘, 힙은 <strong>부모의 값이 자식의 값보다 항상 크거나 항상 작다</strong>라는 조건을 만족하는 완전이진트리 형태의 자료구조이다. <code>완전이진트리</code>는 자식 노드를 왼쪽부터 채워나가는 형태의 자료구조이다.
+<p>완전 이진트리에서 파생된 <code>heap</code> 특성을 사용하여 정렬하는 알고리즘, 힙은 <strong>부모의 값이 자식의 값보다 항상 크거나 항상 작다</strong>라는 조건을 만족하는 완전이진트리 형태의 자료구조이다.<br>
+<code>완전이진트리</code>는 자식 노드를 왼쪽부터 채워나가는 형태의 자료구조이다.
 <img src="../assets/js/../../../assets/js/heap-and-binary.png" alt="heap과완전이진트리"  /></p>
 <h3 id="힙의-개념">힙의 개념</h3>
-<p>완전이진트리와의 차이점은 큰 값이 상위, 작은 값이 하위에 위치한 트리형 자료구조로써 부모-자식 관계까 일정해야한다. 작은 값이 부모가 되는 힙 형태를 <code>min-heap(최소 힙)</code>, 큰 값이 부모가 되는 트리 구조를 <code>max-heap(최대 힙)</code>이라고 한다.
+<p>완전이진트리와의 차이점은 큰 값이 상위, 작은 값이 하위에 위치한 트리형 자료구조로써 부모-자식 관계가 일정해야한다. 작은 값이 부모가 되는 힙 형태를 <code>min-heap(최소 힙)</code>, 큰 값이 부모가 되는 트리 구조를 <code>max-heap(최대 힙)</code>이라고 한다.
 <img src="../../assets/js/heap-sort.png" alt="heap"  />
 힙은 다음과 같은 관계를 가지고 있어야한다.</p>
 <ul>
@@ -258,117 +259,117 @@
 <ol>
 <li>
 <p>배열을 이등분하여 좌측 요소부터 1씩 감소시키면서 heap 형태로 변환한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">Math</span>.floor(tempArray.length <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">2</span>) <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&gt;=</span> <span style="color:#bd93f9">0</span>; i<span style="color:#ff79c6">--</span>) {
-    heap(tempArray, length, i);
-}
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">tempArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">heap</span><span class="p">(</span><span class="nx">tempArray</span><span class="p">,</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div></li>
 <li>
 <p>(1)의 과정을 수행하면, 이등분의 <code>left</code>부분은 heap 상태가 되어지면서 정렬 상태가 되어있을 것이다.  배열의 첫번째 요소(가장 큰 값)와 정렬되지 않은 우측 요소부터 heap 형태로 변환하는 과정을 반복한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> tempArray.length <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>; i<span style="color:#ff79c6">--</span>) {
-    swap(tempArray, <span style="color:#bd93f9">0</span>, i); <span style="color:#6272a4">//가장 큰 요소와 정렬되지 않은 마지막 요소와 교환
-</span><span style="color:#6272a4"></span>    length<span style="color:#ff79c6">--</span>;
-    heap(tempArray, length, <span style="color:#bd93f9">0</span>); <span style="color:#6272a4">//배열의 나머지 부분들을 heap상태로 만들며 정렬 과정 수행
-</span><span style="color:#6272a4"></span>}
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">tempArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">swap</span><span class="p">(</span><span class="nx">tempArray</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span> <span class="c1">//가장 큰 요소와 정렬되지 않은 마지막 요소와 교환
+</span><span class="c1"></span>    <span class="nx">length</span><span class="o">--</span><span class="p">;</span>
+    <span class="nx">heap</span><span class="p">(</span><span class="nx">tempArray</span><span class="p">,</span> <span class="nx">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">//배열의 나머지 부분들을 heap상태로 만들며 정렬 과정 수행
+</span><span class="c1"></span><span class="p">}</span>
 </code></pre></div></li>
 <li>
 <p>heap 형태로 변환하는 소스는 다음과 같다. 이진 트리 형태로 배열을 받으면서, <code>root</code>요소를 자식 요소의 값에 따라 계속 바꾸어주는 방식이다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">/**
-</span><span style="color:#6272a4"> * heapify 메서드
-</span><span style="color:#6272a4"> * @param {array} heapArray : heap으로 변환 할 배열
-</span><span style="color:#6272a4"> * @param {number} length : 배열 길이
-</span><span style="color:#6272a4"> * @param {number} parent : 부모 인덱스
-</span><span style="color:#6272a4"> */</span>
-<span style="color:#8be9fd;font-style:italic">function</span> heap(heapArray, length, parent) {
-    <span style="color:#ff79c6">const</span> left <span style="color:#ff79c6">=</span> parent <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">2</span> <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>;
-    <span style="color:#ff79c6">const</span> right <span style="color:#ff79c6">=</span> left <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>;
-    <span style="color:#8be9fd;font-style:italic">let</span> root <span style="color:#ff79c6">=</span> parent;
-    <span style="color:#6272a4">//좌측 요소가 부모 값 보다 크면 부모 인덱스를 left 인덱스로 대입
-</span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">if</span> (left <span style="color:#ff79c6">&lt;</span> length <span style="color:#ff79c6">&amp;&amp;</span> heapArray[left] <span style="color:#ff79c6">&gt;</span> heapArray[root]) {
-        root <span style="color:#ff79c6">=</span> left;
-    }
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="cm">/**
+</span><span class="cm"> * heapify 메서드
+</span><span class="cm"> * @param {array} heapArray : heap으로 변환 할 배열
+</span><span class="cm"> * @param {number} length : 배열 길이
+</span><span class="cm"> * @param {number} parent : 부모 인덱스
+</span><span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">heap</span><span class="p">(</span><span class="nx">heapArray</span><span class="p">,</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">left</span> <span class="o">=</span> <span class="nx">parent</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kr">const</span> <span class="nx">right</span> <span class="o">=</span> <span class="nx">left</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">root</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">;</span>
+    <span class="c1">//좌측 요소가 부모 값 보다 크면 부모 인덱스를 left 인덱스로 대입
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">left</span> <span class="o">&lt;</span> <span class="nx">length</span> <span class="o">&amp;&amp;</span> <span class="nx">heapArray</span><span class="p">[</span><span class="nx">left</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">heapArray</span><span class="p">[</span><span class="nx">root</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">root</span> <span class="o">=</span> <span class="nx">left</span><span class="p">;</span>
+    <span class="p">}</span>
    
-    <span style="color:#6272a4">//우측 요소가 부모 값 보다 크면 부모 인덱스를 right 인덱스로 대입
-</span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">if</span> (right <span style="color:#ff79c6">&lt;</span> length <span style="color:#ff79c6">&amp;&amp;</span> heapArray[right] <span style="color:#ff79c6">&gt;</span> heapArray[root]) {
-        root <span style="color:#ff79c6">=</span> right;
-    }
+    <span class="c1">//우측 요소가 부모 값 보다 크면 부모 인덱스를 right 인덱스로 대입
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">right</span> <span class="o">&lt;</span> <span class="nx">length</span> <span class="o">&amp;&amp;</span> <span class="nx">heapArray</span><span class="p">[</span><span class="nx">right</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">heapArray</span><span class="p">[</span><span class="nx">root</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">root</span> <span class="o">=</span> <span class="nx">right</span><span class="p">;</span>
+    <span class="p">}</span>
    
-    <span style="color:#6272a4">//부모 요소가 자식 요소와 바꾸어 졌으면 swap처리 및 heap 재검사
-</span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">if</span> (root <span style="color:#ff79c6">!==</span> parent) {
-        swap(heapArray, parent, root);
-        heap(heapArray, length, root);
-    }
-}
+    <span class="c1">//부모 요소가 자식 요소와 바꾸어 졌으면 swap처리 및 heap 재검사
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">root</span> <span class="o">!==</span> <span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">swap</span><span class="p">(</span><span class="nx">heapArray</span><span class="p">,</span> <span class="nx">parent</span><span class="p">,</span> <span class="nx">root</span><span class="p">);</span>
+        <span class="nx">heap</span><span class="p">(</span><span class="nx">heapArray</span><span class="p">,</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">root</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></li>
 </ol>
 <h2 id="자바스크립트로-구현한-heapsort">자바스크립트로 구현한 HeapSort</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> heapSort(array) {
-    <span style="color:#6272a4">/**
-</span><span style="color:#6272a4">     * 요소 swap 메서드
-</span><span style="color:#6272a4">     * @param {array} swapArray : swap 대상 배열
-</span><span style="color:#6272a4">     * @param {number} a : 교체 대상 인덱스
-</span><span style="color:#6272a4">     * @param {number} b : 교체 인덱스
-</span><span style="color:#6272a4">     */</span>
-    <span style="color:#8be9fd;font-style:italic">function</span> swap(swapArray, a, b) {
-        <span style="color:#ff79c6">const</span> temp <span style="color:#ff79c6">=</span> swapArray[a];
-        swapArray[a] <span style="color:#ff79c6">=</span> swapArray[b];
-        swapArray[b] <span style="color:#ff79c6">=</span> temp;
-    }
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">heapSort</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/**
+</span><span class="cm">     * 요소 swap 메서드
+</span><span class="cm">     * @param {array} swapArray : swap 대상 배열
+</span><span class="cm">     * @param {number} a : 교체 대상 인덱스
+</span><span class="cm">     * @param {number} b : 교체 인덱스
+</span><span class="cm">     */</span>
+    <span class="kd">function</span> <span class="nx">swap</span><span class="p">(</span><span class="nx">swapArray</span><span class="p">,</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">swapArray</span><span class="p">[</span><span class="nx">a</span><span class="p">];</span>
+        <span class="nx">swapArray</span><span class="p">[</span><span class="nx">a</span><span class="p">]</span> <span class="o">=</span> <span class="nx">swapArray</span><span class="p">[</span><span class="nx">b</span><span class="p">];</span>
+        <span class="nx">swapArray</span><span class="p">[</span><span class="nx">b</span><span class="p">]</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span style="color:#6272a4">/**
-</span><span style="color:#6272a4">     * heapify 메서드
-</span><span style="color:#6272a4">     * @param {array} heapArray : heap으로 변환 할 배열
-</span><span style="color:#6272a4">     * @param {number} length : 배열 길이
-</span><span style="color:#6272a4">     * @param {number} parent : 부모 인덱스
-</span><span style="color:#6272a4">     */</span>
-    <span style="color:#8be9fd;font-style:italic">function</span> heap(heapArray, length, parent) {
-        <span style="color:#ff79c6">const</span> left <span style="color:#ff79c6">=</span> parent <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">2</span> <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>;
-        <span style="color:#ff79c6">const</span> right <span style="color:#ff79c6">=</span> left <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>;
-        <span style="color:#8be9fd;font-style:italic">let</span> root <span style="color:#ff79c6">=</span> parent;
-        <span style="color:#6272a4">//좌측 요소가 부모 값 보다 크면 부모 인덱스를 left 인덱스로 대입
-</span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">if</span> (left <span style="color:#ff79c6">&lt;</span> length <span style="color:#ff79c6">&amp;&amp;</span> heapArray[left] <span style="color:#ff79c6">&gt;</span> heapArray[root]) {
-            root <span style="color:#ff79c6">=</span> left;
-        }
+    <span class="cm">/**
+</span><span class="cm">     * heapify 메서드
+</span><span class="cm">     * @param {array} heapArray : heap으로 변환 할 배열
+</span><span class="cm">     * @param {number} length : 배열 길이
+</span><span class="cm">     * @param {number} parent : 부모 인덱스
+</span><span class="cm">     */</span>
+    <span class="kd">function</span> <span class="nx">heap</span><span class="p">(</span><span class="nx">heapArray</span><span class="p">,</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">left</span> <span class="o">=</span> <span class="nx">parent</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="kr">const</span> <span class="nx">right</span> <span class="o">=</span> <span class="nx">left</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="kd">let</span> <span class="nx">root</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">;</span>
+        <span class="c1">//좌측 요소가 부모 값 보다 크면 부모 인덱스를 left 인덱스로 대입
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="nx">left</span> <span class="o">&lt;</span> <span class="nx">length</span> <span class="o">&amp;&amp;</span> <span class="nx">heapArray</span><span class="p">[</span><span class="nx">left</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">heapArray</span><span class="p">[</span><span class="nx">root</span><span class="p">])</span> <span class="p">{</span>
+            <span class="nx">root</span> <span class="o">=</span> <span class="nx">left</span><span class="p">;</span>
+        <span class="p">}</span>
 
-        <span style="color:#6272a4">//우측 요소가 부모 값 보다 크면 부모 인덱스를 right 인덱스로 대입
-</span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">if</span> (right <span style="color:#ff79c6">&lt;</span> length <span style="color:#ff79c6">&amp;&amp;</span> heapArray[right] <span style="color:#ff79c6">&gt;</span> heapArray[root]) {
-            root <span style="color:#ff79c6">=</span> right;
-        }
+        <span class="c1">//우측 요소가 부모 값 보다 크면 부모 인덱스를 right 인덱스로 대입
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="nx">right</span> <span class="o">&lt;</span> <span class="nx">length</span> <span class="o">&amp;&amp;</span> <span class="nx">heapArray</span><span class="p">[</span><span class="nx">right</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">heapArray</span><span class="p">[</span><span class="nx">root</span><span class="p">])</span> <span class="p">{</span>
+            <span class="nx">root</span> <span class="o">=</span> <span class="nx">right</span><span class="p">;</span>
+        <span class="p">}</span>
 
-        <span style="color:#6272a4">//부모 요소가 자식 요소와 바꾸어 졌으면 swap처리 및 heap 재검사
-</span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">if</span> (root <span style="color:#ff79c6">!==</span> parent) {
-            swap(heapArray, parent, root);
-            heap(heapArray, length, root);
-        }
-    }
+        <span class="c1">//부모 요소가 자식 요소와 바꾸어 졌으면 swap처리 및 heap 재검사
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="nx">root</span> <span class="o">!==</span> <span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">swap</span><span class="p">(</span><span class="nx">heapArray</span><span class="p">,</span> <span class="nx">parent</span><span class="p">,</span> <span class="nx">root</span><span class="p">);</span>
+            <span class="nx">heap</span><span class="p">(</span><span class="nx">heapArray</span><span class="p">,</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">root</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    <span style="color:#6272a4">/**
-</span><span style="color:#6272a4">     * 정렬 메서드
-</span><span style="color:#6272a4">     * @param {array} tempArray : 정렬 대상 배열
-</span><span style="color:#6272a4">     * @returns
-</span><span style="color:#6272a4">     */</span>
-    <span style="color:#8be9fd;font-style:italic">function</span> sort(tempArray) {
-        <span style="color:#8be9fd;font-style:italic">let</span> length <span style="color:#ff79c6">=</span> tempArray.length;
-        <span style="color:#ff79c6">if</span> (length <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">1</span>) {
-            <span style="color:#ff79c6">return</span> tempArray;
-        } <span style="color:#ff79c6">else</span> {
-            <span style="color:#6272a4">//배열을 이등분하여 좌측 요소들을 heap 형태로 변환
-</span><span style="color:#6272a4"></span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">Math</span>.floor(tempArray.length <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">2</span>) <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&gt;=</span> <span style="color:#bd93f9">0</span>; i<span style="color:#ff79c6">--</span>) {
-                heap(tempArray, length, i);
-            }
+    <span class="cm">/**
+</span><span class="cm">     * 정렬 메서드
+</span><span class="cm">     * @param {array} tempArray : 정렬 대상 배열
+</span><span class="cm">     * @returns
+</span><span class="cm">     */</span>
+    <span class="kd">function</span> <span class="nx">sort</span><span class="p">(</span><span class="nx">tempArray</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">tempArray</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">tempArray</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">//배열을 이등분하여 좌측 요소들을 heap 형태로 변환
+</span><span class="c1"></span>            <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">tempArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">heap</span><span class="p">(</span><span class="nx">tempArray</span><span class="p">,</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+            <span class="p">}</span>
 
-            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> i <span style="color:#ff79c6">=</span> tempArray.length <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">1</span>; i <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>; i<span style="color:#ff79c6">--</span>) {
-                swap(tempArray, <span style="color:#bd93f9">0</span>, i); <span style="color:#6272a4">//가장 큰 요소와 정렬되지 않은 마지막 요소와 교환
-</span><span style="color:#6272a4"></span>                length<span style="color:#ff79c6">--</span>;
-                heap(tempArray, length, <span style="color:#bd93f9">0</span>); <span style="color:#6272a4">//배열의 나머지 부분들을 heap상태로 만들며 정렬 과정 수행
-</span><span style="color:#6272a4"></span>            }
-            <span style="color:#ff79c6">return</span> tempArray;
-        }
-    }
+            <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">tempArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">swap</span><span class="p">(</span><span class="nx">tempArray</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span> <span class="c1">//가장 큰 요소와 정렬되지 않은 마지막 요소와 교환
+</span><span class="c1"></span>                <span class="nx">length</span><span class="o">--</span><span class="p">;</span>
+                <span class="nx">heap</span><span class="p">(</span><span class="nx">tempArray</span><span class="p">,</span> <span class="nx">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">//배열의 나머지 부분들을 heap상태로 만들며 정렬 과정 수행
+</span><span class="c1"></span>            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">tempArray</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    <span style="color:#ff79c6">return</span> sort(array);
-}
-<span style="color:#ff79c6">const</span> unsorted <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">5</span>, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">9</span>, <span style="color:#bd93f9">7</span>, <span style="color:#bd93f9">8</span>];
-console.log(heapSort(unsorted)); <span style="color:#6272a4">//[1, 2 ,3 ,4 ,5]
+    <span class="k">return</span> <span class="nx">sort</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kr">const</span> <span class="nx">unsorted</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">heapSort</span><span class="p">(</span><span class="nx">unsorted</span><span class="p">));</span> <span class="c1">//[1, 2 ,3 ,4 ,5]
 </span></code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li>자료구조와 함께 배우는 알고리즘 입문 - 검색 알고리즘 (Bohyoh Shibata 저)</li>

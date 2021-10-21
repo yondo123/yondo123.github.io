@@ -247,39 +247,39 @@
 <h3 id="전역-컴포넌트">전역 컴포넌트</h3>
 <p>주로 플러그인, 라이브러리 등 앱 전역에서 사용 할 공통 컴포넌트를 작성한다.<br>
 전역 컴포넌트를 생성하면 <strong>새 인스턴스를 생성할 때 마다 기본적으로 생성한다.</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//컴포넌트 생성
-</span><span style="color:#6272a4"></span>Vue.component(<span style="color:#f1fa8c">&#39;app-header&#39;</span>, {
-    template<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&lt;h1&gt;header&lt;/h1&gt;&#39;</span> <span style="color:#6272a4">//component Template
-</span><span style="color:#6272a4"></span>});
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//컴포넌트 생성
+</span><span class="c1"></span><span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;app-header&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;h1&gt;header&lt;/h1&gt;&#39;</span> <span class="c1">//component Template
+</span><span class="c1"></span><span class="p">});</span>
 
-Vue.component(<span style="color:#f1fa8c">&#39;app-content&#39;</span>, {
-    template<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&lt;p&gt;This is Vue-Component Write&lt;/p&gt;&#39;</span>
-});
+<span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;app-content&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;p&gt;This is Vue-Component Write&lt;/p&gt;&#39;</span>
+<span class="p">});</span>
 
-<span style="color:#6272a4">//인스턴스 생성
-</span><span style="color:#6272a4"></span><span style="color:#ff79c6">new</span> Vue({
-    el<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;#app&#39;</span> <span style="color:#6272a4">//selector
-</span><span style="color:#6272a4"></span>});
+<span class="c1">//인스턴스 생성
+</span><span class="c1"></span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span> <span class="c1">//selector
+</span><span class="c1"></span><span class="p">});</span>
 </code></pre></div><h3 id="지역-컴포넌트">지역 컴포넌트</h3>
 <p>Vue 인스턴스 내에 직접 삽입하는 방식이다. <code>components</code>로 정의한다.<br>
 Tree 구조로 구성할 수 있으며, 부모-자식 간 컴포넌트 사이 통신이 가능하다.<br>
 지역 컴포넌트는 해당 인스턴스에서만 동작한다. 따라서 인스턴스를 새로 생성할 때 마다 컴포넌트를 등록해주어야 한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">new</span> Vue({
-    el<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;#app&#39;</span>, <span style="color:#6272a4">//selector
-</span><span style="color:#6272a4"></span>    components<span style="color:#ff79c6">:</span> {
-        <span style="color:#6272a4">//지역 컴포넌트 정의
-</span><span style="color:#6272a4"></span>        <span style="color:#f1fa8c">&#39;app-footer&#39;</span><span style="color:#ff79c6">:</span> {
-            template<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&lt;footer&gt;Footer!&lt;/footer&gt;&#39;</span>
-        }
-    }
-});
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span> <span class="c1">//selector
+</span><span class="c1"></span>    <span class="nx">components</span><span class="o">:</span> <span class="p">{</span>
+        <span class="c1">//지역 컴포넌트 정의
+</span><span class="c1"></span>        <span class="s1">&#39;app-footer&#39;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;footer&gt;Footer!&lt;/footer&gt;&#39;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
 </code></pre></div><h3 id="template">Template</h3>
 <p>템플릿 내에 생성한 컴포넌트를 태그로 지정한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;app&#34;</span>&gt;
-        <span style="color:#6272a4">&lt;!--컴포넌트에 등록한 템플릿 지정--&gt;</span>
-        &lt;<span style="color:#ff79c6">app-header</span>&gt;&lt;/<span style="color:#ff79c6">app-header</span>&gt;
-        &lt;<span style="color:#ff79c6">app-content</span>&gt;&lt;/<span style="color:#ff79c6">app-content</span>&gt;
-&lt;/<span style="color:#ff79c6">div</span>&gt;
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+        <span class="c">&lt;!--컴포넌트에 등록한 템플릿 지정--&gt;</span>
+        <span class="p">&lt;</span><span class="nt">app-header</span><span class="p">&gt;&lt;/</span><span class="nt">app-header</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">app-content</span><span class="p">&gt;&lt;/</span><span class="nt">app-content</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div><h2 id="컴포넌트-통신-방식">컴포넌트 통신 방식</h2>
 <p><img src="https://user-images.githubusercontent.com/46988995/124051330-4041dc00-da57-11eb-9132-9c411b842f3a.png" alt="components"  /><br>
 Vue 컴포넌트는 각 고유한 데이터 유효범위를 갖는다.<br>
@@ -288,60 +288,60 @@ Vue 컴포넌트는 각 고유한 데이터 유효범위를 갖는다.<br>
 <p>상위 컴포넌트에서 하위 컴포넌트로 데이터 전달 시 사용한다.<br>
 vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는데, 하위 컴포넌트에서 상위 컴포넌트의 데이터 속성에 접근이 가능하다.<br>
 자세하게 말하면, v-bind로 <strong>해당 컴포넌트에서 정의된 props</strong> 속성에 접근할 수 있고 <code>props</code>의 역할은 부모의 <code>data</code>영역에 접근할 수 있게 해주는 속성이라고 볼 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#6272a4">&lt;!--template--&gt;</span>
-&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;app&#34;</span>&gt;
-	&lt;<span style="color:#ff79c6">app-header</span> <span style="color:#50fa7b">v-bind:propsdata</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;message&#34;</span>&gt;&lt;/<span style="color:#ff79c6">app-header</span>&gt;
-&lt;/<span style="color:#ff79c6">div</span>&gt;
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//하위 컴포넌트
-</span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">var</span> appHeader <span style="color:#ff79c6">=</span> {
-    template<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&lt;h1&gt;header&lt;/h1&gt;&#39;</span>,
-    props<span style="color:#ff79c6">:</span> [<span style="color:#f1fa8c">&#39;propsdata&#39;</span>]
-}
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="c">&lt;!--template--&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+	<span class="p">&lt;</span><span class="nt">app-header</span> <span class="na">v-bind:propsdata</span><span class="o">=</span><span class="s">&#34;message&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">app-header</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//하위 컴포넌트
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">appHeader</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;h1&gt;header&lt;/h1&gt;&#39;</span><span class="p">,</span>
+    <span class="nx">props</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;propsdata&#39;</span><span class="p">]</span>
+<span class="p">}</span>
 
-<span style="color:#6272a4">// Vue 인스턴스 (root 컴포넌트)
-</span><span style="color:#6272a4"></span><span style="color:#ff79c6">new</span> Vue({
-    el<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;#app&#39;</span>,
-    components<span style="color:#ff79c6">:</span> {
-        <span style="color:#f1fa8c">&#39;app-header&#39;</span><span style="color:#ff79c6">:</span> appHeader
-    },
-    data<span style="color:#ff79c6">:</span> {
-        message<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;hello Vue~~!!&#39;</span>
-    }
-});
+<span class="c1">// Vue 인스턴스 (root 컴포넌트)
+</span><span class="c1"></span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+    <span class="nx">components</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s1">&#39;app-header&#39;</span><span class="o">:</span> <span class="nx">appHeader</span>
+    <span class="p">},</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;hello Vue~~!!&#39;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
 </code></pre></div><h3 id="emit">emit</h3>
 <p>props와는 반대로 하위 컴포넌트에서 상위 컴포넌트로 이벤트를 전달할 수 있다.<br>
 이벤트를 전달함으로써, 콜백내 <code>this</code>를 통해 상위 데이터에 접근하는 방법이다.<br>
 컴포넌트 <code>methods</code> 속성 내에 여러 이벤트들을 정의할 수 있는데, 정의한 <code>custom event</code>를 트리거하려면 <code>$emit</code>메서드에 이벤트 이름을 전달하면 된다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;app&#34;</span>&gt;
-        &lt;<span style="color:#ff79c6">app-content</span> <span style="color:#50fa7b">v-on:add</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;addNumber&#34;</span>&gt;&lt;/<span style="color:#ff79c6">app-content</span>&gt;
-        &lt;<span style="color:#ff79c6">p</span>&gt;number : {{number}}&lt;/<span style="color:#ff79c6">p</span>&gt;
-    &lt;/<span style="color:#ff79c6">div</span>&gt;
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">    <span style="color:#6272a4">//하위 컴포넌트
-</span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">const</span> appContent <span style="color:#ff79c6">=</span> {
-        template<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&lt;button v-on:add=&#34;addNumber&#34;&gt;add&lt;/button&gt;&#39;</span>, 
-        methods<span style="color:#ff79c6">:</span> {
-            addNumber<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (params) {
-                <span style="color:#ff79c6">this</span>.$emit(<span style="color:#f1fa8c">&#39;add&#39;</span>); <span style="color:#6272a4">//상위 컴포넌트에 binding 할 이벤트
-</span><span style="color:#6272a4"></span>            }
-        }
-    }
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">app-content</span> <span class="na">v-on:add</span><span class="o">=</span><span class="s">&#34;addNumber&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">app-content</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>number : {{number}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js">    <span class="c1">//하위 컴포넌트
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">appContent</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;button v-on:add=&#34;addNumber&#34;&gt;add&lt;/button&gt;&#39;</span><span class="p">,</span> 
+        <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">addNumber</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">$emit</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">);</span> <span class="c1">//상위 컴포넌트에 binding 할 이벤트
+</span><span class="c1"></span>            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    <span style="color:#6272a4">//Vue 인스턴스 (root)
-</span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">const</span> vueObject <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Vue({
-        el<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;#app&#39;</span>,
-        components<span style="color:#ff79c6">:</span> { <span style="color:#6272a4">//local component
-</span><span style="color:#6272a4"></span>            <span style="color:#f1fa8c">&#39;app-content&#39;</span><span style="color:#ff79c6">:</span> appContent
-        },
-        methods<span style="color:#ff79c6">:</span> {
-            addNumber<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-                <span style="color:#6272a4">//this 키워드로 정의한 data에 접근 가능
-</span><span style="color:#6272a4"></span>                console.log(<span style="color:#ff79c6">this</span>.number<span style="color:#ff79c6">++</span>);
-            }
-        },
-        data<span style="color:#ff79c6">:</span> {
-            number<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1</span>
-        }
-    });
+    <span class="c1">//Vue 인스턴스 (root)
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">vueObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+        <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+        <span class="nx">components</span><span class="o">:</span> <span class="p">{</span> <span class="c1">//local component
+</span><span class="c1"></span>            <span class="s1">&#39;app-content&#39;</span><span class="o">:</span> <span class="nx">appContent</span>
+        <span class="p">},</span>
+        <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">addNumber</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="c1">//this 키워드로 정의한 data에 접근 가능
+</span><span class="c1"></span>                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">number</span><span class="o">++</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">number</span><span class="o">:</span> <span class="mi">1</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
 </code></pre></div><h2 id="동등-컴포넌트-간-통신">동등 컴포넌트 간 통신</h2>
 <ul>
 <li>
@@ -356,43 +356,43 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
 </li>
 </ul>
 <p>만일 같은 레벨의 header와 footer 사이 데이터 전달이 필요하다면 먼저 <code>body</code>에 데이터를 전달해야한다. <code>($emit)</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;body&#34;</span>&gt;
-        &lt;<span style="color:#ff79c6">app-header</span>&gt;&lt;/<span style="color:#ff79c6">app-header</span>&gt;
-        &lt;<span style="color:#ff79c6">app-footer</span> <span style="color:#50fa7b">v-on:message</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;bindData&#34;</span>&gt;&lt;/<span style="color:#ff79c6">app-footer</span>&gt; 
-&lt;/<span style="color:#ff79c6">div</span>&gt;
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//footer 컴포넌트
-</span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> footer <span style="color:#ff79c6">=</span> {
-    template<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&lt;div&gt;&lt;h3&gt;FOOTER&lt;/h3&gt;&lt;button v-on:click=&#34;passData&#34;&gt;trans-data&lt;/button&gt;&lt;/div&gt;&#39;</span>,
-    methods<span style="color:#ff79c6">:</span> {
-        passData<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-            <span style="color:#ff79c6">this</span>.$emit(<span style="color:#f1fa8c">&#39;message&#39;</span>, <span style="color:#f1fa8c">&#39;footer-data&#39;</span>); <span style="color:#6272a4">//해당 이벤트에 파라미터 전달
-</span><span style="color:#6272a4"></span>        }
-    },
-}
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;body&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">app-header</span><span class="p">&gt;&lt;/</span><span class="nt">app-header</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">app-footer</span> <span class="na">v-on:message</span><span class="o">=</span><span class="s">&#34;bindData&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">app-footer</span><span class="p">&gt;</span> 
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//footer 컴포넌트
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">footer</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;div&gt;&lt;h3&gt;FOOTER&lt;/h3&gt;&lt;button v-on:click=&#34;passData&#34;&gt;trans-data&lt;/button&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
+    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">passData</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">$emit</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="s1">&#39;footer-data&#39;</span><span class="p">);</span> <span class="c1">//해당 이벤트에 파라미터 전달
+</span><span class="c1"></span>        <span class="p">}</span>
+    <span class="p">},</span>
+<span class="p">}</span>
 
-<span style="color:#ff79c6">new</span> Vue({
-    el<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;#body&#39;</span>,
-    components<span style="color:#ff79c6">:</span> {
-        <span style="color:#f1fa8c">&#39;app-header&#39;</span><span style="color:#ff79c6">:</span> header,
-        <span style="color:#f1fa8c">&#39;app-footer&#39;</span><span style="color:#ff79c6">:</span> footer
-    },
-    data<span style="color:#ff79c6">:</span> {
-        message<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;test&#39;</span>
-    },
-    methods<span style="color:#ff79c6">:</span> {
-        bindData<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> (param) {
-            <span style="color:#ff79c6">this</span>.message <span style="color:#ff79c6">=</span> param;
-        }
-    },
-});
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#body&#39;</span><span class="p">,</span>
+    <span class="nx">components</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s1">&#39;app-header&#39;</span><span class="o">:</span> <span class="nx">header</span><span class="p">,</span>
+        <span class="s1">&#39;app-footer&#39;</span><span class="o">:</span> <span class="nx">footer</span>
+    <span class="p">},</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;test&#39;</span>
+    <span class="p">},</span>
+    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">bindData</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">param</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">param</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+<span class="p">});</span>
 </code></pre></div><p>이제 부모의 message는 하위 컴포넌트에서 전달한 데이터로 변경이 되어있다.<br>
 <code>props</code>속성을 통해 접근하면된다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">app-header</span> <span style="color:#50fa7b">v-bind:headerdata</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;message&#34;</span>&gt;&lt;/<span style="color:#ff79c6">app-header</span>&gt;
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//header 컴포넌트
-</span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> header <span style="color:#ff79c6">=</span> {
-    template <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&lt;h2&gt;Header&lt;/h2&gt;&#39;</span>,
-    props <span style="color:#ff79c6">:</span> [<span style="color:#f1fa8c">&#39;headerdata&#39;</span>]
-}
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">app-header</span> <span class="na">v-bind:headerdata</span><span class="o">=</span><span class="s">&#34;message&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">app-header</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//header 컴포넌트
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">header</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">template</span> <span class="o">:</span> <span class="s1">&#39;&lt;h2&gt;Header&lt;/h2&gt;&#39;</span><span class="p">,</span>
+    <span class="nx">props</span> <span class="o">:</span> <span class="p">[</span><span class="s1">&#39;headerdata&#39;</span><span class="p">]</span>
+<span class="p">}</span>
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><a class="link" href="https://vuejs.org/v2/api/#vm-emit"  target="_blank" rel="noopener"
@@ -485,6 +485,24 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
         <h2 class="section-title"></h2>
         <div class="related-contents">
             <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/vue-tailwind/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/vue/vue.png" loading="lazy" data-key="vue-tailwind" data-hash="../../assets/vue/vue.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Vue에 Tailwind CSS 적용하기</h2>
+        </div>
+    </a>
+</article>
                 
                     
 <article class="has-image">
