@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='탐색 알고리즘 (선형, 이진)'>
 <meta property='og:description' content='선형탐색과 이진탐색'>
 <meta property='og:url' content='https://jinyisland.kr/post/algorithm-search/'>
-<meta property='og:site_name' content='Jiny Island'>
+<meta property='og:site_name' content='Jiny'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='algorithm' /><meta property='article:published_time' content='2021-09-14T23:25:12&#43;09:00'/><meta property='article:modified_time' content='2021-09-14T23:25:12&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
 <meta name="twitter:title" content="탐색 알고리즘 (선형, 이진)">
 <meta name="twitter:description" content="선형탐색과 이진탐색"><meta name="twitter:card" content="summary_large_image">
@@ -79,8 +79,8 @@
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny Island</a></h1>
-        <h2 class="site-description">🌈Junior FE Developer.</h2>
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny</a></h1>
+        <h2 class="site-description">🌈Jiny&#39;s Learning Archive</h2>
     </header>
     <ol class="menu" id="main-menu">
         
@@ -243,17 +243,17 @@
     <div class="js-toc"></div>
     <h2 id="선형검색">선형검색</h2>
 <p>배열에서 원하는 키 값 요소를 만날 때까지 순서대로 요소 검색,  값을 찾지 못하고 배열을 모두 순회하거나 값을 찾는다면 바로 종료한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">linearSearch</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">index</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">===</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">index</span><span class="p">])</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="kc">true</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">linearSearch</span><span class="p">(</span><span class="mi">2811</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">304</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span> <span class="c1">//false
-</span><span class="c1"></span><span class="nx">linearSearch</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">304</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span> <span class="c1">//true
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#000;font-weight:bold">function</span> linearSearch(key, arr) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>    <span style="color:#000;font-weight:bold">for</span> (<span style="color:#000;font-weight:bold">let</span> index <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>; index <span style="color:#000;font-weight:bold">&lt;</span> arr.length; index<span style="color:#000;font-weight:bold">++</span>) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>        <span style="color:#000;font-weight:bold">if</span> (key <span style="color:#000;font-weight:bold">===</span> arr[index]) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>            <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">true</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>        }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>    <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">false</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>linearSearch(<span style="color:#099">2811</span>, [<span style="color:#099">2</span>, <span style="color:#099">15</span>, <span style="color:#099">24</span>, <span style="color:#099">28</span>, <span style="color:#099">304</span>, <span style="color:#099">16</span>, <span style="color:#099">7</span>, <span style="color:#099">1</span>]); <span style="color:#998;font-style:italic">//false
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span style="color:#998;font-style:italic"></span>linearSearch(<span style="color:#099">16</span>, [<span style="color:#099">2</span>, <span style="color:#099">15</span>, <span style="color:#099">24</span>, <span style="color:#099">28</span>, <span style="color:#099">304</span>, <span style="color:#099">16</span>, <span style="color:#099">7</span>, <span style="color:#099">1</span>]); <span style="color:#998;font-style:italic">//true
 </span></code></pre></div><h2 id="이진검색">이진검색</h2>
 <p><img src="../../assets/js/algorithm-search.png" alt="탐색 알고리즘"  />
 이미 정렬되어 있는 배열(전제 조건)에서 범위를 좁혀가며 값을  찾는 탐색법 선형 탐색보다 속도가 빠르긴하지만 정렬되어 있는 리스트에 적용할 수 있다.<br>
@@ -263,30 +263,30 @@
 <li>중앙 요소가 찾는 Key보다 작을 때 기존 (center + 1) ~ right 까지 탐색 범위를 좁힌다.</li>
 <li>중앙 요소가 찾는 Key보다 클 때 left ~ (center - 1) 까지 탐색 범위를 좁힌다.</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">binarySearch</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kd">let</span> <span class="nx">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kd">let</span> <span class="nx">right</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-
-    <span class="k">while</span> <span class="p">(</span><span class="nx">left</span> <span class="o">&lt;=</span> <span class="nx">right</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">let</span> <span class="nx">center</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">left</span> <span class="o">+</span> <span class="nx">right</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
-        <span class="kr">const</span> <span class="nx">item</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">center</span><span class="p">];</span>
-        <span class="nx">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">item</span> <span class="o">===</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;true, &#34;</span> <span class="o">+</span> <span class="nx">count</span><span class="p">);</span>
-            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">item</span> <span class="o">&lt;</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">left</span> <span class="o">=</span> <span class="nx">center</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="nx">right</span> <span class="o">=</span> <span class="nx">center</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;false, &#34;</span> <span class="o">+</span> <span class="nx">count</span><span class="p">);</span>
-    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">binarySearch</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]);</span> <span class="c1">//false, 4
-</span><span class="c1"></span><span class="nx">binarySearch</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]);</span> <span class="c1">//true, 3
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#000;font-weight:bold">function</span> binarySearch(key, array) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>    <span style="color:#000;font-weight:bold">let</span> count <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>    <span style="color:#000;font-weight:bold">let</span> left <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>    <span style="color:#000;font-weight:bold">let</span> right <span style="color:#000;font-weight:bold">=</span> array.length <span style="color:#000;font-weight:bold">-</span> <span style="color:#099">1</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>    <span style="color:#000;font-weight:bold">while</span> (left <span style="color:#000;font-weight:bold">&lt;=</span> right) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>        <span style="color:#000;font-weight:bold">let</span> center <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">Math</span>.floor((left <span style="color:#000;font-weight:bold">+</span> right) <span style="color:#000;font-weight:bold">/</span> <span style="color:#099">2</span>);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>        <span style="color:#000;font-weight:bold">const</span> item <span style="color:#000;font-weight:bold">=</span> array[center];
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>        count <span style="color:#000;font-weight:bold">+=</span> <span style="color:#099">1</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>        <span style="color:#000;font-weight:bold">if</span> (item <span style="color:#000;font-weight:bold">===</span> key) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>            console.log(<span style="color:#d14">&#34;true, &#34;</span> <span style="color:#000;font-weight:bold">+</span> count);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>            <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">true</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>        } <span style="color:#000;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">if</span> (item <span style="color:#000;font-weight:bold">&lt;</span> key) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>            left <span style="color:#000;font-weight:bold">=</span> center <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">1</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>        } <span style="color:#000;font-weight:bold">else</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>            right <span style="color:#000;font-weight:bold">=</span> center <span style="color:#000;font-weight:bold">-</span> <span style="color:#099">1</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>        }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span>    console.log(<span style="color:#d14">&#34;false, &#34;</span> <span style="color:#000;font-weight:bold">+</span> count);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span>    <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">false</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>binarySearch(<span style="color:#099">10</span>, [<span style="color:#099">1</span>, <span style="color:#099">2</span>, <span style="color:#099">3</span>, <span style="color:#099">4</span>, <span style="color:#099">5</span>, <span style="color:#099">6</span>, <span style="color:#099">7</span>, <span style="color:#099">8</span>, <span style="color:#099">9</span>]); <span style="color:#998;font-style:italic">//false, 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span style="color:#998;font-style:italic"></span>binarySearch(<span style="color:#099">8</span>, [<span style="color:#099">1</span>, <span style="color:#099">2</span>, <span style="color:#099">3</span>, <span style="color:#099">4</span>, <span style="color:#099">5</span>, <span style="color:#099">6</span>, <span style="color:#099">7</span>, <span style="color:#099">8</span>, <span style="color:#099">9</span>]); <span style="color:#998;font-style:italic">//true, 3
 </span></code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li>자료구조와 함께 배우는 알고리즘 입문 - 검색 알고리즘 (Bohyoh Shibata 저)</li>
@@ -525,7 +525,7 @@
         
             2020 - 
         
-        2021 Jiny Island
+        2021 Jiny
     </section>
     
     <section class="powerby">

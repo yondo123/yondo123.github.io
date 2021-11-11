@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>library on Jiny Island</title>
+    <title>library on Jiny</title>
     <link>https://jinyisland.kr/tags/library/</link>
-    <description>Recent content in library on Jiny Island</description>
+    <description>Recent content in library on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 21 Oct 2021 23:05:04 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/library/index.xml" rel="self" type="application/rss+xml" />
@@ -29,7 +29,7 @@ autoprefixer를 내장해서 사용하고 있기 때문에, 브라우저별로 �
 URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트를 가지고 있다가 변경된 요소영역만 갱신한다.(SPA 언어의 큰 특징)
 따라서 유연하게 페이지 젼환이 가능하다. vue 프레임워크에서는 vue-router라는 라우팅 라이브러리를 지원한다.
 설치하기 vue-router를 설치하고, package.json파일에서 모듈이 잘 추가되었는지 확인하자
-npm install vue-router --save 라우터 속성 다음은 라우터 인스턴스를 생성할 때 설정하는 값이다.
+1npm install vue-router --save 라우터 속성 다음은 라우터 인스턴스를 생성할 때 설정하는 값이다.
  String mode : 기본 값은 Hash 모드 (history 모드를 사용하면 브라우저 히스토리 스택에 기록된다.</description>
     </item>
     

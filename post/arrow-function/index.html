@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='자바스크립트 화살표 함수'>
 <meta property='og:description' content='자바스크립트 화살표 함수 소개 및 주의사항!'>
 <meta property='og:url' content='https://jinyisland.kr/post/arrow-function/'>
-<meta property='og:site_name' content='Jiny Island'>
+<meta property='og:site_name' content='Jiny'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='es6&#43;' /><meta property='article:published_time' content='2021-09-05T19:45:01&#43;09:00'/><meta property='article:modified_time' content='2021-09-05T19:45:01&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
 <meta name="twitter:title" content="자바스크립트 화살표 함수">
 <meta name="twitter:description" content="자바스크립트 화살표 함수 소개 및 주의사항!"><meta name="twitter:card" content="summary_large_image">
@@ -79,8 +79,8 @@
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny Island</a></h1>
-        <h2 class="site-description">🌈Junior FE Developer.</h2>
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny</a></h1>
+        <h2 class="site-description">🌈Jiny&#39;s Learning Archive</h2>
     </header>
     <ol class="menu" id="main-menu">
         
@@ -244,50 +244,50 @@
     <h2 id="화살표-함수">화살표 함수</h2>
 <p>기존 함수 표기법을 화살표(⇒)형태로 간단하게 표기하는 함수 표기법</p>
 <h3 id="기존-함수-표현식과의-차이">기존 함수 표현식과의 차이</h3>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//기존 함수 표현식 
-</span><span class="c1"></span><span class="kd">function</span> <span class="nx">name</span><span class="p">(){</span>
-   <span class="c1">//code..
-</span><span class="c1"></span><span class="p">}</span>
-
-<span class="c1">//화살표 함수
-</span><span class="c1"></span><span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-	<span class="c1">//code..
-</span><span class="c1"></span><span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#998;font-style:italic">//기존 함수 표현식 
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">function</span> name(){
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>   <span style="color:#998;font-style:italic">//code..
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span style="color:#998;font-style:italic"></span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span style="color:#998;font-style:italic">//화살표 함수
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span style="color:#998;font-style:italic"></span>() =&gt; {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span>	<span style="color:#998;font-style:italic">//code..
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span style="color:#998;font-style:italic"></span>}
 </code></pre></div><h2 id="화살표-함수-특징">화살표 함수 특징</h2>
 <h3 id="괄호-생략">괄호 생략</h3>
 <p><strong>매개변수가 1개</strong>라면 괄호()도 생략이 가능하다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">logMessage</span> <span class="o">=</span> <span class="nx">message</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">}</span>
-<span class="nx">logMessage</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">);</span> <span class="c1">//&#39;hello&#39;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#000;font-weight:bold">const</span> logMessage <span style="color:#000;font-weight:bold">=</span> message =&gt; { console.log(message) }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>logMessage(<span style="color:#d14">&#39;hello&#39;</span>); <span style="color:#998;font-style:italic">//&#39;hello&#39;
 </span></code></pre></div><h3 id="lexical-this">Lexical this</h3>
 <p>일반 함수 표기에서는 <code>this</code>사용 시 동적으로 해당 함수를 실행한 객체로 바인딩되었다.<br>
 하지만 화살표 함수에서는 자신을 소유하고 있는 객체로 바인딩되는게 아니라 해당 화살표함수를 소유하고 있는 상위 환경의 this를 그대로 계승한다. <strong>(이 개념을 Lexical this라고 한다..)</strong><br>
 따라서 해당 객체의 속성에 접근이 필요한 메서드에서는 화살표 함수를 쓰지말자..</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;choi&#39;</span><span class="p">,</span>
-    <span class="nx">getName</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">person</span><span class="p">.</span><span class="nx">getName</span><span class="p">();</span> <span class="c1">//choi
-</span><span class="c1"></span>
-<span class="kr">const</span> <span class="nx">food</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;kimchi&#39;</span><span class="p">,</span>
-    <span class="nx">getName</span> <span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">food</span><span class="p">.</span><span class="nx">getName</span><span class="p">();</span> <span class="c1">// &#39;&#39;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#000;font-weight:bold">const</span> person <span style="color:#000;font-weight:bold">=</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>    name <span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;choi&#39;</span>,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>    getName <span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">function</span>(){
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>        <span style="color:#000;font-weight:bold">return</span> console.log(<span style="color:#000;font-weight:bold">this</span>.name);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>person.getName(); <span style="color:#998;font-style:italic">//choi
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="color:#998;font-style:italic"></span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span style="color:#000;font-weight:bold">const</span> food <span style="color:#000;font-weight:bold">=</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>    name <span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;kimchi&#39;</span>,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>    getName <span style="color:#000;font-weight:bold">:</span> () =&gt; { <span style="color:#000;font-weight:bold">return</span> console.log(<span style="color:#000;font-weight:bold">this</span>.name) }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>food.getName(); <span style="color:#998;font-style:italic">// &#39;&#39;
 </span></code></pre></div><h3 id="콜백-함수에서의-유용성">콜백 함수에서의 유용성</h3>
 <p>메서드 함수로 사용하는 대신, 함수를 반환하는 콜백 함수 용도로 사용하면 기존 함수 표현식 보다 깔끔해진다.<br>
 이미 문맥이 존재하고 함수 내부에서 이 함수를 사용하려고 할 때 유용하다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//배열로 구성된 원소들에 대한 값을 검증하는 함수
-</span><span class="c1"></span><span class="kr">const</span> <span class="nx">validator</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">message</span> <span class="o">:</span> <span class="s1">&#39;is valid.&#39;</span><span class="p">,</span>
-    <span class="nx">checkElement</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">elements</span><span class="p">){</span>
-        <span class="k">return</span> <span class="nx">elements</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">element</span> <span class="p">=&gt;</span> <span class="p">{</span>
-            <span class="k">if</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="k">return</span> <span class="nx">element</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">+</span> <span class="s1">&#39;\n&#39;</span><span class="p">;</span>
-        <span class="p">});</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">validator</span><span class="p">.</span><span class="nx">checkElement</span><span class="p">([</span><span class="s2">&#34;값&#34;</span><span class="p">,</span> <span class="s2">&#34;값2&#34;</span><span class="p">]);</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#998;font-style:italic">//배열로 구성된 원소들에 대한 값을 검증하는 함수
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">const</span> validator <span style="color:#000;font-weight:bold">=</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>    message <span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;is valid.&#39;</span>,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>    checkElement <span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">function</span>(elements){
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>        <span style="color:#000;font-weight:bold">return</span> elements.map(element =&gt; {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>            <span style="color:#000;font-weight:bold">if</span>(element) <span style="color:#000;font-weight:bold">return</span> element <span style="color:#000;font-weight:bold">+</span> <span style="color:#000;font-weight:bold">this</span>.message <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#39;\n&#39;</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>        });
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>validator.checkElement([<span style="color:#d14">&#34;값&#34;</span>, <span style="color:#d14">&#34;값2&#34;</span>]);
 </code></pre></div><p>만약 위 메서드 <code>checkElement</code>에서 화살표 함수가 아니라 일반 함수 표현식을 사용했다면, 내부함수에서의 <code>this</code>는 상위 컨텍스트를 바라보기 때문에  validator의 message를 가져오지 못하고 undefined를 출력 할 것이다. 따라서 화살표 함수를 사용하게된다면, 이러한 this 바인딩 범위를 잘 생각해야 한다.</p>
 
 </section>
@@ -523,7 +523,7 @@
         
             2020 - 
         
-        2021 Jiny Island
+        2021 Jiny
     </section>
     
     <section class="powerby">

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>node on Jiny Island</title>
+    <title>node on Jiny</title>
     <link>https://jinyisland.kr/tags/node/</link>
-    <description>Recent content in node on Jiny Island</description>
+    <description>Recent content in node on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 20 Sep 2021 18:49:47 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/node/index.xml" rel="self" type="application/rss+xml" />
@@ -25,7 +25,7 @@
       <guid>https://jinyisland.kr/post/node-restapi/</guid>
       <description>Node.js HTTP 모듈을 통해 간단히 요청보내고, 주고받는 초간단 API 서버를 만들어보았다.
 Request createServer 콜백에서 request, response 인자를 받는데 request 객체에서 요청 정보들을 받을 수 있다.
-const http = require(&amp;#34;http&amp;#34;); http.createServer(async (request, response)=&amp;gt;{ try{ const method = request.method; const url = request.url; //step 1. 요청 메소드 구분 	if(method == &amp;#34;GET&amp;#34;){ //step 2. URL 구분 	if(url == &amp;#34;/&amp;#34;){ }else if(url == &amp;#34;/list&amp;#34;){ } }else if(method == &amp;#34;POST&amp;#34;){ //code.. 	}else if(method == &amp;#34;DELETE&amp;#34;){ } } catch { //step 3.</description>
+1const http = require(&amp;#34;http&amp;#34;); 2 3http.createServer(async (request, response)=&amp;gt;{ 4	try{ 5	const method = request.method; 6	const url = request.url; 7	//step 1. 요청 메소드 구분 8	if(method == &amp;#34;GET&amp;#34;){ 9	//step 2. URL 구분 10	if(url == &amp;#34;/&amp;#34;){ 11	}else if(url == &amp;#34;/list&amp;#34;){ 12	} 13	}else if(method == &amp;#34;POST&amp;#34;){ 14	//code.</description>
     </item>
     
     <item>
@@ -36,8 +36,7 @@ const http = require(&amp;#34;http&amp;#34;); http.createServer(async (request, 
       <guid>https://jinyisland.kr/post/js-module/</guid>
       <description>Module module객체를 통해 각각의 기능이나 js파일들을 쉽게 모듈화가 가능하다.
 export 코드를 외부에 내보내고 싶다면 export문을 사용한다. 함수, 변수, 클래스 등을 내보낼 수 있다.
-//📁module/util.js const constants = { message : &amp;#39;simple message&amp;#39;; } const requestUrl = &amp;#39;/xyz-url&amp;#39;; const private = { privateKey : &amp;#39;1234&amp;#39; } export {constants, requestUrl}; //배열로도 export가 가능하다. (1~2개 모듈은 보통 객체형식으로 많이 사용) 각각의 모듈 대상에 export 예약어를 붙여 내보낼 수도 있다.
-export function constants = { message : &amp;#39;simple message&amp;#39;; } import import를 통해 상대 경로에 위치한 모듈 파일을 가져올 수 있다.</description>
+1//📁module/util.js 2const constants = { 3	message : &amp;#39;simple message&amp;#39;; 4} 5 6const requestUrl = &amp;#39;/xyz-url&amp;#39;; 7 8const private = { 9	privateKey : &amp;#39;1234&amp;#39; 10} 11 12export {constants, requestUrl}; //배열로도 export가 가능하다. (1~2개 모듈은 보통 객체형식으로 많이 사용) 각각의 모듈 대상에 export 예약어를 붙여 내보낼 수도 있다.</description>
     </item>
     
   </channel>

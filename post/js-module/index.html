@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='자바스크립트 모듈화'>
 <meta property='og:description' content='함수와 클래스 파일들을 모듈화하는 방법'>
 <meta property='og:url' content='https://jinyisland.kr/post/js-module/'>
-<meta property='og:site_name' content='Jiny Island'>
+<meta property='og:site_name' content='Jiny'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='node' /><meta property='article:published_time' content='2021-09-11T23:36:33&#43;09:00'/><meta property='article:modified_time' content='2021-09-11T23:36:33&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
 <meta name="twitter:title" content="자바스크립트 모듈화">
 <meta name="twitter:description" content="함수와 클래스 파일들을 모듈화하는 방법"><meta name="twitter:card" content="summary_large_image">
@@ -79,8 +79,8 @@
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny Island</a></h1>
-        <h2 class="site-description">🌈Junior FE Developer.</h2>
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny</a></h1>
+        <h2 class="site-description">🌈Jiny&#39;s Learning Archive</h2>
     </header>
     <ol class="menu" id="main-menu">
         
@@ -245,112 +245,112 @@
 <p><code>module</code>객체를 통해 각각의 기능이나 js파일들을 쉽게 모듈화가 가능하다.</p>
 <h3 id="export">export</h3>
 <p>코드를 외부에 내보내고 싶다면 <code>export</code>문을 사용한다. 함수, 변수, 클래스 등을 내보낼 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//📁module/util.js
-</span><span class="c1"></span><span class="kr">const</span> <span class="nx">constants</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="nx">message</span> <span class="o">:</span> <span class="s1">&#39;simple message&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kr">const</span> <span class="nx">requestUrl</span> <span class="o">=</span> <span class="s1">&#39;/xyz-url&#39;</span><span class="p">;</span>
-
-<span class="kr">const</span> <span class="kr">private</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="nx">privateKey</span> <span class="o">:</span> <span class="s1">&#39;1234&#39;</span>
-<span class="p">}</span>
-
-<span class="kr">export</span> <span class="p">{</span><span class="nx">constants</span><span class="p">,</span> <span class="nx">requestUrl</span><span class="p">};</span> <span class="c1">//배열로도 export가 가능하다. (1~2개 모듈은 보통 객체형식으로 많이 사용)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#998;font-style:italic">//📁module/util.js
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">const</span> constants <span style="color:#000;font-weight:bold">=</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>	message <span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;simple message&#39;</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span style="color:#000;font-weight:bold">const</span> requestUrl <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;/xyz-url&#39;</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="color:#000;font-weight:bold">const</span> <span style="color:#000;font-weight:bold">private</span> <span style="color:#000;font-weight:bold">=</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>	privateKey <span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;1234&#39;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span style="color:#000;font-weight:bold">export</span> {constants, requestUrl}; <span style="color:#998;font-style:italic">//배열로도 export가 가능하다. (1~2개 모듈은 보통 객체형식으로 많이 사용)
 </span></code></pre></div><p>각각의 모듈 대상에 export 예약어를 붙여 내보낼 수도 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">export</span> <span class="kd">function</span> <span class="nx">constants</span> <span class="o">=</span> <span class="p">{</span>
-	<span class="nx">message</span> <span class="o">:</span> <span class="s1">&#39;simple message&#39;</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#000;font-weight:bold">export</span> <span style="color:#000;font-weight:bold">function</span> constants <span style="color:#000;font-weight:bold">=</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>	message <span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;simple message&#39;</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>}
 </code></pre></div><h3 id="import">import</h3>
 <p><code>import</code>를 통해 상대 경로에 위치한 모듈 파일을 가져올 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//📁main.js
-</span><span class="c1"></span><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">util</span> <span class="nx">from</span> <span class="s1">&#39;./module/util.js&#39;</span><span class="p">;</span> <span class="c1">//util.js에 export된 내용들을 util이라는 변수로 사용
-</span><span class="c1"></span><span class="nx">improt</span> <span class="p">{</span> <span class="nx">constants</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./module/util.js&#39;</span><span class="p">;</span> <span class="c1">//util.js에 export된 내용 중 constants만 사용
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#998;font-style:italic">//📁main.js
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">import</span> <span style="color:#000;font-weight:bold">*</span> as util from <span style="color:#d14">&#39;./module/util.js&#39;</span>; <span style="color:#998;font-style:italic">//util.js에 export된 내용들을 util이라는 변수로 사용
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">import</span> { constants } from <span style="color:#d14">&#39;./module/util.js&#39;</span>; <span style="color:#998;font-style:italic">//util.js에 export된 내용 중 constants만 사용
 </span></code></pre></div><h3 id="export-default">export default</h3>
 <p><code>export default</code>를 사용하면 중괄호를 생략할 수 있다.<br>
 특히 클래스를 불러올 때 유용하게 사용된다.<strong>(보통 자바스크립트 파일 한개당 한개의 클래스만 작성하기 때문이다.)</strong></p>
 <p><strong>export</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//📁module/Calculator.js
-</span><span class="c1">//간단한 계산기 클래스
-</span><span class="c1"></span><span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">Calculator</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="nx">b</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="nx">add</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="p">;</span>
-    <span class="p">}</span>
-		<span class="c1">//..code
-</span><span class="c1"></span><span class="p">}</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#998;font-style:italic">//📁module/Calculator.js
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#998;font-style:italic">//간단한 계산기 클래스
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">export</span> <span style="color:#000;font-weight:bold">default</span> <span style="color:#000;font-weight:bold">class</span> Calculator {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>    constructor(a, b) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>        <span style="color:#000;font-weight:bold">this</span>.a <span style="color:#000;font-weight:bold">=</span> a;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>        <span style="color:#000;font-weight:bold">this</span>.b <span style="color:#000;font-weight:bold">=</span> b;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>    add() {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>        <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">this</span>.a <span style="color:#000;font-weight:bold">+</span> <span style="color:#000;font-weight:bold">this</span>.b;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>		<span style="color:#998;font-style:italic">//..code
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span style="color:#998;font-style:italic"></span>}
 </code></pre></div><p><strong>import</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="nx">Calculator</span> <span class="nx">from</span> <span class="s1">&#39;./module/Calculator.js&#39;</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">cal</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Calculator</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cal</span><span class="p">.</span><span class="nx">add</span><span class="p">());</span> <span class="c1">//3
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#000;font-weight:bold">import</span> Calculator from <span style="color:#d14">&#39;./module/Calculator.js&#39;</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span style="color:#000;font-weight:bold">let</span> cal <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Calculator(<span style="color:#099">1</span>,<span style="color:#099">2</span>);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>console.log(cal.add()); <span style="color:#998;font-style:italic">//3
 </span></code></pre></div><h2 id="node에서의-모듈화">Node에서의 모듈화</h2>
 <p>node.js에서는export 대신 <code>module.exports</code> import 대신 <code>require</code>을 사용해서 모듈을 불러올 수 있다.<br>
 주의사항은 단일 파일에서 module.exports는 한번만 수행할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//간단한 로그 찍어주는 함수 (📁modules/module.js)
-</span><span class="c1"></span><span class="kd">function</span> <span class="nx">logger</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">switch</span> <span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="s2">&#34;log&#34;</span><span class="o">:</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;[👻 LOGGER]&#34;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
-            <span class="k">break</span><span class="p">;</span>
-        <span class="k">case</span> <span class="s2">&#34;error&#34;</span><span class="o">:</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;[⛔️ ERROR]&#34;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
-            <span class="k">break</span><span class="p">;</span>
-        <span class="k">case</span> <span class="s2">&#34;warn&#34;</span><span class="o">:</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;[🚸 WARN]&#34;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
-            <span class="k">break</span><span class="p">;</span>
-        <span class="k">default</span><span class="o">:</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&#34;[⛔️ LOGGER] 지원하지 않는 타입&#34;</span><span class="p">);</span>
-            <span class="k">break</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="c1">//상수 객체
-</span><span class="c1"></span><span class="kr">const</span> <span class="nx">constants</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">URL</span><span class="o">:</span> <span class="s2">&#34;/xyz.com&#34;</span><span class="p">,</span>
-    <span class="nx">FILEPATH</span><span class="o">:</span> <span class="s2">&#34;/cloud.com&#34;</span><span class="p">,</span>
-<span class="p">};</span>
-
-<span class="c1">//exports
-</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">logger</span><span class="p">,</span>
-    <span class="nx">constants</span><span class="p">,</span>
-<span class="p">};</span>
-
-<span class="c1">//import예제 (간단한 로그 찍어주는 함수 (📁main.js)
-</span><span class="c1"></span><span class="kr">const</span> <span class="p">{</span> <span class="nx">logger</span><span class="p">,</span> <span class="nx">constants</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;./module/module&#34;</span><span class="p">);</span>
-
-<span class="nx">logger</span><span class="p">(</span><span class="s2">&#34;log&#34;</span><span class="p">,</span> <span class="s2">&#34;LOGGING!!&#34;</span><span class="p">);</span>
-<span class="nx">logger</span><span class="p">(</span><span class="s2">&#34;warn&#34;</span><span class="p">,</span> <span class="nx">constants</span><span class="p">.</span><span class="nx">FILEPATH</span><span class="p">);</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#998;font-style:italic">//간단한 로그 찍어주는 함수 (📁modules/module.js)
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">function</span> logger(type, message) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>    <span style="color:#000;font-weight:bold">switch</span> (type) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>        <span style="color:#000;font-weight:bold">case</span> <span style="color:#d14">&#34;log&#34;</span><span style="color:#000;font-weight:bold">:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>            console.log(<span style="color:#d14">&#34;[👻 LOGGER]&#34;</span> <span style="color:#000;font-weight:bold">+</span> message);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>            <span style="color:#000;font-weight:bold">break</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>        <span style="color:#000;font-weight:bold">case</span> <span style="color:#d14">&#34;error&#34;</span><span style="color:#000;font-weight:bold">:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>            console.log(<span style="color:#d14">&#34;[⛔️ ERROR]&#34;</span> <span style="color:#000;font-weight:bold">+</span> message);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>            <span style="color:#000;font-weight:bold">break</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>        <span style="color:#000;font-weight:bold">case</span> <span style="color:#d14">&#34;warn&#34;</span><span style="color:#000;font-weight:bold">:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>            console.log(<span style="color:#d14">&#34;[🚸 WARN]&#34;</span> <span style="color:#000;font-weight:bold">+</span> message);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>            <span style="color:#000;font-weight:bold">break</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>        <span style="color:#000;font-weight:bold">default</span><span style="color:#000;font-weight:bold">:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>            console.error(<span style="color:#d14">&#34;[⛔️ LOGGER] 지원하지 않는 타입&#34;</span>);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>            <span style="color:#000;font-weight:bold">break</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span style="color:#998;font-style:italic">//상수 객체
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">const</span> constants <span style="color:#000;font-weight:bold">=</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span>    URL<span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#34;/xyz.com&#34;</span>,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span>    FILEPATH<span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#34;/cloud.com&#34;</span>,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span>};
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span style="color:#998;font-style:italic">//exports
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span style="color:#998;font-style:italic"></span>module.exports <span style="color:#000;font-weight:bold">=</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span>    logger,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span>    constants,
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span>};
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span style="color:#998;font-style:italic">//import예제 (간단한 로그 찍어주는 함수 (📁main.js)
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">const</span> { logger, constants } <span style="color:#000;font-weight:bold">=</span> require(<span style="color:#d14">&#34;./module/module&#34;</span>);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span>logger(<span style="color:#d14">&#34;log&#34;</span>, <span style="color:#d14">&#34;LOGGING!!&#34;</span>);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span>logger(<span style="color:#d14">&#34;warn&#34;</span>, constants.FILEPATH);
 </code></pre></div><p><strong>예제</strong><br>
 위에서 만들었던  계산기 클래스를 모듈화</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//📁module/Calculator.js
-</span><span class="c1">//간단한 계산기 클래스
-</span><span class="c1"></span><span class="kr">class</span> <span class="nx">Calculator</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="nx">b</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="nx">add</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">//..code
-</span><span class="c1"></span><span class="p">}</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Calculator</span><span class="p">;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#998;font-style:italic">//📁module/Calculator.js
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#998;font-style:italic">//간단한 계산기 클래스
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#998;font-style:italic"></span><span style="color:#000;font-weight:bold">class</span> Calculator {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>    constructor(a, b) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>        <span style="color:#000;font-weight:bold">this</span>.a <span style="color:#000;font-weight:bold">=</span> a;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>        <span style="color:#000;font-weight:bold">this</span>.b <span style="color:#000;font-weight:bold">=</span> b;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>    add() {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>        <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">this</span>.a <span style="color:#000;font-weight:bold">+</span> <span style="color:#000;font-weight:bold">this</span>.b;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>    <span style="color:#998;font-style:italic">//..code
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span style="color:#998;font-style:italic"></span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>module.exports <span style="color:#000;font-weight:bold">=</span> Calculator;
 </code></pre></div><h3 id="require">require</h3>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">Calculator</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;./module/Calculator&#34;</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">cal</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Calculator</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cal</span><span class="p">.</span><span class="nx">add</span><span class="p">());</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#000;font-weight:bold">const</span> Calculator <span style="color:#000;font-weight:bold">=</span> require(<span style="color:#d14">&#34;./module/Calculator&#34;</span>);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span style="color:#000;font-weight:bold">let</span> cal <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">new</span> Calculator(<span style="color:#099">1</span>, <span style="color:#099">2</span>);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>console.log(cal.add());
 </code></pre></div><h3 id="import-export-사용">import-export 사용</h3>
 <p>기존 import-export 문법도 사용 가능하다. 방법은 2가지 정도인데 파일 확장자를 <code>mjs</code>로 만들거나, node 프로젝트 생성 시 <code>package.json</code>에서 type을 <strong>module</strong>속성을 넣으면된다고 한다. 하지만 완전히 같은 문법은 아니기때문에 node에서 사용해왔던 exports-require를 사용하는것이 좋다.</p>
 <h2 id="브라우저에서의-모듈화">브라우저에서의 모듈화</h2>
 <p>스크립트 type 속성에 <code>module</code>을 추가하면된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;module&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;main.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>&lt;<span style="color:#000080">script</span> <span style="color:#008080">type</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;module&#34;</span> <span style="color:#008080">src</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;main.js&#34;</span>&gt;&lt;/<span style="color:#000080">script</span>&gt;
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <p><strong>- 자바스크립트 코딩의 기술 - 가져오기와 내보내기로 기능을 분리하라 (조 모건 저)</strong><br>
 <strong>- Node.js 교과서 - 모듈만들기 (조현영 저)</strong><br>
@@ -590,7 +590,7 @@
         
             2020 - 
         
-        2021 Jiny Island
+        2021 Jiny
     </section>
     
     <section class="powerby">

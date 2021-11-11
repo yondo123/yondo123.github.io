@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='자바스크립트 템플릿리터럴'>
 <meta property='og:description' content='문자열 처리를 더욱 쉽게 할 수 있는 방법'>
 <meta property='og:url' content='https://jinyisland.kr/post/template-literals/'>
-<meta property='og:site_name' content='Jiny Island'>
+<meta property='og:site_name' content='Jiny'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='es6&#43;' /><meta property='article:published_time' content='2021-09-05T19:36:27&#43;09:00'/><meta property='article:modified_time' content='2021-09-05T19:36:27&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
 <meta name="twitter:title" content="자바스크립트 템플릿리터럴">
 <meta name="twitter:description" content="문자열 처리를 더욱 쉽게 할 수 있는 방법"><meta name="twitter:card" content="summary_large_image">
@@ -79,8 +79,8 @@
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny Island</a></h1>
-        <h2 class="site-description">🌈Junior FE Developer.</h2>
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny</a></h1>
+        <h2 class="site-description">🌈Jiny&#39;s Learning Archive</h2>
     </header>
     <ol class="menu" id="main-menu">
         
@@ -244,18 +244,18 @@
     <h2 id="temlate-literals">Temlate literals</h2>
 <p>기존 문자열 결합 시 연산자(+)를 사용하였는데 백틱(`) 기호를 사용하여 쉽게 결합할 수 있다.</p>
 <h3 id="기존-연산자-사용">기존 연산자 사용</h3>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">fruit</span> <span class="o">=</span> <span class="s1">&#39;apple&#39;</span><span class="p">;</span>
-<span class="kr">const</span> <span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;My Favorite Fruit is&#39;</span> <span class="o">+</span> <span class="nx">fruit</span> <span class="o">+</span> <span class="s1">&#39;, color is &#39;</span> <span class="o">+</span> <span class="nx">color</span> <span class="p">);</span> <span class="c1">//&#34;My Favorite Fruit isapple, color is red&#34;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#000;font-weight:bold">const</span> fruit <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;apple&#39;</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span style="color:#000;font-weight:bold">const</span> color <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;red&#39;</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>console.log(<span style="color:#d14">&#39;My Favorite Fruit is&#39;</span> <span style="color:#000;font-weight:bold">+</span> fruit <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#39;, color is &#39;</span> <span style="color:#000;font-weight:bold">+</span> color ); <span style="color:#998;font-style:italic">//&#34;My Favorite Fruit isapple, color is red&#34;
 </span></code></pre></div><h3 id="템플릿리터럴-사용">템플릿리터럴 사용</h3>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">fruit</span> <span class="o">=</span> <span class="s1">&#39;apple&#39;</span><span class="p">;</span>
-<span class="kr">const</span> <span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`My favorite Fruit is </span><span class="si">${</span><span class="nx">fruit</span><span class="si">}</span><span class="sb">, color is </span><span class="si">${</span><span class="nx">color</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#000;font-weight:bold">const</span> fruit <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;apple&#39;</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span style="color:#000;font-weight:bold">const</span> color <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;red&#39;</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>console.log(<span style="color:#d14">`My favorite Fruit is </span><span style="color:#d14">${</span>fruit<span style="color:#d14">}</span><span style="color:#d14">, color is </span><span style="color:#d14">${</span>color<span style="color:#d14">}</span><span style="color:#d14">`</span>);
 </code></pre></div><h3 id="장점">장점</h3>
 <p>보통 복잡한 문자열이거나 html 코드등을 직접 스크립트상에서 삽입할 때 쌍따옴표-홀따옴표등과 같이 사용하는 경우에 상당히 복잡했었다. (따옴표 종료 위치를 일일이 신경써야했기에)<br>
 템플릿리터럴을 사용하면 일반 텍스트를 작성하듯 변수 위치만 신경써주면되니까 이런점이 편하다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Jiny&#39;</span><span class="p">;</span>
-<span class="kr">const</span> <span class="nx">template</span> <span class="o">=</span> <span class="sb">`&lt;p class=&#34;user-name&#34;&gt;</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/p&gt;`</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#000;font-weight:bold">const</span> name <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;Jiny&#39;</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span style="color:#000;font-weight:bold">const</span> template <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">`&lt;p class=&#34;user-name&#34;&gt;</span><span style="color:#d14">${</span>name<span style="color:#d14">}</span><span style="color:#d14">&lt;/p&gt;`</span>
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong>자바스크립트 코딩의 기술 - 조모건 저</strong></li>
@@ -494,7 +494,7 @@
         
             2020 - 
         
-        2021 Jiny Island
+        2021 Jiny
     </section>
     
     <section class="powerby">

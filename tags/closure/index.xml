@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>closure on Jiny Island</title>
+    <title>closure on Jiny</title>
     <link>https://jinyisland.kr/tags/closure/</link>
-    <description>Recent content in closure on Jiny Island</description>
+    <description>Recent content in closure on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 10 Aug 2021 23:51:20 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/closure/index.xml" rel="self" type="application/rss+xml" />
@@ -16,10 +16,10 @@
       <description>클로저 개념 클로저는 쉽게말해 함수 선언시 생성되는 유효 범위이다.
 먼저 자바스크립트에서 클로저를 이해하려면 범위 지정(Lexical Scoping)을 이해하여야 한다.
 아래 코드를 보자.
-var apple = &amp;#39;🍎&amp;#39;; function displayApple(){ console.log(apple); } displayApple(); //result : 🍎 간단하게 사과를 출력해주는 함수다.
+1var apple = &amp;#39;🍎&amp;#39;; 2 3function displayApple(){ 4	console.log(apple); 5} 6 7displayApple(); 8//result : 🍎 간단하게 사과를 출력해주는 함수다.
 하지만, 정작 함수안에는 apple이라는 변수가 없는데도 불구하고 사과가 출력되었다.
 지난번 실행컨텍스트에서 언급했듯이 해당 유효범위에서 식별자를 찾지 못하면 점점 상위 ~ 전역으로 탐색한다. Scope Chain
-var displayPrice; var apple = **&amp;#39;🍎&amp;#39;;** function displayApple(){ var price = 1000; console.</description>
+1var displayPrice; 2var apple = **&amp;#39;🍎&amp;#39;;** 3function displayApple(){ 4	var price = 1000; 5	console.</description>
     </item>
     
   </channel>

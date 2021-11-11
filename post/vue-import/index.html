@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='외부 Vue 프로젝트 불러오기'>
 <meta property='og:description' content='외부 Vue 프로젝트를 로컬에 적용시키기'>
 <meta property='og:url' content='https://jinyisland.kr/post/vue-import/'>
-<meta property='og:site_name' content='Jiny Island'>
+<meta property='og:site_name' content='Jiny'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='frontend' /><meta property='article:published_time' content='2021-07-18T23:09:02&#43;09:00'/><meta property='article:modified_time' content='2021-07-18T23:09:02&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/vue/vue.png' />
 <meta name="twitter:title" content="외부 Vue 프로젝트 불러오기">
 <meta name="twitter:description" content="외부 Vue 프로젝트를 로컬에 적용시키기"><meta name="twitter:card" content="summary_large_image">
@@ -79,8 +79,8 @@
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny Island</a></h1>
-        <h2 class="site-description">🌈Junior FE Developer.</h2>
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny</a></h1>
+        <h2 class="site-description">🌈Jiny&#39;s Learning Archive</h2>
     </header>
     <ol class="menu" id="main-menu">
         
@@ -242,25 +242,25 @@
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
     <p>윈도우에서 작업한 Vue 프로젝트를 mac 환경에서 확인하려던 중 git clone 후 프로젝트를 실행해보니 아래와 같은 에러가 나왔다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">&gt; vue-todo@0.1.0 serve /Users/sjchoi/Mydoc/02_Code/05_vue/vue-practice/vue-todo
-&gt; vue-cli-service serve
-
-sh: vue-cli-service: <span class="nb">command</span> not found
-npm ERR! code ELIFECYCLE
-npm ERR! syscall spawn
-npm ERR! file sh
-npm ERR! errno ENOENT
-npm ERR! vue-todo@0.1.0 serve: <span class="sb">`</span>vue-cli-service serve<span class="sb">`</span>
-npm ERR! spawn ENOENT
-npm ERR! 
-npm ERR! Failed at the vue-todo@0.1.0 serve script.
-npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
-npm WARN Local package.json exists, but node_modules missing, did you mean to install?
-
-npm ERR! A <span class="nb">complete</span> log of this run can be found in:
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span>&gt; vue-todo@0.1.0 serve /Users/sjchoi/Mydoc/02_Code/05_vue/vue-practice/vue-todo
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>&gt; vue-cli-service serve
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>sh: vue-cli-service: <span style="color:#0086b3">command</span> not found
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>npm ERR! code ELIFECYCLE
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>npm ERR! syscall spawn
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>npm ERR! file sh
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>npm ERR! errno ENOENT
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>npm ERR! vue-todo@0.1.0 serve: <span style="color:#d14">`</span>vue-cli-service serve<span style="color:#d14">`</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>npm ERR! spawn ENOENT
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>npm ERR! 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>npm ERR! Failed at the vue-todo@0.1.0 serve script.
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>npm ERR! A <span style="color:#0086b3">complete</span> log of this run can be found in:
 </code></pre></div><p>npm은 당연히 설치되어있는데 왜그러는지 몰라 한참을 찾아보다가 npm 캐시를 지워주면 된다는 말을 듣고 캐시를 지우고 다시 <code>package.json</code>에 정의된 모듈을 설치하였더니 잘 된다!</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm cache clean --force <span class="c1">#npm 캐시 삭제</span>
-npm install <span class="c1">#package.json 의존하는 모듈 설치</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>npm cache clean --force <span style="color:#998;font-style:italic">#npm 캐시 삭제</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>npm install <span style="color:#998;font-style:italic">#package.json 의존하는 모듈 설치</span>
 </code></pre></div><p>만약 <code>npm install</code>을 시행해도, 프로젝트 실행이 안된다면, npm run serve 중 필요한 라이브러리를 설치하라고 뜰테니 해당 라이브러리를 설치하고 시행하면 잘 된다.</p>
 
 </section>
@@ -496,7 +496,7 @@ npm install <span class="c1">#package.json 의존하는 모듈 설치</span>
         
             2020 - 
         
-        2021 Jiny Island
+        2021 Jiny
     </section>
     
     <section class="powerby">

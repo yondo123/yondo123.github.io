@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='computed와 Watch'>
 <meta property='og:description' content='Vue에서 데이터 변화를 감지하는 방법'>
 <meta property='og:url' content='https://jinyisland.kr/post/computed-watch/'>
-<meta property='og:site_name' content='Jiny Island'>
+<meta property='og:site_name' content='Jiny'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='frontend' /><meta property='article:published_time' content='2021-10-09T23:17:34&#43;09:00'/><meta property='article:modified_time' content='2021-10-09T23:17:34&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/vue/vue.png' />
 <meta name="twitter:title" content="computed와 Watch">
 <meta name="twitter:description" content="Vue에서 데이터 변화를 감지하는 방법"><meta name="twitter:card" content="summary_large_image">
@@ -79,8 +79,8 @@
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny Island</a></h1>
-        <h2 class="site-description">🌈Junior FE Developer.</h2>
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny</a></h1>
+        <h2 class="site-description">🌈Jiny&#39;s Learning Archive</h2>
     </header>
     <ol class="menu" id="main-menu">
         
@@ -244,54 +244,54 @@
     <p>vue에서 <code>data</code> 속성에 있는 값을 사용하고자 할 때, 값이 변화할 때 마다 자동적으로 리렌더링 해주는 인스턴스 속성이 2개가 있다. 바로 <code>computed</code>와 <code>watch</code>, 이 두 속성의 공통점은 값을 감지하다가 변경되면 메서드를 호출함으로써 값을 바로 반환해준다. 이 비슷한 두 속성에 대해 차이점에 대해서 알아보았다.</p>
 <h2 id="computed">computed</h2>
 <p>사용법은 아래 코드를 참고, <code>computed</code>속성 내에 메서드를 정의하고 템플릿내에 호출을 하면 해당 값이 바뀔 때 마다 재호출을 해준다. 이는 캐싱이되는 성질이 있어 해당 값이 바뀌지 않는다면 호출을 절대 하지 않는다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">    <span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span> {{ formatDate }} <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> <span class="c">&lt;!--2021년 10월 08일 --&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
-        <span class="nx">data</span><span class="p">(){</span>
-            <span class="k">return</span> <span class="p">{</span>
-                <span class="nx">today</span> <span class="o">:</span> <span class="s1">&#39;20211008&#39;</span>
-            <span class="p">}</span>
-        <span class="p">},</span>
-        <span class="nx">computed</span> <span class="o">:</span> <span class="p">{</span>
-            <span class="nx">formatDate</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-                <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">date</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="sb">년 </span><span class="si">${</span><span class="nx">date</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="sb">월 </span><span class="si">${</span><span class="nx">date</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="sb">일`</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span>    &lt;<span style="color:#000080">template</span>&gt;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>        &lt;<span style="color:#000080">div</span> <span style="color:#008080">id</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;app&#34;</span>&gt;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>            &lt;<span style="color:#000080">p</span>&gt; {{ formatDate }} &lt;/<span style="color:#000080">p</span>&gt; <span style="color:#998;font-style:italic">&lt;!--2021년 10월 08일 --&gt;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>        &lt;/<span style="color:#000080">div</span>&gt;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>    &lt;/<span style="color:#000080">template</span>&gt;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>    &lt;<span style="color:#000080">script</span>&gt;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>    <span style="color:#000;font-weight:bold">export</span> <span style="color:#000;font-weight:bold">default</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>        data(){
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>            <span style="color:#000;font-weight:bold">return</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>                today <span style="color:#000;font-weight:bold">:</span> <span style="color:#d14">&#39;20211008&#39;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>            }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>        },
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>        computed <span style="color:#000;font-weight:bold">:</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>            formatDate <span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">function</span>(){
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>                <span style="color:#000;font-weight:bold">return</span> <span style="color:#d14">`</span><span style="color:#d14">${</span>date.substr(<span style="color:#099">0</span>,<span style="color:#099">4</span>)<span style="color:#d14">}</span><span style="color:#d14">년 </span><span style="color:#d14">${</span>date.substr(<span style="color:#099">4</span>,<span style="color:#099">2</span>)<span style="color:#d14">}</span><span style="color:#d14">월 </span><span style="color:#d14">${</span>date.substr(<span style="color:#099">6</span>,<span style="color:#099">2</span>)<span style="color:#d14">}</span><span style="color:#d14">일`</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>            }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>        }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span>    &lt;/<span style="color:#000080">script</span>&gt;
 </code></pre></div><h2 id="watch">watch</h2>
 <p>watch도 computed와 사용법은 유사하다. 하지만 watch는 메서드 트리거의 역할로 사용하는 느낌이 더욱 강하다. computed는 직접 template내에 출력을 해야 해당 메서드가 실행되지만, watch는 값의 변화에만 의존해 메서드를 호출 시키기 때문이다. 웬만한 데이터 포맷팅이나 단순히 보여지는 영역을 컨트롤해야 한다면 <code>computed</code>를 사용하고 더욱 복잡한 로직 (API 통신 및 data 분기 처리)등은 <code>watch</code>를 사용하는 것을 권장하고 있는 것 같다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">    <span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;increase&#34;</span> <span class="na">v-on:click</span><span class="o">=</span><span class="s">&#34;increaseNumber&#34;</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;log&#34;</span><span class="p">&gt;</span>{{ number }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> 
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="kr">export</span> <span class="k">default</span><span class="p">{</span>
-        <span class="nx">data</span><span class="p">(){</span>
-            <span class="k">return</span> <span class="p">{</span>
-                <span class="nx">number</span> <span class="o">:</span> <span class="mi">0</span>
-            <span class="p">}</span>
-        <span class="p">},</span>
-        <span class="nx">watch</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">number</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-                <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">number</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">){</span>
-                    <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;10 이상 입니다!&#34;</span><span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">},</span>
-        <span class="nx">methods</span><span class="o">:</span><span class="p">{</span>
-            <span class="nx">increaseNumber</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-                <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">number</span><span class="o">++</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span>    &lt;<span style="color:#000080">template</span>&gt;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>        &lt;<span style="color:#000080">div</span> <span style="color:#008080">id</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;app&#34;</span>&gt;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>            &lt;<span style="color:#000080">input</span> <span style="color:#008080">type</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;button&#34;</span> <span style="color:#008080">value</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;increase&#34;</span> <span style="color:#008080">v-on:click</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;increaseNumber&#34;</span>&gt;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>            &lt;<span style="color:#000080">p</span> <span style="color:#008080">id</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;log&#34;</span>&gt;{{ number }}&lt;/<span style="color:#000080">p</span>&gt; 
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span>        &lt;/<span style="color:#000080">div</span>&gt;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>    &lt;/<span style="color:#000080">template</span>&gt;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>    &lt;<span style="color:#000080">script</span>&gt;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>    <span style="color:#000;font-weight:bold">export</span> <span style="color:#000;font-weight:bold">default</span>{
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>        data(){
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>            <span style="color:#000;font-weight:bold">return</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>                number <span style="color:#000;font-weight:bold">:</span> <span style="color:#099">0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>            }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>        },
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>        watch<span style="color:#000;font-weight:bold">:</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>            number<span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">function</span>(){
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>                <span style="color:#000;font-weight:bold">if</span>(<span style="color:#000;font-weight:bold">this</span>.number <span style="color:#000;font-weight:bold">&gt;=</span> <span style="color:#099">10</span>){
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>                    alert(<span style="color:#d14">&#34;10 이상 입니다!&#34;</span>);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>                }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span>            }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span>        },
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span>        methods<span style="color:#000;font-weight:bold">:</span>{
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span>            increaseNumber<span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">function</span>(){
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>                <span style="color:#000;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">this</span>.number<span style="color:#000;font-weight:bold">++</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span>            }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span>        }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span>    &lt;/<span style="color:#000080">script</span>&gt;
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong><a class="link" href="https://michaelnthiessen.com/difference-between-computed-property-and-watcher/"  target="_blank" rel="noopener"
@@ -533,7 +533,7 @@
         
             2020 - 
         
-        2021 Jiny Island
+        2021 Jiny
     </section>
     
     <section class="powerby">
