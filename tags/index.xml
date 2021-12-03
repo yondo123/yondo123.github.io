@@ -6,7 +6,25 @@
     <description>Recent content in Tags on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Oct 2021 23:05:04 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 03 Dec 2021 16:10:08 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>library</title>
+      <link>https://jinyisland.kr/tags/library/</link>
+      <pubDate>Fri, 03 Dec 2021 16:10:08 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/tags/library/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vuex</title>
+      <link>https://jinyisland.kr/tags/vuex/</link>
+      <pubDate>Fri, 03 Dec 2021 16:10:08 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/tags/vuex/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>css</title>
       <link>https://jinyisland.kr/tags/css/</link>
@@ -22,15 +40,6 @@
       <pubDate>Thu, 21 Oct 2021 23:05:04 +0900</pubDate>
       
       <guid>https://jinyisland.kr/tags/frontend/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>library</title>
-      <link>https://jinyisland.kr/tags/library/</link>
-      <pubDate>Thu, 21 Oct 2021 23:05:04 +0900</pubDate>
-      
-      <guid>https://jinyisland.kr/tags/library/</guid>
       <description></description>
     </item>
     
