@@ -6,7 +6,54 @@
         <description>Recent content on Jiny</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 03 Dec 2021 16:10:08 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 20 Dec 2021 23:49:00 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Vue 코드 포맷팅</title>
+        <link>https://jinyisland.kr/post/prettier/</link>
+        <pubDate>Mon, 20 Dec 2021 23:49:00 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/prettier/</guid>
+        <description>&lt;img src="https://jinyisland.kr/../../assets/vue/vue.png" alt="Featured image of post Vue 코드 포맷팅" /&gt;&lt;h2 id=&#34;code-convention&#34;&gt;Code Convention&lt;/h2&gt;
+&lt;p&gt;프로젝트 진행 시 기능 구현도 중요하지만, 추후 유지보수를 위한 &lt;code&gt;convention&lt;/code&gt;도 굉장히 중요하다고 생각한다. 특히 협업으로 작업하는 경우 거의 필수로 작용하는데, 개발자 마다 선호하는 코딩 스타일도 다르고 하물며 변수 명 하나하나 지을 때도 케밥케이스, 카멜케이스 등 여러 방식도 존재하기 때문이다. 물론 개인 프로젝트에서도 이 부분은 꽤나 중요한데 전체적인 일관성이 유지되어야 보는 사람들도 코드를 읽기 편하다. 컨벤션을 잘 지킬 수 있는 플러그인 중 대다수가 사용하는 &lt;code&gt;eslint&lt;/code&gt;와 &lt;code&gt;prettier&lt;/code&gt;를 vue와 연동해보는 것을 정리해보았다.&lt;/p&gt;
+&lt;h3 id=&#34;사전-준비&#34;&gt;사전 준비&lt;/h3&gt;
+&lt;p&gt;만약 vue-cli를 사용할 경우, &lt;code&gt;vue create&lt;/code&gt; 과정에서 eslint, prettier를 같이 설치할 수 있지만 이러한 옵션을 이미 알고 설치하는 경우는 목적에 맞게 진행한 것이기 때문에 아무것도 설치가 안 되어있는 것을 전제로 적용하는 것을 목표로 둔다.&lt;/p&gt;
+&lt;h3 id=&#34;prettier-설치&#34;&gt;Prettier 설치&lt;/h3&gt;
+&lt;p&gt;prettier는 코드를 규칙에 따라 일관성 있게  포맷팅해주는 역할을 하는 플러그인이다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;먼저 VSCode 확장에서 Prettier를 설치한다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;프로젝트 최상위 경로에 &lt;code&gt;.prettierrc.js&lt;/code&gt;파일을 생성한다.
+node 환경의 root는 package.json이 위치한 경로라고 이해하면 된다.  어떤 일관성을 유지 할 것인지 설정을 해주어야하기 때문에 설정 파일을 생성한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;module&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;exports&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;singleQuote&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//작은 따옴표 사용 (문자열)
+&lt;/span&gt;&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;bracketSpacing&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//객체 리터럴 공백 제거
+&lt;/span&gt;&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;printWidth&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;200&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//코드의 블록 너비
+&lt;/span&gt;&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;tabWidth&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//개행 단위 
+&lt;/span&gt;&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;semi&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//문장 뒤에 세미클론 붙임
+&lt;/span&gt;&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;arrowParens&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;avoid&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//화살표 함수에서 매개변수 괄호 여부
+&lt;/span&gt;&lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;      &lt;span class=&#34;nx&#34;&gt;trailingComma&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;none&amp;#39;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//배열, 객체 속성에서 마지막 요소에 컴마 붙이지 않음
+&lt;/span&gt;&lt;span class=&#34;ln&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;자주 사용하는 옵션을 예시로 들었다.  추가적인 옵션은 &lt;a class=&#34;link&#34; href=&#34;https://prettier.io/docs/en/options.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Prettier&lt;/a&gt; 공식 문서에서 확인 할 수 있다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;마지막으로 코드를 저장 할 때마다 포맷팅이 되어야 하니  VS Code &lt;code&gt;settings.json&lt;/code&gt;에서 아래의 옵션을 추가한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;//settings.json&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;editor.formatOnSave&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;간혹 (3) 까지 진행을 하였음에도 불구하고, &lt;code&gt;.vue&lt;/code&gt;컴포넌트 파일에서 자동 포맷팅이 안된다면 아래의 옵션도 추가해주자.
+주로 Vetur, EsLint 등 다른 포맷팅을 지원해주는 플러그인과 충돌나서 그러는 경우가 많다고 한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;//settings.json&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;[vue]&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;#34;editor.defaultFormatter&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;esbenp.prettier-vscode&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;,&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
         <title>Vuex 개념과 실제 사용해보기!</title>
         <link>https://jinyisland.kr/post/vuex/</link>
         <pubDate>Fri, 03 Dec 2021 16:10:08 +0900</pubDate>
