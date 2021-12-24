@@ -251,7 +251,7 @@
 <p>먼저 VSCode 확장에서 Prettier를 설치한다.</p>
 </li>
 <li>
-<p>프로젝트 최상위 경로에 <code>.prettierrc.js</code>파일을 생성한다.
+<p>프로젝트 최상위 경로에 <code>.prettierrc.js</code>파일을 생성한다.<br>
 node 환경의 root는 package.json이 위치한 경로라고 이해하면 된다.  어떤 일관성을 유지 할 것인지 설정을 해주어야하기 때문에 설정 파일을 생성한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
 <span class="ln">2</span>    <span class="nx">singleQuote</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//작은 따옴표 사용 (문자열)
@@ -279,6 +279,80 @@ node 환경의 root는 package.json이 위치한 경로라고 이해하면 된�
 <span class="ln">4</span><span class="p">}</span><span class="err">,</span>
 </code></pre></div></li>
 </ol>
+<h3 id="eslint-설치">Eslint 설치</h3>
+<p>EsLint는 Prettier보다 더 넓은 기능을 갖춘 플러그인이다. 이름 그대로 린트 (문법 검사) 기능은 기본이고,  Prettier에서 제공하는 기능인 포맷팅 기능도 자체적으로 지원한다.</p>
+<ol>
+<li>
+<p>vue-cli 환경에서 EsLint를 사용하기 위해 아래와 같이 플러그인을 설치한다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npm install --save-dev eslint eslint-plugin-vue
+</code></pre></div></li>
+<li>
+<p>전역 설정을 위해 최상위 경로에 <code>.eslintrc.js</code>파일을 생성한다. 기본 구조는 아래 소스를 참고.</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="c1">//.eslintrc.js
+</span><span class="ln">2</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+<span class="ln">3</span>    <span class="kr">extends</span><span class="o">:</span> <span class="p">[</span>
+<span class="ln">4</span>        <span class="s1">&#39;plugin:vue/vue3-recommended&#39;</span><span class="p">,</span> <span class="c1">//Vue 3.X 버전 권장 규칙
+</span><span class="ln">5</span><span class="c1"></span>        <span class="c1">// &#39;plugin:vue/recommended&#39; // Vue 2.X 버전을 사용한다면 활성화
+</span><span class="ln">6</span><span class="c1"></span>    <span class="p">],</span>
+<span class="ln">7</span>    <span class="nx">rules</span><span class="o">:</span> <span class="p">{}</span>
+<span class="ln">8</span><span class="p">}</span>
+</code></pre></div><p><code>extends</code>속성에 여러 규칙들을 기입할 수 있으며 (규칙 ID 여러개로 관리가 가능하다.) 자세한 설명은 <a class="link" href="https://eslint.vuejs.org/rules/comment-directive.html"  target="_blank" rel="noopener"
+    >eslint-plugin-vue 공식 문서</a>에서 확인할 수 있다.</p>
+</li>
+<li>
+<p>옵션 설정
+이 부분은 워낙 방대해 사용하고 있는 설정 기준으로 설명해보자면</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="c1">//.eslintrc.js
+</span><span class="ln"> 2</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+<span class="ln"> 3</span>    <span class="nx">root</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> 
+<span class="ln"> 4</span>    <span class="nx">env</span><span class="o">:</span> <span class="p">{</span>  
+<span class="ln"> 5</span>        <span class="nx">node</span><span class="o">:</span> <span class="kc">true</span>
+<span class="ln"> 6</span>    <span class="p">},</span>
+<span class="ln"> 7</span>    <span class="kr">extends</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;plugin:vue/vue3-essential&#39;</span><span class="p">,</span> <span class="s1">&#39;eslint:recommended&#39;</span><span class="p">,</span> <span class="s1">&#39;@vue/prettier&#39;</span><span class="p">],</span>
+<span class="ln"> 8</span>    <span class="nx">parserOptions</span><span class="o">:</span> <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="nx">parser</span><span class="o">:</span> <span class="s1">&#39;babel-eslint&#39;</span>
+<span class="ln">10</span>    <span class="p">},</span>
+<span class="ln">11</span>    <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
+<span class="ln">12</span>        <span class="s1">&#39;no-console&#39;</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="s1">&#39;production&#39;</span> <span class="o">?</span> <span class="s1">&#39;warn&#39;</span> <span class="o">:</span> <span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="c1">//콘솔 사용 제한
+</span><span class="ln">13</span><span class="c1"></span>        <span class="s1">&#39;no-debugger&#39;</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="s1">&#39;production&#39;</span> <span class="o">?</span> <span class="s1">&#39;warn&#39;</span> <span class="o">:</span> <span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="c1">//디버거 사용 제한
+</span><span class="ln">14</span><span class="c1"></span>    <span class="p">}</span>
+<span class="ln">15</span><span class="p">};</span>
+</code></pre></div><ul>
+<li><code>root</code> : 최상위 디렉토리 여부</li>
+<li><code>env</code> : 프로젝트 환경 <a class="link" href="https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments"  target="_blank" rel="noopener"
+    >(참고)</a></li>
+<li><code>extends</code> : 사용 할 플러그인 이름 <a class="link" href="https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments"  target="_blank" rel="noopener"
+    >(참고)</a></li>
+<li><code>parserOptions</code> : 구문 분석 옵션
+<ul>
+<li><strong>ecmaVersion :</strong> ECMA 스크립트 버전 (3, 5, 6, .. , 2022, latest)</li>
+<li><strong>sourceType :</strong> 파서의 출력 형태</li>
+<li><strong>parser :</strong> parser 선택</li>
+</ul>
+</li>
+<li><code>rules</code> : 규칙 설정  <a class="link" href="https://eslint.org/docs/user-guide/configuring/rules"  target="_blank" rel="noopener"
+    >(참고)</a>
+규칙은 다음과 같은 값으로 설정 할 수 있다. (off - 규칙 사용 안함, warn - 경고 규칙, error : 오류 발생)<br>
+이 규칙 설정이 <code>EsLint</code>의 꽃이라 볼 수 있는데 다양한 설정으로 어떤 수준으로 개발자에게 알려줄 지 설정 할 수 있기 때문이다.<br>
+자세한 규칙은 <a class="link" href="https://eslint.org/docs/rules/"  target="_blank" rel="noopener"
+    >공식 문서</a>를 참고하면 되고 아래와 같이 사용하면된다.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln">1</span><span class="p">{</span>
+<span class="ln">2</span>    <span class="nt">&#34;rules&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln">3</span>        <span class="nt">&#34;eqeqeq&#34;</span><span class="p">:</span> <span class="s2">&#34;off&#34;</span><span class="p">,</span>
+<span class="ln">4</span>        <span class="nt">&#34;curly&#34;</span><span class="p">:</span> <span class="s2">&#34;error&#34;</span><span class="p">,</span>
+<span class="ln">5</span>        <span class="nt">&#34;quotes&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;error&#34;</span><span class="p">,</span> <span class="s2">&#34;double&#34;</span><span class="p">]</span>
+<span class="ln">6</span>    <span class="p">}</span>
+<span class="ln">7</span><span class="p">}</span>
+</code></pre></div></li>
+</ol>
+<h2 id="참고자료">참고자료</h2>
+<ul>
+<li><a class="link" href="https://eslint.vuejs.org/user-guide/#usage"  target="_blank" rel="noopener"
+    ><strong>eslint-bea-vue document</strong></a></li>
+<li><strong>ESLint - <a class="link" href="https://eslint.org/docs/user-guide/configuring/"  target="_blank" rel="noopener"
+    >Configuring ESLint</a></strong></li>
+</ul>
 
 </section>
 <script type="text/javascript">
