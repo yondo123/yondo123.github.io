@@ -656,12 +656,12 @@ vue 프로젝트를 먼저 생성하고, tailwind-css를 설치한다.&lt;/p&gt;
 </description>
         </item>
         <item>
-        <title>Http 쿠키의 개념과 사용자 식별</title>
+        <title>Http 쿠키의 개념과 활용 방법</title>
         <link>https://jinyisland.kr/post/cookies/</link>
         <pubDate>Mon, 20 Sep 2021 18:49:47 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/cookies/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/web/web.png" alt="Featured image of post Http 쿠키의 개념과 사용자 식별" /&gt;&lt;h2 id=&#34;http&#34;&gt;Http&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/web/web.png" alt="Featured image of post Http 쿠키의 개념과 활용 방법" /&gt;&lt;h2 id=&#34;http&#34;&gt;Http&lt;/h2&gt;
 &lt;p&gt;http 트랜잭션에는 상태가 없다. 모든 사용자 요청에는 사이트 기능에 맞는 상태들을 유지하는데 (사용자 정보, 권한 등등..) 이런 무수히 많은 상태들을 관리하려면 사용자를 식별할 수 있는 방법이 필요하다. 그중에 하나가 쿠키이다. 물론 사용자를 가릴 수 있는 방법에 초창기 여러 가지 방법이 있었는데 사용자 IP를 활용한 방법 등이 있었다. IP를 활용한 방법에는 다음과 같은 문제점이 있다.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;사용자 기준이 아닌 접속 PC의 IP이기 때문에 정확한 사용자 구별이 어려움&lt;/li&gt;
