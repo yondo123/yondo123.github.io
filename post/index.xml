@@ -6,7 +6,19 @@
     <description>Recent content in Posts on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Dec 2021 23:49:00 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jan 2022 22:40:47 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>npm에 대한 개념과 사용 방법</title>
+      <link>https://jinyisland.kr/post/npm/</link>
+      <pubDate>Mon, 10 Jan 2022 22:40:47 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/npm/</guid>
+      <description>npm NodeNode Package Manager, 말 그대로 Node.js 환경에서 여러 모듈들을 패키지화하여 관리하는 저장소 같은 역할이다.
+패키지를 직접 만들어 배포할 수 있고 다른 사람이 배포한 여러 패키지 모듈들을 설치해 프로젝트에 적용시킬 수도 있다.
+npm 생성하기 npm 환경에서 제일 중요한 것은 패키지 관리이다. 패키지들은 package.json파일에서 일괄적으로 관리하는데 직접 json 파일로 생성해도 되고, 명령어를 입력해 생성해도 된다. 터미널에서 npm init명령어를 입력하면 자동적으로 package.json파일을 생성할 수 있다.
+1npm init 2# &amp;gt; packagename : 프로젝트 이름 입력 3# &amp;gt; version : 프로젝트 버전 입력 (default : 1.</description>
+    </item>
+    
     <item>
       <title>Vue 코드 포맷팅</title>
       <link>https://jinyisland.kr/post/prettier/</link>
@@ -70,7 +82,7 @@ computed 사용법은 아래 코드를 참고, computed속성 내에 메서드�
     </item>
     
     <item>
-      <title>Node.js HTTP모듈로 요청과 응답</title>
+      <title>Node.js HTTP모듈 실습</title>
       <link>https://jinyisland.kr/post/node-restapi/</link>
       <pubDate>Fri, 17 Sep 2021 23:48:56 +0900</pubDate>
       
