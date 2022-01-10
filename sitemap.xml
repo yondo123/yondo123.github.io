@@ -4,42 +4,48 @@
   
   <url>
     <loc>https://jinyisland.kr/categories/</loc>
-    <lastmod>2022-01-10T22:40:47+09:00</lastmod>
+    <lastmod>2022-01-10T23:19:14+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/categories/javascript/</loc>
-    <lastmod>2022-01-10T22:40:47+09:00</lastmod>
+    <lastmod>2022-01-10T23:19:14+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/</loc>
-    <lastmod>2022-01-10T22:40:47+09:00</lastmod>
+    <lastmod>2022-01-10T23:19:14+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/tags/node/</loc>
-    <lastmod>2022-01-10T22:40:47+09:00</lastmod>
+    <lastmod>2022-01-10T23:19:14+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
-    <loc>https://jinyisland.kr/post/npm/</loc>
-    <lastmod>2022-01-10T22:40:47+09:00</lastmod>
+    <loc>https://jinyisland.kr/post/useful-modules/</loc>
+    <lastmod>2022-01-10T23:19:14+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/post/</loc>
-    <lastmod>2022-01-10T22:40:47+09:00</lastmod>
+    <lastmod>2022-01-10T23:19:14+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/tags/</loc>
+    <lastmod>2022-01-10T23:19:14+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/npm/</loc>
     <lastmod>2022-01-10T22:40:47+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>

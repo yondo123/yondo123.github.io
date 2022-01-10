@@ -6,7 +6,18 @@
     <description>Recent content in node on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Jan 2022 22:40:47 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/node/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jan 2022 23:19:14 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/node/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Node.js 자주 사용하는 모듈 정리</title>
+      <link>https://jinyisland.kr/post/useful-modules/</link>
+      <pubDate>Mon, 10 Jan 2022 23:19:14 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/useful-modules/</guid>
+      <description>global 브라우저의 window와 같은 전역 객체 역할, 하지만 브라우저와 관련된 객체(document 등)들은 사용하지 못한다. global객체 역시 생략해서 사용 가능하다. 그리고 브라우저의 window객체와 마찬가지로 global에 값을 주입하면 프로젝트 내 모든 파일에서 전역 변수로 사용할 수 있다 . (하지만 이러한 패턴은 지양한다, module을 통해 관리하자)
+1global.console.log(&amp;#34;hello Node!&amp;#34;); 2console.log(&amp;#34;hello Node!&amp;#34;); console 로그를 출력하는 객체, 흔히 사용하는 log, error 말고 신기한 것을 소개한다.
+console.time 수행 시점에 time을 찍어 해당 코드를 수행한 시간을 알아낼 수 있다.</description>
+    </item>
+    
     <item>
       <title>npm에 대한 개념과 사용 방법</title>
       <link>https://jinyisland.kr/post/npm/</link>
