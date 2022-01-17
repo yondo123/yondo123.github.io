@@ -6,7 +6,69 @@
         <description>Recent content on Jiny</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Mon, 10 Jan 2022 23:19:14 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 17 Jan 2022 23:18:33 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>HTML에 폰트 적용하는 방법</title>
+        <link>https://jinyisland.kr/post/font/</link>
+        <pubDate>Mon, 17 Jan 2022 23:18:33 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/font/</guid>
+        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post HTML에 폰트 적용하는 방법" /&gt;&lt;h2 id=&#34;웹-폰트&#34;&gt;웹 폰트&lt;/h2&gt;
+&lt;p&gt;웹 폰트를 적용하는 방법은 크게 2가지가 있다. 하나는 &lt;code&gt;cdn&lt;/code&gt;을 이용하는 방법, 나머지 하나는 직접 폰트 파일을 경로에 미리 삽입하여 &lt;code&gt;@font-face&lt;/code&gt;로 정의하는 방법이다.&lt;/p&gt;
+&lt;h3 id=&#34;cdn을-활용한-방법&#34;&gt;CDN을 활용한 방법&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/46988995/149789092-deb049e2-c2c6-4fb0-b98e-0ea5bbafcab2.jpg&#34; alt=&#34;font&#34;  /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://fonts.google.com/?&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;구글 폰트&lt;/a&gt; 등과 같이 cdn을 제공해주는 사이트에서 폰트를 적용하는 방법이다. 너무나 간단한게 장점이고 단점으로는 직접 파일을 적용하는 방법보다 로드 속도가 느리다. 적용 방법은 직접 cdn 링크를 html에 삽입하고, css에서 &lt;code&gt;font-family&lt;/code&gt;로 적용하거나, css &lt;code&gt;import&lt;/code&gt;를 통해 적용하는 방법이 있다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;/* cdn import */&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;https://fonts.googleapis.com/css2?family=Dongle:wght@300&amp;amp;display=swap&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;/* 폰트 적용 */&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;font-family&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;Dongle&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;sans-serif&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;폰트파일-직접-적용&#34;&gt;폰트파일 직접 적용&lt;/h3&gt;
+&lt;p&gt;직접 폰트 파일을 서비스 디렉토리에 넣어주고 &lt;code&gt;@font-face&lt;/code&gt;로 불러오는 방법이 있다. 첫 번째 방법보다 번거롭지만 해당 폰트가 설치되어있지 않는 사용자들도 모두 적용할 수 있기 때문에 안정적이다.&lt;/p&gt;
+&lt;p&gt;먼저 폰트 파일(ttf, eot, woff 등)을 직접 특정 디렉토리에 넣는다. 포맷에 따라 지원하는 브라우저가 천차만별이기 때문에 가능하면 WOFF, WOFF2, OTF 파일을 사용하는 것이 좋다.
+&lt;img src=&#34;https://user-images.githubusercontent.com/46988995/149790342-0e521231-1db7-4d8d-b951-e98feb7ae6c7.jpg&#34; alt=&#34;file&#34;  /&gt;&lt;/p&gt;
+&lt;p&gt;파일을 준비했다면 이제 css 코드로 해당 폰트를 정의해주면된다. 파일 포맷에 따른 예시는 다음과 같다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;font-family :&lt;/strong&gt; 적용하고자 하는 폰트의 이름&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;font-style :&lt;/strong&gt; 폰트의 기본 스타일 (선택사항)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;font-weight :&lt;/strong&gt; 폰트의 기본 굵기 (선택사항)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;src :&lt;/strong&gt; 해당 폰트 파일의 위치
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;url :&lt;/strong&gt; 경로&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;format :&lt;/strong&gt; 폰트 파일 형식&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;/*fonts.css*/&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;font-face&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;    &lt;span class=&#34;nt&#34;&gt;font-family&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;font-name&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;/*font 이름*/&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;    &lt;span class=&#34;nt&#34;&gt;font-style&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;normal&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;/* font 스타일 정의 (기울임, 일반) */&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;    &lt;span class=&#34;nt&#34;&gt;font-weight&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;400&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;/* font 굵기 정의 */&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;        &lt;span class=&#34;c&#34;&gt;/* 브라우저&amp;amp;디바이스 환경에 따른 font 파일 위치 정의 */&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;    &lt;span class=&#34;nt&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;webfont.eot&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;/* IE9 Compat Modes */&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;    &lt;span class=&#34;nt&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;webfont.eot?#iefix&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;format&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;embedded-opentype&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;/* IE6-IE8 */&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;        &lt;span class=&#34;nt&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;webfont.woff2&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;format&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;woff2&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;/*  Modern Browsers */&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;        &lt;span class=&#34;nt&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;webfont.woff&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;format&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;woff&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;/* Modern Browsers */&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;        &lt;span class=&#34;nt&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;webfont.ttf&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;nt&#34;&gt;format&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;truetype&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;/* Safari, Android, iOS */&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;        &lt;span class=&#34;nt&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;webfont.svg#svgFontName&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;format&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;svg&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;/* Legacy iOS */&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;/* 폰트 적용 */&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;font-family&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;font-name&amp;#39;&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;참고자료&#34;&gt;참고자료&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.w3schools.com/css/css3_fonts.asp&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;w3schools&lt;/a&gt;&lt;/strong&gt; - CSS Web Fonts&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;https://fonts.google.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Google Fonts&lt;/a&gt;&lt;/strong&gt; - 구글 폰트&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>Node.js 자주 사용하는 모듈 정리</title>
         <link>https://jinyisland.kr/post/useful-modules/</link>
         <pubDate>Mon, 10 Jan 2022 23:19:14 +0900</pubDate>
