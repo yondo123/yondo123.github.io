@@ -4,7 +4,43 @@
   
   <url>
     <loc>https://jinyisland.kr/categories/</loc>
-    <lastmod>2022-01-17T23:18:33+09:00</lastmod>
+    <lastmod>2022-02-28T22:05:52+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/categories/javascript/</loc>
+    <lastmod>2022-02-28T22:05:52+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/</loc>
+    <lastmod>2022-02-28T22:05:52+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/node/</loc>
+    <lastmod>2022-02-28T22:05:52+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/node-file/</loc>
+    <lastmod>2022-02-28T22:05:52+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/</loc>
+    <lastmod>2022-02-28T22:05:52+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/</loc>
+    <lastmod>2022-02-28T22:05:52+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
@@ -27,38 +63,8 @@
   </url>
   
   <url>
-    <loc>https://jinyisland.kr/</loc>
-    <lastmod>2022-01-17T23:18:33+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/post/</loc>
-    <lastmod>2022-01-17T23:18:33+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/tags/</loc>
-    <lastmod>2022-01-17T23:18:33+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
     <loc>https://jinyisland.kr/categories/ui/</loc>
     <lastmod>2022-01-17T23:18:33+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/categories/javascript/</loc>
-    <lastmod>2022-01-10T23:19:14+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/tags/node/</loc>
-    <lastmod>2022-01-10T23:19:14+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
