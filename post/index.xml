@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 Mar 2022 22:57:14 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Apr 2022 21:43:40 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>자바스크립트 함수형 반복문</title>
+      <link>https://jinyisland.kr/post/js-loop/</link>
+      <pubDate>Wed, 06 Apr 2022 21:43:40 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/js-loop/</guid>
+      <description>요즘 인프런을 통해 알고리즘 강의를 수강 중인데 개인적으로 많은 도움을 받고 있다. 단순히 알고리즘 문제를 친숙하게 다가가기 위해 강의를 끊은것인데.. 의외로 실무에서도 크게 도움이 될 것 같아 이번 기회에 포스팅을 했다.
+함수형 반복문 사실 지금까지 반복문을 사용하는 방법은 크게 신경쓰지 않았다. 보통 레거시 코드에서는 for문을 많이 사용하는데(다른 언어에서도 많이 사용하고, 너무 친숙해졌다..) 이는 절대 낡거나 안좋은 코드라는 것은 절대 아니다!! 상황에 따라서 함수형으로 제공되는 반복문을 사용하는 경우가 효율적인 것도 있고 for를 사용하는 것이 더 효율적인 상황도 분명히 있다.</description>
+    </item>
+    
     <item>
       <title>Express 설치 및 실행해보기</title>
       <link>https://jinyisland.kr/post/express-start/</link>
