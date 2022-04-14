@@ -6,7 +6,19 @@
     <description>Recent content in JavaScript on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 Apr 2022 21:17:46 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Apr 2022 23:18:59 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Express 라우터 살펴보기</title>
+      <link>https://jinyisland.kr/post/express-routing/</link>
+      <pubDate>Thu, 14 Apr 2022 23:18:59 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/express-routing/</guid>
+      <description>라우팅 express 공식 문서 에서는 라우팅을 아래와 같이 설명하고 있다.
+ 라우팅은 URI(또는 경로) 및 특정한 HTTP 요청 메소드(GET, POST 등)인 특정 엔드포인트에 대한 클라이언트 요청에 애플리케이션이 응답하는 방법을 결정하는 것을 말합니다.
+ 정리하자면 요청 URI 규칙에 맞게 특정한 요청이 오면, 이에 맞는 응답 핸들러를 결정하는 것이라 생각하면된다
+기본 문법 기본 문법은 다음과 같다. API 메서드(Http Method, string)는 HTTP 메서드를 작성한다. (GET, POST, PUT, DELETE..) 첫 번째 인자는 요청 URI 경로, 두 번째 인자에는 응답 핸들러(Handler, function)를 받는다.</description>
+    </item>
+    
     <item>
       <title>Express 미들웨어 사용법</title>
       <link>https://jinyisland.kr/post/middleware/</link>
