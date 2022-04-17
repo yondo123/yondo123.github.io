@@ -6,7 +6,126 @@
         <description>Recent content on Jiny</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 14 Apr 2022 23:18:59 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 17 Apr 2022 18:51:45 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[mac] tree 명령어</title>
+        <link>https://jinyisland.kr/post/mac-tree.md/</link>
+        <pubDate>Sun, 17 Apr 2022 18:51:45 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/mac-tree.md/</guid>
+        <description>&lt;img src="https://jinyisland.kr/../../assets/etc/etc.png" alt="Featured image of post [mac] tree 명령어" /&gt;&lt;h2 id=&#34;tree&#34;&gt;tree?&lt;/h2&gt;
+&lt;p&gt;가끔 개발하다보면 특정 프로젝트의 구조나 디렉토리 구조를 설명할 일이 있는데 홈브류에 &lt;code&gt;tree&lt;/code&gt;라는 패키지가 있어 소개해보려한다.&lt;/p&gt;
+&lt;h2 id=&#34;tree-패키지-설치하기&#34;&gt;tree 패키지 설치하기&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;Homebrew&lt;/code&gt;에서 아래 명령어로 tree를 설치한다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;brew install tree
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;기본-사용법&#34;&gt;기본 사용법&lt;/h3&gt;
+&lt;p&gt;터미널에서 원하는 디렉토리로 간다음 &lt;code&gt;tree&lt;/code&gt;를 입력하면 해당 디렉토리 구조가 출력된다.&lt;br&gt;
+아래는 이 블로그의 content 디렉토리의 구조를 출력한 결과.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;22-04-17 18:49&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;sjchoi-MackBook-Pro:~/Mydoc/blog/jinyisland/content@master✗✗✗✗✗✗ user% tree  
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;.
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;├── assets
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;│   ├── etc
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;│   │   └── etc.png
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;│   ├── java
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;│   │   └── java.png
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;│   ├── js
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;│   │   ├── algorithm-search.png
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;│   │   ├── callstack_1.png
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;│   │   ├── callstack_2.png
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;│   │   ├── callstack_3.png
+&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;│   │   ├── callstack_4.png
+&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;│   │   ├── datatypes.png
+&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;│   │   ├── eo.png
+&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;│   │   ├── heap-and-binary.png
+&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;│   │   ├── heap-sort.png
+&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;│   │   ├── js-eventloop.png
+&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;│   │   ├── js.png
+&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;│   │   ├── node-rest-api.jpg
+&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;│   │   └── this-types.png
+&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;│   ├── title.png
+&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;│   ├── ts
+&lt;span class=&#34;ln&#34;&gt;24&lt;/span&gt;│   │   └── ts.png
+&lt;span class=&#34;ln&#34;&gt;25&lt;/span&gt;│   ├── vue
+&lt;span class=&#34;ln&#34;&gt;26&lt;/span&gt;│   │   └── vue.png
+&lt;span class=&#34;ln&#34;&gt;27&lt;/span&gt;│   └── web
+&lt;span class=&#34;ln&#34;&gt;28&lt;/span&gt;│       ├── http-cookie.png
+&lt;span class=&#34;ln&#34;&gt;29&lt;/span&gt;│       ├── visit.png
+&lt;span class=&#34;ln&#34;&gt;30&lt;/span&gt;│       └── web.png
+&lt;span class=&#34;ln&#34;&gt;31&lt;/span&gt;├── categories
+&lt;span class=&#34;ln&#34;&gt;32&lt;/span&gt;│   ├── book
+&lt;span class=&#34;ln&#34;&gt;33&lt;/span&gt;│   │   ├── _index.md
+&lt;span class=&#34;ln&#34;&gt;34&lt;/span&gt;│   │   └── book_thumb.jpg
+&lt;span class=&#34;ln&#34;&gt;35&lt;/span&gt;│   ├── etc
+&lt;span class=&#34;ln&#34;&gt;36&lt;/span&gt;│   │   ├── _index.md
+&lt;span class=&#34;ln&#34;&gt;37&lt;/span&gt;│   │   └── etc_thumb.jpg
+&lt;span class=&#34;ln&#34;&gt;38&lt;/span&gt;│   ├── javascript
+&lt;span class=&#34;ln&#34;&gt;39&lt;/span&gt;│   │   ├── _index.md
+&lt;span class=&#34;ln&#34;&gt;40&lt;/span&gt;│   │   └── js_thumb.jpg
+&lt;span class=&#34;ln&#34;&gt;41&lt;/span&gt;│   ├── typescript
+&lt;span class=&#34;ln&#34;&gt;42&lt;/span&gt;│   │   ├── _index.md
+&lt;span class=&#34;ln&#34;&gt;43&lt;/span&gt;│   │   └── ts_thumb.jpg
+&lt;span class=&#34;ln&#34;&gt;44&lt;/span&gt;│   ├── ui
+&lt;span class=&#34;ln&#34;&gt;45&lt;/span&gt;│   │   ├── _index.md
+&lt;span class=&#34;ln&#34;&gt;46&lt;/span&gt;│   │   └── ui_thumb.jpg
+&lt;span class=&#34;ln&#34;&gt;47&lt;/span&gt;│   ├── vue
+&lt;span class=&#34;ln&#34;&gt;48&lt;/span&gt;│   │   ├── _index.md
+&lt;span class=&#34;ln&#34;&gt;49&lt;/span&gt;│   │   └── vue_thumb.jpg
+&lt;span class=&#34;ln&#34;&gt;50&lt;/span&gt;│   └── web
+&lt;span class=&#34;ln&#34;&gt;51&lt;/span&gt;│       ├── _index.md
+&lt;span class=&#34;ln&#34;&gt;52&lt;/span&gt;│       └── web_thumb.jpg
+&lt;span class=&#34;ln&#34;&gt;53&lt;/span&gt;├── contents
+&lt;span class=&#34;ln&#34;&gt;54&lt;/span&gt;├── page
+&lt;span class=&#34;ln&#34;&gt;55&lt;/span&gt;│   ├── about.md
+&lt;span class=&#34;ln&#34;&gt;56&lt;/span&gt;│   ├── archives.md
+&lt;span class=&#34;ln&#34;&gt;57&lt;/span&gt;│   └── search.md
+&lt;span class=&#34;ln&#34;&gt;58&lt;/span&gt;└── post
+&lt;span class=&#34;ln&#34;&gt;59&lt;/span&gt;    ├── etc
+&lt;span class=&#34;ln&#34;&gt;60&lt;/span&gt;    │   └── mac-tree.md
+&lt;span class=&#34;ln&#34;&gt;61&lt;/span&gt;    ├── java
+&lt;span class=&#34;ln&#34;&gt;62&lt;/span&gt;    │   └── java-array.md
+&lt;span class=&#34;ln&#34;&gt;63&lt;/span&gt;    ├── javascript
+&lt;span class=&#34;ln&#34;&gt;64&lt;/span&gt;    │   ├── algorithm-heap.md
+&lt;span class=&#34;ln&#34;&gt;65&lt;/span&gt;    │   ├── algorithm-search.md
+&lt;span class=&#34;ln&#34;&gt;66&lt;/span&gt;    │   ├── arrow-function.md
+&lt;span class=&#34;ln&#34;&gt;67&lt;/span&gt;    │   ├── eventloop.md
+&lt;span class=&#34;ln&#34;&gt;68&lt;/span&gt;    │   ├── express-routing.md
+&lt;span class=&#34;ln&#34;&gt;69&lt;/span&gt;    │   ├── express-start.md
+&lt;span class=&#34;ln&#34;&gt;70&lt;/span&gt;    │   ├── js-closure.md
+&lt;span class=&#34;ln&#34;&gt;71&lt;/span&gt;    │   ├── js-datatype.md
+&lt;span class=&#34;ln&#34;&gt;72&lt;/span&gt;    │   ├── js-function.md
+&lt;span class=&#34;ln&#34;&gt;73&lt;/span&gt;    │   ├── js-loop.md
+&lt;span class=&#34;ln&#34;&gt;74&lt;/span&gt;    │   ├── js-overview.md
+&lt;span class=&#34;ln&#34;&gt;75&lt;/span&gt;    │   ├── let-const.md
+&lt;span class=&#34;ln&#34;&gt;76&lt;/span&gt;    │   ├── middleware.md
+&lt;span class=&#34;ln&#34;&gt;77&lt;/span&gt;    │   ├── module.md
+&lt;span class=&#34;ln&#34;&gt;78&lt;/span&gt;    │   ├── node-file.md
+&lt;span class=&#34;ln&#34;&gt;79&lt;/span&gt;    │   ├── node-restapi.md
+&lt;span class=&#34;ln&#34;&gt;80&lt;/span&gt;    │   ├── npm.md
+&lt;span class=&#34;ln&#34;&gt;81&lt;/span&gt;    │   ├── promise-async-await.md
+&lt;span class=&#34;ln&#34;&gt;82&lt;/span&gt;    │   ├── template-literals.md
+&lt;span class=&#34;ln&#34;&gt;83&lt;/span&gt;    │   └── useful-modules.md
+&lt;span class=&#34;ln&#34;&gt;84&lt;/span&gt;    ├── ui
+&lt;span class=&#34;ln&#34;&gt;85&lt;/span&gt;    │   └── font.md
+&lt;span class=&#34;ln&#34;&gt;86&lt;/span&gt;    ├── vue
+&lt;span class=&#34;ln&#34;&gt;87&lt;/span&gt;    │   ├── component.md
+&lt;span class=&#34;ln&#34;&gt;88&lt;/span&gt;    │   ├── computed-watch.md
+&lt;span class=&#34;ln&#34;&gt;89&lt;/span&gt;    │   ├── prettier.md
+&lt;span class=&#34;ln&#34;&gt;90&lt;/span&gt;    │   ├── project-import.md
+&lt;span class=&#34;ln&#34;&gt;91&lt;/span&gt;    │   ├── vue-router.md
+&lt;span class=&#34;ln&#34;&gt;92&lt;/span&gt;    │   ├── vue-start.md
+&lt;span class=&#34;ln&#34;&gt;93&lt;/span&gt;    │   ├── vue-tailwind.md
+&lt;span class=&#34;ln&#34;&gt;94&lt;/span&gt;    │   └── vuex.md
+&lt;span class=&#34;ln&#34;&gt;95&lt;/span&gt;    └── web
+&lt;span class=&#34;ln&#34;&gt;96&lt;/span&gt;        ├── http-cookies.md
+&lt;span class=&#34;ln&#34;&gt;97&lt;/span&gt;        └── hugo-ga.md
+&lt;span class=&#34;ln&#34;&gt;98&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;99&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;24&lt;/span&gt; directories, &lt;span class=&#34;m&#34;&gt;71&lt;/span&gt; files
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;특정-디렉토리-제외&#34;&gt;특정 디렉토리 제외&lt;/h3&gt;
+&lt;p&gt;이 포스트를 쓰게된 결정적인 계기인데.. node에서 &lt;code&gt;node_modules&lt;/code&gt;라는 패키지 디렉토리를 제외하고 싶었다.&lt;br&gt;
+&lt;code&gt;-I&lt;/code&gt;옵션을 사용하면된다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;tree -I node_modules      
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>Express 라우터 살펴보기</title>
         <link>https://jinyisland.kr/post/express-routing/</link>
         <pubDate>Thu, 14 Apr 2022 23:18:59 +0900</pubDate>

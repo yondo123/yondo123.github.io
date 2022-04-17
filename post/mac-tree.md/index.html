@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TN7PCJZTQ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6TN7PCJZTQ');
+</script>
+
+        <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='디렉토리 구조 뽑아오는 방법'><title>[mac] tree 명령어</title>
+<link rel='canonical' href='https://jinyisland.kr/post/mac-tree.md/'>
+<link rel="icon" href="/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='[mac] tree 명령어'>
+<meta property='og:description' content='디렉토리 구조 뽑아오는 방법'>
+<meta property='og:url' content='https://jinyisland.kr/post/mac-tree.md/'>
+<meta property='og:site_name' content='Jiny'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='mac' /><meta property='article:published_time' content='2022-04-17T18:51:45&#43;09:00'/><meta property='article:modified_time' content='2022-04-17T18:51:45&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/etc/etc.png' />
+<meta name="twitter:title" content="[mac] tree 명령어">
+<meta name="twitter:description" content="디렉토리 구조 뽑아오는 방법"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/etc/etc.png' /><style>
+    .article-content code {
+        word-wrap: break-word;
+    }
+</style>
+
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub38313664a67c625b5c64f3cb8dc247e_143597_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny</a></h1>
+        <h2 class="site-description">😎 승진이의 공부 블로그</h2>
+    </header>
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/javascript/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>JavaScript</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/vue/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Vue</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/web/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Web</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/style/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#7f5345" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Style</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/book/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Book</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/etc/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#d63031" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>ETC</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span></span>
+            </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/mac-tree.md/">
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/etc/" style="background-color: #c44c81; color: #fff;">
+                ETC
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/mac-tree.md/">[mac] tree 명령어</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        디렉토리 구조 뽑아오는 방법
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Apr 17, 2022</time>
+    </footer></div>
+</header>
+
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
+    <h2 id="tree">tree?</h2>
+<p>가끔 개발하다보면 특정 프로젝트의 구조나 디렉토리 구조를 설명할 일이 있는데 홈브류에 <code>tree</code>라는 패키지가 있어 소개해보려한다.</p>
+<h2 id="tree-패키지-설치하기">tree 패키지 설치하기</h2>
+<p><code>Homebrew</code>에서 아래 명령어로 tree를 설치한다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>brew install tree
+</code></pre></div><h3 id="기본-사용법">기본 사용법</h3>
+<p>터미널에서 원하는 디렉토리로 간다음 <code>tree</code>를 입력하면 해당 디렉토리 구조가 출력된다.<br>
+아래는 이 블로그의 content 디렉토리의 구조를 출력한 결과.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln"> 1</span><span class="o">{</span>22-04-17 18:49<span class="o">}</span>sjchoi-MackBook-Pro:~/Mydoc/blog/jinyisland/content@master✗✗✗✗✗✗ user% tree  
+<span class="ln"> 2</span>.
+<span class="ln"> 3</span>├── assets
+<span class="ln"> 4</span>│   ├── etc
+<span class="ln"> 5</span>│   │   └── etc.png
+<span class="ln"> 6</span>│   ├── java
+<span class="ln"> 7</span>│   │   └── java.png
+<span class="ln"> 8</span>│   ├── js
+<span class="ln"> 9</span>│   │   ├── algorithm-search.png
+<span class="ln">10</span>│   │   ├── callstack_1.png
+<span class="ln">11</span>│   │   ├── callstack_2.png
+<span class="ln">12</span>│   │   ├── callstack_3.png
+<span class="ln">13</span>│   │   ├── callstack_4.png
+<span class="ln">14</span>│   │   ├── datatypes.png
+<span class="ln">15</span>│   │   ├── eo.png
+<span class="ln">16</span>│   │   ├── heap-and-binary.png
+<span class="ln">17</span>│   │   ├── heap-sort.png
+<span class="ln">18</span>│   │   ├── js-eventloop.png
+<span class="ln">19</span>│   │   ├── js.png
+<span class="ln">20</span>│   │   ├── node-rest-api.jpg
+<span class="ln">21</span>│   │   └── this-types.png
+<span class="ln">22</span>│   ├── title.png
+<span class="ln">23</span>│   ├── ts
+<span class="ln">24</span>│   │   └── ts.png
+<span class="ln">25</span>│   ├── vue
+<span class="ln">26</span>│   │   └── vue.png
+<span class="ln">27</span>│   └── web
+<span class="ln">28</span>│       ├── http-cookie.png
+<span class="ln">29</span>│       ├── visit.png
+<span class="ln">30</span>│       └── web.png
+<span class="ln">31</span>├── categories
+<span class="ln">32</span>│   ├── book
+<span class="ln">33</span>│   │   ├── _index.md
+<span class="ln">34</span>│   │   └── book_thumb.jpg
+<span class="ln">35</span>│   ├── etc
+<span class="ln">36</span>│   │   ├── _index.md
+<span class="ln">37</span>│   │   └── etc_thumb.jpg
+<span class="ln">38</span>│   ├── javascript
+<span class="ln">39</span>│   │   ├── _index.md
+<span class="ln">40</span>│   │   └── js_thumb.jpg
+<span class="ln">41</span>│   ├── typescript
+<span class="ln">42</span>│   │   ├── _index.md
+<span class="ln">43</span>│   │   └── ts_thumb.jpg
+<span class="ln">44</span>│   ├── ui
+<span class="ln">45</span>│   │   ├── _index.md
+<span class="ln">46</span>│   │   └── ui_thumb.jpg
+<span class="ln">47</span>│   ├── vue
+<span class="ln">48</span>│   │   ├── _index.md
+<span class="ln">49</span>│   │   └── vue_thumb.jpg
+<span class="ln">50</span>│   └── web
+<span class="ln">51</span>│       ├── _index.md
+<span class="ln">52</span>│       └── web_thumb.jpg
+<span class="ln">53</span>├── contents
+<span class="ln">54</span>├── page
+<span class="ln">55</span>│   ├── about.md
+<span class="ln">56</span>│   ├── archives.md
+<span class="ln">57</span>│   └── search.md
+<span class="ln">58</span>└── post
+<span class="ln">59</span>    ├── etc
+<span class="ln">60</span>    │   └── mac-tree.md
+<span class="ln">61</span>    ├── java
+<span class="ln">62</span>    │   └── java-array.md
+<span class="ln">63</span>    ├── javascript
+<span class="ln">64</span>    │   ├── algorithm-heap.md
+<span class="ln">65</span>    │   ├── algorithm-search.md
+<span class="ln">66</span>    │   ├── arrow-function.md
+<span class="ln">67</span>    │   ├── eventloop.md
+<span class="ln">68</span>    │   ├── express-routing.md
+<span class="ln">69</span>    │   ├── express-start.md
+<span class="ln">70</span>    │   ├── js-closure.md
+<span class="ln">71</span>    │   ├── js-datatype.md
+<span class="ln">72</span>    │   ├── js-function.md
+<span class="ln">73</span>    │   ├── js-loop.md
+<span class="ln">74</span>    │   ├── js-overview.md
+<span class="ln">75</span>    │   ├── let-const.md
+<span class="ln">76</span>    │   ├── middleware.md
+<span class="ln">77</span>    │   ├── module.md
+<span class="ln">78</span>    │   ├── node-file.md
+<span class="ln">79</span>    │   ├── node-restapi.md
+<span class="ln">80</span>    │   ├── npm.md
+<span class="ln">81</span>    │   ├── promise-async-await.md
+<span class="ln">82</span>    │   ├── template-literals.md
+<span class="ln">83</span>    │   └── useful-modules.md
+<span class="ln">84</span>    ├── ui
+<span class="ln">85</span>    │   └── font.md
+<span class="ln">86</span>    ├── vue
+<span class="ln">87</span>    │   ├── component.md
+<span class="ln">88</span>    │   ├── computed-watch.md
+<span class="ln">89</span>    │   ├── prettier.md
+<span class="ln">90</span>    │   ├── project-import.md
+<span class="ln">91</span>    │   ├── vue-router.md
+<span class="ln">92</span>    │   ├── vue-start.md
+<span class="ln">93</span>    │   ├── vue-tailwind.md
+<span class="ln">94</span>    │   └── vuex.md
+<span class="ln">95</span>    └── web
+<span class="ln">96</span>        ├── http-cookies.md
+<span class="ln">97</span>        └── hugo-ga.md
+<span class="ln">98</span>
+<span class="ln">99</span><span class="m">24</span> directories, <span class="m">71</span> files
+</code></pre></div><h3 id="특정-디렉토리-제외">특정 디렉토리 제외</h3>
+<p>이 포스트를 쓰게된 결정적인 계기인데.. node에서 <code>node_modules</code>라는 패키지 디렉토리를 제외하고 싶었다.<br>
+<code>-I</code>옵션을 사용하면된다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>tree -I node_modules      
+</code></pre></div>
+</section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false
+    });
+</script>
+<style>
+     
+    @media all and (min-width: 1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+    }
+
+    @media all and (max-width: 1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: '목차';
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+    .toc-link::before {
+        width: 0;
+    }
+</style>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/mac/">mac</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title"></h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/java-array/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/java/java.png" loading="lazy" data-key="java-array" data-hash="../../assets/java/java.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JAVA 자료구조 배열</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="comments-container">
+    
+    <script src="https://utteranc.es/client.js"
+        repo="yondo123/hugo-blog-comments"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+
+<style>
+    .comments-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Jiny
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

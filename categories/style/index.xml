@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Style on Jiny</title>
+    <link>https://jinyisland.kr/categories/style/</link>
+    <description>Recent content in Style on Jiny</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 17 Jan 2022 23:18:33 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/style/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTML에 폰트 적용하는 방법</title>
+      <link>https://jinyisland.kr/post/font/</link>
+      <pubDate>Mon, 17 Jan 2022 23:18:33 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/font/</guid>
+      <description>웹 폰트 웹 폰트를 적용하는 방법은 크게 2가지가 있다. 하나는 cdn을 이용하는 방법, 나머지 하나는 직접 폰트 파일을 경로에 미리 삽입하여 @font-face로 정의하는 방법이다.
+CDN을 활용한 방법 구글 폰트 등과 같이 cdn을 제공해주는 사이트에서 폰트를 적용하는 방법이다. 너무나 간단한게 장점이고 단점으로는 직접 파일을 적용하는 방법보다 로드 속도가 느리다. 적용 방법은 직접 cdn 링크를 html에 삽입하고, css에서 font-family로 적용하거나, css import를 통해 적용하는 방법이 있다.
+1/* cdn import */ 2@import url(&amp;#39;https://fonts.googleapis.com/css2?family=Dongle:wght@300&amp;amp;display=swap&amp;#39;); 3 4/* 폰트 적용 */ 5body { 6 font-family: &amp;#39;Dongle&amp;#39;, sans-serif; 7} 폰트파일 직접 적용 직접 폰트 파일을 서비스 디렉토리에 넣어주고 @font-face로 불러오는 방법이 있다.</description>
+    </item>
+    
+  </channel>
+</rss>
