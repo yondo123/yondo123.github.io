@@ -6,7 +6,18 @@
     <description>Recent content in node on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 Apr 2022 21:17:46 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/node/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Apr 2022 23:55:37 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/node/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>multer 사용법</title>
+      <link>https://jinyisland.kr/post/multer/</link>
+      <pubDate>Thu, 21 Apr 2022 23:55:37 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/multer/</guid>
+      <description>multer  multer 요청 타입이 multeipart/form-data인 경우 multer를 이용해 받을 수 있다.
+설치하기 1npm i multer 사용방법 multer모듈을 임포트 해주고 미들웨어로 사용하기 위해 여러 설정을 해준다.
+1const multer = require(&amp;#39;multer&amp;#39;); 2const path = require(&amp;#39;path&amp;#39;); 3 4// 디렉토리 없을 경우 생성해주는 예외 처리 5// (server listen 전 단계 이므로 동기식 코드로 해도 무방) 6try { 7 fs.readdirSync(&amp;#39;assets&amp;#39;); 8} catch (error) { 9 console.error(&amp;#39;not exist directory.&amp;#39;); 10 fs.mkdirSync(&amp;#39;assets&amp;#39;); 11} 12 13const upload = multer({ 14 // 파일 저장 위치 (disk , memory 선택) 15 storage: multer.</description>
+    </item>
+    
     <item>
       <title>Express 미들웨어 사용법</title>
       <link>https://jinyisland.kr/post/middleware/</link>

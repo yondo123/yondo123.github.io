@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TN7PCJZTQ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6TN7PCJZTQ');
+</script>
+
+        <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='multer를 이용한 파일 처리'><title>multer 사용법</title>
+<link rel='canonical' href='https://jinyisland.kr/post/multer/'>
+<link rel="icon" href="/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='multer 사용법'>
+<meta property='og:description' content='multer를 이용한 파일 처리'>
+<meta property='og:url' content='https://jinyisland.kr/post/multer/'>
+<meta property='og:site_name' content='Jiny'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='node' /><meta property='article:published_time' content='2022-04-21T23:55:37&#43;09:00'/><meta property='article:modified_time' content='2022-04-21T23:55:37&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta name="twitter:title" content="multer 사용법">
+<meta name="twitter:description" content="multer를 이용한 파일 처리"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
+    .article-content code {
+        word-wrap: break-word;
+    }
+</style>
+
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub38313664a67c625b5c64f3cb8dc247e_143597_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny</a></h1>
+        <h2 class="site-description">😎 승진이의 공부 블로그</h2>
+    </header>
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/javascript/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>JavaScript</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/vue/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Vue</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/web/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Web</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/style/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#7f5345" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Style</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/book/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Book</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/etc/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#d63031" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>ETC</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span></span>
+            </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/multer/">
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #000;">
+                JavaScript
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/multer/">multer 사용법</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        multer를 이용한 파일 처리
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Apr 21, 2022</time>
+    </footer></div>
+</header>
+
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
+    <h1 id="multer">multer</h1>
+<hr>
+<h2 id="multer-1">multer</h2>
+<p>요청 타입이 <code>multeipart/form-data</code>인 경우 multer를 이용해 받을 수 있다.</p>
+<h3 id="설치하기">설치하기</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npm i multer
+</code></pre></div><h3 id="사용방법">사용방법</h3>
+<p><code>multer</code>모듈을 임포트 해주고 미들웨어로 사용하기 위해 여러 설정을 해준다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">multer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;multer&#39;</span><span class="p">);</span>
+<span class="ln"> 2</span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+<span class="ln"> 3</span>
+<span class="ln"> 4</span><span class="c1">// 디렉토리 없을 경우 생성해주는 예외 처리
+</span><span class="ln"> 5</span><span class="c1">// (server listen 전 단계 이므로 동기식 코드로 해도 무방)
+</span><span class="ln"> 6</span><span class="c1"></span><span class="k">try</span> <span class="p">{</span>
+<span class="ln"> 7</span>    <span class="nx">fs</span><span class="p">.</span><span class="nx">readdirSync</span><span class="p">(</span><span class="s1">&#39;assets&#39;</span><span class="p">);</span>
+<span class="ln"> 8</span><span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 9</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;not exist directory.&#39;</span><span class="p">);</span>
+<span class="ln">10</span>    <span class="nx">fs</span><span class="p">.</span><span class="nx">mkdirSync</span><span class="p">(</span><span class="s1">&#39;assets&#39;</span><span class="p">);</span>
+<span class="ln">11</span><span class="p">}</span>
+<span class="ln">12</span>
+<span class="ln">13</span><span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
+<span class="ln">14</span>    <span class="c1">// 파일 저장 위치 (disk , memory 선택)
+</span><span class="ln">15</span><span class="c1"></span>    <span class="nx">storage</span><span class="o">:</span> <span class="nx">multer</span><span class="p">.</span><span class="nx">diskStorage</span><span class="p">({</span>
+<span class="ln">16</span>        <span class="nx">destination</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">17</span>            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s1">&#39;assets/&#39;</span><span class="p">);</span>
+<span class="ln">18</span>        <span class="p">},</span>
+<span class="ln">19</span>        <span class="nx">filename</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">20</span>            <span class="kr">const</span> <span class="nx">ext</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">extname</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">originalname</span><span class="p">);</span>
+<span class="ln">21</span>            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">path</span><span class="p">.</span><span class="nx">basename</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">originalname</span><span class="p">,</span> <span class="nx">ext</span><span class="p">)</span> <span class="o">+</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">+</span> <span class="nx">ext</span><span class="p">);</span>
+<span class="ln">22</span>        <span class="p">}</span>
+<span class="ln">23</span>    <span class="p">}),</span>
+<span class="ln">24</span>    <span class="c1">// 파일 허용 사이즈 (5 MB)
+</span><span class="ln">25</span><span class="c1"></span>    <span class="nx">limits</span><span class="o">:</span> <span class="p">{</span> <span class="nx">fileSize</span><span class="o">:</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="p">}</span>
+<span class="ln">26</span><span class="p">});</span>
+</code></pre></div><p><code>storage</code>에서  파일을 저장 할 경로와 이름을 설정 할 수 있는데, <code>file</code>인수에서 다음 속성으로 파일 정보를 얻을 수 있다.</p>
+<ul>
+<li><strong>fieldname :</strong> html 폼에 정의된 필드 명</li>
+<li><strong>originalname :</strong> 사용자가 업로드 한 파일 명</li>
+<li><strong>size :</strong> 파일 사이즈 (byte 단위)</li>
+<li><strong>mimetyp :</strong> 파일 타입 <a class="link" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types"  target="_blank" rel="noopener"
+    >(밈 타입)</a></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln"> 1</span><span class="p">{</span>
+<span class="ln"> 2</span>  <span class="err">fieldname:</span> <span class="err">&#39;file&#39;,</span>
+<span class="ln"> 3</span>  <span class="err">originalname:</span> <span class="err">&#39;jortu.png&#39;,</span>
+<span class="ln"> 4</span>  <span class="err">encoding:</span> <span class="err">&#39;7bit&#39;,</span>
+<span class="ln"> 5</span>  <span class="err">mimetype:</span> <span class="err">&#39;image/png&#39;,</span>
+<span class="ln"> 6</span>  <span class="err">destination:</span> <span class="err">&#39;assets/&#39;,</span>
+<span class="ln"> 7</span>  <span class="err">filename:</span> <span class="err">&#39;jortu1641367168859.png&#39;,</span>
+<span class="ln"> 8</span>  <span class="err">path:</span> <span class="err">&#39;assets\\jortu1641367168859.png&#39;,</span>
+<span class="ln"> 9</span>  <span class="err">size:</span> <span class="err">381172</span>
+<span class="ln">10</span><span class="p">}</span>
+</code></pre></div><p>파일 업로드를 사용 할 라우터에 미들웨어 함수로 붙이면 된다.  작성한 함수에 메서드로 <code>single</code>을 붙이고 있는데 업로드 방식에 따라 메서드 체이닝이 다르다. <code>single</code>메서드는 단일 파일로 전달 받을 때 사용한다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/photo&#39;</span><span class="p">,</span> <span class="nx">upload</span><span class="p">.</span><span class="nx">single</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">),</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="c1">//업로드 정보 확인
+</span><span class="ln">3</span><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">file</span><span class="p">);</span>
+<span class="ln">4</span>    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;upload success.&#39;</span><span class="p">);</span>
+<span class="ln">5</span><span class="p">});</span>
+</code></pre></div><p>웹브라우저에서 통신 되는지 확인하려고 input file 필드 한개를 주고 <code>jQuery</code>로 확인해 보았다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="ln"> 2</span>    <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">file</span> <span class="nx">upload</span> <span class="nx">Test</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="ln"> 3</span>    <span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+<span class="ln"> 4</span>    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;uploadFile&#34;</span><span class="p">&gt;</span>
+<span class="ln"> 5</span><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="ln"> 6</span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="ln"> 7</span>    <span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="ln"> 8</span>        <span class="kd">function</span> <span class="nx">uploadImage</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln"> 9</span>            <span class="kr">const</span> <span class="nx">formData</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
+<span class="ln">10</span>            <span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#uploadFile&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="ln">11</span>            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#uploadFile&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+<span class="ln">12</span>            <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+<span class="ln">13</span>                <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="ln">14</span>                <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;/photo&#39;</span><span class="p">,</span>
+<span class="ln">15</span>                <span class="nx">data</span><span class="o">:</span> <span class="nx">formData</span><span class="p">,</span>
+<span class="ln">16</span>                <span class="nx">processData</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+<span class="ln">17</span>                <span class="nx">contentType</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+<span class="ln">18</span>                <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">19</span>                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">json</span><span class="p">));</span>
+<span class="ln">20</span>                <span class="p">}</span>
+<span class="ln">21</span>            <span class="p">});</span>
+<span class="ln">22</span>        <span class="p">}</span>
+<span class="ln">23</span>
+<span class="ln">24</span>        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#uploadFile&#39;</span><span class="p">).</span><span class="nx">change</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="ln">25</span>            <span class="k">return</span> <span class="nx">uploadImage</span><span class="p">();</span>
+<span class="ln">26</span>        <span class="p">})</span>
+<span class="ln">27</span>    <span class="p">});</span>
+<span class="ln">28</span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><p><img src="https://user-images.githubusercontent.com/46988995/164486658-68f98b10-9444-4722-a1c3-4ec5a3ab0818.png" alt="multer"  /></p>
+<h2 id="multer-설정">multer 설정</h2>
+<p>multer 호출 시 4개의 속성으로 옵션 객체를 생성할 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
+<span class="ln">2</span>	<span class="nx">storage</span><span class="o">:</span> <span class="nx">multer</span><span class="p">.</span><span class="nx">diskStorage</span><span class="p">({..}),</span>
+<span class="ln">3</span>	<span class="nx">limits</span> <span class="o">:</span> <span class="p">{..},</span>
+<span class="ln">4</span>	<span class="nx">fileFilter</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">cb</span><span class="p">){</span> <span class="c1">//..code }
+</span><span class="ln">5</span><span class="c1"></span><span class="p">});</span>
+</code></pre></div><h3 id="storage-dest">storage (dest)</h3>
+<p>파일 저장에 관련한 옵션이다. storage 또는 dest 속성으로 정의한다. <code>destination</code>은 업로드 한 파일을 어디에 저장할 지 결정하고, <code>filename</code>은 저장 할 파일의 이름을 결정한다. (만약 filename에 대한 설정이 없다면 랜덤한 파일 이름으로 저장된다고한다..)</p>
+<p><code>multer.memoryStorage()</code>는 임시 메모리에 파일을 저장할 때 사용한다. 어떠한 설정도 필요가 없으며 용량이 많은 파일이나 다수의 파일을 업로드 하는 경우에는 메모리 부족이 발생할 수 있다. (주로 클라우드 서비스에 파일을 올릴 때 임시 보관 용도로 사용한다고 한다.)</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">diskStorage</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">.</span><span class="nx">diskStorage</span><span class="p">({</span> <span class="c1">//물리 디스크
+</span><span class="ln"> 2</span><span class="c1"></span>	<span class="nx">destination</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">){</span>
+<span class="ln"> 3</span>		<span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s1">&#39;/path&#39;</span><span class="p">);</span>
+<span class="ln"> 4</span>	<span class="p">},</span> 
+<span class="ln"> 5</span>	<span class="nx">filename</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 6</span>		<span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">file</span><span class="p">.</span><span class="nx">fieldname</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+<span class="ln"> 7</span>	<span class="p">}</span>
+<span class="ln"> 8</span><span class="p">});</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span><span class="kr">const</span> <span class="nx">memoryStorage</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">.</span><span class="nx">memoryStorage</span><span class="p">();</span> <span class="c1">//임시 메모리
+</span><span class="ln">11</span><span class="c1"></span>
+<span class="ln">12</span><span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
+<span class="ln">13</span>	<span class="nx">storage</span> <span class="o">:</span> <span class="nx">diskStorage</span> 
+<span class="ln">14</span><span class="p">});</span>
+</code></pre></div><h3 id="limits">limits</h3>
+<p>파일 관련한 크기를 제어하는 속성이다. 단순히 파일 용량 뿐만 아니라 필드 이름에 대한 사이즈도 제어할 수 있다. 최대한 엄격하게 관리해야 혹시나 받을 수 있는 외부 공격에 대해 도움이 될 수 있다.</p>
+<ul>
+<li><strong>fieldNameSize :</strong> 필드 이름 최대 값 (기본 : 100 Byte)</li>
+<li><strong>fileSize :</strong> 파일 크기 최대 값 (기본 : 무제한)</li>
+<li><strong>files  :</strong> 파일 필드의 최대  갯수 (기본 : 무제한)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
+<span class="ln">2</span>	<span class="nx">limit</span> <span class="o">:</span> <span class="p">{</span><span class="nx">fileSize</span> <span class="o">:</span> <span class="mi">5</span><span class="p">,</span><span class="mi">242</span><span class="p">,</span><span class="mi">880</span><span class="p">}</span> <span class="c1">//5 * 1024 * 1024 (5MB)
+</span><span class="ln">3</span><span class="c1"></span><span class="p">});</span>
+</code></pre></div><h3 id="filefilter">fileFilter</h3>
+<p>파일의 유형을 필터링하는 속성이다. 함수 내에 <code>file</code>인자를 통해서 허용 시킬 파일을 필터링 할 수 있다. 아래 예제는 이미지 형식인 파일들만 허용하는 예제이다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
+<span class="ln"> 2</span>		<span class="nx">fileFilter</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 3</span>        <span class="k">if</span> <span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">mimetype</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 4</span>            <span class="c1">//파일 허용
+</span><span class="ln"> 5</span><span class="c1"></span>            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="ln"> 6</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln"> 7</span>            <span class="c1">//파일 거부
+</span><span class="ln"> 8</span><span class="c1"></span>            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="ln"> 9</span>        <span class="p">}</span>
+<span class="ln">10</span>    <span class="p">}</span>
+<span class="ln">11</span><span class="p">});</span>
+</code></pre></div><p>허용된 파일이 아니더라도 http 통신은 정상적으로 출력되기 때문에 명확한 오류를 표기하려면 직접 미들웨어 함수를 호출하면 된다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
+<span class="ln"> 2</span>		<span class="nx">fileFilter</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 3</span>        <span class="k">if</span> <span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">mimetype</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 4</span>            <span class="c1">//파일 허용
+</span><span class="ln"> 5</span><span class="c1"></span>            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="ln"> 6</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln"> 7</span>            <span class="c1">//파일 거부
+</span><span class="ln"> 8</span><span class="c1"></span>            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="ln"> 9</span>        <span class="p">}</span>
+<span class="ln">10</span>    <span class="p">}</span>
+<span class="ln">11</span><span class="p">}).</span><span class="nx">single</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">);</span>
+<span class="ln">12</span>
+<span class="ln">13</span><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/photo&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">14</span>    <span class="nx">upload</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="kd">function</span> <span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">15</span>        <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">16</span>            <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">500</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;허용된 파일이 아닙니다!&#39;</span><span class="p">);</span>
+<span class="ln">17</span>            <span class="k">return</span><span class="p">;</span>
+<span class="ln">18</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln">19</span>            <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;upload success&#39;</span><span class="p">);</span>
+<span class="ln">20</span>        <span class="p">}</span>
+<span class="ln">21</span>    <span class="p">});</span>
+<span class="ln">22</span><span class="p">});</span>
+</code></pre></div><h3 id="api">API</h3>
+<p>multer 사용 시 4개의 메서드를 제공하는데 각각의 역할은 다음과 같다.</p>
+<ul>
+<li>
+<p><strong>single(filename) :</strong> 단일 파일에 대한 전달 요청 (위의 예제들)</p>
+</li>
+<li>
+<p><strong>array(fieldname, maxcount) :</strong> 동일한 필드에 대해 <code>multiple</code>속성이 적용된 파일들에 대한 전달 요청 (req.files에 배열 형태로 받을 수 있다.)</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;uploadFile&#34;</span> <span class="na">multiple</span> <span class="p">/&gt;</span>
+</code></pre></div></li>
+<li>
+<p><strong>fields(fields) :</strong> 필드가 정의된 여러 파일을 전달 받는다. <code>.array</code>와 마찬가지로 req.files에 저장된다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;main-image&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;uploadFile&#34;</span> <span class="p">/&gt;</span>
+<span class="ln">2</span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;sub-image&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;uploadFile&#34;</span> <span class="p">/&gt;</span>
+</code></pre></div><p><code>fields</code>를 사용할 때는 객체 배열로 받아와야한다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/photo&#39;</span><span class="p">,</span> <span class="nx">upload</span><span class="p">.</span><span class="nx">fields</span><span class="p">([{</span><span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;main-image1&#39;</span><span class="p">},</span> <span class="p">{</span><span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;main-image2&#39;</span><span class="p">}),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+<span class="ln">2</span>    <span class="c1">//code..
+</span><span class="ln">3</span><span class="c1"></span><span class="p">});</span>
+</code></pre></div></li>
+</ul>
+<h2 id="참고-자료">참고 자료</h2>
+<ul>
+<li><a class="link" href="https://www.inflearn.com/course/%EB%85%B8%EB%93%9C-%EA%B5%90%EA%B3%BC%EC%84%9C/"  target="_blank" rel="noopener"
+    >조현영님의 Node.js 강의</a></li>
+<li><a class="link" href="https://github.com/expressjs/multer/blob/master/doc/README-ko.md"  target="_blank" rel="noopener"
+    >multer - 공식문서</a></li>
+</ul>
+
+</section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false
+    });
+</script>
+<style>
+     
+    @media all and (min-width: 1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+    }
+
+    @media all and (max-width: 1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: '목차';
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+    .toc-link::before {
+        width: 0;
+    }
+</style>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/node/">node</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title"></h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/middleware/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="middleware" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Express 미들웨어 사용법</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/express-start/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="express-start" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Express 설치 및 실행해보기</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/node-file/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="node-file" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Node.js 파일 시스템 접근하기</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/useful-modules/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="useful-modules" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Node.js 자주 사용하는 모듈 정리</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/npm/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="npm" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">npm에 대한 개념과 사용 방법</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="comments-container">
+    
+    <script src="https://utteranc.es/client.js"
+        repo="yondo123/hugo-blog-comments"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+
+<style>
+    .comments-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Jiny
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
