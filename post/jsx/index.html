@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TN7PCJZTQ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6TN7PCJZTQ');
+</script>
+
+        <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='jsx 문법의 개념과 기초 사용법 정리'><title>[React] jsx 사용방법</title>
+<link rel='canonical' href='https://jinyisland.kr/post/jsx/'>
+<link rel="icon" href="/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='[React] jsx 사용방법'>
+<meta property='og:description' content='jsx 문법의 개념과 기초 사용법 정리'>
+<meta property='og:url' content='https://jinyisland.kr/post/jsx/'>
+<meta property='og:site_name' content='Jiny'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2022-05-02T23:12:10&#43;09:00'/><meta property='article:modified_time' content='2022-05-02T23:12:10&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/react/react.png' />
+<meta name="twitter:title" content="[React] jsx 사용방법">
+<meta name="twitter:description" content="jsx 문법의 개념과 기초 사용법 정리"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/react/react.png' /><style>
+    .article-content code {
+        word-wrap: break-word;
+    }
+</style>
+
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub38313664a67c625b5c64f3cb8dc247e_143597_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny</a></h1>
+        <h2 class="site-description">😎 승진이의 공부 블로그</h2>
+    </header>
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/javascript/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>JavaScript</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/vue/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Vue</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/react/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#61DAFB" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>React</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/web/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Web</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/style/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#7f5345" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Style</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/book/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Book</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/etc/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#d63031" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>ETC</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span></span>
+            </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/jsx/">
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/react/" style="background-color: #61dafb; color: #000;">
+                React
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/jsx/">[React] jsx 사용방법</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        jsx 문법의 개념과 기초 사용법 정리
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">May 02, 2022</time>
+    </footer></div>
+</header>
+
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
+    <h2 id="jsx">JSX</h2>
+<p>JavaScript Extension, 자바스립트를 확장한 문법이다.<strong>(HTML이 아니다.)</strong> 리액트에서 컴포넌트 구조를 작성하면서 HtML 대신 <code>jsx</code>로 UI를 표현한다고 생각하면 된다. vue에서는 <code>template</code>태그에 직접 HTML 문법을 사용했었는데 동일한 역할이다. 확장자는 <code>jsx</code>로 사용할 수 있으나 <code>js</code>로 사용해도 자동 변환이 되기 때문에 어느 것으로 해도 큰 상관은 없다.</p>
+<h2 id="기본-문법">기본 문법</h2>
+<h3 id="스타일-적용하기">스타일 적용하기</h3>
+<p><strong>className</strong><br>
+<code>jsx</code>에서는 스타일을 적용하기 위한 <code>class</code>는  자바스크립트 예약어라 <code>className</code>으로 대체한다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kr">const</span> <span class="nx">AppFooter</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">footer</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;red&#34;</span><span class="p">&gt;</span><span class="nx">Footer</span><span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;;</span>
+<span class="ln">3</span><span class="p">};</span>
+</code></pre></div><p><strong>InlineStyle</strong><br>
+기존 방식대로 클래스나 id를 붙여 css를 적용하는 방법 외에도, 스크립트 자체에서 스타일을 적용시킬 수 있다.
+객체 형태로 css을 작성하고, 점 표기법으로 해당 태그에 적용시킨다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kr">const</span> <span class="nx">style</span> <span class="o">=</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="nx">green</span><span class="o">:</span> <span class="p">{</span>
+<span class="ln">3</span>        <span class="nx">backgroundColor</span><span class="o">:</span> <span class="s1">&#39;green&#39;</span>
+<span class="ln">4</span>    <span class="p">}</span>
+<span class="ln">5</span><span class="p">};</span>
+<span class="ln">6</span>
+<span class="ln">7</span><span class="kr">const</span> <span class="nx">AppFooter</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="ln">8</span>    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">footer</span> <span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">.</span><span class="nx">green</span><span class="p">}&gt;</span><span class="nx">Footer</span><span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;;</span>
+<span class="ln">9</span><span class="p">};</span>
+</code></pre></div><h3 id="표현식">표현식</h3>
+<p>중괄호 문법으로 jsx 내부에 변수로 사용할 수 있다. (ES6의 템플릿 문법과 상당히 유사하다.)<br>
+문자열이나 숫자를 그대로 나타낼 수 있고, 반환 값이 있는 함수를 사용해도된다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">myName</span> <span class="o">=</span> <span class="s1">&#39;jiny&#39;</span><span class="p">;</span>
+<span class="ln"> 2</span><span class="kr">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="ln"> 3</span>    <span class="k">return</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">();</span>
+<span class="ln"> 4</span><span class="p">};</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln"> 7</span>    <span class="k">return</span> <span class="p">(</span>
+<span class="ln"> 8</span>        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
+<span class="ln"> 9</span>            <span class="p">&lt;</span><span class="nt">AppHeader</span> <span class="p">/&gt;</span>
+<span class="ln">10</span>            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
+<span class="ln">11</span>                <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;{</span><span class="nx">myName</span><span class="p">}&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="ln">12</span>                <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;{</span><span class="nx">today</span><span class="p">()}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="ln">13</span>            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+<span class="ln">14</span>            <span class="p">&lt;</span><span class="nt">AppFooter</span> <span class="p">/&gt;</span>
+<span class="ln">15</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln">16</span>    <span class="p">);</span>
+<span class="ln">17</span><span class="p">}</span>
+</code></pre></div><h3 id="이벤트-바인딩">이벤트 바인딩</h3>
+<p>요소에 이벤트를 bind하려면 중괄호 내부에 해당 함수를 기입한다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln"> 2</span>		<span class="kr">const</span> <span class="nx">noti</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="ln"> 3</span>			<span class="k">return</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;test&#34;</span><span class="p">);</span>
+<span class="ln"> 4</span>		<span class="p">}</span>
+<span class="ln"> 5</span>    <span class="k">return</span> <span class="p">(</span>
+<span class="ln"> 6</span>        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
+<span class="ln"> 7</span>            <span class="p">&lt;</span><span class="nt">AppHeader</span> <span class="p">/&gt;</span>
+<span class="ln"> 8</span>            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
+<span class="ln"> 9</span>				<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">noti</span><span class="p">}&gt;</span><span class="nx">클릭</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="ln">10</span>            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+<span class="ln">11</span>            <span class="p">&lt;</span><span class="nt">AppFooter</span> <span class="p">/&gt;</span>
+<span class="ln">12</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln">13</span>    <span class="p">);</span>
+<span class="ln">14</span><span class="p">}</span>
+</code></pre></div><h2 id="특정-상태에-따라-화면-표시하기">특정 상태에 따라 화면 표시하기</h2>
+<p>보통 특정 상태에 따라 화면 Ui를 다르게 표시할 때 많이 사용한다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln"> 2</span>		<span class="kd">let</span> <span class="nx">state</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="ln"> 3</span>
+<span class="ln"> 4</span>		<span class="kr">const</span> <span class="nx">toggleState</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="ln"> 5</span>			<span class="nx">state</span> <span class="o">=</span> <span class="o">!</span><span class="nx">state</span><span class="p">;</span>
+<span class="ln"> 6</span>		<span class="p">}</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span>    <span class="k">return</span> <span class="p">(</span>
+<span class="ln"> 9</span>        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
+<span class="ln">10</span>            <span class="p">&lt;</span><span class="nt">AppHeader</span> <span class="p">/&gt;</span>
+<span class="ln">11</span>            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
+<span class="ln">12</span>				<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">toggleState</span><span class="p">}&gt;</span><span class="nx">show</span><span class="o">/</span><span class="nx">hide</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="ln">13</span>            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+<span class="ln">14</span>				<span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;content&#34;</span><span class="p">&gt;{</span><span class="nx">state</span> <span class="o">?</span> <span class="p">&lt;&gt;&lt;/&gt;</span> <span class="o">:</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span><span class="nx">hello</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln">15</span>            <span class="p">&lt;</span><span class="nt">AppFooter</span> <span class="p">/&gt;</span>
+<span class="ln">16</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln">17</span>    <span class="p">);</span>
+<span class="ln">18</span><span class="p">}</span>
+</code></pre></div><h2 id="참고자료">참고자료</h2>
+<ul>
+<li><a class="link" href="https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%EB%A6%AC%EC%95%A1%ED%8A%B8/dashboard"  target="_blank" rel="noopener"
+    >한입 크기로 잘라 먹는 리액트(React.js)</a> - React 기초</li>
+<li><a class="link" href="https://ko.reactjs.org/docs/introducing-jsx.html"  target="_blank" rel="noopener"
+    >React 공식문서</a> - JSX</li>
+</ul>
+
+</section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false
+    });
+</script>
+<style>
+     
+    @media all and (min-width: 1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+    }
+
+    @media all and (max-width: 1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: '목차';
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+    .toc-link::before {
+        width: 0;
+    }
+</style>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+
+    
+        
+    <div class="comments-container">
+    
+    <script src="https://utteranc.es/client.js"
+        repo="yondo123/hugo-blog-comments"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+
+<style>
+    .comments-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Jiny
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

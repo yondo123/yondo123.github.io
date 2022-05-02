@@ -6,7 +6,16 @@
     <description>Recent content in Categories on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Apr 2022 23:55:37 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 May 2022 23:12:10 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React</title>
+      <link>https://jinyisland.kr/categories/react/</link>
+      <pubDate>Mon, 02 May 2022 23:12:10 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/categories/react/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>JavaScript</title>
       <link>https://jinyisland.kr/categories/javascript/</link>
@@ -58,15 +67,6 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://jinyisland.kr/categories/book/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>React</title>
-      <link>https://jinyisland.kr/categories/react/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://jinyisland.kr/categories/react/</guid>
       <description></description>
     </item>
     

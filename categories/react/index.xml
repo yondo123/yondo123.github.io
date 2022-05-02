@@ -5,6 +5,20 @@
     <link>https://jinyisland.kr/categories/react/</link>
     <description>Recent content in React on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://jinyisland.kr/categories/react/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Mon, 02 May 2022 23:12:10 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/react/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[React] jsx 사용방법</title>
+      <link>https://jinyisland.kr/post/jsx/</link>
+      <pubDate>Mon, 02 May 2022 23:12:10 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/jsx/</guid>
+      <description>JSX JavaScript Extension, 자바스립트를 확장한 문법이다.(HTML이 아니다.) 리액트에서 컴포넌트 구조를 작성하면서 HtML 대신 jsx로 UI를 표현한다고 생각하면 된다. vue에서는 template태그에 직접 HTML 문법을 사용했었는데 동일한 역할이다. 확장자는 jsx로 사용할 수 있으나 js로 사용해도 자동 변환이 되기 때문에 어느 것으로 해도 큰 상관은 없다.
+기본 문법 스타일 적용하기 className
+jsx에서는 스타일을 적용하기 위한 class는 자바스크립트 예약어라 className으로 대체한다.
+1const AppFooter = () =&amp;gt; { 2 return &amp;lt;footer className=&amp;#34;red&amp;#34;&amp;gt;Footer&amp;lt;/footer&amp;gt;; 3}; InlineStyle
+기존 방식대로 클래스나 id를 붙여 css를 적용하는 방법 외에도, 스크립트 자체에서 스타일을 적용시킬 수 있다.</description>
+    </item>
+    
   </channel>
 </rss>
