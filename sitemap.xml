@@ -392,6 +392,11 @@
   </url>
   
   <url>
+    <loc>https://jinyisland.kr/categories/react/</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
     <loc>https://jinyisland.kr/search/</loc>
     <changefreq>weekly</changefreq>
   </url>
