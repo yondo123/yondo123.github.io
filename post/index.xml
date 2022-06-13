@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 May 2022 23:12:10 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Jun 2022 23:54:07 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[React] 컴포넌트에 Props 전달하기</title>
+      <link>https://jinyisland.kr/post/react-props/</link>
+      <pubDate>Mon, 13 Jun 2022 23:54:07 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/react-props/</guid>
+      <description>개념 컴포넌트에 데이터를 전달하는 데이터를 prop이라고 한다. (Properties의 줄임말)
+Props 단일 값 전달하기 컴포넌트 작성 시 해당 컴포넌트 태그에 변수이름={}으로 사용한다.
+1//App.js (최상위 컴포너트) 2const today = function () { 3 return new Date().toISOString(); 4}; 5 6function App() { 7 return ( 8 &amp;lt;div className=&amp;#34;App&amp;#34;&amp;gt; 9 &amp;lt;AppHeader /&amp;gt; 10 &amp;lt;header className=&amp;#34;App-header&amp;#34;&amp;gt; 11 &amp;lt;h2&amp;gt;{myName}&amp;lt;/h2&amp;gt; 12 &amp;lt;Time init={today} /&amp;gt; 13 &amp;lt;/header&amp;gt; 14 &amp;lt;AppFooter /&amp;gt; 15 &amp;lt;/div&amp;gt; 16 ); 17} 전달받는 컴포넌트 (자식 컴포넌트)에서는 매개변수로 받아올 수 있는데 객체 타입으로 전달 받는다.</description>
+    </item>
+    
     <item>
       <title>[React] jsx 사용방법</title>
       <link>https://jinyisland.kr/post/jsx/</link>

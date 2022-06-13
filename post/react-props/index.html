@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TN7PCJZTQ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6TN7PCJZTQ');
+</script>
+
+        <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Props의 개념과 컴포넌트 간 데이터 전달해보기'><title>[React] 컴포넌트에 Props 전달하기</title>
+<link rel='canonical' href='https://jinyisland.kr/post/react-props/'>
+<link rel="icon" href="/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='[React] 컴포넌트에 Props 전달하기'>
+<meta property='og:description' content='Props의 개념과 컴포넌트 간 데이터 전달해보기'>
+<meta property='og:url' content='https://jinyisland.kr/post/react-props/'>
+<meta property='og:site_name' content='Jiny'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2022-06-13T23:54:07&#43;09:00'/><meta property='article:modified_time' content='2022-06-13T23:54:07&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/react/react.png' />
+<meta name="twitter:title" content="[React] 컴포넌트에 Props 전달하기">
+<meta name="twitter:description" content="Props의 개념과 컴포넌트 간 데이터 전달해보기"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/react/react.png' /><style>
+    .article-content code {
+        word-wrap: break-word;
+    }
+</style>
+
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub38313664a67c625b5c64f3cb8dc247e_143597_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny</a></h1>
+        <h2 class="site-description">😎 승진이의 공부 블로그</h2>
+    </header>
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/javascript/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>JavaScript</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/vue/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Vue</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/react/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#61DAFB" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>React</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/web/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Web</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/style/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#7f5345" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Style</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/book/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Book</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/etc/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#d63031" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>ETC</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span></span>
+            </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/react-props/">
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/react/" style="background-color: #61dafb; color: #000;">
+                React
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/react-props/">[React] 컴포넌트에 Props 전달하기</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        Props의 개념과 컴포넌트 간 데이터 전달해보기
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jun 13, 2022</time>
+    </footer></div>
+</header>
+
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
+    <h2 id="개념">개념</h2>
+<p>컴포넌트에 데이터를 전달하는 데이터를 <code>prop</code>이라고 한다. (Properties의 줄임말)</p>
+<h2 id="props">Props</h2>
+<h3 id="단일-값-전달하기">단일 값 전달하기</h3>
+<p>컴포넌트 작성 시 해당 컴포넌트 태그에 <code>변수이름={}</code>으로 사용한다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="c1">//App.js (최상위 컴포너트)
+</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="ln"> 3</span>    <span class="k">return</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">();</span>
+<span class="ln"> 4</span><span class="p">};</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln"> 7</span>    <span class="k">return</span> <span class="p">(</span>
+<span class="ln"> 8</span>        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
+<span class="ln"> 9</span>            <span class="p">&lt;</span><span class="nt">AppHeader</span> <span class="p">/&gt;</span>
+<span class="ln">10</span>            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
+<span class="ln">11</span>                <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;{</span><span class="nx">myName</span><span class="p">}&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="ln">12</span>                <span class="p">&lt;</span><span class="nt">Time</span> <span class="na">init</span><span class="o">=</span><span class="p">{</span><span class="nx">today</span><span class="p">}</span> <span class="p">/&gt;</span>
+<span class="ln">13</span>            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+<span class="ln">14</span>            <span class="p">&lt;</span><span class="nt">AppFooter</span> <span class="p">/&gt;</span>
+<span class="ln">15</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln">16</span>    <span class="p">);</span>
+<span class="ln">17</span><span class="p">}</span>
+</code></pre></div><p>전달받는 컴포넌트 (자식 컴포넌트)에서는 매개변수로 받아올 수 있는데 <code>객체</code> 타입으로 전달 받는다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kd">function</span> <span class="nx">Time</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="k">return</span> <span class="p">(</span>
+<span class="ln">3</span>        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln">4</span>            <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">What</span> <span class="nx">Time</span><span class="o">?</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="ln">5</span>            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;{</span><span class="nx">props</span><span class="p">.</span><span class="nx">today</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="ln">6</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln">7</span>    <span class="p">);</span>
+<span class="ln">8</span><span class="p">}</span>
+</code></pre></div><p><a class="link" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment"  target="_blank" rel="noopener"
+    >구조 분해 할당</a>을 통해 더욱 쉽게 받을 수 있다.</p>
+<p>객체나 배열 구문에서 속성을 바로 해체해서 변수처럼 사용할 수 있는 표현식이다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="c1">//Time.js (자식 컴포넌트)
+</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="ln"> 3</span>
+<span class="ln"> 4</span><span class="kd">function</span> <span class="nx">Time</span><span class="p">({</span> <span class="nx">today</span> <span class="p">})</span> <span class="p">{</span>
+<span class="ln"> 5</span>    <span class="k">return</span> <span class="p">(</span>
+<span class="ln"> 6</span>        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln"> 7</span>            <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">What</span> <span class="nx">Time</span><span class="o">?</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="ln"> 8</span>            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;{</span><span class="nx">today</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="ln"> 9</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln">10</span>    <span class="p">);</span>
+<span class="ln">11</span><span class="p">}</span>
+<span class="ln">12</span>
+<span class="ln">13</span><span class="kr">export</span> <span class="k">default</span> <span class="nx">Time</span><span class="p">;</span>
+</code></pre></div><h3 id="여러개-전달하기">여러개 전달하기</h3>
+<p>스프레드 연산자(&hellip;)를 사용해서 여러 개의 값을 한번에 전달할 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="c1">//App.js (최상위 컴포넌트)
+</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">timeProps</span> <span class="o">=</span> <span class="p">{</span>
+<span class="ln"> 3</span>    <span class="nx">defaultDate</span><span class="o">:</span> <span class="nx">today</span><span class="p">,</span>
+<span class="ln"> 4</span>    <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;지금 시간은?&#39;</span>
+<span class="ln"> 5</span><span class="p">};</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln"> 8</span>    <span class="k">return</span> <span class="p">(</span>
+<span class="ln"> 9</span>        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
+<span class="ln">10</span>            <span class="p">&lt;</span><span class="nt">AppHeader</span> <span class="p">/&gt;</span>
+<span class="ln">11</span>            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
+<span class="ln">12</span>                <span class="p">&lt;</span><span class="nt">Time</span> <span class="p">{</span><span class="na">...timeProps</span><span class="p">}</span> <span class="p">/&gt;</span>
+<span class="ln">13</span>            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+<span class="ln">14</span>            <span class="p">&lt;</span><span class="nt">AppFooter</span> <span class="p">/&gt;</span>
+<span class="ln">15</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln">16</span>    <span class="p">);</span>
+<span class="ln">17</span><span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="c1">//Time.js (자식 컴포넌트)
+</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="ln"> 3</span>
+<span class="ln"> 4</span><span class="kd">function</span> <span class="nx">Time</span><span class="p">({</span> <span class="nx">defaultDate</span><span class="p">,</span> <span class="nx">message</span> <span class="p">})</span> <span class="p">{</span>
+<span class="ln"> 5</span>    <span class="kr">const</span> <span class="nx">getTime</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="ln"> 6</span>        <span class="nx">setTime</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">());</span>
+<span class="ln"> 7</span>    <span class="p">};</span>
+<span class="ln"> 8</span>
+<span class="ln"> 9</span>    <span class="k">return</span> <span class="p">(</span>
+<span class="ln">10</span>        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln">11</span>            <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">What</span> <span class="nx">Time</span><span class="o">?</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="ln">12</span>            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;{</span><span class="nx">time</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="ln">13</span>            <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">getTime</span><span class="p">}&gt;{</span><span class="nx">message</span><span class="p">}&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="ln">14</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln">15</span>    <span class="p">);</span>
+<span class="ln">16</span><span class="p">}</span>
+<span class="ln">17</span>
+<span class="ln">18</span><span class="kr">export</span> <span class="k">default</span> <span class="nx">Time</span><span class="p">;</span>
+</code></pre></div><h3 id="props-초기화">Props 초기화</h3>
+<p>혹여나 부모 컴포넌트에서 정상적으로 데이터를 넘기지 못 할 경우를 대비해 초기화를 해줄 수 도 있는데 <code>defaultProps</code> 속성을 사용하면 된다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="ln"> 2</span>
+<span class="ln"> 3</span><span class="kd">function</span> <span class="nx">Time</span><span class="p">({</span> <span class="nx">defaultDate</span><span class="p">,</span> <span class="nx">message</span> <span class="p">})</span> <span class="p">{</span>
+<span class="ln"> 4</span>    <span class="c1">//..code
+</span><span class="ln"> 5</span><span class="c1"></span><span class="p">}</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span><span class="nx">Time</span><span class="p">.</span><span class="nx">defaultProps</span> <span class="o">=</span> <span class="p">{</span>
+<span class="ln"> 8</span>    <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;not send&#39;</span>
+<span class="ln"> 9</span><span class="p">};</span>
+<span class="ln">10</span>
+<span class="ln">11</span><span class="kr">export</span> <span class="k">default</span> <span class="nx">Time</span><span class="p">;</span>
+</code></pre></div><h3 id="컴포넌트-전달하기">컴포넌트 전달하기</h3>
+<p><code>prop</code> 데이터에 컴포넌트도 전달할 수 있다.</p>
+<p>컴포넌트를 감싸고 있는 하위 컴포넌트들은 컴포넌트에서 <code>Props.children</code>으로 전달받을 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="c1">//App.js
+</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">import</span> <span class="nx">Outer</span> <span class="nx">from</span> <span class="s1">&#39;./Outer&#39;</span><span class="p">;</span>
+<span class="ln"> 3</span><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln"> 4</span>    <span class="k">return</span> <span class="p">(</span>
+<span class="ln"> 5</span>        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
+<span class="ln"> 6</span>            <span class="p">&lt;</span><span class="nt">Outer</span><span class="p">&gt;</span>
+<span class="ln"> 7</span>                <span class="p">&lt;</span><span class="nt">Time</span> <span class="p">/&gt;</span>
+<span class="ln"> 8</span>            <span class="p">&lt;/</span><span class="nt">Outer</span><span class="p">&gt;</span>
+<span class="ln"> 9</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln">10</span>    <span class="p">);</span>
+<span class="ln">11</span><span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="c1">//OuterComponent.js
+</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">Outer</span> <span class="o">=</span> <span class="kd">function</span><span class="p">({</span><span class="nx">children</span><span class="p">})</span> <span class="p">{</span>
+<span class="ln"> 3</span>	<span class="k">return</span> <span class="p">(</span>
+<span class="ln"> 4</span>		<span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="p">{{</span> <span class="nx">padding</span> <span class="o">:</span> <span class="mi">20</span><span class="nx">px</span><span class="p">,</span> <span class="nx">backgroundColor</span> <span class="o">:</span> <span class="s1">&#39;#ffeaa7&#39;</span><span class="p">}}&gt;</span>
+<span class="ln"> 5</span>			<span class="p">{</span><span class="nx">children</span><span class="p">}</span>
+<span class="ln"> 6</span>		<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln"> 7</span>	<span class="p">);</span>
+<span class="ln"> 8</span><span class="p">}</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span><span class="kr">export</span> <span class="k">default</span> <span class="nx">Outer</span><span class="p">;</span>
+</code></pre></div><p>예를들어 단순히 스타일링을 위한 컴포넌트를 하나 생성하고, 상위 컴포넌트에서 자식 컴포넌트들을 감싸주면 <code>children</code> 으로 컴포넌트를 받아 값 처럼 사용할 수 있다.</p>
+<h3 id="event-전달하기">Event 전달하기</h3>
+<p>자식 컴포넌트에 함수를 전달해 이벤트 핸들링을 할 수도 있다.</p>
+<p>예시로, 자식 컴포넌트에서 버튼 <code>click</code>이벤트를 통해 부모 컴포넌트의 색상을 컨트롤하는 과정을 해보았다.</p>
+<ol>
+<li>
+<p>부모 컴포넌트에서 자식 컴포넌트에서 받을 데이터를 핸들링 해주는 함수를 작성한다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">import</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="ln"> 2</span><span class="kr">import</span> <span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="ln"> 3</span><span class="kr">import</span> <span class="nx">Time</span> <span class="nx">from</span> <span class="s1">&#39;./Time&#39;</span><span class="p">;</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln"> 6</span>    <span class="c1">//리렌더링을 위해 useState사용
+</span><span class="ln"> 7</span><span class="c1"></span>    <span class="kr">const</span> <span class="p">[</span><span class="nx">color</span><span class="p">,</span> <span class="nx">setColor</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;App&#39;</span><span class="p">);</span>
+<span class="ln"> 8</span>
+<span class="ln"> 9</span>    <span class="kr">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="ln">10</span>        <span class="k">return</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">();</span>
+<span class="ln">11</span>    <span class="p">};</span>
+<span class="ln">12</span>
+<span class="ln">13</span>    <span class="c1">//핸들러 함수
+</span><span class="ln">14</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">onChangeBackground</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">15</span>        <span class="nx">setColor</span><span class="p">(</span><span class="nx">params</span><span class="p">);</span>
+<span class="ln">16</span>    <span class="p">};</span>
+<span class="ln">17</span>
+<span class="ln">18</span>    <span class="k">return</span> <span class="p">(</span>
+<span class="ln">19</span>        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="p">{</span><span class="nx">color</span><span class="p">}&gt;</span>
+<span class="ln">20</span>            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
+<span class="ln">21</span>                <span class="p">&lt;</span><span class="nt">Time</span> <span class="na">today</span><span class="o">=</span><span class="p">{</span><span class="nx">today</span><span class="p">()}</span> <span class="na">onChangeBackground</span><span class="o">=</span><span class="p">{</span><span class="nx">onChangeBackground</span><span class="p">}</span> <span class="p">/&gt;</span>
+<span class="ln">22</span>            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+<span class="ln">23</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln">24</span>    <span class="p">);</span>
+<span class="ln">25</span><span class="p">}</span>
+<span class="ln">26</span><span class="kr">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre></div></li>
+<li>
+<p>자식 컴포넌트에서 부모 컴포넌트로 바인딩 시켜 줄 <code>event prop</code>을 호출하고 매개변수로 데이터를 전달한다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kd">function</span> <span class="nx">Time</span><span class="p">({</span> <span class="nx">today</span><span class="p">,</span> <span class="nx">onChangeBackground</span> <span class="p">})</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="k">return</span> <span class="p">(</span>
+<span class="ln"> 3</span>        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln"> 4</span>            <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">What</span> <span class="nx">Time</span><span class="o">?</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="ln"> 5</span>            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;{</span><span class="nx">today</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="ln"> 6</span>            <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln"> 7</span>                <span class="p">&lt;</span><span class="nt">button</span>
+<span class="ln"> 8</span>                    <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span>
+<span class="ln"> 9</span>                    <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;red&#39;</span><span class="p">}</span>
+<span class="ln">10</span>                    <span class="na">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="ln">11</span>                        <span class="nx">onChangeBackground</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+<span class="ln">12</span>                    <span class="p">}}</span>
+<span class="ln">13</span>                <span class="p">&gt;</span>
+<span class="ln">14</span>                    <span class="nx">RED</span>
+<span class="ln">15</span>                <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="ln">16</span>                <span class="p">&lt;</span><span class="nt">button</span>
+<span class="ln">17</span>                    <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span>
+<span class="ln">18</span>                    <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;green&#39;</span><span class="p">}</span>
+<span class="ln">19</span>                    <span class="na">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="ln">20</span>                        <span class="nx">onChangeBackground</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+<span class="ln">21</span>                    <span class="p">}}</span>
+<span class="ln">22</span>                <span class="p">&gt;</span>
+<span class="ln">23</span>                    <span class="nx">GREEN</span>
+<span class="ln">24</span>                <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="ln">25</span>                <span class="p">&lt;</span><span class="nt">button</span>
+<span class="ln">26</span>                    <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span>
+<span class="ln">27</span>                    <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;blue&#39;</span><span class="p">}</span>
+<span class="ln">28</span>                    <span class="na">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="ln">29</span>                        <span class="nx">onChangeBackground</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+<span class="ln">30</span>                    <span class="p">}}</span>
+<span class="ln">31</span>                <span class="p">&gt;</span>
+<span class="ln">32</span>                    <span class="nx">BLUE</span>
+<span class="ln">33</span>                <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="ln">34</span>            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln">35</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="ln">36</span>    <span class="p">);</span>
+<span class="ln">37</span><span class="p">}</span>
+</code></pre></div><p><img src="https://user-images.githubusercontent.com/46988995/173382623-9a77f193-f2b2-4d10-b2f1-095eb09cf04a.gif" alt="결과물"  /></p>
+<p>해당 소스는 <a class="link" href="https://github.com/yondo123/react-practice/tree/main/props-event"  target="_blank" rel="noopener"
+    >github</a>에서 확인하실 수 있습니다.😄</p>
+</li>
+</ol>
+<h2 id="참고자료">참고자료</h2>
+<ul>
+<li><a class="link" href="https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%EB%A6%AC%EC%95%A1%ED%8A%B8/dashboard"  target="_blank" rel="noopener"
+    >한입 크기로 잘라 먹는 리액트(React.js)</a> - Props</li>
+<li><a class="link" href="https://ko.reactjs.org/docs/faq-functions.html"  target="_blank" rel="noopener"
+    >React 공식문서</a> - 컴포넌트에 함수 전달하기</li>
+</ul>
+
+</section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false
+    });
+</script>
+<style>
+     
+    @media all and (min-width: 1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+    }
+
+    @media all and (max-width: 1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: '목차';
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+    .toc-link::before {
+        width: 0;
+    }
+</style>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title"></h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/jsx/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/react/react.png" loading="lazy" data-key="jsx" data-hash="../../assets/react/react.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[React] jsx 사용방법</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="comments-container">
+    
+    <script src="https://utteranc.es/client.js"
+        repo="yondo123/hugo-blog-comments"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+
+<style>
+    .comments-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Jiny
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
