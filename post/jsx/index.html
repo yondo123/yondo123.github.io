@@ -357,7 +357,7 @@
 <h2 id="기본-문법">기본 문법</h2>
 <h3 id="스타일-적용하기">스타일 적용하기</h3>
 <p><strong>className</strong><br>
-<code>jsx</code>에서는 스타일을 적용하기 위한 <code>class</code>는  자바스크립트 예약어라 <code>className</code>으로 대체한다.</p>
+<code>jsx</code>에서는 스타일을 적용하기 위한 <code>class</code>는 자바스크립트 예약어라 <code>className</code>으로 대체한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kr">const</span> <span class="nx">AppFooter</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 <span class="ln">2</span>    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">footer</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;red&#34;</span><span class="p">&gt;</span><span class="nx">Footer</span><span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;;</span>
 <span class="ln">3</span><span class="p">};</span>
@@ -396,14 +396,14 @@
 </code></pre></div><h3 id="이벤트-바인딩">이벤트 바인딩</h3>
 <p>요소에 이벤트를 bind하려면 중괄호 내부에 해당 함수를 기입한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 2</span>		<span class="kr">const</span> <span class="nx">noti</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 3</span>			<span class="k">return</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;test&#34;</span><span class="p">);</span>
-<span class="ln"> 4</span>		<span class="p">}</span>
+<span class="ln"> 2</span>    <span class="kr">const</span> <span class="nx">noti</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="ln"> 3</span>        <span class="k">return</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
+<span class="ln"> 4</span>    <span class="p">};</span>
 <span class="ln"> 5</span>    <span class="k">return</span> <span class="p">(</span>
 <span class="ln"> 6</span>        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
 <span class="ln"> 7</span>            <span class="p">&lt;</span><span class="nt">AppHeader</span> <span class="p">/&gt;</span>
 <span class="ln"> 8</span>            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
-<span class="ln"> 9</span>				<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">noti</span><span class="p">}&gt;</span><span class="nx">클릭</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="ln"> 9</span>                <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">noti</span><span class="p">}&gt;</span><span class="nx">클릭</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 <span class="ln">10</span>            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
 <span class="ln">11</span>            <span class="p">&lt;</span><span class="nt">AppFooter</span> <span class="p">/&gt;</span>
 <span class="ln">12</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>

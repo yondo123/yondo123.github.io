@@ -397,14 +397,11 @@ GA에는 고유적으로 추적에 사용할 ID가 주어지는데 GA관리자 �
 </code></pre></div><p>이제 휴고 블로그에 모든 페이지에서 이 스크립트를 로드해주면 된다.<br>
 보통 전역에서 사용할 html은 <code>/layout/_default/baseof.html</code>에 작성한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="ln">2</span>    {{ if .Site.Params.googleAnalytics }}
-<span class="ln">3</span>    {{ partial &#34;google-analytics.html&#34; . }}
-<span class="ln">4</span>    {{ end }}
-<span class="ln">5</span>    {{- partial &#34;head/head.html&#34; . -}}
-<span class="ln">6</span>    {{- block &#34;head&#34; . -}}{{ end }}
-<span class="ln">7</span><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="ln">2</span>    {{ if .Site.Params.googleAnalytics }} {{ partial &#34;google-analytics.html&#34; . }} {{ end }} {{- partial &#34;head/head.html&#34;
+<span class="ln">3</span>    . -}} {{- block &#34;head&#34; . -}}{{ end }}
+<span class="ln">4</span><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
 </code></pre></div><p>여기까지 설정하면 구글애널리틱스에서 접속 현황이 잘 노출이된다!<br>
-깃에 배포하고 다시 블로그에 들어가면  아래 사진 처럼 잘 나오는 것을 확인할 수 있다.<br>
+깃에 배포하고 다시 블로그에 들어가면 아래 사진 처럼 잘 나오는 것을 확인할 수 있다.<br>
 <img src="../../assets/web/visit.png" alt="ga-visit"  /></p>
 
 </section>
