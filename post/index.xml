@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Jun 2022 23:54:07 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 22 Jun 2022 23:23:52 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[React] 리액트 라우터 기본 사용방법</title>
+      <link>https://jinyisland.kr/post/react-router/</link>
+      <pubDate>Wed, 22 Jun 2022 23:23:52 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/react-router/</guid>
+      <description>페이지 라우팅 vue를 처음 접했을 때 이해했던 개념이지만, 한번 더 정리하자면 일단 라우터라는 개념은 네트워크 상에서 통신 데이터를 보낼 경로를 선택하는 과정을 의미한다. SPA 환경의 웹 애플리케이션(Vue, React, Angular)에서는 말 그대로 요청(Request)에 따라 알맞은 페이지를 반환해주는 과정 자체로 이해하면 된다.
+SPA의 단일 페이지라는 이점을 살려, MPA(Multi Page Application) 환경과는 달리 페이지자체를 반환하지 않고 데이터만 불러와 렌더링해주기 때문에 사용자 입장에서 훨씬 빠르다고 느낄 수 있다. 또한 클라이언트에서 렌더링을 다루기때문에 CSR(Client Side Rendering)이라고도 불린다.</description>
+    </item>
+    
     <item>
       <title>[React] 컴포넌트에 Props 전달하기</title>
       <link>https://jinyisland.kr/post/react-props/</link>
