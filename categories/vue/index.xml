@@ -6,7 +6,18 @@
     <description>Recent content in Vue on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Dec 2021 23:49:00 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/vue/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Jul 2022 23:36:59 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/vue/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Vue] Composition API 사용 방법</title>
+      <link>https://jinyisland.kr/post/composition-api/</link>
+      <pubDate>Tue, 26 Jul 2022 23:36:59 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/composition-api/</guid>
+      <description>Options API의 장단점 Vue에서 기본적으로 사용하고 있는 패턴은 객체 내에 다양한 속성을 사용하고 있는 형태이다. 라이프사이클을 제어하기 위해 사용하는 mounted, updated 그리고 컴포넌트 내에서 여러 메서드들을 정의하고 데이터들을 참조할 때 정해진 속성에 정의해서 사용하였다. 이를 Options API라고 한다.
+아래는 페이지네이션 기능 컴포넌트를 구현할 때 작성했던 코드인데, 컴포지션 API를 적용하지 않은 options api 방식으로 작성하였다.
+1export default { 2 components: { 3 //컴포넌트 정의 4 ChildComponent 5 }, 6 data() { 7 //참조할 데이터 정의 8 return { 9 newsItem: {}, 10 showModal: false, 11 page: 1, 12 records: 20, 13 listItems: [], 14 options: { 15 hideCount: true 16 } 17 }; 18 }, 19 mounted: function () { 20 //마운트 시점 제어 21 this.</description>
+    </item>
+    
     <item>
       <title>Vue 코드 포맷팅</title>
       <link>https://jinyisland.kr/post/prettier/</link>
