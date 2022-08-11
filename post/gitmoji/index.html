@@ -15,18 +15,18 @@
 </script>
 
         <meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='디렉토리 구조 뽑아오는 방법'><title>[mac] tree 명령어</title>
-<link rel='canonical' href='https://jinyisland.kr/post/mac-tree.md/'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='🪄 이모지를 이용한 커밋 컨벤션 관리하는 방법'><title>[git] Gitmoji 사용 방법 </title>
+<link rel='canonical' href='https://jinyisland.kr/post/gitmoji/'>
 <link rel="icon" href="/favicon.png" type="image/png">
 
 <link rel="stylesheet" href="/scss/style.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='[mac] tree 명령어'>
-<meta property='og:description' content='디렉토리 구조 뽑아오는 방법'>
-<meta property='og:url' content='https://jinyisland.kr/post/mac-tree.md/'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='[git] Gitmoji 사용 방법 '>
+<meta property='og:description' content='🪄 이모지를 이용한 커밋 컨벤션 관리하는 방법'>
+<meta property='og:url' content='https://jinyisland.kr/post/gitmoji/'>
 <meta property='og:site_name' content='Jiny'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='mac' /><meta property='article:published_time' content='2022-04-17T18:51:45&#43;09:00'/><meta property='article:modified_time' content='2022-04-17T18:51:45&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/etc/etc.png' />
-<meta name="twitter:title" content="[mac] tree 명령어">
-<meta name="twitter:description" content="디렉토리 구조 뽑아오는 방법"><meta name="twitter:card" content="summary_large_image">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='git' /><meta property='article:published_time' content='2022-08-11T22:08:24&#43;09:00'/><meta property='article:modified_time' content='2022-08-11T22:08:24&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/etc/etc.png' />
+<meta name="twitter:title" content="[git] Gitmoji 사용 방법 ">
+<meta name="twitter:description" content="🪄 이모지를 이용한 커밋 컨벤션 관리하는 방법"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jinyisland.kr/../../assets/etc/etc.png' /><style>
     .article-content code {
         word-wrap: break-word;
@@ -312,7 +312,7 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/post/mac-tree.md/">
+            <a href="/post/gitmoji/">
                 
             </a>
         </div>
@@ -330,12 +330,12 @@
     
 
     <h2 class="article-title">
-        <a href="/post/mac-tree.md/">[mac] tree 명령어</a>
+        <a href="/post/gitmoji/">[git] Gitmoji 사용 방법 </a>
     </h2>
 
     
     <h3 class="article-subtitle">
-        디렉토리 구조 뽑아오는 방법
+        🪄 이모지를 이용한 커밋 컨벤션 관리하는 방법
     </h3>
     <footer class="article-time">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -346,124 +346,97 @@
 
 
 
-        <time class="article-time--published">Apr 17, 2022</time>
+        <time class="article-time--published">Aug 11, 2022</time>
     </footer></div>
 </header>
 
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
-    <h2 id="tree">tree?</h2>
-<p>가끔 개발하다보면 특정 프로젝트의 구조나 디렉토리 구조를 설명할 일이 있는데 홈브류에 <code>tree</code>라는 패키지가 있어 소개해보려한다.</p>
-<h2 id="tree-패키지-설치하기">tree 패키지 설치하기</h2>
-<p><code>Homebrew</code>에서 아래 명령어로 tree를 설치한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>brew install tree
-</code></pre></div><h3 id="기본-사용법">기본 사용법</h3>
-<p>터미널에서 원하는 디렉토리로 간다음 <code>tree</code>를 입력하면 해당 디렉토리 구조가 출력된다.<br>
-아래는 이 블로그의 content 디렉토리의 구조를 출력한 결과.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln"> 1</span><span class="o">{</span>22-04-17 18:49<span class="o">}</span>sjchoi-MackBook-Pro:~/Mydoc/blog/jinyisland/content@master✗✗✗✗✗✗ user% tree  
-<span class="ln"> 2</span>.
-<span class="ln"> 3</span>├── assets
-<span class="ln"> 4</span>│   ├── etc
-<span class="ln"> 5</span>│   │   └── etc.png
-<span class="ln"> 6</span>│   ├── java
-<span class="ln"> 7</span>│   │   └── java.png
-<span class="ln"> 8</span>│   ├── js
-<span class="ln"> 9</span>│   │   ├── algorithm-search.png
-<span class="ln">10</span>│   │   ├── callstack_1.png
-<span class="ln">11</span>│   │   ├── callstack_2.png
-<span class="ln">12</span>│   │   ├── callstack_3.png
-<span class="ln">13</span>│   │   ├── callstack_4.png
-<span class="ln">14</span>│   │   ├── datatypes.png
-<span class="ln">15</span>│   │   ├── eo.png
-<span class="ln">16</span>│   │   ├── heap-and-binary.png
-<span class="ln">17</span>│   │   ├── heap-sort.png
-<span class="ln">18</span>│   │   ├── js-eventloop.png
-<span class="ln">19</span>│   │   ├── js.png
-<span class="ln">20</span>│   │   ├── node-rest-api.jpg
-<span class="ln">21</span>│   │   └── this-types.png
-<span class="ln">22</span>│   ├── title.png
-<span class="ln">23</span>│   ├── ts
-<span class="ln">24</span>│   │   └── ts.png
-<span class="ln">25</span>│   ├── vue
-<span class="ln">26</span>│   │   └── vue.png
-<span class="ln">27</span>│   └── web
-<span class="ln">28</span>│       ├── http-cookie.png
-<span class="ln">29</span>│       ├── visit.png
-<span class="ln">30</span>│       └── web.png
-<span class="ln">31</span>├── categories
-<span class="ln">32</span>│   ├── book
-<span class="ln">33</span>│   │   ├── _index.md
-<span class="ln">34</span>│   │   └── book_thumb.jpg
-<span class="ln">35</span>│   ├── etc
-<span class="ln">36</span>│   │   ├── _index.md
-<span class="ln">37</span>│   │   └── etc_thumb.jpg
-<span class="ln">38</span>│   ├── javascript
-<span class="ln">39</span>│   │   ├── _index.md
-<span class="ln">40</span>│   │   └── js_thumb.jpg
-<span class="ln">41</span>│   ├── typescript
-<span class="ln">42</span>│   │   ├── _index.md
-<span class="ln">43</span>│   │   └── ts_thumb.jpg
-<span class="ln">44</span>│   ├── ui
-<span class="ln">45</span>│   │   ├── _index.md
-<span class="ln">46</span>│   │   └── ui_thumb.jpg
-<span class="ln">47</span>│   ├── vue
-<span class="ln">48</span>│   │   ├── _index.md
-<span class="ln">49</span>│   │   └── vue_thumb.jpg
-<span class="ln">50</span>│   └── web
-<span class="ln">51</span>│       ├── _index.md
-<span class="ln">52</span>│       └── web_thumb.jpg
-<span class="ln">53</span>├── contents
-<span class="ln">54</span>├── page
-<span class="ln">55</span>│   ├── about.md
-<span class="ln">56</span>│   ├── archives.md
-<span class="ln">57</span>│   └── search.md
-<span class="ln">58</span>└── post
-<span class="ln">59</span>    ├── etc
-<span class="ln">60</span>    │   └── mac-tree.md
-<span class="ln">61</span>    ├── java
-<span class="ln">62</span>    │   └── java-array.md
-<span class="ln">63</span>    ├── javascript
-<span class="ln">64</span>    │   ├── algorithm-heap.md
-<span class="ln">65</span>    │   ├── algorithm-search.md
-<span class="ln">66</span>    │   ├── arrow-function.md
-<span class="ln">67</span>    │   ├── eventloop.md
-<span class="ln">68</span>    │   ├── express-routing.md
-<span class="ln">69</span>    │   ├── express-start.md
-<span class="ln">70</span>    │   ├── js-closure.md
-<span class="ln">71</span>    │   ├── js-datatype.md
-<span class="ln">72</span>    │   ├── js-function.md
-<span class="ln">73</span>    │   ├── js-loop.md
-<span class="ln">74</span>    │   ├── js-overview.md
-<span class="ln">75</span>    │   ├── let-const.md
-<span class="ln">76</span>    │   ├── middleware.md
-<span class="ln">77</span>    │   ├── module.md
-<span class="ln">78</span>    │   ├── node-file.md
-<span class="ln">79</span>    │   ├── node-restapi.md
-<span class="ln">80</span>    │   ├── npm.md
-<span class="ln">81</span>    │   ├── promise-async-await.md
-<span class="ln">82</span>    │   ├── template-literals.md
-<span class="ln">83</span>    │   └── useful-modules.md
-<span class="ln">84</span>    ├── ui
-<span class="ln">85</span>    │   └── font.md
-<span class="ln">86</span>    ├── vue
-<span class="ln">87</span>    │   ├── component.md
-<span class="ln">88</span>    │   ├── computed-watch.md
-<span class="ln">89</span>    │   ├── prettier.md
-<span class="ln">90</span>    │   ├── project-import.md
-<span class="ln">91</span>    │   ├── vue-router.md
-<span class="ln">92</span>    │   ├── vue-start.md
-<span class="ln">93</span>    │   ├── vue-tailwind.md
-<span class="ln">94</span>    │   └── vuex.md
-<span class="ln">95</span>    └── web
-<span class="ln">96</span>        ├── http-cookies.md
-<span class="ln">97</span>        └── hugo-ga.md
-<span class="ln">98</span>
-<span class="ln">99</span><span class="m">24</span> directories, <span class="m">71</span> files
-</code></pre></div><h3 id="특정-디렉토리-제외">특정 디렉토리 제외</h3>
-<p>이 포스트를 쓰게된 결정적인 계기인데.. node에서 <code>node_modules</code>라는 패키지 디렉토리를 제외하고 싶었다.<br>
-<code>-I</code>옵션을 사용하면된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>tree -I node_modules      
-</code></pre></div>
+    <h2 id="gitmoji">Gitmoji?</h2>
+<p><a class="link" href="https://gitmoji.dev/"  target="_blank" rel="noopener"
+    ><strong>gitmoji</strong></a>란 말 그대로, 이모지를 활용해서 커밋 컨벤션을 쉽게 할 수 있는 확장 툴이다.</p>
+<h3 id="사용-방법">사용 방법</h3>
+<p>npm 패키지를 사용하여 cli 환경에서 사용할 수 있지만, vscode 확장에서도 제공하기 때문에 <a class="link" href="https://marketplace.visualstudio.com/items?itemName=seatonjiang.gitmoji-vscode"  target="_blank" rel="noopener"
+    ><strong>Gitmoji 확장</strong></a> 확장 프로그램을 설치한다.
+<img src="https://user-images.githubusercontent.com/46988995/184142687-ac3a3f26-ff69-4f53-b4a1-3a9a66311301.png" alt="Image 1"  />
+설치 후 소스제어 메뉴에 이동하면 😃 스마일 아이콘이 생성된다.
+클릭하면 아래와 같이 기본적으로 정의된, 커밋 컨벤션 리스트가 표시된다.<br>
+커밋 행위를 검색하거나, 방향키로 골라서 넣어주면 커밋 메시지에 삽입된다.<br>
+<img src="https://user-images.githubusercontent.com/46988995/184143238-9dc3ca10-61b8-491f-932b-c7418f01a6e4.png" alt="Image 2"  /><br>
+매번 update.. fix.. 이렇게 글씨를 쓰는게 조금 귀찮았는데 깃모지를 쓰니까 무언가 커밋 욕구도 상승되고, <strong>무엇보다 귀엽다.</strong></p>
+<h3 id="커스텀-하기">커스텀 하기</h3>
+<p>기본적으로 셋팅된 컨벤션들도 훌륭하지만, 사실 저 많은 커밋 규칙들을 모두 사용하는 것도 아니고 영어라서 매번 확인하는 것도 귀찮아서.. 커스텀을 해보았다.<br>
+다행히 문서를 읽어보니 vscode의 <code>setting.json</code>에서 아래 속성을 추가해주면 된다.</p>
+<ul>
+<li>gitmoji.onlyUseAdditionalEmojis : 커스텀 컨벤션 사용 여부<code>boolean</code></li>
+<li>gitmoji.additionalEmojis : 추가 할 컨벤션<code>array</code></li>
+</ul>
+<p>아래는 내가 많이 사용하는 상황으로 커스텀을 해보았다. <code>settings.json</code>에 추가해주면 끝</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln"> 1</span><span class="s2">&#34;gitmoji.onlyUseAdditionalEmojis&#34;</span><span class="err">:</span> <span class="kc">true</span><span class="err">,</span>
+<span class="ln"> 2</span><span class="s2">&#34;gitmoji.additionalEmojis&#34;</span><span class="err">:</span> <span class="p">[</span>
+<span class="ln"> 3</span>    <span class="p">{</span>
+<span class="ln"> 4</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;✨&#34;</span><span class="p">,</span>
+<span class="ln"> 5</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:sparkles:&#34;</span><span class="p">,</span>
+<span class="ln"> 6</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[new features] 기능 및 코드 추가&#34;</span>
+<span class="ln"> 7</span>    <span class="p">},</span>
+<span class="ln"> 8</span>    <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🔥&#34;</span><span class="p">,</span>
+<span class="ln">10</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:fire:&#34;</span><span class="p">,</span>
+<span class="ln">11</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[remove] 기능 및 코드 제거&#34;</span>
+<span class="ln">12</span>    <span class="p">},</span>
+<span class="ln">13</span>    <span class="p">{</span>
+<span class="ln">14</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🎨&#34;</span><span class="p">,</span>
+<span class="ln">15</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:art:&#34;</span><span class="p">,</span>
+<span class="ln">16</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[styling] 코드 스타일링&#34;</span>
+<span class="ln">17</span>    <span class="p">},</span>
+<span class="ln">18</span>    <span class="p">{</span>
+<span class="ln">19</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;➕&#34;</span><span class="p">,</span>
+<span class="ln">20</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:heavy_plus_sign:&#34;</span><span class="p">,</span>
+<span class="ln">21</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[add] 파일 추가&#34;</span>
+<span class="ln">22</span>    <span class="p">},</span>
+<span class="ln">23</span>    <span class="p">{</span>
+<span class="ln">24</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;➖&#34;</span><span class="p">,</span>
+<span class="ln">25</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:heavy_minus_sign:&#34;</span><span class="p">,</span>
+<span class="ln">26</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[remove] 파일 제거&#34;</span>
+<span class="ln">27</span>    <span class="p">},</span>
+<span class="ln">28</span>    <span class="p">{</span>
+<span class="ln">29</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🏗️&#34;</span><span class="p">,</span>
+<span class="ln">30</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:card_file_box:&#34;</span><span class="p">,</span>
+<span class="ln">31</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[structure] 프로젝트 구조 변경&#34;</span>
+<span class="ln">32</span>    <span class="p">},</span>
+<span class="ln">33</span>    <span class="p">{</span>
+<span class="ln">34</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🐛&#34;</span><span class="p">,</span>
+<span class="ln">35</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:bug:&#34;</span><span class="p">,</span>
+<span class="ln">36</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[fix] 버그 수정&#34;</span>
+<span class="ln">37</span>    <span class="p">},</span>
+<span class="ln">38</span>    <span class="p">{</span>
+<span class="ln">39</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🚑&#34;</span><span class="p">,</span>
+<span class="ln">40</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:ambulance:&#34;</span><span class="p">,</span>
+<span class="ln">41</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[hotfix] 치명적인 버그 수정&#34;</span>
+<span class="ln">42</span>    <span class="p">},</span>
+<span class="ln">43</span>    <span class="p">{</span>
+<span class="ln">44</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;♻️&#34;</span><span class="p">,</span>
+<span class="ln">45</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:recycle:&#34;</span><span class="p">,</span>
+<span class="ln">46</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[refactor] 코드 리팩토링&#34;</span>
+<span class="ln">47</span>    <span class="p">},</span>
+<span class="ln">48</span>    <span class="p">{</span>
+<span class="ln">49</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;📝&#34;</span><span class="p">,</span>
+<span class="ln">50</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:memo:&#34;</span><span class="p">,</span>
+<span class="ln">51</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[doc] 문서작성 및 편집&#34;</span>
+<span class="ln">52</span>    <span class="p">},</span>
+<span class="ln">53</span>    <span class="p">{</span>
+<span class="ln">54</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🎉&#34;</span><span class="p">,</span>
+<span class="ln">55</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:tada:&#34;</span><span class="p">,</span>
+<span class="ln">56</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[init] 프로젝트 개시&#34;</span>
+<span class="ln">57</span>    <span class="p">},</span>
+<span class="ln">58</span>    <span class="p">{</span>
+<span class="ln">59</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🚀&#34;</span><span class="p">,</span>
+<span class="ln">60</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:rocket:&#34;</span><span class="p">,</span>
+<span class="ln">61</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[deploy] 프로젝트 배포&#34;</span>
+<span class="ln">62</span>    <span class="p">}</span>
+<span class="ln">63</span><span class="p">]</span>
+</code></pre></div><p><img src="https://user-images.githubusercontent.com/46988995/184146578-5e99d739-7b4d-455b-9dc3-2f461e0e282f.png" alt="gitmoji-custom"  /></p>
+
 </section>
 <script type="text/javascript">
     tocbot.init({
@@ -531,7 +504,7 @@
     
     <section class="article-tags">
         
-            <a href="/tags/mac/">mac</a>
+            <a href="/tags/git/">git</a>
         
     </section>
 
@@ -550,18 +523,18 @@
                 
                     
 <article class="has-image">
-    <a href="/post/gitmoji/">
+    <a href="/post/mac-tree.md/">
         
         
             <div class="article-image">
                 
-                    <img src="../../assets/etc/etc.png" loading="lazy" data-key="gitmoji" data-hash="../../assets/etc/etc.png"/>
+                    <img src="../../assets/etc/etc.png" loading="lazy" data-key="mac-tree.md" data-hash="../../assets/etc/etc.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">[git] Gitmoji 사용 방법 </h2>
+            <h2 class="article-title">[mac] tree 명령어</h2>
         </div>
     </a>
 </article>

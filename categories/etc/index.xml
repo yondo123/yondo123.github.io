@@ -6,7 +6,19 @@
     <description>Recent content in ETC on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Apr 2022 18:51:45 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/etc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Aug 2022 22:08:24 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[git] Gitmoji 사용 방법 </title>
+      <link>https://jinyisland.kr/post/gitmoji/</link>
+      <pubDate>Thu, 11 Aug 2022 22:08:24 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/gitmoji/</guid>
+      <description>Gitmoji? gitmoji란 말 그대로, 이모지를 활용해서 커밋 컨벤션을 쉽게 할 수 있는 확장 툴이다.
+사용 방법 npm 패키지를 사용하여 cli 환경에서 사용할 수 있지만, vscode 확장에서도 제공하기 때문에 Gitmoji 확장 확장 프로그램을 설치한다. 설치 후 소스제어 메뉴에 이동하면 😃 스마일 아이콘이 생성된다. 클릭하면 아래와 같이 기본적으로 정의된, 커밋 컨벤션 리스트가 표시된다.
+커밋 행위를 검색하거나, 방향키로 골라서 넣어주면 커밋 메시지에 삽입된다.
+매번 update.. fix.. 이렇게 글씨를 쓰는게 조금 귀찮았는데 깃모지를 쓰니까 무언가 커밋 욕구도 상승되고, 무엇보다 귀엽다.</description>
+    </item>
+    
     <item>
       <title>[mac] tree 명령어</title>
       <link>https://jinyisland.kr/post/mac-tree.md/</link>
