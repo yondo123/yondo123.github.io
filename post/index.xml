@@ -65,7 +65,7 @@ jsx에서는 스타일을 적용하기 위한 class는 자바스크립트 예약
     </item>
     
     <item>
-      <title>multer 사용법</title>
+      <title>[Node.js] multer 사용법</title>
       <link>https://jinyisland.kr/post/multer/</link>
       <pubDate>Thu, 21 Apr 2022 23:55:37 +0900</pubDate>
       
@@ -89,19 +89,19 @@ tree 패키지 설치하기 Homebrew에서 아래 명령어로 tree를 설치한
     </item>
     
     <item>
-      <title>Express 라우터 살펴보기</title>
+      <title>[Node.js] Express 라우터 살펴보기</title>
       <link>https://jinyisland.kr/post/express-routing/</link>
       <pubDate>Thu, 14 Apr 2022 23:18:59 +0900</pubDate>
       
       <guid>https://jinyisland.kr/post/express-routing/</guid>
       <description>라우팅 express 공식 문서 에서는 라우팅을 아래와 같이 설명하고 있다.
- 라우팅은 URI(또는 경로) 및 특정한 HTTP 요청 메소드(GET, POST 등)인 특정 엔드포인트에 대한 클라이언트 요청에 애플리케이션이 응답하는 방법을 결정하는 것을 말합니다.
+ **라우팅**은 URI(또는 경로) 및 특정한 HTTP 요청 메소드(GET, POST 등)인 특정 엔드포인트에 대한 클라이언트 요청에 애플리케이션이 응답하는 방법을 결정하는 것을 말합니다.
  정리하자면 요청 URI 규칙에 맞게 특정한 요청이 오면, 이에 맞는 응답 핸들러를 결정하는 것이라 생각하면된다
 기본 문법 기본 문법은 다음과 같다. API 메서드(Http Method, string)는 HTTP 메서드를 작성한다. (GET, POST, PUT, DELETE..) 첫 번째 인자는 요청 URI 경로, 두 번째 인자에는 응답 핸들러(Handler, function)를 받는다.</description>
     </item>
     
     <item>
-      <title>Express 미들웨어 사용법</title>
+      <title>[Node.js] Express 미들웨어 사용법</title>
       <link>https://jinyisland.kr/post/middleware/</link>
       <pubDate>Tue, 12 Apr 2022 21:17:46 +0900</pubDate>
       
@@ -122,7 +122,7 @@ tree 패키지 설치하기 Homebrew에서 아래 명령어로 tree를 설치한
     </item>
     
     <item>
-      <title>Express 설치 및 실행해보기</title>
+      <title>[Node.js] Express 설치 및 실행해보기</title>
       <link>https://jinyisland.kr/post/express-start/</link>
       <pubDate>Tue, 29 Mar 2022 22:57:14 +0900</pubDate>
       
@@ -132,11 +132,11 @@ tree 패키지 설치하기 Homebrew에서 아래 명령어로 tree를 설치한
 1npm install express 기본 구조 기본적인 서버를 구축한 소스이다.
 http 모듈로 구축했을 때 URL도 파싱해야하고, if문으로 분기처리하기 수고스러웠는데 상당히 깔끔해졌다.
 각 라우터마다 요청, 응답 객체를 받아와 여러 형태로 받거나 전달할 수 있다.
-1//app.js 2const express = require(&amp;#34;express&amp;#34;); 3const app = express(); 4 5//get 메서드 6app.</description>
+1//app.js 2const express = require(&amp;#39;express&amp;#39;); 3const app = express(); 4 5//get 메서드 6app.</description>
     </item>
     
     <item>
-      <title>Node.js 파일 시스템 접근하기</title>
+      <title>[Node.js] 파일 시스템 접근하기</title>
       <link>https://jinyisland.kr/post/node-file/</link>
       <pubDate>Mon, 28 Feb 2022 22:05:52 +0900</pubDate>
       
@@ -159,18 +159,18 @@ CDN을 활용한 방법 구글 폰트 등과 같이 cdn을 제공해주는 사�
     </item>
     
     <item>
-      <title>Node.js 자주 사용하는 모듈 정리</title>
+      <title>[Node.js] 자주 사용하는 모듈 정리</title>
       <link>https://jinyisland.kr/post/useful-modules/</link>
       <pubDate>Mon, 10 Jan 2022 23:19:14 +0900</pubDate>
       
       <guid>https://jinyisland.kr/post/useful-modules/</guid>
       <description>global 브라우저의 window와 같은 전역 객체 역할, 하지만 브라우저와 관련된 객체(document 등)들은 사용하지 못한다. global객체 역시 생략해서 사용 가능하다. 그리고 브라우저의 window객체와 마찬가지로 global에 값을 주입하면 프로젝트 내 모든 파일에서 전역 변수로 사용할 수 있다 . (하지만 이러한 패턴은 지양한다, module을 통해 관리하자)
-1global.console.log(&amp;#34;hello Node!&amp;#34;); 2console.log(&amp;#34;hello Node!&amp;#34;); console 로그를 출력하는 객체, 흔히 사용하는 log, error 말고 신기한 것을 소개한다.
+1global.console.log(&amp;#39;hello Node!&amp;#39;); 2console.log(&amp;#39;hello Node!&amp;#39;); console 로그를 출력하는 객체, 흔히 사용하는 log, error 말고 신기한 것을 소개한다.
 console.time 수행 시점에 time을 찍어 해당 코드를 수행한 시간을 알아낼 수 있다.</description>
     </item>
     
     <item>
-      <title>npm에 대한 개념과 사용 방법</title>
+      <title>[Node.js] npm 개념과 사용법</title>
       <link>https://jinyisland.kr/post/npm/</link>
       <pubDate>Mon, 10 Jan 2022 22:40:47 +0900</pubDate>
       
@@ -244,14 +244,14 @@ computed 사용법은 아래 코드를 참고, computed속성 내에 메서드�
     </item>
     
     <item>
-      <title>Node.js HTTP모듈 실습</title>
+      <title>[Node.js] HTTP모듈 실습</title>
       <link>https://jinyisland.kr/post/node-restapi/</link>
       <pubDate>Fri, 17 Sep 2021 23:48:56 +0900</pubDate>
       
       <guid>https://jinyisland.kr/post/node-restapi/</guid>
       <description>Node.js HTTP 모듈을 통해 간단히 요청보내고, 주고받는 초간단 API 서버를 만들어보았다.
 Request createServer 콜백에서 request, response 인자를 받는데 request 객체에서 요청 정보들을 받을 수 있다.
-1const http = require(&amp;#34;http&amp;#34;); 2 3http.createServer(async (request, response)=&amp;gt;{ 4	try{ 5	const method = request.method; 6	const url = request.url; 7	//step 1. 요청 메소드 구분 8	if(method == &amp;#34;GET&amp;#34;){ 9	//step 2. URL 구분 10	if(url == &amp;#34;/&amp;#34;){ 11	}else if(url == &amp;#34;/list&amp;#34;){ 12	} 13	}else if(method == &amp;#34;POST&amp;#34;){ 14	//code.</description>
+1const http = require(&amp;#39;http&amp;#39;); 2 3http.createServer(async (request, response) =&amp;gt; { 4 try { 5 const method = request.method; 6 const url = request.url; 7 //step 1. 요청 메소드 구분 8 if (method == &amp;#39;GET&amp;#39;) { 9 //step 2. URL 구분 10 if (url == &amp;#39;/&amp;#39;) { 11 } else if (url == &amp;#39;/list&amp;#39;) { 12 } 13 } else if (method == &amp;#39;POST&amp;#39;) { 14 //code.</description>
     </item>
     
     <item>

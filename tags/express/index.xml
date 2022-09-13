@@ -8,15 +8,40 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 14 Apr 2022 23:18:59 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/express/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Express 라우터 살펴보기</title>
+      <title>[Node.js] Express 라우터 살펴보기</title>
       <link>https://jinyisland.kr/post/express-routing/</link>
       <pubDate>Thu, 14 Apr 2022 23:18:59 +0900</pubDate>
       
       <guid>https://jinyisland.kr/post/express-routing/</guid>
       <description>라우팅 express 공식 문서 에서는 라우팅을 아래와 같이 설명하고 있다.
- 라우팅은 URI(또는 경로) 및 특정한 HTTP 요청 메소드(GET, POST 등)인 특정 엔드포인트에 대한 클라이언트 요청에 애플리케이션이 응답하는 방법을 결정하는 것을 말합니다.
+ **라우팅**은 URI(또는 경로) 및 특정한 HTTP 요청 메소드(GET, POST 등)인 특정 엔드포인트에 대한 클라이언트 요청에 애플리케이션이 응답하는 방법을 결정하는 것을 말합니다.
  정리하자면 요청 URI 규칙에 맞게 특정한 요청이 오면, 이에 맞는 응답 핸들러를 결정하는 것이라 생각하면된다
 기본 문법 기본 문법은 다음과 같다. API 메서드(Http Method, string)는 HTTP 메서드를 작성한다. (GET, POST, PUT, DELETE..) 첫 번째 인자는 요청 URI 경로, 두 번째 인자에는 응답 핸들러(Handler, function)를 받는다.</description>
+    </item>
+    
+    <item>
+      <title>[Node.js] Express 미들웨어 사용법</title>
+      <link>https://jinyisland.kr/post/middleware/</link>
+      <pubDate>Tue, 12 Apr 2022 21:17:46 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/middleware/</guid>
+      <description>미들웨어 말 그대로 요청(Request)과 응답(Response) 사이 중간(middle)에서 핸들링해주는 익스프레스의 핵심 기능이다.
+사용법 use메서드를 사용하고 요청 메서드 내부에서 미들웨어를 정의할 수 있다.
+1//모든 요청에서 미들웨어 실행 2app.use((req, res, next)=&amp;gt; { 3	console.log(&amp;#39;middle ware execute&amp;#39;); 4	next(); 5}, (req, res) =&amp;gt; { 6	// code.. 7});; 8 9//특정 요청 또는 경로에서 미들웨어 실행 (next 인자는 생략 가능) 10app.get((&amp;#39;/&amp;#39;, (req, res, next)=&amp;gt;{ 11	console.log(&amp;#34;request get, &amp;#39;/&amp;#39;&amp;#34;); 12	next(); 13}, (req, res)=&amp;gt;{ 14	throw new Error(&amp;#39;error!</description>
+    </item>
+    
+    <item>
+      <title>[Node.js] Express 설치 및 실행해보기</title>
+      <link>https://jinyisland.kr/post/express-start/</link>
+      <pubDate>Tue, 29 Mar 2022 22:57:14 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/express-start/</guid>
+      <description>개요 기존 http모듈로 서버를 구축 해서 간단한 요청과 응답 프로세스를 경험해보았는데 여타 언어들도 그렇듯이 프레임워크를 사용하면 더욱 효율적으로 작업을 할 수 있다. node.js 생태계에서는 압도적으로 express.js를 많이 사용한다.
+설치하기 npm 환경에서 install 명령어를 통해 express를 설치한다.
+1npm install express 기본 구조 기본적인 서버를 구축한 소스이다.
+http 모듈로 구축했을 때 URL도 파싱해야하고, if문으로 분기처리하기 수고스러웠는데 상당히 깔끔해졌다.
+각 라우터마다 요청, 응답 객체를 받아와 여러 형태로 받거나 전달할 수 있다.
+1//app.js 2const express = require(&amp;#39;express&amp;#39;); 3const app = express(); 4 5//get 메서드 6app.</description>
     </item>
     
   </channel>

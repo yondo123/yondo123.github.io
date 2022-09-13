@@ -17,16 +17,5 @@
  사용자 기준이 아닌 접속 PC의 IP이기 때문에 정확한 사용자 구별이 어려움 ISP가 제공하는 IP 대역을 사용하는 경우, 대부분 매번 다른 주소를 받으므로 추후 식별이 어려움 NAT 장비 등, 보안을 위해 IP 주소를 private 하게 관리 → 서버에서 받는 사용자 IP가 실제 IP가 아닐 수 있음  위와 같은 문제점으로, IP를 활용한 방식보다 아예 사용자 마다의 인증 프로세스를 부여하여 명확한 식별 요청을 할 수 있는데 이 기능이 바로 우리가 흔히 접하는 로그인 기능</description>
     </item>
     
-    <item>
-      <title>Node.js HTTP모듈 실습</title>
-      <link>https://jinyisland.kr/post/node-restapi/</link>
-      <pubDate>Fri, 17 Sep 2021 23:48:56 +0900</pubDate>
-      
-      <guid>https://jinyisland.kr/post/node-restapi/</guid>
-      <description>Node.js HTTP 모듈을 통해 간단히 요청보내고, 주고받는 초간단 API 서버를 만들어보았다.
-Request createServer 콜백에서 request, response 인자를 받는데 request 객체에서 요청 정보들을 받을 수 있다.
-1const http = require(&amp;#34;http&amp;#34;); 2 3http.createServer(async (request, response)=&amp;gt;{ 4	try{ 5	const method = request.method; 6	const url = request.url; 7	//step 1. 요청 메소드 구분 8	if(method == &amp;#34;GET&amp;#34;){ 9	//step 2. URL 구분 10	if(url == &amp;#34;/&amp;#34;){ 11	}else if(url == &amp;#34;/list&amp;#34;){ 12	} 13	}else if(method == &amp;#34;POST&amp;#34;){ 14	//code.</description>
-    </item>
-    
   </channel>
 </rss>

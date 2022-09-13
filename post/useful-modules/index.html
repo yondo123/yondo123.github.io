@@ -15,17 +15,17 @@
 </script>
 
         <meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='이것만큼은 꼭 알아두자'><title>Node.js 자주 사용하는 모듈 정리</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='이것만큼은 꼭 알아두자'><title>[Node.js] 자주 사용하는 모듈 정리</title>
 <link rel='canonical' href='https://jinyisland.kr/post/useful-modules/'>
 <link rel="icon" href="/favicon.png" type="image/png">
 
 <link rel="stylesheet" href="/scss/style.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='Node.js 자주 사용하는 모듈 정리'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='[Node.js] 자주 사용하는 모듈 정리'>
 <meta property='og:description' content='이것만큼은 꼭 알아두자'>
 <meta property='og:url' content='https://jinyisland.kr/post/useful-modules/'>
 <meta property='og:site_name' content='Jiny'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='node' /><meta property='article:published_time' content='2022-01-10T23:19:14&#43;09:00'/><meta property='article:modified_time' content='2022-01-10T23:19:14&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
-<meta name="twitter:title" content="Node.js 자주 사용하는 모듈 정리">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2022-01-10T23:19:14&#43;09:00'/><meta property='article:modified_time' content='2022-01-10T23:19:14&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta name="twitter:title" content="[Node.js] 자주 사용하는 모듈 정리">
 <meta name="twitter:description" content="이것만큼은 꼭 알아두자"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
     .article-content code {
@@ -330,7 +330,7 @@
     
 
     <h2 class="article-title">
-        <a href="/post/useful-modules/">Node.js 자주 사용하는 모듈 정리</a>
+        <a href="/post/useful-modules/">[Node.js] 자주 사용하는 모듈 정리</a>
     </h2>
 
     
@@ -354,54 +354,54 @@
     <div class="js-toc"></div>
     <h2 id="global">global</h2>
 <p>브라우저의 window와 같은 전역 객체 역할, 하지만 브라우저와 관련된 객체(document 등)들은 사용하지 못한다. <code>global</code>객체 역시 생략해서 사용 가능하다. 그리고 브라우저의 window객체와 마찬가지로 global에 값을 주입하면 프로젝트 내 모든 파일에서 전역 변수로 사용할 수 있다 . (하지만 이러한 패턴은 지양한다, module을 통해 관리하자)</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nx">global</span><span class="p">.</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;hello Node!&#34;</span><span class="p">);</span>
-<span class="ln">2</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;hello Node!&#34;</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nx">global</span><span class="p">.</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello Node!&#39;</span><span class="p">);</span>
+<span class="ln">2</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello Node!&#39;</span><span class="p">);</span>
 </code></pre></div><h2 id="console">console</h2>
 <p>로그를 출력하는 객체, 흔히 사용하는 log, error 말고 신기한 것을 소개한다.</p>
 <h3 id="consoletime">console.time</h3>
 <p>수행 시점에 time을 찍어 해당 코드를 수행한 시간을 알아낼 수 있다. (효율성 측정에 용이하다.)</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">timeEnd</span><span class="p">(</span><span class="s2">&#34;add&#34;</span><span class="p">);</span> <span class="c1">//add: 0.098ms
+<span class="ln">2</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">timeEnd</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">);</span> <span class="c1">//add: 0.098ms
 </span><span class="ln">3</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
 <span class="ln">4</span><span class="p">}</span>
 <span class="ln">5</span>
-<span class="ln">6</span><span class="nx">console</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="s2">&#34;add&#34;</span><span class="p">);</span>
+<span class="ln">6</span><span class="nx">console</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">);</span>
 <span class="ln">7</span>
 <span class="ln">8</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 </code></pre></div><h3 id="consoledir">console.dir</h3>
 <p>객체 형태의 데이터를 출력하기 용이하다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">fruit</span> <span class="o">=</span><span class="p">{</span>
-<span class="ln">2</span>	<span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span>
-<span class="ln">3</span>	<span class="nx">icon</span> <span class="o">:</span> <span class="s1">&#39;🍎&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">fruit</span> <span class="o">=</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span>
+<span class="ln">3</span>    <span class="nx">icon</span><span class="o">:</span> <span class="s1">&#39;🍎&#39;</span>
 <span class="ln">4</span><span class="p">};</span>
-<span class="ln">5</span> 
+<span class="ln">5</span>
 <span class="ln">6</span><span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">fruit</span><span class="p">);</span>
 </code></pre></div><h2 id="setimmediate">setImmediate</h2>
-<p>기존 <code>setTimeout</code>을 사용해 초를 0으로 두더라도 비동기 상황에서는 정확한 0초가 아닐 수도 있다.  이벤트  루프 내의 다른 실행 코드가 타임아웃의 순서를 블로킹할 수 있기 때문이다. 따라서 즉시 함수를 출력하려면 <code>setImmediate</code>를 사용하는 것이 유리하다.</p>
+<p>기존 <code>setTimeout</code>을 사용해 초를 0으로 두더라도 비동기 상황에서는 정확한 0초가 아닐 수도 있다. 이벤트 루프 내의 다른 실행 코드가 타임아웃의 순서를 블로킹할 수 있기 때문이다. 따라서 즉시 함수를 출력하려면 <code>setImmediate</code>를 사용하는 것이 유리하다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nx">setImmediate</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;hi&#34;</span><span class="p">);</span>
+<span class="ln">2</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">);</span>
 <span class="ln">3</span><span class="p">});</span>
 <span class="ln">4</span>
 <span class="ln">5</span><span class="nx">setImmediate</span><span class="p">((</span><span class="nx">message</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">6</span>		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span> 
-<span class="ln">7</span><span class="p">},</span> <span class="s2">&#34;hello&#34;</span><span class="p">);</span> <span class="c1">//&#34;hello&#34;
+<span class="ln">6</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+<span class="ln">7</span><span class="p">},</span> <span class="s1">&#39;hello&#39;</span><span class="p">);</span> <span class="c1">//&#34;hello&#34;
 </span></code></pre></div><p>사용 방법은 첫 인자에 실행 함수를 전달하고, 두번째 인자에 함수로 전달할 값을 적어주면된다.</p>
-<h2 id="__filename-__dirname">__filename, __dirname</h2>
+<h2 id="filename-dirname">**filename, **dirname</h2>
 <p>현재 파일에 대한 경로나 파일명을 반환해준다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">currentFilePath</span> <span class="o">=</span> <span class="nx">__filename</span><span class="p">;</span>
 <span class="ln">2</span><span class="kr">const</span> <span class="nx">currentDirPath</span> <span class="o">=</span> <span class="nx">__dirname</span><span class="p">;</span>
 <span class="ln">3</span><span class="c1">// file명 포함
 </span><span class="ln">4</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">currentFilePath</span><span class="p">);</span> <span class="c1">// C:\Users\user\Desktop\node\test.js
 </span><span class="ln">5</span><span class="c1"></span>
-<span class="ln">6</span><span class="c1">// file 디렉토리명 까지 포함 
+<span class="ln">6</span><span class="c1">// file 디렉토리명 까지 포함
 </span><span class="ln">7</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">currentDirPath</span><span class="p">);</span> <span class="c1">// C:\Users\user\Desktop\node
 </span></code></pre></div><h2 id="this">this</h2>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">==</span> <span class="nx">exports</span> <span class="o">==</span> <span class="p">{}</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="p">(</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">==</span> <span class="nx">exports</span><span class="p">)</span> <span class="o">==</span> <span class="p">{};</span>
 </code></pre></div><p>웹 브라우저 상에서의 this 체계와 조금 다르다. (웹 브라우저에서의 전역 this == window 객체) node.js 상에서는 전역 스코프상에서의 this는 <code>module 객체</code>를 가르킨다. 함수 내부에서의 this는 global 객체를 가르킨다. (나머지 내부함수에서의 this 참조 스코프, 객체에서의 this등 다른 부분에서는 동일하다.)</p>
 <h2 id="require">require</h2>
 <p>외부 파일 import시에 사용, 파일 맨 상단에 굳이 위치할 필요는 없다. 한번 require한 파일은 <code>require.cache</code>에 저장됨 → 다시 불러올 때 require.cache 탐색 후 해당 js파일을 읽어온다. (캐싱)</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./module&#39;</span><span class="p">);</span> <span class="c1">//사용은 안하고 스크립트 실행만 하는 경우
-</span><span class="ln">2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">module</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./module&#39;</span><span class="p">);</span> <span class="c1">//변수에 
+</span><span class="ln">2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">module</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./module&#39;</span><span class="p">);</span> <span class="c1">//변수에
 </span></code></pre></div><h2 id="process">process</h2>
 <p>현재 실행중인 노드 프로세스에 접근하는 모듈</p>
 <ul>
@@ -428,9 +428,9 @@
 <h2 id="path">Path</h2>
 <p>OS마다 다른 디렉토리 경로를 다루기위해 많이 사용 <code>(Windows 또는 POSIX)</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="c1">// /Users/choeseungjin/Mydoc/02_Code/02_JavaScript/backend/process.js
-</span><span class="ln">2</span><span class="c1"></span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s2">&#34;..&#34;</span><span class="p">,</span> <span class="s2">&#34;/process.js&#34;</span><span class="p">);</span>
+</span><span class="ln">2</span><span class="c1"></span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;/process.js&#39;</span><span class="p">);</span>
 <span class="ln">3</span><span class="c1">// /process.js
-</span><span class="ln">4</span><span class="c1"></span><span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s2">&#34;..&#34;</span><span class="p">,</span> <span class="s2">&#34;process.js&#34;</span><span class="p">);</span>
+</span><span class="ln">4</span><span class="c1"></span><span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;process.js&#39;</span><span class="p">);</span>
 </code></pre></div><ul>
 <li><strong>parse(&lsquo;path..') :</strong> 파일 구조 분해 (root-dir-base-ext..)</li>
 <li><strong>isAbsolute(&lsquo;path&rsquo;) :</strong> 절대경로인지 상대경로인지 true/false</li>
@@ -511,12 +511,6 @@
 
     <footer class="article-footer">
     
-    <section class="article-tags">
-        
-            <a href="/tags/node/">node</a>
-        
-    </section>
-
 
     </footer>
 
@@ -543,7 +537,25 @@
         
 
         <div class="article-details">
-            <h2 class="article-title">multer 사용법</h2>
+            <h2 class="article-title">[Node.js] multer 사용법</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/express-routing/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="express-routing" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[Node.js] Express 라우터 살펴보기</h2>
         </div>
     </a>
 </article>
@@ -561,7 +573,25 @@
         
 
         <div class="article-details">
-            <h2 class="article-title">Express 미들웨어 사용법</h2>
+            <h2 class="article-title">[Node.js] Express 미들웨어 사용법</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/js-loop/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="js-loop" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">자바스크립트 함수형 반복문</h2>
         </div>
     </a>
 </article>
@@ -579,43 +609,7 @@
         
 
         <div class="article-details">
-            <h2 class="article-title">Express 설치 및 실행해보기</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/post/node-file/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="node-file" data-hash="../../assets/js/js.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Node.js 파일 시스템 접근하기</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/post/npm/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="npm" data-hash="../../assets/js/js.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">npm에 대한 개념과 사용 방법</h2>
+            <h2 class="article-title">[Node.js] Express 설치 및 실행해보기</h2>
         </div>
     </a>
 </article>

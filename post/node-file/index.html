@@ -15,17 +15,17 @@
 </script>
 
         <meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='fs 모듈 사용방법'><title>Node.js 파일 시스템 접근하기</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='fs 모듈 사용방법'><title>[Node.js] 파일 시스템 접근하기</title>
 <link rel='canonical' href='https://jinyisland.kr/post/node-file/'>
 <link rel="icon" href="/favicon.png" type="image/png">
 
 <link rel="stylesheet" href="/scss/style.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='Node.js 파일 시스템 접근하기'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='[Node.js] 파일 시스템 접근하기'>
 <meta property='og:description' content='fs 모듈 사용방법'>
 <meta property='og:url' content='https://jinyisland.kr/post/node-file/'>
 <meta property='og:site_name' content='Jiny'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='node' /><meta property='article:published_time' content='2022-02-28T22:05:52&#43;09:00'/><meta property='article:modified_time' content='2022-02-28T22:05:52&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
-<meta name="twitter:title" content="Node.js 파일 시스템 접근하기">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='backend' /><meta property='article:published_time' content='2022-02-28T22:05:52&#43;09:00'/><meta property='article:modified_time' content='2022-02-28T22:05:52&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta name="twitter:title" content="[Node.js] 파일 시스템 접근하기">
 <meta name="twitter:description" content="fs 모듈 사용방법"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
     .article-content code {
@@ -330,7 +330,7 @@
     
 
     <h2 class="article-title">
-        <a href="/post/node-file/">Node.js 파일 시스템 접근하기</a>
+        <a href="/post/node-file/">[Node.js] 파일 시스템 접근하기</a>
     </h2>
 
     
@@ -360,12 +360,12 @@
 (실행하는 node 기준이므로 같은 디렉토리에 위치해야한다.)</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
 <span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s1">&#39;./resource/README.md&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">data</span><span class="p">)=&gt;{</span>
-<span class="ln"> 4</span>    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+<span class="ln"> 3</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s1">&#39;./resource/README.md&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="ln"> 4</span>    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
 <span class="ln"> 5</span>        <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
-<span class="ln"> 6</span>    <span class="p">};</span>
+<span class="ln"> 6</span>    <span class="p">}</span>
 <span class="ln"> 7</span>
-<span class="ln"> 8</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">//&lt;Buffer 23 23 20 68 65 6c 6c 6f 20 4e 6f 64 65 2e 6a 73 21&gt; 
+<span class="ln"> 8</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">//&lt;Buffer 23 23 20 68 65 6c 6c 6f 20 4e 6f 64 65 2e 6a 73 21&gt;
 </span><span class="ln"> 9</span><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span> <span class="c1">//## hello Node.js!
 </span><span class="ln">10</span><span class="c1"></span><span class="p">});</span>
 </code></pre></div><p>만약 아무런 변환 없이 그대로 출력한다면 버퍼 형태로 출력된다.<br>
@@ -379,33 +379,33 @@
 </code></pre></div><h3 id="promises">promises</h3>
 <p>fs 모듈은 기본적으로 콜백 형태로 사용하기 때문에 복잡한 로직이 들어가게된다면 사용하기가 불편하다.<br>
 <code>promises</code>속성을 통해 프로미스로 감싸지 않고 then 문법을 사용할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;fs&#34;</span><span class="p">).</span><span class="nx">promises</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">).</span><span class="nx">promises</span><span class="p">;</span>
 <span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s2">&#34;./resource/README.md&#34;</span><span class="p">)</span>
-<span class="ln"> 4</span>	<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)=&gt;{</span>
-<span class="ln"> 5</span>		<span class="k">return</span> <span class="nx">data</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
-<span class="ln"> 6</span>	<span class="p">})</span>
-<span class="ln"> 7</span>	<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">fileData</span><span class="p">)=&gt;{</span>
-<span class="ln"> 8</span>		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fileData</span><span class="p">);</span>
-<span class="ln"> 9</span>	<span class="p">})</span>
-<span class="ln">10</span>	<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)=&gt;{</span>
-<span class="ln">11</span>		<span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">erroor</span><span class="p">);</span>
-<span class="ln">12</span>	<span class="p">});</span>
+<span class="ln"> 3</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s1">&#39;./resource/README.md&#39;</span><span class="p">)</span>
+<span class="ln"> 4</span>    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="ln"> 5</span>        <span class="k">return</span> <span class="nx">data</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
+<span class="ln"> 6</span>    <span class="p">})</span>
+<span class="ln"> 7</span>    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">fileData</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="ln"> 8</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fileData</span><span class="p">);</span>
+<span class="ln"> 9</span>    <span class="p">})</span>
+<span class="ln">10</span>    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="ln">11</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">erroor</span><span class="p">);</span>
+<span class="ln">12</span>    <span class="p">});</span>
 </code></pre></div><h2 id="동기처리">동기처리</h2>
 <p>node.js에서 파일 처리는 비동기 방식으로 처리되는데, <code>sync</code> 접미사를 붙여 동기식으로 처리할 수도 있다.<br>
 장점으로는 별도의 추가적인 작업 없이 바로 동기식으로 처리되어 순서가 보장된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;fs&#34;</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
 <span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="kd">let</span> <span class="nx">fileData</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s2">&#34;./README1.md&#34;</span><span class="p">);</span>
+<span class="ln"> 3</span><span class="kd">let</span> <span class="nx">fileData</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s1">&#39;./README1.md&#39;</span><span class="p">);</span>
 <span class="ln"> 4</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fileData</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
 <span class="ln"> 5</span>
-<span class="ln"> 6</span><span class="nx">fileData</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s2">&#34;./README2.md&#34;</span><span class="p">);</span>
+<span class="ln"> 6</span><span class="nx">fileData</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s1">&#39;./README2.md&#39;</span><span class="p">);</span>
 <span class="ln"> 7</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fileData</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
 <span class="ln"> 8</span>
-<span class="ln"> 9</span><span class="nx">fileData</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s2">&#34;./README3.md&#34;</span><span class="p">);</span>
+<span class="ln"> 9</span><span class="nx">fileData</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s1">&#39;./README3.md&#39;</span><span class="p">);</span>
 <span class="ln">10</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fileData</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
 <span class="ln">11</span>
-<span class="ln">12</span><span class="nx">fileData</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s2">&#34;./README4.md&#34;</span><span class="p">);</span>
+<span class="ln">12</span><span class="nx">fileData</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s1">&#39;./README4.md&#39;</span><span class="p">);</span>
 <span class="ln">13</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fileData</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
 </code></pre></div><p>단점으로는 요청이 대다수로 들어올 때 성능이 떨어진다는 단점이 있다.
 이 문제의 해결 방법으로는 기존 <code>promise</code> 또는 <code>async-await</code> 문법으로 순서를 보장하게끔 해결하는 방법이 있다.</p>
@@ -419,22 +419,22 @@ fs 모듈의 <code>constants</code>속성으로 경로에 대한 권한, 읽기 
 <li><strong>R_OK :</strong> 읽기 권한 여부</li>
 </ul>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">).</span><span class="nx">promises</span><span class="p">;</span>
-<span class="ln"> 2</span><span class="kr">const</span> <span class="nx">constants</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">).</span><span class="nx">constants</span><span class="p">;</span> 
+<span class="ln"> 2</span><span class="kr">const</span> <span class="nx">constants</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">).</span><span class="nx">constants</span><span class="p">;</span>
 <span class="ln"> 3</span>
 <span class="ln"> 4</span><span class="nx">fs</span><span class="p">.</span><span class="nx">access</span><span class="p">(</span><span class="s1">&#39;./assets&#39;</span><span class="p">,</span> <span class="nx">constants</span><span class="p">.</span><span class="nx">F_OK</span> <span class="o">|</span> <span class="nx">constants</span><span class="p">.</span><span class="nx">W_OK</span> <span class="o">|</span> <span class="nx">constants</span><span class="p">.</span><span class="nx">R_OK</span><span class="p">)</span>
-<span class="ln"> 5</span>	<span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 6</span>		<span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="s1">&#39;exist folder!&#39;</span><span class="p">);</span>
-<span class="ln"> 7</span>	<span class="p">})</span>
+<span class="ln"> 5</span>    <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="ln"> 6</span>        <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="s1">&#39;exist folder!&#39;</span><span class="p">);</span>
+<span class="ln"> 7</span>    <span class="p">})</span>
 <span class="ln"> 8</span>    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 9</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">code</span><span class="p">);</span> 
+<span class="ln"> 9</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">code</span><span class="p">);</span>
 <span class="ln">10</span>    <span class="p">});</span>
-<span class="ln">11</span>	<span class="c1">//이어서..
+<span class="ln">11</span><span class="c1">//이어서..
 </span></code></pre></div><h3 id="디렉토리-생성하기">디렉토리 생성하기</h3>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nx">fs</span><span class="p">.</span><span class="nx">mkdir</span><span class="p">(</span><span class="s1">&#39;./dir_name&#39;</span><span class="p">);</span>
 </code></pre></div><h3 id="디렉토리-내용-읽어오기">디렉토리 내용 읽어오기</h3>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readdir</span><span class="p">(</span><span class="s1">&#39;../resource&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">dir</span><span class="p">)=&gt;{</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readdir</span><span class="p">(</span><span class="s1">&#39;../resource&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">dir</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 <span class="ln">2</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;디렉토리 구조&#39;</span><span class="p">,</span> <span class="nx">dir</span><span class="p">);</span> <span class="c1">//디렉토리 구조 [ &#39;README.md&#39;, &#39;README2.md&#39;]
-</span><span class="ln">3</span><span class="c1"></span><span class="p">})</span>
+</span><span class="ln">3</span><span class="c1"></span><span class="p">});</span>
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong><a class="link" href="http://www.yes24.com/Product/Goods/91213376"  target="_blank" rel="noopener"
@@ -510,7 +510,7 @@ fs 모듈의 <code>constants</code>속성으로 경로에 대한 권한, 읽기 
     
     <section class="article-tags">
         
-            <a href="/tags/node/">node</a>
+            <a href="/tags/backend/">backend</a>
         
     </section>
 
@@ -529,18 +529,18 @@ fs 모듈의 <code>constants</code>속성으로 경로에 대한 권한, 읽기 
                 
                     
 <article class="has-image">
-    <a href="/post/multer/">
+    <a href="/post/express-routing/">
         
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="multer" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="express-routing" data-hash="../../assets/js/js.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">multer 사용법</h2>
+            <h2 class="article-title">[Node.js] Express 라우터 살펴보기</h2>
         </div>
     </a>
 </article>
@@ -558,7 +558,7 @@ fs 모듈의 <code>constants</code>속성으로 경로에 대한 권한, 읽기 
         
 
         <div class="article-details">
-            <h2 class="article-title">Express 미들웨어 사용법</h2>
+            <h2 class="article-title">[Node.js] Express 미들웨어 사용법</h2>
         </div>
     </a>
 </article>
@@ -576,43 +576,43 @@ fs 모듈의 <code>constants</code>속성으로 경로에 대한 권한, 읽기 
         
 
         <div class="article-details">
-            <h2 class="article-title">Express 설치 및 실행해보기</h2>
+            <h2 class="article-title">[Node.js] Express 설치 및 실행해보기</h2>
         </div>
     </a>
 </article>
                 
                     
 <article class="has-image">
-    <a href="/post/useful-modules/">
+    <a href="/post/node-restapi/">
         
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="useful-modules" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="node-restapi" data-hash="../../assets/js/js.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">Node.js 자주 사용하는 모듈 정리</h2>
+            <h2 class="article-title">[Node.js] HTTP모듈 실습</h2>
         </div>
     </a>
 </article>
                 
                     
 <article class="has-image">
-    <a href="/post/npm/">
+    <a href="/post/multer/">
         
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="npm" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="multer" data-hash="../../assets/js/js.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">npm에 대한 개념과 사용 방법</h2>
+            <h2 class="article-title">[Node.js] multer 사용법</h2>
         </div>
     </a>
 </article>

@@ -93,19 +93,13 @@
   </url>
   
   <url>
-    <loc>https://jinyisland.kr/categories/javascript/</loc>
-    <lastmod>2022-04-21T23:55:37+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
     <loc>https://jinyisland.kr/post/multer/</loc>
     <lastmod>2022-04-21T23:55:37+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
-    <loc>https://jinyisland.kr/tags/node/</loc>
+    <loc>https://jinyisland.kr/categories/javascript/</loc>
     <lastmod>2022-04-21T23:55:37+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -123,13 +117,19 @@
   </url>
   
   <url>
-    <loc>https://jinyisland.kr/tags/express/</loc>
+    <loc>https://jinyisland.kr/post/express-routing/</loc>
     <lastmod>2022-04-14T23:18:59+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
-    <loc>https://jinyisland.kr/post/express-routing/</loc>
+    <loc>https://jinyisland.kr/tags/backend/</loc>
+    <lastmod>2022-04-14T23:18:59+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/express/</loc>
     <lastmod>2022-04-14T23:18:59+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -263,12 +263,6 @@
   <url>
     <loc>https://jinyisland.kr/categories/web/</loc>
     <lastmod>2021-09-20T18:49:47+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/tags/backend/</loc>
-    <lastmod>2021-09-17T23:48:56+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   

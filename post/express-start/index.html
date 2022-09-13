@@ -15,17 +15,17 @@
 </script>
 
         <meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='http모듈 대신 express로 편하게 작업하자'><title>Express 설치 및 실행해보기</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='http모듈 대신 express로 편하게 작업하자'><title>[Node.js] Express 설치 및 실행해보기</title>
 <link rel='canonical' href='https://jinyisland.kr/post/express-start/'>
 <link rel="icon" href="/favicon.png" type="image/png">
 
 <link rel="stylesheet" href="/scss/style.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='Express 설치 및 실행해보기'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='[Node.js] Express 설치 및 실행해보기'>
 <meta property='og:description' content='http모듈 대신 express로 편하게 작업하자'>
 <meta property='og:url' content='https://jinyisland.kr/post/express-start/'>
 <meta property='og:site_name' content='Jiny'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='node' /><meta property='article:published_time' content='2022-03-29T22:57:14&#43;09:00'/><meta property='article:modified_time' content='2022-03-29T22:57:14&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
-<meta name="twitter:title" content="Express 설치 및 실행해보기">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='backend' /><meta property='article:tag' content='express' /><meta property='article:published_time' content='2022-03-29T22:57:14&#43;09:00'/><meta property='article:modified_time' content='2022-03-29T22:57:14&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta name="twitter:title" content="[Node.js] Express 설치 및 실행해보기">
 <meta name="twitter:description" content="http모듈 대신 express로 편하게 작업하자"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
     .article-content code {
@@ -330,7 +330,7 @@
     
 
     <h2 class="article-title">
-        <a href="/post/express-start/">Express 설치 및 실행해보기</a>
+        <a href="/post/express-start/">[Node.js] Express 설치 및 실행해보기</a>
     </h2>
 
     
@@ -363,30 +363,30 @@
 http 모듈로 구축했을 때 URL도 파싱해야하고, if문으로 <strong>분기처리하기</strong> 수고스러웠는데 상당히 깔끔해졌다.<br>
 각 라우터마다 요청, 응답 객체를 받아와 여러 형태로 받거나 전달할 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="c1">//app.js
-</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;express&#34;</span><span class="p">);</span>
+</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
 <span class="ln"> 3</span><span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
 <span class="ln"> 4</span>
 <span class="ln"> 5</span><span class="c1">//get 메서드
-</span><span class="ln"> 6</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span><span class="ln"> 6</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 <span class="ln"> 7</span>    <span class="c1">//200 응답을 지정하고, 메시지를 전송한다.
-</span><span class="ln"> 8</span><span class="c1"></span>    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;hello express server!!&#34;</span><span class="p">);</span>
+</span><span class="ln"> 8</span><span class="c1"></span>    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;hello express server!!&#39;</span><span class="p">);</span>
 <span class="ln"> 9</span><span class="p">});</span>
 <span class="ln">10</span>
 <span class="ln">11</span><span class="c1">//post 메서드
-</span><span class="ln">12</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">&#34;/write&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="nx">res</span><span class="p">)=&gt;{</span>
-<span class="ln">13</span>		<span class="cm">/* code */</span>
+</span><span class="ln">12</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/write&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="ln">13</span>    <span class="cm">/* code */</span>
 <span class="ln">14</span><span class="p">});</span>
 <span class="ln">15</span>
 <span class="ln">16</span><span class="c1">//서버 실행
 </span><span class="ln">17</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8082</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">18</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;start express server&#34;</span><span class="p">);</span>
+<span class="ln">18</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;start express server&#39;</span><span class="p">);</span>
 <span class="ln">19</span><span class="p">});</span>
 </code></pre></div><h3 id="모니터링-플러그인">모니터링 플러그인</h3>
 <p><code>nodemon</code>은 개발 생산성을 높여주는 모니터링 플러그인이다.<br>
 보통 파일이 변경되면 서버를 종료하고 다시 실행시키는데 자동으로 프로젝트내의 파일들의 변경 사항을 감지해서 자동적으로 재시작해준다.
 <strong>cli 환경에서 실행되기 때문에 global 환경으로 설치해준다.</strong></p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span><span class="c1">#설치</span>
-<span class="ln">2</span>npm install -g nodemon 
+<span class="ln">2</span>npm install -g nodemon
 <span class="ln">3</span>
 <span class="ln">4</span><span class="c1">#nodemon으로 앱 실행</span>
 <span class="ln">5</span>nodemon app
@@ -412,9 +412,9 @@ http 모듈로 구축했을 때 URL도 파싱해야하고, if문으로 <strong>�
 <span class="ln">4</span>│   └── about.html
 <span class="ln">5</span>├── package-lock.json
 <span class="ln">6</span>└── package.json
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">)</span>
-<span class="ln">2</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;/about&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">3</span>    <span class="nx">res</span><span class="p">.</span><span class="nx">sendFile</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s2">&#34;/html/about.html&#34;</span><span class="p">));</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+<span class="ln">2</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/about&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="ln">3</span>    <span class="nx">res</span><span class="p">.</span><span class="nx">sendFile</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;/html/about.html&#39;</span><span class="p">));</span>
 <span class="ln">4</span><span class="p">});</span>
 </code></pre></div><h2 id="라우터-사용시-주의사항">라우터 사용시 주의사항</h2>
 <p>express에서 api를 요청받을 때 요청 경로를 지정한다는 의미로 <code>라우팅</code>이라는 용어가 등장하는데, 이를 제어하는 부분이 라우터이다.<br>
@@ -503,7 +503,9 @@ http 모듈로 구축했을 때 URL도 파싱해야하고, if문으로 <strong>�
     
     <section class="article-tags">
         
-            <a href="/tags/node/">node</a>
+            <a href="/tags/backend/">backend</a>
+        
+            <a href="/tags/express/">express</a>
         
     </section>
 
@@ -522,18 +524,18 @@ http 모듈로 구축했을 때 URL도 파싱해야하고, if문으로 <strong>�
                 
                     
 <article class="has-image">
-    <a href="/post/multer/">
+    <a href="/post/express-routing/">
         
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="multer" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="express-routing" data-hash="../../assets/js/js.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">multer 사용법</h2>
+            <h2 class="article-title">[Node.js] Express 라우터 살펴보기</h2>
         </div>
     </a>
 </article>
@@ -551,7 +553,7 @@ http 모듈로 구축했을 때 URL도 파싱해야하고, if문으로 <strong>�
         
 
         <div class="article-details">
-            <h2 class="article-title">Express 미들웨어 사용법</h2>
+            <h2 class="article-title">[Node.js] Express 미들웨어 사용법</h2>
         </div>
     </a>
 </article>
@@ -569,43 +571,43 @@ http 모듈로 구축했을 때 URL도 파싱해야하고, if문으로 <strong>�
         
 
         <div class="article-details">
-            <h2 class="article-title">Node.js 파일 시스템 접근하기</h2>
+            <h2 class="article-title">[Node.js] 파일 시스템 접근하기</h2>
         </div>
     </a>
 </article>
                 
                     
 <article class="has-image">
-    <a href="/post/useful-modules/">
+    <a href="/post/node-restapi/">
         
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="useful-modules" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="node-restapi" data-hash="../../assets/js/js.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">Node.js 자주 사용하는 모듈 정리</h2>
+            <h2 class="article-title">[Node.js] HTTP모듈 실습</h2>
         </div>
     </a>
 </article>
                 
                     
 <article class="has-image">
-    <a href="/post/npm/">
+    <a href="/post/multer/">
         
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="npm" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="multer" data-hash="../../assets/js/js.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">npm에 대한 개념과 사용 방법</h2>
+            <h2 class="article-title">[Node.js] multer 사용법</h2>
         </div>
     </a>
 </article>
