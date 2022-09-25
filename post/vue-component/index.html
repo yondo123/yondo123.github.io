@@ -15,17 +15,17 @@
 </script>
 
         <meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Vue의 핵심인 컴포넌트 이해하기'><title>Vue 컴포넌트에 대한 개념</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Vue의 핵심인 컴포넌트 이해하기'><title>[Vue] 컴포넌트에 대한 개념</title>
 <link rel='canonical' href='https://jinyisland.kr/post/vue-component/'>
 <link rel="icon" href="/favicon.png" type="image/png">
 
 <link rel="stylesheet" href="/scss/style.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='Vue 컴포넌트에 대한 개념'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='[Vue] 컴포넌트에 대한 개념'>
 <meta property='og:description' content='Vue의 핵심인 컴포넌트 이해하기'>
 <meta property='og:url' content='https://jinyisland.kr/post/vue-component/'>
 <meta property='og:site_name' content='Jiny'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='frontend' /><meta property='article:published_time' content='2021-07-01T21:27:40&#43;09:00'/><meta property='article:modified_time' content='2021-07-01T21:27:40&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/vue/vue.png' />
-<meta name="twitter:title" content="Vue 컴포넌트에 대한 개념">
+<meta name="twitter:title" content="[Vue] 컴포넌트에 대한 개념">
 <meta name="twitter:description" content="Vue의 핵심인 컴포넌트 이해하기"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jinyisland.kr/../../assets/vue/vue.png' /><style>
     .article-content code {
@@ -330,7 +330,7 @@
     
 
     <h2 class="article-title">
-        <a href="/post/vue-component/">Vue 컴포넌트에 대한 개념</a>
+        <a href="/post/vue-component/">[Vue] 컴포넌트에 대한 개념</a>
     </h2>
 
     
@@ -387,9 +387,9 @@ Tree 구조로 구성할 수 있으며, 부모-자식 간 컴포넌트 사이 �
 </code></pre></div><h3 id="template">Template</h3>
 <p>템플릿 내에 생성한 컴포넌트를 태그로 지정한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-<span class="ln">2</span>        <span class="c">&lt;!--컴포넌트에 등록한 템플릿 지정--&gt;</span>
-<span class="ln">3</span>        <span class="p">&lt;</span><span class="nt">app-header</span><span class="p">&gt;&lt;/</span><span class="nt">app-header</span><span class="p">&gt;</span>
-<span class="ln">4</span>        <span class="p">&lt;</span><span class="nt">app-content</span><span class="p">&gt;&lt;/</span><span class="nt">app-content</span><span class="p">&gt;</span>
+<span class="ln">2</span>    <span class="c">&lt;!--컴포넌트에 등록한 템플릿 지정--&gt;</span>
+<span class="ln">3</span>    <span class="p">&lt;</span><span class="nt">app-header</span><span class="p">&gt;&lt;/</span><span class="nt">app-header</span><span class="p">&gt;</span>
+<span class="ln">4</span>    <span class="p">&lt;</span><span class="nt">app-content</span><span class="p">&gt;&lt;/</span><span class="nt">app-content</span><span class="p">&gt;</span>
 <span class="ln">5</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div><h2 id="컴포넌트-통신-방식">컴포넌트 통신 방식</h2>
 <p><img src="https://user-images.githubusercontent.com/46988995/124051330-4041dc00-da57-11eb-9132-9c411b842f3a.png" alt="components"  /><br>
@@ -401,13 +401,13 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
 자세하게 말하면, v-bind로 <strong>해당 컴포넌트에서 정의된 props</strong> 속성에 접근할 수 있고 <code>props</code>의 역할은 부모의 <code>data</code>영역에 접근할 수 있게 해주는 속성이라고 볼 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="c">&lt;!--template--&gt;</span>
 <span class="ln">2</span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-<span class="ln">3</span>	<span class="p">&lt;</span><span class="nt">app-header</span> <span class="na">v-bind:propsdata</span><span class="o">=</span><span class="s">&#34;message&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">app-header</span><span class="p">&gt;</span>
+<span class="ln">3</span>    <span class="p">&lt;</span><span class="nt">app-header</span> <span class="na">v-bind:propsdata</span><span class="o">=</span><span class="s">&#34;message&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">app-header</span><span class="p">&gt;</span>
 <span class="ln">4</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="c1">//하위 컴포넌트
 </span><span class="ln"> 2</span><span class="c1"></span><span class="kd">var</span> <span class="nx">appHeader</span> <span class="o">=</span> <span class="p">{</span>
 <span class="ln"> 3</span>    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;h1&gt;header&lt;/h1&gt;&#39;</span><span class="p">,</span>
 <span class="ln"> 4</span>    <span class="nx">props</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;propsdata&#39;</span><span class="p">]</span>
-<span class="ln"> 5</span><span class="p">}</span>
+<span class="ln"> 5</span><span class="p">};</span>
 <span class="ln"> 6</span>
 <span class="ln"> 7</span><span class="c1">// Vue 인스턴스 (root 컴포넌트)
 </span><span class="ln"> 8</span><span class="c1"></span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
@@ -423,36 +423,37 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
 <p>props와는 반대로 하위 컴포넌트에서 상위 컴포넌트로 이벤트를 전달할 수 있다.<br>
 이벤트를 전달함으로써, 콜백내 <code>this</code>를 통해 상위 데이터에 접근하는 방법이다.<br>
 컴포넌트 <code>methods</code> 속성 내에 여러 이벤트들을 정의할 수 있는데, 정의한 <code>custom event</code>를 트리거하려면 <code>$emit</code>메서드에 이벤트 이름을 전달하면 된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-<span class="ln">2</span>        <span class="p">&lt;</span><span class="nt">app-content</span> <span class="na">v-on:add</span><span class="o">=</span><span class="s">&#34;addNumber&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">app-content</span><span class="p">&gt;</span>
-<span class="ln">3</span>        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>number : {{number}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="ln">4</span>    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span>    <span class="c1">//하위 컴포넌트
-</span><span class="ln"> 2</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">appContent</span> <span class="o">=</span> <span class="p">{</span>
-<span class="ln"> 3</span>        <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;button v-on:add=&#34;addNumber&#34;&gt;add&lt;/button&gt;&#39;</span><span class="p">,</span> 
-<span class="ln"> 4</span>        <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 5</span>            <span class="nx">addNumber</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 6</span>                <span class="k">this</span><span class="p">.</span><span class="nx">$emit</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">);</span> <span class="c1">//상위 컴포넌트에 binding 할 이벤트
-</span><span class="ln"> 7</span><span class="c1"></span>            <span class="p">}</span>
-<span class="ln"> 8</span>        <span class="p">}</span>
-<span class="ln"> 9</span>    <span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+<span class="ln">2</span>    <span class="p">&lt;</span><span class="nt">app-content</span> <span class="na">v-on:add</span><span class="o">=</span><span class="s">&#34;addNumber&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">app-content</span><span class="p">&gt;</span>
+<span class="ln">3</span>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>number : {{number}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="ln">4</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="c1">//하위 컴포넌트
+</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">appContent</span> <span class="o">=</span> <span class="p">{</span>
+<span class="ln"> 3</span>    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;button v-on:add=&#34;addNumber&#34;&gt;add&lt;/button&gt;&#39;</span><span class="p">,</span>
+<span class="ln"> 4</span>    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+<span class="ln"> 5</span>        <span class="nx">addNumber</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 6</span>            <span class="k">this</span><span class="p">.</span><span class="nx">$emit</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">);</span> <span class="c1">//상위 컴포넌트에 binding 할 이벤트
+</span><span class="ln"> 7</span><span class="c1"></span>        <span class="p">}</span>
+<span class="ln"> 8</span>    <span class="p">}</span>
+<span class="ln"> 9</span><span class="p">};</span>
 <span class="ln">10</span>
-<span class="ln">11</span>    <span class="c1">//Vue 인스턴스 (root)
-</span><span class="ln">12</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">vueObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-<span class="ln">13</span>        <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
-<span class="ln">14</span>        <span class="nx">components</span><span class="o">:</span> <span class="p">{</span> <span class="c1">//local component
-</span><span class="ln">15</span><span class="c1"></span>            <span class="s1">&#39;app-content&#39;</span><span class="o">:</span> <span class="nx">appContent</span>
-<span class="ln">16</span>        <span class="p">},</span>
-<span class="ln">17</span>        <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln">18</span>            <span class="nx">addNumber</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-<span class="ln">19</span>                <span class="c1">//this 키워드로 정의한 data에 접근 가능
-</span><span class="ln">20</span><span class="c1"></span>                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">number</span><span class="o">++</span><span class="p">);</span>
-<span class="ln">21</span>            <span class="p">}</span>
-<span class="ln">22</span>        <span class="p">},</span>
-<span class="ln">23</span>        <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln">24</span>            <span class="nx">number</span><span class="o">:</span> <span class="mi">1</span>
-<span class="ln">25</span>        <span class="p">}</span>
-<span class="ln">26</span>    <span class="p">});</span>
+<span class="ln">11</span><span class="c1">//Vue 인스턴스 (root)
+</span><span class="ln">12</span><span class="c1"></span><span class="kr">const</span> <span class="nx">vueObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+<span class="ln">13</span>    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+<span class="ln">14</span>    <span class="nx">components</span><span class="o">:</span> <span class="p">{</span>
+<span class="ln">15</span>        <span class="c1">//local component
+</span><span class="ln">16</span><span class="c1"></span>        <span class="s1">&#39;app-content&#39;</span><span class="o">:</span> <span class="nx">appContent</span>
+<span class="ln">17</span>    <span class="p">},</span>
+<span class="ln">18</span>    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+<span class="ln">19</span>        <span class="nx">addNumber</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="ln">20</span>            <span class="c1">//this 키워드로 정의한 data에 접근 가능
+</span><span class="ln">21</span><span class="c1"></span>            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">number</span><span class="o">++</span><span class="p">);</span>
+<span class="ln">22</span>        <span class="p">}</span>
+<span class="ln">23</span>    <span class="p">},</span>
+<span class="ln">24</span>    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+<span class="ln">25</span>        <span class="nx">number</span><span class="o">:</span> <span class="mi">1</span>
+<span class="ln">26</span>    <span class="p">}</span>
+<span class="ln">27</span><span class="p">});</span>
 </code></pre></div><h2 id="동등-컴포넌트-간-통신">동등 컴포넌트 간 통신</h2>
 <ul>
 <li>
@@ -468,8 +469,8 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
 </ul>
 <p>만일 같은 레벨의 header와 footer 사이 데이터 전달이 필요하다면 먼저 <code>body</code>에 데이터를 전달해야한다. <code>($emit)</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;body&#34;</span><span class="p">&gt;</span>
-<span class="ln">2</span>        <span class="p">&lt;</span><span class="nt">app-header</span><span class="p">&gt;&lt;/</span><span class="nt">app-header</span><span class="p">&gt;</span>
-<span class="ln">3</span>        <span class="p">&lt;</span><span class="nt">app-footer</span> <span class="na">v-on:message</span><span class="o">=</span><span class="s">&#34;bindData&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">app-footer</span><span class="p">&gt;</span> 
+<span class="ln">2</span>    <span class="p">&lt;</span><span class="nt">app-header</span><span class="p">&gt;&lt;/</span><span class="nt">app-header</span><span class="p">&gt;</span>
+<span class="ln">3</span>    <span class="p">&lt;</span><span class="nt">app-footer</span> <span class="na">v-on:message</span><span class="o">=</span><span class="s">&#34;bindData&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">app-footer</span><span class="p">&gt;</span>
 <span class="ln">4</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="c1">//footer 컴포넌트
 </span><span class="ln"> 2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">footer</span> <span class="o">=</span> <span class="p">{</span>
@@ -478,8 +479,8 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
 <span class="ln"> 5</span>        <span class="nx">passData</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 <span class="ln"> 6</span>            <span class="k">this</span><span class="p">.</span><span class="nx">$emit</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="s1">&#39;footer-data&#39;</span><span class="p">);</span> <span class="c1">//해당 이벤트에 파라미터 전달
 </span><span class="ln"> 7</span><span class="c1"></span>        <span class="p">}</span>
-<span class="ln"> 8</span>    <span class="p">},</span>
-<span class="ln"> 9</span><span class="p">}</span>
+<span class="ln"> 8</span>    <span class="p">}</span>
+<span class="ln"> 9</span><span class="p">};</span>
 <span class="ln">10</span>
 <span class="ln">11</span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
 <span class="ln">12</span>    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#body&#39;</span><span class="p">,</span>
@@ -494,16 +495,16 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
 <span class="ln">21</span>        <span class="nx">bindData</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">param</span><span class="p">)</span> <span class="p">{</span>
 <span class="ln">22</span>            <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">param</span><span class="p">;</span>
 <span class="ln">23</span>        <span class="p">}</span>
-<span class="ln">24</span>    <span class="p">},</span>
+<span class="ln">24</span>    <span class="p">}</span>
 <span class="ln">25</span><span class="p">});</span>
 </code></pre></div><p>이제 부모의 message는 하위 컴포넌트에서 전달한 데이터로 변경이 되어있다.<br>
 <code>props</code>속성을 통해 접근하면된다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">app-header</span> <span class="na">v-bind:headerdata</span><span class="o">=</span><span class="s">&#34;message&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">app-header</span><span class="p">&gt;</span>
 </code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="c1">//header 컴포넌트
 </span><span class="ln">2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">header</span> <span class="o">=</span> <span class="p">{</span>
-<span class="ln">3</span>    <span class="nx">template</span> <span class="o">:</span> <span class="s1">&#39;&lt;h2&gt;Header&lt;/h2&gt;&#39;</span><span class="p">,</span>
-<span class="ln">4</span>    <span class="nx">props</span> <span class="o">:</span> <span class="p">[</span><span class="s1">&#39;headerdata&#39;</span><span class="p">]</span>
-<span class="ln">5</span><span class="p">}</span>
+<span class="ln">3</span>    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;h2&gt;Header&lt;/h2&gt;&#39;</span><span class="p">,</span>
+<span class="ln">4</span>    <span class="nx">props</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;headerdata&#39;</span><span class="p">]</span>
+<span class="ln">5</span><span class="p">};</span>
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><a class="link" href="https://vuejs.org/v2/api/#vm-emit"  target="_blank" rel="noopener"
@@ -609,7 +610,7 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
         
 
         <div class="article-details">
-            <h2 class="article-title">Vue 코드 포맷팅</h2>
+            <h2 class="article-title">[Vue] Vue 코드 포맷팅</h2>
         </div>
     </a>
 </article>
@@ -627,7 +628,7 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
         
 
         <div class="article-details">
-            <h2 class="article-title">Vue에 Tailwind CSS 적용하기</h2>
+            <h2 class="article-title">[Vue] Vue에 Tailwind CSS 적용하기</h2>
         </div>
     </a>
 </article>
@@ -645,7 +646,7 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
         
 
         <div class="article-details">
-            <h2 class="article-title">computed와 Watch</h2>
+            <h2 class="article-title">[Vue] computed와 Watch</h2>
         </div>
     </a>
 </article>
@@ -663,7 +664,7 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
         
 
         <div class="article-details">
-            <h2 class="article-title">Vue 라우터 개념 및 사용방법</h2>
+            <h2 class="article-title">[Vue] 라우터 개념 및 사용방법</h2>
         </div>
     </a>
 </article>
@@ -681,7 +682,7 @@ vue에서는 <code>v-bind</code>디렉티브로 속성에 접근할 수 있는�
         
 
         <div class="article-details">
-            <h2 class="article-title">외부 Vue 프로젝트 불러오기</h2>
+            <h2 class="article-title">[Vue] 외부 Vue 프로젝트 불러오기</h2>
         </div>
     </a>
 </article>

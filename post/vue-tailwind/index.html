@@ -15,17 +15,17 @@
 </script>
 
         <meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='CSS 프레임워크 TailWind 소개와 Vue에 연동해보기'><title>Vue에 Tailwind CSS 적용하기</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='CSS 프레임워크 TailWind 소개와 Vue에 연동해보기'><title>[Vue] Vue에 Tailwind CSS 적용하기</title>
 <link rel='canonical' href='https://jinyisland.kr/post/vue-tailwind/'>
 <link rel="icon" href="/favicon.png" type="image/png">
 
 <link rel="stylesheet" href="/scss/style.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='Vue에 Tailwind CSS 적용하기'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='[Vue] Vue에 Tailwind CSS 적용하기'>
 <meta property='og:description' content='CSS 프레임워크 TailWind 소개와 Vue에 연동해보기'>
 <meta property='og:url' content='https://jinyisland.kr/post/vue-tailwind/'>
 <meta property='og:site_name' content='Jiny'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='frontend' /><meta property='article:tag' content='css' /><meta property='article:tag' content='library' /><meta property='article:published_time' content='2021-10-21T23:05:04&#43;09:00'/><meta property='article:modified_time' content='2021-10-21T23:05:04&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/vue/vue.png' />
-<meta name="twitter:title" content="Vue에 Tailwind CSS 적용하기">
+<meta name="twitter:title" content="[Vue] Vue에 Tailwind CSS 적용하기">
 <meta name="twitter:description" content="CSS 프레임워크 TailWind 소개와 Vue에 연동해보기"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jinyisland.kr/../../assets/vue/vue.png' /><style>
     .article-content code {
@@ -330,7 +330,7 @@
     
 
     <h2 class="article-title">
-        <a href="/post/vue-tailwind/">Vue에 Tailwind CSS 적용하기</a>
+        <a href="/post/vue-tailwind/">[Vue] Vue에 Tailwind CSS 적용하기</a>
     </h2>
 
     
@@ -374,19 +374,19 @@ tailwind 기본 사용법은 태그 내에 클래스로 스타일을 입히는 �
 <p><code>tailwind.config.js</code>파일을 생성해 사용자가 원하는대로 다시 구성할 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="c1">//사용자 지정 breack point
 </span><span class="ln"> 2</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-<span class="ln"> 3</span>  <span class="nx">theme</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 4</span>    <span class="nx">screens</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 5</span>      <span class="s1">&#39;sm&#39;</span><span class="o">:</span> <span class="s1">&#39;640px&#39;</span><span class="p">,</span>
-<span class="ln"> 6</span>      <span class="s1">&#39;md&#39;</span><span class="o">:</span> <span class="s1">&#39;768px&#39;</span><span class="p">,</span>
-<span class="ln"> 7</span>      <span class="s1">&#39;lg&#39;</span><span class="o">:</span> <span class="s1">&#39;1024px&#39;</span><span class="p">,</span>
-<span class="ln"> 8</span>      <span class="s1">&#39;xl&#39;</span><span class="o">:</span> <span class="s1">&#39;1280px&#39;</span><span class="p">,</span>
-<span class="ln"> 9</span>      <span class="s1">&#39;2xl&#39;</span><span class="o">:</span> <span class="s1">&#39;1536px&#39;</span><span class="p">,</span>
-<span class="ln">10</span>    <span class="p">}</span>
-<span class="ln">11</span>  <span class="p">}</span>
-<span class="ln">12</span><span class="p">}</span>
+<span class="ln"> 3</span>    <span class="nx">theme</span><span class="o">:</span> <span class="p">{</span>
+<span class="ln"> 4</span>        <span class="nx">screens</span><span class="o">:</span> <span class="p">{</span>
+<span class="ln"> 5</span>            <span class="nx">sm</span><span class="o">:</span> <span class="s1">&#39;640px&#39;</span><span class="p">,</span>
+<span class="ln"> 6</span>            <span class="nx">md</span><span class="o">:</span> <span class="s1">&#39;768px&#39;</span><span class="p">,</span>
+<span class="ln"> 7</span>            <span class="nx">lg</span><span class="o">:</span> <span class="s1">&#39;1024px&#39;</span><span class="p">,</span>
+<span class="ln"> 8</span>            <span class="nx">xl</span><span class="o">:</span> <span class="s1">&#39;1280px&#39;</span><span class="p">,</span>
+<span class="ln"> 9</span>            <span class="s1">&#39;2xl&#39;</span><span class="o">:</span> <span class="s1">&#39;1536px&#39;</span>
+<span class="ln">10</span>        <span class="p">}</span>
+<span class="ln">11</span>    <span class="p">}</span>
+<span class="ln">12</span><span class="p">};</span>
 </code></pre></div></li>
 </ol>
-<h2 id="tailwindcss--설치">tailwindCSS  설치</h2>
+<h2 id="tailwindcss-설치">tailwindCSS 설치</h2>
 <p>먼저 tailwindcss 의존한 라이브러리들을 설치한다. 참고로 최소 node 환경은 <code>12.13.0</code>이상이다.<br>
 vue 프로젝트를 먼저 생성하고, tailwind-css를 설치한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
@@ -398,20 +398,20 @@ vue 프로젝트를 먼저 생성하고, tailwind-css를 설치한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npx tailwindcss init -p
 </code></pre></div><p>공식 가이드에 따르면, 사용하지 않는 스타일 용량 최적화를 위해 <code>purge</code>옵션은 작성하라고 권고하고 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="c1">// tailwind.config.js
-</span><span class="ln"> 2</span><span class="c1"></span>  <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class="ln"> 2</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
 <span class="ln"> 3</span>    <span class="nx">purge</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;./index.html&#39;</span><span class="p">,</span> <span class="s1">&#39;./src/**/*.{vue,js,ts,jsx,tsx}&#39;</span><span class="p">],</span>
 <span class="ln"> 4</span>    <span class="nx">darkMode</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// or &#39;media&#39; or &#39;class&#39;
 </span><span class="ln"> 5</span><span class="c1"></span>    <span class="nx">theme</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 6</span>      <span class="nx">extend</span><span class="o">:</span> <span class="p">{},</span>
+<span class="ln"> 6</span>        <span class="nx">extend</span><span class="o">:</span> <span class="p">{}</span>
 <span class="ln"> 7</span>    <span class="p">},</span>
 <span class="ln"> 8</span>    <span class="nx">variants</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 9</span>      <span class="nx">extend</span><span class="o">:</span> <span class="p">{},</span>
+<span class="ln"> 9</span>        <span class="nx">extend</span><span class="o">:</span> <span class="p">{}</span>
 <span class="ln">10</span>    <span class="p">},</span>
-<span class="ln">11</span>    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[],</span>
-<span class="ln">12</span>  <span class="p">}</span>
+<span class="ln">11</span>    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[]</span>
+<span class="ln">12</span><span class="p">};</span>
 </code></pre></div><p>이제 설정한 tailwind css파일을 전역으로 import 해주면 된다.<br>
 <code>main.js</code>에 import해주면 사용준비는 끝, 이제 문서를 보면서 스타일링을 해주면 된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">import</span> <span class="p">{</span><span class="nx">createApp</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
 <span class="ln">2</span><span class="kr">import</span> <span class="s1">&#39;tailwindcss/tailwind.css&#39;</span><span class="p">;</span>
 <span class="ln">3</span><span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./App.vue&#39;</span><span class="p">;</span>
 <span class="ln">4</span>
@@ -528,7 +528,7 @@ vue 프로젝트를 먼저 생성하고, tailwind-css를 설치한다.</p>
         
 
         <div class="article-details">
-            <h2 class="article-title">Vue 코드 포맷팅</h2>
+            <h2 class="article-title">[Vue] Vue 코드 포맷팅</h2>
         </div>
     </a>
 </article>
@@ -546,7 +546,7 @@ vue 프로젝트를 먼저 생성하고, tailwind-css를 설치한다.</p>
         
 
         <div class="article-details">
-            <h2 class="article-title">Vue 라우터 개념 및 사용방법</h2>
+            <h2 class="article-title">[Vue] 라우터 개념 및 사용방법</h2>
         </div>
     </a>
 </article>
@@ -564,7 +564,7 @@ vue 프로젝트를 먼저 생성하고, tailwind-css를 설치한다.</p>
         
 
         <div class="article-details">
-            <h2 class="article-title">Vuex 개념과 실제 사용해보기!</h2>
+            <h2 class="article-title">[Vue] Vuex 개념과 실제 사용해보기!</h2>
         </div>
     </a>
 </article>
@@ -582,7 +582,7 @@ vue 프로젝트를 먼저 생성하고, tailwind-css를 설치한다.</p>
         
 
         <div class="article-details">
-            <h2 class="article-title">computed와 Watch</h2>
+            <h2 class="article-title">[Vue] computed와 Watch</h2>
         </div>
     </a>
 </article>
@@ -600,7 +600,7 @@ vue 프로젝트를 먼저 생성하고, tailwind-css를 설치한다.</p>
         
 
         <div class="article-details">
-            <h2 class="article-title">외부 Vue 프로젝트 불러오기</h2>
+            <h2 class="article-title">[Vue] 외부 Vue 프로젝트 불러오기</h2>
         </div>
     </a>
 </article>

@@ -29,7 +29,7 @@ CDN을 활용한 방법 구글 폰트 등과 같이 cdn을 제공해주는 사�
     </item>
     
     <item>
-      <title>Vue 코드 포맷팅</title>
+      <title>[Vue] Vue 코드 포맷팅</title>
       <link>https://jinyisland.kr/post/prettier/</link>
       <pubDate>Mon, 20 Dec 2021 23:49:00 +0900</pubDate>
       
@@ -38,7 +38,7 @@ CDN을 활용한 방법 구글 폰트 등과 같이 cdn을 제공해주는 사�
     </item>
     
     <item>
-      <title>Vue에 Tailwind CSS 적용하기</title>
+      <title>[Vue] Vue에 Tailwind CSS 적용하기</title>
       <link>https://jinyisland.kr/post/vue-tailwind/</link>
       <pubDate>Thu, 21 Oct 2021 23:05:04 +0900</pubDate>
       
@@ -50,7 +50,7 @@ autoprefixer를 내장해서 사용하고 있기 때문에, 브라우저별로 �
     </item>
     
     <item>
-      <title>computed와 Watch</title>
+      <title>[Vue] computed와 Watch</title>
       <link>https://jinyisland.kr/post/computed-watch/</link>
       <pubDate>Sat, 09 Oct 2021 23:17:34 +0900</pubDate>
       
@@ -60,7 +60,7 @@ computed 사용법은 아래 코드를 참고, computed속성 내에 메서드�
     </item>
     
     <item>
-      <title>Vue 라우터 개념 및 사용방법</title>
+      <title>[Vue] 라우터 개념 및 사용방법</title>
       <link>https://jinyisland.kr/post/vue-router/</link>
       <pubDate>Mon, 23 Aug 2021 22:54:41 +0900</pubDate>
       
@@ -74,7 +74,7 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
     </item>
     
     <item>
-      <title>외부 Vue 프로젝트 불러오기</title>
+      <title>[Vue] 외부 Vue 프로젝트 불러오기</title>
       <link>https://jinyisland.kr/post/vue-import/</link>
       <pubDate>Sun, 18 Jul 2021 23:09:02 +0900</pubDate>
       
@@ -84,7 +84,7 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
     </item>
     
     <item>
-      <title>Vue 컴포넌트에 대한 개념</title>
+      <title>[Vue] 컴포넌트에 대한 개념</title>
       <link>https://jinyisland.kr/post/vue-component/</link>
       <pubDate>Thu, 01 Jul 2021 21:27:40 +0900</pubDate>
       
@@ -97,7 +97,7 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
     </item>
     
     <item>
-      <title>Vue 설치하기 및 프로젝트 구조</title>
+      <title>[Vue] Vue 설치하기 및 프로젝트 구조</title>
       <link>https://jinyisland.kr/post/vue-start/</link>
       <pubDate>Wed, 30 Jun 2021 20:20:49 +0900</pubDate>
       
@@ -106,7 +106,7 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
 vue 프로젝트 도입시 전체적인 웹애플레이케이션을 관리하려면 지금 소개하는 cli패키지를 설치하면 되고,
 별도의 페이지에서 국한적으로 사용하려면 cdn방식으로도 사용할 수 있다.
 CDN 방식을 사용하려면 아래 소스를 참고하면 된다.
-1&amp;lt;head&amp;gt; 2 &amp;lt;!-- Vue-CDN --&amp;gt; 3 &amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 4&amp;lt;/head&amp;gt; 5&amp;lt;body&amp;gt; 6 &amp;lt;!-- template --&amp;gt; 7 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; 8 &amp;lt;app-footer&amp;gt;&amp;lt;/app-footer&amp;gt; 9 &amp;lt;/div&amp;gt; 10&amp;lt;/body&amp;gt; 11&amp;lt;script&amp;gt; 12 //vue 인스턴스 생성 13 new Vue({ 14 el: &amp;#39;#app&amp;#39;, 15 components: { 16 &amp;#39;app-footer&amp;#39; : { 17 template : &amp;#39;&amp;lt;footer&amp;gt;Footer!</description>
+1&amp;lt;head&amp;gt; 2 &amp;lt;!-- Vue-CDN --&amp;gt; 3 &amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 4&amp;lt;/head&amp;gt; 5&amp;lt;body&amp;gt; 6 &amp;lt;!-- template --&amp;gt; 7 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; 8 &amp;lt;app-footer&amp;gt;&amp;lt;/app-footer&amp;gt; 9 &amp;lt;/div&amp;gt; 10&amp;lt;/body&amp;gt; 11&amp;lt;script&amp;gt; 12 //vue 인스턴스 생성 13 new Vue({ 14 el: &amp;#39;#app&amp;#39;, 15 components: { 16 &amp;#39;app-footer&amp;#39;: { 17 template: &amp;#39;&amp;lt;footer&amp;gt;Footer!</description>
     </item>
     
   </channel>

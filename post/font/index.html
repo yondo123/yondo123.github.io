@@ -24,10 +24,10 @@
 <meta property='og:description' content='font face와 cdn을 사용해 웹 폰트 적용해보기'>
 <meta property='og:url' content='https://jinyisland.kr/post/font/'>
 <meta property='og:site_name' content='Jiny'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='frontend' /><meta property='article:tag' content='font' /><meta property='article:published_time' content='2022-01-17T23:18:33&#43;09:00'/><meta property='article:modified_time' content='2022-01-17T23:18:33&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='frontend' /><meta property='article:tag' content='font' /><meta property='article:published_time' content='2022-01-17T23:18:33&#43;09:00'/><meta property='article:modified_time' content='2022-01-17T23:18:33&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/style/style.png' />
 <meta name="twitter:title" content="HTML에 폰트 적용하는 방법">
 <meta name="twitter:description" content="font face와 cdn을 사용해 웹 폰트 적용해보기"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><style>
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/style/style.png' /><style>
     .article-content code {
         word-wrap: break-word;
     }
@@ -383,22 +383,20 @@
 </ul>
 <div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="ln"> 1</span><span class="c">/*fonts.css*/</span>
 <span class="ln"> 2</span><span class="p">@</span><span class="k">font-face</span> <span class="p">{</span>
-<span class="ln"> 3</span>    <span class="nt">font-family</span> <span class="o">:</span> <span class="s2">&#34;font-name&#34;</span><span class="o">;</span> <span class="c">/*font 이름*/</span>
-<span class="ln"> 4</span>    <span class="nt">font-style</span> <span class="o">:</span> <span class="s2">&#34;normal&#34;</span><span class="o">;</span> <span class="c">/* font 스타일 정의 (기울임, 일반) */</span>
-<span class="ln"> 5</span>    <span class="nt">font-weight</span> <span class="o">:</span> <span class="nt">400</span><span class="o">;</span> <span class="c">/* font 굵기 정의 */</span>
-<span class="ln"> 6</span>        <span class="c">/* 브라우저&amp;디바이스 환경에 따른 font 파일 위치 정의 */</span>
+<span class="ln"> 3</span>    <span class="nt">font-family</span><span class="o">:</span> <span class="s1">&#39;font-name&#39;</span><span class="o">;</span> <span class="c">/*font 이름*/</span>
+<span class="ln"> 4</span>    <span class="nt">font-style</span><span class="o">:</span> <span class="s1">&#39;normal&#39;</span><span class="o">;</span> <span class="c">/* font 스타일 정의 (기울임, 일반) */</span>
+<span class="ln"> 5</span>    <span class="nt">font-weight</span><span class="o">:</span> <span class="nt">400</span><span class="o">;</span> <span class="c">/* font 굵기 정의 */</span>
+<span class="ln"> 6</span>    <span class="c">/* 브라우저&amp;디바이스 환경에 따른 font 파일 위치 정의 */</span>
 <span class="ln"> 7</span>    <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.eot&#39;</span><span class="o">);</span> <span class="c">/* IE9 Compat Modes */</span>
-<span class="ln"> 8</span>    <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.eot?#iefix&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;embedded-opentype&#39;</span><span class="o">),</span> <span class="c">/* IE6-IE8 */</span>
-<span class="ln"> 9</span>        <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.woff2&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;woff2&#39;</span><span class="o">),</span> <span class="c">/*  Modern Browsers */</span>
-<span class="ln">10</span>        <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.woff&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;woff&#39;</span><span class="o">),</span> <span class="c">/* Modern Browsers */</span>
-<span class="ln">11</span>        <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.ttf&#39;</span><span class="o">)</span>  <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;truetype&#39;</span><span class="o">),</span> <span class="c">/* Safari, Android, iOS */</span>
-<span class="ln">12</span>        <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.svg#svgFontName&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;svg&#39;</span><span class="o">);</span> <span class="c">/* Legacy iOS */</span>
-<span class="ln">13</span><span class="p">}</span>
-<span class="ln">14</span>
-<span class="ln">15</span><span class="c">/* 폰트 적용 */</span>
-<span class="ln">16</span><span class="nt">body</span> <span class="p">{</span>
-<span class="ln">17</span>    <span class="k">font-family</span> <span class="p">:</span> <span class="s1">&#39;font-name&#39;</span>
-<span class="ln">18</span><span class="p">}</span>
+<span class="ln"> 8</span>    <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.eot?#iefix&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;embedded-opentype&#39;</span><span class="o">),</span> <span class="c">/* IE6-IE8 */</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.woff2&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;woff2&#39;</span><span class="o">),</span>
+<span class="ln"> 9</span>        <span class="c">/*  Modern Browsers */</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.woff&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;woff&#39;</span><span class="o">),</span> <span class="c">/* Modern Browsers */</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.ttf&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;truetype&#39;</span><span class="o">),</span>
+<span class="ln">10</span>        <span class="c">/* Safari, Android, iOS */</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.svg#svgFontName&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;svg&#39;</span><span class="o">);</span> <span class="c">/* Legacy iOS */</span>
+<span class="ln">11</span><span class="p">}</span>
+<span class="ln">12</span>
+<span class="ln">13</span><span class="c">/* 폰트 적용 */</span>
+<span class="ln">14</span><span class="nt">body</span> <span class="p">{</span>
+<span class="ln">15</span>    <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;font-name&#39;</span><span class="p">;</span>
+<span class="ln">16</span><span class="p">}</span>
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong><a class="link" href="https://www.w3schools.com/css/css3_fonts.asp"  target="_blank" rel="noopener"

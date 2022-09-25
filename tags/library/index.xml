@@ -18,7 +18,7 @@ SPA의 단일 페이지라는 이점을 살려, MPA(Multi Page Application) 환�
     </item>
     
     <item>
-      <title>Vue 코드 포맷팅</title>
+      <title>[Vue] Vue 코드 포맷팅</title>
       <link>https://jinyisland.kr/post/prettier/</link>
       <pubDate>Mon, 20 Dec 2021 23:49:00 +0900</pubDate>
       
@@ -27,7 +27,7 @@ SPA의 단일 페이지라는 이점을 살려, MPA(Multi Page Application) 환�
     </item>
     
     <item>
-      <title>Vuex 개념과 실제 사용해보기!</title>
+      <title>[Vue] Vuex 개념과 실제 사용해보기!</title>
       <link>https://jinyisland.kr/post/vuex/</link>
       <pubDate>Fri, 03 Dec 2021 16:10:08 +0900</pubDate>
       
@@ -38,7 +38,7 @@ Vuex를 사용하면 좋은 점 기본적으로 vue 생태계에서 컴포넌트
     </item>
     
     <item>
-      <title>Vue에 Tailwind CSS 적용하기</title>
+      <title>[Vue] Vue에 Tailwind CSS 적용하기</title>
       <link>https://jinyisland.kr/post/vue-tailwind/</link>
       <pubDate>Thu, 21 Oct 2021 23:05:04 +0900</pubDate>
       
@@ -50,7 +50,7 @@ autoprefixer를 내장해서 사용하고 있기 때문에, 브라우저별로 �
     </item>
     
     <item>
-      <title>Vue 라우터 개념 및 사용방법</title>
+      <title>[Vue] 라우터 개념 및 사용방법</title>
       <link>https://jinyisland.kr/post/vue-router/</link>
       <pubDate>Mon, 23 Aug 2021 22:54:41 +0900</pubDate>
       
