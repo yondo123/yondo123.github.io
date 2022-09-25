@@ -6,22 +6,31 @@
     <description>Recent content in Tags on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Aug 2022 22:08:24 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Sep 2022 16:39:39 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>frontend</title>
+      <link>https://jinyisland.kr/tags/frontend/</link>
+      <pubDate>Sun, 25 Sep 2022 16:39:39 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/tags/frontend/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sass</title>
+      <link>https://jinyisland.kr/tags/sass/</link>
+      <pubDate>Sun, 25 Sep 2022 16:39:39 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/tags/sass/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>git</title>
       <link>https://jinyisland.kr/tags/git/</link>
       <pubDate>Thu, 11 Aug 2022 22:08:24 +0900</pubDate>
       
       <guid>https://jinyisland.kr/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>frontend</title>
-      <link>https://jinyisland.kr/tags/frontend/</link>
-      <pubDate>Wed, 22 Jun 2022 23:23:52 +0900</pubDate>
-      
-      <guid>https://jinyisland.kr/tags/frontend/</guid>
       <description></description>
     </item>
     
