@@ -3,19 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://jinyisland.kr/content/style/what-sass/</loc>
+    <loc>https://jinyisland.kr/post/what-sass/</loc>
     <lastmod>2022-09-25T16:39:39+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/categories/</loc>
-    <lastmod>2022-09-25T16:39:39+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/content/</loc>
     <lastmod>2022-09-25T16:39:39+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -28,6 +22,12 @@
   
   <url>
     <loc>https://jinyisland.kr/</loc>
+    <lastmod>2022-09-25T16:39:39+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/</loc>
     <lastmod>2022-09-25T16:39:39+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -64,12 +64,6 @@
   
   <url>
     <loc>https://jinyisland.kr/tags/git/</loc>
-    <lastmod>2022-08-11T22:08:24+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/post/</loc>
     <lastmod>2022-08-11T22:08:24+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>

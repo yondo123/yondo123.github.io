@@ -9,10 +9,10 @@
     <lastBuildDate>Sun, 25 Sep 2022 16:39:39 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/style/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Sass] Sass 설치 및 기본 문법 소개</title>
-      <link>https://jinyisland.kr/content/style/what-sass/</link>
+      <link>https://jinyisland.kr/post/what-sass/</link>
       <pubDate>Sun, 25 Sep 2022 16:39:39 +0900</pubDate>
       
-      <guid>https://jinyisland.kr/content/style/what-sass/</guid>
+      <guid>https://jinyisland.kr/post/what-sass/</guid>
       <description>Sass를 사용해야 할 이유 CSS만 주구장창 사용하다가 한달동안 Sass를 스터디하였는데 직접 사용해보니 왜 Sass를 사용하면 좋은지 정리를 해보았다.
 1. 규모가 크고 복잡한 웹 어플리케이션에서의 효율적인 구조화
 Sass에서 제공하는 여러 내장 함수 및 믹스인, 함수를 사용해 공통 스타일 작성에 더욱 효율적이다.
