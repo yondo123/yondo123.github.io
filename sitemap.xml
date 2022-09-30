@@ -3,49 +3,55 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://jinyisland.kr/post/what-sass/</loc>
-    <lastmod>2022-09-25T16:39:39+09:00</lastmod>
+    <loc>https://jinyisland.kr/post/sass-mixin/</loc>
+    <lastmod>2022-09-30T23:45:32+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/categories/</loc>
-    <lastmod>2022-09-25T16:39:39+09:00</lastmod>
+    <lastmod>2022-09-30T23:45:32+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/tags/frontend/</loc>
-    <lastmod>2022-09-25T16:39:39+09:00</lastmod>
+    <lastmod>2022-09-30T23:45:32+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/</loc>
-    <lastmod>2022-09-25T16:39:39+09:00</lastmod>
+    <lastmod>2022-09-30T23:45:32+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/post/</loc>
-    <lastmod>2022-09-25T16:39:39+09:00</lastmod>
+    <lastmod>2022-09-30T23:45:32+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/tags/sass/</loc>
-    <lastmod>2022-09-25T16:39:39+09:00</lastmod>
+    <lastmod>2022-09-30T23:45:32+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/categories/style/</loc>
-    <lastmod>2022-09-25T16:39:39+09:00</lastmod>
+    <lastmod>2022-09-30T23:45:32+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/tags/</loc>
+    <lastmod>2022-09-30T23:45:32+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/what-sass/</loc>
     <lastmod>2022-09-25T16:39:39+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
