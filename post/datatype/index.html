@@ -24,10 +24,10 @@
 <meta property='og:description' content='자바스크립트에서 취급하는 자료형 정리'>
 <meta property='og:url' content='https://jinyisland.kr/post/datatype/'>
 <meta property='og:site_name' content='Jiny'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2021-08-03T21:38:58&#43;09:00'/><meta property='article:modified_time' content='2021-08-03T21:38:58&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2021-08-03T21:38:58&#43;09:00'/><meta property='article:modified_time' content='2021-08-03T21:38:58&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/thumb/js.png' />
 <meta name="twitter:title" content="자바스크립트에서의 데이터 타입">
 <meta name="twitter:description" content="자바스크립트에서 취급하는 자료형 정리"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/thumb/js.png' /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
@@ -350,15 +350,17 @@
 변수에 접근할 때 해당 변수에 저장된 <code>실제 값</code>을 조작한다.<br>
 기본 값의 유형을 확인하려면 <code>typeof</code>연산자를 사용해서 확인할 수 있다.<br>
 자바스크립트에서는 배열과 객체 모두 <code>object</code>로 취급한다는 사실을 꼭 잊지말자.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">typeNumeric</span> <span class="o">=</span> <span class="k">typeof</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//number
-</span><span class="ln">2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">typeBoolean</span> <span class="o">=</span> <span class="k">typeof</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">//boolean
-</span><span class="ln">3</span><span class="c1"></span><span class="kr">const</span> <span class="nx">typeString</span> <span class="o">=</span> <span class="k">typeof</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span> <span class="c1">//string
-</span><span class="ln">4</span><span class="c1"></span><span class="kr">const</span> <span class="nx">typeFunction</span> <span class="o">=</span> <span class="k">typeof</span> <span class="kd">function</span><span class="p">(){</span> <span class="k">return</span><span class="p">;}</span> <span class="c1">//function
-</span><span class="ln">5</span><span class="c1"></span><span class="kr">const</span> <span class="nx">typeUndefined</span> <span class="o">=</span> <span class="k">typeof</span> <span class="kc">undefined</span><span class="p">;</span> <span class="c1">//undefined
-</span><span class="ln">6</span><span class="c1"></span>
-<span class="ln">7</span><span class="kr">const</span> <span class="nx">typeObject</span> <span class="o">=</span> <span class="k">typeof</span> <span class="p">{};</span> <span class="c1">//object
-</span><span class="ln">8</span><span class="c1"></span><span class="kr">const</span> <span class="nx">typeArray</span> <span class="o">=</span> <span class="k">typeof</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">];</span> <span class="c1">//object
-</span><span class="ln">9</span><span class="c1"></span><span class="kr">const</span> <span class="nx">typeNull</span> <span class="o">=</span> <span class="k">typeof</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">//object
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">typeNumeric</span> <span class="o">=</span> <span class="k">typeof</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//number
+</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">typeBoolean</span> <span class="o">=</span> <span class="k">typeof</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">//boolean
+</span><span class="ln"> 3</span><span class="c1"></span><span class="kr">const</span> <span class="nx">typeString</span> <span class="o">=</span> <span class="k">typeof</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span> <span class="c1">//string
+</span><span class="ln"> 4</span><span class="c1"></span><span class="kr">const</span> <span class="nx">typeFunction</span> <span class="o">=</span> <span class="k">typeof</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="ln"> 5</span>    <span class="k">return</span><span class="p">;</span>
+<span class="ln"> 6</span><span class="p">};</span> <span class="c1">//function
+</span><span class="ln"> 7</span><span class="c1"></span><span class="kr">const</span> <span class="nx">typeUndefined</span> <span class="o">=</span> <span class="k">typeof</span> <span class="kc">undefined</span><span class="p">;</span> <span class="c1">//undefined
+</span><span class="ln"> 8</span><span class="c1"></span>
+<span class="ln"> 9</span><span class="kr">const</span> <span class="nx">typeObject</span> <span class="o">=</span> <span class="k">typeof</span> <span class="p">{};</span> <span class="c1">//object
+</span><span class="ln">10</span><span class="c1"></span><span class="kr">const</span> <span class="nx">typeArray</span> <span class="o">=</span> <span class="k">typeof</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">];</span> <span class="c1">//object
+</span><span class="ln">11</span><span class="c1"></span><span class="kr">const</span> <span class="nx">typeNull</span> <span class="o">=</span> <span class="k">typeof</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">//object
 </span></code></pre></div><h3 id="참조타입">참조타입</h3>
 <p>원시 값과는 달리 해당 객체의 <code>참조</code>에 대해서 작업한다.<br>
 즉, 참조 값을 재할당하면 <strong>원래의 변수에 저장된 값도 새 변수의 위치로 복사</strong>된다.</p>
@@ -371,10 +373,10 @@
 </span></code></pre></div><p>그럼 객체와 배열을 어떻게 판별할 수 있을까?</p>
 <h4 id="배열-판별하기">배열 판별하기</h4>
 <p>배열은 <code>isArray()</code>메서드로 배열 타입임을 확인할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>  <span class="c1">// true
-</span><span class="ln">2</span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">({</span><span class="nx">foo</span><span class="o">:</span> <span class="mi">123</span><span class="p">});</span> <span class="c1">// false
-</span><span class="ln">3</span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="s1">&#39;foobar&#39;</span><span class="p">);</span>   <span class="c1">// false
-</span><span class="ln">4</span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="kc">undefined</span><span class="p">);</span>  <span class="c1">// false
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span> <span class="c1">// true
+</span><span class="ln">2</span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">({</span> <span class="nx">foo</span><span class="o">:</span> <span class="mi">123</span> <span class="p">});</span> <span class="c1">// false
+</span><span class="ln">3</span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="s1">&#39;foobar&#39;</span><span class="p">);</span> <span class="c1">// false
+</span><span class="ln">4</span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="kc">undefined</span><span class="p">);</span> <span class="c1">// false
 </span></code></pre></div><h4 id="객체-판별하기">객체 판별하기</h4>
 <p>자바스크립트에서는 객체를 판별하는것이 까다롭다.<br>
 유사객체 타입이 많기 때문인데.. <code>null</code>타입과 <code>array</code>타입을 걸러내야 한다.</p>
@@ -382,12 +384,12 @@
 </span><span class="ln"> 2</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">detectObject</span><span class="p">([]));</span> <span class="c1">//false
 </span><span class="ln"> 3</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">detectObject</span><span class="p">(</span><span class="kc">null</span><span class="p">));</span> <span class="c1">//false
 </span><span class="ln"> 4</span><span class="c1"></span>
-<span class="ln"> 5</span><span class="kd">function</span> <span class="nx">detectObject</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
-<span class="ln"> 6</span> <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">===</span> <span class="s1">&#39;object&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span> <span class="o">!==</span><span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">value</span><span class="p">)){</span>
-<span class="ln"> 7</span>    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-<span class="ln"> 8</span> <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-<span class="ln"> 9</span>     <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-<span class="ln">10</span> <span class="p">}</span>
+<span class="ln"> 5</span><span class="kd">function</span> <span class="nx">detectObject</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 6</span>    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">===</span> <span class="s1">&#39;object&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span> <span class="o">!==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+<span class="ln"> 7</span>        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="ln"> 8</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="ln">10</span>    <span class="p">}</span>
 <span class="ln">11</span><span class="p">}</span>
 </code></pre></div><h2 id="원시타입-자료형">원시타입 자료형</h2>
 <h3 id="number">Number</h3>
@@ -411,7 +413,7 @@ concat 메서드등 문자열도 배열에서 제공하는 여러 메서드들�
 <p>자바스크립트에서 <strong>값이 비어있음</strong>을 나타내는 자료형이다.<br>
 <code>undefined</code>는 할당되지 않은 변수의 초기값이며 변수 자체의 값 또한 undefined 이다.<br>
 null을 확인하고자 할 때 <code>typeof</code>의 결과는 object이기 때문에 일치 연산자(===)를 사용해야만 한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kd">var</span> <span class="nx">nullChk</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> 
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kd">var</span> <span class="nx">nullChk</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="ln">2</span>
 <span class="ln">3</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">nullChk</span> <span class="o">==</span> <span class="kc">null</span><span class="p">);</span> <span class="c1">//false
 </span><span class="ln">4</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nullChk</span> <span class="o">===</span> <span class="kc">null</span><span class="p">);</span> <span class="c1">//true
@@ -429,43 +431,44 @@ null을 확인하고자 할 때 <code>typeof</code>의 결과는 object이기 �
 <p><strong>for</strong><br>
 지정한 길이(array.length) 만큼 반복하며 요소에 접근할 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;mango&#39;</span><span class="p">];</span>
-<span class="ln">2</span><span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">fruits</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-<span class="ln">3</span>	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fruits</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
-<span class="ln">4</span><span class="p">}</span> 
+<span class="ln">2</span><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">fruits</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">3</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fruits</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+<span class="ln">4</span><span class="p">}</span>
 </code></pre></div><p><strong>forEach()</strong><br>
 배열의 각 요소에 한번씩 callback을 수행한다. <code>(breack 불가)</code><br>
 초기화되지 않은 원소들은 건너뛴다.<br>
 배열의 사본을 생성하지 않으므로 참조하고 있는 경우 주의가 필요하다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;banana&#39;</span><span class="p">,</span> <span class="s1">&#39;kiwi&#39;</span><span class="p">];</span>
 <span class="ln">2</span><span class="c1">//일반 함수표현식
-</span><span class="ln">3</span><span class="c1"></span><span class="nx">arr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">){</span>
-<span class="ln">4</span>	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+</span><span class="ln">3</span><span class="c1"></span><span class="nx">arr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">4</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
 <span class="ln">5</span><span class="p">});</span>
 </code></pre></div><p><strong>map()</strong><br>
 <code>forEach()</code>와 마찬가지로 요소를 순회하면서 표현식을 수행한다.<br>
 큰 차이는 계산한 값들을 모아 새 배얄로 반환한다.<br>
 성능이 느리긴하지만, 부수효과를 발생시키지 않는다는 장점이 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="c1">// 원소 100개의 배열을 생성하기
-</span><span class="ln">2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">100</span><span class="p">).</span><span class="nx">fill</span><span class="p">().</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">){</span>
-<span class="ln">3</span>    <span class="k">return</span> <span class="nx">index</span><span class="p">;</span>
-<span class="ln">4</span><span class="p">});</span> <span class="c1">//[0~99]
+</span><span class="ln">2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="ln">3</span>    <span class="p">.</span><span class="nx">fill</span><span class="p">()</span>
+<span class="ln">4</span>    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">5</span>        <span class="k">return</span> <span class="nx">index</span><span class="p">;</span>
+<span class="ln">6</span>    <span class="p">});</span> <span class="c1">//[0~99]
 </span></code></pre></div><p>배열을 생성하므로 변수에 담아 사용할 수 있다. (기존 배열에는 영향을 끼치지 않는다.)</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;mango&#39;</span><span class="p">];</span>
-<span class="ln">2</span><span class="kr">const</span> <span class="nx">newFruits</span> <span class="o">=</span> <span class="nx">fruits</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-<span class="ln">3</span>    <span class="k">return</span> <span class="s1">&#39;NEW&#39;</span><span class="o">+</span><span class="nx">value</span><span class="p">;</span>
+<span class="ln">2</span><span class="kr">const</span> <span class="nx">newFruits</span> <span class="o">=</span> <span class="nx">fruits</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="ln">3</span>    <span class="k">return</span> <span class="s1">&#39;NEW&#39;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">;</span>
 <span class="ln">4</span><span class="p">});</span>
-<span class="ln">5</span>
 </code></pre></div><h4 id="유용한-메서드">유용한 메서드</h4>
 <p><strong>splice()</strong><br>
 배열 내부요소에 대해 제거하거나 제거한 위치에 값을 추가할 수 있다. (원본배열 수정)<br>
 return 값은 <code>제거된 요소</code>만 담어서 반환한다. 제거한 요소가 없다면 빈 배열을 반환한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;mango&#39;</span><span class="p">];</span> 
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;mango&#39;</span><span class="p">];</span>
 <span class="ln">2</span><span class="kr">const</span> <span class="nx">newFruits</span> <span class="o">=</span> <span class="nx">fruits</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">fruits</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;kiwi&#39;</span><span class="p">);</span> <span class="c1">//맨끝에 키위 추가
 </span><span class="ln">3</span><span class="c1"></span><span class="kr">const</span> <span class="nx">emptyFruits</span> <span class="o">=</span> <span class="nx">fruits</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">//0번째 인덱스부터 &#39;1&#39;개 요소 제거
 </span><span class="ln">4</span><span class="c1"></span>
 <span class="ln">5</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fruits</span><span class="p">);</span> <span class="c1">//[&#39;kiwi&#39;, &#39;banana&#39;, &#39;mango&#39;]
-</span><span class="ln">6</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">newFruits</span><span class="p">);</span> <span class="c1">//제거한 요소가 없으므로 빈값 [] 
-</span><span class="ln">7</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">emptyFruits</span><span class="p">);</span>  <span class="c1">//제거한 요소 [apple]
+</span><span class="ln">6</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">newFruits</span><span class="p">);</span> <span class="c1">//제거한 요소가 없으므로 빈값 []
+</span><span class="ln">7</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">emptyFruits</span><span class="p">);</span> <span class="c1">//제거한 요소 [apple]
 </span></code></pre></div><p><strong>slice()</strong><br>
 원본 배열을 해치지 않고 얉은 복사본을 생성해 새 배열로 반환해준다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">animals</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ant&#39;</span><span class="p">,</span> <span class="s1">&#39;bison&#39;</span><span class="p">,</span> <span class="s1">&#39;camel&#39;</span><span class="p">,</span> <span class="s1">&#39;duck&#39;</span><span class="p">,</span> <span class="s1">&#39;elephant&#39;</span><span class="p">];</span>
@@ -488,15 +491,15 @@ return 값은 <code>제거된 요소</code>만 담어서 반환한다. 제거한
 <span class="ln"> 5</span>
 <span class="ln"> 6</span><span class="c1">//리터럴 방식
 </span><span class="ln"> 7</span><span class="c1"></span><span class="kr">const</span> <span class="nx">fruits2</span> <span class="o">=</span> <span class="p">{</span>
-<span class="ln"> 8</span>    <span class="nx">namae</span> <span class="o">:</span> <span class="s1">&#39;grape&#39;</span><span class="p">,</span>
-<span class="ln"> 9</span>    <span class="nx">price</span> <span class="o">:</span> <span class="mi">3000</span>
-<span class="ln">10</span><span class="p">}</span>
+<span class="ln"> 8</span>    <span class="nx">namae</span><span class="o">:</span> <span class="s1">&#39;grape&#39;</span><span class="p">,</span>
+<span class="ln"> 9</span>    <span class="nx">price</span><span class="o">:</span> <span class="mi">3000</span>
+<span class="ln">10</span><span class="p">};</span>
 </code></pre></div><h4 id="대괄호표기법과-마침표표기법">대괄호표기법과 마침표표기법</h4>
 <p>보통 마침표(.)를 이용해서 프로퍼티에 접근 하지만, 특별한 상황에선 배열처럼 대괄호([])를 이용해서 접근해야한다. <strong>(프로퍼티명이 표현식이거나 예약어일 경우)</strong></p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">userInfo</span> <span class="o">=</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;jiny&#39;</span><span class="p">,</span>
-<span class="ln"> 3</span>    <span class="nx">age</span> <span class="o">:</span> <span class="s1">&#39;25&#39;</span><span class="p">,</span>
-<span class="ln"> 4</span>    <span class="nx">gerder</span> <span class="o">:</span> <span class="s1">&#39;male&#39;</span><span class="p">,</span>
+<span class="ln"> 2</span>    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;jiny&#39;</span><span class="p">,</span>
+<span class="ln"> 3</span>    <span class="nx">age</span><span class="o">:</span> <span class="s1">&#39;25&#39;</span><span class="p">,</span>
+<span class="ln"> 4</span>    <span class="nx">gerder</span><span class="o">:</span> <span class="s1">&#39;male&#39;</span>
 <span class="ln"> 5</span><span class="p">};</span>
 <span class="ln"> 6</span>
 <span class="ln"> 7</span><span class="c1">//마침표표기법 (일반 접근)
@@ -518,15 +521,15 @@ return 값은 <code>제거된 요소</code>만 담어서 반환한다. 제거한
 </span></code></pre></div><h2 id="객체-사용-시-주의점">객체 사용 시 주의점</h2>
 <p>객체 또는 배열에서 속성이 제대로 정의되지 않으면 오류를 반환한ㄷ나.<br>
 따라서 객체의 속성과 배열의 요소가 정상적으로 포함되어있는지 판단하는 검증이 필요하다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">imageInfo_1</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">//속성이 정의되지 않음
-</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">imageInfo_2</span> <span class="o">=</span> <span class="p">{</span><span class="nx">file</span> <span class="o">:</span> <span class="p">[]}</span> <span class="c1">//배열 개체가 없음
-</span><span class="ln"> 3</span><span class="c1"></span><span class="kr">const</span> <span class="nx">imageInfo_3</span> <span class="o">=</span> <span class="p">{</span><span class="nx">file</span> <span class="o">:</span> <span class="p">[</span><span class="s1">&#39;app.png&#39;</span><span class="p">,</span> <span class="s1">&#39;thumb.jpg&#39;</span><span class="p">]}</span> <span class="c1">//정상
-</span><span class="ln"> 4</span><span class="c1"></span><span class="kd">function</span> <span class="nx">getImagePath</span><span class="p">(</span><span class="nx">imageObject</span><span class="p">){</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">imageInfo_1</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">//속성이 정의되지 않음
+</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">imageInfo_2</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">file</span><span class="o">:</span> <span class="p">[]</span> <span class="p">};</span> <span class="c1">//배열 개체가 없음
+</span><span class="ln"> 3</span><span class="c1"></span><span class="kr">const</span> <span class="nx">imageInfo_3</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">file</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;app.png&#39;</span><span class="p">,</span> <span class="s1">&#39;thumb.jpg&#39;</span><span class="p">]</span> <span class="p">};</span> <span class="c1">//정상
+</span><span class="ln"> 4</span><span class="c1"></span><span class="kd">function</span> <span class="nx">getImagePath</span><span class="p">(</span><span class="nx">imageObject</span><span class="p">)</span> <span class="p">{</span>
 <span class="ln"> 5</span>    <span class="c1">//객체의 속성, 배열 요소 검사
-</span><span class="ln"> 6</span><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="nx">imageObject</span><span class="p">.</span><span class="nx">file</span> <span class="o">&amp;&amp;</span> <span class="nx">imageObject</span><span class="p">.</span><span class="nx">file</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+</span><span class="ln"> 6</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">imageObject</span><span class="p">.</span><span class="nx">file</span> <span class="o">&amp;&amp;</span> <span class="nx">imageObject</span><span class="p">.</span><span class="nx">file</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
 <span class="ln"> 7</span>        <span class="c1">//..code
 </span><span class="ln"> 8</span><span class="c1"></span>        <span class="k">return</span><span class="p">;</span>
-<span class="ln"> 9</span>    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="ln"> 9</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 <span class="ln">10</span>        <span class="k">return</span> <span class="p">[</span><span class="sb">`http://root/image/default.jpg`</span><span class="p">];</span>
 <span class="ln">11</span>    <span class="p">}</span>
 <span class="ln">12</span><span class="p">}</span>
@@ -542,10 +545,10 @@ return 값은 <code>제거된 요소</code>만 담어서 반환한다. 제거한
 <h3 id="삼항-연산자">삼항 연산자</h3>
 <p>분기를 더욱 단순하게 표현할 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="s1">&#39;img/app.jpg&#39;</span><span class="p">;</span>
-<span class="ln">2</span><span class="k">if</span><span class="p">(</span><span class="nx">path</span><span class="p">){</span>
-<span class="ln">3</span>	<span class="k">return</span> <span class="nx">path</span><span class="p">;</span>
-<span class="ln">4</span><span class="p">}</span><span class="k">else</span><span class="p">{</span>
-<span class="ln">5</span>	<span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="ln">2</span><span class="k">if</span> <span class="p">(</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">3</span>    <span class="k">return</span> <span class="nx">path</span><span class="p">;</span>
+<span class="ln">4</span><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln">5</span>    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
 <span class="ln">6</span><span class="p">}</span>
 <span class="ln">7</span>
 <span class="ln">8</span><span class="c1">//삼항 연산자
@@ -554,13 +557,13 @@ return 값은 <code>제거된 요소</code>만 담어서 반환한다. 제거한
 <p>OR 연산자 (||)로 검사한 값 중 하나가 <code>true</code>를 바환하면, 확인한 값을 곧바로 할당할 수 있다.<br>
 <code>default</code>값을 할당하기에 더욱 편하다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="s1">&#39;img/app.jpg&#39;</span><span class="p">;</span>
-<span class="ln">2</span><span class="kd">function</span> <span class="nx">getImagePath</span><span class="p">(</span><span class="nx">url</span><span class="p">){</span>
+<span class="ln">2</span><span class="kd">function</span> <span class="nx">getImagePath</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
 <span class="ln">3</span>    <span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">url</span> <span class="o">||</span> <span class="s1">&#39;img/default.jpg&#39;</span><span class="p">;</span>
 <span class="ln">4</span>    <span class="k">return</span> <span class="s1">&#39;http://root&#39;</span> <span class="o">+</span> <span class="nx">path</span><span class="p">;</span>
 <span class="ln">5</span><span class="p">}</span>
 <span class="ln">6</span>
 <span class="ln">7</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getImagePath</span><span class="p">(</span><span class="nx">path</span><span class="p">));</span> <span class="c1">// http://root/img/app.jpg
-</span><span class="ln">8</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getImagePath</span><span class="p">())</span> <span class="c1">// http://root/img/default.jpg
+</span><span class="ln">8</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getImagePath</span><span class="p">());</span> <span class="c1">// http://root/img/default.jpg
 </span></code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong>모던웹을 위한 자바스크립트 + JQuery 입문 - 자료형 (윤인성 저)</strong></li>
@@ -724,7 +727,7 @@ return 값은 <code>제거된 요소</code>만 담어서 반환한다. 제거한
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="js-loop" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/thumb/js.png" loading="lazy" data-key="js-loop" data-hash="../../assets/thumb/js.png"/>
                 
             </div>
         

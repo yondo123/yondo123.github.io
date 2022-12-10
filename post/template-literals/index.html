@@ -24,10 +24,10 @@
 <meta property='og:description' content='문자열 처리를 더욱 쉽게 할 수 있는 방법'>
 <meta property='og:url' content='https://jinyisland.kr/post/template-literals/'>
 <meta property='og:site_name' content='Jiny'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='es6&#43;' /><meta property='article:published_time' content='2021-09-05T19:36:27&#43;09:00'/><meta property='article:modified_time' content='2021-09-05T19:36:27&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='es6&#43;' /><meta property='article:published_time' content='2021-09-05T19:36:27&#43;09:00'/><meta property='article:modified_time' content='2021-09-05T19:36:27&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/thumb/js.png' />
 <meta name="twitter:title" content="자바스크립트 템플릿리터럴">
 <meta name="twitter:description" content="문자열 처리를 더욱 쉽게 할 수 있는 방법"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/thumb/js.png' /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
@@ -347,7 +347,7 @@
 <h3 id="기존-연산자-사용">기존 연산자 사용</h3>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">fruit</span> <span class="o">=</span> <span class="s1">&#39;apple&#39;</span><span class="p">;</span>
 <span class="ln">2</span><span class="kr">const</span> <span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">;</span>
-<span class="ln">3</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;My Favorite Fruit is&#39;</span> <span class="o">+</span> <span class="nx">fruit</span> <span class="o">+</span> <span class="s1">&#39;, color is &#39;</span> <span class="o">+</span> <span class="nx">color</span> <span class="p">);</span> <span class="c1">//&#34;My Favorite Fruit isapple, color is red&#34;
+<span class="ln">3</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;My Favorite Fruit is&#39;</span> <span class="o">+</span> <span class="nx">fruit</span> <span class="o">+</span> <span class="s1">&#39;, color is &#39;</span> <span class="o">+</span> <span class="nx">color</span><span class="p">);</span> <span class="c1">//&#34;My Favorite Fruit isapple, color is red&#34;
 </span></code></pre></div><h3 id="템플릿리터럴-사용">템플릿리터럴 사용</h3>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">fruit</span> <span class="o">=</span> <span class="s1">&#39;apple&#39;</span><span class="p">;</span>
 <span class="ln">2</span><span class="kr">const</span> <span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">;</span>
@@ -356,7 +356,7 @@
 <p>보통 복잡한 문자열이거나 html 코드등을 직접 스크립트상에서 삽입할 때 쌍따옴표-홀따옴표등과 같이 사용하는 경우에 상당히 복잡했었다. (따옴표 종료 위치를 일일이 신경써야했기에)<br>
 템플릿리터럴을 사용하면 일반 텍스트를 작성하듯 변수 위치만 신경써주면되니까 이런점이 편하다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Jiny&#39;</span><span class="p">;</span>
-<span class="ln">2</span><span class="kr">const</span> <span class="nx">template</span> <span class="o">=</span> <span class="sb">`&lt;p class=&#34;user-name&#34;&gt;</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/p&gt;`</span>
+<span class="ln">2</span><span class="kr">const</span> <span class="nx">template</span> <span class="o">=</span> <span class="sb">`&lt;p class=&#34;user-name&#34;&gt;</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/p&gt;`</span><span class="p">;</span>
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong>자바스크립트 코딩의 기술 - 조모건 저</strong></li>
@@ -453,7 +453,7 @@
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="js-loop" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/thumb/js.png" loading="lazy" data-key="js-loop" data-hash="../../assets/thumb/js.png"/>
                 
             </div>
         
@@ -471,7 +471,7 @@
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="promise-async-await" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/thumb/js.png" loading="lazy" data-key="promise-async-await" data-hash="../../assets/thumb/js.png"/>
                 
             </div>
         
@@ -489,7 +489,7 @@
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="arrow-function" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/thumb/js.png" loading="lazy" data-key="arrow-function" data-hash="../../assets/thumb/js.png"/>
                 
             </div>
         
@@ -507,7 +507,7 @@
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="let-const" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/thumb/js.png" loading="lazy" data-key="let-const" data-hash="../../assets/thumb/js.png"/>
                 
             </div>
         

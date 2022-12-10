@@ -63,18 +63,6 @@ jsx에서는 스타일을 적용하기 위한 class는 자바스크립트 예약
     </item>
     
     <item>
-      <title>[Node.js] npm 개념과 사용법</title>
-      <link>https://jinyisland.kr/post/npm/</link>
-      <pubDate>Mon, 10 Jan 2022 22:40:47 +0900</pubDate>
-      
-      <guid>https://jinyisland.kr/post/npm/</guid>
-      <description>npm NodeNode Package Manager, 말 그대로 Node.js 환경에서 여러 모듈들을 패키지화하여 관리하는 저장소 같은 역할이다.
-패키지를 직접 만들어 배포할 수 있고 다른 사람이 배포한 여러 패키지 모듈들을 설치해 프로젝트에 적용시킬 수도 있다.
-npm 생성하기 npm 환경에서 제일 중요한 것은 패키지 관리이다. 패키지들은 package.json파일에서 일괄적으로 관리하는데 직접 json 파일로 생성해도 되고, 명령어를 입력해 생성해도 된다. 터미널에서 npm init명령어를 입력하면 자동적으로 package.json파일을 생성할 수 있다.
-1npm init 2# &amp;gt; packagename : 프로젝트 이름 입력 3# &amp;gt; version : 프로젝트 버전 입력 (default : 1.</description>
-    </item>
-    
-    <item>
       <title>[Vue] Vue 코드 포맷팅</title>
       <link>https://jinyisland.kr/post/prettier/</link>
       <pubDate>Mon, 20 Dec 2021 23:49:00 +0900</pubDate>
@@ -133,7 +121,7 @@ computed 사용법은 아래 코드를 참고, computed속성 내에 메서드�
       
       <guid>https://jinyisland.kr/post/algorithm-search/</guid>
       <description>선형검색 배열에서 원하는 키 값 요소를 만날 때까지 순서대로 요소 검색, 값을 찾지 못하고 배열을 모두 순회하거나 값을 찾는다면 바로 종료한다.
-1function linearSearch(key, arr) { 2 for (let index = 0; index &amp;lt; arr.length; index++) { 3 if (key === arr[index]) { 4 return true 5 } 6 } 7 return false; 8} 9 10linearSearch(2811, [2, 15, 24, 28, 304, 16, 7, 1]); //false 11linearSearch(16, [2, 15, 24, 28, 304, 16, 7, 1]); //true 이진검색 이미 정렬되어 있는 배열(전제 조건)에서 범위를 좁혀가며 값을 찾는 탐색법 선형 탐색보다 속도가 빠르긴하지만 정렬되어 있는 리스트에 적용할 수 있다.</description>
+1function linearSearch(key, arr) { 2 for (let index = 0; index &amp;lt; arr.length; index++) { 3 if (key === arr[index]) { 4 return true; 5 } 6 } 7 return false; 8} 9 10linearSearch(2811, [2, 15, 24, 28, 304, 16, 7, 1]); //false 11linearSearch(16, [2, 15, 24, 28, 304, 16, 7, 1]); //true 이진검색 이미 정렬되어 있는 배열(전제 조건)에서 범위를 좁혀가며 값을 찾는 탐색법 선형 탐색보다 속도가 빠르긴하지만 정렬되어 있는 리스트에 적용할 수 있다.</description>
     </item>
     
     <item>
@@ -153,7 +141,7 @@ export 코드를 외부에 내보내고 싶다면 export문을 사용한다. 함
       <pubDate>Wed, 08 Sep 2021 23:18:33 +0900</pubDate>
       
       <guid>https://jinyisland.kr/post/promise-async-await/</guid>
-      <description>Promise 1function callbackDelay(sec, callback) { 2 setTimeout(()=&amp;gt;{ 3 callback(&amp;#34;콜백 Delay&amp;gt;&amp;gt;&amp;#34;+new Date().toString()); 4 }, sec * 1000) 5} 6 7callbackDelay(1, (result)=&amp;gt;{ 8 console.log(1, result); 9 callbackDelay(1, (result)=&amp;gt;{ 10 console.log(2, result); 11 callbackDelay(1, (result)=&amp;gt;{ 12 console.log(3, result) 13 }) 14 }) 15}) 16/*result 171 콜백 Delay&amp;gt;&amp;gt;Sun Jun 07 2020 18:43:56 GMT+0900 (GMT+09:00) 18promise.js:26 192 콜백 Delay&amp;gt;&amp;gt;Sun Jun 07 2020 18:43:57 GMT+0900 (GMT+09:00) 20promise.js:28 213 콜백 Delay&amp;gt;&amp;gt;Sun Jun 07 2020 18:43:58 GMT+0900 (GMT+09:00) 22*/ 자바스크립트에서 비동기 동작을 할때 우리는 항상 해당 함수에 콜백 함수를 넣어줬다.</description>
+      <description>Promise 1function callbackDelay(sec, callback) { 2 setTimeout(() =&amp;gt; { 3 callback(&amp;#39;콜백 Delay&amp;gt;&amp;gt;&amp;#39; + new Date().toString()); 4 }, sec * 1000); 5} 6 7callbackDelay(1, (result) =&amp;gt; { 8 console.log(1, result); 9 callbackDelay(1, (result) =&amp;gt; { 10 console.log(2, result); 11 callbackDelay(1, (result) =&amp;gt; { 12 console.log(3, result); 13 }); 14 }); 15}); 16/*result 171 콜백 Delay&amp;gt;&amp;gt;Sun Jun 07 2020 18:43:56 GMT+0900 (GMT+09:00) 18promise.js:26 192 콜백 Delay&amp;gt;&amp;gt;Sun Jun 07 2020 18:43:57 GMT+0900 (GMT+09:00) 20promise.</description>
     </item>
     
     <item>
@@ -162,7 +150,7 @@ export 코드를 외부에 내보내고 싶다면 export문을 사용한다. 함
       <pubDate>Tue, 07 Sep 2021 21:59:08 +0900</pubDate>
       
       <guid>https://jinyisland.kr/post/eventloop/</guid>
-      <description>비동기 처리 1//대충 이런 구조의 코드.. 2function checkValue(){ 3	//로직검사.. 4} 5 6setTimeout(function(){ 7	checkValue(); 8}, 500); 9 10function getData(){ 11	//AJAX로 소스를 받아오는 코드.. 12}; 13 14getData(); 자바스크립트를 처음 접했을 때, setTimeout이 왜 순서대로 시행 안되지??.. (why 나중에 시행되는거야..🤔)해서비동기에 대한 개념을 숙지했다. 대충 콜백함수로 넘겨서 호출해 해결하고 비동기 프로세스에 대한 개념 자체를 더 배우려하지 않았다. 이번에 Node.js 스터디를 하면서 비동기 프로세스를 꼭 알아야 성능 향상에 도움이 된다는 사실을 알게되었고 책과 강의를 통해 내가 이해한 비동기 처리과정을 최대한 간략하게 정리해보았다.</description>
+      <description>비동기 처리 1//대충 이런 구조의 코드.. 2function checkValue() { 3 //로직검사.. 4} 5 6setTimeout(function () { 7 checkValue(); 8}, 500); 9 10function getData() { 11 //AJAX로 소스를 받아오는 코드.. 12} 13 14getData(); 자바스크립트를 처음 접했을 때, setTimeout이 왜 순서대로 시행 안되지??.. (why 나중에 시행되는거야..🤔)해서비동기에 대한 개념을 숙지했다. 대충 콜백함수로 넘겨서 호출해 해결하고 비동기 프로세스에 대한 개념 자체를 더 배우려하지 않았다. 이번에 Node.js 스터디를 하면서 비동기 프로세스를 꼭 알아야 성능 향상에 도움이 된다는 사실을 알게되었고 책과 강의를 통해 내가 이해한 비동기 처리과정을 최대한 간략하게 정리해보았다.</description>
     </item>
     
     <item>
@@ -172,8 +160,8 @@ export 코드를 외부에 내보내고 싶다면 export문을 사용한다. 함
       
       <guid>https://jinyisland.kr/post/arrow-function/</guid>
       <description>화살표 함수 기존 함수 표기법을 화살표(⇒)형태로 간단하게 표기하는 함수 표기법
-기존 함수 표현식과의 차이 1//기존 함수 표현식 2function name(){ 3 //code.. 4} 5 6//화살표 함수 7() =&amp;gt; { 8	//code.. 9} 화살표 함수 특징 괄호 생략 매개변수가 1개라면 괄호()도 생략이 가능하다.
-1const logMessage = message =&amp;gt; { console.log(message) } 2logMessage(&amp;#39;hello&amp;#39;); //&amp;#39;hello&amp;#39; Lexical this 일반 함수 표기에서는 this사용 시 동적으로 해당 함수를 실행한 객체로 바인딩되었다.
+기존 함수 표현식과의 차이 1//기존 함수 표현식 2function name() { 3 //code.. 4} 5 6//화살표 함수 7() =&amp;gt; { 8 //code.. 9}; 화살표 함수 특징 괄호 생략 매개변수가 1개라면 괄호()도 생략이 가능하다.
+1const logMessage = (message) =&amp;gt; { 2 console.log(message); 3}; 4logMessage(&amp;#39;hello&amp;#39;); //&amp;#39;hello&amp;#39; Lexical this 일반 함수 표기에서는 this사용 시 동적으로 해당 함수를 실행한 객체로 바인딩되었다.
 하지만 화살표 함수에서는 자신을 소유하고 있는 객체로 바인딩되는게 아니라 해당 화살표함수를 소유하고 있는 상위 환경의 this를 그대로 계승한다.</description>
     </item>
     
@@ -184,7 +172,7 @@ export 코드를 외부에 내보내고 싶다면 export문을 사용한다. 함
       
       <guid>https://jinyisland.kr/post/template-literals/</guid>
       <description>Temlate literals 기존 문자열 결합 시 연산자(+)를 사용하였는데 백틱(`) 기호를 사용하여 쉽게 결합할 수 있다.
-기존 연산자 사용 1const fruit = &amp;#39;apple&amp;#39;; 2const color = &amp;#39;red&amp;#39;; 3console.log(&amp;#39;My Favorite Fruit is&amp;#39; + fruit + &amp;#39;, color is &amp;#39; + color ); //&amp;#34;My Favorite Fruit isapple, color is red&amp;#34; 템플릿리터럴 사용 1const fruit = &amp;#39;apple&amp;#39;; 2const color = &amp;#39;red&amp;#39;; 3console.log(`My favorite Fruit is ${fruit}, color is ${color}`); 장점 보통 복잡한 문자열이거나 html 코드등을 직접 스크립트상에서 삽입할 때 쌍따옴표-홀따옴표등과 같이 사용하는 경우에 상당히 복잡했었다.</description>
+기존 연산자 사용 1const fruit = &amp;#39;apple&amp;#39;; 2const color = &amp;#39;red&amp;#39;; 3console.log(&amp;#39;My Favorite Fruit is&amp;#39; + fruit + &amp;#39;, color is &amp;#39; + color); //&amp;#34;My Favorite Fruit isapple, color is red&amp;#34; 템플릿리터럴 사용 1const fruit = &amp;#39;apple&amp;#39;; 2const color = &amp;#39;red&amp;#39;; 3console.log(`My favorite Fruit is ${fruit}, color is ${color}`); 장점 보통 복잡한 문자열이거나 html 코드등을 직접 스크립트상에서 삽입할 때 쌍따옴표-홀따옴표등과 같이 사용하는 경우에 상당히 복잡했었다.</description>
     </item>
     
     <item>
@@ -236,9 +224,9 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
       <guid>https://jinyisland.kr/post/js-function/</guid>
       <description>함수 자바스크립트의 함수는 객체로 취급 받는다. (일급객체)
 따라서 객체처럼 리터럴 방식으로 선언할 수 있고, new 연산자로 선언할 수도 있다. (대부분.. 리터럴 방식을 선호한다.)
-1//new 연산자 선언 2var sum = new Function(&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;return a+b&amp;#39;); 3sum(1,3) //4 익명함수와 선언함수 익명 함수는 말 그대로 &amp;lsquo;이름을 갖지 않는&amp;rsquo; 함수이다.
+1//new 연산자 선언 2var sum = new Function(&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;return a+b&amp;#39;); 3sum(1, 3); //4 익명함수와 선언함수 익명 함수는 말 그대로 &amp;lsquo;이름을 갖지 않는&amp;rsquo; 함수이다.
 보통 변수에 저장해서 선언 후 호출한다.
-1add(2,3) //result : type error 2 3var add = function(x,y){ //익명함수 4	return x+y; 5} 6 7add(3,7); //result : 10 선언 함수는 함수 선언 시 이름을 지명한다.</description>
+1add(2, 3); //result : type error 2 3var add = function (x, y) { 4 //익명함수 5 return x + y; 6}; 7 8add(3, 7); //result : 10 선언 함수는 함수 선언 시 이름을 지명한다.</description>
     </item>
     
     <item>
@@ -251,7 +239,7 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
 변수에 접근할 때 해당 변수에 저장된 실제 값을 조작한다.
 기본 값의 유형을 확인하려면 typeof연산자를 사용해서 확인할 수 있다.
 자바스크립트에서는 배열과 객체 모두 object로 취급한다는 사실을 꼭 잊지말자.
-1const typeNumeric = typeof 1; //number 2const typeBoolean = typeof true; //boolean 3const typeString = typeof &amp;#39;hello&amp;#39;; //string 4const typeFunction = typeof function(){ return;} //function 5const typeUndefined = typeof undefined; //undefined 6 7const typeObject = typeof {}; //object 8const typeArray = typeof [&amp;#39;1&amp;#39;]; //object 9const typeNull = typeof null; //object 참조타입 원시 값과는 달리 해당 객체의 참조에 대해서 작업한다.</description>
+1const typeNumeric = typeof 1; //number 2const typeBoolean = typeof true; //boolean 3const typeString = typeof &amp;#39;hello&amp;#39;; //string 4const typeFunction = typeof function () { 5 return; 6}; //function 7const typeUndefined = typeof undefined; //undefined 8 9const typeObject = typeof {}; //object 10const typeArray = typeof [&amp;#39;1&amp;#39;]; //object 11const typeNull = typeof null; //object 참조타입 원시 값과는 달리 해당 객체의 참조에 대해서 작업한다.</description>
     </item>
     
     <item>

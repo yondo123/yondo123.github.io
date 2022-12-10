@@ -24,10 +24,10 @@
 <meta property='og:description' content='선형탐색과 이진탐색'>
 <meta property='og:url' content='https://jinyisland.kr/post/algorithm-search/'>
 <meta property='og:site_name' content='Jiny'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='algorithm' /><meta property='article:published_time' content='2021-09-14T23:25:12&#43;09:00'/><meta property='article:modified_time' content='2021-09-14T23:25:12&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='algorithm' /><meta property='article:published_time' content='2021-09-14T23:25:12&#43;09:00'/><meta property='article:modified_time' content='2021-09-14T23:25:12&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/thumb/js.png' />
 <meta name="twitter:title" content="탐색 알고리즘 (선형, 이진)">
 <meta name="twitter:description" content="선형탐색과 이진탐색"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/thumb/js.png' /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
@@ -343,11 +343,11 @@
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
     <h2 id="선형검색">선형검색</h2>
-<p>배열에서 원하는 키 값 요소를 만날 때까지 순서대로 요소 검색,  값을 찾지 못하고 배열을 모두 순회하거나 값을 찾는다면 바로 종료한다.</p>
+<p>배열에서 원하는 키 값 요소를 만날 때까지 순서대로 요소 검색, 값을 찾지 못하고 배열을 모두 순회하거나 값을 찾는다면 바로 종료한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kd">function</span> <span class="nx">linearSearch</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
 <span class="ln"> 2</span>    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">index</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 <span class="ln"> 3</span>        <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">===</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">index</span><span class="p">])</span> <span class="p">{</span>
-<span class="ln"> 4</span>            <span class="k">return</span> <span class="kc">true</span>
+<span class="ln"> 4</span>            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
 <span class="ln"> 5</span>        <span class="p">}</span>
 <span class="ln"> 6</span>    <span class="p">}</span>
 <span class="ln"> 7</span>    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
@@ -357,7 +357,7 @@
 </span><span class="ln">11</span><span class="c1"></span><span class="nx">linearSearch</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">304</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span> <span class="c1">//true
 </span></code></pre></div><h2 id="이진검색">이진검색</h2>
 <p><img src="../../assets/js/algorithm-search.png" alt="탐색 알고리즘"  />
-이미 정렬되어 있는 배열(전제 조건)에서 범위를 좁혀가며 값을  찾는 탐색법 선형 탐색보다 속도가 빠르긴하지만 정렬되어 있는 리스트에 적용할 수 있다.<br>
+이미 정렬되어 있는 배열(전제 조건)에서 범위를 좁혀가며 값을 찾는 탐색법 선형 탐색보다 속도가 빠르긴하지만 정렬되어 있는 리스트에 적용할 수 있다.<br>
 <strong>left = 탐색 시작 위치, center = 팀색 중앙 위치((n-1) / 2), right = 탐색 끝 위치 (n-1)로 초기화</strong>하여 점차적으로 좁혀나간다.<br>
 정렬된 배열이라는 전제 조건이 붙기는 하지만, 선형 검색보다 순회 횟수가 크게 줄어 성능적으로 더 효율적이다.</p>
 <ul>
@@ -374,7 +374,7 @@
 <span class="ln"> 8</span>        <span class="kr">const</span> <span class="nx">item</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">center</span><span class="p">];</span>
 <span class="ln"> 9</span>        <span class="nx">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="ln">10</span>        <span class="k">if</span> <span class="p">(</span><span class="nx">item</span> <span class="o">===</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">11</span>            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;true, &#34;</span> <span class="o">+</span> <span class="nx">count</span><span class="p">);</span>
+<span class="ln">11</span>            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;true, &#39;</span> <span class="o">+</span> <span class="nx">count</span><span class="p">);</span>
 <span class="ln">12</span>            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
 <span class="ln">13</span>        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">item</span> <span class="o">&lt;</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
 <span class="ln">14</span>            <span class="nx">left</span> <span class="o">=</span> <span class="nx">center</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
@@ -382,7 +382,7 @@
 <span class="ln">16</span>            <span class="nx">right</span> <span class="o">=</span> <span class="nx">center</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
 <span class="ln">17</span>        <span class="p">}</span>
 <span class="ln">18</span>    <span class="p">}</span>
-<span class="ln">19</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;false, &#34;</span> <span class="o">+</span> <span class="nx">count</span><span class="p">);</span>
+<span class="ln">19</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;false, &#39;</span> <span class="o">+</span> <span class="nx">count</span><span class="p">);</span>
 <span class="ln">20</span>    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
 <span class="ln">21</span><span class="p">}</span>
 <span class="ln">22</span>
@@ -484,7 +484,7 @@
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="js-loop" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/thumb/js.png" loading="lazy" data-key="js-loop" data-hash="../../assets/thumb/js.png"/>
                 
             </div>
         
@@ -502,7 +502,7 @@
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="algorithm-heap" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/thumb/js.png" loading="lazy" data-key="algorithm-heap" data-hash="../../assets/thumb/js.png"/>
                 
             </div>
         

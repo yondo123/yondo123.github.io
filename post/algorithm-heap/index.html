@@ -24,10 +24,10 @@
 <meta property='og:description' content='자바스크립트로 이해하는 힙 정렬 알고리즘'>
 <meta property='og:url' content='https://jinyisland.kr/post/algorithm-heap/'>
 <meta property='og:site_name' content='Jiny'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='algorithm' /><meta property='article:published_time' content='2021-10-16T23:24:14&#43;09:00'/><meta property='article:modified_time' content='2021-10-16T23:24:14&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='algorithm' /><meta property='article:published_time' content='2021-10-16T23:24:14&#43;09:00'/><meta property='article:modified_time' content='2021-10-16T23:24:14&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/thumb/js.png' />
 <meta name="twitter:title" content="힙의 개념과 힙 정렬 알고리즘">
 <meta name="twitter:description" content="자바스크립트로 이해하는 힙 정렬 알고리즘"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/thumb/js.png' /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
@@ -365,7 +365,7 @@
 <span class="ln">3</span><span class="p">}</span>
 </code></pre></div></li>
 <li>
-<p>(1)의 과정을 수행하면, 이등분의 <code>left</code>부분은 heap 상태가 되어지면서 정렬 상태가 되어있을 것이다.  배열의 첫번째 요소(가장 큰 값)와 정렬되지 않은 우측 요소부터 heap 형태로 변환하는 과정을 반복한다.</p>
+<p>(1)의 과정을 수행하면, 이등분의 <code>left</code>부분은 heap 상태가 되어지면서 정렬 상태가 되어있을 것이다. 배열의 첫번째 요소(가장 큰 값)와 정렬되지 않은 우측 요소부터 heap 형태로 변환하는 과정을 반복한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">tempArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
 <span class="ln">2</span>    <span class="nx">swap</span><span class="p">(</span><span class="nx">tempArray</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span> <span class="c1">//가장 큰 요소와 정렬되지 않은 마지막 요소와 교환
 </span><span class="ln">3</span><span class="c1"></span>    <span class="nx">length</span><span class="o">--</span><span class="p">;</span>
@@ -388,12 +388,12 @@
 </span><span class="ln">12</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">left</span> <span class="o">&lt;</span> <span class="nx">length</span> <span class="o">&amp;&amp;</span> <span class="nx">heapArray</span><span class="p">[</span><span class="nx">left</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">heapArray</span><span class="p">[</span><span class="nx">root</span><span class="p">])</span> <span class="p">{</span>
 <span class="ln">13</span>        <span class="nx">root</span> <span class="o">=</span> <span class="nx">left</span><span class="p">;</span>
 <span class="ln">14</span>    <span class="p">}</span>
-<span class="ln">15</span>   
+<span class="ln">15</span>
 <span class="ln">16</span>    <span class="c1">//우측 요소가 부모 값 보다 크면 부모 인덱스를 right 인덱스로 대입
 </span><span class="ln">17</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">right</span> <span class="o">&lt;</span> <span class="nx">length</span> <span class="o">&amp;&amp;</span> <span class="nx">heapArray</span><span class="p">[</span><span class="nx">right</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">heapArray</span><span class="p">[</span><span class="nx">root</span><span class="p">])</span> <span class="p">{</span>
 <span class="ln">18</span>        <span class="nx">root</span> <span class="o">=</span> <span class="nx">right</span><span class="p">;</span>
 <span class="ln">19</span>    <span class="p">}</span>
-<span class="ln">20</span>   
+<span class="ln">20</span>
 <span class="ln">21</span>    <span class="c1">//부모 요소가 자식 요소와 바꾸어 졌으면 swap처리 및 heap 재검사
 </span><span class="ln">22</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">root</span> <span class="o">!==</span> <span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
 <span class="ln">23</span>        <span class="nx">swap</span><span class="p">(</span><span class="nx">heapArray</span><span class="p">,</span> <span class="nx">parent</span><span class="p">,</span> <span class="nx">root</span><span class="p">);</span>
@@ -569,7 +569,7 @@
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="js-loop" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/thumb/js.png" loading="lazy" data-key="js-loop" data-hash="../../assets/thumb/js.png"/>
                 
             </div>
         
@@ -587,7 +587,7 @@
         
             <div class="article-image">
                 
-                    <img src="../../assets/js/js.png" loading="lazy" data-key="algorithm-search" data-hash="../../assets/js/js.png"/>
+                    <img src="../../assets/thumb/js.png" loading="lazy" data-key="algorithm-search" data-hash="../../assets/thumb/js.png"/>
                 
             </div>
         

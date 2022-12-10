@@ -79,6 +79,18 @@ console.time 수행 시점에 time을 찍어 해당 코드를 수행한 시간�
     </item>
     
     <item>
+      <title>[Node.js] npm 개념과 사용법</title>
+      <link>https://jinyisland.kr/post/npm/</link>
+      <pubDate>Mon, 10 Jan 2022 22:40:47 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/npm/</guid>
+      <description>npm NodeNode Package Manager, 말 그대로 Node.js 환경에서 여러 모듈들을 패키지화하여 관리하는 저장소 같은 역할이다.
+패키지를 직접 만들어 배포할 수 있고 다른 사람이 배포한 여러 패키지 모듈들을 설치해 프로젝트에 적용시킬 수도 있다.
+npm 생성하기 npm 환경에서 제일 중요한 것은 패키지 관리이다. 패키지들은 package.json파일에서 일괄적으로 관리하는데 직접 json 파일로 생성해도 되고, 명령어를 입력해 생성해도 된다. 터미널에서 npm init명령어를 입력하면 자동적으로 package.json파일을 생성할 수 있다.
+1npm init 2# &amp;gt; packagename : 프로젝트 이름 입력 3# &amp;gt; version : 프로젝트 버전 입력 (default : 1.</description>
+    </item>
+    
+    <item>
       <title>[Node.js] HTTP모듈 실습</title>
       <link>https://jinyisland.kr/post/node-restapi/</link>
       <pubDate>Fri, 17 Sep 2021 23:48:56 +0900</pubDate>
