@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>prettier on Jiny</title>
+    <link>https://jinyisland.kr/tags/prettier/</link>
+    <description>Recent content in prettier on Jiny</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Dec 2021 23:49:00 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/prettier/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Vue] Vue 코드 포맷팅</title>
+      <link>https://jinyisland.kr/post/prettier/</link>
+      <pubDate>Mon, 20 Dec 2021 23:49:00 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/prettier/</guid>
+      <description>Code Convention 프로젝트 진행 시 기능 구현도 중요하지만, 추후 유지보수를 위한 convention도 굉장히 중요하다고 생각한다. 특히 협업으로 작업하는 경우 거의 필수로 작용하는데, 개발자 마다 선호하는 코딩 스타일도 다르고 하물며 변수 명 하나하나 지을 때도 케밥케이스, 카멜케이스 등 여러 방식도 존재하기 때문이다. 물론 개인 프로젝트에서도 이 부분은 꽤나 중요한데 전체적인 일관성이 유지되어야 보는 사람들도 코드를 읽기 편하다. 컨벤션을 잘 지킬 수 있는 플러그인 중 대다수가 사용하는 eslint와 prettier를 vue와 연동해보는 것을 정리해보았다.</description>
+    </item>
+    
+  </channel>
+</rss>

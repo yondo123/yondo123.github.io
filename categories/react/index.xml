@@ -5,41 +5,6 @@
     <link>https://jinyisland.kr/categories/react/</link>
     <description>Recent content in React on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 22 Jun 2022 23:23:52 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/react/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>[React] 리액트 라우터 기본 사용방법</title>
-      <link>https://jinyisland.kr/post/react-router/</link>
-      <pubDate>Wed, 22 Jun 2022 23:23:52 +0900</pubDate>
-      
-      <guid>https://jinyisland.kr/post/react-router/</guid>
-      <description>페이지 라우팅 vue를 처음 접했을 때 이해했던 개념이지만, 한번 더 정리하자면 일단 라우터라는 개념은 네트워크 상에서 통신 데이터를 보낼 경로를 선택하는 과정을 의미한다. SPA 환경의 웹 애플리케이션(Vue, React, Angular)에서는 말 그대로 요청(Request)에 따라 알맞은 페이지를 반환해주는 과정 자체로 이해하면 된다.
-SPA의 단일 페이지라는 이점을 살려, MPA(Multi Page Application) 환경과는 달리 페이지자체를 반환하지 않고 데이터만 불러와 렌더링해주기 때문에 사용자 입장에서 훨씬 빠르다고 느낄 수 있다. 또한 클라이언트에서 렌더링을 다루기때문에 CSR(Client Side Rendering)이라고도 불린다.</description>
-    </item>
-    
-    <item>
-      <title>[React] 컴포넌트에 Props 전달하기</title>
-      <link>https://jinyisland.kr/post/react-props/</link>
-      <pubDate>Mon, 13 Jun 2022 23:54:07 +0900</pubDate>
-      
-      <guid>https://jinyisland.kr/post/react-props/</guid>
-      <description>개념 컴포넌트에 데이터를 전달하는 데이터를 prop이라고 한다. (Properties의 줄임말)
-Props 단일 값 전달하기 컴포넌트 작성 시 해당 컴포넌트 태그에 변수이름={}으로 사용한다.
-1//App.js (최상위 컴포너트) 2const today = function () { 3 return new Date().toISOString(); 4}; 5 6function App() { 7 return ( 8 &amp;lt;div className=&amp;#34;App&amp;#34;&amp;gt; 9 &amp;lt;AppHeader /&amp;gt; 10 &amp;lt;header className=&amp;#34;App-header&amp;#34;&amp;gt; 11 &amp;lt;h2&amp;gt;{myName}&amp;lt;/h2&amp;gt; 12 &amp;lt;Time init={today} /&amp;gt; 13 &amp;lt;/header&amp;gt; 14 &amp;lt;AppFooter /&amp;gt; 15 &amp;lt;/div&amp;gt; 16 ); 17} 전달받는 컴포넌트 (자식 컴포넌트)에서는 매개변수로 받아올 수 있는데 객체 타입으로 전달 받는다.</description>
-    </item>
-    
-    <item>
-      <title>[React] jsx 사용방법</title>
-      <link>https://jinyisland.kr/post/jsx/</link>
-      <pubDate>Mon, 02 May 2022 23:12:10 +0900</pubDate>
-      
-      <guid>https://jinyisland.kr/post/jsx/</guid>
-      <description>JSX JavaScript Extension, 자바스립트를 확장한 문법이다.(HTML이 아니다.) 리액트에서 컴포넌트 구조를 작성하면서 HtML 대신 jsx로 UI를 표현한다고 생각하면 된다. vue에서는 template태그에 직접 HTML 문법을 사용했었는데 동일한 역할이다. 확장자는 jsx로 사용할 수 있으나 js로 사용해도 자동 변환이 되기 때문에 어느 것으로 해도 큰 상관은 없다.
-기본 문법 스타일 적용하기 className
-jsx에서는 스타일을 적용하기 위한 class는 자바스크립트 예약어라 className으로 대체한다.
-1const AppFooter = () =&amp;gt; { 2 return &amp;lt;footer className=&amp;#34;red&amp;#34;&amp;gt;Footer&amp;lt;/footer&amp;gt;; 3}; InlineStyle
-기존 방식대로 클래스나 id를 붙여 css를 적용하는 방법 외에도, 스크립트 자체에서 스타일을 적용시킬 수 있다.</description>
-    </item>
-    
+    <language>en-us</language><atom:link href="https://jinyisland.kr/categories/react/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

@@ -6,39 +6,50 @@
     <description>Recent content in JavaScript on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Apr 2022 23:55:37 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Jul 2022 23:36:59 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[Node.js] multer 사용법</title>
-      <link>https://jinyisland.kr/post/multer/</link>
-      <pubDate>Thu, 21 Apr 2022 23:55:37 +0900</pubDate>
+      <title>[Vue] Composition API 사용 방법</title>
+      <link>https://jinyisland.kr/post/composition-api/</link>
+      <pubDate>Tue, 26 Jul 2022 23:36:59 +0900</pubDate>
       
-      <guid>https://jinyisland.kr/post/multer/</guid>
-      <description>multer  multer 요청 타입이 multeipart/form-data인 경우 multer를 이용해 받을 수 있다.
-설치하기 1npm i multer 사용방법 multer모듈을 임포트 해주고 미들웨어로 사용하기 위해 여러 설정을 해준다.
-1const multer = require(&amp;#39;multer&amp;#39;); 2const path = require(&amp;#39;path&amp;#39;); 3 4// 디렉토리 없을 경우 생성해주는 예외 처리 5// (server listen 전 단계 이므로 동기식 코드로 해도 무방) 6try { 7 fs.readdirSync(&amp;#39;assets&amp;#39;); 8} catch (error) { 9 console.error(&amp;#39;not exist directory.&amp;#39;); 10 fs.mkdirSync(&amp;#39;assets&amp;#39;); 11} 12 13const upload = multer({ 14 // 파일 저장 위치 (disk , memory 선택) 15 storage: multer.</description>
+      <guid>https://jinyisland.kr/post/composition-api/</guid>
+      <description>Options API의 장단점 Vue에서 기본적으로 사용하고 있는 패턴은 객체 내에 다양한 속성을 사용하고 있는 형태이다. 라이프사이클을 제어하기 위해 사용하는 mounted, updated 그리고 컴포넌트 내에서 여러 메서드들을 정의하고 데이터들을 참조할 때 정해진 속성에 정의해서 사용하였다. 이를 Options API라고 한다.
+아래는 페이지네이션 기능 컴포넌트를 구현할 때 작성했던 코드인데, 컴포지션 API를 적용하지 않은 options api 방식으로 작성하였다.
+1export default { 2 components: { 3 //컴포넌트 정의 4 ChildComponent 5 }, 6 data() { 7 //참조할 데이터 정의 8 return { 9 newsItem: {}, 10 showModal: false, 11 page: 1, 12 records: 20, 13 listItems: [], 14 options: { 15 hideCount: true 16 } 17 }; 18 }, 19 mounted: function () { 20 //마운트 시점 제어 21 this.</description>
     </item>
     
     <item>
-      <title>[Node.js] Express 라우터 살펴보기</title>
-      <link>https://jinyisland.kr/post/express-routing/</link>
-      <pubDate>Thu, 14 Apr 2022 23:18:59 +0900</pubDate>
+      <title>[React] 리액트 라우터 기본 사용방법</title>
+      <link>https://jinyisland.kr/post/react-router/</link>
+      <pubDate>Wed, 22 Jun 2022 23:23:52 +0900</pubDate>
       
-      <guid>https://jinyisland.kr/post/express-routing/</guid>
-      <description>라우팅 express 공식 문서 에서는 라우팅을 아래와 같이 설명하고 있다.
- **라우팅**은 URI(또는 경로) 및 특정한 HTTP 요청 메소드(GET, POST 등)인 특정 엔드포인트에 대한 클라이언트 요청에 애플리케이션이 응답하는 방법을 결정하는 것을 말합니다.
- 정리하자면 요청 URI 규칙에 맞게 특정한 요청이 오면, 이에 맞는 응답 핸들러를 결정하는 것이라 생각하면된다
-기본 문법 기본 문법은 다음과 같다. API 메서드(Http Method, string)는 HTTP 메서드를 작성한다. (GET, POST, PUT, DELETE..) 첫 번째 인자는 요청 URI 경로, 두 번째 인자에는 응답 핸들러(Handler, function)를 받는다.</description>
+      <guid>https://jinyisland.kr/post/react-router/</guid>
+      <description>페이지 라우팅 vue를 처음 접했을 때 이해했던 개념이지만, 한번 더 정리하자면 일단 라우터라는 개념은 네트워크 상에서 통신 데이터를 보낼 경로를 선택하는 과정을 의미한다. SPA 환경의 웹 애플리케이션(Vue, React, Angular)에서는 말 그대로 요청(Request)에 따라 알맞은 페이지를 반환해주는 과정 자체로 이해하면 된다.
+SPA의 단일 페이지라는 이점을 살려, MPA(Multi Page Application) 환경과는 달리 페이지자체를 반환하지 않고 데이터만 불러와 렌더링해주기 때문에 사용자 입장에서 훨씬 빠르다고 느낄 수 있다. 또한 클라이언트에서 렌더링을 다루기때문에 CSR(Client Side Rendering)이라고도 불린다.</description>
     </item>
     
     <item>
-      <title>[Node.js] Express 미들웨어 사용법</title>
-      <link>https://jinyisland.kr/post/middleware/</link>
-      <pubDate>Tue, 12 Apr 2022 21:17:46 +0900</pubDate>
+      <title>[React] 컴포넌트에 Props 전달하기</title>
+      <link>https://jinyisland.kr/post/react-props/</link>
+      <pubDate>Mon, 13 Jun 2022 23:54:07 +0900</pubDate>
       
-      <guid>https://jinyisland.kr/post/middleware/</guid>
-      <description>미들웨어 말 그대로 요청(Request)과 응답(Response) 사이 중간(middle)에서 핸들링해주는 익스프레스의 핵심 기능이다.
-사용법 use메서드를 사용하고 요청 메서드 내부에서 미들웨어를 정의할 수 있다.
-1//모든 요청에서 미들웨어 실행 2app.use((req, res, next)=&amp;gt; { 3	console.log(&amp;#39;middle ware execute&amp;#39;); 4	next(); 5}, (req, res) =&amp;gt; { 6	// code.. 7});; 8 9//특정 요청 또는 경로에서 미들웨어 실행 (next 인자는 생략 가능) 10app.get((&amp;#39;/&amp;#39;, (req, res, next)=&amp;gt;{ 11	console.log(&amp;#34;request get, &amp;#39;/&amp;#39;&amp;#34;); 12	next(); 13}, (req, res)=&amp;gt;{ 14	throw new Error(&amp;#39;error!</description>
+      <guid>https://jinyisland.kr/post/react-props/</guid>
+      <description>개념 컴포넌트에 데이터를 전달하는 데이터를 prop이라고 한다. (Properties의 줄임말)
+Props 단일 값 전달하기 컴포넌트 작성 시 해당 컴포넌트 태그에 변수이름={}으로 사용한다.
+1//App.js (최상위 컴포너트) 2const today = function () { 3 return new Date().toISOString(); 4}; 5 6function App() { 7 return ( 8 &amp;lt;div className=&amp;#34;App&amp;#34;&amp;gt; 9 &amp;lt;AppHeader /&amp;gt; 10 &amp;lt;header className=&amp;#34;App-header&amp;#34;&amp;gt; 11 &amp;lt;h2&amp;gt;{myName}&amp;lt;/h2&amp;gt; 12 &amp;lt;Time init={today} /&amp;gt; 13 &amp;lt;/header&amp;gt; 14 &amp;lt;AppFooter /&amp;gt; 15 &amp;lt;/div&amp;gt; 16 ); 17} 전달받는 컴포넌트 (자식 컴포넌트)에서는 매개변수로 받아올 수 있는데 객체 타입으로 전달 받는다.</description>
+    </item>
+    
+    <item>
+      <title>[React] jsx 사용방법</title>
+      <link>https://jinyisland.kr/post/jsx/</link>
+      <pubDate>Mon, 02 May 2022 23:12:10 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/jsx/</guid>
+      <description>JSX JavaScript Extension, 자바스립트를 확장한 문법이다.(HTML이 아니다.) 리액트에서 컴포넌트 구조를 작성하면서 HtML 대신 jsx로 UI를 표현한다고 생각하면 된다. vue에서는 template태그에 직접 HTML 문법을 사용했었는데 동일한 역할이다. 확장자는 jsx로 사용할 수 있으나 js로 사용해도 자동 변환이 되기 때문에 어느 것으로 해도 큰 상관은 없다.
+기본 문법 스타일 적용하기 className
+jsx에서는 스타일을 적용하기 위한 class는 자바스크립트 예약어라 className으로 대체한다.
+1const AppFooter = () =&amp;gt; { 2 return &amp;lt;footer className=&amp;#34;red&amp;#34;&amp;gt;Footer&amp;lt;/footer&amp;gt;; 3}; InlineStyle
+기존 방식대로 클래스나 id를 붙여 css를 적용하는 방법 외에도, 스크립트 자체에서 스타일을 적용시킬 수 있다.</description>
     </item>
     
     <item>
@@ -49,43 +60,6 @@
       <guid>https://jinyisland.kr/post/js-loop/</guid>
       <description>요즘 인프런을 통해 알고리즘 강의를 수강 중인데 개인적으로 많은 도움을 받고 있다. 단순히 알고리즘 문제를 친숙하게 다가가기 위해 강의를 끊은것인데.. 의외로 실무에서도 크게 도움이 될 것 같아 이번 기회에 포스팅을 했다.
 함수형 반복문 사실 지금까지 반복문을 사용하는 방법은 크게 신경쓰지 않았다. 보통 레거시 코드에서는 for문을 많이 사용하는데(다른 언어에서도 많이 사용하고, 너무 친숙해졌다..) 이는 절대 낡거나 안좋은 코드라는 것은 절대 아니다!! 상황에 따라서 함수형으로 제공되는 반복문을 사용하는 경우가 효율적인 것도 있고 for를 사용하는 것이 더 효율적인 상황도 분명히 있다.</description>
-    </item>
-    
-    <item>
-      <title>[Node.js] Express 설치 및 실행해보기</title>
-      <link>https://jinyisland.kr/post/express-start/</link>
-      <pubDate>Tue, 29 Mar 2022 22:57:14 +0900</pubDate>
-      
-      <guid>https://jinyisland.kr/post/express-start/</guid>
-      <description>개요 기존 http모듈로 서버를 구축 해서 간단한 요청과 응답 프로세스를 경험해보았는데 여타 언어들도 그렇듯이 프레임워크를 사용하면 더욱 효율적으로 작업을 할 수 있다. node.js 생태계에서는 압도적으로 express.js를 많이 사용한다.
-설치하기 npm 환경에서 install 명령어를 통해 express를 설치한다.
-1npm install express 기본 구조 기본적인 서버를 구축한 소스이다.
-http 모듈로 구축했을 때 URL도 파싱해야하고, if문으로 분기처리하기 수고스러웠는데 상당히 깔끔해졌다.
-각 라우터마다 요청, 응답 객체를 받아와 여러 형태로 받거나 전달할 수 있다.
-1//app.js 2const express = require(&amp;#39;express&amp;#39;); 3const app = express(); 4 5//get 메서드 6app.</description>
-    </item>
-    
-    <item>
-      <title>[Node.js] 파일 시스템 접근하기</title>
-      <link>https://jinyisland.kr/post/node-file/</link>
-      <pubDate>Mon, 28 Feb 2022 22:05:52 +0900</pubDate>
-      
-      <guid>https://jinyisland.kr/post/node-file/</guid>
-      <description>FileSystem node.js에서는 fs 모듈을 통해 파일 시스템에 접근할 수 있다. 현재 파일 기준으로 경로를 잡는것이 아닌 실행하는 node 콘솔 기준으로 경로를 바라본다는 특징이 있다. 파일 시스템에 접근할 때는 반드시 보안에 꼭 신경쓰는 것이 좋다. 또한 비동기 함수이므로 동시에 실행이 보장되지 않는다.
-1## hello Node.js! readFile 파일을 읽어오는 메서드이다. 첫 번째 인자에 해당 파일의 상대경로, 두 번째 인자에 콜백 함수를 입력 받는다.
-(실행하는 node 기준이므로 같은 디렉토리에 위치해야한다.)
-1const fs = require(&amp;#39;fs&amp;#39;); 2 3fs.</description>
-    </item>
-    
-    <item>
-      <title>[Node.js] 자주 사용하는 모듈 정리</title>
-      <link>https://jinyisland.kr/post/useful-modules/</link>
-      <pubDate>Mon, 10 Jan 2022 23:19:14 +0900</pubDate>
-      
-      <guid>https://jinyisland.kr/post/useful-modules/</guid>
-      <description>global 브라우저의 window와 같은 전역 객체 역할, 하지만 브라우저와 관련된 객체(document 등)들은 사용하지 못한다. global객체 역시 생략해서 사용 가능하다. 그리고 브라우저의 window객체와 마찬가지로 global에 값을 주입하면 프로젝트 내 모든 파일에서 전역 변수로 사용할 수 있다 . (하지만 이러한 패턴은 지양한다, module을 통해 관리하자)
-1global.console.log(&amp;#39;hello Node!&amp;#39;); 2console.log(&amp;#39;hello Node!&amp;#39;); console 로그를 출력하는 객체, 흔히 사용하는 log, error 말고 신기한 것을 소개한다.
-console.time 수행 시점에 time을 찍어 해당 코드를 수행한 시간을 알아낼 수 있다.</description>
     </item>
     
     <item>
@@ -101,6 +75,38 @@ npm 생성하기 npm 환경에서 제일 중요한 것은 패키지 관리이다
     </item>
     
     <item>
+      <title>[Vue] Vue 코드 포맷팅</title>
+      <link>https://jinyisland.kr/post/prettier/</link>
+      <pubDate>Mon, 20 Dec 2021 23:49:00 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/prettier/</guid>
+      <description>Code Convention 프로젝트 진행 시 기능 구현도 중요하지만, 추후 유지보수를 위한 convention도 굉장히 중요하다고 생각한다. 특히 협업으로 작업하는 경우 거의 필수로 작용하는데, 개발자 마다 선호하는 코딩 스타일도 다르고 하물며 변수 명 하나하나 지을 때도 케밥케이스, 카멜케이스 등 여러 방식도 존재하기 때문이다. 물론 개인 프로젝트에서도 이 부분은 꽤나 중요한데 전체적인 일관성이 유지되어야 보는 사람들도 코드를 읽기 편하다. 컨벤션을 잘 지킬 수 있는 플러그인 중 대다수가 사용하는 eslint와 prettier를 vue와 연동해보는 것을 정리해보았다.</description>
+    </item>
+    
+    <item>
+      <title>[Vue] Vuex 개념과 실제 사용해보기!</title>
+      <link>https://jinyisland.kr/post/vuex/</link>
+      <pubDate>Fri, 03 Dec 2021 16:10:08 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/vuex/</guid>
+      <description>Vuex vuex는 vue.js에서 컴포넌트들의 상태 관리를 위한 효율적인 라이브러리이다.
+React의 Flux 이름과 비슷한것을 보면 Flux 패턴에서 차용한 것이라고 한다.
+Vuex를 사용하면 좋은 점 기본적으로 vue 생태계에서 컴포넌트 간 여러 정보들을 관리하려면 부모-자식 관계로 데이터들을 넘겨주고 받아야한다. 하지만 현실적으로 복잡한 컴포넌트 관계속에서 계속 주고 받으려면 여러 컴포넌트 파일에서 data 속성을 관리해주어야 하는 단점이 있다. 예를 들어 위 사진처럼 깊은 관계에서 다른 컴포넌트로 데이터를 보내려면 부모 컴포넌트를 계속 찾아 이벤트를 바인딩 시키고 다시 props로 내려주어야 하는 불편함이 있다.</description>
+    </item>
+    
+    <item>
+      <title>[Vue] Vue에 Tailwind CSS 적용하기</title>
+      <link>https://jinyisland.kr/post/vue-tailwind/</link>
+      <pubDate>Thu, 21 Oct 2021 23:05:04 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/vue-tailwind/</guid>
+      <description>tailwind? tailwind는 CSS 프레임워크이다. 사용방법은 공식 문서를 보면 잘 나와있다. 기본적으로 태그 내에 inline형태로 클래스 형태로 스타일을 입히는 방식이다. 기존 css로 작업했을 때와 tailwind를 사용했을 때를 비교해 보자면 다음과 같다.
+  브라우징 최적화
+autoprefixer를 내장해서 사용하고 있기 때문에, 브라우저별로 상이한 스타일 문제로 골머리를 앓지 않아도 된다.
+  클래스 기반 스타일 tailwind 기본 사용법은 태그 내에 클래스로 스타일을 입히는 방식이다. 예를 들어 특정 태그에 배경색을 입히려면 아래와 같이 작성한다. 클래스 명도 이해하기 쉽도록 구성되어 있기 때문에 대충 이름만 봐도 어떠한 역할인지는 파악이 된다.</description>
+    </item>
+    
+    <item>
       <title>힙의 개념과 힙 정렬 알고리즘</title>
       <link>https://jinyisland.kr/post/algorithm-heap/</link>
       <pubDate>Sat, 16 Oct 2021 23:24:14 +0900</pubDate>
@@ -111,14 +117,13 @@ npm 생성하기 npm 환경에서 제일 중요한 것은 패키지 관리이다
     </item>
     
     <item>
-      <title>[Node.js] HTTP모듈 실습</title>
-      <link>https://jinyisland.kr/post/node-restapi/</link>
-      <pubDate>Fri, 17 Sep 2021 23:48:56 +0900</pubDate>
+      <title>[Vue] computed와 Watch</title>
+      <link>https://jinyisland.kr/post/computed-watch/</link>
+      <pubDate>Sat, 09 Oct 2021 23:17:34 +0900</pubDate>
       
-      <guid>https://jinyisland.kr/post/node-restapi/</guid>
-      <description>Node.js HTTP 모듈을 통해 간단히 요청보내고, 주고받는 초간단 API 서버를 만들어보았다.
-Request createServer 콜백에서 request, response 인자를 받는데 request 객체에서 요청 정보들을 받을 수 있다.
-1const http = require(&amp;#39;http&amp;#39;); 2 3http.createServer(async (request, response) =&amp;gt; { 4 try { 5 const method = request.method; 6 const url = request.url; 7 //step 1. 요청 메소드 구분 8 if (method == &amp;#39;GET&amp;#39;) { 9 //step 2. URL 구분 10 if (url == &amp;#39;/&amp;#39;) { 11 } else if (url == &amp;#39;/list&amp;#39;) { 12 } 13 } else if (method == &amp;#39;POST&amp;#39;) { 14 //code.</description>
+      <guid>https://jinyisland.kr/post/computed-watch/</guid>
+      <description>vue에서 data 속성에 있는 값을 사용하고자 할 때, 값이 변화할 때 마다 자동적으로 리렌더링 해주는 인스턴스 속성이 2개가 있다. 바로 computed와 watch, 이 두 속성의 공통점은 값을 감지하다가 변경되면 메서드를 호출함으로써 값을 바로 반환해준다. 이 비슷한 두 속성에 대해 차이점에 대해서 알아보았다.
+computed 사용법은 아래 코드를 참고, computed속성 내에 메서드를 정의하고 템플릿내에 호출을 하면 해당 값이 바뀔 때 마다 재호출을 해준다. 이는 캐싱이되는 성질이 있어 해당 값이 바뀌지 않는다면 호출을 절대 하지 않는다.</description>
     </item>
     
     <item>
@@ -195,6 +200,20 @@ export 코드를 외부에 내보내고 싶다면 export문을 사용한다. 함
     </item>
     
     <item>
+      <title>[Vue] 라우터 개념 및 사용방법</title>
+      <link>https://jinyisland.kr/post/vue-router/</link>
+      <pubDate>Mon, 23 Aug 2021 22:54:41 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/vue-router/</guid>
+      <description>라우터 클라이언트의 요청 경로에 따라 해당하는 컴포넌트를 불러와 페이지를 구성할 수 있다.
+URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트를 가지고 있다가 변경된 요소영역만 갱신한다.(SPA 언어의 큰 특징)
+따라서 유연하게 페이지 젼환이 가능하다. vue 프레임워크에서는 vue-router라는 라우팅 라이브러리를 지원한다.
+설치하기 vue-router를 설치하고, package.json파일에서 모듈이 잘 추가되었는지 확인하자
+1npm install vue-router --save 라우터 속성 다음은 라우터 인스턴스를 생성할 때 설정하는 값이다.
+ String mode : 기본 값은 Hash 모드 (history 모드를 사용하면 브라우저 히스토리 스택에 기록된다.</description>
+    </item>
+    
+    <item>
       <title>자바스크립트 클로저</title>
       <link>https://jinyisland.kr/post/js-closure/</link>
       <pubDate>Tue, 10 Aug 2021 23:51:20 +0900</pubDate>
@@ -203,7 +222,7 @@ export 코드를 외부에 내보내고 싶다면 export문을 사용한다. 함
       <description>클로저 개념 클로저는 쉽게말해 함수 선언시 생성되는 유효 범위이다.
 먼저 자바스크립트에서 클로저를 이해하려면 범위 지정(Lexical Scoping)을 이해하여야 한다.
 아래 코드를 보자.
-1var apple = &amp;#39;🍎&amp;#39;; 2 3function displayApple(){ 4	console.log(apple); 5} 6 7displayApple(); 8//result : 🍎 간단하게 사과를 출력해주는 함수다.
+1var apple = &amp;#39;🍎&amp;#39;; 2 3function displayApple() { 4 console.log(apple); 5} 6 7displayApple(); 8//result : 🍎 간단하게 사과를 출력해주는 함수다.
 하지만, 정작 함수안에는 apple이라는 변수가 없는데도 불구하고 사과가 출력되었다.
 지난번 실행컨텍스트에서 언급했듯이 해당 유효범위에서 식별자를 찾지 못하면 점점 상위 ~ 전역으로 탐색한다. Scope Chain
 1var displayPrice; 2var apple = **&amp;#39;🍎&amp;#39;;** 3function displayApple(){ 4	var price = 1000; 5	console.</description>
@@ -246,6 +265,42 @@ export 코드를 외부에 내보내고 싶다면 export문을 사용한다. 함
 하지만 자바스크립트는 쓰면 쓸수록 헷갈리는 개념도 많고, 처음엔 만만하게 보였지만 깊이 들어갈수록 난해한..언어이기도 하다.. (아직도 어렵다 ㅠㅠ)😵
 자바스크립트에 대한 핵심적인 내용을 짚고 넘어가고자 해당 시리즈를 포스팅하기로 마음 먹었다! 첫 번째는 자바스크립트는 어떻게 동작할까?
 유연한 언어 자바스크립트에서의 타입 체크는 타 언어보다 굉장히 유연하고 느슨하다. 아래 예시를 보면 보통의 언어 같으면 컴파일 단계에서 들어오지 않은 값에 대해 오류를 내뿜어내지만, 자바스크립트에서는 일단 처리를 한다.</description>
+    </item>
+    
+    <item>
+      <title>[Vue] 외부 Vue 프로젝트 불러오기</title>
+      <link>https://jinyisland.kr/post/vue-import/</link>
+      <pubDate>Sun, 18 Jul 2021 23:09:02 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/vue-import/</guid>
+      <description>윈도우에서 작업한 Vue 프로젝트를 mac 환경에서 확인하려던 중 git clone 후 프로젝트를 실행해보니 아래와 같은 에러가 나왔다.
+1&amp;gt; vue-todo@0.1.0 serve /Users/sjchoi/Mydoc/02_Code/05_vue/vue-practice/vue-todo 2&amp;gt; vue-cli-service serve 3 4sh: vue-cli-service: command not found 5npm ERR! code ELIFECYCLE 6npm ERR! syscall spawn 7npm ERR! file sh 8npm ERR! errno ENOENT 9npm ERR! vue-todo@0.1.0 serve: `vue-cli-service serve` 10npm ERR! spawn ENOENT 11npm ERR! 12npm ERR! Failed at the vue-todo@0.1.0 serve script. 13npm ERR! This is probably not a problem with npm.</description>
+    </item>
+    
+    <item>
+      <title>[Vue] 컴포넌트에 대한 개념</title>
+      <link>https://jinyisland.kr/post/vue-component/</link>
+      <pubDate>Thu, 01 Jul 2021 21:27:40 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/vue-component/</guid>
+      <description>컴포넌트 개념 화면의 영역을 분리하여 개발하는 것, Vue에서 최상위 컴포넌트는 root이다.
+컴포넌트 구성의 장점은 요소들을 재사용함으로써 개발 생산성이 향상되고, 컴포넌트들은 서로 관계가 형성된다.
+전역 컴포넌트 주로 플러그인, 라이브러리 등 앱 전역에서 사용 할 공통 컴포넌트를 작성한다.
+전역 컴포넌트를 생성하면 새 인스턴스를 생성할 때 마다 기본적으로 생성한다.
+1//컴포넌트 생성 2Vue.component(&amp;#39;app-header&amp;#39;, { 3 template: &amp;#39;&amp;lt;h1&amp;gt;header&amp;lt;/h1&amp;gt;&amp;#39; //component Template 4}); 5 6Vue.component(&amp;#39;app-content&amp;#39;, { 7 template: &amp;#39;&amp;lt;p&amp;gt;This is Vue-Component Write&amp;lt;/p&amp;gt;&amp;#39; 8}); 9 10//인스턴스 생성 11new Vue({ 12 el: &amp;#39;#app&amp;#39; //selector 13}); 지역 컴포넌트 Vue 인스턴스 내에 직접 삽입하는 방식이다.</description>
+    </item>
+    
+    <item>
+      <title>[Vue] Vue 설치하기 및 프로젝트 구조</title>
+      <link>https://jinyisland.kr/post/vue-start/</link>
+      <pubDate>Wed, 30 Jun 2021 20:20:49 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/vue-start/</guid>
+      <description>CLI? cli란 Command Line Interface, 즉 명령어 기반의 인터페이스 환경을 의미한다.
+vue 프로젝트 도입시 전체적인 웹애플레이케이션을 관리하려면 지금 소개하는 cli패키지를 설치하면 되고,
+별도의 페이지에서 국한적으로 사용하려면 cdn방식으로도 사용할 수 있다.
+CDN 방식을 사용하려면 아래 소스를 참고하면 된다.
+1&amp;lt;head&amp;gt; 2 &amp;lt;!-- Vue-CDN --&amp;gt; 3 &amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 4&amp;lt;/head&amp;gt; 5&amp;lt;body&amp;gt; 6 &amp;lt;!-- template --&amp;gt; 7 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; 8 &amp;lt;app-footer&amp;gt;&amp;lt;/app-footer&amp;gt; 9 &amp;lt;/div&amp;gt; 10&amp;lt;/body&amp;gt; 11&amp;lt;script&amp;gt; 12 //vue 인스턴스 생성 13 new Vue({ 14 el: &amp;#39;#app&amp;#39;, 15 components: { 16 &amp;#39;app-footer&amp;#39;: { 17 template: &amp;#39;&amp;lt;footer&amp;gt;Footer!</description>
     </item>
     
   </channel>

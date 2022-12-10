@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nodejs on Jiny</title>
+    <link>https://jinyisland.kr/tags/nodejs/</link>
+    <description>Recent content in nodejs on Jiny</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 21 Apr 2022 23:55:37 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Node.js] multer 사용법</title>
+      <link>https://jinyisland.kr/post/multer/</link>
+      <pubDate>Thu, 21 Apr 2022 23:55:37 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/multer/</guid>
+      <description>multer  multer 요청 타입이 multeipart/form-data인 경우 multer를 이용해 받을 수 있다.
+설치하기 1npm i multer 사용방법 multer모듈을 임포트 해주고 미들웨어로 사용하기 위해 여러 설정을 해준다.
+1const multer = require(&amp;#39;multer&amp;#39;); 2const path = require(&amp;#39;path&amp;#39;); 3 4// 디렉토리 없을 경우 생성해주는 예외 처리 5// (server listen 전 단계 이므로 동기식 코드로 해도 무방) 6try { 7 fs.readdirSync(&amp;#39;assets&amp;#39;); 8} catch (error) { 9 console.error(&amp;#39;not exist directory.&amp;#39;); 10 fs.mkdirSync(&amp;#39;assets&amp;#39;); 11} 12 13const upload = multer({ 14 // 파일 저장 위치 (disk , memory 선택) 15 storage: multer.</description>
+    </item>
+    
+    <item>
+      <title>[Node.js] 파일 시스템 접근하기</title>
+      <link>https://jinyisland.kr/post/node-file/</link>
+      <pubDate>Mon, 28 Feb 2022 22:05:52 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/node-file/</guid>
+      <description>FileSystem node.js에서는 fs 모듈을 통해 파일 시스템에 접근할 수 있다. 현재 파일 기준으로 경로를 잡는것이 아닌 실행하는 node 콘솔 기준으로 경로를 바라본다는 특징이 있다. 파일 시스템에 접근할 때는 반드시 보안에 꼭 신경쓰는 것이 좋다. 또한 비동기 함수이므로 동시에 실행이 보장되지 않는다.
+1## hello Node.js! readFile 파일을 읽어오는 메서드이다. 첫 번째 인자에 해당 파일의 상대경로, 두 번째 인자에 콜백 함수를 입력 받는다.
+(실행하는 node 기준이므로 같은 디렉토리에 위치해야한다.)
+1const fs = require(&amp;#39;fs&amp;#39;); 2 3fs.</description>
+    </item>
+    
+    <item>
+      <title>[Node.js] 자주 사용하는 모듈 정리</title>
+      <link>https://jinyisland.kr/post/useful-modules/</link>
+      <pubDate>Mon, 10 Jan 2022 23:19:14 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/useful-modules/</guid>
+      <description>global 브라우저의 window와 같은 전역 객체 역할, 하지만 브라우저와 관련된 객체(document 등)들은 사용하지 못한다. global객체 역시 생략해서 사용 가능하다. 그리고 브라우저의 window객체와 마찬가지로 global에 값을 주입하면 프로젝트 내 모든 파일에서 전역 변수로 사용할 수 있다 . (하지만 이러한 패턴은 지양한다, module을 통해 관리하자)
+1global.console.log(&amp;#39;hello Node!&amp;#39;); 2console.log(&amp;#39;hello Node!&amp;#39;); console 로그를 출력하는 객체, 흔히 사용하는 log, error 말고 신기한 것을 소개한다.
+console.time 수행 시점에 time을 찍어 해당 코드를 수행한 시간을 알아낼 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>[Node.js] HTTP모듈 실습</title>
+      <link>https://jinyisland.kr/post/node-restapi/</link>
+      <pubDate>Fri, 17 Sep 2021 23:48:56 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/node-restapi/</guid>
+      <description>Node.js HTTP 모듈을 통해 간단히 요청보내고, 주고받는 초간단 API 서버를 만들어보았다.
+Request createServer 콜백에서 request, response 인자를 받는데 request 객체에서 요청 정보들을 받을 수 있다.
+1const http = require(&amp;#39;http&amp;#39;); 2 3http.createServer(async (request, response) =&amp;gt; { 4 try { 5 const method = request.method; 6 const url = request.url; 7 //step 1. 요청 메소드 구분 8 if (method == &amp;#39;GET&amp;#39;) { 9 //step 2. URL 구분 10 if (url == &amp;#39;/&amp;#39;) { 11 } else if (url == &amp;#39;/list&amp;#39;) { 12 } 13 } else if (method == &amp;#39;POST&amp;#39;) { 14 //code.</description>
+    </item>
+    
+  </channel>
+</rss>

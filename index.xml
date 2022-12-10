@@ -12,7 +12,7 @@
         <pubDate>Fri, 30 Sep 2022 23:45:32 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/sass-mixin/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post [Sass] Mixin 사용해보기" /&gt;&lt;h2 id=&#34;mixin&#34;&gt;Mixin&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/style.png" alt="Featured image of post [Sass] Mixin 사용해보기" /&gt;&lt;h2 id=&#34;mixin&#34;&gt;Mixin&lt;/h2&gt;
 &lt;p&gt;CSS내에서 반복적으로 사용하는 코드들을 재사용할 수 있도록 &lt;code&gt;import&lt;/code&gt; 해주는 문법이다.&lt;/p&gt;
 &lt;h2 id=&#34;사용법&#34;&gt;사용법&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;@mixin&lt;/code&gt; 키워드 뒤에 사용 할 mixin 이름을 지정해준다. 사용하려는 부분에 &lt;code&gt;@include&lt;/code&gt;로 선언한 mixin을 호출할 수 있다.&lt;br&gt;
@@ -91,7 +91,7 @@
         <pubDate>Sun, 25 Sep 2022 16:39:39 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/what-sass/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/style/style.png" alt="Featured image of post [Sass] Sass 설치 및 기본 문법 소개" /&gt;&lt;h2 id=&#34;sass를-사용해야-할-이유&#34;&gt;Sass를 사용해야 할 이유&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/style.png" alt="Featured image of post [Sass] Sass 설치 및 기본 문법 소개" /&gt;&lt;h2 id=&#34;sass를-사용해야-할-이유&#34;&gt;Sass를 사용해야 할 이유&lt;/h2&gt;
 &lt;p&gt;CSS만 주구장창 사용하다가 한달동안 Sass를 스터디하였는데 직접 사용해보니 왜 &lt;code&gt;Sass&lt;/code&gt;를 사용하면 좋은지 정리를 해보았다.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1. 규모가 크고 복잡한 웹 어플리케이션에서의 효율적인 구조화&lt;/strong&gt;&lt;br&gt;
 Sass에서 제공하는 여러 내장 함수 및 믹스인, 함수를 사용해 공통 스타일 작성에 더욱 효율적이다.&lt;/p&gt;
@@ -388,7 +388,7 @@ SCSS는 Sass와 무슨 관계가 있을까?&lt;/p&gt;
         <pubDate>Tue, 26 Jul 2022 23:36:59 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/composition-api/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/vue/vue.png" alt="Featured image of post [Vue] Composition API 사용 방법" /&gt;&lt;h2 id=&#34;options-api의-장단점&#34;&gt;Options API의 장단점&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/vue.png" alt="Featured image of post [Vue] Composition API 사용 방법" /&gt;&lt;h2 id=&#34;options-api의-장단점&#34;&gt;Options API의 장단점&lt;/h2&gt;
 &lt;p&gt;Vue에서 기본적으로 사용하고 있는 패턴은 객체 내에 다양한 속성을 사용하고 있는 형태이다. 라이프사이클을 제어하기 위해 사용하는 mounted, updated 그리고 컴포넌트 내에서 여러 메서드들을 정의하고 데이터들을 참조할 때 정해진 속성에 정의해서 사용하였다. 이를 Options API라고 한다.&lt;/p&gt;
 &lt;p&gt;아래는 페이지네이션 기능 컴포넌트를 구현할 때 작성했던 코드인데, 컴포지션 API를 적용하지 않은 &lt;code&gt;options api&lt;/code&gt; 방식으로 작성하였다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
@@ -620,7 +620,7 @@ SCSS는 Sass와 무슨 관계가 있을까?&lt;/p&gt;
         <pubDate>Wed, 22 Jun 2022 23:23:52 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/react-router/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/react/react.png" alt="Featured image of post [React] 리액트 라우터 기본 사용방법" /&gt;&lt;h2 id=&#34;페이지-라우팅&#34;&gt;페이지 라우팅&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/react.png" alt="Featured image of post [React] 리액트 라우터 기본 사용방법" /&gt;&lt;h2 id=&#34;페이지-라우팅&#34;&gt;페이지 라우팅&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;vue&lt;/code&gt;를 처음 접했을 때 이해했던 &lt;a class=&#34;link&#34; href=&#34;https://jinyisland.kr/post/vue-router/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;개념&lt;/a&gt;이지만, 한번 더 정리하자면 일단 &lt;strong&gt;라우터&lt;/strong&gt;라는 개념은 네트워크 상에서 통신 데이터를 보낼 경로를 선택하는 과정을 의미한다. SPA 환경의 웹 애플리케이션(Vue, React, Angular)에서는 말 그대로 요청(Request)에 따라 알맞은 페이지를 반환해주는 과정 자체로 이해하면 된다.&lt;/p&gt;
 &lt;p&gt;SPA의 단일 페이지라는 이점을 살려, MPA(Multi Page Application) 환경과는 달리 페이지자체를 반환하지 않고 데이터만 불러와 렌더링해주기 때문에 사용자 입장에서 훨씬 빠르다고 느낄 수 있다. 또한 클라이언트에서 렌더링을 다루기때문에 CSR(Client Side Rendering)이라고도 불린다.&lt;/p&gt;
@@ -749,7 +749,7 @@ HTML 앵커 태그로 자동으로 변환해준다.&lt;/p&gt;
         <pubDate>Mon, 13 Jun 2022 23:54:07 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/react-props/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/react/react.png" alt="Featured image of post [React] 컴포넌트에 Props 전달하기" /&gt;&lt;h2 id=&#34;개념&#34;&gt;개념&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/react.png" alt="Featured image of post [React] 컴포넌트에 Props 전달하기" /&gt;&lt;h2 id=&#34;개념&#34;&gt;개념&lt;/h2&gt;
 &lt;p&gt;컴포넌트에 데이터를 전달하는 데이터를 &lt;code&gt;prop&lt;/code&gt;이라고 한다. (Properties의 줄임말)&lt;/p&gt;
 &lt;h2 id=&#34;props&#34;&gt;Props&lt;/h2&gt;
 &lt;h3 id=&#34;단일-값-전달하기&#34;&gt;단일 값 전달하기&lt;/h3&gt;
@@ -963,7 +963,7 @@ HTML 앵커 태그로 자동으로 변환해준다.&lt;/p&gt;
         <pubDate>Mon, 02 May 2022 23:12:10 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/jsx/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/react/react.png" alt="Featured image of post [React] jsx 사용방법" /&gt;&lt;h2 id=&#34;jsx&#34;&gt;JSX&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/react.png" alt="Featured image of post [React] jsx 사용방법" /&gt;&lt;h2 id=&#34;jsx&#34;&gt;JSX&lt;/h2&gt;
 &lt;p&gt;JavaScript Extension, 자바스립트를 확장한 문법이다.&lt;strong&gt;(HTML이 아니다.)&lt;/strong&gt; 리액트에서 컴포넌트 구조를 작성하면서 HtML 대신 &lt;code&gt;jsx&lt;/code&gt;로 UI를 표현한다고 생각하면 된다. vue에서는 &lt;code&gt;template&lt;/code&gt;태그에 직접 HTML 문법을 사용했었는데 동일한 역할이다. 확장자는 &lt;code&gt;jsx&lt;/code&gt;로 사용할 수 있으나 &lt;code&gt;js&lt;/code&gt;로 사용해도 자동 변환이 되기 때문에 어느 것으로 해도 큰 상관은 없다.&lt;/p&gt;
 &lt;h2 id=&#34;기본-문법&#34;&gt;기본 문법&lt;/h2&gt;
 &lt;h3 id=&#34;스타일-적용하기&#34;&gt;스타일 적용하기&lt;/h3&gt;
@@ -1055,7 +1055,7 @@ HTML 앵커 태그로 자동으로 변환해준다.&lt;/p&gt;
         <pubDate>Thu, 21 Apr 2022 23:55:37 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/multer/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post [Node.js] multer 사용법" /&gt;&lt;h1 id=&#34;multer&#34;&gt;multer&lt;/h1&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/nodejs.png" alt="Featured image of post [Node.js] multer 사용법" /&gt;&lt;h1 id=&#34;multer&#34;&gt;multer&lt;/h1&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;multer-1&#34;&gt;multer&lt;/h2&gt;
 &lt;p&gt;요청 타입이 &lt;code&gt;multeipart/form-data&lt;/code&gt;인 경우 multer를 이용해 받을 수 있다.&lt;/p&gt;
@@ -1363,7 +1363,7 @@ HTML 앵커 태그로 자동으로 변환해준다.&lt;/p&gt;
         <pubDate>Thu, 14 Apr 2022 23:18:59 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/express-routing/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post [Node.js] Express 라우터 살펴보기" /&gt;&lt;h2 id=&#34;라우팅&#34;&gt;라우팅&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/express.png" alt="Featured image of post [Node.js] Express 라우터 살펴보기" /&gt;&lt;h2 id=&#34;라우팅&#34;&gt;라우팅&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;https://expressjs.com/ko/guide/routing.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;express 공식 문서&lt;/a&gt;&lt;/strong&gt; 에서는 라우팅을 아래와 같이 설명하고 있다.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1524,12 +1524,12 @@ HTML 앵커 태그로 자동으로 변환해준다.&lt;/p&gt;
 </description>
         </item>
         <item>
-        <title>[Node.js] Express 미들웨어 사용법</title>
+        <title>[Express] Express 미들웨어 사용법</title>
         <link>https://jinyisland.kr/post/middleware/</link>
         <pubDate>Tue, 12 Apr 2022 21:17:46 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/middleware/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post [Node.js] Express 미들웨어 사용법" /&gt;&lt;h2 id=&#34;미들웨어&#34;&gt;미들웨어&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/express.png" alt="Featured image of post [Express] Express 미들웨어 사용법" /&gt;&lt;h2 id=&#34;미들웨어&#34;&gt;미들웨어&lt;/h2&gt;
 &lt;p&gt;말 그대로 요청(Request)과 응답(Response) 사이 중간(middle)에서 핸들링해주는 익스프레스의 핵심 기능이다.&lt;/p&gt;
 &lt;h3 id=&#34;사용법&#34;&gt;사용법&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;use&lt;/code&gt;메서드를 사용하고 요청 메서드 내부에서 미들웨어를 정의할 수 있다.&lt;/p&gt;
@@ -1826,7 +1826,7 @@ HTML 앵커 태그로 자동으로 변환해준다.&lt;/p&gt;
         <pubDate>Tue, 29 Mar 2022 22:57:14 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/express-start/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post [Node.js] Express 설치 및 실행해보기" /&gt;&lt;h2 id=&#34;개요&#34;&gt;개요&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/express.png" alt="Featured image of post [Node.js] Express 설치 및 실행해보기" /&gt;&lt;h2 id=&#34;개요&#34;&gt;개요&lt;/h2&gt;
 &lt;p&gt;기존 &lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;http://localhost:1313/post/node-restapi/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;http모듈로 서버를 구축&lt;/a&gt;&lt;/strong&gt; 해서 간단한 요청과 응답 프로세스를 경험해보았는데 여타 언어들도 그렇듯이 프레임워크를 사용하면 더욱 효율적으로 작업을 할 수 있다. node.js 생태계에서는 압도적으로 &lt;code&gt;express.js&lt;/code&gt;를 많이 사용한다.&lt;/p&gt;
 &lt;h3 id=&#34;설치하기&#34;&gt;설치하기&lt;/h3&gt;
@@ -1917,7 +1917,7 @@ http 모듈로 구축했을 때 URL도 파싱해야하고, if문으로 &lt;stron
         <pubDate>Mon, 28 Feb 2022 22:05:52 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/node-file/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post [Node.js] 파일 시스템 접근하기" /&gt;&lt;h2 id=&#34;filesystem&#34;&gt;FileSystem&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/nodejs.png" alt="Featured image of post [Node.js] 파일 시스템 접근하기" /&gt;&lt;h2 id=&#34;filesystem&#34;&gt;FileSystem&lt;/h2&gt;
 &lt;p&gt;node.js에서는 &lt;code&gt;fs 모듈&lt;/code&gt;을 통해 파일 시스템에 접근할 수 있다. 현재 파일 기준으로 경로를 잡는것이 아닌 실행하는 node 콘솔 기준으로 경로를 바라본다는 특징이 있다. 파일 시스템에 접근할 때는 반드시 보안에 꼭 신경쓰는 것이 좋다. 또한 &lt;strong&gt;비동기 함수&lt;/strong&gt;이므로 동시에 실행이 보장되지 않는다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-md&#34; data-lang=&#34;md&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;gu&#34;&gt;## hello Node.js!
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;readfile&#34;&gt;readFile&lt;/h3&gt;
@@ -2015,7 +2015,7 @@ fs 모듈의 &lt;code&gt;constants&lt;/code&gt;속성으로 경로에 대한 권
         <pubDate>Mon, 17 Jan 2022 23:18:33 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/font/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/style/style.png" alt="Featured image of post HTML에 폰트 적용하는 방법" /&gt;&lt;h2 id=&#34;웹-폰트&#34;&gt;웹 폰트&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/style.png" alt="Featured image of post HTML에 폰트 적용하는 방법" /&gt;&lt;h2 id=&#34;웹-폰트&#34;&gt;웹 폰트&lt;/h2&gt;
 &lt;p&gt;웹 폰트를 적용하는 방법은 크게 2가지가 있다. 하나는 &lt;code&gt;cdn&lt;/code&gt;을 이용하는 방법, 나머지 하나는 직접 폰트 파일을 경로에 미리 삽입하여 &lt;code&gt;@font-face&lt;/code&gt;로 정의하는 방법이다.&lt;/p&gt;
 &lt;h3 id=&#34;cdn을-활용한-방법&#34;&gt;CDN을 활용한 방법&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/46988995/149789092-deb049e2-c2c6-4fb0-b98e-0ea5bbafcab2.jpg&#34; alt=&#34;font&#34;  /&gt;&lt;/p&gt;
@@ -2075,7 +2075,7 @@ fs 모듈의 &lt;code&gt;constants&lt;/code&gt;속성으로 경로에 대한 권
         <pubDate>Mon, 10 Jan 2022 23:19:14 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/useful-modules/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post [Node.js] 자주 사용하는 모듈 정리" /&gt;&lt;h2 id=&#34;global&#34;&gt;global&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/nodejs.png" alt="Featured image of post [Node.js] 자주 사용하는 모듈 정리" /&gt;&lt;h2 id=&#34;global&#34;&gt;global&lt;/h2&gt;
 &lt;p&gt;브라우저의 window와 같은 전역 객체 역할, 하지만 브라우저와 관련된 객체(document 등)들은 사용하지 못한다. &lt;code&gt;global&lt;/code&gt;객체 역시 생략해서 사용 가능하다. 그리고 브라우저의 window객체와 마찬가지로 global에 값을 주입하면 프로젝트 내 모든 파일에서 전역 변수로 사용할 수 있다 . (하지만 이러한 패턴은 지양한다, module을 통해 관리하자)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;global&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;hello Node!&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;hello Node!&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
@@ -2264,7 +2264,7 @@ fs 모듈의 &lt;code&gt;constants&lt;/code&gt;속성으로 경로에 대한 권
         <pubDate>Mon, 20 Dec 2021 23:49:00 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/prettier/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/vue/vue.png" alt="Featured image of post [Vue] Vue 코드 포맷팅" /&gt;&lt;h2 id=&#34;code-convention&#34;&gt;Code Convention&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/vue.png" alt="Featured image of post [Vue] Vue 코드 포맷팅" /&gt;&lt;h2 id=&#34;code-convention&#34;&gt;Code Convention&lt;/h2&gt;
 &lt;p&gt;프로젝트 진행 시 기능 구현도 중요하지만, 추후 유지보수를 위한 &lt;code&gt;convention&lt;/code&gt;도 굉장히 중요하다고 생각한다. 특히 협업으로 작업하는 경우 거의 필수로 작용하는데, 개발자 마다 선호하는 코딩 스타일도 다르고 하물며 변수 명 하나하나 지을 때도 케밥케이스, 카멜케이스 등 여러 방식도 존재하기 때문이다. 물론 개인 프로젝트에서도 이 부분은 꽤나 중요한데 전체적인 일관성이 유지되어야 보는 사람들도 코드를 읽기 편하다. 컨벤션을 잘 지킬 수 있는 플러그인 중 대다수가 사용하는 &lt;code&gt;eslint&lt;/code&gt;와 &lt;code&gt;prettier&lt;/code&gt;를 vue와 연동해보는 것을 정리해보았다.&lt;/p&gt;
 &lt;h3 id=&#34;사전-준비&#34;&gt;사전 준비&lt;/h3&gt;
 &lt;p&gt;만약 vue-cli를 사용할 경우, &lt;code&gt;vue create&lt;/code&gt; 과정에서 eslint, prettier를 같이 설치할 수 있지만 이러한 옵션을 이미 알고 설치하는 경우는 목적에 맞게 진행한 것이기 때문에 아무것도 설치가 안 되어있는 것을 전제로 적용하는 것을 목표로 둔다.&lt;/p&gt;
@@ -2382,7 +2382,7 @@ node 환경의 root는 package.json이 위치한 경로라고 이해하면 된�
         <pubDate>Fri, 03 Dec 2021 16:10:08 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/vuex/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/vue/vue.png" alt="Featured image of post [Vue] Vuex 개념과 실제 사용해보기!" /&gt;&lt;h2 id=&#34;vuex&#34;&gt;Vuex&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/vue.png" alt="Featured image of post [Vue] Vuex 개념과 실제 사용해보기!" /&gt;&lt;h2 id=&#34;vuex&#34;&gt;Vuex&lt;/h2&gt;
 &lt;p&gt;vuex는 vue.js에서 컴포넌트들의 상태 관리를 위한 효율적인 라이브러리이다.&lt;br&gt;
 React의 &lt;code&gt;Flux&lt;/code&gt; 이름과 비슷한것을 보면 Flux 패턴에서 차용한 것이라고 한다.&lt;/p&gt;
 &lt;h3 id=&#34;vuex를-사용하면-좋은-점&#34;&gt;Vuex를 사용하면 좋은 점&lt;/h3&gt;
@@ -2617,7 +2617,7 @@ React의 &lt;code&gt;Flux&lt;/code&gt; 이름과 비슷한것을 보면 Flux 패
         <pubDate>Thu, 21 Oct 2021 23:05:04 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/vue-tailwind/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/vue/vue.png" alt="Featured image of post [Vue] Vue에 Tailwind CSS 적용하기" /&gt;&lt;h2 id=&#34;tailwind&#34;&gt;tailwind?&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/vue.png" alt="Featured image of post [Vue] Vue에 Tailwind CSS 적용하기" /&gt;&lt;h2 id=&#34;tailwind&#34;&gt;tailwind?&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://tailwindcss.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;tailwind&lt;/a&gt;는 CSS 프레임워크이다. 사용방법은 &lt;a class=&#34;link&#34; href=&#34;https://tailwindcss.com/docs&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;공식 문서&lt;/a&gt;를 보면 잘 나와있다. 기본적으로 태그 내에 &lt;code&gt;inline&lt;/code&gt;형태로 클래스 형태로 스타일을 입히는 방식이다. 기존 css로 작업했을 때와 tailwind를 사용했을 때를 비교해 보자면 다음과 같다.&lt;/p&gt;
@@ -2842,7 +2842,7 @@ vue 프로젝트를 먼저 생성하고, tailwind-css를 설치한다.&lt;/p&gt;
         <pubDate>Sat, 09 Oct 2021 23:17:34 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/computed-watch/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/vue/vue.png" alt="Featured image of post [Vue] computed와 Watch" /&gt;&lt;p&gt;vue에서 &lt;code&gt;data&lt;/code&gt; 속성에 있는 값을 사용하고자 할 때, 값이 변화할 때 마다 자동적으로 리렌더링 해주는 인스턴스 속성이 2개가 있다. 바로 &lt;code&gt;computed&lt;/code&gt;와 &lt;code&gt;watch&lt;/code&gt;, 이 두 속성의 공통점은 값을 감지하다가 변경되면 메서드를 호출함으로써 값을 바로 반환해준다. 이 비슷한 두 속성에 대해 차이점에 대해서 알아보았다.&lt;/p&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/vue.png" alt="Featured image of post [Vue] computed와 Watch" /&gt;&lt;p&gt;vue에서 &lt;code&gt;data&lt;/code&gt; 속성에 있는 값을 사용하고자 할 때, 값이 변화할 때 마다 자동적으로 리렌더링 해주는 인스턴스 속성이 2개가 있다. 바로 &lt;code&gt;computed&lt;/code&gt;와 &lt;code&gt;watch&lt;/code&gt;, 이 두 속성의 공통점은 값을 감지하다가 변경되면 메서드를 호출함으로써 값을 바로 반환해준다. 이 비슷한 두 속성에 대해 차이점에 대해서 알아보았다.&lt;/p&gt;
 &lt;h2 id=&#34;computed&#34;&gt;computed&lt;/h2&gt;
 &lt;p&gt;사용법은 아래 코드를 참고, &lt;code&gt;computed&lt;/code&gt;속성 내에 메서드를 정의하고 템플릿내에 호출을 하면 해당 값이 바뀔 때 마다 재호출을 해준다. 이는 캐싱이되는 성질이 있어 해당 값이 바뀌지 않는다면 호출을 절대 하지 않는다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;template&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
@@ -2909,7 +2909,7 @@ vue 프로젝트를 먼저 생성하고, tailwind-css를 설치한다.&lt;/p&gt;
         <pubDate>Mon, 20 Sep 2021 18:49:47 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/cookies/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/web/web.png" alt="Featured image of post Http 쿠키의 개념과 활용 방법" /&gt;&lt;h2 id=&#34;http&#34;&gt;Http&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/web.png" alt="Featured image of post Http 쿠키의 개념과 활용 방법" /&gt;&lt;h2 id=&#34;http&#34;&gt;Http&lt;/h2&gt;
 &lt;p&gt;http 트랜잭션에는 상태가 없다. 모든 사용자 요청에는 사이트 기능에 맞는 상태들을 유지하는데 (사용자 정보, 권한 등등..) 이런 무수히 많은 상태들을 관리하려면 사용자를 식별할 수 있는 방법이 필요하다. 그중에 하나가 쿠키이다. 물론 사용자를 가릴 수 있는 방법에 초창기 여러 가지 방법이 있었는데 사용자 IP를 활용한 방법 등이 있었다. IP를 활용한 방법에는 다음과 같은 문제점이 있다.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;사용자 기준이 아닌 접속 PC의 IP이기 때문에 정확한 사용자 구별이 어려움&lt;/li&gt;
@@ -3064,7 +3064,7 @@ vue 프로젝트를 먼저 생성하고, tailwind-css를 설치한다.&lt;/p&gt;
         <pubDate>Fri, 17 Sep 2021 23:48:56 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/node-restapi/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/js/js.png" alt="Featured image of post [Node.js] HTTP모듈 실습" /&gt;&lt;p&gt;Node.js HTTP 모듈을 통해 간단히 요청보내고, 주고받는 초간단 API 서버를 만들어보았다.&lt;/p&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/nodejs.png" alt="Featured image of post [Node.js] HTTP모듈 실습" /&gt;&lt;p&gt;Node.js HTTP 모듈을 통해 간단히 요청보내고, 주고받는 초간단 API 서버를 만들어보았다.&lt;/p&gt;
 &lt;h2 id=&#34;request&#34;&gt;Request&lt;/h2&gt;
 &lt;p&gt;createServer 콜백에서 request, response 인자를 받는데 request 객체에서 요청 정보들을 받을 수 있다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;http&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
@@ -3999,7 +3999,7 @@ JAVA 배열의 특징은 다음과 같다.&lt;/p&gt;
         <pubDate>Mon, 23 Aug 2021 22:54:41 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/vue-router/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/vue/vue.png" alt="Featured image of post [Vue] 라우터 개념 및 사용방법" /&gt;&lt;h2 id=&#34;라우터&#34;&gt;라우터&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/vue.png" alt="Featured image of post [Vue] 라우터 개념 및 사용방법" /&gt;&lt;h2 id=&#34;라우터&#34;&gt;라우터&lt;/h2&gt;
 &lt;p&gt;클라이언트의 요청 경로에 따라 해당하는 컴포넌트를 불러와 페이지를 구성할 수 있다.&lt;br&gt;
 URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트를 가지고 있다가 &lt;strong&gt;변경된 요소영역만 갱신한다.(SPA 언어의 큰 특징)&lt;/strong&gt;&lt;br&gt;
 따라서 유연하게 페이지 젼환이 가능하다. vue 프레임워크에서는 &lt;code&gt;vue-router&lt;/code&gt;라는 라우팅 라이브러리를 지원한다.&lt;/p&gt;
@@ -4149,21 +4149,21 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
 아래 코드를 보자.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;apple&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;🍎&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;displayApple&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;apple&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;displayApple&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;apple&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;displayApple&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//result : 🍎
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;간단하게 사과를 출력해주는 함수다.&lt;br&gt;
-하지만,  정작 함수안에는 apple이라는 변수가 없는데도 불구하고 사과가 출력되었다.&lt;br&gt;
+하지만, 정작 함수안에는 apple이라는 변수가 없는데도 불구하고 사과가 출력되었다.&lt;br&gt;
 지난번 실행컨텍스트에서 언급했듯이 해당 유효범위에서 식별자를 찾지 못하면 점점 상위 ~ 전역으로 탐색한다. &lt;code&gt;Scope Chain&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;displayPrice&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;apple&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;🍎&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;**&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;displayApple&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;displayApple&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;	&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;price&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;**🍎&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;**&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;	&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;setPrice&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt; 
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;	&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;setPrice&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;		&lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;price&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39; won!!&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;displayPrice&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;setPrice&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
@@ -4191,16 +4191,16 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
 &lt;h3 id=&#34;은닉화&#34;&gt;은닉화&lt;/h3&gt;
 &lt;p&gt;자바스크립트에서는 여타 언어와는 달리 &lt;code&gt;접근 제어자&lt;/code&gt;를 명확하게 지원하지 않는다.&lt;br&gt;
 클로저를 통해 변수의 유효 범위를 세밀하게 제어할 수 있다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Fruits&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;	&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fruit&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;🍎&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//private 
-&lt;/span&gt;&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	
-&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;	&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;getFruit&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;		&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fruit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Fruits&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fruit&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;🍎&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//private
+&lt;/span&gt;&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;getFruit&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fruit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;	&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;setFruit&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;		&lt;span class=&#34;nx&#34;&gt;fruit&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;setFruit&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;        &lt;span class=&#34;nx&#34;&gt;fruit&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;fruits&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;getFruit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//🍎
@@ -4209,55 +4209,57 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
 &lt;/span&gt;&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;fruits&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;getFruit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//🍇
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;위 함수는 과일을 관리하는 생성자 함수이다.&lt;br&gt;
 과일을 가져오는 getFruit()메서드와 설정하는 setFruit() 메서드가 존재한다.&lt;br&gt;
-함수 수행결과와 같이 &lt;code&gt;getFruit&lt;/code&gt;와 &lt;code&gt;setFruit&lt;/code&gt;를 통해 함수 내부의 변수에 접근하는 것은 가능하지만,  직접적인 변수 접근엔 불가하다.&lt;br&gt;
+함수 수행결과와 같이 &lt;code&gt;getFruit&lt;/code&gt;와 &lt;code&gt;setFruit&lt;/code&gt;를 통해 함수 내부의 변수에 접근하는 것은 가능하지만, 직접적인 변수 접근엔 불가하다.&lt;br&gt;
 즉, getFruit와 setFruit가 선언되면서 클로저를 생성함으로써 해당 유효범위에 있는 변수에 접근이 가능해진 것이다.&lt;/p&gt;
 &lt;h3 id=&#34;참조형-반복문&#34;&gt;참조형 반복문&lt;/h3&gt;
 &lt;p&gt;반복문 내에 변수가 특정 변수를 계속 참조하고 있는 상황에서도 클로저를 활용해 유리하게 풀어나갈 수 있다.&lt;br&gt;
 만약 &lt;code&gt;setTimeout()&lt;/code&gt;함수에서 1초간격으로 특정 코드를 수행하는 로직을 짠다면 (예시로 각 초를 출력하도록..)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;countSec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;seconds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;seconds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;		&lt;span class=&#34;nx&#34;&gt;setTimeout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;			&lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;		&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//setTimeout에 인자로 들어가는 함수는 변수 i를 참조하지만, 이미 countSet()함수가 종료된 시점이라 최종 값으로 할당되었다..
-&lt;/span&gt;&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;countSec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;seconds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;seconds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;        &lt;span class=&#34;nx&#34;&gt;setTimeout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;            &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//setTimeout에 인자로 들어가는 함수는 변수 i를 참조하지만, 이미 countSet()함수가 종료된 시점이라 최종 값으로 할당되었다..
+&lt;/span&gt;&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt;8&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;countSec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//4..4..4
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;예상과 달리 &amp;lsquo;4&amp;rsquo;만 3초동안 반복한다.&lt;br&gt;
 이유는 setTimeout() 내부함수에서 생성한 변수가 자신 &lt;strong&gt;(생성하는 시점에 저장되어 있던 i)&lt;/strong&gt; 을 기억하는 것이 아닌 생성된 i를 계속 참조하고 있기 때문에 이런 현상이 발생하는 것이다.&lt;br&gt;
 이는 즉시실행함수를 통해 올바르게 동작시킬 수 있는데 반복할 때 마다 유효 범위에 &lt;code&gt;i&lt;/code&gt;가 새로 정의되고 원하는 연산 값이 출력되는 것을 볼 수 있다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;countSec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;seconds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;seconds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;		&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;curNum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//즉시실행함수를 이용해 외부 변수 i를 복사하여 setTimout() 지역 변수로 끌어와 정상적으로 1,2,3 입력된다!
-&lt;/span&gt;&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;			&lt;span class=&#34;nx&#34;&gt;setTimeout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;				&lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;curNum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;			&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;curNum&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;		&lt;span class=&#34;p&#34;&gt;}(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;countSec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//1..2..3
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;countSec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;seconds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;seconds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;curNum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;            &lt;span class=&#34;c1&#34;&gt;//즉시실행함수를 이용해 외부 변수 i를 복사하여 setTimout() 지역 변수로 끌어와 정상적으로 1,2,3 입력된다!
+&lt;/span&gt;&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;            &lt;span class=&#34;nx&#34;&gt;setTimeout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;                &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;curNum&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;            &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;curNum&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;})(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;countSec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//1..2..3
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이러한 현상은 DOM 조작시에서도 발생할 수 있는데, 만약 특정 요소를 반복하면서 접근하는 경우에 발생된다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;	&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;First&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;	&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;Second&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;	&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;Third&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;First&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;Second&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;Third&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;buttons&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;getElemnetByTagName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;button&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;buttons&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;		&lt;span class=&#34;nx&#34;&gt;buttons&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;addEventListener&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;			&lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;clicked!&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39; button!!&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;		&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;만약 위와같이 단순하게 반복문으로 요소들의 이벤트를 트리거하는 상황이면,  이벤트 핸들러가 코드를 수행할 때 마지막에 저장된 &lt;code&gt;i&lt;/code&gt;를 참조하게 된다.&lt;br&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;buttons&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;getElemnetByTagName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;button&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;buttons&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;buttons&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;addEventListener&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;        &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;clicked!&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39; button!!&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;만약 위와같이 단순하게 반복문으로 요소들의 이벤트를 트리거하는 상황이면, 이벤트 핸들러가 코드를 수행할 때 마지막에 저장된 &lt;code&gt;i&lt;/code&gt;를 참조하게 된다.&lt;br&gt;
 어떠한 버튼을 눌러도 3번째 버튼이라고 출력 될 것이다.&lt;br&gt;
 이 역시 즉시시행함수로 바꿀 수 있다.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;buttons&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;getElemnetByTagName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;button&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;	&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;buttons&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;		&lt;span class=&#34;nx&#34;&gt;buttons&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;addEventListener&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;			&lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;clicked!&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39; button!!&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;		&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;	&lt;span class=&#34;p&#34;&gt;})(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;buttons&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;getElemnetByTagName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;button&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;buttons&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;        &lt;span class=&#34;nx&#34;&gt;buttons&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;addEventListener&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;            &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;clicked!&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39; button!!&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;})(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;참고자료&#34;&gt;참고자료&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;자바스크립트 닌자 비급 - 클로저와 가까워지기 (John Resig 저)&lt;/strong&gt;&lt;/li&gt;
@@ -4673,7 +4675,7 @@ return 값은 &lt;code&gt;제거된 요소&lt;/code&gt;만 담어서 반환한�
         <pubDate>Fri, 30 Jul 2021 22:15:51 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/hugo-ga/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/web/web.png" alt="Featured image of post GoogleAnalytics 4 휴고 블로그에 적용 시키기" /&gt;&lt;h2 id=&#34;google-analytics-4&#34;&gt;Google Analytics 4&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/web.png" alt="Featured image of post GoogleAnalytics 4 휴고 블로그에 적용 시키기" /&gt;&lt;h2 id=&#34;google-analytics-4&#34;&gt;Google Analytics 4&lt;/h2&gt;
 &lt;p&gt;내 블로그의 정적 웹사이트 호스팅 플랫폼은 &lt;code&gt;hugo&lt;/code&gt;를 쓰고 있다.&lt;br&gt;
 예전에 잠깐 썼던 Jekyll 플랫폼과 비교했을 때 배포속도도 빠르고 테마 문서도 잘 되어있어서 편하다 ㅎㅎ&lt;br&gt;
 원래 SEO에 대해 신경 쓰지 않고있다가, GoogleAnaytics와 GoogleSearchConsle을 적용시켜보려고 이것저것 시도해봤지만, 아직도 구글 애널리틱스 보고서에는 방문자가 0이다..&lt;br&gt;
@@ -4906,7 +4908,7 @@ GA에는 고유적으로 추적에 사용할 ID가 주어지는데 GA관리자 �
         <pubDate>Sun, 18 Jul 2021 23:09:02 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/vue-import/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/vue/vue.png" alt="Featured image of post [Vue] 외부 Vue 프로젝트 불러오기" /&gt;&lt;p&gt;윈도우에서 작업한 Vue 프로젝트를 mac 환경에서 확인하려던 중 git clone 후 프로젝트를 실행해보니 아래와 같은 에러가 나왔다.&lt;/p&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/vue.png" alt="Featured image of post [Vue] 외부 Vue 프로젝트 불러오기" /&gt;&lt;p&gt;윈도우에서 작업한 Vue 프로젝트를 mac 환경에서 확인하려던 중 git clone 후 프로젝트를 실행해보니 아래와 같은 에러가 나왔다.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&amp;gt; vue-todo@0.1.0 serve /Users/sjchoi/Mydoc/02_Code/05_vue/vue-practice/vue-todo
 &lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&amp;gt; vue-cli-service serve
 &lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;
@@ -4935,7 +4937,7 @@ GA에는 고유적으로 추적에 사용할 ID가 주어지는데 GA관리자 �
         <pubDate>Thu, 01 Jul 2021 21:27:40 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/vue-component/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/vue/vue.png" alt="Featured image of post [Vue] 컴포넌트에 대한 개념" /&gt;&lt;h2 id=&#34;컴포넌트-개념&#34;&gt;컴포넌트 개념&lt;/h2&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/vue.png" alt="Featured image of post [Vue] 컴포넌트에 대한 개념" /&gt;&lt;h2 id=&#34;컴포넌트-개념&#34;&gt;컴포넌트 개념&lt;/h2&gt;
 &lt;p&gt;화면의 영역을 분리하여 개발하는 것, Vue에서 최상위 컴포넌트는 &lt;code&gt;root&lt;/code&gt;이다.&lt;br&gt;
 컴포넌트 구성의 장점은 요소들을 재사용함으로써 개발 생산성이 향상되고, 컴포넌트들은 서로 관계가 형성된다.&lt;/p&gt;
 &lt;h3 id=&#34;전역-컴포넌트&#34;&gt;전역 컴포넌트&lt;/h3&gt;
@@ -5103,7 +5105,7 @@ vue에서는 &lt;code&gt;v-bind&lt;/code&gt;디렉티브로 속성에 접근할 
         <pubDate>Wed, 30 Jun 2021 20:20:49 +0900</pubDate>
         
         <guid>https://jinyisland.kr/post/vue-start/</guid>
-        <description>&lt;img src="https://jinyisland.kr/../../assets/vue/vue.png" alt="Featured image of post [Vue] Vue 설치하기 및 프로젝트 구조" /&gt;&lt;h3 id=&#34;cli&#34;&gt;CLI?&lt;/h3&gt;
+        <description>&lt;img src="https://jinyisland.kr/../../assets/thumb/vue.png" alt="Featured image of post [Vue] Vue 설치하기 및 프로젝트 구조" /&gt;&lt;h3 id=&#34;cli&#34;&gt;CLI?&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;cli&lt;/code&gt;란 Command Line Interface, 즉 명령어 기반의 인터페이스 환경을 의미한다.&lt;br&gt;
 vue 프로젝트 도입시 전체적인 웹애플레이케이션을 관리하려면 지금 소개하는 &lt;code&gt;cli&lt;/code&gt;패키지를 설치하면 되고,&lt;br&gt;
 별도의 페이지에서 국한적으로 사용하려면 &lt;code&gt;cdn&lt;/code&gt;방식으로도 사용할 수 있다.&lt;br&gt;
