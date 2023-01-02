@@ -3,25 +3,49 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://jinyisland.kr/post/sass-mixin/</loc>
-    <lastmod>2022-09-30T23:45:32+09:00</lastmod>
+    <loc>https://jinyisland.kr/post/redux/</loc>
+    <lastmod>2023-01-02T23:57:40+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/categories/</loc>
-    <lastmod>2022-09-30T23:45:32+09:00</lastmod>
+    <lastmod>2023-01-02T23:57:40+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/categories/javascript/</loc>
+    <lastmod>2023-01-02T23:57:40+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/</loc>
-    <lastmod>2022-09-30T23:45:32+09:00</lastmod>
+    <lastmod>2023-01-02T23:57:40+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/post/</loc>
+    <lastmod>2023-01-02T23:57:40+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/redux/</loc>
+    <lastmod>2023-01-02T23:57:40+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/</loc>
+    <lastmod>2023-01-02T23:57:40+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/sass-mixin/</loc>
     <lastmod>2022-09-30T23:45:32+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -34,12 +58,6 @@
   
   <url>
     <loc>https://jinyisland.kr/categories/style/</loc>
-    <lastmod>2022-09-30T23:45:32+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/tags/</loc>
     <lastmod>2022-09-30T23:45:32+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -70,12 +88,6 @@
   
   <url>
     <loc>https://jinyisland.kr/post/composition-api/</loc>
-    <lastmod>2022-07-26T23:36:59+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/categories/javascript/</loc>
     <lastmod>2022-07-26T23:36:59+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
