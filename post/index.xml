@@ -6,7 +6,19 @@
     <description>Recent content in Posts on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Jan 2023 23:57:40 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Feb 2023 23:51:31 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[React] Ref의 개념과 useImperativeHandle, Uncontrolled form</title>
+      <link>https://jinyisland.kr/post/react-ref/</link>
+      <pubDate>Tue, 28 Feb 2023 23:51:31 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/react-ref/</guid>
+      <description>Ref  ref는 render 메서드에서 생성된 DOM 노드나 React 엘리먼트에 접근하는 방법을 제공합니다.
+  포커스, 텍스트 선택, 혹은 미디어의 재생을 관리할 때 애니메이션을 직접적으로 실행시킬 때 React와 같이 서드 파티 DOM 라이브러리를 사용할 때  순수 자바스크립트에서는 UI를 변경하기 위해 DOM API를 사용하여 DOM에 직접적으로 접근하였습니다. React에서는 이러한 방식을 지양하고, ref 객체를 생성하여 접근하도록 권고합니다.
+DOM API를 이용하여 접근하기 DOM에 접근하기 위해서는 기존의 DOM API를 사용할 수 있습니다.
+1import React from &amp;#39;react&amp;#39;; 2 3const Component = () =&amp;gt; { 4 const hadleClick = () =&amp;gt; { 5 document.</description>
+    </item>
+    
     <item>
       <title>[Redux] Redux 사용해보기</title>
       <link>https://jinyisland.kr/post/redux/</link>
