@@ -347,72 +347,72 @@
 <h2 id="사용법">사용법</h2>
 <p><code>@mixin</code> 키워드 뒤에 사용 할 mixin 이름을 지정해준다. 사용하려는 부분에 <code>@include</code>로 선언한 mixin을 호출할 수 있다.<br>
 (함수 사용방법과 상당히 유사하다.)</p>
-<div class="highlight"><pre class="chroma"><code class="language-sass" data-lang="sass"><span class="ln">1</span>    <span class="o">//</span><span class="nt">mixin</span> <span class="nt">정의</span>
-<span class="ln">2</span>    <span class="o">@</span><span class="nt">mixin</span> <span class="nt">text-red</span><span class="o">()</span> <span class="err">{</span>
-<span class="ln">3</span><span class="err">        </span><span class="na">color</span><span class="o"> :</span> <span class="ni">red</span><span class="err">;</span>
-<span class="ln">4</span>    <span class="err">}</span>
-<span class="ln">5</span>
-<span class="ln">6</span>    <span class="o">//</span><span class="nt">mixin</span> <span class="nt">호출</span>
-<span class="ln">7</span>    <span class="nt">p</span> <span class="err">{</span>
-<span class="ln">8</span>        <span class="o">@</span><span class="nt">include</span> <span class="nt">text-red</span><span class="o">();</span>
-<span class="ln">9</span>    <span class="err">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-sass" data-lang="sass">    <span class="o">//</span><span class="nt">mixin</span> <span class="nt">정의</span>
+    <span class="o">@</span><span class="nt">mixin</span> <span class="nt">text-red</span><span class="o">()</span> <span class="err">{</span>
+<span class="err">        </span><span class="na">color</span><span class="o"> :</span> <span class="ni">red</span><span class="err">;</span>
+    <span class="err">}</span>
+
+    <span class="o">//</span><span class="nt">mixin</span> <span class="nt">호출</span>
+    <span class="nt">p</span> <span class="err">{</span>
+        <span class="o">@</span><span class="nt">include</span> <span class="nt">text-red</span><span class="o">();</span>
+    <span class="err">}</span>
 </code></pre></div><p>css 컴파일 결과 👀</p>
-<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="ln">1</span><span class="nt">p</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="k">color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
-<span class="ln">3</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">p</span> <span class="p">{</span>
+    <span class="k">color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div><h2 id="파라미터">파라미터</h2>
 <p>선언한 mixin에 내부에 사용 할 파라미터도 전달할 수 있다.
 또한 파라미터를 사용하지 않을 경우, 호출 시에 괄호를 생략할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sass" data-lang="sass"><span class="ln"> 1</span><span class="k">@mixin</span><span class="nf"> font-style</span><span class="p">(</span><span class="nv">$color</span><span class="p">)</span> <span class="err">{</span>
-<span class="ln"> 2</span><span class="err">	</span><span class="na">font-size</span><span class="o"> :</span> <span class="mi">12</span><span class="kt">px</span><span class="err">;</span>
-<span class="ln"> 3</span><span class="err">	</span><span class="na">line-height</span><span class="o"> :</span> <span class="mi">12</span><span class="kt">px</span><span class="err">;</span>
-<span class="ln"> 4</span><span class="err">	</span><span class="na">letter-spacing</span><span class="o"> :</span> <span class="mi">0</span><span class="mf">.05</span><span class="kt">em</span><span class="err">;</span>
-<span class="ln"> 5</span><span class="err">	</span><span class="na">color</span><span class="o"> :</span> <span class="nv">$color</span><span class="err">;</span>
-<span class="ln"> 6</span><span class="err">}</span>
-<span class="ln"> 7</span>
-<span class="ln"> 8</span><span class="nt">p</span> <span class="err">{</span>
-<span class="ln"> 9</span>	<span class="o">@</span><span class="nt">include</span> <span class="nt">font-style</span><span class="o">(</span><span class="nn">#ededed</span><span class="o">);</span>
-<span class="ln">10</span><span class="err">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-sass" data-lang="sass"><span class="k">@mixin</span><span class="nf"> font-style</span><span class="p">(</span><span class="nv">$color</span><span class="p">)</span> <span class="err">{</span>
+<span class="err">	</span><span class="na">font-size</span><span class="o"> :</span> <span class="mi">12</span><span class="kt">px</span><span class="err">;</span>
+<span class="err">	</span><span class="na">line-height</span><span class="o"> :</span> <span class="mi">12</span><span class="kt">px</span><span class="err">;</span>
+<span class="err">	</span><span class="na">letter-spacing</span><span class="o"> :</span> <span class="mi">0</span><span class="mf">.05</span><span class="kt">em</span><span class="err">;</span>
+<span class="err">	</span><span class="na">color</span><span class="o"> :</span> <span class="nv">$color</span><span class="err">;</span>
+<span class="err">}</span>
+
+<span class="nt">p</span> <span class="err">{</span>
+	<span class="o">@</span><span class="nt">include</span> <span class="nt">font-style</span><span class="o">(</span><span class="nn">#ededed</span><span class="o">);</span>
+<span class="err">}</span>
 </code></pre></div><h2 id="mixin으로-반응형-구성하기">mixin으로 반응형 구성하기</h2>
 <p>mixin을 공부하면서 활용한 케이스는 반응형 스타일 작업이었다.<br>
 기존 css에서 반응형을 사용하려면 <code>@media query</code>를 사용해 종단점 크기를 정의해서 사용하였다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="ln">1</span><span class="c">/* Tablet */</span>
-<span class="ln">2</span><span class="p">@</span><span class="k">media</span> <span class="nt">all</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">768px</span><span class="o">)</span> <span class="p">{</span>
-<span class="ln">3</span>    <span class="c">/* tablet style */</span>
-<span class="ln">4</span><span class="p">}</span>
-<span class="ln">5</span><span class="c">/* Desktop */</span>
-<span class="ln">6</span><span class="p">@</span><span class="k">media</span> <span class="nt">all</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">960px</span><span class="o">)</span> <span class="p">{</span>
-<span class="ln">7</span>    <span class="c">/* desktop style */</span>
-<span class="ln">8</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="c">/* Tablet */</span>
+<span class="p">@</span><span class="k">media</span> <span class="nt">all</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">768px</span><span class="o">)</span> <span class="p">{</span>
+    <span class="c">/* tablet style */</span>
+<span class="p">}</span>
+<span class="c">/* Desktop */</span>
+<span class="p">@</span><span class="k">media</span> <span class="nt">all</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">960px</span><span class="o">)</span> <span class="p">{</span>
+    <span class="c">/* desktop style */</span>
+<span class="p">}</span>
 </code></pre></div><p>보여주고자 하는 화면 사이즈로 이동하면서 스타일시트를 작성했다. 이제 <code>mixin</code>을 적용하면 종단점 사이즈를 변수에 정의해서 한번에 변경할 수 있고, <code>@content</code>를 선언해주면 mixin include 선언 후 작성한 스타일을 불러올 수 있기때문에 언제 어디서나 반응형 mixin을 호출하기만 하면 쉽게 사용이 가능하다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-sass" data-lang="sass"><span class="ln"> 1</span><span class="o">//</span> <span class="nt">종단점</span> <span class="nt">define</span>
-<span class="ln"> 2</span><span class="na">$md-breakpoint</span><span class="o">:</span> <span class="mi">768</span><span class="kt">px</span><span class="err">;</span>
-<span class="ln"> 3</span><span class="na">$lg-breakpoint</span><span class="o">:</span> <span class="mi">1366</span><span class="kt">px</span><span class="err">;</span>
-<span class="ln"> 4</span>
-<span class="ln"> 5</span><span class="o">//</span> <span class="nt">반응형</span> <span class="nt">mixin</span>
-<span class="ln"> 6</span><span class="k">@mixin</span><span class="nf"> responsive</span><span class="p">(</span><span class="nv">$screen</span><span class="p">)</span> <span class="err">{</span>
-<span class="ln"> 7</span><span class="err">    </span><span class="na">@if</span><span class="err"> </span><span class="na">($screen</span><span class="o"> ==</span> <span class="s1">&#39;Tablet&#39;</span><span class="p">)</span> <span class="err">{</span>
-<span class="ln"> 8</span><span class="err">        </span><span class="na">@media</span><span class="err"> </span><span class="na">screen</span><span class="err"> </span><span class="na">and</span><span class="err"> </span><span class="na">(min-width</span><span class="o">:</span> <span class="nv">$md-breakpoint</span><span class="p">)</span> <span class="err">{</span>
-<span class="ln"> 9</span>            <span class="o">@</span><span class="nt">content</span><span class="o">;</span> <span class="o">//</span><span class="nt">content</span> <span class="nt">block</span> <span class="nt">필요</span> <span class="nt">선언</span>
-<span class="ln">10</span>        <span class="err">}</span>
-<span class="ln">11</span>    <span class="err">}</span>
-<span class="ln">12</span>
-<span class="ln">13</span><span class="err">    </span><span class="na">@if</span><span class="err"> </span><span class="na">($screen</span><span class="o"> ==</span> <span class="s1">&#39;Desktop&#39;</span><span class="p">)</span> <span class="err">{</span>
-<span class="ln">14</span><span class="err">        </span><span class="na">@media</span><span class="err"> </span><span class="na">screen</span><span class="err"> </span><span class="na">and</span><span class="err"> </span><span class="na">(min-width</span><span class="o">:</span> <span class="nv">$lg-breakpoint</span><span class="p">)</span> <span class="err">{</span>
-<span class="ln">15</span>            <span class="o">@</span><span class="nt">content</span><span class="o">;</span>
-<span class="ln">16</span>        <span class="err">}</span>
-<span class="ln">17</span>    <span class="err">}</span>
-<span class="ln">18</span><span class="err">}</span>
-<span class="ln">19</span>
-<span class="ln">20</span><span class="o">/*</span> <span class="nt">태블릿</span> <span class="nt">반응형</span> <span class="o">*/</span>
-<span class="ln">21</span><span class="k">@include</span><span class="nd"> responsive</span><span class="p">(</span><span class="n">Tablet</span><span class="p">)</span> <span class="err">{</span>
-<span class="ln">22</span>	<span class="o">//</span><span class="nt">tablet</span> <span class="nt">style</span><span class="nc">..</span>
-<span class="ln">23</span><span class="err">}</span>
-<span class="ln">24</span>
-<span class="ln">25</span><span class="o">/*</span> <span class="nt">데스크탑</span> <span class="nt">반응형</span> <span class="o">*/</span>
-<span class="ln">26</span><span class="k">@include</span><span class="nd"> responsive</span><span class="p">(</span><span class="n">Desktop</span><span class="p">)</span> <span class="err">{</span>
-<span class="ln">27</span>	<span class="o">//</span><span class="nt">desktop</span> <span class="nt">style</span>
-<span class="ln">28</span><span class="err">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-sass" data-lang="sass"><span class="o">//</span> <span class="nt">종단점</span> <span class="nt">define</span>
+<span class="na">$md-breakpoint</span><span class="o">:</span> <span class="mi">768</span><span class="kt">px</span><span class="err">;</span>
+<span class="na">$lg-breakpoint</span><span class="o">:</span> <span class="mi">1366</span><span class="kt">px</span><span class="err">;</span>
+
+<span class="o">//</span> <span class="nt">반응형</span> <span class="nt">mixin</span>
+<span class="k">@mixin</span><span class="nf"> responsive</span><span class="p">(</span><span class="nv">$screen</span><span class="p">)</span> <span class="err">{</span>
+<span class="err">    </span><span class="na">@if</span><span class="err"> </span><span class="na">($screen</span><span class="o"> ==</span> <span class="s1">&#39;Tablet&#39;</span><span class="p">)</span> <span class="err">{</span>
+<span class="err">        </span><span class="na">@media</span><span class="err"> </span><span class="na">screen</span><span class="err"> </span><span class="na">and</span><span class="err"> </span><span class="na">(min-width</span><span class="o">:</span> <span class="nv">$md-breakpoint</span><span class="p">)</span> <span class="err">{</span>
+            <span class="o">@</span><span class="nt">content</span><span class="o">;</span> <span class="o">//</span><span class="nt">content</span> <span class="nt">block</span> <span class="nt">필요</span> <span class="nt">선언</span>
+        <span class="err">}</span>
+    <span class="err">}</span>
+
+<span class="err">    </span><span class="na">@if</span><span class="err"> </span><span class="na">($screen</span><span class="o"> ==</span> <span class="s1">&#39;Desktop&#39;</span><span class="p">)</span> <span class="err">{</span>
+<span class="err">        </span><span class="na">@media</span><span class="err"> </span><span class="na">screen</span><span class="err"> </span><span class="na">and</span><span class="err"> </span><span class="na">(min-width</span><span class="o">:</span> <span class="nv">$lg-breakpoint</span><span class="p">)</span> <span class="err">{</span>
+            <span class="o">@</span><span class="nt">content</span><span class="o">;</span>
+        <span class="err">}</span>
+    <span class="err">}</span>
+<span class="err">}</span>
+
+<span class="o">/*</span> <span class="nt">태블릿</span> <span class="nt">반응형</span> <span class="o">*/</span>
+<span class="k">@include</span><span class="nd"> responsive</span><span class="p">(</span><span class="n">Tablet</span><span class="p">)</span> <span class="err">{</span>
+	<span class="o">//</span><span class="nt">tablet</span> <span class="nt">style</span><span class="nc">..</span>
+<span class="err">}</span>
+
+<span class="o">/*</span> <span class="nt">데스크탑</span> <span class="nt">반응형</span> <span class="o">*/</span>
+<span class="k">@include</span><span class="nd"> responsive</span><span class="p">(</span><span class="n">Desktop</span><span class="p">)</span> <span class="err">{</span>
+	<span class="o">//</span><span class="nt">desktop</span> <span class="nt">style</span>
+<span class="err">}</span>
 </code></pre></div>
 </section>
 <script type="text/javascript">

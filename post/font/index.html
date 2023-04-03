@@ -348,13 +348,13 @@
 <p><img src="https://user-images.githubusercontent.com/46988995/149789092-deb049e2-c2c6-4fb0-b98e-0ea5bbafcab2.jpg" alt="font"  /></p>
 <p><a class="link" href="https://fonts.google.com/?"  target="_blank" rel="noopener"
     >구글 폰트</a> 등과 같이 cdn을 제공해주는 사이트에서 폰트를 적용하는 방법이다. 너무나 간단한게 장점이고 단점으로는 직접 파일을 적용하는 방법보다 로드 속도가 느리다. 적용 방법은 직접 cdn 링크를 html에 삽입하고, css에서 <code>font-family</code>로 적용하거나, css <code>import</code>를 통해 적용하는 방법이 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="ln">1</span><span class="c">/* cdn import */</span>
-<span class="ln">2</span><span class="p">@</span><span class="k">import</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;https://fonts.googleapis.com/css2?family=Dongle:wght@300&amp;display=swap&#39;</span><span class="o">)</span><span class="p">;</span>
-<span class="ln">3</span>
-<span class="ln">4</span><span class="c">/* 폰트 적용 */</span>
-<span class="ln">5</span><span class="nt">body</span> <span class="p">{</span>
-<span class="ln">6</span>    <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;Dongle&#39;</span><span class="p">,</span> <span class="kc">sans-serif</span><span class="p">;</span>
-<span class="ln">7</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="c">/* cdn import */</span>
+<span class="p">@</span><span class="k">import</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;https://fonts.googleapis.com/css2?family=Dongle:wght@300&amp;display=swap&#39;</span><span class="o">)</span><span class="p">;</span>
+
+<span class="c">/* 폰트 적용 */</span>
+<span class="nt">body</span> <span class="p">{</span>
+    <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;Dongle&#39;</span><span class="p">,</span> <span class="kc">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div><h3 id="폰트파일-직접-적용">폰트파일 직접 적용</h3>
 <p>직접 폰트 파일을 서비스 디렉토리에 넣어주고 <code>@font-face</code>로 불러오는 방법이 있다. 첫 번째 방법보다 번거롭지만 해당 폰트가 설치되어있지 않는 사용자들도 모두 적용할 수 있기 때문에 안정적이다.</p>
 <p>먼저 폰트 파일(ttf, eot, woff 등)을 직접 특정 디렉토리에 넣는다. 포맷에 따라 지원하는 브라우저가 천차만별이기 때문에 가능하면 WOFF, WOFF2, OTF 파일을 사용하는 것이 좋다.
@@ -371,22 +371,22 @@
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="ln"> 1</span><span class="c">/*fonts.css*/</span>
-<span class="ln"> 2</span><span class="p">@</span><span class="k">font-face</span> <span class="p">{</span>
-<span class="ln"> 3</span>    <span class="nt">font-family</span><span class="o">:</span> <span class="s1">&#39;font-name&#39;</span><span class="o">;</span> <span class="c">/*font 이름*/</span>
-<span class="ln"> 4</span>    <span class="nt">font-style</span><span class="o">:</span> <span class="s1">&#39;normal&#39;</span><span class="o">;</span> <span class="c">/* font 스타일 정의 (기울임, 일반) */</span>
-<span class="ln"> 5</span>    <span class="nt">font-weight</span><span class="o">:</span> <span class="nt">400</span><span class="o">;</span> <span class="c">/* font 굵기 정의 */</span>
-<span class="ln"> 6</span>    <span class="c">/* 브라우저&amp;디바이스 환경에 따른 font 파일 위치 정의 */</span>
-<span class="ln"> 7</span>    <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.eot&#39;</span><span class="o">);</span> <span class="c">/* IE9 Compat Modes */</span>
-<span class="ln"> 8</span>    <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.eot?#iefix&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;embedded-opentype&#39;</span><span class="o">),</span> <span class="c">/* IE6-IE8 */</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.woff2&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;woff2&#39;</span><span class="o">),</span>
-<span class="ln"> 9</span>        <span class="c">/*  Modern Browsers */</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.woff&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;woff&#39;</span><span class="o">),</span> <span class="c">/* Modern Browsers */</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.ttf&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;truetype&#39;</span><span class="o">),</span>
-<span class="ln">10</span>        <span class="c">/* Safari, Android, iOS */</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.svg#svgFontName&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;svg&#39;</span><span class="o">);</span> <span class="c">/* Legacy iOS */</span>
-<span class="ln">11</span><span class="p">}</span>
-<span class="ln">12</span>
-<span class="ln">13</span><span class="c">/* 폰트 적용 */</span>
-<span class="ln">14</span><span class="nt">body</span> <span class="p">{</span>
-<span class="ln">15</span>    <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;font-name&#39;</span><span class="p">;</span>
-<span class="ln">16</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="c">/*fonts.css*/</span>
+<span class="p">@</span><span class="k">font-face</span> <span class="p">{</span>
+    <span class="nt">font-family</span><span class="o">:</span> <span class="s1">&#39;font-name&#39;</span><span class="o">;</span> <span class="c">/*font 이름*/</span>
+    <span class="nt">font-style</span><span class="o">:</span> <span class="s1">&#39;normal&#39;</span><span class="o">;</span> <span class="c">/* font 스타일 정의 (기울임, 일반) */</span>
+    <span class="nt">font-weight</span><span class="o">:</span> <span class="nt">400</span><span class="o">;</span> <span class="c">/* font 굵기 정의 */</span>
+    <span class="c">/* 브라우저&amp;디바이스 환경에 따른 font 파일 위치 정의 */</span>
+    <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.eot&#39;</span><span class="o">);</span> <span class="c">/* IE9 Compat Modes */</span>
+    <span class="nt">src</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.eot?#iefix&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;embedded-opentype&#39;</span><span class="o">),</span> <span class="c">/* IE6-IE8 */</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.woff2&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;woff2&#39;</span><span class="o">),</span>
+        <span class="c">/*  Modern Browsers */</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.woff&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;woff&#39;</span><span class="o">),</span> <span class="c">/* Modern Browsers */</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.ttf&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;truetype&#39;</span><span class="o">),</span>
+        <span class="c">/* Safari, Android, iOS */</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;webfont.svg#svgFontName&#39;</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;svg&#39;</span><span class="o">);</span> <span class="c">/* Legacy iOS */</span>
+<span class="p">}</span>
+
+<span class="c">/* 폰트 적용 */</span>
+<span class="nt">body</span> <span class="p">{</span>
+    <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;font-name&#39;</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong><a class="link" href="https://www.w3schools.com/css/css3_fonts.asp"  target="_blank" rel="noopener"

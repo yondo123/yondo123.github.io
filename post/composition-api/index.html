@@ -345,61 +345,61 @@
     <h2 id="options-api의-장단점">Options API의 장단점</h2>
 <p>Vue에서 기본적으로 사용하고 있는 패턴은 객체 내에 다양한 속성을 사용하고 있는 형태이다. 라이프사이클을 제어하기 위해 사용하는 mounted, updated 그리고 컴포넌트 내에서 여러 메서드들을 정의하고 데이터들을 참조할 때 정해진 속성에 정의해서 사용하였다. 이를 Options API라고 한다.</p>
 <p>아래는 페이지네이션 기능 컴포넌트를 구현할 때 작성했던 코드인데, 컴포지션 API를 적용하지 않은 <code>options api</code> 방식으로 작성하였다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="nx">components</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 3</span>        <span class="c1">//컴포넌트 정의
-</span><span class="ln"> 4</span><span class="c1"></span>        <span class="nx">ChildComponent</span>
-<span class="ln"> 5</span>    <span class="p">},</span>
-<span class="ln"> 6</span>    <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 7</span>        <span class="c1">//참조할 데이터 정의
-</span><span class="ln"> 8</span><span class="c1"></span>        <span class="k">return</span> <span class="p">{</span>
-<span class="ln"> 9</span>            <span class="nx">newsItem</span><span class="o">:</span> <span class="p">{},</span>
-<span class="ln">10</span>            <span class="nx">showModal</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-<span class="ln">11</span>            <span class="nx">page</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-<span class="ln">12</span>            <span class="nx">records</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
-<span class="ln">13</span>            <span class="nx">listItems</span><span class="o">:</span> <span class="p">[],</span>
-<span class="ln">14</span>            <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln">15</span>                <span class="nx">hideCount</span><span class="o">:</span> <span class="kc">true</span>
-<span class="ln">16</span>            <span class="p">}</span>
-<span class="ln">17</span>        <span class="p">};</span>
-<span class="ln">18</span>    <span class="p">},</span>
-<span class="ln">19</span>    <span class="nx">mounted</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-<span class="ln">20</span>        <span class="c1">//마운트 시점 제어
-</span><span class="ln">21</span><span class="c1"></span>        <span class="k">this</span><span class="p">.</span><span class="nx">fetchData</span><span class="p">();</span>
-<span class="ln">22</span>    <span class="p">},</span>
-<span class="ln">23</span>    <span class="nx">computed</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln">24</span>        <span class="c1">//속성 참조
-</span><span class="ln">25</span><span class="c1"></span>        <span class="nx">totalLength</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln">26</span>            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">records</span><span class="p">;</span>
-<span class="ln">27</span>        <span class="p">}</span>
-<span class="ln">28</span>    <span class="p">},</span>
-<span class="ln">29</span>    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln">30</span>        <span class="c1">//컴포넌트 내 사용 메서드 정의
-</span><span class="ln">31</span><span class="c1"></span>        <span class="nx">fetchData</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-<span class="ln">32</span>            <span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://api.hnpwa.com/v0/news/</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">page</span><span class="si">}</span><span class="sb">.json`</span><span class="p">)</span>
-<span class="ln">33</span>                <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-<span class="ln">34</span>                <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">items</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">35</span>                    <span class="k">this</span><span class="p">.</span><span class="nx">records</span> <span class="o">=</span> <span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span>
-<span class="ln">36</span>                    <span class="k">this</span><span class="p">.</span><span class="nx">listItems</span> <span class="o">=</span> <span class="nx">items</span><span class="p">;</span>
-<span class="ln">37</span>                <span class="p">});</span>
-<span class="ln">38</span>        <span class="p">},</span>
-<span class="ln">39</span>        <span class="nx">changePage</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">page</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">40</span>            <span class="k">this</span><span class="p">.</span><span class="nx">page</span> <span class="o">=</span> <span class="nx">page</span><span class="p">;</span>
-<span class="ln">41</span>            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">fetchData</span><span class="p">();</span>
-<span class="ln">42</span>        <span class="p">},</span>
-<span class="ln">43</span>        <span class="nx">viewNewsContent</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">newsItem</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">44</span>            <span class="k">this</span><span class="p">.</span><span class="nx">newsItem</span> <span class="o">=</span> <span class="nx">newsItem</span><span class="p">;</span>
-<span class="ln">45</span>            <span class="k">this</span><span class="p">.</span><span class="nx">showModal</span> <span class="o">=</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">showModal</span><span class="p">;</span>
-<span class="ln">46</span>        <span class="p">},</span>
-<span class="ln">47</span>        <span class="nx">close</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-<span class="ln">48</span>            <span class="k">this</span><span class="p">.</span><span class="nx">showModal</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-<span class="ln">49</span>        <span class="p">},</span>
-<span class="ln">50</span>        <span class="nx">formatLocaleTime</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">51</span>            <span class="kr">const</span> <span class="nx">fullMs</span> <span class="o">=</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toString</span><span class="p">().</span><span class="nx">padEnd</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-<span class="ln">52</span>            <span class="k">return</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="nx">fullMs</span><span class="p">)).</span><span class="nx">toLocaleDateString</span><span class="p">();</span>
-<span class="ln">53</span>        <span class="p">}</span>
-<span class="ln">54</span>    <span class="p">}</span>
-<span class="ln">55</span><span class="p">};</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+    <span class="nx">components</span><span class="o">:</span> <span class="p">{</span>
+        <span class="c1">//컴포넌트 정의
+</span><span class="c1"></span>        <span class="nx">ChildComponent</span>
+    <span class="p">},</span>
+    <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//참조할 데이터 정의
+</span><span class="c1"></span>        <span class="k">return</span> <span class="p">{</span>
+            <span class="nx">newsItem</span><span class="o">:</span> <span class="p">{},</span>
+            <span class="nx">showModal</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nx">page</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nx">records</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+            <span class="nx">listItems</span><span class="o">:</span> <span class="p">[],</span>
+            <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">hideCount</span><span class="o">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+    <span class="p">},</span>
+    <span class="nx">mounted</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//마운트 시점 제어
+</span><span class="c1"></span>        <span class="k">this</span><span class="p">.</span><span class="nx">fetchData</span><span class="p">();</span>
+    <span class="p">},</span>
+    <span class="nx">computed</span><span class="o">:</span> <span class="p">{</span>
+        <span class="c1">//속성 참조
+</span><span class="c1"></span>        <span class="nx">totalLength</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">records</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+        <span class="c1">//컴포넌트 내 사용 메서드 정의
+</span><span class="c1"></span>        <span class="nx">fetchData</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://api.hnpwa.com/v0/news/</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">page</span><span class="si">}</span><span class="sb">.json`</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+                <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">items</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">records</span> <span class="o">=</span> <span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">listItems</span> <span class="o">=</span> <span class="nx">items</span><span class="p">;</span>
+                <span class="p">});</span>
+        <span class="p">},</span>
+        <span class="nx">changePage</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">page</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">page</span> <span class="o">=</span> <span class="nx">page</span><span class="p">;</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">fetchData</span><span class="p">();</span>
+        <span class="p">},</span>
+        <span class="nx">viewNewsContent</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">newsItem</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">newsItem</span> <span class="o">=</span> <span class="nx">newsItem</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">showModal</span> <span class="o">=</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">showModal</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="nx">close</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">showModal</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="nx">formatLocaleTime</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kr">const</span> <span class="nx">fullMs</span> <span class="o">=</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toString</span><span class="p">().</span><span class="nx">padEnd</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="nx">fullMs</span><span class="p">)).</span><span class="nx">toLocaleDateString</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div><p>장점은 <strong>명확한 구성</strong>이다. 메서드를 수정하거나 추가하려면 <code>methods</code> 속성을 손보면되고, 참조 데이터를 수정하려면 data, computed 속성을 보면된다. 이렇게 각각의 역할이 명확하면 유지보수가 용이할 수 있으나 소스코드가 복잡한 컴포넌트라면 상황은 달라진다.</p>
 <p>하나의 <code>data</code>를 수정하려면 이를 사용하는 메서드까지 수정해야하는데 코드가 길어질수록 가독성이 점점 떨어질 수 밖에 없다. 로직적인 부분에서 관심사가 서로 분리되어있기 때문에 추적하기 불편할것이다.</p>
 <h2 id="composition-api-소개">Composition API 소개</h2>
@@ -407,87 +407,87 @@
     >공식 문서</a>에서는 Composition API의 중요한 특징 중 하나로 <strong>관심사의 구분</strong>이라고 설명하고 있다. 옵션 API는 역할별로 구분을 하였다면 컴포지션 API 패턴에서는 <strong>논리적 관심사끼리</strong> 구분을 하기 편하게 설계되어있다. 무슨말이냐하면..</p>
 <p><img src="https://user-images.githubusercontent.com/46988995/181035836-fb18aba4-9437-4159-929d-fed344267af2.png" alt="options-api example"  /></p>
 <p>기존 옵션 API 패턴에서 관심사를 구분하면 이리저리 흩어져 있다. 같은 색상 영역 코드가 서로 참조되어 있어 같이 수정을 해야한다. 이를 컴포지션 API 형태로 변환하면 아래와 같이 관심사가 한 부분에 모여질 수 있어 가독성이 향상된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">import</span> <span class="nx">axios</span> <span class="nx">from</span> <span class="s1">&#39;axios&#39;</span><span class="p">;</span>
-<span class="ln"> 2</span><span class="kr">import</span> <span class="nx">Pagination</span> <span class="nx">from</span> <span class="s1">&#39;v-pagination-3&#39;</span><span class="p">;</span>
-<span class="ln"> 3</span><span class="kr">import</span> <span class="nx">Modal</span> <span class="nx">from</span> <span class="s1">&#39;./common/Modal.vue&#39;</span><span class="p">;</span>
-<span class="ln"> 4</span><span class="kr">import</span> <span class="p">{</span> <span class="nx">ref</span><span class="p">,</span> <span class="nx">onMounted</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
-<span class="ln"> 5</span>
-<span class="ln"> 6</span><span class="nx">onMounted</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 7</span>    <span class="nx">getPost</span><span class="p">();</span>
-<span class="ln"> 8</span><span class="p">});</span>
-<span class="ln"> 9</span>
-<span class="ln">10</span><span class="cm">/** 모달 제어 */</span>
-<span class="ln">11</span><span class="kr">const</span> <span class="nx">showModal</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
-<span class="ln">12</span><span class="kr">const</span> <span class="nx">edit</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
-<span class="ln">13</span>
-<span class="ln">14</span><span class="kd">function</span> <span class="nx">openModal</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">15</span>    <span class="nx">edit</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">id</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
-<span class="ln">16</span>    <span class="nx">postId</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
-<span class="ln">17</span>    <span class="nx">showModal</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="o">!</span><span class="nx">showModal</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
-<span class="ln">18</span><span class="p">}</span>
-<span class="ln">19</span>
-<span class="ln">20</span><span class="kd">function</span> <span class="nx">closeModal</span><span class="p">(</span><span class="nx">isRefresh</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">21</span>    <span class="nx">showModal</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-<span class="ln">22</span>    <span class="k">return</span> <span class="nx">isRefresh</span> <span class="o">?</span> <span class="nx">getPost</span><span class="p">()</span> <span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
-<span class="ln">23</span><span class="p">}</span>
-<span class="ln">24</span>
-<span class="ln">25</span><span class="cm">/** API 통신 */</span>
-<span class="ln">26</span><span class="kr">const</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="ln">27</span><span class="kr">const</span> <span class="nx">records</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="ln">28</span><span class="kr">const</span> <span class="nx">listItems</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">([]);</span>
-<span class="ln">29</span><span class="kr">const</span> <span class="nx">postId</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="ln">30</span><span class="kd">function</span> <span class="nx">getPost</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln">31</span>    <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="sb">`http://localhost:8088/board?_page=</span><span class="si">${</span><span class="nx">page</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">&amp;_limit=10`</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">32</span>        <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">33</span>            <span class="nx">records</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s1">&#39;x-total-count&#39;</span><span class="p">]</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
-<span class="ln">34</span>            <span class="nx">listItems</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
-<span class="ln">35</span>        <span class="p">}</span>
-<span class="ln">36</span>    <span class="p">});</span>
-<span class="ln">37</span><span class="p">}</span>
-<span class="ln">38</span>
-<span class="ln">39</span><span class="cm">/** 페이징 처리 */</span>
-<span class="ln">40</span><span class="kd">function</span> <span class="nx">changePage</span><span class="p">(</span><span class="nx">tobePage</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">41</span>    <span class="nx">page</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">tobePage</span><span class="p">;</span>
-<span class="ln">42</span>    <span class="nx">getPost</span><span class="p">();</span>
-<span class="ln">43</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="nx">axios</span> <span class="nx">from</span> <span class="s1">&#39;axios&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Pagination</span> <span class="nx">from</span> <span class="s1">&#39;v-pagination-3&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Modal</span> <span class="nx">from</span> <span class="s1">&#39;./common/Modal.vue&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">ref</span><span class="p">,</span> <span class="nx">onMounted</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
+
+<span class="nx">onMounted</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">getPost</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="cm">/** 모달 제어 */</span>
+<span class="kr">const</span> <span class="nx">showModal</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">edit</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">openModal</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">edit</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">id</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nx">postId</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
+    <span class="nx">showModal</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="o">!</span><span class="nx">showModal</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">closeModal</span><span class="p">(</span><span class="nx">isRefresh</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">showModal</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">isRefresh</span> <span class="o">?</span> <span class="nx">getPost</span><span class="p">()</span> <span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/** API 통신 */</span>
+<span class="kr">const</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">records</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">listItems</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">([]);</span>
+<span class="kr">const</span> <span class="nx">postId</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">getPost</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="sb">`http://localhost:8088/board?_page=</span><span class="si">${</span><span class="nx">page</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">&amp;_limit=10`</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">records</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s1">&#39;x-total-count&#39;</span><span class="p">]</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="nx">listItems</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="cm">/** 페이징 처리 */</span>
+<span class="kd">function</span> <span class="nx">changePage</span><span class="p">(</span><span class="nx">tobePage</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">page</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">tobePage</span><span class="p">;</span>
+    <span class="nx">getPost</span><span class="p">();</span>
+<span class="p">}</span>
 </code></pre></div><h2 id="composition-api-사용법">Composition API 사용법</h2>
 <h3 id="setup">setup</h3>
 <p><code>setup</code> 메서드를 통해 Composition API를 사용할 수 있다.<br>
 변수 선언은 <code>ref</code> 함수를 사용하고 변수를 사용하려면 반환을 해주어야한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
-<span class="ln">2</span>	<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>{{ message }}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-<span class="ln">3</span><span class="p">&lt;/</span><span class="nt">tempate</span><span class="p">&gt;</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
-<span class="ln"> 2</span><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
-<span class="ln"> 3</span>    <span class="nx">setup</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 4</span>        <span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">);</span>
-<span class="ln"> 5</span>
-<span class="ln"> 6</span>        <span class="k">return</span> <span class="p">{</span>
-<span class="ln"> 7</span>            <span class="nx">message</span>
-<span class="ln"> 8</span>        <span class="p">};</span>
-<span class="ln"> 9</span>    <span class="p">}</span>
-<span class="ln">10</span><span class="p">};</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+	<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>{{ message }}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tempate</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+    <span class="nx">setup</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="nx">message</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div><h3 id="함수-선언">함수 선언</h3>
 <p>함수를 선언하려면 <code>setup</code> 메서드안에 사용 할 함수를 작성해주면된다. 참고로 변수값에 접근 하려면 <code>value</code> 속성에 접근하면 된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
-<span class="ln">2</span>	<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">3</span>			<span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&#34;changeMessage&#34;</span><span class="p">&gt;</span>click!<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="ln">4</span>			<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ message }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="ln">5</span>	<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">6</span><span class="p">&lt;/</span><span class="nt">tempate</span><span class="p">&gt;</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="nx">setup</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 3</span>        <span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">);</span>
-<span class="ln"> 4</span>
-<span class="ln"> 5</span>        <span class="kd">function</span> <span class="nx">changeMessage</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 6</span>            <span class="nx">message</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s1">&#39;change message!!&#39;</span><span class="p">;</span> <span class="c1">//message 변수 값 변경
-</span><span class="ln"> 7</span><span class="c1"></span>        <span class="p">}</span>
-<span class="ln"> 8</span>
-<span class="ln"> 9</span>        <span class="k">return</span> <span class="p">{</span>
-<span class="ln">10</span>            <span class="nx">message</span>
-<span class="ln">11</span>        <span class="p">};</span>
-<span class="ln">12</span>    <span class="p">}</span>
-<span class="ln">13</span><span class="p">};</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+	<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+			<span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&#34;changeMessage&#34;</span><span class="p">&gt;</span>click!<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+			<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ message }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+	<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tempate</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+    <span class="nx">setup</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">);</span>
+
+        <span class="kd">function</span> <span class="nx">changeMessage</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">message</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s1">&#39;change message!!&#39;</span><span class="p">;</span> <span class="c1">//message 변수 값 변경
+</span><span class="c1"></span>        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="nx">message</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div><h3 id="라이프사이클-hook">라이프사이클 hook</h3>
 <p>컴포넌트 라이프사이클을 제어하려면 hook을 import시키면 된다.</p>
 <ul>
@@ -495,68 +495,68 @@
 <li>onUpdated, onBeforeUpdate</li>
 <li>onBeforeMount, onBeforeUnmount</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">import</span> <span class="p">{</span> <span class="nx">ref</span><span class="p">,</span> <span class="nx">onMounted</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
-<span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="c1">// 컴포넌트 내부
-</span><span class="ln"> 4</span><span class="c1"></span><span class="nx">setup</span> <span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 5</span>  <span class="kr">const</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="ln"> 6</span>	<span class="kd">function</span> <span class="nx">getPost</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 7</span>	    <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="sb">`http://localhost:8088/board?_page=</span><span class="si">${</span><span class="nx">page</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">&amp;_limit=10`</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 8</span>					<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">res</span><span class="p">));</span>
-<span class="ln"> 9</span>	    <span class="p">});</span>
-<span class="ln">10</span>	<span class="p">}</span>
-<span class="ln">11</span>
-<span class="ln">12</span>  <span class="nx">onMounted</span><span class="p">(</span><span class="nx">getPost</span><span class="p">);</span> <span class="c1">//mounted 단계에서 &#39;getPost&#39; 호출
-</span><span class="ln">13</span><span class="c1"></span>
-<span class="ln">14</span>  <span class="k">return</span> <span class="p">{</span>
-<span class="ln">15</span>    <span class="nx">repositories</span><span class="p">,</span>
-<span class="ln">16</span>    <span class="nx">getUserRepositories</span>
-<span class="ln">17</span>  <span class="p">}</span>
-<span class="ln">18</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="p">{</span> <span class="nx">ref</span><span class="p">,</span> <span class="nx">onMounted</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
+
+<span class="c1">// 컴포넌트 내부
+</span><span class="c1"></span><span class="nx">setup</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+	<span class="kd">function</span> <span class="nx">getPost</span><span class="p">()</span> <span class="p">{</span>
+	    <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="sb">`http://localhost:8088/board?_page=</span><span class="si">${</span><span class="nx">page</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">&amp;_limit=10`</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">res</span><span class="p">));</span>
+	    <span class="p">});</span>
+	<span class="p">}</span>
+
+  <span class="nx">onMounted</span><span class="p">(</span><span class="nx">getPost</span><span class="p">);</span> <span class="c1">//mounted 단계에서 &#39;getPost&#39; 호출
+</span><span class="c1"></span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">repositories</span><span class="p">,</span>
+    <span class="nx">getUserRepositories</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><h3 id="computed-watch">Computed, Watch</h3>
 <p><code>computed</code>속성과 <code>watch</code> 속성은 import시켜서 사용할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
-<span class="ln">2</span>	<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">3</span>		<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>{{ message }}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span> <span class="c">&lt;!-- hello --&gt;</span>
-<span class="ln">4</span>		<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>{{ reverseMessage }}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span> <span class="c">&lt;!-- olleh --&gt;</span>
-<span class="ln">5</span>	<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">6</span><span class="p">&lt;/</span><span class="nt">tempate</span><span class="p">&gt;</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="c1">//computed 방식
-</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span><span class="nx">ref</span><span class="p">,</span> <span class="nx">computed</span><span class="p">,</span> <span class="nx">watch</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
-<span class="ln"> 3</span>
-<span class="ln"> 4</span><span class="nx">setup</span> <span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 5</span>		<span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">);</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span>		<span class="kr">const</span> <span class="nx">reverseMessage</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-<span class="ln"> 8</span>			<span class="k">return</span> <span class="nx">message</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-<span class="ln"> 9</span>		<span class="p">});</span>
-<span class="ln">10</span><span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="c1">//watch 방식
-</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span><span class="nx">ref</span><span class="p">,</span> <span class="nx">watch</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
-<span class="ln"> 3</span>
-<span class="ln"> 4</span><span class="nx">setup</span> <span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 5</span>		<span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">);</span>
-<span class="ln"> 6</span>		<span class="kr">const</span> <span class="nx">reverseMessage</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-<span class="ln"> 7</span>
-<span class="ln"> 8</span>		<span class="c1">//참조대상, 콜백함수(바뀌는 값, 기존 값)
-</span><span class="ln"> 9</span><span class="c1"></span>		<span class="nx">watch</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newValue</span><span class="p">,</span> <span class="nx">oldValue</span><span class="p">){</span>
-<span class="ln">10</span>			<span class="nx">reverseMessage</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">oldValue</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-<span class="ln">11</span>		<span class="p">});</span>
-<span class="ln">12</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+	<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+		<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>{{ message }}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span> <span class="c">&lt;!-- hello --&gt;</span>
+		<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>{{ reverseMessage }}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span> <span class="c">&lt;!-- olleh --&gt;</span>
+	<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">tempate</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//computed 방식
+</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span><span class="nx">ref</span><span class="p">,</span> <span class="nx">computed</span><span class="p">,</span> <span class="nx">watch</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
+
+<span class="nx">setup</span> <span class="p">()</span> <span class="p">{</span>
+		<span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">);</span>
+
+		<span class="kr">const</span> <span class="nx">reverseMessage</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+			<span class="k">return</span> <span class="nx">message</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+		<span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//watch 방식
+</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span><span class="nx">ref</span><span class="p">,</span> <span class="nx">watch</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
+
+<span class="nx">setup</span> <span class="p">()</span> <span class="p">{</span>
+		<span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">);</span>
+		<span class="kr">const</span> <span class="nx">reverseMessage</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+		<span class="c1">//참조대상, 콜백함수(바뀌는 값, 기존 값)
+</span><span class="c1"></span>		<span class="nx">watch</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newValue</span><span class="p">,</span> <span class="nx">oldValue</span><span class="p">){</span>
+			<span class="nx">reverseMessage</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">oldValue</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+		<span class="p">});</span>
+<span class="p">}</span>
 </code></pre></div><h3 id="script-setup">script setup</h3>
 <p><code>&lt;script setup&gt;</code>을 통해 스크립트를 선언하면 코드를 더욱 간결하게 줄일 수 있다. 변수 선언 시 <code>return</code>문을 생략할 수 있으며 props, emit등을 선언할 때 <code>defineProps</code>와 <code>defineEmits</code>를 사용하는데 TypeScript도 지원한다!</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
-<span class="ln"> 2</span>	<span class="kr">import</span> <span class="p">{</span><span class="nx">ref</span><span class="p">,</span> <span class="nx">defineProps</span><span class="p">,</span> <span class="nx">defineEmits</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
-<span class="ln"> 3</span>	<span class="c1">//emit event 정의
-</span><span class="ln"> 4</span><span class="c1"></span>	<span class="kr">const</span> <span class="nx">emit</span> <span class="o">=</span> <span class="nx">defineEmits</span><span class="p">([</span><span class="s1">&#39;close&#39;</span><span class="p">]);</span>
-<span class="ln"> 5</span>	<span class="c1">//props 정의
-</span><span class="ln"> 6</span><span class="c1"></span>	<span class="kr">const</span> <span class="nx">props</span> <span class="o">=</span> <span class="nx">defineProps</span><span class="p">({</span>
-<span class="ln"> 7</span>	    <span class="nx">isEdit</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
-<span class="ln"> 8</span>	    <span class="nx">postId</span><span class="o">:</span> <span class="nb">String</span>
-<span class="ln"> 9</span>	<span class="p">});</span>
-<span class="ln">10</span>
-<span class="ln">11</span>	<span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-<span class="ln">12</span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+	<span class="kr">import</span> <span class="p">{</span><span class="nx">ref</span><span class="p">,</span> <span class="nx">defineProps</span><span class="p">,</span> <span class="nx">defineEmits</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
+	<span class="c1">//emit event 정의
+</span><span class="c1"></span>	<span class="kr">const</span> <span class="nx">emit</span> <span class="o">=</span> <span class="nx">defineEmits</span><span class="p">([</span><span class="s1">&#39;close&#39;</span><span class="p">]);</span>
+	<span class="c1">//props 정의
+</span><span class="c1"></span>	<span class="kr">const</span> <span class="nx">props</span> <span class="o">=</span> <span class="nx">defineProps</span><span class="p">({</span>
+	    <span class="nx">isEdit</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+	    <span class="nx">postId</span><span class="o">:</span> <span class="nb">String</span>
+	<span class="p">});</span>
+
+	<span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </code></pre></div><p>예제로 작성한 코드는 <strong><a class="link" href="https://github.com/yondo123/vue-practice/tree/master/vue-pagination"  target="_blank" rel="noopener"
     >깃허브</a></strong> 에서 확인하실 수 있습니다.:smiley:</p>
 <h2 id="참고자료">참고자료</h2>

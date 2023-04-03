@@ -347,34 +347,34 @@
 vue 프로젝트 도입시 전체적인 웹애플레이케이션을 관리하려면 지금 소개하는 <code>cli</code>패키지를 설치하면 되고,<br>
 별도의 페이지에서 국한적으로 사용하려면 <code>cdn</code>방식으로도 사용할 수 있다.<br>
 CDN 방식을 사용하려면 아래 소스를 참고하면 된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln"> 1</span><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="ln"> 2</span>    <span class="c">&lt;!-- Vue-CDN --&gt;</span>
-<span class="ln"> 3</span>    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="ln"> 4</span><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="ln"> 5</span><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="ln"> 6</span>    <span class="c">&lt;!-- template --&gt;</span>
-<span class="ln"> 7</span>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-<span class="ln"> 8</span>        <span class="p">&lt;</span><span class="nt">app-footer</span><span class="p">&gt;&lt;/</span><span class="nt">app-footer</span><span class="p">&gt;</span>
-<span class="ln"> 9</span>    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">10</span><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="ln">11</span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="ln">12</span>    <span class="c1">//vue 인스턴스 생성
-</span><span class="ln">13</span><span class="c1"></span>    <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-<span class="ln">14</span>        <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
-<span class="ln">15</span>        <span class="nx">components</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln">16</span>            <span class="s1">&#39;app-footer&#39;</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln">17</span>                <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;footer&gt;Footer!&lt;/footer&gt;&#39;</span>
-<span class="ln">18</span>            <span class="p">}</span>
-<span class="ln">19</span>        <span class="p">}</span>
-<span class="ln">20</span>    <span class="p">});</span>
-<span class="ln">21</span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- Vue-CDN --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- template --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">app-footer</span><span class="p">&gt;&lt;/</span><span class="nt">app-footer</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="c1">//vue 인스턴스 생성
+</span><span class="c1"></span>    <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+        <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+        <span class="nx">components</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s1">&#39;app-footer&#39;</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;footer&gt;Footer!&lt;/footer&gt;&#39;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </code></pre></div><h3 id="vue-설치하기">Vue 설치하기</h3>
 <p>먼저 <strong>npm (node package manager)</strong> 및 <a class="link" href="https://nodejs.org/en/"  target="_blank" rel="noopener"
     ><strong>node</strong></a>가 설치되어있어야 한다.<br>
 특히 <strong>node 는 vue에서 10.X 버전 이상을 권장하기 때문에, 버전을 확인하고 10.X이상 버전을 준비하는 것이 필수이다.</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>    node -v <span class="c1">#현재 node 버전 확인 (LTS 10.X 버전 이상을 설치해야 한다.)</span>
-<span class="ln">2</span>    npm -v <span class="c1">#npm 버전 확인</span>
-<span class="ln">3</span>    npm install -g @vue/cli <span class="c1">#vue-cli install</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">    node -v <span class="c1">#현재 node 버전 확인 (LTS 10.X 버전 이상을 설치해야 한다.)</span>
+    npm -v <span class="c1">#npm 버전 확인</span>
+    npm install -g @vue/cli <span class="c1">#vue-cli install</span>
 </code></pre></div><h3 id="vue-cli-버전-별-프로젝트-생성">Vue-cli 버전 별 프로젝트 생성</h3>
 <p>vue cli 버전마다 프로젝트 생성 방법이 조금 다르다.<br>
 혹시 2.X 환경으로 vue를 생성해야 한다면, 직접 프로젝트 템플릿을 지정해주어야 한다.</p>
@@ -385,57 +385,57 @@ CDN 방식을 사용하려면 아래 소스를 참고하면 된다.</p>
 <li><strong>webpack-simple</strong> : 빠른 프로토타입 구축 목적에 적합</li>
 <li><strong>vue-simple-boilerplate</strong> : 하나의 html만 존재 (튜토리얼 수준에 적합)</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span> <span class="c1"># vue init &#39;project-template-type&#39; &#39;project-directory&#39;</span>
-<span class="ln">2</span> vue init webpack-simple vue-project
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"> <span class="c1"># vue init &#39;project-template-type&#39; &#39;project-directory&#39;</span>
+ vue init webpack-simple vue-project
 </code></pre></div></li>
 <li><strong>3.X~</strong><br>
 3버전 들어서 프로젝트 생성이 간편하게 되었다.<br>
 <code>create</code>로 프로젝트 경로만 잡아주고 생성하고 직접 필요한 모듈을 선택해서 설치할 수 있다.<br>
 물론 <code>default</code>로 필수 모듈(babel, linting)만 설치하고 필요한 모듈은 알아서 설치해도 상관없다.
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>  <span class="c1"># vue create &#39;project-directory&#39;</span>
-<span class="ln">2</span>  vue create vue-project
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">  <span class="c1"># vue create &#39;project-directory&#39;</span>
+  vue create vue-project
 </code></pre></div></li>
 </ul>
 <h3 id="프로젝트-구조">프로젝트 구조</h3>
 <p>vue 프로젝트 필수 구조</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text"><span class="ln">1</span>    root
-<span class="ln">2</span>    ├─public
-<span class="ln">3</span>    │  └─index.html : 로컬 서버 실행시 제일 처음 참조되는 페이지
-<span class="ln">4</span>    ├─src
-<span class="ln">5</span>    │  └─main.js : 프로젝트 전체에 대한 정보 (vue 인스턴스 생성)
-<span class="ln">6</span>    │  └─app.vue : 메인 컴포넌트
-<span class="ln">7</span>    ├─package.json : 프로젝트 모듈 및 의존성 설정 정보
-<span class="ln">8</span>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">    root
+    ├─public
+    │  └─index.html : 로컬 서버 실행시 제일 처음 참조되는 페이지
+    ├─src
+    │  └─main.js : 프로젝트 전체에 대한 정보 (vue 인스턴스 생성)
+    │  └─app.vue : 메인 컴포넌트
+    ├─package.json : 프로젝트 모듈 및 의존성 설정 정보
+
 </code></pre></div><ul>
 <li><strong>index.html</strong><br>
 <code>webpack</code>을 통해 여러 컴포넌트 vue, 리소스들이 통합해 주입되는 페이지이다.<br>
 즉 페이지 내용이 변경될 때 마다 페이지를 reload하는 것이 아닌 변경된 요소만을 탐색해 내용을 변경한다.<br>
 vue는 이러한 <strong>가상 DOM을 활용하기에 최적화된 framework</strong>이고 이러한 구조를 SPA (Single Page Application)라 한다.
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="ln">2</span>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">3</span><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 </code></pre></div></li>
 <li><strong>main.js</strong><br>
 프로젝트에 대한 전체 정보를 담고 있는 main 스크립트 파일이다.<br>
 최상위 인스턴스로써, 여러 컴포넌트들을 공유할 수 있고 상태<code>state</code>들을 관리한다.
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./App.vue&#39;</span><span class="p">;</span> <span class="c1">//main component
-</span><span class="ln">2</span><span class="c1"></span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-<span class="ln">3</span>    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
-<span class="ln">4</span>    <span class="nx">render</span><span class="o">:</span> <span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">h</span><span class="p">(</span><span class="nx">App</span><span class="p">)</span>
-<span class="ln">5</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./App.vue&#39;</span><span class="p">;</span> <span class="c1">//main component
+</span><span class="c1"></span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+    <span class="nx">render</span><span class="o">:</span> <span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">h</span><span class="p">(</span><span class="nx">App</span><span class="p">)</span>
+<span class="p">});</span>
 </code></pre></div></li>
 <li><strong>package.json</strong><br>
 프로젝트에서 사용중인 여러 모듈을 관리하는 곳이다.<br>
 특히, <code>devDependencies</code>에서 프로젝트에서 사용중인 여러 플러그인들을 확인할 수 있다. <strong>(의존성 관리)</strong>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln">1</span><span class="s2">&#34;devDependencies&#34;</span><span class="err">:</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nt">&#34;@vue/cli-plugin-babel&#34;</span><span class="p">:</span> <span class="s2">&#34;~4.5.0&#34;</span><span class="p">,</span>
-<span class="ln">3</span>    <span class="nt">&#34;@vue/cli-plugin-eslint&#34;</span><span class="p">:</span> <span class="s2">&#34;~4.5.0&#34;</span><span class="p">,</span>
-<span class="ln">4</span>    <span class="nt">&#34;@vue/cli-service&#34;</span><span class="p">:</span> <span class="s2">&#34;~4.5.0&#34;</span><span class="p">,</span>
-<span class="ln">5</span>    <span class="nt">&#34;babel-eslint&#34;</span><span class="p">:</span> <span class="s2">&#34;^10.1.0&#34;</span><span class="p">,</span>
-<span class="ln">6</span>    <span class="nt">&#34;eslint&#34;</span><span class="p">:</span> <span class="s2">&#34;^6.7.2&#34;</span><span class="p">,</span>
-<span class="ln">7</span>    <span class="nt">&#34;eslint-plugin-vue&#34;</span><span class="p">:</span> <span class="s2">&#34;^6.2.2&#34;</span><span class="p">,</span>
-<span class="ln">8</span>    <span class="nt">&#34;vue-template-compiler&#34;</span><span class="p">:</span> <span class="s2">&#34;^2.6.11&#34;</span>
-<span class="ln">9</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;devDependencies&#34;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;@vue/cli-plugin-babel&#34;</span><span class="p">:</span> <span class="s2">&#34;~4.5.0&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;@vue/cli-plugin-eslint&#34;</span><span class="p">:</span> <span class="s2">&#34;~4.5.0&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;@vue/cli-service&#34;</span><span class="p">:</span> <span class="s2">&#34;~4.5.0&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;babel-eslint&#34;</span><span class="p">:</span> <span class="s2">&#34;^10.1.0&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;eslint&#34;</span><span class="p">:</span> <span class="s2">&#34;^6.7.2&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;eslint-plugin-vue&#34;</span><span class="p">:</span> <span class="s2">&#34;^6.2.2&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;vue-template-compiler&#34;</span><span class="p">:</span> <span class="s2">&#34;^2.6.11&#34;</span>
+<span class="p">}</span>
 </code></pre></div></li>
 </ul>
 

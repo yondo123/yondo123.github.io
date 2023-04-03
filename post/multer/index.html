@@ -347,35 +347,35 @@
 <h2 id="multer-1">multer</h2>
 <p>요청 타입이 <code>multeipart/form-data</code>인 경우 multer를 이용해 받을 수 있다.</p>
 <h3 id="설치하기">설치하기</h3>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npm i multer
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm i multer
 </code></pre></div><h3 id="사용방법">사용방법</h3>
 <p><code>multer</code>모듈을 임포트 해주고 미들웨어로 사용하기 위해 여러 설정을 해준다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">multer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;multer&#39;</span><span class="p">);</span>
-<span class="ln"> 2</span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
-<span class="ln"> 3</span>
-<span class="ln"> 4</span><span class="c1">// 디렉토리 없을 경우 생성해주는 예외 처리
-</span><span class="ln"> 5</span><span class="c1">// (server listen 전 단계 이므로 동기식 코드로 해도 무방)
-</span><span class="ln"> 6</span><span class="c1"></span><span class="k">try</span> <span class="p">{</span>
-<span class="ln"> 7</span>    <span class="nx">fs</span><span class="p">.</span><span class="nx">readdirSync</span><span class="p">(</span><span class="s1">&#39;assets&#39;</span><span class="p">);</span>
-<span class="ln"> 8</span><span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 9</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;not exist directory.&#39;</span><span class="p">);</span>
-<span class="ln">10</span>    <span class="nx">fs</span><span class="p">.</span><span class="nx">mkdirSync</span><span class="p">(</span><span class="s1">&#39;assets&#39;</span><span class="p">);</span>
-<span class="ln">11</span><span class="p">}</span>
-<span class="ln">12</span>
-<span class="ln">13</span><span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
-<span class="ln">14</span>    <span class="c1">// 파일 저장 위치 (disk , memory 선택)
-</span><span class="ln">15</span><span class="c1"></span>    <span class="nx">storage</span><span class="o">:</span> <span class="nx">multer</span><span class="p">.</span><span class="nx">diskStorage</span><span class="p">({</span>
-<span class="ln">16</span>        <span class="nx">destination</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">17</span>            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s1">&#39;assets/&#39;</span><span class="p">);</span>
-<span class="ln">18</span>        <span class="p">},</span>
-<span class="ln">19</span>        <span class="nx">filename</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">20</span>            <span class="kr">const</span> <span class="nx">ext</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">extname</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">originalname</span><span class="p">);</span>
-<span class="ln">21</span>            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">path</span><span class="p">.</span><span class="nx">basename</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">originalname</span><span class="p">,</span> <span class="nx">ext</span><span class="p">)</span> <span class="o">+</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">+</span> <span class="nx">ext</span><span class="p">);</span>
-<span class="ln">22</span>        <span class="p">}</span>
-<span class="ln">23</span>    <span class="p">}),</span>
-<span class="ln">24</span>    <span class="c1">// 파일 허용 사이즈 (5 MB)
-</span><span class="ln">25</span><span class="c1"></span>    <span class="nx">limits</span><span class="o">:</span> <span class="p">{</span> <span class="nx">fileSize</span><span class="o">:</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="p">}</span>
-<span class="ln">26</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">multer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;multer&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+
+<span class="c1">// 디렉토리 없을 경우 생성해주는 예외 처리
+</span><span class="c1">// (server listen 전 단계 이므로 동기식 코드로 해도 무방)
+</span><span class="c1"></span><span class="k">try</span> <span class="p">{</span>
+    <span class="nx">fs</span><span class="p">.</span><span class="nx">readdirSync</span><span class="p">(</span><span class="s1">&#39;assets&#39;</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;not exist directory.&#39;</span><span class="p">);</span>
+    <span class="nx">fs</span><span class="p">.</span><span class="nx">mkdirSync</span><span class="p">(</span><span class="s1">&#39;assets&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
+    <span class="c1">// 파일 저장 위치 (disk , memory 선택)
+</span><span class="c1"></span>    <span class="nx">storage</span><span class="o">:</span> <span class="nx">multer</span><span class="p">.</span><span class="nx">diskStorage</span><span class="p">({</span>
+        <span class="nx">destination</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s1">&#39;assets/&#39;</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">filename</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kr">const</span> <span class="nx">ext</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">extname</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">originalname</span><span class="p">);</span>
+            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">path</span><span class="p">.</span><span class="nx">basename</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">originalname</span><span class="p">,</span> <span class="nx">ext</span><span class="p">)</span> <span class="o">+</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">+</span> <span class="nx">ext</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}),</span>
+    <span class="c1">// 파일 허용 사이즈 (5 MB)
+</span><span class="c1"></span>    <span class="nx">limits</span><span class="o">:</span> <span class="p">{</span> <span class="nx">fileSize</span><span class="o">:</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="p">}</span>
+<span class="p">});</span>
 </code></pre></div><p><code>storage</code>에서 파일을 저장 할 경로와 이름을 설정 할 수 있는데, <code>file</code>인수에서 다음 속성으로 파일 정보를 얻을 수 있다.</p>
 <ul>
 <li><strong>fieldname :</strong> html 폼에 정의된 필드 명</li>
@@ -384,77 +384,77 @@
 <li><strong>mimetyp :</strong> 파일 타입 <a class="link" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types"  target="_blank" rel="noopener"
     >(밈 타입)</a></li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln"> 1</span><span class="p">{</span>
-<span class="ln"> 2</span>    <span class="nt">&#34;fieldname&#34;</span><span class="p">:</span> <span class="s2">&#34;file&#34;</span><span class="p">,</span>
-<span class="ln"> 3</span>    <span class="nt">&#34;originalname&#34;</span><span class="p">:</span> <span class="s2">&#34;jortu.png&#34;</span><span class="p">,</span>
-<span class="ln"> 4</span>    <span class="nt">&#34;encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;7bit&#34;</span><span class="p">,</span>
-<span class="ln"> 5</span>    <span class="nt">&#34;mimetype&#34;</span><span class="p">:</span> <span class="s2">&#34;image/png&#34;</span><span class="p">,</span>
-<span class="ln"> 6</span>    <span class="nt">&#34;destination&#34;</span><span class="p">:</span> <span class="s2">&#34;assets/&#34;</span><span class="p">,</span>
-<span class="ln"> 7</span>    <span class="nt">&#34;filename&#34;</span><span class="p">:</span> <span class="s2">&#34;jortu1641367168859.png&#34;</span><span class="p">,</span>
-<span class="ln"> 8</span>    <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;assets\\jortu1641367168859.png&#34;</span><span class="p">,</span>
-<span class="ln"> 9</span>    <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">381172</span>
-<span class="ln">10</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;fieldname&#34;</span><span class="p">:</span> <span class="s2">&#34;file&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;originalname&#34;</span><span class="p">:</span> <span class="s2">&#34;jortu.png&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;encoding&#34;</span><span class="p">:</span> <span class="s2">&#34;7bit&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;mimetype&#34;</span><span class="p">:</span> <span class="s2">&#34;image/png&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;destination&#34;</span><span class="p">:</span> <span class="s2">&#34;assets/&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;filename&#34;</span><span class="p">:</span> <span class="s2">&#34;jortu1641367168859.png&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;assets\\jortu1641367168859.png&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">381172</span>
+<span class="p">}</span>
 </code></pre></div><p>파일 업로드를 사용 할 라우터에 미들웨어 함수로 붙이면 된다. 작성한 함수에 메서드로 <code>single</code>을 붙이고 있는데 업로드 방식에 따라 메서드 체이닝이 다르다. <code>single</code>메서드는 단일 파일로 전달 받을 때 사용한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/photo&#39;</span><span class="p">,</span> <span class="nx">upload</span><span class="p">.</span><span class="nx">single</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">),</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="c1">//업로드 정보 확인
-</span><span class="ln">3</span><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">file</span><span class="p">);</span>
-<span class="ln">4</span>    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;upload success.&#39;</span><span class="p">);</span>
-<span class="ln">5</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/photo&#39;</span><span class="p">,</span> <span class="nx">upload</span><span class="p">.</span><span class="nx">single</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">),</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//업로드 정보 확인
+</span><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">file</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;upload success.&#39;</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div><p>웹브라우저에서 통신 되는지 확인하려고 input file 필드 한개를 주고 <code>jQuery</code>로 확인해 보았다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="ln"> 2</span>    <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">file</span> <span class="nx">upload</span> <span class="nx">Test</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-<span class="ln"> 3</span>    <span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
-<span class="ln"> 4</span>    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;uploadFile&#34;</span><span class="p">&gt;</span>
-<span class="ln"> 5</span><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="ln"> 6</span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="ln"> 7</span>    <span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 8</span>        <span class="kd">function</span> <span class="nx">uploadImage</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 9</span>            <span class="kr">const</span> <span class="nx">formData</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
-<span class="ln">10</span>            <span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#uploadFile&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-<span class="ln">11</span>            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#uploadFile&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
-<span class="ln">12</span>            <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-<span class="ln">13</span>                <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-<span class="ln">14</span>                <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;/photo&#39;</span><span class="p">,</span>
-<span class="ln">15</span>                <span class="nx">data</span><span class="o">:</span> <span class="nx">formData</span><span class="p">,</span>
-<span class="ln">16</span>                <span class="nx">processData</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-<span class="ln">17</span>                <span class="nx">contentType</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-<span class="ln">18</span>                <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">19</span>                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">json</span><span class="p">));</span>
-<span class="ln">20</span>                <span class="p">}</span>
-<span class="ln">21</span>            <span class="p">});</span>
-<span class="ln">22</span>        <span class="p">}</span>
-<span class="ln">23</span>
-<span class="ln">24</span>        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#uploadFile&#39;</span><span class="p">).</span><span class="nx">change</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-<span class="ln">25</span>            <span class="k">return</span> <span class="nx">uploadImage</span><span class="p">();</span>
-<span class="ln">26</span>        <span class="p">})</span>
-<span class="ln">27</span>    <span class="p">});</span>
-<span class="ln">28</span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">file</span> <span class="nx">upload</span> <span class="nx">Test</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;uploadFile&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">function</span> <span class="nx">uploadImage</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kr">const</span> <span class="nx">formData</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
+            <span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#uploadFile&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#uploadFile&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+                <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+                <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;/photo&#39;</span><span class="p">,</span>
+                <span class="nx">data</span><span class="o">:</span> <span class="nx">formData</span><span class="p">,</span>
+                <span class="nx">processData</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nx">contentType</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">json</span><span class="p">));</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#uploadFile&#39;</span><span class="p">).</span><span class="nx">change</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">uploadImage</span><span class="p">();</span>
+        <span class="p">})</span>
+    <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </code></pre></div><p><img src="https://user-images.githubusercontent.com/46988995/164486658-68f98b10-9444-4722-a1c3-4ec5a3ab0818.png" alt="multer"  /></p>
 <h2 id="multer-설정">multer 설정</h2>
 <p>multer 호출 시 4개의 속성으로 옵션 객체를 생성할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
-<span class="ln">2</span>	<span class="nx">storage</span><span class="o">:</span> <span class="nx">multer</span><span class="p">.</span><span class="nx">diskStorage</span><span class="p">({..}),</span>
-<span class="ln">3</span>	<span class="nx">limits</span> <span class="o">:</span> <span class="p">{..},</span>
-<span class="ln">4</span>	<span class="nx">fileFilter</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">cb</span><span class="p">){</span> <span class="c1">//..code }
-</span><span class="ln">5</span><span class="c1"></span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
+	<span class="nx">storage</span><span class="o">:</span> <span class="nx">multer</span><span class="p">.</span><span class="nx">diskStorage</span><span class="p">({..}),</span>
+	<span class="nx">limits</span> <span class="o">:</span> <span class="p">{..},</span>
+	<span class="nx">fileFilter</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">cb</span><span class="p">){</span> <span class="c1">//..code }
+</span><span class="c1"></span><span class="p">});</span>
 </code></pre></div><h3 id="storage-dest">storage (dest)</h3>
 <p>파일 저장에 관련한 옵션이다. storage 또는 dest 속성으로 정의한다. <code>destination</code>은 업로드 한 파일을 어디에 저장할 지 결정하고, <code>filename</code>은 저장 할 파일의 이름을 결정한다. (만약 filename에 대한 설정이 없다면 랜덤한 파일 이름으로 저장된다고한다..)</p>
 <p><code>multer.memoryStorage()</code>는 임시 메모리에 파일을 저장할 때 사용한다. 어떠한 설정도 필요가 없으며 용량이 많은 파일이나 다수의 파일을 업로드 하는 경우에는 메모리 부족이 발생할 수 있다. (주로 클라우드 서비스에 파일을 올릴 때 임시 보관 용도로 사용한다고 한다.)</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">diskStorage</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">.</span><span class="nx">diskStorage</span><span class="p">({</span>
-<span class="ln"> 2</span>    <span class="c1">//물리 디스크
-</span><span class="ln"> 3</span><span class="c1"></span>    <span class="nx">destination</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 4</span>        <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s1">&#39;/path&#39;</span><span class="p">);</span>
-<span class="ln"> 5</span>    <span class="p">},</span>
-<span class="ln"> 6</span>    <span class="nx">filename</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 7</span>        <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">file</span><span class="p">.</span><span class="nx">fieldname</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
-<span class="ln"> 8</span>    <span class="p">}</span>
-<span class="ln"> 9</span><span class="p">});</span>
-<span class="ln">10</span>
-<span class="ln">11</span><span class="kr">const</span> <span class="nx">memoryStorage</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">.</span><span class="nx">memoryStorage</span><span class="p">();</span> <span class="c1">//임시 메모리
-</span><span class="ln">12</span><span class="c1"></span>
-<span class="ln">13</span><span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
-<span class="ln">14</span>    <span class="nx">storage</span><span class="o">:</span> <span class="nx">diskStorage</span>
-<span class="ln">15</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">diskStorage</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">.</span><span class="nx">diskStorage</span><span class="p">({</span>
+    <span class="c1">//물리 디스크
+</span><span class="c1"></span>    <span class="nx">destination</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="s1">&#39;/path&#39;</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">filename</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">file</span><span class="p">.</span><span class="nx">fieldname</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kr">const</span> <span class="nx">memoryStorage</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">.</span><span class="nx">memoryStorage</span><span class="p">();</span> <span class="c1">//임시 메모리
+</span><span class="c1"></span>
+<span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
+    <span class="nx">storage</span><span class="o">:</span> <span class="nx">diskStorage</span>
+<span class="p">});</span>
 </code></pre></div><h3 id="limits">limits</h3>
 <p>파일 관련한 크기를 제어하는 속성이다. 단순히 파일 용량 뿐만 아니라 필드 이름에 대한 사이즈도 제어할 수 있다. 최대한 엄격하게 관리해야 혹시나 받을 수 있는 외부 공격에 대해 도움이 될 수 있다.</p>
 <ul>
@@ -462,58 +462,58 @@
 <li><strong>fileSize :</strong> 파일 크기 최대 값 (기본 : 무제한)</li>
 <li><strong>files :</strong> 파일 필드의 최대 갯수 (기본 : 무제한)</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
-<span class="ln">2</span>	<span class="nx">limit</span> <span class="o">:</span> <span class="p">{</span><span class="nx">fileSize</span> <span class="o">:</span> <span class="mi">5</span><span class="p">,</span><span class="mi">242</span><span class="p">,</span><span class="mi">880</span><span class="p">}</span> <span class="c1">//5 * 1024 * 1024 (5MB)
-</span><span class="ln">3</span><span class="c1"></span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
+	<span class="nx">limit</span> <span class="o">:</span> <span class="p">{</span><span class="nx">fileSize</span> <span class="o">:</span> <span class="mi">5</span><span class="p">,</span><span class="mi">242</span><span class="p">,</span><span class="mi">880</span><span class="p">}</span> <span class="c1">//5 * 1024 * 1024 (5MB)
+</span><span class="c1"></span><span class="p">});</span>
 </code></pre></div><h3 id="filefilter">fileFilter</h3>
 <p>파일의 유형을 필터링하는 속성이다. 함수 내에 <code>file</code>인자를 통해서 허용 시킬 파일을 필터링 할 수 있다. 아래 예제는 이미지 형식인 파일들만 허용하는 예제이다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
-<span class="ln"> 2</span>    <span class="nx">fileFilter</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 3</span>        <span class="k">if</span> <span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">mimetype</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 4</span>            <span class="c1">//파일 허용
-</span><span class="ln"> 5</span><span class="c1"></span>            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-<span class="ln"> 6</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-<span class="ln"> 7</span>            <span class="c1">//파일 거부
-</span><span class="ln"> 8</span><span class="c1"></span>            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="ln"> 9</span>        <span class="p">}</span>
-<span class="ln">10</span>    <span class="p">}</span>
-<span class="ln">11</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
+    <span class="nx">fileFilter</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">mimetype</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">//파일 허용
+</span><span class="c1"></span>            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">//파일 거부
+</span><span class="c1"></span>            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
 </code></pre></div><p>허용된 파일이 아니더라도 http 통신은 정상적으로 출력되기 때문에 명확한 오류를 표기하려면 직접 미들웨어 함수를 호출하면 된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
-<span class="ln"> 2</span>    <span class="nx">fileFilter</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 3</span>        <span class="k">if</span> <span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">mimetype</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 4</span>            <span class="c1">//파일 허용
-</span><span class="ln"> 5</span><span class="c1"></span>            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-<span class="ln"> 6</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-<span class="ln"> 7</span>            <span class="c1">//파일 거부
-</span><span class="ln"> 8</span><span class="c1"></span>            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="ln"> 9</span>        <span class="p">}</span>
-<span class="ln">10</span>    <span class="p">}</span>
-<span class="ln">11</span><span class="p">}).</span><span class="nx">single</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">);</span>
-<span class="ln">12</span>
-<span class="ln">13</span><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/photo&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">14</span>    <span class="nx">upload</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="kd">function</span> <span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">15</span>        <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">16</span>            <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">500</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;허용된 파일이 아닙니다!&#39;</span><span class="p">);</span>
-<span class="ln">17</span>            <span class="k">return</span><span class="p">;</span>
-<span class="ln">18</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-<span class="ln">19</span>            <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;upload success&#39;</span><span class="p">);</span>
-<span class="ln">20</span>        <span class="p">}</span>
-<span class="ln">21</span>    <span class="p">});</span>
-<span class="ln">22</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
+    <span class="nx">fileFilter</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">mimetype</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">//파일 허용
+</span><span class="c1"></span>            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">//파일 거부
+</span><span class="c1"></span>            <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}).</span><span class="nx">single</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/photo&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">upload</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="kd">function</span> <span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">500</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;허용된 파일이 아닙니다!&#39;</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;upload success&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">});</span>
 </code></pre></div><h3 id="api">API</h3>
 <p>multer 사용 시 4개의 메서드를 제공하는데 각각의 역할은 다음과 같다.</p>
 <ul>
 <li><strong>single(filename) :</strong> 단일 파일에 대한 전달 요청 (위의 예제들)</li>
 <li><strong>array(fieldname, maxcount) :</strong> 동일한 필드에 대해 <code>multiple</code>속성이 적용된 파일들에 대한 전달 요청 (req.files에 배열 형태로 받을 수 있다.)
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;uploadFile&#34;</span> <span class="na">multiple</span> <span class="p">/&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;uploadFile&#34;</span> <span class="na">multiple</span> <span class="p">/&gt;</span>
 </code></pre></div></li>
 <li><strong>fields(fields) :</strong> 필드가 정의된 여러 파일을 전달 받는다. <code>.array</code>와 마찬가지로 req.files에 저장된다.
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;main-image&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;uploadFile&#34;</span> <span class="p">/&gt;</span> <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;sub-image&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;uploadFile&#34;</span> <span class="p">/&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;main-image&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;uploadFile&#34;</span> <span class="p">/&gt;</span> <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;sub-image&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;uploadFile&#34;</span> <span class="p">/&gt;</span>
 </code></pre></div><p><code>fields</code>를 사용할 때는 객체 배열로 받아와야한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/photo&#39;</span><span class="p">,</span> <span class="nx">upload</span><span class="p">.</span><span class="nx">fields</span><span class="p">([{</span><span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;main-image1&#39;</span><span class="p">},</span> <span class="p">{</span><span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;main-image2&#39;</span><span class="p">}),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
-<span class="ln">2</span>    <span class="c1">//code..
-</span><span class="ln">3</span><span class="c1"></span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/photo&#39;</span><span class="p">,</span> <span class="nx">upload</span><span class="p">.</span><span class="nx">fields</span><span class="p">([{</span><span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;main-image1&#39;</span><span class="p">},</span> <span class="p">{</span><span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;main-image2&#39;</span><span class="p">}),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="c1">//code..
+</span><span class="c1"></span><span class="p">});</span>
 </code></pre></div></li>
 </ul>
 <h2 id="참고-자료">참고 자료</h2>

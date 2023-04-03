@@ -344,54 +344,54 @@
     <div class="js-toc"></div>
     <h2 id="global">global</h2>
 <p>브라우저의 window와 같은 전역 객체 역할, 하지만 브라우저와 관련된 객체(document 등)들은 사용하지 못한다. <code>global</code>객체 역시 생략해서 사용 가능하다. 그리고 브라우저의 window객체와 마찬가지로 global에 값을 주입하면 프로젝트 내 모든 파일에서 전역 변수로 사용할 수 있다 . (하지만 이러한 패턴은 지양한다, module을 통해 관리하자)</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nx">global</span><span class="p">.</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello Node!&#39;</span><span class="p">);</span>
-<span class="ln">2</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello Node!&#39;</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">global</span><span class="p">.</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello Node!&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello Node!&#39;</span><span class="p">);</span>
 </code></pre></div><h2 id="console">console</h2>
 <p>로그를 출력하는 객체, 흔히 사용하는 log, error 말고 신기한 것을 소개한다.</p>
 <h3 id="consoletime">console.time</h3>
 <p>수행 시점에 time을 찍어 해당 코드를 수행한 시간을 알아낼 수 있다. (효율성 측정에 용이하다.)</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">timeEnd</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">);</span> <span class="c1">//add: 0.098ms
-</span><span class="ln">3</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
-<span class="ln">4</span><span class="p">}</span>
-<span class="ln">5</span>
-<span class="ln">6</span><span class="nx">console</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">);</span>
-<span class="ln">7</span>
-<span class="ln">8</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">timeEnd</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">);</span> <span class="c1">//add: 0.098ms
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">);</span>
+
+<span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 </code></pre></div><h3 id="consoledir">console.dir</h3>
 <p>객체 형태의 데이터를 출력하기 용이하다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">fruit</span> <span class="o">=</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span>
-<span class="ln">3</span>    <span class="nx">icon</span><span class="o">:</span> <span class="s1">&#39;🍎&#39;</span>
-<span class="ln">4</span><span class="p">};</span>
-<span class="ln">5</span>
-<span class="ln">6</span><span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">fruit</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">fruit</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span>
+    <span class="nx">icon</span><span class="o">:</span> <span class="s1">&#39;🍎&#39;</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">fruit</span><span class="p">);</span>
 </code></pre></div><h2 id="setimmediate">setImmediate</h2>
 <p>기존 <code>setTimeout</code>을 사용해 초를 0으로 두더라도 비동기 상황에서는 정확한 0초가 아닐 수도 있다. 이벤트 루프 내의 다른 실행 코드가 타임아웃의 순서를 블로킹할 수 있기 때문이다. 따라서 즉시 함수를 출력하려면 <code>setImmediate</code>를 사용하는 것이 유리하다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nx">setImmediate</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">);</span>
-<span class="ln">3</span><span class="p">});</span>
-<span class="ln">4</span>
-<span class="ln">5</span><span class="nx">setImmediate</span><span class="p">((</span><span class="nx">message</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">6</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
-<span class="ln">7</span><span class="p">},</span> <span class="s1">&#39;hello&#39;</span><span class="p">);</span> <span class="c1">//&#34;hello&#34;
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">setImmediate</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">setImmediate</span><span class="p">((</span><span class="nx">message</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">},</span> <span class="s1">&#39;hello&#39;</span><span class="p">);</span> <span class="c1">//&#34;hello&#34;
 </span></code></pre></div><p>사용 방법은 첫 인자에 실행 함수를 전달하고, 두번째 인자에 함수로 전달할 값을 적어주면된다.</p>
 <h2 id="filename-dirname">**filename, **dirname</h2>
 <p>현재 파일에 대한 경로나 파일명을 반환해준다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">currentFilePath</span> <span class="o">=</span> <span class="nx">__filename</span><span class="p">;</span>
-<span class="ln">2</span><span class="kr">const</span> <span class="nx">currentDirPath</span> <span class="o">=</span> <span class="nx">__dirname</span><span class="p">;</span>
-<span class="ln">3</span><span class="c1">// file명 포함
-</span><span class="ln">4</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">currentFilePath</span><span class="p">);</span> <span class="c1">// C:\Users\user\Desktop\node\test.js
-</span><span class="ln">5</span><span class="c1"></span>
-<span class="ln">6</span><span class="c1">// file 디렉토리명 까지 포함
-</span><span class="ln">7</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">currentDirPath</span><span class="p">);</span> <span class="c1">// C:\Users\user\Desktop\node
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">currentFilePath</span> <span class="o">=</span> <span class="nx">__filename</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">currentDirPath</span> <span class="o">=</span> <span class="nx">__dirname</span><span class="p">;</span>
+<span class="c1">// file명 포함
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">currentFilePath</span><span class="p">);</span> <span class="c1">// C:\Users\user\Desktop\node\test.js
+</span><span class="c1"></span>
+<span class="c1">// file 디렉토리명 까지 포함
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">currentDirPath</span><span class="p">);</span> <span class="c1">// C:\Users\user\Desktop\node
 </span></code></pre></div><h2 id="this">this</h2>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="p">(</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">==</span> <span class="nx">exports</span><span class="p">)</span> <span class="o">==</span> <span class="p">{};</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="p">(</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">==</span> <span class="nx">exports</span><span class="p">)</span> <span class="o">==</span> <span class="p">{};</span>
 </code></pre></div><p>웹 브라우저 상에서의 this 체계와 조금 다르다. (웹 브라우저에서의 전역 this == window 객체) node.js 상에서는 전역 스코프상에서의 this는 <code>module 객체</code>를 가르킨다. 함수 내부에서의 this는 global 객체를 가르킨다. (나머지 내부함수에서의 this 참조 스코프, 객체에서의 this등 다른 부분에서는 동일하다.)</p>
 <h2 id="require">require</h2>
 <p>외부 파일 import시에 사용, 파일 맨 상단에 굳이 위치할 필요는 없다. 한번 require한 파일은 <code>require.cache</code>에 저장됨 → 다시 불러올 때 require.cache 탐색 후 해당 js파일을 읽어온다. (캐싱)</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./module&#39;</span><span class="p">);</span> <span class="c1">//사용은 안하고 스크립트 실행만 하는 경우
-</span><span class="ln">2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">module</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./module&#39;</span><span class="p">);</span> <span class="c1">//변수에
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./module&#39;</span><span class="p">);</span> <span class="c1">//사용은 안하고 스크립트 실행만 하는 경우
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">module</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./module&#39;</span><span class="p">);</span> <span class="c1">//변수에
 </span></code></pre></div><h2 id="process">process</h2>
 <p>현재 실행중인 노드 프로세스에 접근하는 모듈</p>
 <ul>
@@ -402,14 +402,14 @@
 <li><strong>exePath :</strong> 노드 실행 경로</li>
 <li><strong>cwd() :</strong> 프로세스 실행 위치</li>
 <li><strong>env :</strong> 환경 변수들이 들어있는 객체 (외부에 노출되면 안되는 정보들을 저장하는 용도로 사용)
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kr">const</span> <span class="nx">db_password</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MYSQL_PW</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">db_password</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MYSQL_PW</span><span class="p">;</span>
 </code></pre></div></li>
 <li><strong>nextTick() :</strong> event loop task queue에서 우선권 부여 (promise then과 같이 micro-taskqueue 우선 처리)</li>
 <li><strong>exit(0) :</strong> node 정상 종료 (exit(1)은 에러가 발생했다는 것을 명시하면서 종료)</li>
 </ul>
 <h2 id="os">OS</h2>
 <p>운영체제에 대한 정보</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kr">const</span> <span class="nx">osInfo</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;os&#39;</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">osInfo</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;os&#39;</span><span class="p">);</span>
 </code></pre></div><ul>
 <li><strong>arch() :</strong> 아키텍쳐</li>
 <li><strong>freemem() :</strong> 사용가능한 memory 용량</li>
@@ -417,10 +417,10 @@
 </ul>
 <h2 id="path">Path</h2>
 <p>OS마다 다른 디렉토리 경로를 다루기위해 많이 사용 <code>(Windows 또는 POSIX)</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="c1">// /Users/choeseungjin/Mydoc/02_Code/02_JavaScript/backend/process.js
-</span><span class="ln">2</span><span class="c1"></span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;/process.js&#39;</span><span class="p">);</span>
-<span class="ln">3</span><span class="c1">// /process.js
-</span><span class="ln">4</span><span class="c1"></span><span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;process.js&#39;</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">// /Users/choeseungjin/Mydoc/02_Code/02_JavaScript/backend/process.js
+</span><span class="c1"></span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;/process.js&#39;</span><span class="p">);</span>
+<span class="c1">// /process.js
+</span><span class="c1"></span><span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;process.js&#39;</span><span class="p">);</span>
 </code></pre></div><ul>
 <li><strong>parse(&lsquo;path..') :</strong> 파일 구조 분해 (root-dir-base-ext..)</li>
 <li><strong>isAbsolute(&lsquo;path&rsquo;) :</strong> 절대경로인지 상대경로인지 true/false</li>

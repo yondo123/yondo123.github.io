@@ -361,16 +361,16 @@ SCSS는 Sass와 무슨 관계가 있을까?</p>
 <ol>
 <li>
 <p>패키지 모듈 설치</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npm i node-sass
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm i node-sass
 </code></pre></div></li>
 <li>
 <p>스크립트 커맨드 추가</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln">1</span>    <span class="s2">&#34;scripts&#34;</span><span class="err">:</span> <span class="p">{</span>
-<span class="ln">2</span>            <span class="nt">&#34;test&#34;</span><span class="p">:</span> <span class="s2">&#34;echo \&#34;Error: no test specified\&#34; &amp;&amp; exit 1&#34;</span><span class="p">,</span>
-<span class="ln">3</span>            <span class="nt">&#34;node-sass&#34;</span><span class="p">:</span> <span class="s2">&#34;node-sass&#34;</span><span class="p">,</span>
-<span class="ln">4</span>            <span class="nt">&#34;sass&#34;</span><span class="p">:</span> <span class="s2">&#34;node-sass -w -r ./styles/main.scss ./main.css&#34;</span>
-<span class="ln">5</span>
-<span class="ln">6</span>    <span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json">    <span class="s2">&#34;scripts&#34;</span><span class="err">:</span> <span class="p">{</span>
+            <span class="nt">&#34;test&#34;</span><span class="p">:</span> <span class="s2">&#34;echo \&#34;Error: no test specified\&#34; &amp;&amp; exit 1&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;node-sass&#34;</span><span class="p">:</span> <span class="s2">&#34;node-sass&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;sass&#34;</span><span class="p">:</span> <span class="s2">&#34;node-sass -w -r ./styles/main.scss ./main.css&#34;</span>
+
+    <span class="p">}</span>
 </code></pre></div></li>
 </ol>
 <ul>
@@ -382,12 +382,12 @@ SCSS는 Sass와 무슨 관계가 있을까?</p>
 </li>
 <li>
 <p><strong>-source-map :</strong> 디버깅에서 <code>scss</code> 파일 위치를 추적해주는 옵션</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>    npm run sass <span class="c1">##sass -&gt; css compile</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">    npm run sass <span class="c1">##sass -&gt; css compile</span>
 </code></pre></div></li>
 </ul>
 <ol start="3">
 <li>linter 설정
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npm i -D sass-lint
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm i -D sass-lint
 </code></pre></div></li>
 </ol>
 <h2 id="기본-문법">기본 문법</h2>
@@ -395,30 +395,30 @@ SCSS는 Sass와 무슨 관계가 있을까?</p>
 <p><code>@debug</code> 명령어를 통해 디버깅을 할 수 있다.</p>
 <h3 id="자료형">자료형</h3>
 <p>sass에서는 9개의 자료형을 사용할 수 있으며 <code>type-of</code>로 타입 체크도 쉽게 할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="ln"> 1</span><span class="nv">$font-weights</span><span class="o">:</span> <span class="p">(</span>
-<span class="ln"> 2</span>    <span class="s1">&#39;regular&#39;</span><span class="o">:</span> <span class="mi">400</span><span class="o">,</span>
-<span class="ln"> 3</span>    <span class="s1">&#39;medium&#39;</span><span class="o">:</span> <span class="mi">500</span><span class="o">,</span>
-<span class="ln"> 4</span>    <span class="s1">&#39;bold&#39;</span><span class="o">:</span> <span class="mi">700</span>
-<span class="ln"> 5</span><span class="p">);</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span><span class="k">@function</span> <span class="nt">foo</span><span class="o">(</span><span class="err">$</span><span class="nt">x</span><span class="o">)</span> <span class="p">{</span>
-<span class="ln"> 8</span>    <span class="k">@return</span> <span class="err">$</span><span class="nt">x</span><span class="p">;</span>
-<span class="ln"> 9</span><span class="p">}</span>
-<span class="ln">10</span>
-<span class="ln">11</span><span class="k">@mixin</span><span class="nf"> syntax-colors</span><span class="p">(</span><span class="nv">$args</span><span class="o">...</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">12</span>    <span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="nv">$args</span><span class="p">);</span> <span class="c1">//arglist
-</span><span class="ln">13</span><span class="c1"></span><span class="p">}</span>
-<span class="ln">14</span>
-<span class="ln">15</span><span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="mi">10</span><span class="kt">px</span><span class="p">);</span> <span class="c1">// number
-</span><span class="ln">16</span><span class="c1"></span><span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="s1">&#39;#8c8c8c&#39;</span><span class="p">);</span> <span class="c1">// string
-</span><span class="ln">17</span><span class="c1"></span><span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="mh">#8c8c8c</span><span class="p">);</span> <span class="c1">// color
-</span><span class="ln">18</span><span class="c1"></span><span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="n">true</span><span class="p">);</span> <span class="c1">// bool
-</span><span class="ln">19</span><span class="c1"></span><span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="n">null</span><span class="p">);</span> <span class="c1">// null
-</span><span class="ln">20</span><span class="c1"></span><span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="mi">10</span><span class="kt">px</span> <span class="mi">20</span><span class="kt">px</span> <span class="mi">30</span><span class="kt">px</span><span class="p">);</span> <span class="c1">// list
-</span><span class="ln">21</span><span class="c1"></span><span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="nv">$font-weights</span><span class="p">);</span> <span class="c1">// map
-</span><span class="ln">22</span><span class="c1"></span><span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="nf">get-function</span><span class="p">(</span><span class="n">foo</span><span class="p">));</span> <span class="c1">// function
-</span><span class="ln">23</span><span class="c1"></span>
-<span class="ln">24</span><span class="k">@include</span><span class="nd"> syntax-colors</span><span class="p">(</span><span class="nv">$string</span><span class="o">:</span> <span class="mh">#080</span><span class="o">,</span> <span class="nv">$comment</span><span class="o">:</span> <span class="mh">#800</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$font-weights</span><span class="o">:</span> <span class="p">(</span>
+    <span class="s1">&#39;regular&#39;</span><span class="o">:</span> <span class="mi">400</span><span class="o">,</span>
+    <span class="s1">&#39;medium&#39;</span><span class="o">:</span> <span class="mi">500</span><span class="o">,</span>
+    <span class="s1">&#39;bold&#39;</span><span class="o">:</span> <span class="mi">700</span>
+<span class="p">);</span>
+
+<span class="k">@function</span> <span class="nt">foo</span><span class="o">(</span><span class="err">$</span><span class="nt">x</span><span class="o">)</span> <span class="p">{</span>
+    <span class="k">@return</span> <span class="err">$</span><span class="nt">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">@mixin</span><span class="nf"> syntax-colors</span><span class="p">(</span><span class="nv">$args</span><span class="o">...</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="nv">$args</span><span class="p">);</span> <span class="c1">//arglist
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="mi">10</span><span class="kt">px</span><span class="p">);</span> <span class="c1">// number
+</span><span class="c1"></span><span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="s1">&#39;#8c8c8c&#39;</span><span class="p">);</span> <span class="c1">// string
+</span><span class="c1"></span><span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="mh">#8c8c8c</span><span class="p">);</span> <span class="c1">// color
+</span><span class="c1"></span><span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="n">true</span><span class="p">);</span> <span class="c1">// bool
+</span><span class="c1"></span><span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="n">null</span><span class="p">);</span> <span class="c1">// null
+</span><span class="c1"></span><span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="mi">10</span><span class="kt">px</span> <span class="mi">20</span><span class="kt">px</span> <span class="mi">30</span><span class="kt">px</span><span class="p">);</span> <span class="c1">// list
+</span><span class="c1"></span><span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="nv">$font-weights</span><span class="p">);</span> <span class="c1">// map
+</span><span class="c1"></span><span class="k">@debug</span> <span class="nf">type-of</span><span class="p">(</span><span class="nf">get-function</span><span class="p">(</span><span class="n">foo</span><span class="p">));</span> <span class="c1">// function
+</span><span class="c1"></span>
+<span class="k">@include</span><span class="nd"> syntax-colors</span><span class="p">(</span><span class="nv">$string</span><span class="o">:</span> <span class="mh">#080</span><span class="o">,</span> <span class="nv">$comment</span><span class="o">:</span> <span class="mh">#800</span><span class="p">);</span>
 </code></pre></div><p>사용할 수 있는 타입 목록</p>
 <ul>
 <li>number</li>
@@ -438,100 +438,100 @@ SCSS는 Sass와 무슨 관계가 있을까?</p>
 <li>숫자로 변수명을 시작할 수 없다.</li>
 <li>대소문자를 구분한다.</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="ln"> 1</span><span class="nv">$width</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
-<span class="ln"> 2</span><span class="nv">$image-url</span><span class="o"> :</span> <span class="sx">url(&#39;./assets/images/logo.svg)</span><span class="p">;</span>
-<span class="ln"> 3</span>
-<span class="ln"> 4</span><span class="nt">p</span> <span class="p">{</span>
-<span class="ln"> 5</span>    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">width</span><span class="p">;</span>
-<span class="ln"> 6</span><span class="p">}</span>
-<span class="ln"> 7</span>
-<span class="ln"> 8</span><span class="nt">div</span> <span class="p">{</span>
-<span class="ln"> 9</span>		<span class="nt">background-image</span><span class="nd">:</span> <span class="err">$</span><span class="nt">image-url</span><span class="p">;</span>
-<span class="ln">10</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$width</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nv">$image-url</span><span class="o"> :</span> <span class="sx">url(&#39;./assets/images/logo.svg)</span><span class="p">;</span>
+
+<span class="nt">p</span> <span class="p">{</span>
+    <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">width</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">div</span> <span class="p">{</span>
+		<span class="nt">background-image</span><span class="nd">:</span> <span class="err">$</span><span class="nt">image-url</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div><h3 id="조건문">조건문</h3>
 <p><code>@if, @if~@else</code>로 조건문을 작성한다. 조건문 내부에서 OR 연산자 또는 AND 연산자를 사용할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="ln"> 1</span><span class="nv">$color</span><span class="o">:</span> <span class="mh">#ededed</span><span class="p">;</span>
-<span class="ln"> 2</span><span class="nv">$position</span><span class="o">:</span> <span class="no">fixed</span><span class="p">;</span>
-<span class="ln"> 3</span>
-<span class="ln"> 4</span><span class="c1">//기본 @if 지시문
-</span><span class="ln"> 5</span><span class="c1"></span><span class="nt">p</span> <span class="p">{</span>
-<span class="ln"> 6</span>    <span class="k">@if</span> <span class="p">(</span><span class="nf">type-of</span><span class="p">(</span><span class="nv">$color</span><span class="p">)</span> <span class="o">==</span> <span class="no">color</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 7</span>        <span class="nt">color</span><span class="nd">:</span> <span class="err">$</span><span class="nt">color</span><span class="p">;</span>
-<span class="ln"> 8</span>    <span class="p">}</span>
-<span class="ln"> 9</span><span class="p">}</span>
-<span class="ln">10</span>
-<span class="ln">11</span><span class="c1">//if ~ else
-</span><span class="ln">12</span><span class="c1"></span><span class="nc">.section</span> <span class="p">{</span>
-<span class="ln">13</span>    <span class="k">@if</span> <span class="p">(</span><span class="nv">$position</span> <span class="o">==</span> <span class="no">fixed</span> <span class="ow">or</span> <span class="nv">$position</span> <span class="o">==</span> <span class="no">absolute</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">14</span>        <span class="nt">position</span><span class="nd">:</span> <span class="err">$</span><span class="nt">position</span><span class="p">;</span>
-<span class="ln">15</span>    <span class="p">}</span> <span class="k">@else</span> <span class="p">{</span>
-<span class="ln">16</span>        <span class="nt">position</span><span class="nd">:</span> <span class="nt">relative</span><span class="p">;</span>
-<span class="ln">17</span>    <span class="p">}</span>
-<span class="ln">18</span><span class="p">}</span>
-<span class="ln">19</span>
-<span class="ln">20</span><span class="c1">//if ~ else if ~ else
-</span><span class="ln">21</span><span class="c1"></span><span class="k">@if</span> <span class="p">(</span><span class="n">condition1</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">22</span>    <span class="c1">//..style
-</span><span class="ln">23</span><span class="c1"></span><span class="p">}</span> <span class="k">@else</span> <span class="nt">if</span><span class="o">(</span><span class="nt">condition2</span><span class="o">)</span> <span class="p">{</span>
-<span class="ln">24</span>    <span class="c1">//..style
-</span><span class="ln">25</span><span class="c1"></span><span class="p">}</span> <span class="k">@else</span> <span class="p">{</span>
-<span class="ln">26</span>    <span class="c1">//..style
-</span><span class="ln">27</span><span class="c1"></span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$color</span><span class="o">:</span> <span class="mh">#ededed</span><span class="p">;</span>
+<span class="nv">$position</span><span class="o">:</span> <span class="no">fixed</span><span class="p">;</span>
+
+<span class="c1">//기본 @if 지시문
+</span><span class="c1"></span><span class="nt">p</span> <span class="p">{</span>
+    <span class="k">@if</span> <span class="p">(</span><span class="nf">type-of</span><span class="p">(</span><span class="nv">$color</span><span class="p">)</span> <span class="o">==</span> <span class="no">color</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nt">color</span><span class="nd">:</span> <span class="err">$</span><span class="nt">color</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">//if ~ else
+</span><span class="c1"></span><span class="nc">.section</span> <span class="p">{</span>
+    <span class="k">@if</span> <span class="p">(</span><span class="nv">$position</span> <span class="o">==</span> <span class="no">fixed</span> <span class="ow">or</span> <span class="nv">$position</span> <span class="o">==</span> <span class="no">absolute</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nt">position</span><span class="nd">:</span> <span class="err">$</span><span class="nt">position</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">@else</span> <span class="p">{</span>
+        <span class="nt">position</span><span class="nd">:</span> <span class="nt">relative</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">//if ~ else if ~ else
+</span><span class="c1"></span><span class="k">@if</span> <span class="p">(</span><span class="n">condition1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//..style
+</span><span class="c1"></span><span class="p">}</span> <span class="k">@else</span> <span class="nt">if</span><span class="o">(</span><span class="nt">condition2</span><span class="o">)</span> <span class="p">{</span>
+    <span class="c1">//..style
+</span><span class="c1"></span><span class="p">}</span> <span class="k">@else</span> <span class="p">{</span>
+    <span class="c1">//..style
+</span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><h3 id="반복문">반복문</h3>
 <p><code>@for</code> 를 사용해 반복문을 작성한다. 선언할 때 내장 변수를 같이 선언하는데, 반복문 내에서 사용할 변수이다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="ln">1</span><span class="k">@for</span> <span class="nv">$item</span> <span class="n">for</span> <span class="mi">1</span> <span class="ow">through</span> <span class="mi">4</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="c1">//loop code
-</span><span class="ln">3</span><span class="c1"></span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@for</span> <span class="nv">$item</span> <span class="n">for</span> <span class="mi">1</span> <span class="ow">through</span> <span class="mi">4</span> <span class="p">{</span>
+    <span class="c1">//loop code
+</span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><p>반복문 내에서 변수를 쓰려면 <code>#{$variable}</code>형태로 사용하면된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="ln">1</span><span class="nv">$sm-cols</span><span class="o">:</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">//grid 컬럼 갯수
-</span><span class="ln">2</span><span class="c1"></span><span class="k">@for</span> <span class="nv">$item</span> <span class="ow">from</span> <span class="mi">1</span> <span class="ow">through</span> <span class="mi">4</span> <span class="p">{</span>
-<span class="ln">3</span>    <span class="nc">.col-sm-</span><span class="si">#{</span><span class="nv">$item</span><span class="si">}</span> <span class="p">{</span>
-<span class="ln">4</span>        <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">item</span> <span class="o">/</span> <span class="err">$</span><span class="nt">sm-cols</span> <span class="o">*</span> <span class="nt">100</span><span class="err">%</span><span class="p">;</span>
-<span class="ln">5</span>    <span class="p">}</span>
-<span class="ln">6</span><span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="ln"> 1</span><span class="c">/* 컴파일 결과 */</span>
-<span class="ln"> 2</span><span class="p">.</span><span class="nc">container</span> <span class="p">.</span><span class="nc">col-sm-1</span> <span class="p">{</span>
-<span class="ln"> 3</span>    <span class="k">width</span><span class="p">:</span> <span class="mi">25</span><span class="kt">%</span><span class="p">;</span>
-<span class="ln"> 4</span><span class="p">}</span>
-<span class="ln"> 5</span><span class="p">.</span><span class="nc">container</span> <span class="p">.</span><span class="nc">col-sm-2</span> <span class="p">{</span>
-<span class="ln"> 6</span>    <span class="k">width</span><span class="p">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
-<span class="ln"> 7</span><span class="p">}</span>
-<span class="ln"> 8</span><span class="p">.</span><span class="nc">container</span> <span class="p">.</span><span class="nc">col-sm-3</span> <span class="p">{</span>
-<span class="ln"> 9</span>    <span class="k">width</span><span class="p">:</span> <span class="mi">75</span><span class="kt">%</span><span class="p">;</span>
-<span class="ln">10</span><span class="p">}</span>
-<span class="ln">11</span><span class="p">.</span><span class="nc">container</span> <span class="p">.</span><span class="nc">col-sm-4</span> <span class="p">{</span>
-<span class="ln">12</span>    <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
-<span class="ln">13</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$sm-cols</span><span class="o">:</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">//grid 컬럼 갯수
+</span><span class="c1"></span><span class="k">@for</span> <span class="nv">$item</span> <span class="ow">from</span> <span class="mi">1</span> <span class="ow">through</span> <span class="mi">4</span> <span class="p">{</span>
+    <span class="nc">.col-sm-</span><span class="si">#{</span><span class="nv">$item</span><span class="si">}</span> <span class="p">{</span>
+        <span class="nt">width</span><span class="nd">:</span> <span class="err">$</span><span class="nt">item</span> <span class="o">/</span> <span class="err">$</span><span class="nt">sm-cols</span> <span class="o">*</span> <span class="nt">100</span><span class="err">%</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="c">/* 컴파일 결과 */</span>
+<span class="p">.</span><span class="nc">container</span> <span class="p">.</span><span class="nc">col-sm-1</span> <span class="p">{</span>
+    <span class="k">width</span><span class="p">:</span> <span class="mi">25</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">container</span> <span class="p">.</span><span class="nc">col-sm-2</span> <span class="p">{</span>
+    <span class="k">width</span><span class="p">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">container</span> <span class="p">.</span><span class="nc">col-sm-3</span> <span class="p">{</span>
+    <span class="k">width</span><span class="p">:</span> <span class="mi">75</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">container</span> <span class="p">.</span><span class="nc">col-sm-4</span> <span class="p">{</span>
+    <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div><h3 id="map">Map</h3>
 <p>sass에서 제공하는 <code>map</code>은 자바스크립트에서의 객체 자료형 처럼 key-value로 이루어진 자료형이다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="ln">1</span><span class="c1">//font-style Map 정의
-</span><span class="ln">2</span><span class="c1"></span><span class="nv">$font-style</span><span class="o">:</span> <span class="p">(</span>
-<span class="ln">3</span>    <span class="n">sm</span><span class="o">:</span> <span class="mi">12</span><span class="kt">px</span><span class="o">,</span>
-<span class="ln">4</span>    <span class="n">md</span><span class="o">:</span> <span class="mi">16</span><span class="kt">px</span><span class="o">,</span>
-<span class="ln">5</span>    <span class="n">lg</span><span class="o">:</span> <span class="mi">18</span><span class="kt">px</span>
-<span class="ln">6</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="c1">//font-style Map 정의
+</span><span class="c1"></span><span class="nv">$font-style</span><span class="o">:</span> <span class="p">(</span>
+    <span class="n">sm</span><span class="o">:</span> <span class="mi">12</span><span class="kt">px</span><span class="o">,</span>
+    <span class="n">md</span><span class="o">:</span> <span class="mi">16</span><span class="kt">px</span><span class="o">,</span>
+    <span class="n">lg</span><span class="o">:</span> <span class="mi">18</span><span class="kt">px</span>
+<span class="p">);</span>
 </code></pre></div><p><strong>map-get</strong><br>
 해당 key에 맞는 value를 가져온다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="ln">1</span><span class="nt">p</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nt">font-size</span><span class="nd">:</span> <span class="nt">map-get</span><span class="o">(</span><span class="err">$</span><span class="nt">font-style</span><span class="o">,</span> <span class="nt">sm</span><span class="o">)</span><span class="p">;</span> <span class="c1">//12px;
-</span><span class="ln">3</span><span class="c1"></span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">p</span> <span class="p">{</span>
+    <span class="nt">font-size</span><span class="nd">:</span> <span class="nt">map-get</span><span class="o">(</span><span class="err">$</span><span class="nt">font-style</span><span class="o">,</span> <span class="nt">sm</span><span class="o">)</span><span class="p">;</span> <span class="c1">//12px;
+</span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><p><strong>map-has-key</strong><br>
 정의된 map 내부에 해당 key가 존재하는지 확인한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="ln"> 1</span><span class="k">@function</span> <span class="nt">get-font-size</span><span class="o">(</span><span class="err">$</span><span class="nt">size</span><span class="o">)</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="k">@if</span> <span class="p">(</span><span class="nf">map-has-key</span><span class="p">(</span><span class="nv">$font-style</span><span class="o">,</span> <span class="nv">$size</span><span class="p">))</span> <span class="p">{</span>
-<span class="ln"> 3</span>        <span class="k">@return</span> <span class="nt">map-get</span><span class="o">(</span><span class="err">$</span><span class="nt">font-style</span><span class="o">,</span> <span class="err">$</span><span class="nt">size</span><span class="o">)</span><span class="p">;</span>
-<span class="ln"> 4</span>    <span class="p">}</span> <span class="k">@else</span> <span class="p">{</span>
-<span class="ln"> 5</span>        <span class="k">@return</span> <span class="nt">10px</span><span class="p">;</span>
-<span class="ln"> 6</span>    <span class="p">}</span>
-<span class="ln"> 7</span><span class="p">}</span>
-<span class="ln"> 8</span>
-<span class="ln"> 9</span><span class="nt">p</span> <span class="p">{</span>
-<span class="ln">10</span>    <span class="nt">font-size</span><span class="nd">:</span> <span class="nt">get-font-size</span><span class="o">(</span><span class="nt">xl</span><span class="o">)</span><span class="p">;</span> <span class="c1">//10px
-</span><span class="ln">11</span><span class="c1"></span><span class="p">}</span>
-<span class="ln">12</span>
-<span class="ln">13</span><span class="nc">.lg-font</span> <span class="p">{</span>
-<span class="ln">14</span>    <span class="nt">font-size</span><span class="nd">:</span> <span class="nt">get-font-size</span><span class="o">(</span><span class="nt">lg</span><span class="o">)</span><span class="p">;</span> <span class="c1">//18px
-</span><span class="ln">15</span><span class="c1"></span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@function</span> <span class="nt">get-font-size</span><span class="o">(</span><span class="err">$</span><span class="nt">size</span><span class="o">)</span> <span class="p">{</span>
+    <span class="k">@if</span> <span class="p">(</span><span class="nf">map-has-key</span><span class="p">(</span><span class="nv">$font-style</span><span class="o">,</span> <span class="nv">$size</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">@return</span> <span class="nt">map-get</span><span class="o">(</span><span class="err">$</span><span class="nt">font-style</span><span class="o">,</span> <span class="err">$</span><span class="nt">size</span><span class="o">)</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">@else</span> <span class="p">{</span>
+        <span class="k">@return</span> <span class="nt">10px</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nt">p</span> <span class="p">{</span>
+    <span class="nt">font-size</span><span class="nd">:</span> <span class="nt">get-font-size</span><span class="o">(</span><span class="nt">xl</span><span class="o">)</span><span class="p">;</span> <span class="c1">//10px
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="nc">.lg-font</span> <span class="p">{</span>
+    <span class="nt">font-size</span><span class="nd">:</span> <span class="nt">get-font-size</span><span class="o">(</span><span class="nt">lg</span><span class="o">)</span><span class="p">;</span> <span class="c1">//18px
+</span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><h2 id="참고-자료">참고 자료</h2>
 <ul>
 <li><strong><a class="link" href="https://edu.goorm.io/learn/lecture/25681/%EA%B9%80%EB%B2%84%EA%B7%B8%EC%9D%98-ui-%EA%B0%9C%EB%B0%9C-%EB%B6%80%ED%8A%B8%EC%BA%A0%ED%94%84-%EA%B2%BD%EB%A0%A5%EA%B0%99%EC%9D%80-%EC%8B%A0%EC%9E%85%EC%9C%BC%EB%A1%9C-%EB%A0%88%EB%B2%A8%EC%97%85"  target="_blank" rel="noopener"

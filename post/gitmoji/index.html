@@ -362,69 +362,69 @@
 <li>gitmoji.additionalEmojis : 추가 할 컨벤션<code>array</code></li>
 </ul>
 <p>아래는 내가 많이 사용하는 상황으로 커스텀을 해보았다. <code>settings.json</code>에 추가해주면 끝</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln"> 1</span><span class="s2">&#34;gitmoji.onlyUseAdditionalEmojis&#34;</span><span class="err">:</span> <span class="kc">true</span><span class="err">,</span>
-<span class="ln"> 2</span><span class="s2">&#34;gitmoji.additionalEmojis&#34;</span><span class="err">:</span> <span class="p">[</span>
-<span class="ln"> 3</span>    <span class="p">{</span>
-<span class="ln"> 4</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;✨&#34;</span><span class="p">,</span>
-<span class="ln"> 5</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:sparkles:&#34;</span><span class="p">,</span>
-<span class="ln"> 6</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[new features] 기능 및 코드 추가&#34;</span>
-<span class="ln"> 7</span>    <span class="p">},</span>
-<span class="ln"> 8</span>    <span class="p">{</span>
-<span class="ln"> 9</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🔥&#34;</span><span class="p">,</span>
-<span class="ln">10</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:fire:&#34;</span><span class="p">,</span>
-<span class="ln">11</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[remove] 기능 및 코드 제거&#34;</span>
-<span class="ln">12</span>    <span class="p">},</span>
-<span class="ln">13</span>    <span class="p">{</span>
-<span class="ln">14</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🎨&#34;</span><span class="p">,</span>
-<span class="ln">15</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:art:&#34;</span><span class="p">,</span>
-<span class="ln">16</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[styling] 코드 스타일링&#34;</span>
-<span class="ln">17</span>    <span class="p">},</span>
-<span class="ln">18</span>    <span class="p">{</span>
-<span class="ln">19</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;➕&#34;</span><span class="p">,</span>
-<span class="ln">20</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:heavy_plus_sign:&#34;</span><span class="p">,</span>
-<span class="ln">21</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[add] 파일 추가&#34;</span>
-<span class="ln">22</span>    <span class="p">},</span>
-<span class="ln">23</span>    <span class="p">{</span>
-<span class="ln">24</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;➖&#34;</span><span class="p">,</span>
-<span class="ln">25</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:heavy_minus_sign:&#34;</span><span class="p">,</span>
-<span class="ln">26</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[remove] 파일 제거&#34;</span>
-<span class="ln">27</span>    <span class="p">},</span>
-<span class="ln">28</span>    <span class="p">{</span>
-<span class="ln">29</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🏗️&#34;</span><span class="p">,</span>
-<span class="ln">30</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:card_file_box:&#34;</span><span class="p">,</span>
-<span class="ln">31</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[structure] 프로젝트 구조 변경&#34;</span>
-<span class="ln">32</span>    <span class="p">},</span>
-<span class="ln">33</span>    <span class="p">{</span>
-<span class="ln">34</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🐛&#34;</span><span class="p">,</span>
-<span class="ln">35</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:bug:&#34;</span><span class="p">,</span>
-<span class="ln">36</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[fix] 버그 수정&#34;</span>
-<span class="ln">37</span>    <span class="p">},</span>
-<span class="ln">38</span>    <span class="p">{</span>
-<span class="ln">39</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🚑&#34;</span><span class="p">,</span>
-<span class="ln">40</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:ambulance:&#34;</span><span class="p">,</span>
-<span class="ln">41</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[hotfix] 치명적인 버그 수정&#34;</span>
-<span class="ln">42</span>    <span class="p">},</span>
-<span class="ln">43</span>    <span class="p">{</span>
-<span class="ln">44</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;♻️&#34;</span><span class="p">,</span>
-<span class="ln">45</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:recycle:&#34;</span><span class="p">,</span>
-<span class="ln">46</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[refactor] 코드 리팩토링&#34;</span>
-<span class="ln">47</span>    <span class="p">},</span>
-<span class="ln">48</span>    <span class="p">{</span>
-<span class="ln">49</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;📝&#34;</span><span class="p">,</span>
-<span class="ln">50</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:memo:&#34;</span><span class="p">,</span>
-<span class="ln">51</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[doc] 문서작성 및 편집&#34;</span>
-<span class="ln">52</span>    <span class="p">},</span>
-<span class="ln">53</span>    <span class="p">{</span>
-<span class="ln">54</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🎉&#34;</span><span class="p">,</span>
-<span class="ln">55</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:tada:&#34;</span><span class="p">,</span>
-<span class="ln">56</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[init] 프로젝트 개시&#34;</span>
-<span class="ln">57</span>    <span class="p">},</span>
-<span class="ln">58</span>    <span class="p">{</span>
-<span class="ln">59</span>        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🚀&#34;</span><span class="p">,</span>
-<span class="ln">60</span>        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:rocket:&#34;</span><span class="p">,</span>
-<span class="ln">61</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[deploy] 프로젝트 배포&#34;</span>
-<span class="ln">62</span>    <span class="p">}</span>
-<span class="ln">63</span><span class="p">]</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;gitmoji.onlyUseAdditionalEmojis&#34;</span><span class="err">:</span> <span class="kc">true</span><span class="err">,</span>
+<span class="s2">&#34;gitmoji.additionalEmojis&#34;</span><span class="err">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;✨&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:sparkles:&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[new features] 기능 및 코드 추가&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🔥&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:fire:&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[remove] 기능 및 코드 제거&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🎨&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:art:&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[styling] 코드 스타일링&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;➕&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:heavy_plus_sign:&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[add] 파일 추가&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;➖&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:heavy_minus_sign:&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[remove] 파일 제거&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🏗️&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:card_file_box:&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[structure] 프로젝트 구조 변경&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🐛&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:bug:&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[fix] 버그 수정&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🚑&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:ambulance:&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[hotfix] 치명적인 버그 수정&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;♻️&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:recycle:&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[refactor] 코드 리팩토링&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;📝&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:memo:&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[doc] 문서작성 및 편집&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🎉&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:tada:&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[init] 프로젝트 개시&#34;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&#34;emoji&#34;</span><span class="p">:</span> <span class="s2">&#34;🚀&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="s2">&#34;:rocket:&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;[deploy] 프로젝트 배포&#34;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
 </code></pre></div><p><img src="https://user-images.githubusercontent.com/46988995/184146578-5e99d739-7b4d-455b-9dc3-2f461e0e282f.png" alt="gitmoji-custom"  /></p>
 
 </section>

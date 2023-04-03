@@ -23,7 +23,7 @@
       <pubDate>Wed, 08 Sep 2021 23:18:33 +0900</pubDate>
       
       <guid>https://jinyisland.kr/post/promise-async-await/</guid>
-      <description>Promise 1function callbackDelay(sec, callback) { 2 setTimeout(() =&amp;gt; { 3 callback(&amp;#39;콜백 Delay&amp;gt;&amp;gt;&amp;#39; + new Date().toString()); 4 }, sec * 1000); 5} 6 7callbackDelay(1, (result) =&amp;gt; { 8 console.log(1, result); 9 callbackDelay(1, (result) =&amp;gt; { 10 console.log(2, result); 11 callbackDelay(1, (result) =&amp;gt; { 12 console.log(3, result); 13 }); 14 }); 15}); 16/*result 171 콜백 Delay&amp;gt;&amp;gt;Sun Jun 07 2020 18:43:56 GMT+0900 (GMT+09:00) 18promise.js:26 192 콜백 Delay&amp;gt;&amp;gt;Sun Jun 07 2020 18:43:57 GMT+0900 (GMT+09:00) 20promise.</description>
+      <description>Promise function callbackDelay(sec, callback) { setTimeout(() =&amp;gt; { callback(&amp;#39;콜백 Delay&amp;gt;&amp;gt;&amp;#39; + new Date().toString()); }, sec * 1000); } callbackDelay(1, (result) =&amp;gt; { console.log(1, result); callbackDelay(1, (result) =&amp;gt; { console.log(2, result); callbackDelay(1, (result) =&amp;gt; { console.log(3, result); }); }); }); /*result 1 콜백 Delay&amp;gt;&amp;gt;Sun Jun 07 2020 18:43:56 GMT+0900 (GMT+09:00) promise.js:26 2 콜백 Delay&amp;gt;&amp;gt;Sun Jun 07 2020 18:43:57 GMT+0900 (GMT+09:00) promise.js:28 3 콜백 Delay&amp;gt;&amp;gt;Sun Jun 07 2020 18:43:58 GMT+0900 (GMT+09:00) */ 자바스크립트에서 비동기 동작을 할때 우리는 항상 해당 함수에 콜백 함수를 넣어줬다.</description>
     </item>
     
     <item>
@@ -33,8 +33,8 @@
       
       <guid>https://jinyisland.kr/post/arrow-function/</guid>
       <description>화살표 함수 기존 함수 표기법을 화살표(⇒)형태로 간단하게 표기하는 함수 표기법
-기존 함수 표현식과의 차이 1//기존 함수 표현식 2function name() { 3 //code.. 4} 5 6//화살표 함수 7() =&amp;gt; { 8 //code.. 9}; 화살표 함수 특징 괄호 생략 매개변수가 1개라면 괄호()도 생략이 가능하다.
-1const logMessage = (message) =&amp;gt; { 2 console.log(message); 3}; 4logMessage(&amp;#39;hello&amp;#39;); //&amp;#39;hello&amp;#39; Lexical this 일반 함수 표기에서는 this사용 시 동적으로 해당 함수를 실행한 객체로 바인딩되었다.
+기존 함수 표현식과의 차이 //기존 함수 표현식 function name() { //code.. } //화살표 함수 () =&amp;gt; { //code.. }; 화살표 함수 특징 괄호 생략 매개변수가 1개라면 괄호()도 생략이 가능하다.
+const logMessage = (message) =&amp;gt; { console.log(message); }; logMessage(&amp;#39;hello&amp;#39;); //&amp;#39;hello&amp;#39; Lexical this 일반 함수 표기에서는 this사용 시 동적으로 해당 함수를 실행한 객체로 바인딩되었다.
 하지만 화살표 함수에서는 자신을 소유하고 있는 객체로 바인딩되는게 아니라 해당 화살표함수를 소유하고 있는 상위 환경의 this를 그대로 계승한다.</description>
     </item>
     
@@ -45,7 +45,7 @@
       
       <guid>https://jinyisland.kr/post/template-literals/</guid>
       <description>Temlate literals 기존 문자열 결합 시 연산자(+)를 사용하였는데 백틱(`) 기호를 사용하여 쉽게 결합할 수 있다.
-기존 연산자 사용 1const fruit = &amp;#39;apple&amp;#39;; 2const color = &amp;#39;red&amp;#39;; 3console.log(&amp;#39;My Favorite Fruit is&amp;#39; + fruit + &amp;#39;, color is &amp;#39; + color); //&amp;#34;My Favorite Fruit isapple, color is red&amp;#34; 템플릿리터럴 사용 1const fruit = &amp;#39;apple&amp;#39;; 2const color = &amp;#39;red&amp;#39;; 3console.log(`My favorite Fruit is ${fruit}, color is ${color}`); 장점 보통 복잡한 문자열이거나 html 코드등을 직접 스크립트상에서 삽입할 때 쌍따옴표-홀따옴표등과 같이 사용하는 경우에 상당히 복잡했었다.</description>
+기존 연산자 사용 const fruit = &amp;#39;apple&amp;#39;; const color = &amp;#39;red&amp;#39;; console.log(&amp;#39;My Favorite Fruit is&amp;#39; + fruit + &amp;#39;, color is &amp;#39; + color); //&amp;#34;My Favorite Fruit isapple, color is red&amp;#34; 템플릿리터럴 사용 const fruit = &amp;#39;apple&amp;#39;; const color = &amp;#39;red&amp;#39;; console.log(`My favorite Fruit is ${fruit}, color is ${color}`); 장점 보통 복잡한 문자열이거나 html 코드등을 직접 스크립트상에서 삽입할 때 쌍따옴표-홀따옴표등과 같이 사용하는 경우에 상당히 복잡했었다.</description>
     </item>
     
     <item>

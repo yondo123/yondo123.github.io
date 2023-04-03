@@ -361,204 +361,204 @@ React의 <code>Flux</code> 이름과 비슷한것을 보면 Flux 패턴에서 �
 </ul>
 <h2 id="주요-속성">주요 속성</h2>
 <p>vuex를 사용하려면 store 인스턴스를 구성해주어야 하는데 <strong>state, getters, mutations, actions</strong> 총 4개의 속성으로 구성되어 있다. 각각의 역할이 다르며 여러 컴포넌트에서 사용할 상태 값을 정의히고(state) 서버로부터 api 통신을 통해 비동기적으로 받아오거나(actions), 필요에 따라 상태 값들을 변경하고(mutations), 필요한 컴포넌트에게 실시간으로 전달해주는(getters) 역할을 한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="c1">//store.js
-</span><span class="ln">2</span><span class="c1"></span><span class="kr">import</span> <span class="nx">Vuex</span> <span class="nx">from</span> <span class="s1">&#39;vuex&#39;</span><span class="p">;</span>
-<span class="ln">3</span><span class="kr">export</span> <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
-<span class="ln">4</span>    <span class="nx">state</span><span class="o">:</span> <span class="p">{},</span>
-<span class="ln">5</span>    <span class="nx">getters</span><span class="o">:</span> <span class="p">{},</span>
-<span class="ln">6</span>    <span class="nx">mutations</span><span class="o">:</span> <span class="p">{}</span>
-<span class="ln">7</span>    <span class="nx">actions</span><span class="o">:</span> <span class="p">{}</span>
-<span class="ln">8</span><span class="p">});</span>
-<span class="ln">9</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//store.js
+</span><span class="c1"></span><span class="kr">import</span> <span class="nx">Vuex</span> <span class="nx">from</span> <span class="s1">&#39;vuex&#39;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+    <span class="nx">state</span><span class="o">:</span> <span class="p">{},</span>
+    <span class="nx">getters</span><span class="o">:</span> <span class="p">{},</span>
+    <span class="nx">mutations</span><span class="o">:</span> <span class="p">{}</span>
+    <span class="nx">actions</span><span class="o">:</span> <span class="p">{}</span>
+<span class="p">});</span>
+
 </code></pre></div><h3 id="state">state</h3>
 <p>컴포넌트 간 공유하는 데이터들을 관리하는 역할이다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;hello vuex!&#39;</span><span class="p">;</span>
-<span class="ln">3</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;hello vuex!&#39;</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div><p>정의된 상태 값이 필요한 컴포넌트에서는 아래와 같이 받아올 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="c">&lt;!--component template --&gt;</span>
-<span class="ln">2</span><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
-<span class="ln">3</span>    <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>{{this.$store.state.message}}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-<span class="ln">4</span><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="c">&lt;!--component template --&gt;</span>
+<span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>{{this.$store.state.message}}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
 </code></pre></div><h3 id="getters">getters</h3>
 <p>연산된 <code>state</code>에 접근해 데이터를 조작하는 역할을 한다. (일종의 computed 역할)</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nx">state</span> <span class="o">:</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">hitCount</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="ln">3</span><span class="p">},</span>
-<span class="ln">4</span>
-<span class="ln">5</span><span class="nx">getters</span> <span class="o">:</span> <span class="p">{</span>
-<span class="ln">6</span>    <span class="nx">upHitCount</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">7</span>        <span class="k">return</span> <span class="nx">state</span><span class="p">.</span><span class="nx">hitCount</span><span class="o">++</span><span class="p">;</span>
-<span class="ln">8</span>    <span class="p">}</span>
-<span class="ln">9</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">state</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="nx">hitCount</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="p">},</span>
+
+<span class="nx">getters</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="nx">upHitCount</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">state</span><span class="p">.</span><span class="nx">hitCount</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><h3 id="mutations">mutations</h3>
 <p><code>state</code>값을 변경하는 역할을 한다. (일종의 methods 역할)</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nx">state</span> <span class="o">:</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">todoList</span> <span class="o">:</span> <span class="p">[]</span>
-<span class="ln">3</span><span class="p">},</span>
-<span class="ln">4</span>
-<span class="ln">5</span><span class="nx">mutations</span> <span class="o">:</span> <span class="p">{</span>
-<span class="ln">6</span>    <span class="nx">setBoardList</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">7</span>        <span class="k">return</span> <span class="nx">state</span><span class="p">.</span><span class="nx">todoList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
-<span class="ln">8</span>    <span class="p">},</span>
-<span class="ln">9</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">state</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="nx">todoList</span> <span class="o">:</span> <span class="p">[]</span>
+<span class="p">},</span>
+
+<span class="nx">mutations</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="nx">setBoardList</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">state</span><span class="p">.</span><span class="nx">todoList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+    <span class="p">},</span>
+<span class="p">}</span>
 </code></pre></div><p><code>commit</code>메서드로 호출할 수 있다. (첫 인자에 해당 메서드 이름을 넘기고, 두번째 인자에 데이터를 넘겨준다.)</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="k">this</span><span class="p">.</span><span class="nx">$states</span><span class="p">.</span><span class="nx">commit</span><span class="p">(</span><span class="s1">&#39;setBoardList&#39;</span><span class="p">,</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">id</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-<span class="ln">3</span>    <span class="nx">task</span><span class="o">:</span> <span class="s1">&#39;공부하기&#39;</span>
-<span class="ln">4</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">this</span><span class="p">.</span><span class="nx">$states</span><span class="p">.</span><span class="nx">commit</span><span class="p">(</span><span class="s1">&#39;setBoardList&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">id</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">task</span><span class="o">:</span> <span class="s1">&#39;공부하기&#39;</span>
+<span class="p">});</span>
 </code></pre></div><h3 id="actions">actions</h3>
 <p>비동기 처리를 담당한다. 여러 컴포넌트에서 mutations로 비동기 이벤트가 일어나면 수행 시간 차이로 <code>state</code>가 변경될 경우 추적이 어렵기 때문에 <code>actions</code>에 비동기 로직들을 선언하면된다. 예를들어 <strong>api 요청, ES6 Async함수(Promise), setTimeout()</strong> 등의 로직들을 여기에 선언하면 된다.</p>
 <p><code>commit</code>메서드로 mutation 속성내의 메서드에 접근할 수 있으며, 컴포넌트에서 호출할 때는 <code>dispatch</code>메서드로 접근한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="nx">state</span> <span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="nx">menuList</span> <span class="o">:</span> <span class="p">[]</span>
-<span class="ln"> 3</span><span class="p">},</span>
-<span class="ln"> 4</span>
-<span class="ln"> 5</span><span class="nx">mutations</span> <span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 6</span>    <span class="c1">//state 데이터에 삽입
-</span><span class="ln"> 7</span><span class="c1"></span>    <span class="nx">setMenuList</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 8</span>        <span class="k">return</span> <span class="nx">state</span><span class="p">.</span><span class="nx">menuList</span> <span class="o">=</span> <span class="nx">list</span><span class="p">;</span>
-<span class="ln"> 9</span>    <span class="p">}</span>
-<span class="ln">10</span><span class="p">},</span>
-<span class="ln">11</span>
-<span class="ln">12</span><span class="nx">actions</span> <span class="o">:</span> <span class="p">{</span>
-<span class="ln">13</span>    <span class="c1">//api 요청
-</span><span class="ln">14</span><span class="c1"></span>    <span class="nx">requestMenuList</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">15</span>        <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/category/list&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">16</span>            <span class="nx">state</span><span class="p">.</span><span class="nx">commit</span><span class="p">(</span><span class="s1">&#39;setMenuList&#39;</span><span class="p">,</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">items</span><span class="p">);</span>
-<span class="ln">17</span>        <span class="p">});</span>
-<span class="ln">18</span>    <span class="p">}</span>
-<span class="ln">19</span><span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="c1">//vue-component
-</span><span class="ln">2</span><span class="c1"></span><span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln">3</span>    <span class="k">this</span><span class="p">.</span><span class="nx">$store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="s1">&#39;requestMenuList&#39;</span><span class="p">);</span>
-<span class="ln">4</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">state</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="nx">menuList</span> <span class="o">:</span> <span class="p">[]</span>
+<span class="p">},</span>
+
+<span class="nx">mutations</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="c1">//state 데이터에 삽입
+</span><span class="c1"></span>    <span class="nx">setMenuList</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">list</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">state</span><span class="p">.</span><span class="nx">menuList</span> <span class="o">=</span> <span class="nx">list</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">},</span>
+
+<span class="nx">actions</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="c1">//api 요청
+</span><span class="c1"></span>    <span class="nx">requestMenuList</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/category/list&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">state</span><span class="p">.</span><span class="nx">commit</span><span class="p">(</span><span class="s1">&#39;setMenuList&#39;</span><span class="p">,</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">items</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//vue-component
+</span><span class="c1"></span><span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">$store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="s1">&#39;requestMenuList&#39;</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div><h2 id="실습">실습</h2>
 <p>사실 Vuex가 힘을 발휘하는 순간은 복잡한 대규모 웹 애플리케이션이지만.. 문법을 사용해보는 취지로 글쓰기-게시판 형태의 단순한 페이지로 문법을 익혀보았다. 간단히 내용을 입력하는 컴포넌트와 이를 출력해주는 컴포넌트로 구성되어 있는 페이지이다.
 <img src="https://user-images.githubusercontent.com/46988995/144572194-44598179-01dd-4e00-a281-1e53f594e2b9.gif" alt="Dec-03-2021 17-40-53"  /></p>
 <h3 id="vuex-설치하기">Vuex 설치하기</h3>
 <p>먼저 vuex 라이브러리를 설치한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npm install vuex
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm install vuex
 </code></pre></div><h3 id="store-인스턴스-생성">store 인스턴스 생성</h3>
 <p>store 인스턴스를 정의해주는 단계이다. 보통 프로젝트 폴더에서 <code>src\store</code>디렉토리를 만들어서 여러 store들을 관리한다.<br>
 (이번 포스팅에서는 store 1개로 관리하지만, 복잡한 웹 페이지에서는 여러 store로 모듈화할 수 있다.)</p>
 <p>위 구현 사진에서 write 버튼을 누르면 글을 입력하는 컴포넌트 (팝업)이 켜졌다가 글을 입력하면 꺼지는 동작이 필요하기 때문에 <code>popupFlag</code>라는 상태 값을 정의하였고, 게시글을 관리 할 <code>boardList</code> 배열도 정의하였다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="c1">// src\store\store.js
-</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">import</span> <span class="nx">Vuex</span> <span class="nx">from</span> <span class="s1">&#39;vuex&#39;</span><span class="p">;</span>
-<span class="ln"> 3</span><span class="c1">//vuex
-</span><span class="ln"> 4</span><span class="c1"></span><span class="kr">export</span> <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
-<span class="ln"> 5</span>    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 6</span>        <span class="nx">boardList</span><span class="o">:</span> <span class="p">[],</span> <span class="c1">//게시글 배열
-</span><span class="ln"> 7</span><span class="c1"></span>        <span class="nx">popupFlag</span><span class="o">:</span> <span class="kc">false</span> <span class="c1">//true : 팝업창 열림, false : 꺼짐
-</span><span class="ln"> 8</span><span class="c1"></span>    <span class="p">},</span>
-<span class="ln"> 9</span>    <span class="nx">getters</span><span class="o">:</span> <span class="p">{},</span>
-<span class="ln">10</span>    <span class="nx">mutations</span><span class="o">:</span> <span class="p">{}</span>
-<span class="ln">11</span>    <span class="nx">actions</span><span class="o">:</span> <span class="p">{}</span>
-<span class="ln">12</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// src\store\store.js
+</span><span class="c1"></span><span class="kr">import</span> <span class="nx">Vuex</span> <span class="nx">from</span> <span class="s1">&#39;vuex&#39;</span><span class="p">;</span>
+<span class="c1">//vuex
+</span><span class="c1"></span><span class="kr">export</span> <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">boardList</span><span class="o">:</span> <span class="p">[],</span> <span class="c1">//게시글 배열
+</span><span class="c1"></span>        <span class="nx">popupFlag</span><span class="o">:</span> <span class="kc">false</span> <span class="c1">//true : 팝업창 열림, false : 꺼짐
+</span><span class="c1"></span>    <span class="p">},</span>
+    <span class="nx">getters</span><span class="o">:</span> <span class="p">{},</span>
+    <span class="nx">mutations</span><span class="o">:</span> <span class="p">{}</span>
+    <span class="nx">actions</span><span class="o">:</span> <span class="p">{}</span>
+<span class="p">});</span>
 </code></pre></div><p><code>mutations</code>에는 팝업 상태를 관리하는 이벤트와 게시글을 넣어주는 이벤트가 필요하기 때문에 필요한 메서드들을 정의하였다.<br>
 (외부 서버 통신이 필요하지 않기 때문에 actions를 생략하였고, 단순히 값만 주고받는 흐름이기 때문에 getters도 생략..ㅎㅎ)</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kr">import</span> <span class="nx">Vuex</span> <span class="nx">from</span> <span class="s1">&#39;vuex&#39;</span><span class="p">;</span>
-<span class="ln"> 2</span><span class="c1">//vuex
-</span><span class="ln"> 3</span><span class="c1"></span><span class="kr">export</span> <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
-<span class="ln"> 4</span>    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 5</span>        <span class="nx">boardList</span><span class="o">:</span> <span class="p">[],</span> <span class="c1">//게시글 배열
-</span><span class="ln"> 6</span><span class="c1"></span>        <span class="nx">popupFlag</span><span class="o">:</span> <span class="kc">false</span> <span class="c1">//true : 팝업창 열림, false : 꺼짐
-</span><span class="ln"> 7</span><span class="c1"></span>    <span class="p">},</span>
-<span class="ln"> 8</span>
-<span class="ln"> 9</span>    <span class="nx">mutations</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln">10</span>        <span class="nx">setBoardList</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">11</span>            <span class="nx">state</span><span class="p">.</span><span class="nx">popupFlag</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-<span class="ln">12</span>            <span class="k">return</span> <span class="nx">state</span><span class="p">.</span><span class="nx">boardList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
-<span class="ln">13</span>        <span class="p">},</span>
-<span class="ln">14</span>
-<span class="ln">15</span>        <span class="nx">onPopup</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">16</span>            <span class="k">return</span> <span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">popupFlag</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span>
-<span class="ln">17</span>        <span class="p">},</span>
-<span class="ln">18</span>
-<span class="ln">19</span>        <span class="nx">offPopup</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">20</span>            <span class="k">return</span> <span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">popupFlag</span> <span class="o">=</span> <span class="kc">false</span><span class="p">);</span>
-<span class="ln">21</span>        <span class="p">}</span>
-<span class="ln">22</span>    <span class="p">}</span>
-<span class="ln">23</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">Vuex</span> <span class="nx">from</span> <span class="s1">&#39;vuex&#39;</span><span class="p">;</span>
+<span class="c1">//vuex
+</span><span class="c1"></span><span class="kr">export</span> <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">boardList</span><span class="o">:</span> <span class="p">[],</span> <span class="c1">//게시글 배열
+</span><span class="c1"></span>        <span class="nx">popupFlag</span><span class="o">:</span> <span class="kc">false</span> <span class="c1">//true : 팝업창 열림, false : 꺼짐
+</span><span class="c1"></span>    <span class="p">},</span>
+
+    <span class="nx">mutations</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">setBoardList</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">state</span><span class="p">.</span><span class="nx">popupFlag</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="k">return</span> <span class="nx">state</span><span class="p">.</span><span class="nx">boardList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+        <span class="p">},</span>
+
+        <span class="nx">onPopup</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">popupFlag</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="p">},</span>
+
+        <span class="nx">offPopup</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nx">state</span><span class="p">.</span><span class="nx">popupFlag</span> <span class="o">=</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
 </code></pre></div><p>이제 설치한 vuex와 정의한 store 인스턴스를 vue에 등록해야하는데 <code>main.js</code>에 등록해주면 된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
-<span class="ln">2</span><span class="kr">import</span> <span class="nx">Vuex</span> <span class="nx">from</span> <span class="s1">&#39;vuex&#39;</span><span class="p">;</span>
-<span class="ln">3</span><span class="kr">import</span> <span class="p">{</span> <span class="nx">store</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./store/store&#39;</span><span class="p">;</span>
-<span class="ln">4</span><span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./App.vue&#39;</span><span class="p">;</span>
-<span class="ln">5</span>
-<span class="ln">6</span><span class="kr">const</span> <span class="nx">vuexApp</span> <span class="o">=</span> <span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">);</span>
-<span class="ln">7</span><span class="nx">vuexApp</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">Vuex</span><span class="p">);</span>
-<span class="ln">8</span><span class="nx">vuexApp</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">store</span><span class="p">);</span>
-<span class="ln">9</span><span class="nx">vuexApp</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="s1">&#39;#app&#39;</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Vuex</span> <span class="nx">from</span> <span class="s1">&#39;vuex&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">store</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./store/store&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./App.vue&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">vuexApp</span> <span class="o">=</span> <span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">);</span>
+<span class="nx">vuexApp</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">Vuex</span><span class="p">);</span>
+<span class="nx">vuexApp</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">store</span><span class="p">);</span>
+<span class="nx">vuexApp</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="s1">&#39;#app&#39;</span><span class="p">);</span>
 </code></pre></div><h3 id="state-값-받아오기">state 값 받아오기</h3>
 <p>예습 프로젝트에서 컴포넌트 구조는 게시글을 보여주는 메인 컴포넌트와 게시글을 입력하는 팝업 컴포넌트로 구성되어 있다.
 팝업 컴포넌트는 <code>popupFlag</code>가 on 일 때 보여주어야 하므로 아래와 같이 클래스 바인딩을 해주면 된다. 핵심은 store에 접근할 때 <code>$store</code>키워드로 접근한다는 점이다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
-<span class="ln">2</span>    <span class="c">&lt;!-- popupFlag가 true일 때 hide 클래스 바인딩 --&gt;</span>
-<span class="ln">3</span>    <span class="p">&lt;</span><span class="nt">section</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;write-wrap&#34;</span> <span class="na">v-bind:class</span><span class="o">=</span><span class="s">&#34;{hide : !this.$store.state.popupFlag}&#34;</span><span class="p">&gt;</span>
-<span class="ln">4</span>        <span class="c">&lt;!-- popup 마크업 --&gt;</span>
-<span class="ln">5</span>    <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
-<span class="ln">6</span><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- popupFlag가 true일 때 hide 클래스 바인딩 --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">section</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;write-wrap&#34;</span> <span class="na">v-bind:class</span><span class="o">=</span><span class="s">&#34;{hide : !this.$store.state.popupFlag}&#34;</span><span class="p">&gt;</span>
+        <span class="c">&lt;!-- popup 마크업 --&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
 </code></pre></div><h3 id="mutations-메서드-호출하기">mutations 메서드 호출하기</h3>
 <p>만약 글쓰기를 취소할 때에도 popupFlag를 변경해야하는데 togglePopup 메서드에서 헬퍼로 offPopup을 호출한다.
 갑자기 스프레드 연산자가 나와서 당황스럽게지만, vuex에서는 <code>헬퍼 함수</code>라는 기능이 있어 컴포넌트에서 더욱 쉽게 vuex 속성에 접근하는 기능을 제공한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="c">&lt;!-- template --&gt;</span>
-<span class="ln">2</span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;article-button&#34;</span><span class="p">&gt;</span>
-<span class="ln">3</span>    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;cancel&#34;</span> <span class="na">v-on:click</span><span class="o">=</span><span class="s">&#34;togglePopup&#34;</span><span class="p">&gt;</span>cancel<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="ln">4</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="c">&lt;!-- template --&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;article-button&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;cancel&#34;</span> <span class="na">v-on:click</span><span class="o">=</span><span class="s">&#34;togglePopup&#34;</span><span class="p">&gt;</span>cancel<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div><p>컴포넌트에서 store에 정의된 mutations에 접근하려면 <code>this.$store.commit('offPopup')</code>을 단순히 호출만 하는 메서드를 하나 생성해야하는데 헬퍼를 사용하면 삼항연산자로 mutations에 이미 존재하는 메서드를 그대로 가져올 수 있어서 편하다. 호출 key만 정해주면 된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="c1">// popup component script
-</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">mapMutations</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vuex&#39;</span><span class="p">;</span>
-<span class="ln"> 3</span><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
-<span class="ln"> 4</span>    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 5</span>        <span class="p">...</span><span class="nx">mapMutations</span><span class="p">({</span>
-<span class="ln"> 6</span>            <span class="nx">sendMessage</span><span class="o">:</span> <span class="s1">&#39;setBoardList&#39;</span><span class="p">,</span>
-<span class="ln"> 7</span>            <span class="nx">togglePopup</span><span class="o">:</span> <span class="s1">&#39;offPopup&#39;</span>
-<span class="ln"> 8</span>        <span class="p">})</span>
-<span class="ln"> 9</span>    <span class="p">}</span>
-<span class="ln">10</span><span class="p">};</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// popup component script
+</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">mapMutations</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vuex&#39;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+        <span class="p">...</span><span class="nx">mapMutations</span><span class="p">({</span>
+            <span class="nx">sendMessage</span><span class="o">:</span> <span class="s1">&#39;setBoardList&#39;</span><span class="p">,</span>
+            <span class="nx">togglePopup</span><span class="o">:</span> <span class="s1">&#39;offPopup&#39;</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div><p>실제로 글을 등록하는 버튼에도 <code>mutations</code>에 정의된 setBoardList()메서드를 연결 해주어야 한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;write&#34;</span> <span class="na">v-on:click</span><span class="o">=</span><span class="s">&#34;sendMessage(this.constructMessage())&#34;</span><span class="p">&gt;</span>send<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kr">import</span> <span class="p">{</span> <span class="nx">mapMutations</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vuex&#39;</span><span class="p">;</span>
-<span class="ln"> 2</span><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
-<span class="ln"> 3</span>    <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 4</span>        <span class="k">return</span> <span class="p">{</span>
-<span class="ln"> 5</span>            <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="ln"> 6</span>            <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
-<span class="ln"> 7</span>        <span class="p">};</span>
-<span class="ln"> 8</span>    <span class="p">},</span>
-<span class="ln"> 9</span>    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln">10</span>        <span class="p">...</span><span class="nx">mapMutations</span><span class="p">({</span>
-<span class="ln">11</span>            <span class="nx">sendMessage</span><span class="o">:</span> <span class="s1">&#39;setBoardList&#39;</span><span class="p">,</span>
-<span class="ln">12</span>            <span class="nx">togglePopup</span><span class="o">:</span> <span class="s1">&#39;offPopup&#39;</span>
-<span class="ln">13</span>        <span class="p">}),</span>
-<span class="ln">14</span>
-<span class="ln">15</span>        <span class="nx">constructMessage</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-<span class="ln">16</span>            <span class="k">return</span> <span class="p">{</span>
-<span class="ln">17</span>                <span class="nx">date</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">().</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/-/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-<span class="ln">18</span>                <span class="nx">id</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span>
-<span class="ln">19</span>                <span class="nx">message</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span>
-<span class="ln">20</span>            <span class="p">};</span>
-<span class="ln">21</span>        <span class="p">}</span>
-<span class="ln">22</span>    <span class="p">}</span>
-<span class="ln">23</span><span class="p">};</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;write&#34;</span> <span class="na">v-on:click</span><span class="o">=</span><span class="s">&#34;sendMessage(this.constructMessage())&#34;</span><span class="p">&gt;</span>send<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="p">{</span> <span class="nx">mapMutations</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vuex&#39;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+    <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+        <span class="p">};</span>
+    <span class="p">},</span>
+    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+        <span class="p">...</span><span class="nx">mapMutations</span><span class="p">({</span>
+            <span class="nx">sendMessage</span><span class="o">:</span> <span class="s1">&#39;setBoardList&#39;</span><span class="p">,</span>
+            <span class="nx">togglePopup</span><span class="o">:</span> <span class="s1">&#39;offPopup&#39;</span>
+        <span class="p">}),</span>
+
+        <span class="nx">constructMessage</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="nx">date</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">().</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/-/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+                <span class="nx">id</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span>
+                <span class="nx">message</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span>
+            <span class="p">};</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div><p>메인 컴포넌트에서 <code>boardList</code>를 출력해주고 있었다면 잘 받아와지는 모습을 볼 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln"> 1</span><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
-<span class="ln"> 2</span>    <span class="p">&lt;</span><span class="nt">main</span> <span class="na">v-bind:class</span><span class="o">=</span><span class="s">&#34;{popup : this.$store.state.popupFlag}&#34;</span><span class="p">&gt;</span>
-<span class="ln"> 3</span>        <span class="p">&lt;</span><span class="nt">h2</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;hide&#34;</span><span class="p">&gt;</span>Recent POST<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-<span class="ln"> 4</span>        <span class="p">&lt;</span><span class="nt">ol</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;list&#34;</span><span class="p">&gt;</span>
-<span class="ln"> 5</span>            <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-list&#34;</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&#34;(item) in this.$store.state.boardList&#34;</span> <span class="na">:key</span><span class="o">=</span><span class="s">&#34;item.id&#34;</span><span class="p">&gt;</span>
-<span class="ln"> 6</span>                <span class="p">&lt;</span><span class="nt">details</span><span class="p">&gt;</span>
-<span class="ln"> 7</span>                    <span class="p">&lt;</span><span class="nt">summary</span><span class="p">&gt;</span>{{item.message}}<span class="p">&lt;/</span><span class="nt">summary</span><span class="p">&gt;</span>
-<span class="ln"> 8</span>                    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{item.message}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="ln"> 9</span>                <span class="p">&lt;/</span><span class="nt">details</span><span class="p">&gt;</span>
-<span class="ln">10</span>                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-info&#34;</span><span class="p">&gt;</span>
-<span class="ln">11</span>                    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;author&#34;</span><span class="p">&gt;</span>{{item.id}}<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span> | <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;date&#34;</span><span class="p">&gt;</span>{{formatDate(item.date)}}<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="ln">12</span>                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">13</span>            <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-<span class="ln">14</span>        <span class="p">&lt;/</span><span class="nt">ol</span><span class="p">&gt;</span>
-<span class="ln">15</span>    <span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
-<span class="ln">16</span><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">main</span> <span class="na">v-bind:class</span><span class="o">=</span><span class="s">&#34;{popup : this.$store.state.popupFlag}&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h2</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;hide&#34;</span><span class="p">&gt;</span>Recent POST<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">ol</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;list&#34;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-list&#34;</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&#34;(item) in this.$store.state.boardList&#34;</span> <span class="na">:key</span><span class="o">=</span><span class="s">&#34;item.id&#34;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">details</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">summary</span><span class="p">&gt;</span>{{item.message}}<span class="p">&lt;/</span><span class="nt">summary</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{item.message}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">details</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-info&#34;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;author&#34;</span><span class="p">&gt;</span>{{item.id}}<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span> | <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;date&#34;</span><span class="p">&gt;</span>{{formatDate(item.date)}}<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">ol</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
 </code></pre></div><p><img src="https://user-images.githubusercontent.com/46988995/144610425-c04bf1ca-d432-43a4-9acf-42fb24f8ac67.gif" alt="Dec-03-2021 22-28-30"  /></p>
 <p>이번 예제의 전체 소스는 <a class="link" href="https://github.com/yondo123/vue-practice/tree/master/04_vuex"  target="_blank" rel="noopener"
     ><strong>이곳</strong></a>에서 확인하실 수 있습니다!</p>

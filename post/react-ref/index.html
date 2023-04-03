@@ -354,22 +354,22 @@
 <p>순수 자바스크립트에서는 UI를 변경하기 위해 <code>DOM API</code>를 사용하여 DOM에 직접적으로 접근하였습니다. React에서는 이러한 방식을 지양하고, <code>ref</code> 객체를 생성하여 접근하도록 권고합니다.</p>
 <h3 id="dom-api를-이용하여-접근하기">DOM API를 이용하여 접근하기</h3>
 <p>DOM에 접근하기 위해서는 기존의 DOM API를 사용할 수 있습니다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
-<span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="kr">const</span> <span class="nx">Component</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 4</span>    <span class="kr">const</span> <span class="nx">hadleClick</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 5</span>        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;inputText&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">;</span>
-<span class="ln"> 6</span>    <span class="p">};</span>
-<span class="ln"> 7</span>
-<span class="ln"> 8</span>    <span class="k">return</span> <span class="p">(</span>
-<span class="ln"> 9</span>        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">10</span>            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;inputText&#34;</span> <span class="p">/&gt;</span>
-<span class="ln">11</span>            <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">hadleClick</span><span class="p">}&gt;</span><span class="nx">ChangeStyle</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="ln">12</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">13</span>    <span class="p">);</span>
-<span class="ln">14</span><span class="p">};</span>
-<span class="ln">15</span>
-<span class="ln">16</span><span class="kr">export</span> <span class="k">default</span> <span class="nx">Component</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">Component</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">hadleClick</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;inputText&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;inputText&#34;</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">hadleClick</span><span class="p">}&gt;</span><span class="nx">ChangeStyle</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Component</span><span class="p">;</span>
 </code></pre></div><p><strong>React에서 DOM API 사용을 지양해야 하는 이유?</strong></p>
 <ol>
 <li>
@@ -383,71 +383,71 @@
 </ol>
 <h3 id="createref">createRef</h3>
 <p>리액트 v16.3부터 제공하는 <code>createRef</code> 메서드를 사용하여 ref를 설정할 수 있습니다. <code>current</code> 프로퍼티에 접근하여 Document API를 사용할 수 있습니다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
-<span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="kr">const</span> <span class="nx">Component</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 4</span>    <span class="kr">const</span> <span class="nx">inputRef</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createRef</span><span class="p">();</span>
-<span class="ln"> 5</span>
-<span class="ln"> 6</span>    <span class="kr">const</span> <span class="nx">onChangeStyle</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 7</span>        <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span> <span class="o">=</span> <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
-<span class="ln"> 8</span>    <span class="p">};</span>
-<span class="ln"> 9</span>
-<span class="ln">10</span>    <span class="k">return</span> <span class="p">(</span>
-<span class="ln">11</span>        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">12</span>            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="na">onFocus</span><span class="o">=</span><span class="p">{</span><span class="nx">onFocusInput</span><span class="p">}</span> <span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">onChangeInput</span><span class="p">}</span> <span class="p">/&gt;</span>
-<span class="ln">13</span>            <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">onChangeStyle</span><span class="p">}&gt;</span><span class="nx">ChangeStyle</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="ln">14</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">15</span>    <span class="p">);</span>
-<span class="ln">16</span><span class="p">};</span>
-<span class="ln">17</span>
-<span class="ln">18</span><span class="kr">export</span> <span class="k">default</span> <span class="nx">Component</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">Component</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">inputRef</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createRef</span><span class="p">();</span>
+
+    <span class="kr">const</span> <span class="nx">onChangeStyle</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span> <span class="o">=</span> <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="na">onFocus</span><span class="o">=</span><span class="p">{</span><span class="nx">onFocusInput</span><span class="p">}</span> <span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">onChangeInput</span><span class="p">}</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">onChangeStyle</span><span class="p">}&gt;</span><span class="nx">ChangeStyle</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Component</span><span class="p">;</span>
 </code></pre></div><h3 id="useref">useRef</h3>
 <p><code>useRef</code>는 함수형 컴포넌트에서 <code>ref</code>를 사용할 수 있도록 제공되는 hook입니다. 기존에 <code>createRef</code>로 생성된 객체는 <strong>리렌더링이 발생할 때마다 current 값을 null로 초기화</strong> 합니다.<br>
 <img src="https://user-images.githubusercontent.com/46988995/221892239-f77e62db-f711-42b0-9396-9c86a366de24.gif" alt="use-ref"  /></p>
-<div class="highlight"><pre class="chroma"><code class="language-tsx" data-lang="tsx"><span class="ln"> 1</span><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">createRef</span><span class="p">,</span> <span class="nx">useState</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
-<span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="kr">const</span> <span class="nx">Component</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 4</span>    <span class="kr">const</span> <span class="nx">inputRef</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createRef</span><span class="p">();</span>
-<span class="ln"> 5</span>    <span class="kr">const</span> <span class="p">[</span><span class="nx">_</span><span class="p">,</span> <span class="nx">setState</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span>    <span class="kr">const</span> <span class="nx">handleChangeInput</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 8</span>        <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
-<span class="ln"> 9</span>        <span class="c1">//강제 리렌더링
-</span><span class="ln">10</span><span class="c1"></span>        <span class="nx">setState</span><span class="p">({});</span>
-<span class="ln">11</span>    <span class="p">};</span>
-<span class="ln">12</span>
-<span class="ln">13</span>    <span class="k">return</span> <span class="p">(</span>
-<span class="ln">14</span>        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">15</span>            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">handleChangeInput</span><span class="p">}</span> <span class="p">/&gt;</span>
-<span class="ln">16</span>            <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span><span class="nx">ChangeStyle</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="ln">17</span>            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="err">내용</span> <span class="o">:</span><span class="p">{</span><span class="nx">inputRef</span><span class="o">?</span><span class="p">.</span><span class="nx">current</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="ln">18</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">19</span>    <span class="p">);</span>
-<span class="ln">20</span><span class="p">};</span>
-<span class="ln">21</span>
-<span class="ln">22</span><span class="kr">export</span> <span class="k">default</span> <span class="nx">Component</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-tsx" data-lang="tsx"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">createRef</span><span class="p">,</span> <span class="nx">useState</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">Component</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">inputRef</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createRef</span><span class="p">();</span>
+    <span class="kr">const</span> <span class="p">[</span><span class="nx">_</span><span class="p">,</span> <span class="nx">setState</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+    <span class="kr">const</span> <span class="nx">handleChangeInput</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+        <span class="c1">//강제 리렌더링
+</span><span class="c1"></span>        <span class="nx">setState</span><span class="p">({});</span>
+    <span class="p">};</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">handleChangeInput</span><span class="p">}</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span><span class="nx">ChangeStyle</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="err">내용</span> <span class="o">:</span><span class="p">{</span><span class="nx">inputRef</span><span class="o">?</span><span class="p">.</span><span class="nx">current</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Component</span><span class="p">;</span>
 </code></pre></div><p><img src="https://user-images.githubusercontent.com/46988995/221892505-5ade61fb-b5b8-492d-aad1-579014655bd0.gif" alt="use-ref"  /></p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useRef</span><span class="p">,</span> <span class="nx">useState</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
-<span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="kr">const</span> <span class="nx">Component</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 4</span>    <span class="kr">const</span> <span class="nx">inputRef</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<span class="ln"> 5</span>    <span class="kr">const</span> <span class="p">[</span><span class="nx">_</span><span class="p">,</span> <span class="nx">setState</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span>    <span class="kr">const</span> <span class="nx">handleChangeInput</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 8</span>        <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
-<span class="ln"> 9</span>        <span class="nx">setState</span><span class="p">({});</span>
-<span class="ln">10</span>    <span class="p">};</span>
-<span class="ln">11</span>
-<span class="ln">12</span>    <span class="k">return</span> <span class="p">(</span>
-<span class="ln">13</span>        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">14</span>            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">handleChangeInput</span><span class="p">}</span> <span class="p">/&gt;</span>
-<span class="ln">15</span>            <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span><span class="nx">ChangeStyle</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="ln">16</span>            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="nx">내용</span> <span class="o">:</span><span class="p">{</span><span class="nx">inputRef</span><span class="o">?</span><span class="p">.</span><span class="nx">current</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="ln">17</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">18</span>    <span class="p">);</span>
-<span class="ln">19</span><span class="p">};</span>
-<span class="ln">20</span>
-<span class="ln">21</span><span class="kr">export</span> <span class="k">default</span> <span class="nx">Component</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useRef</span><span class="p">,</span> <span class="nx">useState</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">Component</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">inputRef</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="p">[</span><span class="nx">_</span><span class="p">,</span> <span class="nx">setState</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+    <span class="kr">const</span> <span class="nx">handleChangeInput</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+        <span class="nx">setState</span><span class="p">({});</span>
+    <span class="p">};</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">handleChangeInput</span><span class="p">}</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span><span class="nx">ChangeStyle</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="nx">내용</span> <span class="o">:</span><span class="p">{</span><span class="nx">inputRef</span><span class="o">?</span><span class="p">.</span><span class="nx">current</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Component</span><span class="p">;</span>
 </code></pre></div><p><code>useRef()</code> 훅을 사용하면 렌더링이 발생할 때마다 동일한 ref 객체를 제공받을 수 있습니다. 따라서 함수형 컴포넌트 생명 주기 내에서 ref를 사용하고 싶다면 useRef()를 사용하는 것이 옳습니다. 또한 DOM에 직접적으로 접근하는 경우 외에도 리렌더링이 필요하지 않은 독립적인 값 유지에도 활용할 수 있습니다.</p>
 <h2 id="useimperativehandle">useImperativeHandle</h2>
 <blockquote>
@@ -455,66 +455,66 @@
 </blockquote>
 <h3 id="forwardref">forwardRef</h3>
 <p>자식 컴포넌트에 ref를 전달할 때 사용하는 메서드이다. 함수형 컴포넌트에서는 <code>ref</code> 인스턴스 속성이 존재하지 않기 때문에 다른 속성으로 ref를 넘겨주거나, 공식적으로 React에서 제공하는<code>forwardRef</code> 를 사용해 ref를 전달받을 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">forwardRef</span><span class="p">,</span> <span class="nx">useRef</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
-<span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="c1">//Child
-</span><span class="ln"> 4</span><span class="c1"></span><span class="kr">const</span> <span class="nx">Input</span> <span class="o">=</span> <span class="nx">forwardRef</span><span class="p">((</span><span class="nx">props</span><span class="p">,</span> <span class="nx">ref</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 5</span>    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">ref</span><span class="p">}</span> <span class="p">/&gt;;</span>
-<span class="ln"> 6</span><span class="p">});</span>
-<span class="ln"> 7</span>
-<span class="ln"> 8</span><span class="c1">//Parent
-</span><span class="ln"> 9</span><span class="c1"></span><span class="kr">const</span> <span class="nx">Component</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">10</span>    <span class="kr">const</span> <span class="nx">inputRef</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<span class="ln">11</span>
-<span class="ln">12</span>    <span class="kr">const</span> <span class="nx">changeStyle</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">13</span>        <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">border</span> <span class="o">=</span> <span class="s1">&#39;1px solid hotpink&#39;</span><span class="p">;</span>
-<span class="ln">14</span>    <span class="p">};</span>
-<span class="ln">15</span>    <span class="k">return</span> <span class="p">(</span>
-<span class="ln">16</span>        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">17</span>            <span class="p">&lt;</span><span class="nt">Input</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="p">/&gt;</span>
-<span class="ln">18</span>            <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">changeStyle</span><span class="p">}&gt;</span><span class="nx">Change</span> <span class="nx">Style</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="ln">19</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">20</span>    <span class="p">);</span>
-<span class="ln">21</span><span class="p">};</span>
-<span class="ln">22</span>
-<span class="ln">23</span><span class="kr">export</span> <span class="k">default</span> <span class="nx">Component</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">forwardRef</span><span class="p">,</span> <span class="nx">useRef</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="c1">//Child
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">Input</span> <span class="o">=</span> <span class="nx">forwardRef</span><span class="p">((</span><span class="nx">props</span><span class="p">,</span> <span class="nx">ref</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">ref</span><span class="p">}</span> <span class="p">/&gt;;</span>
+<span class="p">});</span>
+
+<span class="c1">//Parent
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">Component</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">inputRef</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+    <span class="kr">const</span> <span class="nx">changeStyle</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">border</span> <span class="o">=</span> <span class="s1">&#39;1px solid hotpink&#39;</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">Input</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">changeStyle</span><span class="p">}&gt;</span><span class="nx">Change</span> <span class="nx">Style</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Component</span><span class="p">;</span>
 </code></pre></div><p>forwardRef에 랩핑하면 두 번째 인자로 상위에서 선언한 <code>ref</code>를 전달받을 수 있다.</p>
 <h3 id="useimperativehandle-1">useImperativeHandle</h3>
 <p>다시 돌아와서, React에서는 *“부모 컴포넌트에 노출되는 인스턴스 값을 사용자화”*할 때 <code>useImprativeHandle</code>을 사용할 수 있다고 안내하고있다. 자식 컴포넌트에서 ref를 생성하고 <code>useImperativeHandle</code> 을 사용해 부모에서 보낸 <code>ref</code>와 커스터마이징 객체를 넘겨주면 부모에서 참조하고 있는 <code>ref</code>에서 작성한 여러 메서드 및 값들에 접근이 가능하게된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">Input</span> <span class="o">=</span> <span class="nx">forwardRef</span><span class="p">((</span><span class="nx">props</span><span class="p">,</span> <span class="nx">ref</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="kr">const</span> <span class="nx">inputRef</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<span class="ln"> 3</span>
-<span class="ln"> 4</span>    <span class="nx">useImperativeHandle</span><span class="p">(</span><span class="nx">ref</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 5</span>        <span class="k">return</span> <span class="p">{</span>
-<span class="ln"> 6</span>            <span class="nx">focus</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 7</span>                <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
-<span class="ln"> 8</span>            <span class="p">},</span>
-<span class="ln"> 9</span>            <span class="nx">inputValue</span><span class="o">:</span> <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">value</span>
-<span class="ln">10</span>        <span class="p">};</span>
-<span class="ln">11</span>    <span class="p">});</span>
-<span class="ln">12</span>
-<span class="ln">13</span>    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="p">/&gt;;</span>
-<span class="ln">14</span><span class="p">});</span>
-<span class="ln">15</span>
-<span class="ln">16</span><span class="kr">const</span> <span class="nx">Component</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">17</span>    <span class="kr">const</span> <span class="nx">inputRef</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<span class="ln">18</span>
-<span class="ln">19</span>    <span class="k">return</span> <span class="p">(</span>
-<span class="ln">20</span>        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">21</span>            <span class="p">&lt;</span><span class="nt">Input</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="p">/&gt;</span>
-<span class="ln">22</span>            <span class="p">&lt;</span><span class="nt">button</span>
-<span class="ln">23</span>                <span class="na">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">24</span>                    <span class="c1">//자식에서 선언한 메서드와 값을 참조가 가능하다.
-</span><span class="ln">25</span><span class="c1"></span>                    <span class="kr">const</span> <span class="p">{</span> <span class="nx">focus</span><span class="p">,</span> <span class="nx">inputValue</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span><span class="p">;</span>
-<span class="ln">26</span>                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">inputValue</span><span class="p">);</span>
-<span class="ln">27</span>                    <span class="nx">focus</span><span class="p">();</span>
-<span class="ln">28</span>                <span class="p">}}</span>
-<span class="ln">29</span>            <span class="p">&gt;</span>
-<span class="ln">30</span>                <span class="nx">changeStyle</span>
-<span class="ln">31</span>            <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="ln">32</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">33</span>    <span class="p">);</span>
-<span class="ln">34</span><span class="p">};</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">Input</span> <span class="o">=</span> <span class="nx">forwardRef</span><span class="p">((</span><span class="nx">props</span><span class="p">,</span> <span class="nx">ref</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">inputRef</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+    <span class="nx">useImperativeHandle</span><span class="p">(</span><span class="nx">ref</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="nx">focus</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+            <span class="p">},</span>
+            <span class="nx">inputValue</span><span class="o">:</span> <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">value</span>
+        <span class="p">};</span>
+    <span class="p">});</span>
+
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="p">/&gt;;</span>
+<span class="p">});</span>
+
+<span class="kr">const</span> <span class="nx">Component</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">inputRef</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">Input</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nt">button</span>
+                <span class="na">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                    <span class="c1">//자식에서 선언한 메서드와 값을 참조가 가능하다.
+</span><span class="c1"></span>                    <span class="kr">const</span> <span class="p">{</span> <span class="nx">focus</span><span class="p">,</span> <span class="nx">inputValue</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span><span class="p">;</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">inputValue</span><span class="p">);</span>
+                    <span class="nx">focus</span><span class="p">();</span>
+                <span class="p">}}</span>
+            <span class="p">&gt;</span>
+                <span class="nx">changeStyle</span>
+            <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+<span class="p">};</span>
 </code></pre></div><p><strong>useImperativeHandle을 사용하면 다음과 같은 이점을 얻을 수 있습니다.</strong></p>
 <ul>
 <li>부모에서 접근할 수 없는 자식 컴포넌트에 작성된 메서드와 값을 참조할 수 있습니다.</li>
@@ -522,50 +522,50 @@
 </ul>
 <h2 id="uncontrolledform">UncontrolledForm</h2>
 <p>form Element가 React 외부에서 작동하는 값을 사용하는 Form입니다. 구체적으로 말하면, React에서 제공하는 state를 사용하지 않고 ref를 사용해 DOM Api에 접근하여 값을 사용하는 형태입니다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useRef</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
-<span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="kr">const</span> <span class="nx">Form</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 4</span>    <span class="kr">const</span> <span class="nx">inputRef</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<span class="ln"> 5</span>    <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-<span class="ln"> 6</span>    <span class="kr">const</span> <span class="nx">handleSubmit</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 7</span>        <span class="c1">//DOM에 직접 접근하여 value
-</span><span class="ln"> 8</span><span class="c1"></span>        <span class="nx">alert</span><span class="p">(</span><span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
-<span class="ln"> 9</span>        <span class="nx">value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-<span class="ln">10</span>    <span class="p">};</span>
-<span class="ln">11</span>
-<span class="ln">12</span>    <span class="k">return</span> <span class="p">(</span>
-<span class="ln">13</span>        <span class="p">&lt;</span><span class="nt">form</span> <span class="na">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">handleSubmit</span><span class="p">}&gt;</span>
-<span class="ln">14</span>            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="p">/&gt;</span>
-<span class="ln">15</span>            <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span><span class="p">&gt;</span><span class="nx">Submit</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="ln">16</span>        <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-<span class="ln">17</span>    <span class="p">);</span>
-<span class="ln">18</span><span class="p">};</span>
-<span class="ln">19</span>
-<span class="ln">20</span><span class="kr">export</span> <span class="k">default</span> <span class="nx">Form</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useRef</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">Form</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">inputRef</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="kr">const</span> <span class="nx">handleSubmit</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="c1">//DOM에 직접 접근하여 value
+</span><span class="c1"></span>        <span class="nx">alert</span><span class="p">(</span><span class="nx">inputRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+        <span class="nx">value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">form</span> <span class="na">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">handleSubmit</span><span class="p">}&gt;</span>
+            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">inputRef</span><span class="p">}</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span><span class="p">&gt;</span><span class="nx">Submit</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Form</span><span class="p">;</span>
 </code></pre></div><h3 id="controlledcomponent-제어-컴포넌트">controlledComponent (제어 컴포넌트)</h3>
 <p>React 공식 문서에서는 Form 제어 시 <code>controlledComponent</code> 방식으로 작성하길 권고합니다. 제어 컴포넌트는 state 속성을 기반으로 Form을 제어하는 방식을 말합니다. 공식 문서에 따르면 state 사용 시 “신뢰 가능한 단일 출처(single source of truth)”로 관리한다고 합니다.</p>
 <p><strong>신뢰 가능한 단일 출처?</strong></p>
 <p>사용하는 데이터를 오직 하나의 출처에서 사용하고 수정해야 한다는 규칙입니다. React에서는 useState를 통해 설정한 변수를 여러 곳에서 사용할 수 있습니다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
-<span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="kr">const</span> <span class="nx">Form</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 4</span>    <span class="kr">const</span> <span class="p">[</span><span class="nx">id</span><span class="p">,</span> <span class="nx">setId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<span class="ln"> 5</span>    <span class="kr">const</span> <span class="nx">handleForm</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 6</span>        <span class="nx">alert</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
-<span class="ln"> 7</span>    <span class="p">};</span>
-<span class="ln"> 8</span>
-<span class="ln"> 9</span>    <span class="kr">const</span> <span class="nx">handleUSerId</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">10</span>        <span class="nx">setId</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
-<span class="ln">11</span>    <span class="p">};</span>
-<span class="ln">12</span>    <span class="k">return</span> <span class="p">(</span>
-<span class="ln">13</span>        <span class="p">&lt;</span><span class="nt">form</span> <span class="na">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">handleForm</span><span class="p">}&gt;</span>
-<span class="ln">14</span>            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">handleUSerId</span><span class="p">}</span> <span class="p">/&gt;</span>
-<span class="ln">15</span>            <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span><span class="p">&gt;</span><span class="nx">submit</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="ln">16</span>        <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-<span class="ln">17</span>    <span class="p">);</span>
-<span class="ln">18</span><span class="p">};</span>
-<span class="ln">19</span>
-<span class="ln">20</span><span class="kr">export</span> <span class="k">default</span> <span class="nx">Form</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">Form</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="p">[</span><span class="nx">id</span><span class="p">,</span> <span class="nx">setId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="nx">handleForm</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="kr">const</span> <span class="nx">handleUSerId</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setId</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">form</span> <span class="na">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">handleForm</span><span class="p">}&gt;</span>
+            <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">handleUSerId</span><span class="p">}</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span><span class="p">&gt;</span><span class="nx">submit</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Form</span><span class="p">;</span>
 </code></pre></div><h3 id="비교">비교</h3>
 <ul>
 <li>사용자 입력 값을 실시간으로 접근해야 할 때는 <strong>제어 컴포넌트</strong>를 사용하는 것이 적합합니다.</li>
@@ -725,6 +725,24 @@
                 
                     
 <article class="has-image">
+    <a href="/post/polyfill-and-babel/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="polyfill-and-babel" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Polyfill이 무엇인가요??</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
     <a href="/post/redux/">
         
         
@@ -737,24 +755,6 @@
 
         <div class="article-details">
             <h2 class="article-title">[Redux] Redux 사용해보기</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/post/composition-api/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/thumb/vue.png" loading="lazy" data-key="composition-api" data-hash="../../assets/thumb/vue.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[Vue] Composition API 사용 방법</h2>
         </div>
     </a>
 </article>

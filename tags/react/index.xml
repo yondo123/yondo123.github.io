@@ -16,7 +16,7 @@
       <description>Ref  ref는 render 메서드에서 생성된 DOM 노드나 React 엘리먼트에 접근하는 방법을 제공합니다.
   포커스, 텍스트 선택, 혹은 미디어의 재생을 관리할 때 애니메이션을 직접적으로 실행시킬 때 React와 같이 서드 파티 DOM 라이브러리를 사용할 때  순수 자바스크립트에서는 UI를 변경하기 위해 DOM API를 사용하여 DOM에 직접적으로 접근하였습니다. React에서는 이러한 방식을 지양하고, ref 객체를 생성하여 접근하도록 권고합니다.
 DOM API를 이용하여 접근하기 DOM에 접근하기 위해서는 기존의 DOM API를 사용할 수 있습니다.
-1import React from &amp;#39;react&amp;#39;; 2 3const Component = () =&amp;gt; { 4 const hadleClick = () =&amp;gt; { 5 document.</description>
+import React from &amp;#39;react&amp;#39;; const Component = () =&amp;gt; { const hadleClick = () =&amp;gt; { document.</description>
     </item>
     
     <item>
@@ -37,7 +37,8 @@ SPA의 단일 페이지라는 이점을 살려, MPA(Multi Page Application) 환�
       <guid>https://jinyisland.kr/post/react-props/</guid>
       <description>개념 컴포넌트에 데이터를 전달하는 데이터를 prop이라고 한다. (Properties의 줄임말)
 Props 단일 값 전달하기 컴포넌트 작성 시 해당 컴포넌트 태그에 변수이름={}으로 사용한다.
-1//App.js (최상위 컴포너트) 2const today = function () { 3 return new Date().toISOString(); 4}; 5 6function App() { 7 return ( 8 &amp;lt;div className=&amp;#34;App&amp;#34;&amp;gt; 9 &amp;lt;AppHeader /&amp;gt; 10 &amp;lt;header className=&amp;#34;App-header&amp;#34;&amp;gt; 11 &amp;lt;h2&amp;gt;{myName}&amp;lt;/h2&amp;gt; 12 &amp;lt;Time init={today} /&amp;gt; 13 &amp;lt;/header&amp;gt; 14 &amp;lt;AppFooter /&amp;gt; 15 &amp;lt;/div&amp;gt; 16 ); 17} 전달받는 컴포넌트 (자식 컴포넌트)에서는 매개변수로 받아올 수 있는데 객체 타입으로 전달 받는다.</description>
+//App.js (최상위 컴포너트) const today = function () { return new Date().toISOString(); }; function App() { return ( &amp;lt;div className=&amp;#34;App&amp;#34;&amp;gt; &amp;lt;AppHeader /&amp;gt; &amp;lt;header className=&amp;#34;App-header&amp;#34;&amp;gt; &amp;lt;h2&amp;gt;{myName}&amp;lt;/h2&amp;gt; &amp;lt;Time init={today} /&amp;gt; &amp;lt;/header&amp;gt; &amp;lt;AppFooter /&amp;gt; &amp;lt;/div&amp;gt; ); } 전달받는 컴포넌트 (자식 컴포넌트)에서는 매개변수로 받아올 수 있는데 객체 타입으로 전달 받는다.
+function Time(props) { return ( &amp;lt;div&amp;gt; &amp;lt;h2&amp;gt;What Time?</description>
     </item>
     
     <item>
@@ -49,7 +50,7 @@ Props 단일 값 전달하기 컴포넌트 작성 시 해당 컴포넌트 태그
       <description>JSX JavaScript Extension, 자바스립트를 확장한 문법이다.(HTML이 아니다.) 리액트에서 컴포넌트 구조를 작성하면서 HtML 대신 jsx로 UI를 표현한다고 생각하면 된다. vue에서는 template태그에 직접 HTML 문법을 사용했었는데 동일한 역할이다. 확장자는 jsx로 사용할 수 있으나 js로 사용해도 자동 변환이 되기 때문에 어느 것으로 해도 큰 상관은 없다.
 기본 문법 스타일 적용하기 className
 jsx에서는 스타일을 적용하기 위한 class는 자바스크립트 예약어라 className으로 대체한다.
-1const AppFooter = () =&amp;gt; { 2 return &amp;lt;footer className=&amp;#34;red&amp;#34;&amp;gt;Footer&amp;lt;/footer&amp;gt;; 3}; InlineStyle
+const AppFooter = () =&amp;gt; { return &amp;lt;footer className=&amp;#34;red&amp;#34;&amp;gt;Footer&amp;lt;/footer&amp;gt;; }; InlineStyle
 기존 방식대로 클래스나 id를 붙여 css를 적용하는 방법 외에도, 스크립트 자체에서 스타일을 적용시킬 수 있다.</description>
     </item>
     

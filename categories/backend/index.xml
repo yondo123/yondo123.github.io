@@ -14,8 +14,8 @@
       
       <guid>https://jinyisland.kr/post/multer/</guid>
       <description>multer  multer 요청 타입이 multeipart/form-data인 경우 multer를 이용해 받을 수 있다.
-설치하기 1npm i multer 사용방법 multer모듈을 임포트 해주고 미들웨어로 사용하기 위해 여러 설정을 해준다.
-1const multer = require(&amp;#39;multer&amp;#39;); 2const path = require(&amp;#39;path&amp;#39;); 3 4// 디렉토리 없을 경우 생성해주는 예외 처리 5// (server listen 전 단계 이므로 동기식 코드로 해도 무방) 6try { 7 fs.readdirSync(&amp;#39;assets&amp;#39;); 8} catch (error) { 9 console.error(&amp;#39;not exist directory.&amp;#39;); 10 fs.mkdirSync(&amp;#39;assets&amp;#39;); 11} 12 13const upload = multer({ 14 // 파일 저장 위치 (disk , memory 선택) 15 storage: multer.</description>
+설치하기 npm i multer 사용방법 multer모듈을 임포트 해주고 미들웨어로 사용하기 위해 여러 설정을 해준다.
+const multer = require(&amp;#39;multer&amp;#39;); const path = require(&amp;#39;path&amp;#39;); // 디렉토리 없을 경우 생성해주는 예외 처리 // (server listen 전 단계 이므로 동기식 코드로 해도 무방) try { fs.readdirSync(&amp;#39;assets&amp;#39;); } catch (error) { console.error(&amp;#39;not exist directory.&amp;#39;); fs.mkdirSync(&amp;#39;assets&amp;#39;); } const upload = multer({ // 파일 저장 위치 (disk , memory 선택)  storage: multer.</description>
     </item>
     
     <item>
@@ -38,7 +38,7 @@
       <guid>https://jinyisland.kr/post/middleware/</guid>
       <description>미들웨어 말 그대로 요청(Request)과 응답(Response) 사이 중간(middle)에서 핸들링해주는 익스프레스의 핵심 기능이다.
 사용법 use메서드를 사용하고 요청 메서드 내부에서 미들웨어를 정의할 수 있다.
-1//모든 요청에서 미들웨어 실행 2app.use((req, res, next)=&amp;gt; { 3	console.log(&amp;#39;middle ware execute&amp;#39;); 4	next(); 5}, (req, res) =&amp;gt; { 6	// code.. 7});; 8 9//특정 요청 또는 경로에서 미들웨어 실행 (next 인자는 생략 가능) 10app.get((&amp;#39;/&amp;#39;, (req, res, next)=&amp;gt;{ 11	console.log(&amp;#34;request get, &amp;#39;/&amp;#39;&amp;#34;); 12	next(); 13}, (req, res)=&amp;gt;{ 14	throw new Error(&amp;#39;error!</description>
+//모든 요청에서 미들웨어 실행 app.use((req, res, next)=&amp;gt; { console.log(&amp;#39;middle ware execute&amp;#39;); next(); }, (req, res) =&amp;gt; { // code.. });; //특정 요청 또는 경로에서 미들웨어 실행 (next 인자는 생략 가능) app.get((&amp;#39;/&amp;#39;, (req, res, next)=&amp;gt;{ console.log(&amp;#34;request get, &amp;#39;/&amp;#39;&amp;#34;); next(); }, (req, res)=&amp;gt;{ throw new Error(&amp;#39;error!&amp;#39;); }); 연속성 여러 인자로 콜백 함수를 전달하면 연달아 미들웨어를 사용할 수 있다.</description>
     </item>
     
     <item>
@@ -49,10 +49,10 @@
       <guid>https://jinyisland.kr/post/express-start/</guid>
       <description>개요 기존 http모듈로 서버를 구축 해서 간단한 요청과 응답 프로세스를 경험해보았는데 여타 언어들도 그렇듯이 프레임워크를 사용하면 더욱 효율적으로 작업을 할 수 있다. node.js 생태계에서는 압도적으로 express.js를 많이 사용한다.
 설치하기 npm 환경에서 install 명령어를 통해 express를 설치한다.
-1npm install express 기본 구조 기본적인 서버를 구축한 소스이다.
+npm install express 기본 구조 기본적인 서버를 구축한 소스이다.
 http 모듈로 구축했을 때 URL도 파싱해야하고, if문으로 분기처리하기 수고스러웠는데 상당히 깔끔해졌다.
 각 라우터마다 요청, 응답 객체를 받아와 여러 형태로 받거나 전달할 수 있다.
-1//app.js 2const express = require(&amp;#39;express&amp;#39;); 3const app = express(); 4 5//get 메서드 6app.</description>
+//app.js const express = require(&amp;#39;express&amp;#39;); const app = express(); //get 메서드 app.</description>
     </item>
     
     <item>
@@ -62,9 +62,9 @@ http 모듈로 구축했을 때 URL도 파싱해야하고, if문으로 분기처
       
       <guid>https://jinyisland.kr/post/node-file/</guid>
       <description>FileSystem node.js에서는 fs 모듈을 통해 파일 시스템에 접근할 수 있다. 현재 파일 기준으로 경로를 잡는것이 아닌 실행하는 node 콘솔 기준으로 경로를 바라본다는 특징이 있다. 파일 시스템에 접근할 때는 반드시 보안에 꼭 신경쓰는 것이 좋다. 또한 비동기 함수이므로 동시에 실행이 보장되지 않는다.
-1## hello Node.js! readFile 파일을 읽어오는 메서드이다. 첫 번째 인자에 해당 파일의 상대경로, 두 번째 인자에 콜백 함수를 입력 받는다.
+## hello Node.js! readFile 파일을 읽어오는 메서드이다. 첫 번째 인자에 해당 파일의 상대경로, 두 번째 인자에 콜백 함수를 입력 받는다.
 (실행하는 node 기준이므로 같은 디렉토리에 위치해야한다.)
-1const fs = require(&amp;#39;fs&amp;#39;); 2 3fs.</description>
+const fs = require(&amp;#39;fs&amp;#39;); fs.</description>
     </item>
     
     <item>
@@ -74,7 +74,7 @@ http 모듈로 구축했을 때 URL도 파싱해야하고, if문으로 분기처
       
       <guid>https://jinyisland.kr/post/useful-modules/</guid>
       <description>global 브라우저의 window와 같은 전역 객체 역할, 하지만 브라우저와 관련된 객체(document 등)들은 사용하지 못한다. global객체 역시 생략해서 사용 가능하다. 그리고 브라우저의 window객체와 마찬가지로 global에 값을 주입하면 프로젝트 내 모든 파일에서 전역 변수로 사용할 수 있다 . (하지만 이러한 패턴은 지양한다, module을 통해 관리하자)
-1global.console.log(&amp;#39;hello Node!&amp;#39;); 2console.log(&amp;#39;hello Node!&amp;#39;); console 로그를 출력하는 객체, 흔히 사용하는 log, error 말고 신기한 것을 소개한다.
+global.console.log(&amp;#39;hello Node!&amp;#39;); console.log(&amp;#39;hello Node!&amp;#39;); console 로그를 출력하는 객체, 흔히 사용하는 log, error 말고 신기한 것을 소개한다.
 console.time 수행 시점에 time을 찍어 해당 코드를 수행한 시간을 알아낼 수 있다.</description>
     </item>
     
@@ -87,7 +87,7 @@ console.time 수행 시점에 time을 찍어 해당 코드를 수행한 시간�
       <description>npm NodeNode Package Manager, 말 그대로 Node.js 환경에서 여러 모듈들을 패키지화하여 관리하는 저장소 같은 역할이다.
 패키지를 직접 만들어 배포할 수 있고 다른 사람이 배포한 여러 패키지 모듈들을 설치해 프로젝트에 적용시킬 수도 있다.
 npm 생성하기 npm 환경에서 제일 중요한 것은 패키지 관리이다. 패키지들은 package.json파일에서 일괄적으로 관리하는데 직접 json 파일로 생성해도 되고, 명령어를 입력해 생성해도 된다. 터미널에서 npm init명령어를 입력하면 자동적으로 package.json파일을 생성할 수 있다.
-1npm init 2# &amp;gt; packagename : 프로젝트 이름 입력 3# &amp;gt; version : 프로젝트 버전 입력 (default : 1.</description>
+npm init # &amp;gt; packagename : 프로젝트 이름 입력 # &amp;gt; version : 프로젝트 버전 입력 (default : 1.</description>
     </item>
     
     <item>
@@ -98,7 +98,7 @@ npm 생성하기 npm 환경에서 제일 중요한 것은 패키지 관리이다
       <guid>https://jinyisland.kr/post/node-restapi/</guid>
       <description>Node.js HTTP 모듈을 통해 간단히 요청보내고, 주고받는 초간단 API 서버를 만들어보았다.
 Request createServer 콜백에서 request, response 인자를 받는데 request 객체에서 요청 정보들을 받을 수 있다.
-1const http = require(&amp;#39;http&amp;#39;); 2 3http.createServer(async (request, response) =&amp;gt; { 4 try { 5 const method = request.method; 6 const url = request.url; 7 //step 1. 요청 메소드 구분 8 if (method == &amp;#39;GET&amp;#39;) { 9 //step 2. URL 구분 10 if (url == &amp;#39;/&amp;#39;) { 11 } else if (url == &amp;#39;/list&amp;#39;) { 12 } 13 } else if (method == &amp;#39;POST&amp;#39;) { 14 //code.</description>
+const http = require(&amp;#39;http&amp;#39;); http.createServer(async (request, response) =&amp;gt; { try { const method = request.method; const url = request.url; //step 1. 요청 메소드 구분  if (method == &amp;#39;GET&amp;#39;) { //step 2. URL 구분  if (url == &amp;#39;/&amp;#39;) { } else if (url == &amp;#39;/list&amp;#39;) { } } else if (method == &amp;#39;POST&amp;#39;) { //code.</description>
     </item>
     
   </channel>

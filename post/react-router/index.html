@@ -351,31 +351,31 @@
 <h3 id="설치하기">설치하기</h3>
 <p><a class="link" href="https://reactrouter.com/"  target="_blank" rel="noopener"
     >React Router 공식 페이지</a>에 친절히 설명되어 있다. 현재 릴리즈된 버전은<strong>6버전</strong>이며 아래와 같이 설치한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npm install react-router-dom@6
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm install react-router-dom@6
 </code></pre></div><h3 id="기본-사용방법">기본 사용방법</h3>
 <p>라우팅 기능을 사용하려면 <code>BrowserRouter</code> 컴포넌트를 최상위 태그에 감싸주면 된다.<br>
 앱에서 단 하나의 라우터만 사용하여야한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="c1">//App.js
-</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">BrowserRouter</span><span class="p">,</span> <span class="nx">Routes</span><span class="p">,</span> <span class="nx">Route</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span><span class="p">;</span>
-<span class="ln"> 3</span><span class="kr">import</span> <span class="nx">Header</span> <span class="nx">from</span> <span class="s1">&#39;./pages/Header&#39;</span><span class="p">;</span>
-<span class="ln"> 4</span><span class="kr">import</span> <span class="nx">Home</span> <span class="nx">from</span> <span class="s1">&#39;./pages/Home&#39;</span><span class="p">;</span>
-<span class="ln"> 5</span><span class="kr">import</span> <span class="nx">Profile</span> <span class="nx">from</span> <span class="s1">&#39;./pages/Profile&#39;</span><span class="p">;</span>
-<span class="ln"> 6</span><span class="kr">import</span> <span class="nx">Board</span> <span class="nx">from</span> <span class="s1">&#39;./pagres/Board&#39;</span><span class="p">;</span>
-<span class="ln"> 7</span>
-<span class="ln"> 8</span><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 9</span>    <span class="k">return</span> <span class="p">(</span>
-<span class="ln">10</span>        <span class="p">&lt;</span><span class="nt">BrowserRouter</span><span class="p">&gt;</span>
-<span class="ln">11</span>            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
-<span class="ln">12</span>                <span class="p">&lt;</span><span class="nt">Header</span> <span class="p">/&gt;</span>
-<span class="ln">13</span>                <span class="p">&lt;</span><span class="nt">Routes</span><span class="p">&gt;</span>
-<span class="ln">14</span>                    <span class="p">&lt;</span><span class="nt">Route</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;/&#34;</span> <span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Home</span> <span class="p">/&gt;}</span> <span class="p">/&gt;</span>
-<span class="ln">15</span>                    <span class="p">&lt;</span><span class="nt">Route</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;/profile&#34;</span> <span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Profile</span> <span class="p">/&gt;}</span> <span class="p">/&gt;</span>
-<span class="ln">16</span>                    <span class="p">&lt;</span><span class="nt">Route</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;/board&#34;</span> <span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Board</span> <span class="p">/&gt;}</span> <span class="p">/&gt;</span>
-<span class="ln">17</span>                <span class="p">&lt;/</span><span class="nt">Routes</span><span class="p">&gt;</span>
-<span class="ln">18</span>            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">19</span>        <span class="p">&lt;/</span><span class="nt">BrowserRouter</span><span class="p">&gt;</span>
-<span class="ln">20</span>    <span class="p">);</span>
-<span class="ln">21</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//App.js
+</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">BrowserRouter</span><span class="p">,</span> <span class="nx">Routes</span><span class="p">,</span> <span class="nx">Route</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Header</span> <span class="nx">from</span> <span class="s1">&#39;./pages/Header&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Home</span> <span class="nx">from</span> <span class="s1">&#39;./pages/Home&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Profile</span> <span class="nx">from</span> <span class="s1">&#39;./pages/Profile&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Board</span> <span class="nx">from</span> <span class="s1">&#39;./pagres/Board&#39;</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">BrowserRouter</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">Header</span> <span class="p">/&gt;</span>
+                <span class="p">&lt;</span><span class="nt">Routes</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">Route</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;/&#34;</span> <span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Home</span> <span class="p">/&gt;}</span> <span class="p">/&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">Route</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;/profile&#34;</span> <span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Profile</span> <span class="p">/&gt;}</span> <span class="p">/&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">Route</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;/board&#34;</span> <span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Board</span> <span class="p">/&gt;}</span> <span class="p">/&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">Routes</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">BrowserRouter</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div><ul>
 <li><strong>BrowserRouter :</strong> 브라우저 History API를 사용해 현재 위치의 URL을 저장해주는 역할이다.</li>
 <li><strong>Routes :</strong> 자식 route들을 구성하고 있는 단위이다.</li>
@@ -384,74 +384,74 @@
 <h3 id="링크-이동하기">링크 이동하기</h3>
 <p>페이지를 갱신하지 않고 렌더링 방식으로 이동하려면 <code>Link</code> 컴포넌트를 사용하면된다.<br>
 HTML 앵커 태그로 자동으로 변환해준다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Link</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span><span class="p">;</span>
-<span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="kd">function</span> <span class="nx">Nav</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 4</span>    <span class="k">return</span> <span class="p">(</span>
-<span class="ln"> 5</span>        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln"> 6</span>            <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;/&#39;</span><span class="p">}&gt;</span><span class="nx">Home</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
-<span class="ln"> 7</span>            <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;/board&#39;</span><span class="p">}&gt;</span><span class="nx">Board</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
-<span class="ln"> 8</span>            <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;/profile&#39;</span><span class="p">}&gt;</span><span class="nx">Profile</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
-<span class="ln"> 9</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">10</span>    <span class="p">);</span>
-<span class="ln">11</span><span class="p">}</span>
-<span class="ln">12</span>
-<span class="ln">13</span><span class="kr">export</span> <span class="k">default</span> <span class="nx">Nav</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Link</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">Nav</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;/&#39;</span><span class="p">}&gt;</span><span class="nx">Home</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;/board&#39;</span><span class="p">}&gt;</span><span class="nx">Board</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;/profile&#39;</span><span class="p">}&gt;</span><span class="nx">Profile</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Nav</span><span class="p">;</span>
 </code></pre></div><h2 id="url-제어하기">URL 제어하기</h2>
 <h3 id="path-variable">Path Variable</h3>
 <p>특정 자원에 접근하기 위해 사용한다. 흔히 <code>Query String</code>과 헷갈리는 경우가 있는데 쿼리 스트링은 필터링 목적에 가깝고, <code>PathVariable</code>에는 특정한 자원에 접근하는 목적에 사용하는 것이 옳다. 리액트 라우터에서 콜론(:)과 <code>useParams</code> hook을 이용해 URL 파라미터를 받을 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;/profile/:userId&#39;</span><span class="p">}&gt;</span><span class="nx">Profile</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="c1">//Profile.js
-</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">useParams</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span><span class="p">;</span>
-<span class="ln"> 3</span>
-<span class="ln"> 4</span><span class="kd">function</span> <span class="nx">Profile</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 5</span>    <span class="kr">const</span> <span class="p">{</span> <span class="nx">userId</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useParams</span><span class="p">();</span>
-<span class="ln"> 6</span>    <span class="k">return</span> <span class="p">(</span>
-<span class="ln"> 7</span>        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln"> 8</span>            <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;{</span><span class="sb">`</span><span class="si">${</span><span class="nx">userId</span><span class="si">}</span><span class="sb">의 Profile Page`</span><span class="p">}&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-<span class="ln"> 9</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">10</span>    <span class="p">);</span>
-<span class="ln">11</span><span class="p">}</span>
-<span class="ln">12</span>
-<span class="ln">13</span><span class="kr">export</span> <span class="k">default</span> <span class="nx">Profile</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;/profile/:userId&#39;</span><span class="p">}&gt;</span><span class="nx">Profile</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//Profile.js
+</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">useParams</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">Profile</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="p">{</span> <span class="nx">userId</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useParams</span><span class="p">();</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;{</span><span class="sb">`</span><span class="si">${</span><span class="nx">userId</span><span class="si">}</span><span class="sb">의 Profile Page`</span><span class="p">}&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Profile</span><span class="p">;</span>
 </code></pre></div><h3 id="query-string">Query String</h3>
 <p>URL을 통해 웹 페이지에 데이터를 전달하는 방법이다. 보통 쿼리 형태로 되어있는데 많은 웹사이트에서 특히 조회 페이지에 많이 사용된다. 아래 URL 형태를 보면(네이버 금융 예시) <code>article_id</code>와 <code>office_id</code> 같은 값들을 전달해주고 있다.</p>
 <p><img src="https://user-images.githubusercontent.com/46988995/175055246-ca447df8-c72d-4a31-b637-ec897445a340.png" alt="iShot_2022-06-22_22.54.49.png"  /></p>
 <p><code>Path Variable</code>과는 다르게 라우팅에 영향을 끼치지 않기 때문에 <code>&lt;Link&gt;</code>에 따로 명시를 하지 않아도 된다.<br>
 해당 컴포넌트에서 <code>useSearchParams</code> hook을 사용해 값을 확인할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="c1">//url : http://localhost:3000/board?userId=yondo123&amp;docId=123
-</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">useSearchParams</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span><span class="p">;</span>
-<span class="ln"> 3</span>
-<span class="ln"> 4</span><span class="kd">function</span> <span class="nx">Board</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 5</span>    <span class="kr">const</span> <span class="p">[</span><span class="nx">searchParams</span><span class="p">,</span> <span class="nx">setSearchParams</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useSearchParams</span><span class="p">();</span>
-<span class="ln"> 6</span>    <span class="k">return</span> <span class="p">(</span>
-<span class="ln"> 7</span>        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln"> 8</span>            <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">Board</span> <span class="nx">Page</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-<span class="ln"> 9</span>            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="ln">10</span>                <span class="nx">작성자</span> <span class="o">:</span> <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;{</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;userId&#39;</span><span class="p">)}&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-<span class="ln">11</span>            <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="ln">12</span>            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="ln">13</span>                <span class="nx">게시글</span> <span class="nx">번호</span> <span class="o">:</span> <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;{</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;docId&#39;</span><span class="p">)}&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-<span class="ln">14</span>            <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="ln">15</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">16</span>    <span class="p">);</span>
-<span class="ln">17</span><span class="p">}</span>
-<span class="ln">18</span>
-<span class="ln">19</span><span class="kr">export</span> <span class="k">default</span> <span class="nx">Board</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//url : http://localhost:3000/board?userId=yondo123&amp;docId=123
+</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">useSearchParams</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">Board</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="p">[</span><span class="nx">searchParams</span><span class="p">,</span> <span class="nx">setSearchParams</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useSearchParams</span><span class="p">();</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">Board</span> <span class="nx">Page</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+                <span class="nx">작성자</span> <span class="o">:</span> <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;{</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;userId&#39;</span><span class="p">)}&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+                <span class="nx">게시글</span> <span class="nx">번호</span> <span class="o">:</span> <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;{</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;docId&#39;</span><span class="p">)}&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Board</span><span class="p">;</span>
 </code></pre></div><p><code>useSearchParams</code> 메서드로 배열을 받아올 수 있는데 비구조화 할당을 통해 두 개의 프로퍼티들을 가져올 수 있다. <strong>(물론 이름은 자유)</strong></p>
 <ul>
 <li>
 <p><strong>searchParams :</strong> 쿼리 스트링의 key에 대한 value를 가져온다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kr">const</span> <span class="p">[</span><span class="nx">searchParams</span><span class="p">,</span> <span class="nx">setSearchParams</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useSearchParams</span><span class="p">();</span>
-<span class="ln">2</span>
-<span class="ln">3</span><span class="kr">const</span> <span class="nx">userId</span> <span class="o">=</span> <span class="nx">searchParams</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;userId&#39;</span><span class="p">);</span>
-<span class="ln">4</span><span class="kr">const</span> <span class="nx">docId</span> <span class="o">=</span> <span class="nx">searchParams</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;docId&#39;</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="p">[</span><span class="nx">searchParams</span><span class="p">,</span> <span class="nx">setSearchParams</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useSearchParams</span><span class="p">();</span>
+
+<span class="kr">const</span> <span class="nx">userId</span> <span class="o">=</span> <span class="nx">searchParams</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;userId&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">docId</span> <span class="o">=</span> <span class="nx">searchParams</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;docId&#39;</span><span class="p">);</span>
 </code></pre></div></li>
 <li>
 <p><strong>setSearchParams :</strong> uri 쿼리스트링을 변경한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kr">const</span> <span class="p">[</span><span class="nx">searchParams</span><span class="p">,</span> <span class="nx">setSearchParams</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useSearchParams</span><span class="p">();</span>
-<span class="ln">2</span>
-<span class="ln">3</span><span class="nx">setSearchParams</span><span class="p">({</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;value&#39;</span> <span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="p">[</span><span class="nx">searchParams</span><span class="p">,</span> <span class="nx">setSearchParams</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useSearchParams</span><span class="p">();</span>
+
+<span class="nx">setSearchParams</span><span class="p">({</span> <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;value&#39;</span> <span class="p">});</span>
 </code></pre></div></li>
 </ul>
 <h2 id="참고-자료">참고 자료</h2>
@@ -604,6 +604,24 @@ HTML 앵커 태그로 자동으로 변환해준다.</p>
                 
                     
 <article class="has-image">
+    <a href="/post/polyfill-and-babel/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="polyfill-and-babel" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Polyfill이 무엇인가요??</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
     <a href="/post/redux/">
         
         
@@ -616,24 +634,6 @@ HTML 앵커 태그로 자동으로 변환해준다.</p>
 
         <div class="article-details">
             <h2 class="article-title">[Redux] Redux 사용해보기</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/post/composition-api/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/thumb/vue.png" loading="lazy" data-key="composition-api" data-hash="../../assets/thumb/vue.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[Vue] Composition API 사용 방법</h2>
         </div>
     </a>
 </article>

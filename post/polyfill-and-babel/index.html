@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TN7PCJZTQ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6TN7PCJZTQ');
+</script>
+
+        <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='브라우저 호환성을 위한 polyfill 종류와 사용 방법을 소개합니다.'><title>Polyfill이 무엇인가요??</title>
+<link rel='canonical' href='https://jinyisland.kr/post/polyfill-and-babel/'>
+<link rel="icon" href="/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='Polyfill이 무엇인가요??'>
+<meta property='og:description' content='브라우저 호환성을 위한 polyfill 종류와 사용 방법을 소개합니다.'>
+<meta property='og:url' content='https://jinyisland.kr/post/polyfill-and-babel/'>
+<meta property='og:site_name' content='Jiny'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='polyfill' /><meta property='article:tag' content='babell' /><meta property='article:published_time' content='2023-04-02T23:52:00&#43;09:00'/><meta property='article:modified_time' content='2023-04-02T23:52:00&#43;09:00'/><meta property='og:image' content='https://jinyisland.kr/../../assets/js/js.png' />
+<meta name="twitter:title" content="Polyfill이 무엇인가요??">
+<meta name="twitter:description" content="브라우저 호환성을 위한 polyfill 종류와 사용 방법을 소개합니다."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/js/js.png' /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<style>
+    .article-content code {
+        word-wrap: break-word;
+    }
+</style>
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub38313664a67c625b5c64f3cb8dc247e_143597_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny</a></h1>
+        <h2 class="site-description">😎 승진이의 공부 블로그</h2>
+    </header>
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/javascript/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>JavaScript</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/backend/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Backend</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/web/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Web</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/style/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#7f5345" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Style</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/book/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Book</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/etc/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#d63031" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>ETC</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span></span>
+            </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/polyfill-and-babel/">
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #000;">
+                JavaScript
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/polyfill-and-babel/">Polyfill이 무엇인가요??</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        브라우저 호환성을 위한 polyfill 종류와 사용 방법을 소개합니다.
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Apr 02, 2023</time>
+    </footer></div>
+</header>
+
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
+    <h2 id="들어가면서">들어가면서</h2>
+<p>브라우저 호환성 문제를 해결하기 위한 폴리필(polyfill) 개념과 실제 사용 방법을 조사하였습니다. React와 IE11 환경에서 동작하기 위한 폴리필을 중점적으로 다룹니다.</p>
+<h2 id="polyfill-개념">Polyfill 개념</h2>
+<blockquote>
+<p><strong><em>기본적으로 지원하지 않는 이전 브라우저에서 최신 기능을 제공하는 데 필요한 코드 (JavaScript)
+”mdn”</em></strong></p>
+</blockquote>
+<p>자바스크립트는 끊임없이 발전되어왔기 때문에 명세도 계속 변화되어왔습니다.<br>
+이 과정에서 모든 브라우저는 발전된 스크립트 문법을 제공하지 않을 수 있기 때문에 <strong>브라우저 호환성 문제</strong>를 해결하기 위해 일종의 코드 조각을 추가하는 것을 <code>polyfill</code>이라고 합니다.
+<img src="https://user-images.githubusercontent.com/46988995/229360860-616e1811-e19c-480d-8f3f-476977f637ea.png" alt="can-i-use"  /></p>
+<p>polyfill을 지원하는 대표적인 라이브러리는 <code>core-js</code>와 <code>polyfill.io</code>가 있습니다.<br>
+어떻게 사용되는지 한번 소개드리도록 하겠습니다.</p>
+<hr>
+<h2 id="polyfillio">Polyfill.io</h2>
+<p><code>User-Agent</code> 헤더를 통해 브라우저를 파악하고, 스크립트 실행을 위한 적절한 코드를 제공합니다.<br>
+<a class="link" href="http://polyfill.io/"  target="_blank" rel="noopener"
+    >polyfill.io</a>에서는 필요한 기능들에 대한 polyfill을 선택하면, CDN 스크립트를 제공하여 필요한 페이지에서 로드하여 사용할 수 있습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListner</span><span class="p">(</span><span class="s2">&#34;DOMContentLoaded&#34;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="s2">&#34;https://jsonplaceholder.typicode.com/posts/1&#34;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">json</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">json</span><span class="p">));</span>
+<span class="p">});</span>
+</code></pre></div><p>이 코드는 ie에서 정상적으로 실행이 어렵습니다. (화살표 함수, fetch)
+<img src="https://user-images.githubusercontent.com/46988995/229361101-cb317dff-aa0f-4ee1-befe-588e32f1e86d.png" alt="02-ie-error"  />
+ie에서도 정상적으로 최신 문법을 실행시키도록 하려면 별도의 polyfill을 추가시키면 됩니다.<br>
+<code>polyfill.io</code>를 활용해 해결하는 방법은 원하는 polyfill이 필요한 페이지에 CDN 스크립트를 삽입하면 됩니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://polyfill.io/v3/polyfill.min.js?features=es2016%2Cfetch&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;app.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><p><code>polyfill.io</code>에서 제공된 스크립트를 살펴보면, 해당 브라우저에서 지원되지 않는 문법을 자체적으로 사용 가능한 문법으로 감싸주어 사용할 수 있도록 지원해주고 있습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="p">...</span>
+<span class="c1">//fetch를 사용할 수 있도록 XMLHttpRequest을 활용해 래핑한 함수를 제공한다.
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="nx">init</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Request</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="nx">init</span><span class="p">);</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">signal</span> <span class="o">&amp;&amp;</span> <span class="nx">request</span><span class="p">.</span><span class="nx">signal</span><span class="p">.</span><span class="nx">aborted</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">reject</span><span class="p">(</span><span class="k">new</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">DOMException</span><span class="p">(</span><span class="s1">&#39;Aborted&#39;</span><span class="p">,</span> <span class="s1">&#39;AbortError&#39;</span><span class="p">))</span>
+      <span class="p">}</span>
+
+      <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+
+      <span class="kd">function</span> <span class="nx">abortXhr</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">xhr</span><span class="p">.</span><span class="nx">abort</span><span class="p">();</span>
+      <span class="p">}</span>
+
+      <span class="nx">xhr</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="nx">status</span><span class="o">:</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="p">,</span>
+          <span class="nx">statusText</span><span class="o">:</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">statusText</span><span class="p">,</span>
+          <span class="nx">headers</span><span class="o">:</span> <span class="nx">parseHeaders</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">getAllResponseHeaders</span><span class="p">()</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="p">};</span>
+        <span class="nx">options</span><span class="p">.</span><span class="nx">url</span> <span class="o">=</span> <span class="s1">&#39;responseURL&#39;</span> <span class="k">in</span> <span class="nx">xhr</span> <span class="o">?</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">responseURL</span> <span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;X-Request-URL&#39;</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="s1">&#39;response&#39;</span> <span class="k">in</span> <span class="nx">xhr</span> <span class="o">?</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">response</span> <span class="o">:</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">;</span>
+        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="nx">resolve</span><span class="p">(</span><span class="k">new</span> <span class="nx">Response</span><span class="p">(</span><span class="nx">body</span><span class="p">,</span> <span class="nx">options</span><span class="p">));</span>
+        <span class="p">},</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="p">};</span>
+
+      <span class="p">..</span>
+      <span class="p">...</span>
+  <span class="p">}</span>
+
+<span class="nx">global</span><span class="p">.</span><span class="nx">fetch</span> <span class="o">=</span> <span class="nx">fetch</span><span class="p">;</span>
+
+<span class="p">(</span><span class="s1">&#39;object&#39;</span> <span class="o">===</span> <span class="k">typeof</span> <span class="nb">window</span> <span class="o">&amp;&amp;</span> <span class="nb">window</span> <span class="o">||</span> <span class="s1">&#39;object&#39;</span> <span class="o">===</span> <span class="k">typeof</span> <span class="nx">self</span> <span class="o">&amp;&amp;</span> <span class="nx">self</span> <span class="o">||</span> <span class="s1">&#39;object&#39;</span> <span class="o">===</span> <span class="k">typeof</span> <span class="nx">global</span> <span class="o">&amp;&amp;</span> <span class="nx">global</span> <span class="o">||</span> <span class="p">{});</span>
+</code></pre></div><p>(fetch를 통해 성공적으로 데이터를 가져온 모습)
+<img src="https://user-images.githubusercontent.com/46988995/229361362-6281846b-c957-475a-8c03-4c58c8a9da33.png" alt="ie-success"  /></p>
+<h3 id="핵심-기능">핵심 기능</h3>
+<p>Polyfill.io는 URL 파라미터를 통해 필요한 상세 옵션을 전달할 수 있습니다.</p>
+<ul>
+<li><strong>feature</strong><br>
+필요한 기능만 선택적으로 요청할 수 있습니다.
+<pre><code>https://polyfill.io/v3/polyfill.min.js?features=Array.from&amp;CArray.isArray&amp;fetch
+</code></pre></li>
+<li><strong>falgs</strong><br>
+필요한 폴리필을 모든 브라우저에서 요청하려면 flags에 <code>always</code> 매개변수를 전달하면 됩니다. <code>gated</code> 매개변수를 전달하면 제공받은 브라우저에서 동작하는지 확인하고 필요한 경우에만 폴리필을 제공합니다.
+<pre><code>https://polyfill.io/v3/polyfill.js?features=es5,es6,es7&amp;flags=gated
+</code></pre></li>
+<li><strong>unknown</strong><br>
+폴리필을 지원하지 않는 브라우저에서는 기능을 내려줄지 결정해야 합니다. <code>ignore</code>으로 설정하면 지원하지 않는 브라우저에서 폴리필을 제공하지 않고, <code>polyfill</code>을 전달하면 폴리필 코드를 제공합니다.
+<pre><code>https://polyfill.io/v3/polyfill.min.js?features=fetch&amp;unknown=ignore
+</code></pre></li>
+</ul>
+<hr>
+<h2 id="corejs">Core.js</h2>
+<p>Core.js는 <code>babel</code> 환경과의 통합이 잘 되어있어 npm 개발 환경에서 많이 사용하는 polyfill 라이브러리입니다.<br>
+Babel이 수행하는 역할에 대해 간단히 살펴보겠습니다.</p>
+<h3 id="babel의-개념">Babel의 개념</h3>
+<p>Babel은 ES2015 이상의 문법들을 브라우저에서 호환될 수 있도록 변환해주는 도구입니다. 변환 대상의 범위는 별도의 설정 파일을 이용하여 상세하게 지정할 수 있습니다.</p>
+<p><code>Polyfill</code>과 역할은 유사하지만 차이점은 분명합니다. polyfill은 최신 문법에 대해 지원하지 않는 하위 브라우저를 위한 추가적인 기능 제공을 수행하며, Babel은 ES2015 이상의 문법들을 하위 버전으로 변환해주는 기능을 수행하는데 기능에 따라 변환하지 못 하는 것들도 존재할 수 있습니다.</p>
+<p>예를 들면 다음과 같습니다.</p>
+<ul>
+<li><strong>새로운 전역 Window에 추가된 객체 (Promise, Map, Set)</strong></li>
+<li><strong>새로운 메서드 (Array.from, Array.include)</strong></li>
+</ul>
+<p>이렇게 Babel이 제공해주지 못하는 문법을 사용하기 위해서는 별도의 <code>polyfill</code>을 추가해주어야 합니다.</p>
+<h3 id="babel을-활용한-core-js-구성하기">Babel을 활용한 core-js 구성하기</h3>
+<p>먼저 <code>webpack</code>을 구성합니다. polyfill 수행에 핵심적인 파일은 Babel이기 때문에 webpack에 대해서는 깊게 다루지는 않겠습니다.</p>
+<h3 id="react">React</h3>
+<p>다음은 웹팩과 바벨을 통한 번들링 및 트랜스파일링이 잘 되는지 확인하기 위해 간단한 리액트 코드를 작성합니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//📂src/App.jsx
+</span><span class="c1"></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">useEffect</span><span class="p">,</span> <span class="nx">useState</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;jiny&#34;</span><span class="p">,</span> <span class="s2">&#34;island&#34;</span><span class="p">];</span>
+
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">posts</span><span class="p">,</span> <span class="nx">setPosts</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">fetch</span><span class="p">(</span><span class="s2">&#34;https://jsonplaceholder.typicode.com/posts/1&#34;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">json</span><span class="p">));</span>
+        <span class="nx">setPosts</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;assda&#34;</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">].</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&#34;3&#34;</span><span class="p">));</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">Posts</span> <span class="nx">Fetch</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;{</span><span class="nx">posts</span><span class="o">?</span><span class="p">.</span><span class="nx">title</span><span class="p">}&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;{</span><span class="nx">posts</span><span class="o">?</span><span class="p">.</span><span class="nx">body</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+        <span class="p">{</span><span class="nx">names</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;{</span><span class="nx">item</span><span class="p">}&lt;/</span><span class="nt">li</span><span class="p">&gt;;</span>
+        <span class="p">})}</span>
+      <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//📂src/index.js
+</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react-dom&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">App</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;./App&#34;</span><span class="p">;</span>
+
+<span class="nx">render</span><span class="p">(&lt;</span><span class="nt">App</span> <span class="p">/&gt;,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;#root&#34;</span><span class="p">));</span>
+</code></pre></div><p>위의 코드를 살펴보면 ES2015 이상의 const, let, Array.map 등의 코드로 이루어져 있습니다.<br>
+이를 구형 브라우저에서 인식하기 위해서는 Babel을 사용하여 트랜스파일링이 필요합니다.</p>
+<h3 id="babel-설정">Babel 설정</h3>
+<p>Babel에서 core-js를 사용하려면 <code>@babel/preset-env</code> 프리셋을 적용해야 합니다.<br>
+이전에는<code>@babel/polyfill</code> 프리셋을 사용했지만 7.4.0 버전 이후로는 deprecated되었습니다.</p>
+<p><strong>@babel/polyfill</strong></p>
+<p>글로벌 파일에 <code>@babel/polyfill</code>을 직접 import하여 사용했던 방식이었습니다.<br>
+core-js를 단순하게 import하기 때문에 전역 환경을 오염시키는 문제가 존재하였습니다. <a class="link" href="https://github.com/babel/babel/blob/master/packages/babel-polyfill/src/noConflict.js"  target="_blank" rel="noopener"
+    ><strong>(babel-polyfill)</strong></a></p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="s2">&#34;@babel/polyfill&#34;</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">// Cover all standardized ES6 APIs.
+</span><span class="c1"></span><span class="kr">import</span> <span class="s2">&#34;core-js/es6&#34;</span><span class="p">;</span>
+
+<span class="c1">// Standard now
+</span><span class="c1"></span><span class="kr">import</span> <span class="s2">&#34;core-js/fn/array/includes&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s2">&#34;core-js/fn/array/flat-map&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s2">&#34;core-js/fn/string/pad-start&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s2">&#34;core-js/fn/string/pad-end&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s2">&#34;core-js/fn/string/trim-start&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s2">&#34;core-js/fn/string/trim-end&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s2">&#34;core-js/fn/symbol/async-iterator&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s2">&#34;core-js/fn/object/get-own-property-descriptors&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s2">&#34;core-js/fn/object/values&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s2">&#34;core-js/fn/object/entries&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s2">&#34;core-js/fn/promise/finally&#34;</span><span class="p">;</span>
+
+<span class="c1">// Ensure that we polyfill ES6 compat for anything web-related, if it exists.
+</span><span class="c1"></span><span class="kr">import</span> <span class="s2">&#34;core-js/web&#34;</span><span class="p">;</span>
+
+<span class="kr">import</span> <span class="s2">&#34;regenerator-runtime/runtime&#34;</span><span class="p">;</span>
+</code></pre></div><p><strong>@babel/preset-env</strong><br>
+<code>core-js</code>와 <code>targets</code> 옵션을 사용하여 상세한 타깃 브라우저를 설정할 수 있으며, polyfill 변환 기능을 제공하는 플러그인 입니다.</p>
+<ul>
+<li>
+<p><strong>corejs:</strong> 사용하려는 core-js 라이브러리 버전을 타깃합니다. <strong>(useBuitIns 옵션이 활성화 될 때 적용)</strong></p>
+</li>
+<li>
+<p><strong>useBiuiltIns</strong></p>
+<ul>
+<li>
+<p><strong>entry:</strong> core-js 모듈을 직접 import하여 사용하는 방법입니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="s2">&#34;core-js/stable/array&#34;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;사과&#34;</span><span class="p">,</span> <span class="s2">&#34;바나나&#34;</span><span class="p">];</span>
+<span class="nx">fruits</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kr">const</span> <span class="nx">apple</span> <span class="o">=</span> <span class="nx">fruits</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">item</span> <span class="o">===</span> <span class="s2">&#34;사과&#34;</span><span class="p">);</span>
+
+<span class="c1">//transfile
+</span><span class="c1"></span><span class="p">(</span><span class="s2">&#34;use strict&#34;</span><span class="p">);</span>
+
+<span class="nx">require</span><span class="p">(</span><span class="s2">&#34;core-js/modules/es.array.concat.js&#34;</span><span class="p">);</span>
+<span class="nx">require</span><span class="p">(</span><span class="s2">&#34;core-js/modules/es.array.copy-within.js&#34;</span><span class="p">);</span>
+<span class="nx">require</span><span class="p">(</span><span class="s2">&#34;core-js/modules/es.array.fill.js&#34;</span><span class="p">);</span>
+<span class="nx">require</span><span class="p">(</span><span class="s2">&#34;core-js/modules/es.array.filter.js&#34;</span><span class="p">);</span>
+<span class="nx">require</span><span class="p">(</span><span class="s2">&#34;core-js/modules/es.array.find.js&#34;</span><span class="p">);</span>
+<span class="nx">require</span><span class="p">(</span><span class="s2">&#34;core-js/modules/es.array.find-index.js&#34;</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="nx">require</span><span class="p">(</span><span class="s2">&#34;core-js/modules/es.array.unscopables.flat-map.js&#34;</span><span class="p">);</span>
+<span class="nx">require</span><span class="p">(</span><span class="s2">&#34;core-js/modules/es.object.to-string.js&#34;</span><span class="p">);</span>
+<span class="nx">require</span><span class="p">(</span><span class="s2">&#34;core-js/modules/es.string.iterator.js&#34;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;사과&#34;</span><span class="p">,</span> <span class="s2">&#34;바나나&#34;</span><span class="p">];</span>
+<span class="nx">fruits</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">apple</span> <span class="o">=</span> <span class="nx">fruits</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">item</span> <span class="o">===</span> <span class="s2">&#34;사과&#34;</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div></li>
+<li>
+<p><strong>usage:</strong> 코드에 필요한 polyfill 구문만 자동으로 삽입되도록 하는 방식입니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//example
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;사과&#34;</span><span class="p">,</span> <span class="s2">&#34;바나나&#34;</span><span class="p">];</span>
+<span class="nx">fruits</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kr">const</span> <span class="nx">apple</span> <span class="o">=</span> <span class="nx">fruits</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">item</span> <span class="o">===</span> <span class="s2">&#34;사과&#34;</span><span class="p">);</span>
+
+<span class="c1">//transfile
+</span><span class="c1"></span><span class="p">(</span><span class="s2">&#34;use strict&#34;</span><span class="p">);</span>
+
+<span class="nx">require</span><span class="p">(</span><span class="s2">&#34;core-js/modules/es.object.to-string.js&#34;</span><span class="p">);</span>
+<span class="nx">require</span><span class="p">(</span><span class="s2">&#34;core-js/modules/es.array.filter.js&#34;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;사과&#34;</span><span class="p">,</span> <span class="s2">&#34;바나나&#34;</span><span class="p">];</span>
+<span class="nx">fruits</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">apple</span> <span class="o">=</span> <span class="nx">fruits</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">item</span> <span class="o">===</span> <span class="s2">&#34;사과&#34;</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>targets:</strong> 타깃 browserlist 옵션을 따로 지정할 수 있습니다.
+<img src="https://user-images.githubusercontent.com/46988995/229369775-46e184ca-8da2-41b2-ba9c-12cacfd9467d.png" alt="browserlist"  /></p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">//지원</span> <span class="err">타겟팅</span> <span class="err">환경:</span> <span class="err">android,</span> <span class="err">chrome,</span> <span class="err">deno,</span> <span class="err">edge,</span> <span class="err">electron,</span> <span class="err">firefox,</span> <span class="err">ie,</span> <span class="err">ios,</span> <span class="err">node,</span> <span class="err">opera,</span> <span class="err">rhino,</span> <span class="err">safari,</span> <span class="err">samsung.</span>
+<span class="p">{</span>
+  <span class="err">...</span>
+  <span class="nt">&#34;targets&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//특정</span> <span class="err">브라우저</span> <span class="err">또는</span> <span class="err">런타임</span> <span class="err">환경</span> <span class="err">버전에</span> <span class="err">맞춰</span> <span class="err">타겟팅</span>
+    <span class="nt">&#34;chrome&#34;</span><span class="p">:</span> <span class="s2">&#34;58&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;ie&#34;</span><span class="p">:</span> <span class="s2">&#34;11&#34;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">{</span>
+  <span class="err">...</span>
+  <span class="nt">&#34;targets&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//특정</span> <span class="err">지역의</span> <span class="err">브라우저</span> <span class="err">사용율,</span> <span class="err">버전에</span> <span class="err">맞춰</span> <span class="err">타겟팅</span>
+    <span class="nt">&#34;browsers&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34; &gt; 5% in KR&#34;</span><span class="p">,</span> <span class="s2">&#34;last 2 Chrome version&#34;</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+<p>@babel/preset-env로 구성한 최종 설정</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">//.babelrc.json</span>
+<span class="p">{</span>
+  <span class="nt">&#34;presets&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&#34;@babel/preset-env&#34;</span><span class="p">,</span>
+      <span class="p">{</span>
+        <span class="nt">&#34;corejs&#34;</span><span class="p">:</span> <span class="s2">&#34;3.29&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;useBuiltIns&#34;</span><span class="p">:</span> <span class="s2">&#34;entry&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;targets&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&#34;ie&#34;</span><span class="p">:</span> <span class="s2">&#34;11&#34;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&#34;@babel/preset-react&#34;</span> <span class="err">//react</span> <span class="err">환경을</span> <span class="err">위한</span> <span class="err">babel</span> <span class="err">preset</span>
+  <span class="p">],</span>
+  <span class="nt">&#34;plugins&#34;</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</code></pre></div><p><strong>@babel/plugin-transform-runtime</strong><br>
+<code>@babel/runtime</code>과 <code>core-js3</code>가 통합된 <code>transform-runtime</code> 플러그인을 사용하면 전역 스코프를 오염시키지 않습니다. 또한, 기존 <code>@babel/runtime</code>에서 지원하지 않았던 인스턴스 메서드도 지원합니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kd">var</span> <span class="nx">_interopRequireDefault</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;@babel/runtime-corejs3/helpers/interopRequireDefault&#34;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">_forEach</span> <span class="o">=</span> <span class="nx">_interopRequireDefault</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s2">&#34;@babel/runtime-corejs3/core-js-stable/instance/for-each&#34;</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">_filter</span> <span class="o">=</span> <span class="nx">_interopRequireDefault</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s2">&#34;@babel/runtime-corejs3/core-js-stable/instance/filter&#34;</span><span class="p">));</span>
+
+<span class="kd">var</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;사과&#34;</span><span class="p">,</span> <span class="s2">&#34;바나나&#34;</span><span class="p">];</span>
+<span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">_forEach</span><span class="p">.</span><span class="k">default</span><span class="p">)(</span><span class="nx">fruits</span><span class="p">).</span><span class="nx">call</span><span class="p">(</span><span class="nx">fruits</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">apple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">_filter</span><span class="p">.</span><span class="k">default</span><span class="p">)(</span><span class="nx">fruits</span><span class="p">).</span><span class="nx">call</span><span class="p">(</span><span class="nx">fruits</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">item</span> <span class="o">===</span> <span class="s2">&#34;사과&#34;</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div><p><code>corejs</code> 속성으로 런타임 헬퍼를 지정할 수 있습니다.</p>
+<ul>
+<li><strong>fasle (기본):</strong>  babel/runtime</li>
+<li><strong>2:</strong>  @babel/runtime-corejs2</li>
+<li><strong>3:</strong>  babel/runtime-corejs3</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">//.babelrc.json</span>
+<span class="p">{</span>
+  <span class="nt">&#34;presets&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&#34;@babel/preset-env&#34;</span><span class="p">,</span>
+      <span class="p">{</span>
+        <span class="nt">&#34;targets&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&#34;ie&#34;</span><span class="p">:</span> <span class="mi">11</span>
+        <span class="p">},</span>
+        <span class="nt">&#34;modules&#34;</span><span class="p">:</span> <span class="s2">&#34;cjs&#34;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&#34;@babel/preset-react&#34;</span>
+  <span class="p">],</span>
+  <span class="nt">&#34;plugins&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&#34;@babel/plugin-transform-runtime&#34;</span><span class="p">,</span>
+      <span class="p">{</span>
+        <span class="nt">&#34;corejs&#34;</span><span class="p">:</span> <span class="mi">3</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div><p>최종적으로 <code>@babel/plugin-transform-runtime</code> 설정을 통해 ie11 환경에서도 react 페이지를 정상적으로 실행시킬 수 있었습니다. <code>fetch</code> 문법은 ECMA Script 명시된 문법은 아니므로, 별도의 polyfill 추가가 필요합니다.</p>
+<p><img src="https://user-images.githubusercontent.com/46988995/229476300-d60e151d-bc8c-4485-a7fe-c0b755c39533.png" alt="success-react-ie"  /></p>
+<hr>
+<h2 id="유용한-polyfill">유용한 Polyfill</h2>
+<h3 id="whatwg-fetch">whatwg-fetch</h3>
+<p>fetch를 제공해주는 polyfill 입니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//📁src/index.js
+</span><span class="c1"></span><span class="kr">import</span> <span class="s1">&#39;whatwg-fetch&#39;</span>
+
+<span class="nx">fetch</span><span class="p">(...);</span>
+</code></pre></div><h3 id="react-app-polyfill"><strong>react-app-polyfill</strong></h3>
+<p><code>ie</code> 브라우저에 초점을 맞춘 react에서 제공하는 polyfill 입니다.<br>
+아래 5가지 polyfill을 제공합니다.</p>
+<ul>
+<li>promise, async-await</li>
+<li>fetch</li>
+<li>Object.assign</li>
+<li>Symbol</li>
+<li>Array.from, Array Spread</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//📁src/index.js
+</span><span class="c1"></span><span class="kr">import</span> <span class="s1">&#39;react-app-polyfill/ie9&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s1">&#39;react-app-polyfill/stable&#39;</span><span class="p">;</span>
+</code></pre></div><h2 id="참고-자료">참고 자료</h2>
+<ul>
+<li><a class="link" href="https://github.com/browserslist/browserslist"  target="_blank" rel="noopener"
+    ><strong>browserlist - github</strong></a></li>
+<li><strong><a class="link" href="https://remysharp.com/2010/10/08/what-is-a-polyfill"  target="_blank" rel="noopener"
+    >What is a polyfill - Remy Sharp</a></strong></li>
+<li><a class="link" href="https://ko.javascript.info/polyfills"  target="_blank" rel="noopener"
+    ><strong>JavaScript.Info - Polyfill</strong></a></li>
+<li><strong><a class="link" href="https://blog.shiren.dev/2020-12-01/"  target="_blank" rel="noopener"
+    >browerslist 쾌속 가이드</a></strong></li>
+<li><strong><a class="link" href="https://github.com/zloirock/core-js/blob/master/docs/2019-03-19-core-js-3-babel-and-a-look-into-the-future.md#babelruntime"  target="_blank" rel="noopener"
+    >core-js@3, babel and a look into the future - core-js</a></strong></li>
+<li><a class="link" href="https://babeljs.io/docs/"  target="_blank" rel="noopener"
+    ><strong>Babel Docs - Babel 공식 문서</strong></a></li>
+</ul>
+
+</section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false
+    });
+</script>
+<style>
+     
+    @media all and (min-width: 1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+    }
+
+    @media all and (max-width: 1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: '목차';
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+    .toc-link::before {
+        width: 0;
+    }
+</style>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/polyfill/">polyfill</a>
+        
+            <a href="/tags/babell/">babell</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title"></h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/react-ref/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/thumb/react.png" loading="lazy" data-key="react-ref" data-hash="../../assets/thumb/react.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[React] Ref의 개념과 useImperativeHandle, Uncontrolled form</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/redux/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/thumb/js.png" loading="lazy" data-key="redux" data-hash="../../assets/thumb/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[Redux] Redux 사용해보기</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/composition-api/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/thumb/vue.png" loading="lazy" data-key="composition-api" data-hash="../../assets/thumb/vue.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[Vue] Composition API 사용 방법</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/react-router/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/thumb/react.png" loading="lazy" data-key="react-router" data-hash="../../assets/thumb/react.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[React] 리액트 라우터 기본 사용방법</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/react-props/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/thumb/react.png" loading="lazy" data-key="react-props" data-hash="../../assets/thumb/react.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[React] 컴포넌트에 Props 전달하기</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="comments-container">
+    
+    <script src="https://utteranc.es/client.js"
+        repo="yondo123/hugo-blog-comments"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+
+<style>
+    .comments-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 Jiny
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

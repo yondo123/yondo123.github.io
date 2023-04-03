@@ -346,201 +346,201 @@
 <p>말 그대로 요청(Request)과 응답(Response) 사이 중간(middle)에서 핸들링해주는 익스프레스의 핵심 기능이다.</p>
 <h3 id="사용법">사용법</h3>
 <p><code>use</code>메서드를 사용하고 요청 메서드 내부에서 미들웨어를 정의할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="c1">//모든 요청에서 미들웨어 실행
-</span><span class="ln"> 2</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)=&gt;</span> <span class="p">{</span>
-<span class="ln"> 3</span>	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;middle ware execute&#39;</span><span class="p">);</span>
-<span class="ln"> 4</span>	<span class="nx">next</span><span class="p">();</span>
-<span class="ln"> 5</span><span class="p">},</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 6</span>	<span class="c1">// code..
-</span><span class="ln"> 7</span><span class="c1"></span><span class="p">});;</span>
-<span class="ln"> 8</span>
-<span class="ln"> 9</span><span class="c1">//특정 요청 또는 경로에서 미들웨어 실행 (next 인자는 생략 가능)
-</span><span class="ln">10</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">((</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)=&gt;{</span>
-<span class="ln">11</span>	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;request get, &#39;/&#39;&#34;</span><span class="p">);</span>
-<span class="ln">12</span>	<span class="nx">next</span><span class="p">();</span>
-<span class="ln">13</span><span class="p">},</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)=&gt;{</span>
-<span class="ln">14</span>	<span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;error!&#39;</span><span class="p">);</span>
-<span class="ln">15</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//모든 요청에서 미들웨어 실행
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)=&gt;</span> <span class="p">{</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;middle ware execute&#39;</span><span class="p">);</span>
+	<span class="nx">next</span><span class="p">();</span>
+<span class="p">},</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+	<span class="c1">// code..
+</span><span class="c1"></span><span class="p">});;</span>
+
+<span class="c1">//특정 요청 또는 경로에서 미들웨어 실행 (next 인자는 생략 가능)
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">((</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)=&gt;{</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;request get, &#39;/&#39;&#34;</span><span class="p">);</span>
+	<span class="nx">next</span><span class="p">();</span>
+<span class="p">},</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)=&gt;{</span>
+	<span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;error!&#39;</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div><h3 id="연속성">연속성</h3>
 <p>여러 인자로 콜백 함수를 전달하면 연달아 미들웨어를 사용할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span>
-<span class="ln"> 2</span>    <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 3</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;first middleware!&#39;</span><span class="p">);</span>
-<span class="ln"> 4</span>        <span class="nx">next</span><span class="p">();</span>
-<span class="ln"> 5</span>    <span class="p">},</span>
-<span class="ln"> 6</span>    <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 7</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;second middleware!&#39;</span><span class="p">);</span>
-<span class="ln"> 8</span>        <span class="nx">next</span><span class="p">();</span>
-<span class="ln"> 9</span>    <span class="p">},</span>
-<span class="ln">10</span>    <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">11</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;thrid middleware!&#39;</span><span class="p">);</span>
-<span class="ln">12</span>        <span class="nx">next</span><span class="p">();</span>
-<span class="ln">13</span>    <span class="p">}</span>
-<span class="ln">14</span><span class="p">);</span>
-<span class="ln">15</span>
-<span class="ln">16</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">17</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;complete!&#39;</span><span class="p">);</span>
-<span class="ln">18</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span>
+    <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;first middleware!&#39;</span><span class="p">);</span>
+        <span class="nx">next</span><span class="p">();</span>
+    <span class="p">},</span>
+    <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;second middleware!&#39;</span><span class="p">);</span>
+        <span class="nx">next</span><span class="p">();</span>
+    <span class="p">},</span>
+    <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;thrid middleware!&#39;</span><span class="p">);</span>
+        <span class="nx">next</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;complete!&#39;</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div><h3 id="미들웨어-확장">미들웨어 확장</h3>
 <p>미들웨어 내부에 미들웨어를 삽입하는 방식으로, 예를 들어 특정 사용자 별 다른 리소스를 응답하여야 할 경우에 사용한다.<br>
 원리는 미들웨어의 패턴인 <code>(req, res, next)</code> 내부적으로콜백을 전달하는 방식이다. 이러한 패턴을 <strong>미들웨어 확장법</strong>이라 한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">3</span>        <span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;assests&#39;</span><span class="p">)(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">);</span>
-<span class="ln">4</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-<span class="ln">5</span>        <span class="nx">next</span><span class="p">();</span>
-<span class="ln">6</span>    <span class="p">}</span>
-<span class="ln">7</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;assests&#39;</span><span class="p">)(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">next</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">});</span>
 </code></pre></div><h3 id="데이터-공유">데이터 공유</h3>
 <p>혹시 여러 미들웨어에서 요청 값을 공유하고 싶다면 절대로 전역변수<code>(app.set)</code>을 통해 클라이언트의 데이터를 공유해서는 안된다.<br>
 미들웨어의 <code>request</code>인수에 값을 저장하면 요청이 끝나기 전 까지 서로 다른 미들웨어에서 공유할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="c1">// custom middleware
-</span><span class="ln">2</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">3</span>    <span class="nx">req</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="s1">&#39;jiny&#39;</span><span class="p">;</span>
-<span class="ln">4</span>    <span class="nx">next</span><span class="p">();</span>
-<span class="ln">5</span><span class="p">});</span>
-<span class="ln">6</span>
-<span class="ln">7</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">8</span>    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">req</span><span class="p">.</span><span class="nx">data</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span> <span class="c1">//jiny
-</span><span class="ln">9</span><span class="c1"></span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// custom middleware
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="s1">&#39;jiny&#39;</span><span class="p">;</span>
+    <span class="nx">next</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">req</span><span class="p">.</span><span class="nx">data</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span> <span class="c1">//jiny
+</span><span class="c1"></span><span class="p">});</span>
 </code></pre></div><h3 id="에러-핸들링">에러 핸들링</h3>
 <p>에러 처리도 마찬가지로 미들웨어로 핸들링 할 수 있다.<br>
 주의사항으로는 에러 미들웨어는 반드시 인자 4개 <code>(error, req, res, next)</code>를 꼭 받아야한다.<br>
 <strong>(인자를 굳이 쓰지 않아도 반드시 넘겨주어야한다. 함수 취급 자체가 달라진다.)</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">((</span><span class="nx">err</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">err</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-<span class="ln">3</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">((</span><span class="nx">err</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">err</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div><p>에러 처리 미들웨어로 보내는 방법은 <code>next</code>콜백에 여러 객체를 넣어주는 방법이 있다. next에 에러 인자가 들어가게되면 알아서 에러처리 미들웨어로 실행하도록 한다. 에러는 예고 없이 일어나기 때문에 <code>try-catch</code>로 핸들링 해야한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span>
-<span class="ln"> 2</span>    <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 3</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;middle ware execute!&#39;</span><span class="p">);</span>
-<span class="ln"> 4</span>        <span class="nx">next</span><span class="p">();</span>
-<span class="ln"> 5</span>    <span class="p">},</span>
-<span class="ln"> 6</span>    <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 7</span>        <span class="k">try</span> <span class="p">{</span>
-<span class="ln"> 8</span>            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;error!!&#39;</span><span class="p">);</span> <span class="c1">//고의적인 에러 발생
-</span><span class="ln"> 9</span><span class="c1"></span>        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">10</span>            <span class="nx">next</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-<span class="ln">11</span>        <span class="p">}</span>
-<span class="ln">12</span>    <span class="p">}</span>
-<span class="ln">13</span><span class="p">);</span>
-<span class="ln">14</span>
-<span class="ln">15</span><span class="c1">//에러 핸들링 미들웨어
-</span><span class="ln">16</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">((</span><span class="nx">err</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">17</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-<span class="ln">18</span>    <span class="c1">// http 규칙 상 500으로 전달되어야하긴 하지만, 보안 위협을 방지하여 200으로 속인다.
-</span><span class="ln">19</span><span class="c1"></span>    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;undefined error&#39;</span><span class="p">);</span>
-<span class="ln">20</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span>
+    <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;middle ware execute!&#39;</span><span class="p">);</span>
+        <span class="nx">next</span><span class="p">();</span>
+    <span class="p">},</span>
+    <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;error!!&#39;</span><span class="p">);</span> <span class="c1">//고의적인 에러 발생
+</span><span class="c1"></span>        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">next</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="c1">//에러 핸들링 미들웨어
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">((</span><span class="nx">err</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="c1">// http 규칙 상 500으로 전달되어야하긴 하지만, 보안 위협을 방지하여 200으로 속인다.
+</span><span class="c1"></span>    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;undefined error&#39;</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div><h2 id="유용한-미들웨어-소개">유용한 미들웨어 소개</h2>
 <h3 id="morgan">morgan</h3>
 <p>요청 정보를 로깅해주는 라이브러리이다. 여러 옵션이 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
-<span class="ln"> 2</span><span class="kr">const</span> <span class="nx">morgan</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;morgan&#39;</span><span class="p">);</span>
-<span class="ln"> 3</span><span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
-<span class="ln"> 4</span>
-<span class="ln"> 5</span><span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;port&#39;</span><span class="p">,</span> <span class="mi">3111</span><span class="p">);</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">morgan</span><span class="p">(</span><span class="s1">&#39;dev&#39;</span><span class="p">));</span> <span class="c1">//log level
-</span><span class="ln"> 8</span><span class="c1"></span>
-<span class="ln"> 9</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">10</span>    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">);</span>
-<span class="ln">11</span><span class="p">});</span>
-<span class="ln">12</span>
-<span class="ln">13</span><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;port&#39;</span><span class="p">),</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">14</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;start express server&#39;</span><span class="p">);</span>
-<span class="ln">15</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">morgan</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;morgan&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;port&#39;</span><span class="p">,</span> <span class="mi">3111</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">morgan</span><span class="p">(</span><span class="s1">&#39;dev&#39;</span><span class="p">));</span> <span class="c1">//log level
+</span><span class="c1"></span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;port&#39;</span><span class="p">),</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;start express server&#39;</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div><ul>
 <li><strong>dev :</strong> 요청 url과 응답 시간을 출력한다.
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>GET /test <span class="m">200</span> 3.063 ms - <span class="m">4</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">GET /test <span class="m">200</span> 3.063 ms - <span class="m">4</span>
 </code></pre></div></li>
 <li><strong>common :</strong> 접속 ip와 요청 시각을 출력한다.
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>::1 - - <span class="o">[</span>02/Jan/2022:07:34:31 +0000<span class="o">]</span> <span class="s2">&#34;GET /test HTTP/1.1&#34;</span> <span class="m">200</span> <span class="m">4</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">::1 - - <span class="o">[</span>02/Jan/2022:07:34:31 +0000<span class="o">]</span> <span class="s2">&#34;GET /test HTTP/1.1&#34;</span> <span class="m">200</span> <span class="m">4</span>
 </code></pre></div></li>
 <li><strong>combined :</strong> 상세한 정보를 출력한다. (브라우저, 접속 환경, ip)
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>::1 - - <span class="o">[</span>02/Jan/2022:07:36:54 +0000<span class="o">]</span> <span class="s2">&#34;GET /test HTTP/1.1&#34;</span> <span class="m">200</span> <span class="m">4</span> <span class="s2">&#34;-&#34;</span> <span class="s2">&#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">::1 - - <span class="o">[</span>02/Jan/2022:07:36:54 +0000<span class="o">]</span> <span class="s2">&#34;GET /test HTTP/1.1&#34;</span> <span class="m">200</span> <span class="m">4</span> <span class="s2">&#34;-&#34;</span> <span class="s2">&#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36&#34;</span>
 </code></pre></div></li>
 </ul>
 <h3 id="cookieparser">cookieparser</h3>
 <p>쿠키 파싱을 편하게 해주는 라이브러리</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kr">const</span> <span class="nx">cookieparser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;cookie-parser&#39;</span><span class="p">);</span>
-<span class="ln">2</span><span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
-<span class="ln">3</span>
-<span class="ln">4</span><span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;port&#39;</span><span class="p">,</span> <span class="mi">3111</span><span class="p">);</span>
-<span class="ln">5</span>
-<span class="ln">6</span><span class="c1">//[private-key] 비밀키 옵션 (암호화)
-</span><span class="ln">7</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cookieparser</span><span class="p">(</span><span class="s1">&#39;jiny&#39;</span><span class="p">));</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">cookieparser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;cookie-parser&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;port&#39;</span><span class="p">,</span> <span class="mi">3111</span><span class="p">);</span>
+
+<span class="c1">//[private-key] 비밀키 옵션 (암호화)
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cookieparser</span><span class="p">(</span><span class="s1">&#39;jiny&#39;</span><span class="p">));</span>
 </code></pre></div><p><strong>쿠키 얻어오기</strong></p>
 <p>req 인수를 통해 쿠키 값을 가져올 수 있다. 일반 쿠키이면 <code>req.cookies</code>를 사용하고 서명된 쿠키이면 <code>req.signedCookies</code>를 사용한다. (서명 쿠키일 때 <code>signed</code>옵션을 true로 줘야한다.)</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">req</span><span class="p">.</span><span class="nx">signedCookies</span><span class="p">;</span> <span class="c1">//서명이 된 쿠키
-</span><span class="ln">3</span><span class="c1"></span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">signedCookies</span><span class="p">;</span> <span class="c1">//서명이 된 쿠키
+</span><span class="c1"></span><span class="p">});</span>
 </code></pre></div><p><strong>쿠키 생성하기</strong></p>
 <p>res 인수의 <code>cookie</code>메서드를 통해 쿠키를 전송할 수 있다.<br>
 사용 방법은 아래와 같다. 인자에 순서대로 쿠키 이름, 값, 쿠키 옵션 객체 등을 넣어주면된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">res</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;cookie-name&#39;</span><span class="p">,</span> <span class="s1">&#39;cookie-value&#39;</span><span class="p">,</span> <span class="p">{</span>
-<span class="ln">3</span>        <span class="nx">expires</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1000000</span><span class="p">),</span>
-<span class="ln">4</span>        <span class="nx">httpOnly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-<span class="ln">5</span>        <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
-<span class="ln">6</span>        <span class="nx">signed</span><span class="o">:</span> <span class="kc">true</span>
-<span class="ln">7</span>    <span class="p">});</span>
-<span class="ln">8</span>    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;main&#39;</span><span class="p">);</span>
-<span class="ln">9</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s1">&#39;cookie-name&#39;</span><span class="p">,</span> <span class="s1">&#39;cookie-value&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">expires</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1000000</span><span class="p">),</span>
+        <span class="nx">httpOnly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+        <span class="nx">signed</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">});</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;main&#39;</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div><p><strong>쿠키 삭제하기</strong></p>
 <p>더 이상 필요가 없는 쿠키는 <code>clearCookie</code> 메서드로 삭제할 수 있다.<br>
 쿠키를 삭제할 때는 key-value와 옵션도 정확히 일치해야한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/clear&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">res</span><span class="p">.</span><span class="nx">clearCookie</span><span class="p">(</span><span class="s1">&#39;cookie-name&#39;</span><span class="p">,</span> <span class="s1">&#39;cookie-value&#39;</span><span class="p">,</span> <span class="p">{</span>
-<span class="ln">3</span>        <span class="nx">expires</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1000000</span><span class="p">),</span>
-<span class="ln">4</span>        <span class="nx">httpOnly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-<span class="ln">5</span>        <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span>
-<span class="ln">6</span>    <span class="p">});</span>
-<span class="ln">7</span>    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;clear-cookie!&#39;</span><span class="p">);</span>
-<span class="ln">8</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/clear&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">clearCookie</span><span class="p">(</span><span class="s1">&#39;cookie-name&#39;</span><span class="p">,</span> <span class="s1">&#39;cookie-value&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">expires</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1000000</span><span class="p">),</span>
+        <span class="nx">httpOnly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span>
+    <span class="p">});</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;clear-cookie!&#39;</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div><h3 id="static">static</h3>
 <p>express 환경에서 정적인 파일(html, css 등등..)들을 제공하는 일종의 라우터 역할을 하는 미들웨어이다. 요청 경로와 실제 경로를 다르게 설정 할 수 있어 상대적으로 보안에도 조금 도움이 된다.</p>
 <p>여러 미들웨어들을 사용할 때 첫 부분에 와야 자원 낭비를 조금이나마(?) 줄일 수 있다. (미들웨어의 순서는 생각하면서 작성)</p>
 <p><strong>사용법</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
-<span class="ln">2</span><span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
-<span class="ln">3</span>
-<span class="ln">4</span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">&#39;/public&#39;</span><span class="p">));</span>
-<span class="ln">5</span><span class="c1">//디렉토리 절대 경로 식을 사용하면 더 안정적이다.
-</span><span class="ln">6</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">&#39;public&#39;</span><span class="p">));</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">&#39;/public&#39;</span><span class="p">));</span>
+<span class="c1">//디렉토리 절대 경로 식을 사용하면 더 안정적이다.
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">&#39;public&#39;</span><span class="p">));</span>
 </code></pre></div><h3 id="express-session">express-session</h3>
 <p><code>cookie-parser</code>처럼 세션을 효율적으로 관리할 수 있게 하는 라이브러리이다. 요청 클라이언트 마다 별도의 데이터를 set 해 앱 내에서 관리할 수 있다. (로그인 기능, 임시 데이터 등)</p>
 <p>1.5 버전 이전이라면 <code>cookie-parser</code>미들웨어 보다 앞에 선언해야한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npm i express-session
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm i express-session
 </code></pre></div><p><strong>사용법</strong></p>
 <p><code>express-session</code>을 import 후, 인자로 세션에 대한 설정 객체를 넘기면 된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">session</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express-session&#39;</span><span class="p">);</span>
-<span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span>
-<span class="ln"> 4</span>    <span class="nx">session</span><span class="p">({</span>
-<span class="ln"> 5</span>        <span class="nx">resave</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//항상 세션을 덮어씌울지
-</span><span class="ln"> 6</span><span class="c1"></span>        <span class="nx">saveUninitialized</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">//처음부터 세션을 생성할지
-</span><span class="ln"> 7</span><span class="c1"></span>        <span class="nx">secret</span><span class="o">:</span> <span class="s1">&#39;secret-key&#39;</span><span class="p">,</span> <span class="c1">//쿠키 서명 값
-</span><span class="ln"> 8</span><span class="c1"></span>        <span class="nx">cookie</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 9</span>            <span class="c1">//세션 쿠키 옵션
-</span><span class="ln">10</span><span class="c1"></span>            <span class="nx">httpOnly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-<span class="ln">11</span>            <span class="nx">secure</span><span class="o">:</span> <span class="kc">false</span>
-<span class="ln">12</span>        <span class="p">},</span>
-<span class="ln">13</span>        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;session-cookie&#39;</span> <span class="c1">//세션 쿠키 이름 (defalut : connect.sid)
-</span><span class="ln">14</span><span class="c1"></span>    <span class="p">})</span>
-<span class="ln">15</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">session</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express-session&#39;</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span>
+    <span class="nx">session</span><span class="p">({</span>
+        <span class="nx">resave</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//항상 세션을 덮어씌울지
+</span><span class="c1"></span>        <span class="nx">saveUninitialized</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">//처음부터 세션을 생성할지
+</span><span class="c1"></span>        <span class="nx">secret</span><span class="o">:</span> <span class="s1">&#39;secret-key&#39;</span><span class="p">,</span> <span class="c1">//쿠키 서명 값
+</span><span class="c1"></span>        <span class="nx">cookie</span><span class="o">:</span> <span class="p">{</span>
+            <span class="c1">//세션 쿠키 옵션
+</span><span class="c1"></span>            <span class="nx">httpOnly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">secure</span><span class="o">:</span> <span class="kc">false</span>
+        <span class="p">},</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;session-cookie&#39;</span> <span class="c1">//세션 쿠키 이름 (defalut : connect.sid)
+</span><span class="c1"></span>    <span class="p">})</span>
+<span class="p">);</span>
 </code></pre></div><h3 id="dotenv">dotenv</h3>
 <p>시스템 내의 환경 변수를 효율적으로 관리해주는 라이브러리이다. 기존 node에서 존재하는 <code>process.env</code>객체로 관리하는 것과 같은 역할을 한다. (비밀키와 같은 외부에 노출되어야 하지 않는 값들에 사용한다.)</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npm install dotenv
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm install dotenv
 </code></pre></div><p><strong>사용법</strong></p>
 <p>프로젝트 내부에 <code>.env</code>라는 파일을 만든다.<br>
 아래와 같이 <code>key = value</code>형태로 관리 프로퍼티들을 작성한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span><span class="nv">COOKIE_PRIKEY</span> <span class="o">=</span> jiny
-<span class="ln">2</span><span class="nv">DB_PASSWORD</span> <span class="o">=</span> mysql123
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">COOKIE_PRIKEY</span> <span class="o">=</span> jiny
+<span class="nv">DB_PASSWORD</span> <span class="o">=</span> mysql123
 </code></pre></div><p>프로젝트 메인 파일에서 <code>dotenv</code>모듈을 불러온 뒤 <code>config()</code>함수를 호출만 하면 된다. 주의 할 사항은 먼저 <code>process.env</code>를 읽어버리면 안된다. 그래서 보통 소스 최상위 라인에 dotenv.config 호출을 위치시킨다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kr">const</span> <span class="nx">dotenv</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;dotenv&#39;</span><span class="p">);</span>
-<span class="ln">2</span><span class="nx">dotenv</span><span class="p">.</span><span class="nx">config</span><span class="p">();</span>
-<span class="ln">3</span>
-<span class="ln">4</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">COOKIE_PRIKEY</span><span class="p">);</span> <span class="c1">//jiny
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">dotenv</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;dotenv&#39;</span><span class="p">);</span>
+<span class="nx">dotenv</span><span class="p">.</span><span class="nx">config</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">COOKIE_PRIKEY</span><span class="p">);</span> <span class="c1">//jiny
 </span></code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong><a class="link" href="http://www.yes24.com/Product/Goods/91213376"  target="_blank" rel="noopener"

@@ -355,67 +355,67 @@
 <li>
 <p>프로젝트 최상위 경로에 <code>.prettierrc.js</code>파일을 생성한다.<br>
 node 환경의 root는 package.json이 위치한 경로라고 이해하면 된다. 어떤 일관성을 유지 할 것인지 설정을 해주어야하기 때문에 설정 파일을 생성한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">singleQuote</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//작은 따옴표 사용 (문자열)
-</span><span class="ln">3</span><span class="c1"></span>    <span class="nx">bracketSpacing</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">//객체 리터럴 공백 제거
-</span><span class="ln">4</span><span class="c1"></span>    <span class="nx">printWidth</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span> <span class="c1">//코드의 블록 너비
-</span><span class="ln">5</span><span class="c1"></span>    <span class="nx">tabWidth</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span> <span class="c1">//개행 단위
-</span><span class="ln">6</span><span class="c1"></span>    <span class="nx">semi</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//문장 뒤에 세미클론 붙임
-</span><span class="ln">7</span><span class="c1"></span>    <span class="nx">arrowParens</span><span class="o">:</span> <span class="s1">&#39;avoid&#39;</span><span class="p">,</span> <span class="c1">//화살표 함수에서 매개변수 괄호 여부
-</span><span class="ln">8</span><span class="c1"></span>    <span class="nx">trailingComma</span><span class="o">:</span> <span class="s1">&#39;none&#39;</span> <span class="c1">//배열, 객체 속성에서 마지막 요소에 컴마 붙이지 않음
-</span><span class="ln">9</span><span class="c1"></span><span class="p">};</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">singleQuote</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//작은 따옴표 사용 (문자열)
+</span><span class="c1"></span>    <span class="nx">bracketSpacing</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">//객체 리터럴 공백 제거
+</span><span class="c1"></span>    <span class="nx">printWidth</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span> <span class="c1">//코드의 블록 너비
+</span><span class="c1"></span>    <span class="nx">tabWidth</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span> <span class="c1">//개행 단위
+</span><span class="c1"></span>    <span class="nx">semi</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//문장 뒤에 세미클론 붙임
+</span><span class="c1"></span>    <span class="nx">arrowParens</span><span class="o">:</span> <span class="s1">&#39;avoid&#39;</span><span class="p">,</span> <span class="c1">//화살표 함수에서 매개변수 괄호 여부
+</span><span class="c1"></span>    <span class="nx">trailingComma</span><span class="o">:</span> <span class="s1">&#39;none&#39;</span> <span class="c1">//배열, 객체 속성에서 마지막 요소에 컴마 붙이지 않음
+</span><span class="c1"></span><span class="p">};</span>
 </code></pre></div><p>자주 사용하는 옵션을 예시로 들었다. 추가적인 옵션은 <a class="link" href="https://prettier.io/docs/en/options.html"  target="_blank" rel="noopener"
     >Prettier</a> 공식 문서에서 확인 할 수 있다.</p>
 </li>
 <li>
 <p>마지막으로 코드를 저장 할 때마다 포맷팅이 되어야 하니 VS Code <code>settings.json</code>에서 아래의 옵션을 추가한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln">1</span><span class="err">//settings.json</span>
-<span class="ln">2</span><span class="s2">&#34;editor.formatOnSave&#34;</span><span class="err">:</span> <span class="kc">true</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">//settings.json</span>
+<span class="s2">&#34;editor.formatOnSave&#34;</span><span class="err">:</span> <span class="kc">true</span>
 </code></pre></div></li>
 <li>
 <p>간혹 (3) 까지 진행을 하였음에도 불구하고, <code>.vue</code>컴포넌트 파일에서 자동 포맷팅이 안된다면 아래의 옵션도 추가해주자.
 주로 Vetur, EsLint 등 다른 포맷팅을 지원해주는 플러그인과 충돌나서 그러는 경우가 많다고 한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln">1</span><span class="err">//settings.json</span>
-<span class="ln">2</span><span class="s2">&#34;[vue]&#34;</span><span class="err">:</span> <span class="p">{</span>
-<span class="ln">3</span>      <span class="nt">&#34;editor.defaultFormatter&#34;</span><span class="p">:</span> <span class="s2">&#34;esbenp.prettier-vscode&#34;</span>
-<span class="ln">4</span><span class="p">}</span><span class="err">,</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">//settings.json</span>
+<span class="s2">&#34;[vue]&#34;</span><span class="err">:</span> <span class="p">{</span>
+      <span class="nt">&#34;editor.defaultFormatter&#34;</span><span class="p">:</span> <span class="s2">&#34;esbenp.prettier-vscode&#34;</span>
+<span class="p">}</span><span class="err">,</span>
 </code></pre></div></li>
 </ol>
 <h3 id="eslint-설치">Eslint 설치</h3>
 <p>EsLint는 Prettier보다 더 넓은 기능을 갖춘 플러그인이다. 이름 그대로 린트 (문법 검사) 기능은 기본이고, Prettier에서 제공하는 기능인 포맷팅 기능도 자체적으로 지원한다.</p>
 <ol>
 <li>vue-cli 환경에서 EsLint를 사용하기 위해 아래와 같이 플러그인을 설치한다.
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npm install --save-dev eslint eslint-plugin-vue
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm install --save-dev eslint eslint-plugin-vue
 </code></pre></div></li>
 <li>전역 설정을 위해 최상위 경로에 <code>.eslintrc.js</code>파일을 생성한다. 기본 구조는 아래 소스를 참고.
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="c1">//.eslintrc.js
-</span><span class="ln">2</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-<span class="ln">3</span>    <span class="kr">extends</span><span class="o">:</span> <span class="p">[</span>
-<span class="ln">4</span>        <span class="s1">&#39;plugin:vue/vue3-recommended&#39;</span> <span class="c1">//Vue 3.X 버전 권장 규칙
-</span><span class="ln">5</span><span class="c1"></span>        <span class="c1">// &#39;plugin:vue/recommended&#39; // Vue 2.X 버전을 사용한다면 활성화
-</span><span class="ln">6</span><span class="c1"></span>    <span class="p">],</span>
-<span class="ln">7</span>    <span class="nx">rules</span><span class="o">:</span> <span class="p">{}</span>
-<span class="ln">8</span><span class="p">};</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//.eslintrc.js
+</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kr">extends</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s1">&#39;plugin:vue/vue3-recommended&#39;</span> <span class="c1">//Vue 3.X 버전 권장 규칙
+</span><span class="c1"></span>        <span class="c1">// &#39;plugin:vue/recommended&#39; // Vue 2.X 버전을 사용한다면 활성화
+</span><span class="c1"></span>    <span class="p">],</span>
+    <span class="nx">rules</span><span class="o">:</span> <span class="p">{}</span>
+<span class="p">};</span>
 </code></pre></div><p><code>extends</code>속성에 여러 규칙들을 기입할 수 있으며 (규칙 ID 여러개로 관리가 가능하다.) 자세한 설명은 <a class="link" href="https://eslint.vuejs.org/rules/comment-directive.html"  target="_blank" rel="noopener"
     >eslint-plugin-vue 공식 문서</a>에서 확인할 수 있다.</p>
 </li>
 <li>옵션 설정
 이 부분은 워낙 방대해 사용하고 있는 설정 기준으로 설명해보자면
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="c1">//.eslintrc.js
-</span><span class="ln"> 2</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-<span class="ln"> 3</span>    <span class="nx">root</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-<span class="ln"> 4</span>    <span class="nx">env</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 5</span>        <span class="nx">node</span><span class="o">:</span> <span class="kc">true</span>
-<span class="ln"> 6</span>    <span class="p">},</span>
-<span class="ln"> 7</span>    <span class="kr">extends</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;plugin:vue/vue3-essential&#39;</span><span class="p">,</span> <span class="s1">&#39;eslint:recommended&#39;</span><span class="p">,</span> <span class="s1">&#39;@vue/prettier&#39;</span><span class="p">],</span>
-<span class="ln"> 8</span>    <span class="nx">parserOptions</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 9</span>        <span class="nx">parser</span><span class="o">:</span> <span class="s1">&#39;babel-eslint&#39;</span>
-<span class="ln">10</span>    <span class="p">},</span>
-<span class="ln">11</span>    <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln">12</span>        <span class="s1">&#39;no-console&#39;</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="s1">&#39;production&#39;</span> <span class="o">?</span> <span class="s1">&#39;warn&#39;</span> <span class="o">:</span> <span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="c1">//콘솔 사용 제한
-</span><span class="ln">13</span><span class="c1"></span>        <span class="s1">&#39;no-debugger&#39;</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="s1">&#39;production&#39;</span> <span class="o">?</span> <span class="s1">&#39;warn&#39;</span> <span class="o">:</span> <span class="s1">&#39;off&#39;</span> <span class="c1">//디버거 사용 제한
-</span><span class="ln">14</span><span class="c1"></span>    <span class="p">}</span>
-<span class="ln">15</span><span class="p">};</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//.eslintrc.js
+</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">root</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">env</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">node</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">},</span>
+    <span class="kr">extends</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;plugin:vue/vue3-essential&#39;</span><span class="p">,</span> <span class="s1">&#39;eslint:recommended&#39;</span><span class="p">,</span> <span class="s1">&#39;@vue/prettier&#39;</span><span class="p">],</span>
+    <span class="nx">parserOptions</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">parser</span><span class="o">:</span> <span class="s1">&#39;babel-eslint&#39;</span>
+    <span class="p">},</span>
+    <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s1">&#39;no-console&#39;</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="s1">&#39;production&#39;</span> <span class="o">?</span> <span class="s1">&#39;warn&#39;</span> <span class="o">:</span> <span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="c1">//콘솔 사용 제한
+</span><span class="c1"></span>        <span class="s1">&#39;no-debugger&#39;</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="s1">&#39;production&#39;</span> <span class="o">?</span> <span class="s1">&#39;warn&#39;</span> <span class="o">:</span> <span class="s1">&#39;off&#39;</span> <span class="c1">//디버거 사용 제한
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div><ul>
 <li><code>root</code> : 최상위 디렉토리 여부</li>
 <li><code>env</code> : 프로젝트 환경 <a class="link" href="https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments"  target="_blank" rel="noopener"
@@ -436,13 +436,13 @@ node 환경의 root는 package.json이 위치한 경로라고 이해하면 된�
 자세한 규칙은 <a class="link" href="https://eslint.org/docs/rules/"  target="_blank" rel="noopener"
     >공식 문서</a>를 참고하면 되고 아래와 같이 사용하면된다.</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln">1</span><span class="p">{</span>
-<span class="ln">2</span>    <span class="nt">&#34;rules&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln">3</span>        <span class="nt">&#34;eqeqeq&#34;</span><span class="p">:</span> <span class="s2">&#34;off&#34;</span><span class="p">,</span>
-<span class="ln">4</span>        <span class="nt">&#34;curly&#34;</span><span class="p">:</span> <span class="s2">&#34;error&#34;</span><span class="p">,</span>
-<span class="ln">5</span>        <span class="nt">&#34;quotes&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;error&#34;</span><span class="p">,</span> <span class="s2">&#34;double&#34;</span><span class="p">]</span>
-<span class="ln">6</span>    <span class="p">}</span>
-<span class="ln">7</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;rules&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;eqeqeq&#34;</span><span class="p">:</span> <span class="s2">&#34;off&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;curly&#34;</span><span class="p">:</span> <span class="s2">&#34;error&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;quotes&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;error&#34;</span><span class="p">,</span> <span class="s2">&#34;double&#34;</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></li>
 </ol>
 <h2 id="참고자료">참고자료</h2>

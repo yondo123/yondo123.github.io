@@ -344,17 +344,17 @@
     <div class="js-toc"></div>
     <h2 id="선형검색">선형검색</h2>
 <p>배열에서 원하는 키 값 요소를 만날 때까지 순서대로 요소 검색, 값을 찾지 못하고 배열을 모두 순회하거나 값을 찾는다면 바로 종료한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kd">function</span> <span class="nx">linearSearch</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">index</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 3</span>        <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">===</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">index</span><span class="p">])</span> <span class="p">{</span>
-<span class="ln"> 4</span>            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-<span class="ln"> 5</span>        <span class="p">}</span>
-<span class="ln"> 6</span>    <span class="p">}</span>
-<span class="ln"> 7</span>    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-<span class="ln"> 8</span><span class="p">}</span>
-<span class="ln"> 9</span>
-<span class="ln">10</span><span class="nx">linearSearch</span><span class="p">(</span><span class="mi">2811</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">304</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span> <span class="c1">//false
-</span><span class="ln">11</span><span class="c1"></span><span class="nx">linearSearch</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">304</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span> <span class="c1">//true
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">linearSearch</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">index</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">===</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">index</span><span class="p">])</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">linearSearch</span><span class="p">(</span><span class="mi">2811</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">304</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span> <span class="c1">//false
+</span><span class="c1"></span><span class="nx">linearSearch</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">304</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span> <span class="c1">//true
 </span></code></pre></div><h2 id="이진검색">이진검색</h2>
 <p><img src="../../assets/js/algorithm-search.png" alt="탐색 알고리즘"  />
 이미 정렬되어 있는 배열(전제 조건)에서 범위를 좁혀가며 값을 찾는 탐색법 선형 탐색보다 속도가 빠르긴하지만 정렬되어 있는 리스트에 적용할 수 있다.<br>
@@ -364,30 +364,30 @@
 <li>중앙 요소가 찾는 Key보다 작을 때 기존 (center + 1) ~ right 까지 탐색 범위를 좁힌다.</li>
 <li>중앙 요소가 찾는 Key보다 클 때 left ~ (center - 1) 까지 탐색 범위를 좁힌다.</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kd">function</span> <span class="nx">binarySearch</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="ln"> 3</span>    <span class="kd">let</span> <span class="nx">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="ln"> 4</span>    <span class="kd">let</span> <span class="nx">right</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-<span class="ln"> 5</span>
-<span class="ln"> 6</span>    <span class="k">while</span> <span class="p">(</span><span class="nx">left</span> <span class="o">&lt;=</span> <span class="nx">right</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 7</span>        <span class="kd">let</span> <span class="nx">center</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">left</span> <span class="o">+</span> <span class="nx">right</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
-<span class="ln"> 8</span>        <span class="kr">const</span> <span class="nx">item</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">center</span><span class="p">];</span>
-<span class="ln"> 9</span>        <span class="nx">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="ln">10</span>        <span class="k">if</span> <span class="p">(</span><span class="nx">item</span> <span class="o">===</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">11</span>            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;true, &#39;</span> <span class="o">+</span> <span class="nx">count</span><span class="p">);</span>
-<span class="ln">12</span>            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-<span class="ln">13</span>        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">item</span> <span class="o">&lt;</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">14</span>            <span class="nx">left</span> <span class="o">=</span> <span class="nx">center</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-<span class="ln">15</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-<span class="ln">16</span>            <span class="nx">right</span> <span class="o">=</span> <span class="nx">center</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-<span class="ln">17</span>        <span class="p">}</span>
-<span class="ln">18</span>    <span class="p">}</span>
-<span class="ln">19</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;false, &#39;</span> <span class="o">+</span> <span class="nx">count</span><span class="p">);</span>
-<span class="ln">20</span>    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-<span class="ln">21</span><span class="p">}</span>
-<span class="ln">22</span>
-<span class="ln">23</span><span class="nx">binarySearch</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]);</span> <span class="c1">//false, 4
-</span><span class="ln">24</span><span class="c1"></span><span class="nx">binarySearch</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]);</span> <span class="c1">//true, 3
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">binarySearch</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">right</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="nx">left</span> <span class="o">&lt;=</span> <span class="nx">right</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">center</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">left</span> <span class="o">+</span> <span class="nx">right</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+        <span class="kr">const</span> <span class="nx">item</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">center</span><span class="p">];</span>
+        <span class="nx">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">item</span> <span class="o">===</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;true, &#39;</span> <span class="o">+</span> <span class="nx">count</span><span class="p">);</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">item</span> <span class="o">&lt;</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">left</span> <span class="o">=</span> <span class="nx">center</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">right</span> <span class="o">=</span> <span class="nx">center</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;false, &#39;</span> <span class="o">+</span> <span class="nx">count</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">binarySearch</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]);</span> <span class="c1">//false, 4
+</span><span class="c1"></span><span class="nx">binarySearch</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]);</span> <span class="c1">//true, 3
 </span></code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li>자료구조와 함께 배우는 알고리즘 입문 - 검색 알고리즘 (Bohyoh Shibata 저)</li>
@@ -515,6 +515,24 @@
                 
                     
 <article class="has-image">
+    <a href="/post/polyfill-and-babel/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="polyfill-and-babel" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Polyfill이 무엇인가요??</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
     <a href="/post/react-ref/">
         
         
@@ -545,24 +563,6 @@
 
         <div class="article-details">
             <h2 class="article-title">[Redux] Redux 사용해보기</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/post/composition-api/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/thumb/vue.png" loading="lazy" data-key="composition-api" data-hash="../../assets/thumb/vue.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[Vue] Composition API 사용 방법</h2>
         </div>
     </a>
 </article>

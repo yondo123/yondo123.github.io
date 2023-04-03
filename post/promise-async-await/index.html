@@ -343,28 +343,28 @@
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
     <h2 id="promise">Promise</h2>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kd">function</span> <span class="nx">callbackDelay</span><span class="p">(</span><span class="nx">sec</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 3</span>        <span class="nx">callback</span><span class="p">(</span><span class="s1">&#39;콜백 Delay&gt;&gt;&#39;</span> <span class="o">+</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toString</span><span class="p">());</span>
-<span class="ln"> 4</span>    <span class="p">},</span> <span class="nx">sec</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>
-<span class="ln"> 5</span><span class="p">}</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span><span class="nx">callbackDelay</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 8</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
-<span class="ln"> 9</span>    <span class="nx">callbackDelay</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">10</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
-<span class="ln">11</span>        <span class="nx">callbackDelay</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">12</span>            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
-<span class="ln">13</span>        <span class="p">});</span>
-<span class="ln">14</span>    <span class="p">});</span>
-<span class="ln">15</span><span class="p">});</span>
-<span class="ln">16</span><span class="cm">/*result
-</span><span class="ln">17</span><span class="cm">1 콜백 Delay&gt;&gt;Sun Jun 07 2020 18:43:56 GMT+0900 (GMT+09:00)
-</span><span class="ln">18</span><span class="cm">promise.js:26
-</span><span class="ln">19</span><span class="cm">2 콜백 Delay&gt;&gt;Sun Jun 07 2020 18:43:57 GMT+0900 (GMT+09:00)
-</span><span class="ln">20</span><span class="cm">promise.js:28
-</span><span class="ln">21</span><span class="cm">3 콜백 Delay&gt;&gt;Sun Jun 07 2020 18:43:58 GMT+0900 (GMT+09:00)
-</span><span class="ln">22</span><span class="cm">*/</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">callbackDelay</span><span class="p">(</span><span class="nx">sec</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="s1">&#39;콜백 Delay&gt;&gt;&#39;</span> <span class="o">+</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toString</span><span class="p">());</span>
+    <span class="p">},</span> <span class="nx">sec</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">callbackDelay</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+    <span class="nx">callbackDelay</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+        <span class="nx">callbackDelay</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+<span class="cm">/*result
+</span><span class="cm">1 콜백 Delay&gt;&gt;Sun Jun 07 2020 18:43:56 GMT+0900 (GMT+09:00)
+</span><span class="cm">promise.js:26
+</span><span class="cm">2 콜백 Delay&gt;&gt;Sun Jun 07 2020 18:43:57 GMT+0900 (GMT+09:00)
+</span><span class="cm">promise.js:28
+</span><span class="cm">3 콜백 Delay&gt;&gt;Sun Jun 07 2020 18:43:58 GMT+0900 (GMT+09:00)
+</span><span class="cm">*/</span>
 </code></pre></div><p>자바스크립트에서 비동기 동작을 할때 우리는 항상 해당 함수에 콜백 함수를 넣어줬다. 만약 타이머로 1초마다 해당 시간을 출력하는 함수를 예시로 들면..<br>
 대표적인 비동기 함수인 setTimeout을 호출할 때 이렇게 매 순간 콜백 함수를 전달해야 1..2..3..형태로 출력되는 것을 볼 수 있다. 하지만 이 코드의 불편함은 콜백이 콜백을 전달함으로써 **콜백지옥(callback hell)**이 펼쳐진다는것이다. 이를 개선하기 위해 <code>Promise</code>객체를 사용하면 더욱 간결하게 비동기 로직에 대응할 수 있다.</p>
 <h3 id="사용법">사용법</h3>
@@ -373,160 +373,160 @@
 <li>
 <p>대기는 프로미스를 생성자로 호출한 순간이다.
 프로미스는 콜백 함수를 인수로 받고, 성공(resolve) - 실패(reject) 상태를 대응할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="c1">//code..
-</span><span class="ln">3</span><span class="c1"></span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//code..
+</span><span class="c1"></span><span class="p">});</span>
 </code></pre></div></li>
 <li>
 <p><code>resolve</code>를 호출할 시 이행 상태가 된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">resolve</span><span class="p">();</span>
-<span class="ln">3</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">resolve</span><span class="p">();</span>
+<span class="p">});</span>
 </code></pre></div></li>
 <li>
 <p>이행(완료) 상태가 되면 <code>then()</code>메서드로 콜백함수를 전달할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="s1">&#39;success!&#39;</span><span class="p">;</span>
-<span class="ln">3</span>    <span class="nx">resolve</span><span class="p">();</span>
-<span class="ln">4</span><span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">5</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
-<span class="ln">6</span><span class="p">});</span>
-<span class="ln">7</span>
-<span class="ln">8</span><span class="c1">//success!
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="s1">&#39;success!&#39;</span><span class="p">;</span>
+    <span class="nx">resolve</span><span class="p">();</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">//success!
 </span></code></pre></div></li>
 <li>
 <p>실패 상태가 되면 <code>catch()</code>메서드로 받을 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="kr">const</span> <span class="nx">fail</span> <span class="o">=</span> <span class="s1">&#39;fail!&#39;</span><span class="p">;</span>
-<span class="ln"> 3</span>    <span class="nx">reject</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">fail</span><span class="p">));</span>
-<span class="ln"> 4</span><span class="p">})</span>
-<span class="ln"> 5</span>    <span class="p">.</span><span class="nx">then</span><span class="p">()</span>
-<span class="ln"> 6</span>    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 7</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
-<span class="ln"> 8</span>    <span class="p">});</span>
-<span class="ln"> 9</span>
-<span class="ln">10</span><span class="c1">//fail!
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">fail</span> <span class="o">=</span> <span class="s1">&#39;fail!&#39;</span><span class="p">;</span>
+    <span class="nx">reject</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">fail</span><span class="p">));</span>
+<span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">()</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+    <span class="p">});</span>
+
+<span class="c1">//fail!
 </span></code></pre></div></li>
 </ol>
 <p>또한 여러개의 Promise들의 인스턴스를 순차적으로 연결시킬 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kd">function</span> <span class="nx">getData</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 3</span>        <span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;success!!&#39;</span><span class="p">);</span> <span class="c1">//then method chain
-</span><span class="ln"> 4</span><span class="c1"></span>    <span class="p">});</span>
-<span class="ln"> 5</span><span class="p">}</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span><span class="nx">getData</span><span class="p">()</span>
-<span class="ln"> 8</span>    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 9</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span> <span class="o">+</span> <span class="s1">&#39;first&#39;</span><span class="p">);</span>
-<span class="ln">10</span>        <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>
-<span class="ln">11</span>    <span class="p">})</span> <span class="c1">//success!!first
-</span><span class="ln">12</span><span class="c1"></span>    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">13</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span> <span class="o">+</span> <span class="s1">&#39;second&#39;</span><span class="p">);</span>
-<span class="ln">14</span>        <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>
-<span class="ln">15</span>    <span class="p">})</span>
-<span class="ln">16</span>    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">17</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span> <span class="o">+</span> <span class="s1">&#39;third&#39;</span><span class="p">);</span>
-<span class="ln">18</span>    <span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">getData</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;success!!&#39;</span><span class="p">);</span> <span class="c1">//then method chain
+</span><span class="c1"></span>    <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nx">getData</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span> <span class="o">+</span> <span class="s1">&#39;first&#39;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>
+    <span class="p">})</span> <span class="c1">//success!!first
+</span><span class="c1"></span>    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span> <span class="o">+</span> <span class="s1">&#39;second&#39;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span> <span class="o">+</span> <span class="s1">&#39;third&#39;</span><span class="p">);</span>
+    <span class="p">});</span>
 </code></pre></div><p>이제 기존 단순히 콜백을 전달하는 방식으로 작성한 타이머 코드를 프로미스 형태로 개선해보자.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kd">function</span> <span class="nx">promiseDelay</span><span class="p">(</span><span class="nx">sec</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 3</span>        <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 4</span>            <span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;프로미스 Delay&gt;&gt;&#39;</span> <span class="o">+</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toString</span><span class="p">());</span>
-<span class="ln"> 5</span>        <span class="p">},</span> <span class="nx">sec</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>
-<span class="ln"> 6</span>    <span class="p">});</span>
-<span class="ln"> 7</span><span class="p">}</span>
-<span class="ln"> 8</span>
-<span class="ln"> 9</span><span class="nx">promiseDelay</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="ln">10</span>    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">11</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">res</span><span class="p">);</span>
-<span class="ln">12</span>        <span class="k">return</span> <span class="nx">promiseDelay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//프로미스를 다시 호출하지 않으면 undefined
-</span><span class="ln">13</span><span class="c1"></span>    <span class="p">})</span>
-<span class="ln">14</span>    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">15</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nx">res</span><span class="p">);</span>
-<span class="ln">16</span>    <span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">promiseDelay</span><span class="p">(</span><span class="nx">sec</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;프로미스 Delay&gt;&gt;&#39;</span> <span class="o">+</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toString</span><span class="p">());</span>
+        <span class="p">},</span> <span class="nx">sec</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nx">promiseDelay</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">res</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">promiseDelay</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//프로미스를 다시 호출하지 않으면 undefined
+</span><span class="c1"></span>    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nx">res</span><span class="p">);</span>
+    <span class="p">});</span>
 </code></pre></div><h3 id="return-활용법">return 활용법</h3>
 <p>프로미스 내부에서는 return 을 사용하지 않고, resolve()만 시행시킨다면 후행의 코드들도 모두 실행한다.<br>
 따라서 즉시 then(이행 상태)으로 넘어가려면 <code>return</code>을 해주면 된다. (함수 return 방식과 동일하다.)</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">attach</span><span class="p">.</span><span class="nx">readFile</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">3</span>        <span class="nx">resolve</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-<span class="ln">4</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">);</span> <span class="c1">// 출력
-</span><span class="ln">5</span><span class="c1"></span>    <span class="p">});</span>
-<span class="ln">6</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">attach</span><span class="p">.</span><span class="nx">readFile</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">resolve</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">);</span> <span class="c1">// 출력
+</span><span class="c1"></span>    <span class="p">});</span>
+<span class="p">});</span>
 </code></pre></div><p><code>catch</code>문 내부에서 return을 통해 에러를 효율적으로 처리할 수있다.<br>
 에러가 발생하면 catch메서드에서 처리하게되는데 , 다시 then으로 넘겨 에러 이후의 처리들도 할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">getUserInfo</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span>
-<span class="ln"> 2</span>    <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 3</span>        <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">({</span> <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="nx">pw</span><span class="o">:</span> <span class="s1">&#39;qwerty&#39;</span> <span class="p">}),</span> <span class="mi">1000</span><span class="p">);</span>
-<span class="ln"> 4</span>    <span class="p">});</span>
-<span class="ln"> 5</span>
-<span class="ln"> 6</span><span class="kr">const</span> <span class="nx">executeHandler</span> <span class="o">=</span> <span class="p">(</span><span class="nx">userInfo</span><span class="p">)</span> <span class="p">=&gt;</span>
-<span class="ln"> 7</span>    <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 8</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">userInfo</span><span class="p">));</span>
-<span class="ln"> 9</span>        <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">reject</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;fail process&#39;</span><span class="p">)),</span> <span class="mi">1000</span><span class="p">);</span>
-<span class="ln">10</span>    <span class="p">});</span>
-<span class="ln">11</span>
-<span class="ln">12</span><span class="nx">getUserInfo</span><span class="p">()</span>
-<span class="ln">13</span>    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">userInfo</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">executeHandler</span><span class="p">(</span><span class="nx">userInfo</span><span class="p">))</span>
-<span class="ln">14</span>    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">15</span>        <span class="k">return</span> <span class="sb">`&#39;</span><span class="si">${</span><span class="nx">error</span><span class="si">}</span><span class="sb">&#39; handlling success!!`</span><span class="p">;</span>
-<span class="ln">16</span>    <span class="p">})</span> <span class="c1">//promise Chain, 오류가 발생하더라도 다시 값을 처리해 .then(result)로 넘길 수 있다.
-</span><span class="ln">17</span><span class="c1"></span>    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">));</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">getUserInfo</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span>
+    <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">resolve</span><span class="p">({</span> <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="nx">pw</span><span class="o">:</span> <span class="s1">&#39;qwerty&#39;</span> <span class="p">}),</span> <span class="mi">1000</span><span class="p">);</span>
+    <span class="p">});</span>
+
+<span class="kr">const</span> <span class="nx">executeHandler</span> <span class="o">=</span> <span class="p">(</span><span class="nx">userInfo</span><span class="p">)</span> <span class="p">=&gt;</span>
+    <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">userInfo</span><span class="p">));</span>
+        <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">reject</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;fail process&#39;</span><span class="p">)),</span> <span class="mi">1000</span><span class="p">);</span>
+    <span class="p">});</span>
+
+<span class="nx">getUserInfo</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">userInfo</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">executeHandler</span><span class="p">(</span><span class="nx">userInfo</span><span class="p">))</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="sb">`&#39;</span><span class="si">${</span><span class="nx">error</span><span class="si">}</span><span class="sb">&#39; handlling success!!`</span><span class="p">;</span>
+    <span class="p">})</span> <span class="c1">//promise Chain, 오류가 발생하더라도 다시 값을 처리해 .then(result)로 넘길 수 있다.
+</span><span class="c1"></span>    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">));</span>
 </code></pre></div><h2 id="async-await">Async-await</h2>
 <p>Promise를 더욱 간결하게 처리할 수 있는 문법이다. 함수 앞에 <code>async</code> 키워드를 선언하면 된다.<br>
 <code>await</code>예약어는 해당 함수가 꼭 프로미스 객체를 반환해야 한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="kd">function</span> <span class="nx">getlUserApi</span><span class="p">(){</span>
-<span class="ln"> 2</span>	<span class="c1">//promise 반환 (비동기 함수)
-</span><span class="ln"> 3</span><span class="c1"></span>	<span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="c1">//..code });
-</span><span class="ln"> 4</span><span class="c1"></span><span class="p">};</span>
-<span class="ln"> 5</span>
-<span class="ln"> 6</span><span class="kr">async</span> <span class="kd">function</span> <span class="nx">showUser</span><span class="p">(){</span>
-<span class="ln"> 7</span>	<span class="kr">const</span> <span class="nx">userInfo</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">getUserApi</span><span class="p">();</span>
-<span class="ln"> 8</span>	<span class="k">return</span> <span class="nx">userInfo</span><span class="p">;</span>
-<span class="ln"> 9</span><span class="p">}</span>
-<span class="ln">10</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">getlUserApi</span><span class="p">(){</span>
+	<span class="c1">//promise 반환 (비동기 함수)
+</span><span class="c1"></span>	<span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="c1">//..code });
+</span><span class="c1"></span><span class="p">};</span>
+
+<span class="kr">async</span> <span class="kd">function</span> <span class="nx">showUser</span><span class="p">(){</span>
+	<span class="kr">const</span> <span class="nx">userInfo</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">getUserApi</span><span class="p">();</span>
+	<span class="k">return</span> <span class="nx">userInfo</span><span class="p">;</span>
+<span class="p">}</span>
+
 </code></pre></div><p>위 코드는 아래와 같이 Promise를 반환시킨다. 따라서 프로미스와 마찬가지로 <code>then</code>을 통해 콜백 함수를 처리한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">async</span> <span class="kd">function</span> <span class="nx">showUser</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="kr">const</span> <span class="nx">userInfo</span> <span class="o">=</span> <span class="nx">getUssrApi</span><span class="p">();</span>
-<span class="ln">3</span>    <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">userInfo</span><span class="p">);</span>
-<span class="ln">4</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">showUser</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">userInfo</span> <span class="o">=</span> <span class="nx">getUssrApi</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">userInfo</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div><p>만약 사용자의 정보를 받아오는 함수가 있다면 아래와 같이 사용할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="c1">//AJAX 대신 setTimeout으로 대체;
-</span><span class="ln"> 2</span><span class="c1"></span><span class="kd">function</span> <span class="nx">getUserApi</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 3</span>    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 4</span>        <span class="c1">//Promise 반환
-</span><span class="ln"> 5</span><span class="c1"></span>        <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 6</span>            <span class="nx">resolve</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;jiny&#39;</span><span class="p">,</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">27</span> <span class="p">});</span>
-<span class="ln"> 7</span>        <span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
-<span class="ln"> 8</span>    <span class="p">});</span>
-<span class="ln"> 9</span><span class="p">}</span>
-<span class="ln">10</span>
-<span class="ln">11</span><span class="c1">//async 함수 내부에 await 선언
-</span><span class="ln">12</span><span class="c1"></span><span class="kr">async</span> <span class="kd">function</span> <span class="nx">showUser</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln">13</span>    <span class="kr">const</span> <span class="nx">userInfo</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">getUserApi</span><span class="p">();</span>
-<span class="ln">14</span>    <span class="k">return</span> <span class="nx">userInfo</span><span class="p">;</span>
-<span class="ln">15</span><span class="p">}</span>
-<span class="ln">16</span>
-<span class="ln">17</span><span class="c1">//이행 처리
-</span><span class="ln">18</span><span class="c1"></span><span class="nx">showUser</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">19</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
-<span class="ln">20</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//AJAX 대신 setTimeout으로 대체;
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">getUserApi</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="c1">//Promise 반환
+</span><span class="c1"></span>        <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">resolve</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;jiny&#39;</span><span class="p">,</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">27</span> <span class="p">});</span>
+        <span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="c1">//async 함수 내부에 await 선언
+</span><span class="c1"></span><span class="kr">async</span> <span class="kd">function</span> <span class="nx">showUser</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">userInfo</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">getUserApi</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nx">userInfo</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//이행 처리
+</span><span class="c1"></span><span class="nx">showUser</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+<span class="p">});</span>
 </code></pre></div><h3 id="에러처리">에러처리</h3>
 <p>async 함수내에서 오류가 발생하면 <code>try-catch</code>문으로 에러를 핸들링해줄 수 있다.<br>
 물론 <code>catch()</code>로 프로미스에서 해결하지 못한 에러들도 추가적으로 처리가 가능하다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">async</span> <span class="kd">function</span> <span class="nx">showUser</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="k">try</span> <span class="p">{</span>
-<span class="ln">3</span>        <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">getUserApi</span><span class="p">();</span>
-<span class="ln">4</span>        <span class="k">return</span> <span class="nx">userInfo</span><span class="p">;</span>
-<span class="ln">5</span>    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">6</span>        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-<span class="ln">7</span>    <span class="p">}</span>
-<span class="ln">8</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">showUser</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">getUserApi</span><span class="p">();</span>
+        <span class="k">return</span> <span class="nx">userInfo</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><h3 id="top-level-await">Top-level await</h3>
 <p>chrome 89+, Node.js 14+ 버전부터 async 함수 예외에서도 await을 사용할 수 있다고한다.<br>
 최신 브라우저에서는 async로 굳이 감싸지 않아도 될듯하다.. (실제 테스트해보았더니 잘 실행된다!)</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">await</span> <span class="nx">getUserApi</span><span class="p">()</span>
-<span class="ln">2</span>	<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">await</span> <span class="nx">getUserApi</span><span class="p">()</span>
+	<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">});</span>
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong>Node.js 교과서 - 프로미스 (조현영 저)</strong></li>
@@ -695,18 +695,18 @@
                 
                     
 <article class="has-image">
-    <a href="/post/react-ref/">
+    <a href="/post/polyfill-and-babel/">
         
         
             <div class="article-image">
                 
-                    <img src="../../assets/thumb/react.png" loading="lazy" data-key="react-ref" data-hash="../../assets/thumb/react.png"/>
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="polyfill-and-babel" data-hash="../../assets/js/js.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">[React] Ref의 개념과 useImperativeHandle, Uncontrolled form</h2>
+            <h2 class="article-title">Polyfill이 무엇인가요??</h2>
         </div>
     </a>
 </article>

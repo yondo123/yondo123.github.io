@@ -355,57 +355,57 @@
 <p><strong>클래스 기반 스타일</strong>
 tailwind 기본 사용법은 태그 내에 클래스로 스타일을 입히는 방식이다. 예를 들어 특정 태그에 배경색을 입히려면 아래와 같이 작성한다.
 클래스 명도 이해하기 쉽도록 구성되어 있기 때문에 대충 이름만 봐도 어떠한 역할인지는 파악이 된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;bg-green-300&#34;</span><span class="p">&gt;</span>light green.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;bg-green-300&#34;</span><span class="p">&gt;</span>light green.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </code></pre></div><p>하지만 매번 태그에 중복된 스타일을 입히게 되면 나중엔 <strong>태그 클래스가 너무 길어져 가독성이 떨어지는 건 단점이 되기도 한다.</strong></p>
 </li>
 <li>
 <p><strong>편리한 커스터마이징</strong></p>
 <p>tailwind는 맞춤형 사용자 인터페이스를 지향하는 프레임워크이기 때문에, 사용자가 커스텀하기 쉽게 구성되어있다.</p>
 <p><code>tailwind.config.js</code>파일을 생성해 사용자가 원하는대로 다시 구성할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="c1">//사용자 지정 breack point
-</span><span class="ln"> 2</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-<span class="ln"> 3</span>    <span class="nx">theme</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 4</span>        <span class="nx">screens</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 5</span>            <span class="nx">sm</span><span class="o">:</span> <span class="s1">&#39;640px&#39;</span><span class="p">,</span>
-<span class="ln"> 6</span>            <span class="nx">md</span><span class="o">:</span> <span class="s1">&#39;768px&#39;</span><span class="p">,</span>
-<span class="ln"> 7</span>            <span class="nx">lg</span><span class="o">:</span> <span class="s1">&#39;1024px&#39;</span><span class="p">,</span>
-<span class="ln"> 8</span>            <span class="nx">xl</span><span class="o">:</span> <span class="s1">&#39;1280px&#39;</span><span class="p">,</span>
-<span class="ln"> 9</span>            <span class="s1">&#39;2xl&#39;</span><span class="o">:</span> <span class="s1">&#39;1536px&#39;</span>
-<span class="ln">10</span>        <span class="p">}</span>
-<span class="ln">11</span>    <span class="p">}</span>
-<span class="ln">12</span><span class="p">};</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//사용자 지정 breack point
+</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">theme</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">screens</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">sm</span><span class="o">:</span> <span class="s1">&#39;640px&#39;</span><span class="p">,</span>
+            <span class="nx">md</span><span class="o">:</span> <span class="s1">&#39;768px&#39;</span><span class="p">,</span>
+            <span class="nx">lg</span><span class="o">:</span> <span class="s1">&#39;1024px&#39;</span><span class="p">,</span>
+            <span class="nx">xl</span><span class="o">:</span> <span class="s1">&#39;1280px&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;2xl&#39;</span><span class="o">:</span> <span class="s1">&#39;1536px&#39;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div></li>
 </ol>
 <h2 id="tailwindcss-설치">tailwindCSS 설치</h2>
 <p>먼저 tailwindcss 의존한 라이브러리들을 설치한다. 참고로 최소 node 환경은 <code>12.13.0</code>이상이다.<br>
 vue 프로젝트를 먼저 생성하고, tailwind-css를 설치한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
 </code></pre></div><p>공식사이트에서는 아래와 같이 모든 종속 라이브러리들을 최신 버전으로 설치하라고 가이드되어 있지만 postcss 버전이 문제가 되는 거같아 아래와 같이 설치하였더니 오류가 해결되었다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npm install tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm install tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
 </code></pre></div><p>tailwind 설정 파일을 생성한다. 아래 명령어를 입력하면 프로젝트 루트에 <code>tailwind.config.js</code>파일이 만들어지는데, 해당 파일에서 사용자 입맛에 맞게 여러 스타일을 초기화할 수 있다.</p>
 <p>자세한 내용은 <a class="link" href="https://tailwindcss.com/docs/theme"  target="_blank" rel="noopener"
     >configuration 공식 문서</a> 참고!</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npx tailwindcss init -p
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npx tailwindcss init -p
 </code></pre></div><p>공식 가이드에 따르면, 사용하지 않는 스타일 용량 최적화를 위해 <code>purge</code>옵션은 작성하라고 권고하고 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="c1">// tailwind.config.js
-</span><span class="ln"> 2</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-<span class="ln"> 3</span>    <span class="nx">purge</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;./index.html&#39;</span><span class="p">,</span> <span class="s1">&#39;./src/**/*.{vue,js,ts,jsx,tsx}&#39;</span><span class="p">],</span>
-<span class="ln"> 4</span>    <span class="nx">darkMode</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// or &#39;media&#39; or &#39;class&#39;
-</span><span class="ln"> 5</span><span class="c1"></span>    <span class="nx">theme</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 6</span>        <span class="nx">extend</span><span class="o">:</span> <span class="p">{}</span>
-<span class="ln"> 7</span>    <span class="p">},</span>
-<span class="ln"> 8</span>    <span class="nx">variants</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln"> 9</span>        <span class="nx">extend</span><span class="o">:</span> <span class="p">{}</span>
-<span class="ln">10</span>    <span class="p">},</span>
-<span class="ln">11</span>    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[]</span>
-<span class="ln">12</span><span class="p">};</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// tailwind.config.js
+</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">purge</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;./index.html&#39;</span><span class="p">,</span> <span class="s1">&#39;./src/**/*.{vue,js,ts,jsx,tsx}&#39;</span><span class="p">],</span>
+    <span class="nx">darkMode</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// or &#39;media&#39; or &#39;class&#39;
+</span><span class="c1"></span>    <span class="nx">theme</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">extend</span><span class="o">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
+    <span class="nx">variants</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">extend</span><span class="o">:</span> <span class="p">{}</span>
+    <span class="p">},</span>
+    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">};</span>
 </code></pre></div><p>이제 설정한 tailwind css파일을 전역으로 import 해주면 된다.<br>
 <code>main.js</code>에 import해주면 사용준비는 끝, 이제 문서를 보면서 스타일링을 해주면 된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
-<span class="ln">2</span><span class="kr">import</span> <span class="s1">&#39;tailwindcss/tailwind.css&#39;</span><span class="p">;</span>
-<span class="ln">3</span><span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./App.vue&#39;</span><span class="p">;</span>
-<span class="ln">4</span>
-<span class="ln">5</span><span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">).</span><span class="nx">mount</span><span class="p">(</span><span class="s1">&#39;#app&#39;</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s1">&#39;tailwindcss/tailwind.css&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./App.vue&#39;</span><span class="p">;</span>
+
+<span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">).</span><span class="nx">mount</span><span class="p">(</span><span class="s1">&#39;#app&#39;</span><span class="p">);</span>
 </code></pre></div><h3 id="tailwind-intellisense">tailwind IntelliSense</h3>
 <p>혹시 vscode로 vue를 개발하는 상황이라면 <a class="link" href="https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss"  target="_blank" rel="noopener"
     >Tailwind CSS 인텔리센스</a> <strong>익스텐션을 적극 추천!!</strong><br>

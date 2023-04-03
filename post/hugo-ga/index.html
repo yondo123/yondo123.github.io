@@ -365,31 +365,31 @@ GA에는 고유적으로 추적에 사용할 ID가 주어지는데 GA관리자 �
 <p><strong>3. Hugo에 적용시키기</strong><br>
 이제 이 추적 ID를 휴고에 적용시키면 끝!<br>
 <code>config.toml</code>에 추적 ID를 사용 할 변수로 지정해놓는다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="ln">1</span><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
-<span class="ln">2</span><span class="nx">googleAnalytics</span> <span class="p">=</span> <span class="s2">&#34;G-XXXXXX&#34;</span>
-<span class="ln">3</span><span class="p">.</span>
-<span class="ln">4</span><span class="p">.</span>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+<span class="nx">googleAnalytics</span> <span class="p">=</span> <span class="s2">&#34;G-XXXXXX&#34;</span>
+<span class="p">.</span>
+<span class="p">.</span>
 </code></pre></div><p>구글 애널리틱스에서 제공하는 온페이지 태그를 추가해야한다.<br>
 휴고에서는 보통 <code>./layout/partials</code>디렉토리에 사이드 html을 작성해주기 때문에 구글 애널리틱스 스크립트를 위한 html을 작성한다.<br>
 <code>Site.Params</code>부분에 config.toml에 정의한 추적 ID 변수를 적어주면 된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln"> 1</span><span class="c">&lt;!-- layout/partials/google-analytics.md--&gt;</span>
-<span class="ln"> 2</span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">async</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleAnalytics }}&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="ln"> 3</span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="ln"> 4</span>    <span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span> <span class="o">||</span> <span class="p">[];</span>
-<span class="ln"> 5</span>
-<span class="ln"> 6</span>    <span class="kd">function</span> <span class="nx">gtag</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 7</span>        <span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
-<span class="ln"> 8</span>    <span class="p">}</span>
-<span class="ln"> 9</span>    <span class="nx">gtag</span><span class="p">(</span><span class="s1">&#39;js&#39;</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
-<span class="ln">10</span>
-<span class="ln">11</span>    <span class="nx">gtag</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="s1">&#39;{{ .Site.Params.googleAnalytics }}&#39;</span><span class="p">);</span>
-<span class="ln">12</span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="c">&lt;!-- layout/partials/google-analytics.md--&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">async</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleAnalytics }}&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span> <span class="o">||</span> <span class="p">[];</span>
+
+    <span class="kd">function</span> <span class="nx">gtag</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">gtag</span><span class="p">(</span><span class="s1">&#39;js&#39;</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
+
+    <span class="nx">gtag</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="s1">&#39;{{ .Site.Params.googleAnalytics }}&#39;</span><span class="p">);</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </code></pre></div><p>이제 휴고 블로그에 모든 페이지에서 이 스크립트를 로드해주면 된다.<br>
 보통 전역에서 사용할 html은 <code>/layout/_default/baseof.html</code>에 작성한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="ln">1</span><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="ln">2</span>    {{ if .Site.Params.googleAnalytics }} {{ partial &#34;google-analytics.html&#34; . }} {{ end }} {{- partial &#34;head/head.html&#34;
-<span class="ln">3</span>    . -}} {{- block &#34;head&#34; . -}}{{ end }}
-<span class="ln">4</span><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    {{ if .Site.Params.googleAnalytics }} {{ partial &#34;google-analytics.html&#34; . }} {{ end }} {{- partial &#34;head/head.html&#34;
+    . -}} {{- block &#34;head&#34; . -}}{{ end }}
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
 </code></pre></div><p>여기까지 설정하면 구글애널리틱스에서 접속 현황이 잘 노출이된다!<br>
 깃에 배포하고 다시 블로그에 들어가면 아래 사진 처럼 잘 나오는 것을 확인할 수 있다.<br>
 <img src="../../assets/web/visit.png" alt="ga-visit"  /></p>

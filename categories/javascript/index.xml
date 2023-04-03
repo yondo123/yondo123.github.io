@@ -6,7 +6,19 @@
     <description>Recent content in JavaScript on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Feb 2023 23:51:31 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 02 Apr 2023 23:52:00 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Polyfill이 무엇인가요??</title>
+      <link>https://jinyisland.kr/post/polyfill-and-babel/</link>
+      <pubDate>Sun, 02 Apr 2023 23:52:00 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/polyfill-and-babel/</guid>
+      <description>들어가면서 브라우저 호환성 문제를 해결하기 위한 폴리필(polyfill) 개념과 실제 사용 방법을 조사하였습니다. React와 IE11 환경에서 동작하기 위한 폴리필을 중점적으로 다룹니다.
+Polyfill 개념  기본적으로 지원하지 않는 이전 브라우저에서 최신 기능을 제공하는 데 필요한 코드 (JavaScript) ”mdn”
+ 자바스크립트는 끊임없이 발전되어왔기 때문에 명세도 계속 변화되어왔습니다.
+이 과정에서 모든 브라우저는 발전된 스크립트 문법을 제공하지 않을 수 있기 때문에 브라우저 호환성 문제를 해결하기 위해 일종의 코드 조각을 추가하는 것을 polyfill이라고 합니다. polyfill을 지원하는 대표적인 라이브러리는 core-js와 polyfill.</description>
+    </item>
+    
     <item>
       <title>[React] Ref의 개념과 useImperativeHandle, Uncontrolled form</title>
       <link>https://jinyisland.kr/post/react-ref/</link>
@@ -16,7 +28,7 @@
       <description>Ref  ref는 render 메서드에서 생성된 DOM 노드나 React 엘리먼트에 접근하는 방법을 제공합니다.
   포커스, 텍스트 선택, 혹은 미디어의 재생을 관리할 때 애니메이션을 직접적으로 실행시킬 때 React와 같이 서드 파티 DOM 라이브러리를 사용할 때  순수 자바스크립트에서는 UI를 변경하기 위해 DOM API를 사용하여 DOM에 직접적으로 접근하였습니다. React에서는 이러한 방식을 지양하고, ref 객체를 생성하여 접근하도록 권고합니다.
 DOM API를 이용하여 접근하기 DOM에 접근하기 위해서는 기존의 DOM API를 사용할 수 있습니다.
-1import React from &amp;#39;react&amp;#39;; 2 3const Component = () =&amp;gt; { 4 const hadleClick = () =&amp;gt; { 5 document.</description>
+import React from &amp;#39;react&amp;#39;; const Component = () =&amp;gt; { const hadleClick = () =&amp;gt; { document.</description>
     </item>
     
     <item>
@@ -38,7 +50,7 @@ DOM API를 이용하여 접근하기 DOM에 접근하기 위해서는 기존의 
       <guid>https://jinyisland.kr/post/composition-api/</guid>
       <description>Options API의 장단점 Vue에서 기본적으로 사용하고 있는 패턴은 객체 내에 다양한 속성을 사용하고 있는 형태이다. 라이프사이클을 제어하기 위해 사용하는 mounted, updated 그리고 컴포넌트 내에서 여러 메서드들을 정의하고 데이터들을 참조할 때 정해진 속성에 정의해서 사용하였다. 이를 Options API라고 한다.
 아래는 페이지네이션 기능 컴포넌트를 구현할 때 작성했던 코드인데, 컴포지션 API를 적용하지 않은 options api 방식으로 작성하였다.
-1export default { 2 components: { 3 //컴포넌트 정의 4 ChildComponent 5 }, 6 data() { 7 //참조할 데이터 정의 8 return { 9 newsItem: {}, 10 showModal: false, 11 page: 1, 12 records: 20, 13 listItems: [], 14 options: { 15 hideCount: true 16 } 17 }; 18 }, 19 mounted: function () { 20 //마운트 시점 제어 21 this.</description>
+export default { components: { //컴포넌트 정의  ChildComponent }, data() { //참조할 데이터 정의  return { newsItem: {}, showModal: false, page: 1, records: 20, listItems: [], options: { hideCount: true } }; }, mounted: function () { //마운트 시점 제어  this.</description>
     </item>
     
     <item>
@@ -59,7 +71,8 @@ SPA의 단일 페이지라는 이점을 살려, MPA(Multi Page Application) 환�
       <guid>https://jinyisland.kr/post/react-props/</guid>
       <description>개념 컴포넌트에 데이터를 전달하는 데이터를 prop이라고 한다. (Properties의 줄임말)
 Props 단일 값 전달하기 컴포넌트 작성 시 해당 컴포넌트 태그에 변수이름={}으로 사용한다.
-1//App.js (최상위 컴포너트) 2const today = function () { 3 return new Date().toISOString(); 4}; 5 6function App() { 7 return ( 8 &amp;lt;div className=&amp;#34;App&amp;#34;&amp;gt; 9 &amp;lt;AppHeader /&amp;gt; 10 &amp;lt;header className=&amp;#34;App-header&amp;#34;&amp;gt; 11 &amp;lt;h2&amp;gt;{myName}&amp;lt;/h2&amp;gt; 12 &amp;lt;Time init={today} /&amp;gt; 13 &amp;lt;/header&amp;gt; 14 &amp;lt;AppFooter /&amp;gt; 15 &amp;lt;/div&amp;gt; 16 ); 17} 전달받는 컴포넌트 (자식 컴포넌트)에서는 매개변수로 받아올 수 있는데 객체 타입으로 전달 받는다.</description>
+//App.js (최상위 컴포너트) const today = function () { return new Date().toISOString(); }; function App() { return ( &amp;lt;div className=&amp;#34;App&amp;#34;&amp;gt; &amp;lt;AppHeader /&amp;gt; &amp;lt;header className=&amp;#34;App-header&amp;#34;&amp;gt; &amp;lt;h2&amp;gt;{myName}&amp;lt;/h2&amp;gt; &amp;lt;Time init={today} /&amp;gt; &amp;lt;/header&amp;gt; &amp;lt;AppFooter /&amp;gt; &amp;lt;/div&amp;gt; ); } 전달받는 컴포넌트 (자식 컴포넌트)에서는 매개변수로 받아올 수 있는데 객체 타입으로 전달 받는다.
+function Time(props) { return ( &amp;lt;div&amp;gt; &amp;lt;h2&amp;gt;What Time?</description>
     </item>
     
     <item>
@@ -71,7 +84,7 @@ Props 단일 값 전달하기 컴포넌트 작성 시 해당 컴포넌트 태그
       <description>JSX JavaScript Extension, 자바스립트를 확장한 문법이다.(HTML이 아니다.) 리액트에서 컴포넌트 구조를 작성하면서 HtML 대신 jsx로 UI를 표현한다고 생각하면 된다. vue에서는 template태그에 직접 HTML 문법을 사용했었는데 동일한 역할이다. 확장자는 jsx로 사용할 수 있으나 js로 사용해도 자동 변환이 되기 때문에 어느 것으로 해도 큰 상관은 없다.
 기본 문법 스타일 적용하기 className
 jsx에서는 스타일을 적용하기 위한 class는 자바스크립트 예약어라 className으로 대체한다.
-1const AppFooter = () =&amp;gt; { 2 return &amp;lt;footer className=&amp;#34;red&amp;#34;&amp;gt;Footer&amp;lt;/footer&amp;gt;; 3}; InlineStyle
+const AppFooter = () =&amp;gt; { return &amp;lt;footer className=&amp;#34;red&amp;#34;&amp;gt;Footer&amp;lt;/footer&amp;gt;; }; InlineStyle
 기존 방식대로 클래스나 id를 붙여 css를 적용하는 방법 외에도, 스크립트 자체에서 스타일을 적용시킬 수 있다.</description>
     </item>
     
@@ -144,7 +157,7 @@ computed 사용법은 아래 코드를 참고, computed속성 내에 메서드�
       
       <guid>https://jinyisland.kr/post/algorithm-search/</guid>
       <description>선형검색 배열에서 원하는 키 값 요소를 만날 때까지 순서대로 요소 검색, 값을 찾지 못하고 배열을 모두 순회하거나 값을 찾는다면 바로 종료한다.
-1function linearSearch(key, arr) { 2 for (let index = 0; index &amp;lt; arr.length; index++) { 3 if (key === arr[index]) { 4 return true; 5 } 6 } 7 return false; 8} 9 10linearSearch(2811, [2, 15, 24, 28, 304, 16, 7, 1]); //false 11linearSearch(16, [2, 15, 24, 28, 304, 16, 7, 1]); //true 이진검색 이미 정렬되어 있는 배열(전제 조건)에서 범위를 좁혀가며 값을 찾는 탐색법 선형 탐색보다 속도가 빠르긴하지만 정렬되어 있는 리스트에 적용할 수 있다.</description>
+function linearSearch(key, arr) { for (let index = 0; index &amp;lt; arr.length; index++) { if (key === arr[index]) { return true; } } return false; } linearSearch(2811, [2, 15, 24, 28, 304, 16, 7, 1]); //false linearSearch(16, [2, 15, 24, 28, 304, 16, 7, 1]); //true 이진검색 이미 정렬되어 있는 배열(전제 조건)에서 범위를 좁혀가며 값을 찾는 탐색법 선형 탐색보다 속도가 빠르긴하지만 정렬되어 있는 리스트에 적용할 수 있다.</description>
     </item>
     
     <item>
@@ -155,7 +168,8 @@ computed 사용법은 아래 코드를 참고, computed속성 내에 메서드�
       <guid>https://jinyisland.kr/post/js-module/</guid>
       <description>Module module객체를 통해 각각의 기능이나 js파일들을 쉽게 모듈화가 가능하다.
 export 코드를 외부에 내보내고 싶다면 export문을 사용한다. 함수, 변수, 클래스 등을 내보낼 수 있다.
-1//📁module/util.js 2const constants = { 3	message : &amp;#39;simple message&amp;#39;; 4} 5 6const requestUrl = &amp;#39;/xyz-url&amp;#39;; 7 8const private = { 9	privateKey : &amp;#39;1234&amp;#39; 10} 11 12export {constants, requestUrl}; //배열로도 export가 가능하다. (1~2개 모듈은 보통 객체형식으로 많이 사용) 각각의 모듈 대상에 export 예약어를 붙여 내보낼 수도 있다.</description>
+//📁module/util.js const constants = { message : &amp;#39;simple message&amp;#39;; } const requestUrl = &amp;#39;/xyz-url&amp;#39;; const private = { privateKey : &amp;#39;1234&amp;#39; } export {constants, requestUrl}; //배열로도 export가 가능하다. (1~2개 모듈은 보통 객체형식으로 많이 사용) 각각의 모듈 대상에 export 예약어를 붙여 내보낼 수도 있다.
+export function constants = { message : &amp;#39;simple message&amp;#39;; } import import를 통해 상대 경로에 위치한 모듈 파일을 가져올 수 있다.</description>
     </item>
     
     <item>
@@ -164,7 +178,7 @@ export 코드를 외부에 내보내고 싶다면 export문을 사용한다. 함
       <pubDate>Wed, 08 Sep 2021 23:18:33 +0900</pubDate>
       
       <guid>https://jinyisland.kr/post/promise-async-await/</guid>
-      <description>Promise 1function callbackDelay(sec, callback) { 2 setTimeout(() =&amp;gt; { 3 callback(&amp;#39;콜백 Delay&amp;gt;&amp;gt;&amp;#39; + new Date().toString()); 4 }, sec * 1000); 5} 6 7callbackDelay(1, (result) =&amp;gt; { 8 console.log(1, result); 9 callbackDelay(1, (result) =&amp;gt; { 10 console.log(2, result); 11 callbackDelay(1, (result) =&amp;gt; { 12 console.log(3, result); 13 }); 14 }); 15}); 16/*result 171 콜백 Delay&amp;gt;&amp;gt;Sun Jun 07 2020 18:43:56 GMT+0900 (GMT+09:00) 18promise.js:26 192 콜백 Delay&amp;gt;&amp;gt;Sun Jun 07 2020 18:43:57 GMT+0900 (GMT+09:00) 20promise.</description>
+      <description>Promise function callbackDelay(sec, callback) { setTimeout(() =&amp;gt; { callback(&amp;#39;콜백 Delay&amp;gt;&amp;gt;&amp;#39; + new Date().toString()); }, sec * 1000); } callbackDelay(1, (result) =&amp;gt; { console.log(1, result); callbackDelay(1, (result) =&amp;gt; { console.log(2, result); callbackDelay(1, (result) =&amp;gt; { console.log(3, result); }); }); }); /*result 1 콜백 Delay&amp;gt;&amp;gt;Sun Jun 07 2020 18:43:56 GMT+0900 (GMT+09:00) promise.js:26 2 콜백 Delay&amp;gt;&amp;gt;Sun Jun 07 2020 18:43:57 GMT+0900 (GMT+09:00) promise.js:28 3 콜백 Delay&amp;gt;&amp;gt;Sun Jun 07 2020 18:43:58 GMT+0900 (GMT+09:00) */ 자바스크립트에서 비동기 동작을 할때 우리는 항상 해당 함수에 콜백 함수를 넣어줬다.</description>
     </item>
     
     <item>
@@ -173,7 +187,7 @@ export 코드를 외부에 내보내고 싶다면 export문을 사용한다. 함
       <pubDate>Tue, 07 Sep 2021 21:59:08 +0900</pubDate>
       
       <guid>https://jinyisland.kr/post/eventloop/</guid>
-      <description>비동기 처리 1//대충 이런 구조의 코드.. 2function checkValue() { 3 //로직검사.. 4} 5 6setTimeout(function () { 7 checkValue(); 8}, 500); 9 10function getData() { 11 //AJAX로 소스를 받아오는 코드.. 12} 13 14getData(); 자바스크립트를 처음 접했을 때, setTimeout이 왜 순서대로 시행 안되지??.. (why 나중에 시행되는거야..🤔)해서비동기에 대한 개념을 숙지했다. 대충 콜백함수로 넘겨서 호출해 해결하고 비동기 프로세스에 대한 개념 자체를 더 배우려하지 않았다. 이번에 Node.js 스터디를 하면서 비동기 프로세스를 꼭 알아야 성능 향상에 도움이 된다는 사실을 알게되었고 책과 강의를 통해 내가 이해한 비동기 처리과정을 최대한 간략하게 정리해보았다.</description>
+      <description>비동기 처리 //대충 이런 구조의 코드.. function checkValue() { //로직검사.. } setTimeout(function () { checkValue(); }, 500); function getData() { //AJAX로 소스를 받아오는 코드.. } getData(); 자바스크립트를 처음 접했을 때, setTimeout이 왜 순서대로 시행 안되지??.. (why 나중에 시행되는거야..🤔)해서비동기에 대한 개념을 숙지했다. 대충 콜백함수로 넘겨서 호출해 해결하고 비동기 프로세스에 대한 개념 자체를 더 배우려하지 않았다. 이번에 Node.js 스터디를 하면서 비동기 프로세스를 꼭 알아야 성능 향상에 도움이 된다는 사실을 알게되었고 책과 강의를 통해 내가 이해한 비동기 처리과정을 최대한 간략하게 정리해보았다.</description>
     </item>
     
     <item>
@@ -183,8 +197,8 @@ export 코드를 외부에 내보내고 싶다면 export문을 사용한다. 함
       
       <guid>https://jinyisland.kr/post/arrow-function/</guid>
       <description>화살표 함수 기존 함수 표기법을 화살표(⇒)형태로 간단하게 표기하는 함수 표기법
-기존 함수 표현식과의 차이 1//기존 함수 표현식 2function name() { 3 //code.. 4} 5 6//화살표 함수 7() =&amp;gt; { 8 //code.. 9}; 화살표 함수 특징 괄호 생략 매개변수가 1개라면 괄호()도 생략이 가능하다.
-1const logMessage = (message) =&amp;gt; { 2 console.log(message); 3}; 4logMessage(&amp;#39;hello&amp;#39;); //&amp;#39;hello&amp;#39; Lexical this 일반 함수 표기에서는 this사용 시 동적으로 해당 함수를 실행한 객체로 바인딩되었다.
+기존 함수 표현식과의 차이 //기존 함수 표현식 function name() { //code.. } //화살표 함수 () =&amp;gt; { //code.. }; 화살표 함수 특징 괄호 생략 매개변수가 1개라면 괄호()도 생략이 가능하다.
+const logMessage = (message) =&amp;gt; { console.log(message); }; logMessage(&amp;#39;hello&amp;#39;); //&amp;#39;hello&amp;#39; Lexical this 일반 함수 표기에서는 this사용 시 동적으로 해당 함수를 실행한 객체로 바인딩되었다.
 하지만 화살표 함수에서는 자신을 소유하고 있는 객체로 바인딩되는게 아니라 해당 화살표함수를 소유하고 있는 상위 환경의 this를 그대로 계승한다.</description>
     </item>
     
@@ -195,7 +209,7 @@ export 코드를 외부에 내보내고 싶다면 export문을 사용한다. 함
       
       <guid>https://jinyisland.kr/post/template-literals/</guid>
       <description>Temlate literals 기존 문자열 결합 시 연산자(+)를 사용하였는데 백틱(`) 기호를 사용하여 쉽게 결합할 수 있다.
-기존 연산자 사용 1const fruit = &amp;#39;apple&amp;#39;; 2const color = &amp;#39;red&amp;#39;; 3console.log(&amp;#39;My Favorite Fruit is&amp;#39; + fruit + &amp;#39;, color is &amp;#39; + color); //&amp;#34;My Favorite Fruit isapple, color is red&amp;#34; 템플릿리터럴 사용 1const fruit = &amp;#39;apple&amp;#39;; 2const color = &amp;#39;red&amp;#39;; 3console.log(`My favorite Fruit is ${fruit}, color is ${color}`); 장점 보통 복잡한 문자열이거나 html 코드등을 직접 스크립트상에서 삽입할 때 쌍따옴표-홀따옴표등과 같이 사용하는 경우에 상당히 복잡했었다.</description>
+기존 연산자 사용 const fruit = &amp;#39;apple&amp;#39;; const color = &amp;#39;red&amp;#39;; console.log(&amp;#39;My Favorite Fruit is&amp;#39; + fruit + &amp;#39;, color is &amp;#39; + color); //&amp;#34;My Favorite Fruit isapple, color is red&amp;#34; 템플릿리터럴 사용 const fruit = &amp;#39;apple&amp;#39;; const color = &amp;#39;red&amp;#39;; console.log(`My favorite Fruit is ${fruit}, color is ${color}`); 장점 보통 복잡한 문자열이거나 html 코드등을 직접 스크립트상에서 삽입할 때 쌍따옴표-홀따옴표등과 같이 사용하는 경우에 상당히 복잡했었다.</description>
     </item>
     
     <item>
@@ -220,7 +234,7 @@ export 코드를 외부에 내보내고 싶다면 export문을 사용한다. 함
 URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트를 가지고 있다가 변경된 요소영역만 갱신한다.(SPA 언어의 큰 특징)
 따라서 유연하게 페이지 젼환이 가능하다. vue 프레임워크에서는 vue-router라는 라우팅 라이브러리를 지원한다.
 설치하기 vue-router를 설치하고, package.json파일에서 모듈이 잘 추가되었는지 확인하자
-1npm install vue-router --save 라우터 속성 다음은 라우터 인스턴스를 생성할 때 설정하는 값이다.
+npm install vue-router --save 라우터 속성 다음은 라우터 인스턴스를 생성할 때 설정하는 값이다.
  String mode : 기본 값은 Hash 모드 (history 모드를 사용하면 브라우저 히스토리 스택에 기록된다.</description>
     </item>
     
@@ -233,10 +247,10 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
       <description>클로저 개념 클로저는 쉽게말해 함수 선언시 생성되는 유효 범위이다.
 먼저 자바스크립트에서 클로저를 이해하려면 범위 지정(Lexical Scoping)을 이해하여야 한다.
 아래 코드를 보자.
-1var apple = &amp;#39;🍎&amp;#39;; 2 3function displayApple() { 4 console.log(apple); 5} 6 7displayApple(); 8//result : 🍎 간단하게 사과를 출력해주는 함수다.
+var apple = &amp;#39;🍎&amp;#39;; function displayApple() { console.log(apple); } displayApple(); //result : 🍎 간단하게 사과를 출력해주는 함수다.
 하지만, 정작 함수안에는 apple이라는 변수가 없는데도 불구하고 사과가 출력되었다.
 지난번 실행컨텍스트에서 언급했듯이 해당 유효범위에서 식별자를 찾지 못하면 점점 상위 ~ 전역으로 탐색한다. Scope Chain
-1var displayPrice; 2var apple = **&amp;#39;🍎&amp;#39;;** 3function displayApple(){ 4	var price = 1000; 5	console.</description>
+var displayPrice; var apple = **&amp;#39;🍎&amp;#39;;** function displayApple(){ var price = 1000; console.</description>
     </item>
     
     <item>
@@ -247,9 +261,9 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
       <guid>https://jinyisland.kr/post/js-function/</guid>
       <description>함수 자바스크립트의 함수는 객체로 취급 받는다. (일급객체)
 따라서 객체처럼 리터럴 방식으로 선언할 수 있고, new 연산자로 선언할 수도 있다. (대부분.. 리터럴 방식을 선호한다.)
-1//new 연산자 선언 2var sum = new Function(&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;return a+b&amp;#39;); 3sum(1, 3); //4 익명함수와 선언함수 익명 함수는 말 그대로 &amp;lsquo;이름을 갖지 않는&amp;rsquo; 함수이다.
+//new 연산자 선언 var sum = new Function(&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;return a+b&amp;#39;); sum(1, 3); //4 익명함수와 선언함수 익명 함수는 말 그대로 &amp;lsquo;이름을 갖지 않는&amp;rsquo; 함수이다.
 보통 변수에 저장해서 선언 후 호출한다.
-1add(2, 3); //result : type error 2 3var add = function (x, y) { 4 //익명함수 5 return x + y; 6}; 7 8add(3, 7); //result : 10 선언 함수는 함수 선언 시 이름을 지명한다.</description>
+add(2, 3); //result : type error  var add = function (x, y) { //익명함수  return x + y; }; add(3, 7); //result : 10 선언 함수는 함수 선언 시 이름을 지명한다.</description>
     </item>
     
     <item>
@@ -262,7 +276,7 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
 변수에 접근할 때 해당 변수에 저장된 실제 값을 조작한다.
 기본 값의 유형을 확인하려면 typeof연산자를 사용해서 확인할 수 있다.
 자바스크립트에서는 배열과 객체 모두 object로 취급한다는 사실을 꼭 잊지말자.
-1const typeNumeric = typeof 1; //number 2const typeBoolean = typeof true; //boolean 3const typeString = typeof &amp;#39;hello&amp;#39;; //string 4const typeFunction = typeof function () { 5 return; 6}; //function 7const typeUndefined = typeof undefined; //undefined 8 9const typeObject = typeof {}; //object 10const typeArray = typeof [&amp;#39;1&amp;#39;]; //object 11const typeNull = typeof null; //object 참조타입 원시 값과는 달리 해당 객체의 참조에 대해서 작업한다.</description>
+const typeNumeric = typeof 1; //number const typeBoolean = typeof true; //boolean const typeString = typeof &amp;#39;hello&amp;#39;; //string const typeFunction = typeof function () { return; }; //function const typeUndefined = typeof undefined; //undefined  const typeObject = typeof {}; //object const typeArray = typeof [&amp;#39;1&amp;#39;]; //object const typeNull = typeof null; //object 참조타입 원시 값과는 달리 해당 객체의 참조에 대해서 작업한다.</description>
     </item>
     
     <item>
@@ -285,7 +299,7 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
       
       <guid>https://jinyisland.kr/post/vue-import/</guid>
       <description>윈도우에서 작업한 Vue 프로젝트를 mac 환경에서 확인하려던 중 git clone 후 프로젝트를 실행해보니 아래와 같은 에러가 나왔다.
-1&amp;gt; vue-todo@0.1.0 serve /Users/sjchoi/Mydoc/02_Code/05_vue/vue-practice/vue-todo 2&amp;gt; vue-cli-service serve 3 4sh: vue-cli-service: command not found 5npm ERR! code ELIFECYCLE 6npm ERR! syscall spawn 7npm ERR! file sh 8npm ERR! errno ENOENT 9npm ERR! vue-todo@0.1.0 serve: `vue-cli-service serve` 10npm ERR! spawn ENOENT 11npm ERR! 12npm ERR! Failed at the vue-todo@0.1.0 serve script. 13npm ERR! This is probably not a problem with npm.</description>
+&amp;gt; vue-todo@0.1.0 serve /Users/sjchoi/Mydoc/02_Code/05_vue/vue-practice/vue-todo &amp;gt; vue-cli-service serve sh: vue-cli-service: command not found npm ERR! code ELIFECYCLE npm ERR! syscall spawn npm ERR! file sh npm ERR! errno ENOENT npm ERR! vue-todo@0.1.0 serve: `vue-cli-service serve` npm ERR! spawn ENOENT npm ERR! npm ERR! Failed at the vue-todo@0.1.0 serve script. npm ERR! This is probably not a problem with npm.</description>
     </item>
     
     <item>
@@ -298,7 +312,7 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
 컴포넌트 구성의 장점은 요소들을 재사용함으로써 개발 생산성이 향상되고, 컴포넌트들은 서로 관계가 형성된다.
 전역 컴포넌트 주로 플러그인, 라이브러리 등 앱 전역에서 사용 할 공통 컴포넌트를 작성한다.
 전역 컴포넌트를 생성하면 새 인스턴스를 생성할 때 마다 기본적으로 생성한다.
-1//컴포넌트 생성 2Vue.component(&amp;#39;app-header&amp;#39;, { 3 template: &amp;#39;&amp;lt;h1&amp;gt;header&amp;lt;/h1&amp;gt;&amp;#39; //component Template 4}); 5 6Vue.component(&amp;#39;app-content&amp;#39;, { 7 template: &amp;#39;&amp;lt;p&amp;gt;This is Vue-Component Write&amp;lt;/p&amp;gt;&amp;#39; 8}); 9 10//인스턴스 생성 11new Vue({ 12 el: &amp;#39;#app&amp;#39; //selector 13}); 지역 컴포넌트 Vue 인스턴스 내에 직접 삽입하는 방식이다.</description>
+//컴포넌트 생성 Vue.component(&amp;#39;app-header&amp;#39;, { template: &amp;#39;&amp;lt;h1&amp;gt;header&amp;lt;/h1&amp;gt;&amp;#39; //component Template }); Vue.component(&amp;#39;app-content&amp;#39;, { template: &amp;#39;&amp;lt;p&amp;gt;This is Vue-Component Write&amp;lt;/p&amp;gt;&amp;#39; }); //인스턴스 생성 new Vue({ el: &amp;#39;#app&amp;#39; //selector }); 지역 컴포넌트 Vue 인스턴스 내에 직접 삽입하는 방식이다.</description>
     </item>
     
     <item>
@@ -311,7 +325,7 @@ URL 변경 시 DOM을 새로 갱신하는 것이 아니라 미리 컴포넌트�
 vue 프로젝트 도입시 전체적인 웹애플레이케이션을 관리하려면 지금 소개하는 cli패키지를 설치하면 되고,
 별도의 페이지에서 국한적으로 사용하려면 cdn방식으로도 사용할 수 있다.
 CDN 방식을 사용하려면 아래 소스를 참고하면 된다.
-1&amp;lt;head&amp;gt; 2 &amp;lt;!-- Vue-CDN --&amp;gt; 3 &amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 4&amp;lt;/head&amp;gt; 5&amp;lt;body&amp;gt; 6 &amp;lt;!-- template --&amp;gt; 7 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; 8 &amp;lt;app-footer&amp;gt;&amp;lt;/app-footer&amp;gt; 9 &amp;lt;/div&amp;gt; 10&amp;lt;/body&amp;gt; 11&amp;lt;script&amp;gt; 12 //vue 인스턴스 생성 13 new Vue({ 14 el: &amp;#39;#app&amp;#39;, 15 components: { 16 &amp;#39;app-footer&amp;#39;: { 17 template: &amp;#39;&amp;lt;footer&amp;gt;Footer!</description>
+&amp;lt;head&amp;gt; &amp;lt;!-- Vue-CDN --&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;!-- template --&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;app-footer&amp;gt;&amp;lt;/app-footer&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;script&amp;gt; //vue 인스턴스 생성  new Vue({ el: &amp;#39;#app&amp;#39;, components: { &amp;#39;app-footer&amp;#39;: { template: &amp;#39;&amp;lt;footer&amp;gt;Footer!&amp;lt;/footer&amp;gt;&amp;#39; } } }); &amp;lt;/script&amp;gt; Vue 설치하기 먼저 npm (node package manager) 및 node가 설치되어있어야 한다.</description>
     </item>
     
   </channel>

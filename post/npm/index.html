@@ -347,42 +347,42 @@
 패키지를 직접 만들어 배포할 수 있고 다른 사람이 배포한 여러 패키지 모듈들을 설치해 프로젝트에 적용시킬 수도 있다.</p>
 <h3 id="npm-생성하기">npm 생성하기</h3>
 <p>npm 환경에서 제일 중요한 것은 패키지 관리이다. 패키지들은 <code>package.json</code>파일에서 일괄적으로 관리하는데 직접 json 파일로 생성해도 되고, 명령어를 입력해 생성해도 된다. 터미널에서 <code>npm init</code>명령어를 입력하면 자동적으로 package.json파일을 생성할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln"> 1</span>npm init
-<span class="ln"> 2</span><span class="c1"># &gt; packagename : 프로젝트 이름 입력</span>
-<span class="ln"> 3</span><span class="c1"># &gt; version : 프로젝트 버전 입력 (default : 1.0.0)</span>
-<span class="ln"> 4</span><span class="c1"># &gt; description : 프로젝트 간단한 설명</span>
-<span class="ln"> 5</span><span class="c1"># &gt; entry poin : 자바스크립트 파일 진입 지점 (default : index.js)</span>
-<span class="ln"> 6</span><span class="c1"># &gt; test command : 테스트 코드 (코드 실행 및 테스트시 필요한 명령어 입력)</span>
-<span class="ln"> 7</span><span class="c1"># &gt; git repository : git 주소</span>
-<span class="ln"> 8</span><span class="c1"># &gt; keywords : 패키지 키워드 (npm 패키지 검색 시 사용)</span>
-<span class="ln"> 9</span><span class="c1"># &gt; author : 작성자</span>
-<span class="ln">10</span><span class="c1"># &gt; license : 패키지 라이센스 (default : ISC) *오픈 소스는 대부분 MIT 라이선스를 사용한다.</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm init
+<span class="c1"># &gt; packagename : 프로젝트 이름 입력</span>
+<span class="c1"># &gt; version : 프로젝트 버전 입력 (default : 1.0.0)</span>
+<span class="c1"># &gt; description : 프로젝트 간단한 설명</span>
+<span class="c1"># &gt; entry poin : 자바스크립트 파일 진입 지점 (default : index.js)</span>
+<span class="c1"># &gt; test command : 테스트 코드 (코드 실행 및 테스트시 필요한 명령어 입력)</span>
+<span class="c1"># &gt; git repository : git 주소</span>
+<span class="c1"># &gt; keywords : 패키지 키워드 (npm 패키지 검색 시 사용)</span>
+<span class="c1"># &gt; author : 작성자</span>
+<span class="c1"># &gt; license : 패키지 라이센스 (default : ISC) *오픈 소스는 대부분 MIT 라이선스를 사용한다.</span>
 </code></pre></div><p>위와 같이 init 단계를 마치면 프로젝트 경로에 package.json 파일이 생성된다. 생성할 때 test command입력 부분을 건너뛰었다면 아래와 같이 scripts 속성에 기본 값 test로 정의가 되어 있다. scripts 속성은 스크립트 실행 명령어를 여러개 정의할 수 있다. 대표적으로는 해당 프로젝트 실행 파일을 시작하는 명령어를 start로 지정해둔다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln"> 1</span><span class="p">{</span>
-<span class="ln"> 2</span>    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;npm-test&#34;</span><span class="p">,</span>
-<span class="ln"> 3</span>    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0.0&#34;</span><span class="p">,</span>
-<span class="ln"> 4</span>    <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;practice for npm&#34;</span><span class="p">,</span>
-<span class="ln"> 5</span>    <span class="nt">&#34;main&#34;</span><span class="p">:</span> <span class="s2">&#34;index.js&#34;</span><span class="p">,</span>
-<span class="ln"> 6</span>    <span class="nt">&#34;scripts&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln"> 7</span>        <span class="nt">&#34;test&#34;</span><span class="p">:</span> <span class="s2">&#34;echo \&#34;Error: no test specified\&#34; &amp;&amp; exit 1&#34;</span><span class="p">,</span>
-<span class="ln"> 8</span>        <span class="nt">&#34;start&#34;</span><span class="p">:</span> <span class="s2">&#34;node index.js&#34;</span>
-<span class="ln"> 9</span>    <span class="p">},</span>
-<span class="ln">10</span>    <span class="nt">&#34;author&#34;</span><span class="p">:</span> <span class="s2">&#34;jinyisland&#34;</span><span class="p">,</span>
-<span class="ln">11</span>    <span class="nt">&#34;license&#34;</span><span class="p">:</span> <span class="s2">&#34;MIT&#34;</span>
-<span class="ln">12</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;npm-test&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0.0&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;practice for npm&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;main&#34;</span><span class="p">:</span> <span class="s2">&#34;index.js&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;scripts&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;test&#34;</span><span class="p">:</span> <span class="s2">&#34;echo \&#34;Error: no test specified\&#34; &amp;&amp; exit 1&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;start&#34;</span><span class="p">:</span> <span class="s2">&#34;node index.js&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;author&#34;</span><span class="p">:</span> <span class="s2">&#34;jinyisland&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;license&#34;</span><span class="p">:</span> <span class="s2">&#34;MIT&#34;</span>
+<span class="p">}</span>
 </code></pre></div><p><code>scripts</code>속성에 사용자 지정 명령어를 정의할 수 있는데 해당 프로젝트 터미널에 npm run + command를 입력하면 정의된 스크립트가 실행된다. (예시는 npm run start)</p>
 <h3 id="패키지-설치하기">패키지 설치하기</h3>
 <p><code>npm install</code> 명령어는 npm에 올라와있는 패키지를 다운로드 받을 수 있는 명령어이다. 해당 패키지 모듈이 의존하는 여러 패키지들도 같이 다운로드 받는다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span><span class="c1"># express 패키지 설치 예제</span>
-<span class="ln">2</span>npm install express
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># express 패키지 설치 예제</span>
+npm install express
 </code></pre></div><p>여러 옵션들은 아래를 참고. 자주 사용하는 명령어만 적어놨는데 <a class="link" href="https://docs.npmjs.com"  target="_blank" rel="noopener"
     >공식 문서</a>에서 더 많은 명령어를 확인할 수 있다.</p>
 <ul>
 <li><strong>npm install -g :</strong> 전역 설치 (주로 직접 커맨드 환경에서 직접 사용할 패키지들에 사용) → <code>package.json</code>에서 관리하지 않으므로 관리할 때 주의
 <ul>
 <li>추적이 가능하게 하려면 먼저 install로 설치한 다음, <code>npx</code>명령어로 전역 패키지로 전환할 수 있다.
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npm i -D nodemon
-<span class="ln">2</span>npx nodemon node_modules
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm i -D nodemon
+npx nodemon node_modules
 </code></pre></div></li>
 </ul>
 </li>
@@ -399,9 +399,9 @@
 <p>모듈들을 설치하다보면 <code>package-lock.json</code>파일이 생기는데, 여러 모듈에서 의존하고 있는 다른 패키지 모듈 버전관리를 위해 만들어진 파일이다.</p>
 <h2 id="버전-관리">버전 관리</h2>
 <h3 id="semver-방식">semver 방식</h3>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln">1</span><span class="s2">&#34;dependencies&#34;</span><span class="err">:</span> <span class="p">{</span>
-<span class="ln">2</span>  <span class="nt">&#34;express&#34;</span><span class="p">:</span> <span class="s2">&#34;^4.17.2&#34;</span>
-<span class="ln">3</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;dependencies&#34;</span><span class="err">:</span> <span class="p">{</span>
+  <span class="nt">&#34;express&#34;</span><span class="p">:</span> <span class="s2">&#34;^4.17.2&#34;</span>
+<span class="p">}</span>
 </code></pre></div><p>npm 패키지들은 세자리 숫자로 구성되어 있는데 <code>Semver</code>방식을 따른다고 한다.</p>
 <ul>
 <li>Major : 하위 호환이 되지 않는 업데이트</li>

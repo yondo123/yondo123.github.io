@@ -347,79 +347,79 @@
     >http모듈로 서버를 구축</a></strong> 해서 간단한 요청과 응답 프로세스를 경험해보았는데 여타 언어들도 그렇듯이 프레임워크를 사용하면 더욱 효율적으로 작업을 할 수 있다. node.js 생태계에서는 압도적으로 <code>express.js</code>를 많이 사용한다.</p>
 <h3 id="설치하기">설치하기</h3>
 <p>npm 환경에서 install 명령어를 통해 express를 설치한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>npm install express
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm install express
 </code></pre></div><h3 id="기본-구조">기본 구조</h3>
 <p>기본적인 서버를 구축한 소스이다.<br>
 http 모듈로 구축했을 때 URL도 파싱해야하고, if문으로 <strong>분기처리하기</strong> 수고스러웠는데 상당히 깔끔해졌다.<br>
 각 라우터마다 요청, 응답 객체를 받아와 여러 형태로 받거나 전달할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="c1">//app.js
-</span><span class="ln"> 2</span><span class="c1"></span><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
-<span class="ln"> 3</span><span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
-<span class="ln"> 4</span>
-<span class="ln"> 5</span><span class="c1">//get 메서드
-</span><span class="ln"> 6</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 7</span>    <span class="c1">//200 응답을 지정하고, 메시지를 전송한다.
-</span><span class="ln"> 8</span><span class="c1"></span>    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;hello express server!!&#39;</span><span class="p">);</span>
-<span class="ln"> 9</span><span class="p">});</span>
-<span class="ln">10</span>
-<span class="ln">11</span><span class="c1">//post 메서드
-</span><span class="ln">12</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/write&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">13</span>    <span class="cm">/* code */</span>
-<span class="ln">14</span><span class="p">});</span>
-<span class="ln">15</span>
-<span class="ln">16</span><span class="c1">//서버 실행
-</span><span class="ln">17</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8082</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">18</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;start express server&#39;</span><span class="p">);</span>
-<span class="ln">19</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//app.js
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+
+<span class="c1">//get 메서드
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="c1">//200 응답을 지정하고, 메시지를 전송한다.
+</span><span class="c1"></span>    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;hello express server!!&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">//post 메서드
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/write&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="cm">/* code */</span>
+<span class="p">});</span>
+
+<span class="c1">//서버 실행
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8082</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;start express server&#39;</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div><h3 id="모니터링-플러그인">모니터링 플러그인</h3>
 <p><code>nodemon</code>은 개발 생산성을 높여주는 모니터링 플러그인이다.<br>
 보통 파일이 변경되면 서버를 종료하고 다시 실행시키는데 자동으로 프로젝트내의 파일들의 변경 사항을 감지해서 자동적으로 재시작해준다.
 <strong>cli 환경에서 실행되기 때문에 global 환경으로 설치해준다.</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span><span class="c1">#설치</span>
-<span class="ln">2</span>npm install -g nodemon
-<span class="ln">3</span>
-<span class="ln">4</span><span class="c1">#nodemon으로 앱 실행</span>
-<span class="ln">5</span>nodemon app
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#설치</span>
+npm install -g nodemon
+
+<span class="c1">#nodemon으로 앱 실행</span>
+nodemon app
 </code></pre></div><p><code>package.json</code>에 start 스크립트로 셋팅해두면 <code>npm start</code>로 간편히 실행시킬 수 있다.<br>
 (정식으로는 npm run start이지만, run 생략가능)</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln">1</span><span class="s2">&#34;script&#34;</span> <span class="err">:</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nt">&#34;start&#34;</span> <span class="p">:</span> <span class="s2">&#34;nodemon app&#34;</span>
-<span class="ln">3</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;script&#34;</span> <span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&#34;start&#34;</span> <span class="p">:</span> <span class="s2">&#34;nodemon app&#34;</span>
+<span class="p">}</span>
 </code></pre></div><p><code>nodemon</code>으로 앱을 실행하면 파일이 바뀌면 알아서 재시작해준다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text"><span class="ln">1</span>&gt; npm-test@1.0.0 start
-<span class="ln">2</span>&gt; nodemon app
-<span class="ln">3</span>[nodemon] 2.0.13
-<span class="ln">4</span>[nodemon] to restart at any time, enter `rs`
-<span class="ln">5</span>[nodemon] watching path(s): *.*
-<span class="ln">6</span>[nodemon] watching extensions: js,mjs,json
-<span class="ln">7</span>[nodemon] starting `node app.js`
-<span class="ln">8</span>start express server
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">&gt; npm-test@1.0.0 start
+&gt; nodemon app
+[nodemon] 2.0.13
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `node app.js`
+start express server
 </code></pre></div><h2 id="sendfile">sendFile</h2>
 <p>express에서는 <code>fs</code>모듈 필요 없이 <code>sendFile</code>메서드로 html파일을 브라우저에 전달할 수 있다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text"><span class="ln">1</span>project
-<span class="ln">2</span>├── app.js
-<span class="ln">3</span>├── html
-<span class="ln">4</span>│   └── about.html
-<span class="ln">5</span>├── package-lock.json
-<span class="ln">6</span>└── package.json
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
-<span class="ln">2</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/about&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">3</span>    <span class="nx">res</span><span class="p">.</span><span class="nx">sendFile</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;/html/about.html&#39;</span><span class="p">));</span>
-<span class="ln">4</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">project
+├── app.js
+├── html
+│   └── about.html
+├── package-lock.json
+└── package.json
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/about&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">sendFile</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;/html/about.html&#39;</span><span class="p">));</span>
+<span class="p">});</span>
 </code></pre></div><h2 id="라우터-사용시-주의사항">라우터 사용시 주의사항</h2>
 <p>express에서 api를 요청받을 때 요청 경로를 지정한다는 의미로 <code>라우팅</code>이라는 용어가 등장하는데, 이를 제어하는 부분이 라우터이다.<br>
 한 라우터에서 여러개의 응답을 보내게 된다면 에러가 발생하는 것을 꼭 알아두자. <strong>(반드시 단일 요청에는 단일 응답을 설계하자.)</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln"> 1</span><span class="c1">//❌ bad
-</span><span class="ln"> 2</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">((</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 3</span>	<span class="nx">res</span><span class="p">.</span><span class="nx">sendFile</span><span class="p">(</span><span class="s1">&#39;./index.html&#39;</span><span class="p">);</span>
-<span class="ln"> 4</span>	<span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;response test&#39;</span><span class="p">);</span>
-<span class="ln"> 5</span>	<span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="nx">key</span> <span class="o">:</span> <span class="s1">&#39;value&#39;</span><span class="p">});</span>
-<span class="ln"> 6</span><span class="p">});</span>
-<span class="ln"> 7</span>
-<span class="ln"> 8</span><span class="c1">//✅ Good
-</span><span class="ln"> 9</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">((</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">10</span>	<span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;response test&#39;</span><span class="p">);</span>
-<span class="ln">11</span><span class="p">});</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//❌ bad
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">((</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+	<span class="nx">res</span><span class="p">.</span><span class="nx">sendFile</span><span class="p">(</span><span class="s1">&#39;./index.html&#39;</span><span class="p">);</span>
+	<span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;response test&#39;</span><span class="p">);</span>
+	<span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="nx">key</span> <span class="o">:</span> <span class="s1">&#39;value&#39;</span><span class="p">});</span>
+<span class="p">});</span>
+
+<span class="c1">//✅ Good
+</span><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">((</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+	<span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;response test&#39;</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong><a class="link" href="http://www.yes24.com/Product/Goods/91213376"  target="_blank" rel="noopener"

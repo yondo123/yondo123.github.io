@@ -16,8 +16,8 @@
       <description>Mixin CSS내에서 반복적으로 사용하는 코드들을 재사용할 수 있도록 import 해주는 문법이다.
 사용법 @mixin 키워드 뒤에 사용 할 mixin 이름을 지정해준다. 사용하려는 부분에 @include로 선언한 mixin을 호출할 수 있다.
 (함수 사용방법과 상당히 유사하다.)
-1 //mixin 정의 2 @mixin text-red() { 3color: red; 4 } 5 6 //mixin 호출 7 p { 8 @include text-red(); 9 } css 컴파일 결과 👀
-1p { 2 color: red; 3} 파라미터 선언한 mixin에 내부에 사용 할 파라미터도 전달할 수 있다.</description>
+//mixin 정의 @mixin text-red() { color: red; } //mixin 호출 p { @include text-red(); } css 컴파일 결과 👀
+p { color: red; } 파라미터 선언한 mixin에 내부에 사용 할 파라미터도 전달할 수 있다. 또한 파라미터를 사용하지 않을 경우, 호출 시에 괄호를 생략할 수 있다.</description>
     </item>
     
     <item>
@@ -41,7 +41,7 @@ CSS에서도 중복되는 값들은 root요소에 변수를 선언해서 사용�
       <guid>https://jinyisland.kr/post/font/</guid>
       <description>웹 폰트 웹 폰트를 적용하는 방법은 크게 2가지가 있다. 하나는 cdn을 이용하는 방법, 나머지 하나는 직접 폰트 파일을 경로에 미리 삽입하여 @font-face로 정의하는 방법이다.
 CDN을 활용한 방법 구글 폰트 등과 같이 cdn을 제공해주는 사이트에서 폰트를 적용하는 방법이다. 너무나 간단한게 장점이고 단점으로는 직접 파일을 적용하는 방법보다 로드 속도가 느리다. 적용 방법은 직접 cdn 링크를 html에 삽입하고, css에서 font-family로 적용하거나, css import를 통해 적용하는 방법이 있다.
-1/* cdn import */ 2@import url(&amp;#39;https://fonts.googleapis.com/css2?family=Dongle:wght@300&amp;amp;display=swap&amp;#39;); 3 4/* 폰트 적용 */ 5body { 6 font-family: &amp;#39;Dongle&amp;#39;, sans-serif; 7} 폰트파일 직접 적용 직접 폰트 파일을 서비스 디렉토리에 넣어주고 @font-face로 불러오는 방법이 있다.</description>
+/* cdn import */ @import url(&amp;#39;https://fonts.googleapis.com/css2?family=Dongle:wght@300&amp;amp;display=swap&amp;#39;); /* 폰트 적용 */ body { font-family: &amp;#39;Dongle&amp;#39;, sans-serif; } 폰트파일 직접 적용 직접 폰트 파일을 서비스 디렉토리에 넣어주고 @font-face로 불러오는 방법이 있다.</description>
     </item>
     
   </channel>

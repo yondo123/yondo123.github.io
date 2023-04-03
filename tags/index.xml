@@ -6,7 +6,25 @@
     <description>Recent content in Tags on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Feb 2023 23:51:31 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 02 Apr 2023 23:52:00 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>babell</title>
+      <link>https://jinyisland.kr/tags/babell/</link>
+      <pubDate>Sun, 02 Apr 2023 23:52:00 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/tags/babell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>polyfill</title>
+      <link>https://jinyisland.kr/tags/polyfill/</link>
+      <pubDate>Sun, 02 Apr 2023 23:52:00 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/tags/polyfill/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>react</title>
       <link>https://jinyisland.kr/tags/react/</link>

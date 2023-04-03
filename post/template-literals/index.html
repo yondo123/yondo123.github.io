@@ -345,18 +345,18 @@
     <h2 id="temlate-literals">Temlate literals</h2>
 <p>기존 문자열 결합 시 연산자(+)를 사용하였는데 백틱(`) 기호를 사용하여 쉽게 결합할 수 있다.</p>
 <h3 id="기존-연산자-사용">기존 연산자 사용</h3>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">fruit</span> <span class="o">=</span> <span class="s1">&#39;apple&#39;</span><span class="p">;</span>
-<span class="ln">2</span><span class="kr">const</span> <span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">;</span>
-<span class="ln">3</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;My Favorite Fruit is&#39;</span> <span class="o">+</span> <span class="nx">fruit</span> <span class="o">+</span> <span class="s1">&#39;, color is &#39;</span> <span class="o">+</span> <span class="nx">color</span><span class="p">);</span> <span class="c1">//&#34;My Favorite Fruit isapple, color is red&#34;
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">fruit</span> <span class="o">=</span> <span class="s1">&#39;apple&#39;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;My Favorite Fruit is&#39;</span> <span class="o">+</span> <span class="nx">fruit</span> <span class="o">+</span> <span class="s1">&#39;, color is &#39;</span> <span class="o">+</span> <span class="nx">color</span><span class="p">);</span> <span class="c1">//&#34;My Favorite Fruit isapple, color is red&#34;
 </span></code></pre></div><h3 id="템플릿리터럴-사용">템플릿리터럴 사용</h3>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">fruit</span> <span class="o">=</span> <span class="s1">&#39;apple&#39;</span><span class="p">;</span>
-<span class="ln">2</span><span class="kr">const</span> <span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">;</span>
-<span class="ln">3</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`My favorite Fruit is </span><span class="si">${</span><span class="nx">fruit</span><span class="si">}</span><span class="sb">, color is </span><span class="si">${</span><span class="nx">color</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">fruit</span> <span class="o">=</span> <span class="s1">&#39;apple&#39;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`My favorite Fruit is </span><span class="si">${</span><span class="nx">fruit</span><span class="si">}</span><span class="sb">, color is </span><span class="si">${</span><span class="nx">color</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
 </code></pre></div><h3 id="장점">장점</h3>
 <p>보통 복잡한 문자열이거나 html 코드등을 직접 스크립트상에서 삽입할 때 쌍따옴표-홀따옴표등과 같이 사용하는 경우에 상당히 복잡했었다. (따옴표 종료 위치를 일일이 신경써야했기에)<br>
 템플릿리터럴을 사용하면 일반 텍스트를 작성하듯 변수 위치만 신경써주면되니까 이런점이 편하다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="ln">1</span><span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Jiny&#39;</span><span class="p">;</span>
-<span class="ln">2</span><span class="kr">const</span> <span class="nx">template</span> <span class="o">=</span> <span class="sb">`&lt;p class=&#34;user-name&#34;&gt;</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/p&gt;`</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Jiny&#39;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">template</span> <span class="o">=</span> <span class="sb">`&lt;p class=&#34;user-name&#34;&gt;</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;/p&gt;`</span><span class="p">;</span>
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong>자바스크립트 코딩의 기술 - 조모건 저</strong></li>
@@ -520,18 +520,18 @@
                 
                     
 <article class="has-image">
-    <a href="/post/react-ref/">
+    <a href="/post/polyfill-and-babel/">
         
         
             <div class="article-image">
                 
-                    <img src="../../assets/thumb/react.png" loading="lazy" data-key="react-ref" data-hash="../../assets/thumb/react.png"/>
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="polyfill-and-babel" data-hash="../../assets/js/js.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">[React] Ref의 개념과 useImperativeHandle, Uncontrolled form</h2>
+            <h2 class="article-title">Polyfill이 무엇인가요??</h2>
         </div>
     </a>
 </article>

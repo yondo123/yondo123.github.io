@@ -348,77 +348,77 @@
 <h3 id="스타일-적용하기">스타일 적용하기</h3>
 <p><strong>className</strong><br>
 <code>jsx</code>에서는 스타일을 적용하기 위한 <code>class</code>는 자바스크립트 예약어라 <code>className</code>으로 대체한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kr">const</span> <span class="nx">AppFooter</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">footer</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;red&#34;</span><span class="p">&gt;</span><span class="nx">Footer</span><span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;;</span>
-<span class="ln">3</span><span class="p">};</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">AppFooter</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">footer</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;red&#34;</span><span class="p">&gt;</span><span class="nx">Footer</span><span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;;</span>
+<span class="p">};</span>
 </code></pre></div><p><strong>InlineStyle</strong><br>
 기존 방식대로 클래스나 id를 붙여 css를 적용하는 방법 외에도, 스크립트 자체에서 스타일을 적용시킬 수 있다.
 객체 형태로 css을 작성하고, 점 표기법으로 해당 태그에 적용시킨다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln">1</span><span class="kr">const</span> <span class="nx">style</span> <span class="o">=</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nx">green</span><span class="o">:</span> <span class="p">{</span>
-<span class="ln">3</span>        <span class="nx">backgroundColor</span><span class="o">:</span> <span class="s1">&#39;green&#39;</span>
-<span class="ln">4</span>    <span class="p">}</span>
-<span class="ln">5</span><span class="p">};</span>
-<span class="ln">6</span>
-<span class="ln">7</span><span class="kr">const</span> <span class="nx">AppFooter</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln">8</span>    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">footer</span> <span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">.</span><span class="nx">green</span><span class="p">}&gt;</span><span class="nx">Footer</span><span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;;</span>
-<span class="ln">9</span><span class="p">};</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">style</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">green</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">backgroundColor</span><span class="o">:</span> <span class="s1">&#39;green&#39;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kr">const</span> <span class="nx">AppFooter</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">footer</span> <span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">.</span><span class="nx">green</span><span class="p">}&gt;</span><span class="nx">Footer</span><span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;;</span>
+<span class="p">};</span>
 </code></pre></div><h3 id="표현식">표현식</h3>
 <p>중괄호 문법으로 jsx 내부에 변수로 사용할 수 있다. (ES6의 템플릿 문법과 상당히 유사하다.)<br>
 문자열이나 숫자를 그대로 나타낼 수 있고, 반환 값이 있는 함수를 사용해도된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kr">const</span> <span class="nx">myName</span> <span class="o">=</span> <span class="s1">&#39;jiny&#39;</span><span class="p">;</span>
-<span class="ln"> 2</span><span class="kr">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 3</span>    <span class="k">return</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">();</span>
-<span class="ln"> 4</span><span class="p">};</span>
-<span class="ln"> 5</span>
-<span class="ln"> 6</span><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 7</span>    <span class="k">return</span> <span class="p">(</span>
-<span class="ln"> 8</span>        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
-<span class="ln"> 9</span>            <span class="p">&lt;</span><span class="nt">AppHeader</span> <span class="p">/&gt;</span>
-<span class="ln">10</span>            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
-<span class="ln">11</span>                <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;{</span><span class="nx">myName</span><span class="p">}&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-<span class="ln">12</span>                <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;{</span><span class="nx">today</span><span class="p">()}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="ln">13</span>            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
-<span class="ln">14</span>            <span class="p">&lt;</span><span class="nt">AppFooter</span> <span class="p">/&gt;</span>
-<span class="ln">15</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">16</span>    <span class="p">);</span>
-<span class="ln">17</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">myName</span> <span class="o">=</span> <span class="s1">&#39;jiny&#39;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">AppHeader</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;{</span><span class="nx">myName</span><span class="p">}&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;{</span><span class="nx">today</span><span class="p">()}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">AppFooter</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div><h3 id="이벤트-바인딩">이벤트 바인딩</h3>
 <p>요소에 이벤트를 bind하려면 중괄호 내부에 해당 함수를 기입한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="kr">const</span> <span class="nx">noti</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 3</span>        <span class="k">return</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
-<span class="ln"> 4</span>    <span class="p">};</span>
-<span class="ln"> 5</span>    <span class="k">return</span> <span class="p">(</span>
-<span class="ln"> 6</span>        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
-<span class="ln"> 7</span>            <span class="p">&lt;</span><span class="nt">AppHeader</span> <span class="p">/&gt;</span>
-<span class="ln"> 8</span>            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
-<span class="ln"> 9</span>                <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">noti</span><span class="p">}&gt;</span><span class="nx">클릭</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="ln">10</span>            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
-<span class="ln">11</span>            <span class="p">&lt;</span><span class="nt">AppFooter</span> <span class="p">/&gt;</span>
-<span class="ln">12</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">13</span>    <span class="p">);</span>
-<span class="ln">14</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">noti</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">AppHeader</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">noti</span><span class="p">}&gt;</span><span class="nx">클릭</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">AppFooter</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div><h2 id="특정-상태에-따라-화면-표시하기">특정 상태에 따라 화면 표시하기</h2>
 <p>보통 특정 상태에 따라 화면 Ui를 다르게 표시할 때 많이 사용한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="ln"> 1</span><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 2</span>		<span class="kd">let</span> <span class="nx">state</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-<span class="ln"> 3</span>
-<span class="ln"> 4</span>		<span class="kr">const</span> <span class="nx">toggleState</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="ln"> 5</span>			<span class="nx">state</span> <span class="o">=</span> <span class="o">!</span><span class="nx">state</span><span class="p">;</span>
-<span class="ln"> 6</span>		<span class="p">}</span>
-<span class="ln"> 7</span>
-<span class="ln"> 8</span>    <span class="k">return</span> <span class="p">(</span>
-<span class="ln"> 9</span>        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
-<span class="ln">10</span>            <span class="p">&lt;</span><span class="nt">AppHeader</span> <span class="p">/&gt;</span>
-<span class="ln">11</span>            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
-<span class="ln">12</span>				<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">toggleState</span><span class="p">}&gt;</span><span class="nx">show</span><span class="o">/</span><span class="nx">hide</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="ln">13</span>            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
-<span class="ln">14</span>				<span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;content&#34;</span><span class="p">&gt;{</span><span class="nx">state</span> <span class="o">?</span> <span class="p">&lt;&gt;&lt;/&gt;</span> <span class="o">:</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span><span class="nx">hello</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">15</span>            <span class="p">&lt;</span><span class="nt">AppFooter</span> <span class="p">/&gt;</span>
-<span class="ln">16</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="ln">17</span>    <span class="p">);</span>
-<span class="ln">18</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">let</span> <span class="nx">state</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+		<span class="kr">const</span> <span class="nx">toggleState</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+			<span class="nx">state</span> <span class="o">=</span> <span class="o">!</span><span class="nx">state</span><span class="p">;</span>
+		<span class="p">}</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">AppHeader</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
+				<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">toggleState</span><span class="p">}&gt;</span><span class="nx">show</span><span class="o">/</span><span class="nx">hide</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+				<span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;content&#34;</span><span class="p">&gt;{</span><span class="nx">state</span> <span class="o">?</span> <span class="p">&lt;&gt;&lt;/&gt;</span> <span class="o">:</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span><span class="nx">hello</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">AppFooter</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><a class="link" href="https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%EB%A6%AC%EC%95%A1%ED%8A%B8/dashboard"  target="_blank" rel="noopener"
@@ -567,6 +567,24 @@
                 
                     
 <article class="has-image">
+    <a href="/post/polyfill-and-babel/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/js/js.png" loading="lazy" data-key="polyfill-and-babel" data-hash="../../assets/js/js.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Polyfill이 무엇인가요??</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
     <a href="/post/redux/">
         
         
@@ -579,24 +597,6 @@
 
         <div class="article-details">
             <h2 class="article-title">[Redux] Redux 사용해보기</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/post/composition-api/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/thumb/vue.png" loading="lazy" data-key="composition-api" data-hash="../../assets/thumb/vue.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[Vue] Composition API 사용 방법</h2>
         </div>
     </a>
 </article>
