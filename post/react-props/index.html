@@ -349,43 +349,43 @@
 <p>컴포넌트 작성 시 해당 컴포넌트 태그에 <code>변수이름={}</code>으로 사용한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//App.js (최상위 컴포너트)
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">();</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">();</span>
 <span class="p">};</span>
 
 <span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">AppHeader</span> <span class="p">/&gt;</span>
-            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
-                <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;{</span><span class="nx">myName</span><span class="p">}&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-                <span class="p">&lt;</span><span class="nt">Time</span> <span class="na">init</span><span class="o">=</span><span class="p">{</span><span class="nx">today</span><span class="p">}</span> <span class="p">/&gt;</span>
-            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">AppFooter</span> <span class="p">/&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">AppHeader</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;{</span><span class="nx">myName</span><span class="p">}&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">Time</span> <span class="na">init</span><span class="o">=</span><span class="p">{</span><span class="nx">today</span><span class="p">}</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">AppFooter</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><p>전달받는 컴포넌트 (자식 컴포넌트)에서는 매개변수로 받아올 수 있는데 <code>객체</code> 타입으로 전달 받는다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kd">function</span> <span class="nx">Time</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">What</span> <span class="nx">Time</span><span class="o">?</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;{</span><span class="nx">props</span><span class="p">.</span><span class="nx">today</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">What</span> <span class="nx">Time</span><span class="o">?</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;{</span><span class="nx">props</span><span class="p">.</span><span class="nx">today</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><p><a class="link" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment"  target="_blank" rel="noopener"
     >구조 분해 할당</a>을 통해 더욱 쉽게 받을 수 있다.</p>
 <p>객체나 배열 구문에서 속성을 바로 해체해서 변수처럼 사용할 수 있는 표현식이다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//Time.js (자식 컴포넌트)
-</span><span class="c1"></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+</span><span class="c1"></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">Time</span><span class="p">({</span> <span class="nx">today</span> <span class="p">})</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">What</span> <span class="nx">Time</span><span class="o">?</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;{</span><span class="nx">today</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">What</span> <span class="nx">Time</span><span class="o">?</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;{</span><span class="nx">today</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">Time</span><span class="p">;</span>
@@ -393,49 +393,49 @@
 <p>스프레드 연산자(&hellip;)를 사용해서 여러 개의 값을 한번에 전달할 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//App.js (최상위 컴포넌트)
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">timeProps</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">defaultDate</span><span class="o">:</span> <span class="nx">today</span><span class="p">,</span>
-    <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;지금 시간은?&#39;</span>
+  <span class="nx">defaultDate</span><span class="o">:</span> <span class="nx">today</span><span class="p">,</span>
+  <span class="nx">message</span><span class="o">:</span> <span class="s2">&#34;지금 시간은?&#34;</span>
 <span class="p">};</span>
 
 <span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">AppHeader</span> <span class="p">/&gt;</span>
-            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
-                <span class="p">&lt;</span><span class="nt">Time</span> <span class="p">{</span><span class="na">...timeProps</span><span class="p">}</span> <span class="p">/&gt;</span>
-            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">AppFooter</span> <span class="p">/&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">AppHeader</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">Time</span> <span class="p">{</span><span class="na">...timeProps</span><span class="p">}</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">AppFooter</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//Time.js (자식 컴포넌트)
-</span><span class="c1"></span><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+</span><span class="c1"></span><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">Time</span><span class="p">({</span> <span class="nx">defaultDate</span><span class="p">,</span> <span class="nx">message</span> <span class="p">})</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="nx">getTime</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-        <span class="nx">setTime</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">());</span>
-    <span class="p">};</span>
+  <span class="kr">const</span> <span class="nx">getTime</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">setTime</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">());</span>
+  <span class="p">};</span>
 
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">What</span> <span class="nx">Time</span><span class="o">?</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;{</span><span class="nx">time</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">getTime</span><span class="p">}&gt;{</span><span class="nx">message</span><span class="p">}&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">What</span> <span class="nx">Time</span><span class="o">?</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;{</span><span class="nx">time</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">getTime</span><span class="p">}&gt;{</span><span class="nx">message</span><span class="p">}&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">Time</span><span class="p">;</span>
 </code></pre></div><h3 id="props-초기화">Props 초기화</h3>
 <p>혹여나 부모 컴포넌트에서 정상적으로 데이터를 넘기지 못 할 경우를 대비해 초기화를 해줄 수 도 있는데 <code>defaultProps</code> 속성을 사용하면 된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">Time</span><span class="p">({</span> <span class="nx">defaultDate</span><span class="p">,</span> <span class="nx">message</span> <span class="p">})</span> <span class="p">{</span>
-    <span class="c1">//..code
+  <span class="c1">//..code
 </span><span class="c1"></span><span class="p">}</span>
 
 <span class="nx">Time</span><span class="p">.</span><span class="nx">defaultProps</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;not send&#39;</span>
+  <span class="nx">message</span><span class="o">:</span> <span class="s2">&#34;not send&#34;</span>
 <span class="p">};</span>
 
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">Time</span><span class="p">;</span>
@@ -443,15 +443,15 @@
 <p><code>prop</code> 데이터에 컴포넌트도 전달할 수 있다.</p>
 <p>컴포넌트를 감싸고 있는 하위 컴포넌트들은 컴포넌트에서 <code>Props.children</code>으로 전달받을 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//App.js
-</span><span class="c1"></span><span class="kr">import</span> <span class="nx">Outer</span> <span class="nx">from</span> <span class="s1">&#39;./Outer&#39;</span><span class="p">;</span>
+</span><span class="c1"></span><span class="kr">import</span> <span class="nx">Outer</span> <span class="nx">from</span> <span class="s2">&#34;./Outer&#34;</span><span class="p">;</span>
 <span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">Outer</span><span class="p">&gt;</span>
-                <span class="p">&lt;</span><span class="nt">Time</span> <span class="p">/&gt;</span>
-            <span class="p">&lt;/</span><span class="nt">Outer</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">Outer</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">Time</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">Outer</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//OuterComponent.js
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">Outer</span> <span class="o">=</span> <span class="kd">function</span><span class="p">({</span><span class="nx">children</span><span class="p">})</span> <span class="p">{</span>
@@ -470,71 +470,71 @@
 <ol>
 <li>
 <p>부모 컴포넌트에서 자식 컴포넌트에서 받을 데이터를 핸들링 해주는 함수를 작성한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
-<span class="kr">import</span> <span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
-<span class="kr">import</span> <span class="nx">Time</span> <span class="nx">from</span> <span class="s1">&#39;./Time&#39;</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s2">&#34;./App.css&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Time</span> <span class="nx">from</span> <span class="s2">&#34;./Time&#34;</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">//리렌더링을 위해 useState사용
-</span><span class="c1"></span>    <span class="kr">const</span> <span class="p">[</span><span class="nx">color</span><span class="p">,</span> <span class="nx">setColor</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;App&#39;</span><span class="p">);</span>
+  <span class="c1">//리렌더링을 위해 useState사용
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="p">[</span><span class="nx">color</span><span class="p">,</span> <span class="nx">setColor</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="s2">&#34;App&#34;</span><span class="p">);</span>
 
-    <span class="kr">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">();</span>
-    <span class="p">};</span>
+  <span class="kr">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">();</span>
+  <span class="p">};</span>
 
-    <span class="c1">//핸들러 함수
-</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">onChangeBackground</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">setColor</span><span class="p">(</span><span class="nx">params</span><span class="p">);</span>
-    <span class="p">};</span>
+  <span class="c1">//핸들러 함수
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">onChangeBackground</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setColor</span><span class="p">(</span><span class="nx">params</span><span class="p">);</span>
+  <span class="p">};</span>
 
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="p">{</span><span class="nx">color</span><span class="p">}&gt;</span>
-            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
-                <span class="p">&lt;</span><span class="nt">Time</span> <span class="na">today</span><span class="o">=</span><span class="p">{</span><span class="nx">today</span><span class="p">()}</span> <span class="na">onChangeBackground</span><span class="o">=</span><span class="p">{</span><span class="nx">onChangeBackground</span><span class="p">}</span> <span class="p">/&gt;</span>
-            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="p">{</span><span class="nx">color</span><span class="p">}&gt;</span>
+      <span class="p">&lt;</span><span class="nt">header</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App-header&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">Time</span> <span class="na">today</span><span class="o">=</span><span class="p">{</span><span class="nx">today</span><span class="p">()}</span> <span class="na">onChangeBackground</span><span class="o">=</span><span class="p">{</span><span class="nx">onChangeBackground</span><span class="p">}</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
 <span class="p">}</span>
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
 </code></pre></div></li>
 <li>
 <p>자식 컴포넌트에서 부모 컴포넌트로 바인딩 시켜 줄 <code>event prop</code>을 호출하고 매개변수로 데이터를 전달한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kd">function</span> <span class="nx">Time</span><span class="p">({</span> <span class="nx">today</span><span class="p">,</span> <span class="nx">onChangeBackground</span> <span class="p">})</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">What</span> <span class="nx">Time</span><span class="o">?</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;{</span><span class="nx">today</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-                <span class="p">&lt;</span><span class="nt">button</span>
-                    <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span>
-                    <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;red&#39;</span><span class="p">}</span>
-                    <span class="na">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-                        <span class="nx">onChangeBackground</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
-                    <span class="p">}}</span>
-                <span class="p">&gt;</span>
-                    <span class="nx">RED</span>
-                <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-                <span class="p">&lt;</span><span class="nt">button</span>
-                    <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span>
-                    <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;green&#39;</span><span class="p">}</span>
-                    <span class="na">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-                        <span class="nx">onChangeBackground</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
-                    <span class="p">}}</span>
-                <span class="p">&gt;</span>
-                    <span class="nx">GREEN</span>
-                <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-                <span class="p">&lt;</span><span class="nt">button</span>
-                    <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span>
-                    <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;blue&#39;</span><span class="p">}</span>
-                    <span class="na">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-                        <span class="nx">onChangeBackground</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
-                    <span class="p">}}</span>
-                <span class="p">&gt;</span>
-                    <span class="nx">BLUE</span>
-                <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">What</span> <span class="nx">Time</span><span class="o">?</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;{</span><span class="nx">today</span><span class="p">}&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span>
+          <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span>
+          <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;red&#34;</span><span class="p">}</span>
+          <span class="na">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">onChangeBackground</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+          <span class="p">}}</span>
+        <span class="p">&gt;</span>
+          <span class="nx">RED</span>
+        <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span>
+          <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span>
+          <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;green&#34;</span><span class="p">}</span>
+          <span class="na">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">onChangeBackground</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+          <span class="p">}}</span>
+        <span class="p">&gt;</span>
+          <span class="nx">GREEN</span>
+        <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span>
+          <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span>
+          <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;blue&#34;</span><span class="p">}</span>
+          <span class="na">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">onChangeBackground</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+          <span class="p">}}</span>
+        <span class="p">&gt;</span>
+          <span class="nx">BLUE</span>
+        <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><p><img src="https://user-images.githubusercontent.com/46988995/173382623-9a77f193-f2b2-4d10-b2f1-095eb09cf04a.gif" alt="결과물"  /></p>
 <p>해당 소스는 <a class="link" href="https://github.com/yondo123/react-practice/tree/main/props-event"  target="_blank" rel="noopener"
@@ -635,6 +635,24 @@
                 
                     
 <article class="has-image">
+    <a href="/post/react-awesome-fetching/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/thumb/react.png" loading="lazy" data-key="react-awesome-fetching" data-hash="../../assets/thumb/react.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[React] React에서 우아하게 비동기 처리하기</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
     <a href="/post/react-ref/">
         
         
@@ -701,24 +719,6 @@
 
         <div class="article-details">
             <h2 class="article-title">Polyfill이 무엇인가요??</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/post/redux/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/thumb/js.png" loading="lazy" data-key="redux" data-hash="../../assets/thumb/js.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[Redux] Redux 사용해보기</h2>
         </div>
     </a>
 </article>

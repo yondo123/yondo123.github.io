@@ -6,7 +6,18 @@
     <description>Recent content in JavaScript on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Apr 2023 23:52:00 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 Apr 2023 23:13:01 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[React] React에서 우아하게 비동기 처리하기</title>
+      <link>https://jinyisland.kr/post/react-awesome-fetching/</link>
+      <pubDate>Sun, 30 Apr 2023 23:13:01 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/react-awesome-fetching/</guid>
+      <description>들어가면서 이 글은 Toss팀의 &amp;ldquo;프론트엔드 웹 서비스에서 우아하게 비동기 처리하기&amp;rdquo; 세션을 시청하고 실제로 적용해보면서 정리한 글입니다. 비동기 처리에 대한 전략을 제시해주는 좋은 영상인 것 같습니다. 꼭 시청해보시길 권장드립니다. 😀
+비동기에서의 좋은 코드 비동기에서의 복잡도 만약 처리해야 할 비동기 함수가 M개이고, 각각의 비동기 함수는 N개의 상태를 가진다면, 확인해야 할 경우의 수가 많아집니다.
+비동기에서의 좋은 코드란?  함수의 역할을 쉽게 파악할 수 있는 간결한 코드 비동기의 상태를 사용하는 입장에서 신경쓰지 않아도 되는 코드  Promsie</description>
+    </item>
+    
     <item>
       <title>Polyfill이 무엇인가요??</title>
       <link>https://jinyisland.kr/post/polyfill-and-babel/</link>
