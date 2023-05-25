@@ -132,7 +132,7 @@
         
 
         <li >
-            <a href='/categories/javascript/'>
+            <a href='/categories/frontend/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -141,7 +141,7 @@
   <line x1="13" y1="12" x2="15" y2="12" />
 </svg>
                 
-                <span>JavaScript</span>
+                <span>Frontend</span>
             </a>
         </li>
         
@@ -312,8 +312,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #000;">
-                JavaScript
+            <a href="/categories/frontend/" style="background-color: #ffeaa7; color: #000;">
+                frontend
             </a>
         
     </header>
@@ -363,18 +363,18 @@
 <span class="kr">import</span> <span class="nx">Board</span> <span class="nx">from</span> <span class="s1">&#39;./pagres/Board&#39;</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="p">&lt;</span><span class="nt">BrowserRouter</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
-                <span class="p">&lt;</span><span class="nt">Header</span> <span class="p">/&gt;</span>
-                <span class="p">&lt;</span><span class="nt">Routes</span><span class="p">&gt;</span>
-                    <span class="p">&lt;</span><span class="nt">Route</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;/&#34;</span> <span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Home</span> <span class="p">/&gt;}</span> <span class="p">/&gt;</span>
-                    <span class="p">&lt;</span><span class="nt">Route</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;/profile&#34;</span> <span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Profile</span> <span class="p">/&gt;}</span> <span class="p">/&gt;</span>
-                    <span class="p">&lt;</span><span class="nt">Route</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;/board&#34;</span> <span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Board</span> <span class="p">/&gt;}</span> <span class="p">/&gt;</span>
-                <span class="p">&lt;/</span><span class="nt">Routes</span><span class="p">&gt;</span>
-            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">BrowserRouter</span><span class="p">&gt;</span>
-    <span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">BrowserRouter</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;App&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">Header</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">Routes</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">Route</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;/&#34;</span> <span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Home</span> <span class="p">/&gt;}</span> <span class="p">/&gt;</span>
+          <span class="p">&lt;</span><span class="nt">Route</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;/profile&#34;</span> <span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Profile</span> <span class="p">/&gt;}</span> <span class="p">/&gt;</span>
+          <span class="p">&lt;</span><span class="nt">Route</span> <span class="na">path</span><span class="o">=</span><span class="s">&#34;/board&#34;</span> <span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Board</span> <span class="p">/&gt;}</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">Routes</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">BrowserRouter</span><span class="p">&gt;</span>
+  <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><ul>
 <li><strong>BrowserRouter :</strong> 브라우저 History API를 사용해 현재 위치의 URL을 저장해주는 역할이다.</li>
@@ -387,13 +387,13 @@ HTML 앵커 태그로 자동으로 변환해준다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Link</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">Nav</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;/&#39;</span><span class="p">}&gt;</span><span class="nx">Home</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;/board&#39;</span><span class="p">}&gt;</span><span class="nx">Board</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;/profile&#39;</span><span class="p">}&gt;</span><span class="nx">Profile</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;/&#39;</span><span class="p">}&gt;</span><span class="nx">Home</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;/board&#39;</span><span class="p">}&gt;</span><span class="nx">Board</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;/profile&#39;</span><span class="p">}&gt;</span><span class="nx">Profile</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">Nav</span><span class="p">;</span>
@@ -405,12 +405,12 @@ HTML 앵커 태그로 자동으로 변환해준다.</p>
 </span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">useParams</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">Profile</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="p">{</span> <span class="nx">userId</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useParams</span><span class="p">();</span>
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;{</span><span class="sb">`</span><span class="si">${</span><span class="nx">userId</span><span class="si">}</span><span class="sb">의 Profile Page`</span><span class="p">}&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">);</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">userId</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useParams</span><span class="p">();</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;{</span><span class="sb">`</span><span class="si">${</span><span class="nx">userId</span><span class="si">}</span><span class="sb">의 Profile Page`</span><span class="p">}&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">Profile</span><span class="p">;</span>
@@ -423,18 +423,18 @@ HTML 앵커 태그로 자동으로 변환해준다.</p>
 </span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">useSearchParams</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">Board</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="p">[</span><span class="nx">searchParams</span><span class="p">,</span> <span class="nx">setSearchParams</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useSearchParams</span><span class="p">();</span>
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">Board</span> <span class="nx">Page</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
-                <span class="nx">작성자</span> <span class="o">:</span> <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;{</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;userId&#39;</span><span class="p">)}&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-            <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
-                <span class="nx">게시글</span> <span class="nx">번호</span> <span class="o">:</span> <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;{</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;docId&#39;</span><span class="p">)}&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-            <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">);</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">searchParams</span><span class="p">,</span> <span class="nx">setSearchParams</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useSearchParams</span><span class="p">();</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">Board</span> <span class="nx">Page</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="nx">작성자</span> <span class="o">:</span> <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;{</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;userId&#39;</span><span class="p">)}&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="nx">게시글</span> <span class="nx">번호</span> <span class="o">:</span> <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;{</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;docId&#39;</span><span class="p">)}&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">Board</span><span class="p">;</span>

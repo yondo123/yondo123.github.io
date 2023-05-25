@@ -132,7 +132,7 @@
         
 
         <li >
-            <a href='/categories/javascript/'>
+            <a href='/categories/frontend/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -141,7 +141,7 @@
   <line x1="13" y1="12" x2="15" y2="12" />
 </svg>
                 
-                <span>JavaScript</span>
+                <span>Frontend</span>
             </a>
         </li>
         
@@ -312,8 +312,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #000;">
-                JavaScript
+            <a href="/categories/frontend/" style="background-color: #ffeaa7; color: #000;">
+                frontend
             </a>
         
     </header>
@@ -356,13 +356,13 @@
 <p>프로젝트 최상위 경로에 <code>.prettierrc.js</code>파일을 생성한다.<br>
 node 환경의 root는 package.json이 위치한 경로라고 이해하면 된다. 어떤 일관성을 유지 할 것인지 설정을 해주어야하기 때문에 설정 파일을 생성한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">singleQuote</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//작은 따옴표 사용 (문자열)
-</span><span class="c1"></span>    <span class="nx">bracketSpacing</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">//객체 리터럴 공백 제거
-</span><span class="c1"></span>    <span class="nx">printWidth</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span> <span class="c1">//코드의 블록 너비
-</span><span class="c1"></span>    <span class="nx">tabWidth</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span> <span class="c1">//개행 단위
-</span><span class="c1"></span>    <span class="nx">semi</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//문장 뒤에 세미클론 붙임
-</span><span class="c1"></span>    <span class="nx">arrowParens</span><span class="o">:</span> <span class="s1">&#39;avoid&#39;</span><span class="p">,</span> <span class="c1">//화살표 함수에서 매개변수 괄호 여부
-</span><span class="c1"></span>    <span class="nx">trailingComma</span><span class="o">:</span> <span class="s1">&#39;none&#39;</span> <span class="c1">//배열, 객체 속성에서 마지막 요소에 컴마 붙이지 않음
+  <span class="nx">singleQuote</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//작은 따옴표 사용 (문자열)
+</span><span class="c1"></span>  <span class="nx">bracketSpacing</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">//객체 리터럴 공백 제거
+</span><span class="c1"></span>  <span class="nx">printWidth</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span> <span class="c1">//코드의 블록 너비
+</span><span class="c1"></span>  <span class="nx">tabWidth</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span> <span class="c1">//개행 단위
+</span><span class="c1"></span>  <span class="nx">semi</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">//문장 뒤에 세미클론 붙임
+</span><span class="c1"></span>  <span class="nx">arrowParens</span><span class="o">:</span> <span class="s1">&#39;avoid&#39;</span><span class="p">,</span> <span class="c1">//화살표 함수에서 매개변수 괄호 여부
+</span><span class="c1"></span>  <span class="nx">trailingComma</span><span class="o">:</span> <span class="s1">&#39;none&#39;</span> <span class="c1">//배열, 객체 속성에서 마지막 요소에 컴마 붙이지 않음
 </span><span class="c1"></span><span class="p">};</span>
 </code></pre></div><p>자주 사용하는 옵션을 예시로 들었다. 추가적인 옵션은 <a class="link" href="https://prettier.io/docs/en/options.html"  target="_blank" rel="noopener"
     >Prettier</a> 공식 문서에서 확인 할 수 있다.</p>
@@ -377,7 +377,7 @@ node 환경의 root는 package.json이 위치한 경로라고 이해하면 된�
 주로 Vetur, EsLint 등 다른 포맷팅을 지원해주는 플러그인과 충돌나서 그러는 경우가 많다고 한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">//settings.json</span>
 <span class="s2">&#34;[vue]&#34;</span><span class="err">:</span> <span class="p">{</span>
-      <span class="nt">&#34;editor.defaultFormatter&#34;</span><span class="p">:</span> <span class="s2">&#34;esbenp.prettier-vscode&#34;</span>
+   <span class="nt">&#34;editor.defaultFormatter&#34;</span><span class="p">:</span> <span class="s2">&#34;esbenp.prettier-vscode&#34;</span>
 <span class="p">}</span><span class="err">,</span>
 </code></pre></div></li>
 </ol>
@@ -390,11 +390,11 @@ node 환경의 root는 package.json이 위치한 경로라고 이해하면 된�
 <li>전역 설정을 위해 최상위 경로에 <code>.eslintrc.js</code>파일을 생성한다. 기본 구조는 아래 소스를 참고.
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//.eslintrc.js
 </span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="kr">extends</span><span class="o">:</span> <span class="p">[</span>
-        <span class="s1">&#39;plugin:vue/vue3-recommended&#39;</span> <span class="c1">//Vue 3.X 버전 권장 규칙
-</span><span class="c1"></span>        <span class="c1">// &#39;plugin:vue/recommended&#39; // Vue 2.X 버전을 사용한다면 활성화
-</span><span class="c1"></span>    <span class="p">],</span>
-    <span class="nx">rules</span><span class="o">:</span> <span class="p">{}</span>
+  <span class="kr">extends</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s1">&#39;plugin:vue/vue3-recommended&#39;</span> <span class="c1">//Vue 3.X 버전 권장 규칙
+</span><span class="c1"></span>    <span class="c1">// &#39;plugin:vue/recommended&#39; // Vue 2.X 버전을 사용한다면 활성화
+</span><span class="c1"></span>  <span class="p">],</span>
+  <span class="nx">rules</span><span class="o">:</span> <span class="p">{}</span>
 <span class="p">};</span>
 </code></pre></div><p><code>extends</code>속성에 여러 규칙들을 기입할 수 있으며 (규칙 ID 여러개로 관리가 가능하다.) 자세한 설명은 <a class="link" href="https://eslint.vuejs.org/rules/comment-directive.html"  target="_blank" rel="noopener"
     >eslint-plugin-vue 공식 문서</a>에서 확인할 수 있다.</p>
@@ -403,18 +403,18 @@ node 환경의 root는 package.json이 위치한 경로라고 이해하면 된�
 이 부분은 워낙 방대해 사용하고 있는 설정 기준으로 설명해보자면
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//.eslintrc.js
 </span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">root</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nx">env</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">node</span><span class="o">:</span> <span class="kc">true</span>
-    <span class="p">},</span>
-    <span class="kr">extends</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;plugin:vue/vue3-essential&#39;</span><span class="p">,</span> <span class="s1">&#39;eslint:recommended&#39;</span><span class="p">,</span> <span class="s1">&#39;@vue/prettier&#39;</span><span class="p">],</span>
-    <span class="nx">parserOptions</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">parser</span><span class="o">:</span> <span class="s1">&#39;babel-eslint&#39;</span>
-    <span class="p">},</span>
-    <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s1">&#39;no-console&#39;</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="s1">&#39;production&#39;</span> <span class="o">?</span> <span class="s1">&#39;warn&#39;</span> <span class="o">:</span> <span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="c1">//콘솔 사용 제한
-</span><span class="c1"></span>        <span class="s1">&#39;no-debugger&#39;</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="s1">&#39;production&#39;</span> <span class="o">?</span> <span class="s1">&#39;warn&#39;</span> <span class="o">:</span> <span class="s1">&#39;off&#39;</span> <span class="c1">//디버거 사용 제한
-</span><span class="c1"></span>    <span class="p">}</span>
+  <span class="nx">root</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nx">env</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">node</span><span class="o">:</span> <span class="kc">true</span>
+  <span class="p">},</span>
+  <span class="kr">extends</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;plugin:vue/vue3-essential&#39;</span><span class="p">,</span> <span class="s1">&#39;eslint:recommended&#39;</span><span class="p">,</span> <span class="s1">&#39;@vue/prettier&#39;</span><span class="p">],</span>
+  <span class="nx">parserOptions</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">parser</span><span class="o">:</span> <span class="s1">&#39;babel-eslint&#39;</span>
+  <span class="p">},</span>
+  <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s1">&#39;no-console&#39;</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="s1">&#39;production&#39;</span> <span class="o">?</span> <span class="s1">&#39;warn&#39;</span> <span class="o">:</span> <span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="c1">//콘솔 사용 제한
+</span><span class="c1"></span>    <span class="s1">&#39;no-debugger&#39;</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="s1">&#39;production&#39;</span> <span class="o">?</span> <span class="s1">&#39;warn&#39;</span> <span class="o">:</span> <span class="s1">&#39;off&#39;</span> <span class="c1">//디버거 사용 제한
+</span><span class="c1"></span>  <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div><ul>
 <li><code>root</code> : 최상위 디렉토리 여부</li>
@@ -437,11 +437,11 @@ node 환경의 root는 package.json이 위치한 경로라고 이해하면 된�
     >공식 문서</a>를 참고하면 되고 아래와 같이 사용하면된다.</li>
 </ul>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="nt">&#34;rules&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;eqeqeq&#34;</span><span class="p">:</span> <span class="s2">&#34;off&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;curly&#34;</span><span class="p">:</span> <span class="s2">&#34;error&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;quotes&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;error&#34;</span><span class="p">,</span> <span class="s2">&#34;double&#34;</span><span class="p">]</span>
-    <span class="p">}</span>
+  <span class="nt">&#34;rules&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;eqeqeq&#34;</span><span class="p">:</span> <span class="s2">&#34;off&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;curly&#34;</span><span class="p">:</span> <span class="s2">&#34;error&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;quotes&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;error&#34;</span><span class="p">,</span> <span class="s2">&#34;double&#34;</span><span class="p">]</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></li>
 </ol>

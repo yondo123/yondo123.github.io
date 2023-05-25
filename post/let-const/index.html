@@ -132,7 +132,7 @@
         
 
         <li >
-            <a href='/categories/javascript/'>
+            <a href='/categories/frontend/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -141,7 +141,7 @@
   <line x1="13" y1="12" x2="15" y2="12" />
 </svg>
                 
-                <span>JavaScript</span>
+                <span>Frontend</span>
             </a>
         </li>
         
@@ -312,8 +312,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #000;">
-                JavaScript
+            <a href="/categories/frontend/" style="background-color: #ffeaa7; color: #000;">
+                frontend
             </a>
         
     </header>
@@ -364,59 +364,59 @@
 <p>기존 <code>var</code>과 유사한 점은 변수를 재할당할 수 있는 점이다. 하지만 <strong>var로 선언한 변수는 어휘적 유효범위(lexical sope)</strong> 를 따르지만, <code>let</code>은 블록 유효범위를 따른다.
 아래 예제를 보면 아이템의 가격을 반환해주는 함수이다. 만약 정가(price)와 갯수(inventory)가 존재하면 정가를 반환하고, 세일 가격(salePrice)와 세일중인 아이템 갯수(saleInventory)가 존재하면 할인가격을 반환한다. 이 예제에서 핵심은 <code>let</code>임에도 불구하고 변수를 2번 재할당하고 있다. <strong>블록 유효범위를 따르기때문에 가능한 일이다.</strong></p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">getPriceOfItems</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">stack</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">inventory</span><span class="p">;</span>
-    <span class="kd">let</span> <span class="nx">price</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">price</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">salePrice</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">let</span> <span class="nx">stack</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">saleInventory</span><span class="p">;</span> <span class="c1">//다른 유효범위
-</span><span class="c1"></span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stack</span><span class="p">);</span> <span class="c1">//1
-</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="nx">stack</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">price</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">salePrice</span><span class="p">;</span>
-        <span class="p">}</span>
+  <span class="kd">let</span> <span class="nx">stack</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">inventory</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">price</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">price</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">salePrice</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">stack</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">saleInventory</span><span class="p">;</span> <span class="c1">//다른 유효범위
+</span><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stack</span><span class="p">);</span> <span class="c1">//1
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">stack</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">price</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">salePrice</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">stack</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stack</span><span class="p">);</span> <span class="c1">//3
-</span><span class="c1"></span>        <span class="k">return</span> <span class="nx">price</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">stack</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stack</span><span class="p">);</span> <span class="c1">//3
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">price</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="nx">getPriceOfItems</span><span class="p">({</span>
-    <span class="nx">price</span><span class="o">:</span> <span class="mi">3600</span><span class="p">,</span>
-    <span class="nx">inventory</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="nx">salePrice</span><span class="o">:</span> <span class="mi">1800</span><span class="p">,</span>
-    <span class="nx">saleInventory</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="nx">price</span><span class="o">:</span> <span class="mi">3600</span><span class="p">,</span>
+  <span class="nx">inventory</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+  <span class="nx">salePrice</span><span class="o">:</span> <span class="mi">1800</span><span class="p">,</span>
+  <span class="nx">saleInventory</span><span class="o">:</span> <span class="mi">1</span>
 <span class="p">});</span>
 <span class="c1">//1800
 </span></code></pre></div><h2 id="반복문에서의-유효범위-충돌-방지">반복문에서의 유효범위 충돌 방지</h2>
 <p>지난번 클로저를 소개할 때 사용했던 예제이긴하지만.. 어휘적 유효범위를 따르는 <code>var</code>로 선언한 변수 때문에 비동기 로직에서 마지막 값만 계속 참조되는 현상이 일어났던 코드이다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">countSec</span><span class="p">(</span><span class="nx">seconds</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">seconds</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span> <span class="c1">//3..3..3..
-</span><span class="c1"></span>        <span class="p">},</span> <span class="nx">i</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>
-    <span class="p">}</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">seconds</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span> <span class="c1">//3..3..3..
+</span><span class="c1"></span>    <span class="p">},</span> <span class="nx">i</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 <span class="nx">countSec</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
 </code></pre></div><p>아래처엄 클로저로 해결할 수 있었다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">countSec</span><span class="p">(</span><span class="nx">seconds</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">seconds</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">curNum</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">//즉시실행함수를 이용해 외부 변수 i를 복사하여 setTimout() 지역 변수로 끌어와 정상적으로 1,2,3 입력된다!
-</span><span class="c1"></span>            <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">curNum</span><span class="p">);</span>
-            <span class="p">},</span> <span class="nx">curNum</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>
-        <span class="p">})(</span><span class="nx">i</span><span class="p">);</span>
-    <span class="p">}</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">seconds</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">curNum</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">//즉시실행함수를 이용해 외부 변수 i를 복사하여 setTimout() 지역 변수로 끌어와 정상적으로 1,2,3 입력된다!
+</span><span class="c1"></span>      <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">curNum</span><span class="p">);</span>
+      <span class="p">},</span> <span class="nx">curNum</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>
+    <span class="p">})(</span><span class="nx">i</span><span class="p">);</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="nx">countSec</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
 </code></pre></div><p><code>let</code>을 활용해서 더욱 간단히 해결할 수 있다.<br>
 블록유효범위를 따르기 때문에 해당 블록에서만 유효하다는 특징을 잊지말자!</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">countSec</span><span class="p">(</span><span class="nx">seconds</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">seconds</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-        <span class="p">},</span> <span class="nx">i</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>
-    <span class="p">}</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">seconds</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+    <span class="p">},</span> <span class="nx">i</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="nx">countSec</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">//1..2..3..

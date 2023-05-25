@@ -132,7 +132,7 @@
         
 
         <li >
-            <a href='/categories/javascript/'>
+            <a href='/categories/frontend/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -141,7 +141,7 @@
   <line x1="13" y1="12" x2="15" y2="12" />
 </svg>
                 
-                <span>JavaScript</span>
+                <span>Frontend</span>
             </a>
         </li>
         
@@ -312,8 +312,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #000;">
-                JavaScript
+            <a href="/categories/frontend/" style="background-color: #ffeaa7; color: #000;">
+                frontend
             </a>
         
     </header>
@@ -354,7 +354,7 @@
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">typeBoolean</span> <span class="o">=</span> <span class="k">typeof</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">//boolean
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">typeString</span> <span class="o">=</span> <span class="k">typeof</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span> <span class="c1">//string
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">typeFunction</span> <span class="o">=</span> <span class="k">typeof</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span><span class="p">;</span>
+  <span class="k">return</span><span class="p">;</span>
 <span class="p">};</span> <span class="c1">//function
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">typeUndefined</span> <span class="o">=</span> <span class="k">typeof</span> <span class="kc">undefined</span><span class="p">;</span> <span class="c1">//undefined
 </span><span class="c1"></span>
@@ -385,11 +385,11 @@
 </span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">detectObject</span><span class="p">(</span><span class="kc">null</span><span class="p">));</span> <span class="c1">//false
 </span><span class="c1"></span>
 <span class="kd">function</span> <span class="nx">detectObject</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">===</span> <span class="s1">&#39;object&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span> <span class="o">!==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-    <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">===</span> <span class="s1">&#39;object&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span> <span class="o">!==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><h2 id="원시타입-자료형">원시타입 자료형</h2>
 <h3 id="number">Number</h3>
@@ -432,7 +432,7 @@ null을 확인하고자 할 때 <code>typeof</code>의 결과는 object이기 �
 지정한 길이(array.length) 만큼 반복하며 요소에 접근할 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;mango&#39;</span><span class="p">];</span>
 <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">fruits</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fruits</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fruits</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
 <span class="p">}</span>
 </code></pre></div><p><strong>forEach()</strong><br>
 배열의 각 요소에 한번씩 callback을 수행한다. <code>(breack 불가)</code><br>
@@ -441,7 +441,7 @@ null을 확인하고자 할 때 <code>typeof</code>의 결과는 object이기 �
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;banana&#39;</span><span class="p">,</span> <span class="s1">&#39;kiwi&#39;</span><span class="p">];</span>
 <span class="c1">//일반 함수표현식
 </span><span class="c1"></span><span class="nx">arr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div><p><strong>map()</strong><br>
 <code>forEach()</code>와 마찬가지로 요소를 순회하면서 표현식을 수행한다.<br>
@@ -449,14 +449,14 @@ null을 확인하고자 할 때 <code>typeof</code>의 결과는 object이기 �
 성능이 느리긴하지만, 부수효과를 발생시키지 않는다는 장점이 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 원소 100개의 배열을 생성하기
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">fill</span><span class="p">()</span>
-    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">index</span><span class="p">;</span>
-    <span class="p">});</span> <span class="c1">//[0~99]
+  <span class="p">.</span><span class="nx">fill</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">index</span><span class="p">;</span>
+  <span class="p">});</span> <span class="c1">//[0~99]
 </span></code></pre></div><p>배열을 생성하므로 변수에 담아 사용할 수 있다. (기존 배열에는 영향을 끼치지 않는다.)</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;mango&#39;</span><span class="p">];</span>
 <span class="kr">const</span> <span class="nx">newFruits</span> <span class="o">=</span> <span class="nx">fruits</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="s1">&#39;NEW&#39;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">;</span>
+  <span class="k">return</span> <span class="s1">&#39;NEW&#39;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">;</span>
 <span class="p">});</span>
 </code></pre></div><h4 id="유용한-메서드">유용한 메서드</h4>
 <p><strong>splice()</strong><br>
@@ -491,15 +491,15 @@ return 값은 <code>제거된 요소</code>만 담어서 반환한다. 제거한
 
 <span class="c1">//리터럴 방식
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">fruits2</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">namae</span><span class="o">:</span> <span class="s1">&#39;grape&#39;</span><span class="p">,</span>
-    <span class="nx">price</span><span class="o">:</span> <span class="mi">3000</span>
+  <span class="nx">namae</span><span class="o">:</span> <span class="s1">&#39;grape&#39;</span><span class="p">,</span>
+  <span class="nx">price</span><span class="o">:</span> <span class="mi">3000</span>
 <span class="p">};</span>
 </code></pre></div><h4 id="대괄호표기법과-마침표표기법">대괄호표기법과 마침표표기법</h4>
 <p>보통 마침표(.)를 이용해서 프로퍼티에 접근 하지만, 특별한 상황에선 배열처럼 대괄호([])를 이용해서 접근해야한다. <strong>(프로퍼티명이 표현식이거나 예약어일 경우)</strong></p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">userInfo</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;jiny&#39;</span><span class="p">,</span>
-    <span class="nx">age</span><span class="o">:</span> <span class="s1">&#39;25&#39;</span><span class="p">,</span>
-    <span class="nx">gerder</span><span class="o">:</span> <span class="s1">&#39;male&#39;</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;jiny&#39;</span><span class="p">,</span>
+  <span class="nx">age</span><span class="o">:</span> <span class="s1">&#39;25&#39;</span><span class="p">,</span>
+  <span class="nx">gerder</span><span class="o">:</span> <span class="s1">&#39;male&#39;</span>
 <span class="p">};</span>
 
 <span class="c1">//마침표표기법 (일반 접근)
@@ -525,13 +525,13 @@ return 값은 <code>제거된 요소</code>만 담어서 반환한다. 제거한
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">imageInfo_2</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">file</span><span class="o">:</span> <span class="p">[]</span> <span class="p">};</span> <span class="c1">//배열 개체가 없음
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">imageInfo_3</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">file</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;app.png&#39;</span><span class="p">,</span> <span class="s1">&#39;thumb.jpg&#39;</span><span class="p">]</span> <span class="p">};</span> <span class="c1">//정상
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">getImagePath</span><span class="p">(</span><span class="nx">imageObject</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">//객체의 속성, 배열 요소 검사
-</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">imageObject</span><span class="p">.</span><span class="nx">file</span> <span class="o">&amp;&amp;</span> <span class="nx">imageObject</span><span class="p">.</span><span class="nx">file</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">//..code
-</span><span class="c1"></span>        <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">[</span><span class="sb">`http://root/image/default.jpg`</span><span class="p">];</span>
-    <span class="p">}</span>
+  <span class="c1">//객체의 속성, 배열 요소 검사
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">imageObject</span><span class="p">.</span><span class="nx">file</span> <span class="o">&amp;&amp;</span> <span class="nx">imageObject</span><span class="p">.</span><span class="nx">file</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//..code
+</span><span class="c1"></span>    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span><span class="sb">`http://root/image/default.jpg`</span><span class="p">];</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><h2 id="조건문">조건문</h2>
 <p>자바스크립트에서 판독하는 거짓(false)의 값은 다음과 같다.</p>
@@ -546,9 +546,9 @@ return 값은 <code>제거된 요소</code>만 담어서 반환한다. 제거한
 <p>분기를 더욱 단순하게 표현할 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="s1">&#39;img/app.jpg&#39;</span><span class="p">;</span>
 <span class="k">if</span> <span class="p">(</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">path</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">path</span><span class="p">;</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="c1">//삼항 연산자
@@ -558,8 +558,8 @@ return 값은 <code>제거된 요소</code>만 담어서 반환한다. 제거한
 <code>default</code>값을 할당하기에 더욱 편하다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="s1">&#39;img/app.jpg&#39;</span><span class="p">;</span>
 <span class="kd">function</span> <span class="nx">getImagePath</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">url</span> <span class="o">||</span> <span class="s1">&#39;img/default.jpg&#39;</span><span class="p">;</span>
-    <span class="k">return</span> <span class="s1">&#39;http://root&#39;</span> <span class="o">+</span> <span class="nx">path</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">url</span> <span class="o">||</span> <span class="s1">&#39;img/default.jpg&#39;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="s1">&#39;http://root&#39;</span> <span class="o">+</span> <span class="nx">path</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">getImagePath</span><span class="p">(</span><span class="nx">path</span><span class="p">));</span> <span class="c1">// http://root/img/app.jpg

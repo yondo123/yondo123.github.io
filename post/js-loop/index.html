@@ -132,7 +132,7 @@
         
 
         <li >
-            <a href='/categories/javascript/'>
+            <a href='/categories/frontend/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -141,7 +141,7 @@
   <line x1="13" y1="12" x2="15" y2="12" />
 </svg>
                 
-                <span>JavaScript</span>
+                <span>Frontend</span>
             </a>
         </li>
         
@@ -312,8 +312,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #000;">
-                JavaScript
+            <a href="/categories/frontend/" style="background-color: #ffeaa7; color: #000;">
+                frontend
             </a>
         
     </header>
@@ -355,36 +355,36 @@
 인자로 요소들을 간편하게 가져올 수 있어서 더 이상 배열 요소에 직접 접근 하지 않아도 된다. (단, 상황에 따라 <code>break</code>를 해주는 로직이 필요하다면 기존 for문이 더 이롭다..)</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//구현체
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">forEach</span><span class="p">(</span><span class="nx">predicate</span><span class="p">,</span> <span class="nx">thisArg</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">predicate</span><span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">i</span><span class="p">);</span>
-    <span class="p">}</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">predicate</span><span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">i</span><span class="p">);</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c1">//예제
 </span><span class="c1"></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span>
-    <span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span> <span class="c1">//여기서 가리키는 this는 두번째 인자
-</span><span class="c1"></span>    <span class="p">},</span>
-    <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+  <span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span> <span class="c1">//여기서 가리키는 this는 두번째 인자
+</span><span class="c1"></span>  <span class="p">},</span>
+  <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
 <span class="p">);</span>
 </code></pre></div><h3 id="map">map</h3>
 <p>요소들을 이용해서 새로운 배열을 반환해주는 반복문이다.<br>
 중요한 것은 새로운 배열이 생성하기 때문에 배열과 동일한 길이를 가지고 있다. 따라서 반환 시 필터링 되는 요소가 있다면 <code>undifined</code>를 반환하므로 이러한 용도로는 사용하는 것을 지양해야한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//구현체
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">map</span><span class="p">(</span><span class="nx">predicate</span><span class="p">,</span> <span class="nx">thisArg</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">list</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">predicate</span><span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">i</span><span class="p">));</span> <span class="c1">//콜백 함수의 리턴 값을 다시 삽입
-</span><span class="c1"></span>    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">list</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">list</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">predicate</span><span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">i</span><span class="p">));</span> <span class="c1">//콜백 함수의 리턴 값을 다시 삽입
+</span><span class="c1"></span>  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">list</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="c1">//예제
 </span><span class="c1"></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span>
-    <span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">item</span> <span class="o">*</span> <span class="nx">index</span><span class="p">;</span> <span class="c1">//0, 2, 6, 12, 20
-</span><span class="c1"></span>    <span class="p">},</span>
-    <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+  <span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">item</span> <span class="o">*</span> <span class="nx">index</span><span class="p">;</span> <span class="c1">//0, 2, 6, 12, 20
+</span><span class="c1"></span>  <span class="p">},</span>
+  <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
 <span class="p">);</span>
 </code></pre></div><h3 id="filter">filter</h3>
 <p><code>map</code>과 마찬가지로 새로운 배열을 반환해주지만, 이름 그대로 필터링 될 수 있는 요소만을 반환한다.</p>
@@ -409,16 +409,16 @@
 두 번째 인자를 생략하면 0으로 초기화되고, 따로 초깃값을 넘길 수도 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//구현체
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">reduce</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">predicate</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">val</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">result</span> <span class="o">=</span> <span class="nx">predicate</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">val</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">result</span> <span class="o">=</span> <span class="nx">predicate</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="c1">//예제
 </span><span class="c1"></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">].</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">acc</span> <span class="o">+</span> <span class="nx">item</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">acc</span> <span class="o">+</span> <span class="nx">item</span><span class="p">;</span>
 <span class="p">},</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">//15
 </span></code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>

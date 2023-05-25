@@ -132,7 +132,7 @@
         
 
         <li >
-            <a href='/categories/javascript/'>
+            <a href='/categories/frontend/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -141,7 +141,7 @@
   <line x1="13" y1="12" x2="15" y2="12" />
 </svg>
                 
-                <span>JavaScript</span>
+                <span>Frontend</span>
             </a>
         </li>
         
@@ -312,8 +312,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #000;">
-                JavaScript
+            <a href="/categories/frontend/" style="background-color: #ffeaa7; color: #000;">
+                frontend
             </a>
         
     </header>
@@ -354,8 +354,8 @@
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">//result : type error
 </span><span class="c1"></span>
 <span class="kd">var</span> <span class="nx">add</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">//익명함수
-</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span>
+  <span class="c1">//익명함수
+</span><span class="c1"></span>  <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="nx">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span> <span class="c1">//result : 10
@@ -366,8 +366,8 @@
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">//result : 5
 </span><span class="c1"></span>
 <span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">//선언함수
-</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span>
+  <span class="c1">//선언함수
+</span><span class="c1"></span>  <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nx">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span> <span class="c1">//result : 10
@@ -377,14 +377,14 @@ return 문을 생략하는 함수는 반환물을 <code>undefined</code>로 반�
 제어를 끝내려는 (단순 반환 지점으로 되돌림) 용도로 쓰이는 경우 undefined → boolean 값으로 <code>false</code>에 해당하므로 명확하게 표기하는 것은 <strong>return false</strong>로 표현하는 것이 낫다.<br>
 함수는 <strong>객체로 취급받기 때문에</strong> 함수 반환 시 함수로도 반환해줄 수 있다는 것을 기억하자!</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">notReturn</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;😝 돌려줄게 없다&#39;</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;😝 돌려줄게 없다&#39;</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nx">notReturn</span><span class="p">())</span> <span class="p">{</span>
-    <span class="c1">//return 생략 시 undefined로 반환
-</span><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;true&#39;</span><span class="p">);</span>
+  <span class="c1">//return 생략 시 undefined로 반환
+</span><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;true&#39;</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;false&#39;</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;false&#39;</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="c1">//result : false
@@ -392,8 +392,8 @@ return 문을 생략하는 함수는 반환물을 <code>undefined</code>로 반�
 <p>자바스크립트의 함수에도 역시나 유연한 성질을 갖고 있다.<br>
 선언한 매개변수보다 많거나 더 작은 매개변수를 허용한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">displayFruit</span><span class="p">(</span><span class="nx">fruits</span><span class="p">,</span> <span class="nx">price</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">price</span> <span class="o">=</span> <span class="nx">price</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nx">fruits</span> <span class="o">+</span> <span class="nx">price</span> <span class="o">+</span> <span class="s1">&#39;원&#39;</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">price</span> <span class="o">=</span> <span class="nx">price</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">fruits</span> <span class="o">+</span> <span class="nx">price</span> <span class="o">+</span> <span class="s1">&#39;원&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nx">displayFruit</span><span class="p">(</span><span class="s1">&#39;🍒&#39;</span><span class="p">);</span> <span class="c1">//&#34;🍒0원&#34;
@@ -403,11 +403,11 @@ return 문을 생략하는 함수는 반환물을 <code>undefined</code>로 반�
 만약 외부함수와 내부함수의 이름이 갖다면 내부 함수부터 우선적으로 실행한다.<br>
 <strong>(내부함수는 외부에서 접근할 수 없다, 자바스크립트는 함수 단위로 블록 스코프를 형성하기 때문이다.)</strong></p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">pythagoras</span><span class="p">(</span><span class="nx">wid</span><span class="p">,</span> <span class="nx">hei</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">function</span> <span class="nx">square</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">//내부함수 생성
-</span><span class="c1"></span>        <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nx">square</span><span class="p">(</span><span class="nx">wid</span><span class="p">)</span> <span class="o">+</span> <span class="nx">square</span><span class="p">(</span><span class="nx">hei</span><span class="p">));</span> <span class="c1">//내부함수 호출 후 return 값 반환
+  <span class="kd">function</span> <span class="nx">square</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//내부함수 생성
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nx">square</span><span class="p">(</span><span class="nx">wid</span><span class="p">)</span> <span class="o">+</span> <span class="nx">square</span><span class="p">(</span><span class="nx">hei</span><span class="p">));</span> <span class="c1">//내부함수 호출 후 return 값 반환
 </span><span class="c1"></span><span class="p">}</span>
 
 <span class="nx">pythagoras</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
@@ -415,7 +415,7 @@ return 문을 생략하는 함수는 반환물을 <code>undefined</code>로 반�
 <p>함수를 정의함과 바로 동시에 실행되는 함수이다.<br>
 최초 한 번의 실행만을 필요로 하는 함수에 사용할 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span> <span class="c1">//test
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span> <span class="c1">//test
 </span><span class="c1"></span><span class="p">})(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
 </code></pre></div><p>유명한 프레임워크인 <code>jQuery</code>에서도 즉시실행함수가 사용되었다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">){</span>
@@ -443,21 +443,21 @@ return 문을 생략하는 함수는 반환물을 <code>undefined</code>로 반�
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">apple</span> <span class="o">=</span> <span class="s1">&#39;🍎&#39;</span><span class="p">;</span> <span class="c1">//자바스크립트에선 변수 생략 시 window 객체에 저장한다.
 </span><span class="c1"></span>
 <span class="kd">function</span> <span class="nx">callApple</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">apple</span><span class="p">;</span> <span class="c1">//최상위 객체인 window.apple 호출
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">apple</span><span class="p">;</span> <span class="c1">//최상위 객체인 window.apple 호출
 </span><span class="c1"></span><span class="p">}</span>
 
 <span class="nx">callApple</span><span class="p">();</span> <span class="c1">//&#39;🍎&#39;
 </span></code></pre></div><p>반면 특정 객체내의 메서드 호출 시 해당 객체의 요소에 접근한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">grape</span> <span class="o">=</span> <span class="s1">&#39;🫐&#39;</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">grape</span><span class="o">:</span> <span class="s1">&#39;🍇&#39;</span><span class="p">,</span>
-    <span class="nx">callGrape</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="kd">function</span> <span class="nx">innerFunction</span><span class="p">()</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">grape</span><span class="p">);</span> <span class="c1">//&#39;🫐&#39;;
-</span><span class="c1"></span>        <span class="p">}</span>
-        <span class="nx">innerFunction</span><span class="p">();</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">grape</span><span class="p">;</span>
-    <span class="p">}</span>
+  <span class="nx">grape</span><span class="o">:</span> <span class="s1">&#39;🍇&#39;</span><span class="p">,</span>
+  <span class="nx">callGrape</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">innerFunction</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">grape</span><span class="p">);</span> <span class="c1">//&#39;🫐&#39;;
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="nx">innerFunction</span><span class="p">();</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">grape</span><span class="p">;</span>
+  <span class="p">}</span>
 <span class="p">};</span>
 
 <span class="nx">fruits</span><span class="p">.</span><span class="nx">callGrape</span><span class="p">();</span> <span class="c1">//&#39;🍇&#39;
@@ -473,7 +473,7 @@ call, apply 메서드를 사용하는 이유는 <strong>this 바인딩</strong>�
 <span class="kd">var</span> <span class="nx">gender</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;🍓&#39;</span> <span class="p">};</span>
 
 <span class="kd">function</span> <span class="nx">getInfo</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nx">getInfo</span><span class="p">();</span> <span class="c1">//일반 호출시 window.value(전역객체 value 출력) -&gt; &#39;🍏&#39;
@@ -483,10 +483,10 @@ call, apply 메서드를 사용하는 이유는 <strong>this 바인딩</strong>�
 </span></code></pre></div><h3 id="apply">apply()</h3>
 <p>call() 메서드와 역할은 동일하나 리스트 형태로 프로퍼티들을 전달할 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">gender</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">//생성자 함수
-</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">gender</span> <span class="o">=</span> <span class="nx">gender</span><span class="p">;</span>
+  <span class="c1">//생성자 함수
+</span><span class="c1"></span>  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">gender</span> <span class="o">=</span> <span class="nx">gender</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kd">var</span> <span class="nx">bindObj</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">//빈 객체 생성(bind 할 오브젝트)
@@ -500,7 +500,7 @@ call, apply 메서드를 사용하는 이유는 <strong>this 바인딩</strong>�
 (모든 객체들은 <strong>proto</strong>라는 부모 역할의 상위 프로토타입을 지니며, 최상위 프로토타입은 Object.prototype이다.)</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//String 객체에 introduce 라는 메서드 정의, 모든 String 객체들은 이 메서드를 공유한다.
 </span><span class="c1"></span><span class="nb">String</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">introduce</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="s1">&#39;My Name is &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">;</span>
+  <span class="k">return</span> <span class="s1">&#39;My Name is &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">;</span>
 <span class="p">};</span>
 <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;choi&#39;</span><span class="p">;</span>
 <span class="nx">name</span><span class="p">.</span><span class="nx">introduce</span><span class="p">();</span> <span class="c1">//&#34;My Name is choi&#34;

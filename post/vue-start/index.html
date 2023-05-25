@@ -132,7 +132,7 @@
         
 
         <li >
-            <a href='/categories/javascript/'>
+            <a href='/categories/frontend/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -141,7 +141,7 @@
   <line x1="13" y1="12" x2="15" y2="12" />
 </svg>
                 
-                <span>JavaScript</span>
+                <span>Frontend</span>
             </a>
         </li>
         
@@ -312,8 +312,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #000;">
-                JavaScript
+            <a href="/categories/frontend/" style="background-color: #ffeaa7; color: #000;">
+                frontend
             </a>
         
     </header>
@@ -348,25 +348,25 @@ vue 프로젝트 도입시 전체적인 웹애플레이케이션을 관리하려
 별도의 페이지에서 국한적으로 사용하려면 <code>cdn</code>방식으로도 사용할 수 있다.<br>
 CDN 방식을 사용하려면 아래 소스를 참고하면 된다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="c">&lt;!-- Vue-CDN --&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="c">&lt;!-- Vue-CDN --&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="c">&lt;!-- template --&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">app-footer</span><span class="p">&gt;&lt;/</span><span class="nt">app-footer</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="c">&lt;!-- template --&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">app-footer</span><span class="p">&gt;&lt;/</span><span class="nt">app-footer</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="c1">//vue 인스턴스 생성
-</span><span class="c1"></span>    <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-        <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
-        <span class="nx">components</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s1">&#39;app-footer&#39;</span><span class="o">:</span> <span class="p">{</span>
-                <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;footer&gt;Footer!&lt;/footer&gt;&#39;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">});</span>
+  <span class="c1">//vue 인스턴스 생성
+</span><span class="c1"></span>  <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+    <span class="nx">components</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s1">&#39;app-footer&#39;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;footer&gt;Footer!&lt;/footer&gt;&#39;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </code></pre></div><h3 id="vue-설치하기">Vue 설치하기</h3>
 <p>먼저 <strong>npm (node package manager)</strong> 및 <a class="link" href="https://nodejs.org/en/"  target="_blank" rel="noopener"
@@ -412,7 +412,7 @@ CDN 방식을 사용하려면 아래 소스를 참고하면 된다.</p>
 즉 페이지 내용이 변경될 때 마다 페이지를 reload하는 것이 아닌 변경된 요소만을 탐색해 내용을 변경한다.<br>
 vue는 이러한 <strong>가상 DOM을 활용하기에 최적화된 framework</strong>이고 이러한 구조를 SPA (Single Page Application)라 한다.
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 </code></pre></div></li>
 <li><strong>main.js</strong><br>
@@ -420,8 +420,8 @@ vue는 이러한 <strong>가상 DOM을 활용하기에 최적화된 framework</s
 최상위 인스턴스로써, 여러 컴포넌트들을 공유할 수 있고 상태<code>state</code>들을 관리한다.
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./App.vue&#39;</span><span class="p">;</span> <span class="c1">//main component
 </span><span class="c1"></span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
-    <span class="nx">render</span><span class="o">:</span> <span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">h</span><span class="p">(</span><span class="nx">App</span><span class="p">)</span>
+  <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+  <span class="nx">render</span><span class="o">:</span> <span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">h</span><span class="p">(</span><span class="nx">App</span><span class="p">)</span>
 <span class="p">});</span>
 </code></pre></div></li>
 <li><strong>package.json</strong><br>

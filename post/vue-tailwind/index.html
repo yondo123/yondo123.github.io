@@ -132,7 +132,7 @@
         
 
         <li >
-            <a href='/categories/javascript/'>
+            <a href='/categories/frontend/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -141,7 +141,7 @@
   <line x1="13" y1="12" x2="15" y2="12" />
 </svg>
                 
-                <span>JavaScript</span>
+                <span>Frontend</span>
             </a>
         </li>
         
@@ -312,8 +312,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #000;">
-                JavaScript
+            <a href="/categories/frontend/" style="background-color: #ffeaa7; color: #000;">
+                frontend
             </a>
         
     </header>
@@ -364,15 +364,15 @@ tailwind 기본 사용법은 태그 내에 클래스로 스타일을 입히는 �
 <p><code>tailwind.config.js</code>파일을 생성해 사용자가 원하는대로 다시 구성할 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//사용자 지정 breack point
 </span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">theme</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">screens</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">sm</span><span class="o">:</span> <span class="s1">&#39;640px&#39;</span><span class="p">,</span>
-            <span class="nx">md</span><span class="o">:</span> <span class="s1">&#39;768px&#39;</span><span class="p">,</span>
-            <span class="nx">lg</span><span class="o">:</span> <span class="s1">&#39;1024px&#39;</span><span class="p">,</span>
-            <span class="nx">xl</span><span class="o">:</span> <span class="s1">&#39;1280px&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;2xl&#39;</span><span class="o">:</span> <span class="s1">&#39;1536px&#39;</span>
-        <span class="p">}</span>
+  <span class="nx">theme</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">screens</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">sm</span><span class="o">:</span> <span class="s1">&#39;640px&#39;</span><span class="p">,</span>
+      <span class="nx">md</span><span class="o">:</span> <span class="s1">&#39;768px&#39;</span><span class="p">,</span>
+      <span class="nx">lg</span><span class="o">:</span> <span class="s1">&#39;1024px&#39;</span><span class="p">,</span>
+      <span class="nx">xl</span><span class="o">:</span> <span class="s1">&#39;1280px&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;2xl&#39;</span><span class="o">:</span> <span class="s1">&#39;1536px&#39;</span>
     <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div></li>
 </ol>
@@ -389,15 +389,15 @@ vue 프로젝트를 먼저 생성하고, tailwind-css를 설치한다.</p>
 </code></pre></div><p>공식 가이드에 따르면, 사용하지 않는 스타일 용량 최적화를 위해 <code>purge</code>옵션은 작성하라고 권고하고 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// tailwind.config.js
 </span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">purge</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;./index.html&#39;</span><span class="p">,</span> <span class="s1">&#39;./src/**/*.{vue,js,ts,jsx,tsx}&#39;</span><span class="p">],</span>
-    <span class="nx">darkMode</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// or &#39;media&#39; or &#39;class&#39;
-</span><span class="c1"></span>    <span class="nx">theme</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">extend</span><span class="o">:</span> <span class="p">{}</span>
-    <span class="p">},</span>
-    <span class="nx">variants</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">extend</span><span class="o">:</span> <span class="p">{}</span>
-    <span class="p">},</span>
-    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[]</span>
+  <span class="nx">purge</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;./index.html&#39;</span><span class="p">,</span> <span class="s1">&#39;./src/**/*.{vue,js,ts,jsx,tsx}&#39;</span><span class="p">],</span>
+  <span class="nx">darkMode</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// or &#39;media&#39; or &#39;class&#39;
+</span><span class="c1"></span>  <span class="nx">theme</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="p">{}</span>
+  <span class="p">},</span>
+  <span class="nx">variants</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="p">{}</span>
+  <span class="p">},</span>
+  <span class="nx">plugins</span><span class="o">:</span> <span class="p">[]</span>
 <span class="p">};</span>
 </code></pre></div><p>이제 설정한 tailwind css파일을 전역으로 import 해주면 된다.<br>
 <code>main.js</code>에 import해주면 사용준비는 끝, 이제 문서를 보면서 스타일링을 해주면 된다.</p>

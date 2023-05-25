@@ -132,7 +132,7 @@
         
 
         <li >
-            <a href='/categories/javascript/'>
+            <a href='/categories/frontend/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -141,7 +141,7 @@
   <line x1="13" y1="12" x2="15" y2="12" />
 </svg>
                 
-                <span>JavaScript</span>
+                <span>Frontend</span>
             </a>
         </li>
         
@@ -312,8 +312,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #000;">
-                JavaScript
+            <a href="/categories/frontend/" style="background-color: #ffeaa7; color: #000;">
+                frontend
             </a>
         
     </header>
@@ -374,15 +374,15 @@
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//📁module/Calculator.js
 </span><span class="c1">//간단한 계산기 클래스
 </span><span class="c1"></span><span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">Calculator</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="nx">b</span><span class="p">;</span>
-    <span class="p">}</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="nx">b</span><span class="p">;</span>
+  <span class="p">}</span>
 
-    <span class="nx">add</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">//..code
+  <span class="nx">add</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="c1">//..code
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><p><strong>import</strong></p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="nx">Calculator</span> <span class="nx">from</span> <span class="s1">&#39;./module/Calculator.js&#39;</span><span class="p">;</span>
@@ -393,31 +393,31 @@
 주의사항은 단일 파일에서 module.exports는 한번만 수행할 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//간단한 로그 찍어주는 함수 (📁modules/module.js)
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">logger</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">switch</span> <span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="s1">&#39;log&#39;</span><span class="o">:</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;[👻 LOGGER]&#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
-            <span class="k">break</span><span class="p">;</span>
-        <span class="k">case</span> <span class="s1">&#39;error&#39;</span><span class="o">:</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;[⛔️ ERROR]&#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
-            <span class="k">break</span><span class="p">;</span>
-        <span class="k">case</span> <span class="s1">&#39;warn&#39;</span><span class="o">:</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;[🚸 WARN]&#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
-            <span class="k">break</span><span class="p">;</span>
-        <span class="k">default</span><span class="o">:</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;[⛔️ LOGGER] 지원하지 않는 타입&#39;</span><span class="p">);</span>
-            <span class="k">break</span><span class="p">;</span>
-    <span class="p">}</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="s1">&#39;log&#39;</span><span class="o">:</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;[👻 LOGGER]&#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s1">&#39;error&#39;</span><span class="o">:</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;[⛔️ ERROR]&#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s1">&#39;warn&#39;</span><span class="o">:</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;[🚸 WARN]&#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;[⛔️ LOGGER] 지원하지 않는 타입&#39;</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 <span class="c1">//상수 객체
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">constants</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">URL</span><span class="o">:</span> <span class="s1">&#39;/xyz.com&#39;</span><span class="p">,</span>
-    <span class="nx">FILEPATH</span><span class="o">:</span> <span class="s1">&#39;/cloud.com&#39;</span>
+  <span class="nx">URL</span><span class="o">:</span> <span class="s1">&#39;/xyz.com&#39;</span><span class="p">,</span>
+  <span class="nx">FILEPATH</span><span class="o">:</span> <span class="s1">&#39;/cloud.com&#39;</span>
 <span class="p">};</span>
 
 <span class="c1">//exports
 </span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">logger</span><span class="p">,</span>
-    <span class="nx">constants</span>
+  <span class="nx">logger</span><span class="p">,</span>
+  <span class="nx">constants</span>
 <span class="p">};</span>
 
 <span class="c1">//import예제 (간단한 로그 찍어주는 함수 (📁main.js)
@@ -430,15 +430,15 @@
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//📁module/Calculator.js
 </span><span class="c1">//간단한 계산기 클래스
 </span><span class="c1"></span><span class="kr">class</span> <span class="nx">Calculator</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="nx">b</span><span class="p">;</span>
-    <span class="p">}</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="nx">b</span><span class="p">;</span>
+  <span class="p">}</span>
 
-    <span class="nx">add</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">//..code
+  <span class="nx">add</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="c1">//..code
 </span><span class="c1"></span><span class="p">}</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Calculator</span><span class="p">;</span>

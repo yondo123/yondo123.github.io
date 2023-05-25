@@ -132,7 +132,7 @@
         
 
         <li >
-            <a href='/categories/javascript/'>
+            <a href='/categories/frontend/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -141,7 +141,7 @@
   <line x1="13" y1="12" x2="15" y2="12" />
 </svg>
                 
-                <span>JavaScript</span>
+                <span>Frontend</span>
             </a>
         </li>
         
@@ -312,8 +312,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #000;">
-                JavaScript
+            <a href="/categories/frontend/" style="background-color: #ffeaa7; color: #000;">
+                frontend
             </a>
         
     </header>
@@ -346,59 +346,59 @@
 <p>Vue에서 기본적으로 사용하고 있는 패턴은 객체 내에 다양한 속성을 사용하고 있는 형태이다. 라이프사이클을 제어하기 위해 사용하는 mounted, updated 그리고 컴포넌트 내에서 여러 메서드들을 정의하고 데이터들을 참조할 때 정해진 속성에 정의해서 사용하였다. 이를 Options API라고 한다.</p>
 <p>아래는 페이지네이션 기능 컴포넌트를 구현할 때 작성했던 코드인데, 컴포지션 API를 적용하지 않은 <code>options api</code> 방식으로 작성하였다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
-    <span class="nx">components</span><span class="o">:</span> <span class="p">{</span>
-        <span class="c1">//컴포넌트 정의
-</span><span class="c1"></span>        <span class="nx">ChildComponent</span>
-    <span class="p">},</span>
-    <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">//참조할 데이터 정의
-</span><span class="c1"></span>        <span class="k">return</span> <span class="p">{</span>
-            <span class="nx">newsItem</span><span class="o">:</span> <span class="p">{},</span>
-            <span class="nx">showModal</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-            <span class="nx">page</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-            <span class="nx">records</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
-            <span class="nx">listItems</span><span class="o">:</span> <span class="p">[],</span>
-            <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
-                <span class="nx">hideCount</span><span class="o">:</span> <span class="kc">true</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
-    <span class="p">},</span>
-    <span class="nx">mounted</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="c1">//마운트 시점 제어
-</span><span class="c1"></span>        <span class="k">this</span><span class="p">.</span><span class="nx">fetchData</span><span class="p">();</span>
-    <span class="p">},</span>
-    <span class="nx">computed</span><span class="o">:</span> <span class="p">{</span>
-        <span class="c1">//속성 참조
-</span><span class="c1"></span>        <span class="nx">totalLength</span><span class="p">()</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">records</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
-        <span class="c1">//컴포넌트 내 사용 메서드 정의
-</span><span class="c1"></span>        <span class="nx">fetchData</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://api.hnpwa.com/v0/news/</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">page</span><span class="si">}</span><span class="sb">.json`</span><span class="p">)</span>
-                <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-                <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">items</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-                    <span class="k">this</span><span class="p">.</span><span class="nx">records</span> <span class="o">=</span> <span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span>
-                    <span class="k">this</span><span class="p">.</span><span class="nx">listItems</span> <span class="o">=</span> <span class="nx">items</span><span class="p">;</span>
-                <span class="p">});</span>
-        <span class="p">},</span>
-        <span class="nx">changePage</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">page</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">page</span> <span class="o">=</span> <span class="nx">page</span><span class="p">;</span>
-            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">fetchData</span><span class="p">();</span>
-        <span class="p">},</span>
-        <span class="nx">viewNewsContent</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">newsItem</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">newsItem</span> <span class="o">=</span> <span class="nx">newsItem</span><span class="p">;</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">showModal</span> <span class="o">=</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">showModal</span><span class="p">;</span>
-        <span class="p">},</span>
-        <span class="nx">close</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">showModal</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-        <span class="p">},</span>
-        <span class="nx">formatLocaleTime</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kr">const</span> <span class="nx">fullMs</span> <span class="o">=</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toString</span><span class="p">().</span><span class="nx">padEnd</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="nx">fullMs</span><span class="p">)).</span><span class="nx">toLocaleDateString</span><span class="p">();</span>
-        <span class="p">}</span>
+  <span class="nx">components</span><span class="o">:</span> <span class="p">{</span>
+    <span class="c1">//컴포넌트 정의
+</span><span class="c1"></span>    <span class="nx">ChildComponent</span>
+  <span class="p">},</span>
+  <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">//참조할 데이터 정의
+</span><span class="c1"></span>    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">newsItem</span><span class="o">:</span> <span class="p">{},</span>
+      <span class="nx">showModal</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nx">page</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="nx">records</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+      <span class="nx">listItems</span><span class="o">:</span> <span class="p">[],</span>
+      <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">hideCount</span><span class="o">:</span> <span class="kc">true</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+  <span class="p">},</span>
+  <span class="nx">mounted</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">//마운트 시점 제어
+</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">fetchData</span><span class="p">();</span>
+  <span class="p">},</span>
+  <span class="nx">computed</span><span class="o">:</span> <span class="p">{</span>
+    <span class="c1">//속성 참조
+</span><span class="c1"></span>    <span class="nx">totalLength</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">records</span><span class="p">;</span>
     <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+    <span class="c1">//컴포넌트 내 사용 메서드 정의
+</span><span class="c1"></span>    <span class="nx">fetchData</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://api.hnpwa.com/v0/news/</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">page</span><span class="si">}</span><span class="sb">.json`</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">items</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">records</span> <span class="o">=</span> <span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">listItems</span> <span class="o">=</span> <span class="nx">items</span><span class="p">;</span>
+        <span class="p">});</span>
+    <span class="p">},</span>
+    <span class="nx">changePage</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">page</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">page</span> <span class="o">=</span> <span class="nx">page</span><span class="p">;</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">fetchData</span><span class="p">();</span>
+    <span class="p">},</span>
+    <span class="nx">viewNewsContent</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">newsItem</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">newsItem</span> <span class="o">=</span> <span class="nx">newsItem</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">showModal</span> <span class="o">=</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">showModal</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">close</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">showModal</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">formatLocaleTime</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="nx">fullMs</span> <span class="o">=</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toString</span><span class="p">().</span><span class="nx">padEnd</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="k">return</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="nx">fullMs</span><span class="p">)).</span><span class="nx">toLocaleDateString</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div><p>장점은 <strong>명확한 구성</strong>이다. 메서드를 수정하거나 추가하려면 <code>methods</code> 속성을 손보면되고, 참조 데이터를 수정하려면 data, computed 속성을 보면된다. 이렇게 각각의 역할이 명확하면 유지보수가 용이할 수 있으나 소스코드가 복잡한 컴포넌트라면 상황은 달라진다.</p>
 <p>하나의 <code>data</code>를 수정하려면 이를 사용하는 메서드까지 수정해야하는데 코드가 길어질수록 가독성이 점점 떨어질 수 밖에 없다. 로직적인 부분에서 관심사가 서로 분리되어있기 때문에 추적하기 불편할것이다.</p>
@@ -413,7 +413,7 @@
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">ref</span><span class="p">,</span> <span class="nx">onMounted</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
 
 <span class="nx">onMounted</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">getPost</span><span class="p">();</span>
+  <span class="nx">getPost</span><span class="p">();</span>
 <span class="p">});</span>
 
 <span class="cm">/** 모달 제어 */</span>
@@ -421,14 +421,14 @@
 <span class="kr">const</span> <span class="nx">edit</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
 
 <span class="kd">function</span> <span class="nx">openModal</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">edit</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">id</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="nx">postId</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
-    <span class="nx">showModal</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="o">!</span><span class="nx">showModal</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+  <span class="nx">edit</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">id</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nx">postId</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
+  <span class="nx">showModal</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="o">!</span><span class="nx">showModal</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">closeModal</span><span class="p">(</span><span class="nx">isRefresh</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">showModal</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nx">isRefresh</span> <span class="o">?</span> <span class="nx">getPost</span><span class="p">()</span> <span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="nx">showModal</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">isRefresh</span> <span class="o">?</span> <span class="nx">getPost</span><span class="p">()</span> <span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="cm">/** API 통신 */</span>
@@ -437,18 +437,18 @@
 <span class="kr">const</span> <span class="nx">listItems</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">([]);</span>
 <span class="kr">const</span> <span class="nx">postId</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 <span class="kd">function</span> <span class="nx">getPost</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="sb">`http://localhost:8088/board?_page=</span><span class="si">${</span><span class="nx">page</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">&amp;_limit=10`</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">records</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s1">&#39;x-total-count&#39;</span><span class="p">]</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
-            <span class="nx">listItems</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">});</span>
+  <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="sb">`http://localhost:8088/board?_page=</span><span class="si">${</span><span class="nx">page</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">&amp;_limit=10`</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">records</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s1">&#39;x-total-count&#39;</span><span class="p">]</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="nx">listItems</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
 <span class="p">}</span>
 
 <span class="cm">/** 페이징 처리 */</span>
 <span class="kd">function</span> <span class="nx">changePage</span><span class="p">(</span><span class="nx">tobePage</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">page</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">tobePage</span><span class="p">;</span>
-    <span class="nx">getPost</span><span class="p">();</span>
+  <span class="nx">page</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">tobePage</span><span class="p">;</span>
+  <span class="nx">getPost</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div><h2 id="composition-api-사용법">Composition API 사용법</h2>
 <h3 id="setup">setup</h3>
@@ -459,13 +459,13 @@
 <span class="p">&lt;/</span><span class="nt">tempate</span><span class="p">&gt;</span>
 </code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
 <span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
-    <span class="nx">setup</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">);</span>
+  <span class="nx">setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">);</span>
 
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="nx">message</span>
-        <span class="p">};</span>
-    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">message</span>
+    <span class="p">};</span>
+  <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div><h3 id="함수-선언">함수 선언</h3>
 <p>함수를 선언하려면 <code>setup</code> 메서드안에 사용 할 함수를 작성해주면된다. 참고로 변수값에 접근 하려면 <code>value</code> 속성에 접근하면 된다.</p>
@@ -476,17 +476,17 @@
 	<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">tempate</span><span class="p">&gt;</span>
 </code></pre></div><div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
-    <span class="nx">setup</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">);</span>
+  <span class="nx">setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">);</span>
 
-        <span class="kd">function</span> <span class="nx">changeMessage</span><span class="p">()</span> <span class="p">{</span>
-            <span class="nx">message</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s1">&#39;change message!!&#39;</span><span class="p">;</span> <span class="c1">//message 변수 값 변경
-</span><span class="c1"></span>        <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">changeMessage</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">message</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s1">&#39;change message!!&#39;</span><span class="p">;</span> <span class="c1">//message 변수 값 변경
+</span><span class="c1"></span>    <span class="p">}</span>
 
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="nx">message</span>
-        <span class="p">};</span>
-    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">message</span>
+    <span class="p">};</span>
+  <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div><h3 id="라이프사이클-hook">라이프사이클 hook</h3>
 <p>컴포넌트 라이프사이클을 제어하려면 hook을 import시키면 된다.</p>

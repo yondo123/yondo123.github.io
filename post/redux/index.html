@@ -132,7 +132,7 @@
         
 
         <li >
-            <a href='/categories/javascript/'>
+            <a href='/categories/frontend/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -141,7 +141,7 @@
   <line x1="13" y1="12" x2="15" y2="12" />
 </svg>
                 
-                <span>JavaScript</span>
+                <span>Frontend</span>
             </a>
         </li>
         
@@ -312,8 +312,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #000;">
-                JavaScript
+            <a href="/categories/frontend/" style="background-color: #ffeaa7; color: #000;">
+                frontend
             </a>
         
     </header>
@@ -368,12 +368,12 @@
 
 <span class="c1">//reducer 함수
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">todos</span> <span class="o">=</span> <span class="p">(</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="k">switch</span> <span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">case</span> <span class="s1">&#39;ADD_TODO&#39;</span><span class="o">:</span>
-            <span class="k">return</span> <span class="p">[...</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">action</span><span class="p">.</span><span class="nx">text</span><span class="p">];</span>
-        <span class="k">default</span><span class="o">:</span>
-            <span class="k">return</span> <span class="nx">prev</span><span class="p">;</span>
-    <span class="p">}</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="s1">&#39;ADD_TODO&#39;</span><span class="o">:</span>
+      <span class="k">return</span> <span class="p">[...</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">action</span><span class="p">.</span><span class="nx">text</span><span class="p">];</span>
+    <span class="k">default</span><span class="o">:</span>
+      <span class="k">return</span> <span class="nx">prev</span><span class="p">;</span>
+  <span class="p">}</span>
 <span class="p">};</span>
 
 <span class="c1">//store 생성 (reducer, initial data, enhancer)
@@ -381,10 +381,10 @@
 
 <span class="c1">//action store 함수
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">addTodo</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;ADD_TODO&#39;</span><span class="p">,</span>
-        <span class="nx">text</span>
-    <span class="p">};</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;ADD_TODO&#39;</span><span class="p">,</span>
+    <span class="nx">text</span>
+  <span class="p">};</span>
 <span class="p">}</span>
 
 <span class="c1">//dispatch
@@ -402,10 +402,10 @@
 </code></pre></div><p>동적으로 상태 값을 핸들링하려면 매번 액션 객체를 만들어주는 것은 비효율적이다. 액션 생성 함수(action creator)를 사용하면 함수로 관리할 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//action creator
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">addItem</span> <span class="o">=</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;ADD_ITEM&#39;</span><span class="p">,</span>
-        <span class="nx">data</span>
-    <span class="p">};</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;ADD_ITEM&#39;</span><span class="p">,</span>
+    <span class="nx">data</span>
+  <span class="p">};</span>
 <span class="p">};</span>
 </code></pre></div><h3 id="reducer">Reducer</h3>
 <p>액션이 발생하면 리듀서 함수가 현재 상태에서 전달받은 객체를 파라미터로 전달 받아 새로운 상태를 반환한다. 두 개의 매개변수를 받는데 첫 번째 매개변수에 이전 상태 트리를 포함하고 있고, 두 번째 매개변수에 액션 객체를 전달 받는다.</p>
@@ -441,9 +441,9 @@
 <p>액션을 디스패치하는 과정 사이에 리듀서 함수에서 처리하기 전 미리 지정된 작업들을 수행할 수 있다. (Action, Reducer 사이의 미들웨어) <code>createStore</code> 세번째 인수에 <code>enhancer</code> 함수(미들웨어로 수행할 함수)를 전달해 사용한다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//Middleware 구조 선언
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">middleware</span> <span class="o">=</span> <span class="p">(</span><span class="nx">store</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">dispatch</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">action</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Before&#39;</span><span class="p">,</span> <span class="nx">action</span><span class="p">);</span>
-    <span class="nx">dispatch</span><span class="p">(</span><span class="nx">action</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;After&#39;</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Before&#39;</span><span class="p">,</span> <span class="nx">action</span><span class="p">);</span>
+  <span class="nx">dispatch</span><span class="p">(</span><span class="nx">action</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;After&#39;</span><span class="p">);</span>
 <span class="p">};</span>
 
 <span class="kr">const</span> <span class="nx">enhancer</span> <span class="o">=</span> <span class="nx">applyMiddleware</span><span class="p">(</span><span class="nx">middleware</span><span class="p">);</span>

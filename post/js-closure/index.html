@@ -132,7 +132,7 @@
         
 
         <li >
-            <a href='/categories/javascript/'>
+            <a href='/categories/frontend/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -141,7 +141,7 @@
   <line x1="13" y1="12" x2="15" y2="12" />
 </svg>
                 
-                <span>JavaScript</span>
+                <span>Frontend</span>
             </a>
         </li>
         
@@ -312,8 +312,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/javascript/" style="background-color: #ffeaa7; color: #000;">
-                JavaScript
+            <a href="/categories/frontend/" style="background-color: #ffeaa7; color: #000;">
+                frontend
             </a>
         
     </header>
@@ -350,7 +350,7 @@
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">apple</span> <span class="o">=</span> <span class="s1">&#39;🍎&#39;</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">displayApple</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">apple</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">apple</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="nx">displayApple</span><span class="p">();</span>
@@ -392,15 +392,15 @@
 <p>자바스크립트에서는 여타 언어와는 달리 <code>접근 제어자</code>를 명확하게 지원하지 않는다.<br>
 클로저를 통해 변수의 유효 범위를 세밀하게 제어할 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Fruits</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">fruit</span> <span class="o">=</span> <span class="s1">&#39;🍎&#39;</span><span class="p">;</span> <span class="c1">//private
+  <span class="kd">var</span> <span class="nx">fruit</span> <span class="o">=</span> <span class="s1">&#39;🍎&#39;</span><span class="p">;</span> <span class="c1">//private
 </span><span class="c1"></span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">getFruit</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">fruit</span><span class="p">;</span>
-    <span class="p">};</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">getFruit</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">fruit</span><span class="p">;</span>
+  <span class="p">};</span>
 
-    <span class="k">this</span><span class="p">.</span><span class="nx">setFruit</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">fruit</span> <span class="o">=</span> <span class="nx">item</span><span class="p">;</span>
-    <span class="p">};</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">setFruit</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fruit</span> <span class="o">=</span> <span class="nx">item</span><span class="p">;</span>
+  <span class="p">};</span>
 <span class="p">}</span>
 
 <span class="nx">fruits</span><span class="p">.</span><span class="nx">getFruit</span><span class="p">();</span> <span class="c1">//🍎
@@ -415,11 +415,11 @@
 <p>반복문 내에 변수가 특정 변수를 계속 참조하고 있는 상황에서도 클로저를 활용해 유리하게 풀어나갈 수 있다.<br>
 만약 <code>setTimeout()</code>함수에서 1초간격으로 특정 코드를 수행하는 로직을 짠다면 (예시로 각 초를 출력하도록..)</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">countSec</span><span class="p">(</span><span class="nx">seconds</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">seconds</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-        <span class="p">},</span> <span class="nx">i</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span> <span class="c1">//setTimeout에 인자로 들어가는 함수는 변수 i를 참조하지만, 이미 countSet()함수가 종료된 시점이라 최종 값으로 할당되었다..
-</span><span class="c1"></span>    <span class="p">}</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">seconds</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+    <span class="p">},</span> <span class="nx">i</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span> <span class="c1">//setTimeout에 인자로 들어가는 함수는 변수 i를 참조하지만, 이미 countSet()함수가 종료된 시점이라 최종 값으로 할당되었다..
+</span><span class="c1"></span>  <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="nx">countSec</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">//4..4..4
@@ -427,39 +427,39 @@
 이유는 setTimeout() 내부함수에서 생성한 변수가 자신 <strong>(생성하는 시점에 저장되어 있던 i)</strong> 을 기억하는 것이 아닌 생성된 i를 계속 참조하고 있기 때문에 이런 현상이 발생하는 것이다.<br>
 이는 즉시실행함수를 통해 올바르게 동작시킬 수 있는데 반복할 때 마다 유효 범위에 <code>i</code>가 새로 정의되고 원하는 연산 값이 출력되는 것을 볼 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">countSec</span><span class="p">(</span><span class="nx">seconds</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">seconds</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">curNum</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">//즉시실행함수를 이용해 외부 변수 i를 복사하여 setTimout() 지역 변수로 끌어와 정상적으로 1,2,3 입력된다!
-</span><span class="c1"></span>            <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">curNum</span><span class="p">);</span>
-            <span class="p">},</span> <span class="nx">curNum</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>
-        <span class="p">})(</span><span class="nx">i</span><span class="p">);</span>
-    <span class="p">}</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">seconds</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">curNum</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">//즉시실행함수를 이용해 외부 변수 i를 복사하여 setTimout() 지역 변수로 끌어와 정상적으로 1,2,3 입력된다!
+</span><span class="c1"></span>      <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">curNum</span><span class="p">);</span>
+      <span class="p">},</span> <span class="nx">curNum</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>
+    <span class="p">})(</span><span class="nx">i</span><span class="p">);</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="nx">countSec</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">//1..2..3
 </span></code></pre></div><p>이러한 현상은 DOM 조작시에서도 발생할 수 있는데, 만약 특정 요소를 반복하면서 접근하는 경우에 발생된다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>First<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Second<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Third<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>First<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Second<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Third<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 </code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">buttons</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElemnetByTagName</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">);</span>
 <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">buttons</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">buttons</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;clicked!&#39;</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s1">&#39; button!!&#39;</span><span class="p">);</span>
-    <span class="p">});</span>
+  <span class="nx">buttons</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;clicked!&#39;</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s1">&#39; button!!&#39;</span><span class="p">);</span>
+  <span class="p">});</span>
 <span class="p">}</span>
 </code></pre></div><p>만약 위와같이 단순하게 반복문으로 요소들의 이벤트를 트리거하는 상황이면, 이벤트 핸들러가 코드를 수행할 때 마지막에 저장된 <code>i</code>를 참조하게 된다.<br>
 어떠한 버튼을 눌러도 3번째 버튼이라고 출력 될 것이다.<br>
 이 역시 즉시시행함수로 바꿀 수 있다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">buttons</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElemnetByTagName</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">);</span>
 <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">buttons</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
-    <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">buttons</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;clicked!&#39;</span> <span class="o">+</span> <span class="nx">n</span> <span class="o">+</span> <span class="s1">&#39; button!!&#39;</span><span class="p">);</span>
-        <span class="p">});</span>
-    <span class="p">})(</span><span class="nx">i</span><span class="p">);</span>
+  <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">buttons</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;clicked!&#39;</span> <span class="o">+</span> <span class="nx">n</span> <span class="o">+</span> <span class="s1">&#39; button!!&#39;</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">})(</span><span class="nx">i</span><span class="p">);</span>
 </code></pre></div><h2 id="참고자료">참고자료</h2>
 <ul>
 <li><strong>자바스크립트 닌자 비급 - 클로저와 가까워지기 (John Resig 저)</strong></li>
