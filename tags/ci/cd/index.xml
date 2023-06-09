@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ci/cd on Jiny</title>
+    <link>https://jinyisland.kr/tags/ci/cd/</link>
+    <description>Recent content in ci/cd on Jiny</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://jinyisland.kr/tags/ci/cd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🦋 Changeset을 활용한 모노레포 자동 배포 구축하기</title>
+      <link>https://jinyisland.kr/post/changeset/</link>
+      <pubDate>Fri, 09 Jun 2023 21:13:48 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/changeset/</guid>
+      <description>개요 사이드 프로젝트로 모노레포 기반의 디자인 시스템을 개발하면서, 하위 패키지들의 소스코드 수정 및 커밋시 Push를 감지하고 자동으로 배포하는 도구를 찾게 되었습니다. 그 중 changeset 이라는 도구를 알게 되어, GitHub Actions와 연동해 자동 배포 환경을 구축하면서 겪게 된 내용들을 공유합니다.
+간략한 개발 환경을 말씀드리자면 yarn-berry 환경의 모노레포로 구성된 프로젝트에서 진행하였습니다.
+Changeset 기본 사용법 Changeset은 멀티 패키지 환경(monorepo)에서 상호 의존하는 패키지들의 일관성을 유지하기 위한 라이브러리입니다. 여러 의존된 패키지들을 업데이트할 때 마다 자동으로 Semver규칙에 따라 버전을 관리해주고 간편한 명령셋을 통해 손쉽게 레지스트리에 배포가 가능합니다.</description>
+    </item>
+    
+  </channel>
+</rss>
