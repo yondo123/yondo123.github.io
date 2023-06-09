@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>frontend on Jiny</title>
+    <title>Frontend on Jiny</title>
     <link>https://jinyisland.kr/categories/frontend/</link>
-    <description>Recent content in frontend on Jiny</description>
+    <description>Recent content in Frontend on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 30 Apr 2023 23:13:01 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/frontend/index.xml" rel="self" type="application/rss+xml" />
