@@ -304,6 +304,8 @@
         <div class="article-image">
             <a href="/post/changeset/">
                 
+                    <img src="../../assets/thumb/js.png" loading="lazy" alt="Featured image of post 🦋 Changeset을 활용한 모노레포 자동 배포 구축하기" />
+                
             </a>
         </div>
     
@@ -454,15 +456,15 @@ yarn changeset publish
 <h3 id="e404-error">E404 Error</h3>
 <p><img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/7a3d9dac-09f3-41b9-b392-45f3117e3692" alt="e404-error"  />
 우선, 먼저 발생했던 오류는 changeset에서 퍼블리싱 대상은 잘 파악하지만, <code>changeset publish</code>를 수행하는 순간 해당 NPM 레지스트리를 찾을 수 없다는 에러였습니다. 저는 아래와 같이 미흡한 부분을 추가하여 해결할 수 있었습니다.</p>
-<p><strong>1.GITHUB_TOKEN 권한 설정</strong><br>
-<img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/d6240d37-c441-4aac-a345-ff77351f76ca" alt="token"  />
+<h4 id="githubtoken-권한">GithubToken 권한</h4>
+<p><img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/d6240d37-c441-4aac-a345-ff77351f76ca" alt="token"  />
 기본적으로 제공되는 GITHUB_TOKEN에도 write 권한을 부여해야 한다는 사실을 알게 되어 권한을 변경했습니다. 권한 변경 방법은 다음과 같습니다.</p>
 <p><strong>레포지토리 설정 → Actions 탭 → General → Workflow Permissions에서 <code>Read and write permissions</code> 항목으로 변경 후 저장</strong></p>
-<p><strong>2.org 사용자인 경우, email 주소를 입력</strong><br>
-제가 구성한 모노레포는 organization 계정으로 되어 있기 때문에, .npmrc 파일에 npm 레지스트리 계정을 입력해야만 404 에러가 발생되지 않았습니다. .npmrc 파일은 npm 설정 파일으로써, 프로젝트에서 관리되는 파일은 프로젝트 외부에서 관리되는 파일보다 우선순위가 높습니다.
-<strong>//registry.npmjs.org/:_authToken=${process.env.NPM_TOKEN}</strong>
-이 부분에 해당 레포지토리가 배포될 레지스트리 주소를 적으면 됩니다. GitHub Registry를 사용하는 경우도 있지만, 저는 NPM Registry에 배포를 진행하게끔 하였습니다.<br>
-⚠️ 주의 사항으로는 프로젝트에 .npmrc가 이미 존재하는 경우, Actions의 실행 과정에서 생성되는 .npmrc 파일은 덮어쓰지 않습니다. 따라서 NPM 토큰을 .env 파일에서 읽어들일지, 아니면 Actions 스크립트에서 아래와 같이 .npmrc 파일을 생성할지 선택해야 합니다. (저는 퍼블릭 레포지토리로 관리 하고있기 때문에 두 번째 방법을 선택했습니다.)</p>
+<h4 id="organization-계정">organization 계정</h4>
+<p>제가 구성한 모노레포는 organization 계정으로 되어 있기 때문에, .npmrc 파일에 npm 레지스트리 계정을 입력해야만 404 에러가 발생되지 않았습니다. .npmrc 파일은 npm 설정 파일으로써, 프로젝트에서 관리되는 파일은 프로젝트 외부에서 관리되는 파일보다 우선순위가 높습니다.</p>
+<p><strong>//registry.npmjs.org/:_authToken=${process.env.NPM_TOKEN}</strong>
+이 부분에 해당 레포지토리가 배포될 레지스트리 주소를 적으면 됩니다. GitHub Registry를 사용하는 경우도 있지만, 저는 NPM Registry에 배포를 진행하게끔 하였습니다.</p>
+<p>⚠️ 주의 사항으로는 프로젝트에 .npmrc가 이미 존재하는 경우, Actions의 실행 과정에서 생성되는 .npmrc 파일은 덮어쓰지 않습니다. 따라서 NPM 토큰을 .env 파일에서 읽어들일지, 아니면 Actions 스크립트에서 아래와 같이 .npmrc 파일을 생성할지 선택해야 합니다. (저는 퍼블릭 레포지토리로 관리 하고있기 때문에 두 번째 방법을 선택했습니다.)</p>
 <p><strong>옵션1) Project 내부에서 관리하는 방법</strong></p>
 <pre><code>#./.npmrc
 email=username@registry-email.com
@@ -628,6 +630,11 @@ email=username@registry-email.com
             top: 5%;
             right: 0;
         }
+
+        .toc-list {
+            padding: 0 4px;
+            width: 180px;
+        }
     }
 
     @media all and (max-width: 1024px) {
@@ -669,7 +676,6 @@ email=username@registry-email.com
         width: 0;
     }
 </style>
-
 
     <footer class="article-footer">
     

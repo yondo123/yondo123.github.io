@@ -6,7 +6,18 @@
     <description>Recent content in react on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 30 Apr 2023 23:13:01 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/react/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Jun 2023 02:09:54 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/react/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React는 왜 선언형 프로그래밍을 지향할까?</title>
+      <link>https://jinyisland.kr/post/react-with-declarative/</link>
+      <pubDate>Wed, 21 Jun 2023 02:09:54 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/react-with-declarative/</guid>
+      <description>개요  Declarative React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.
+ React에서는 React를 선언적이라고 잘 설명하고 있습니다. &amp;ldquo;선언형 뷰는 코드를 예측 가능하고, 디버깅을 쉽게 만든다&amp;rdquo; 라고 설명하고 있으며, React가 선언형 프로그래밍의 패러다임을 지향하는 이유와 특징에 대해서 알아보았습니다.
+명령형 프로그래밍 선언형 프로그래밍을 알기 위해 기존 명령형 프로그래밍의 특징을 간략하게 알아보겠습니다.</description>
+    </item>
+    
     <item>
       <title>[React] React에서 우아하게 비동기 처리하기</title>
       <link>https://jinyisland.kr/post/react-awesome-fetching/</link>

@@ -6,7 +6,258 @@
         <description>Recent content on Jiny</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 09 Jun 2023 21:13:48 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 21 Jun 2023 02:09:54 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>React는 왜 선언형 프로그래밍을 지향할까?</title>
+        <link>https://jinyisland.kr/post/react-with-declarative/</link>
+        <pubDate>Wed, 21 Jun 2023 02:09:54 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/react-with-declarative/</guid>
+        <description>&lt;img src="https://jinyisland.kr/../../assets/header/react-declarative.png" alt="Featured image of post React는 왜 선언형 프로그래밍을 지향할까?" /&gt;&lt;h2 id=&#34;개요&#34;&gt;개요&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Declarative
+React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;React에서는 React를 선언적이라고 잘 설명하고 있습니다.  &lt;strong&gt;&amp;ldquo;선언형 뷰는 코드를 예측 가능하고, 디버깅을 쉽게 만든다&amp;rdquo;&lt;/strong&gt; 라고 설명하고 있으며, React가 선언형 프로그래밍의 패러다임을 지향하는 이유와 특징에 대해서 알아보았습니다.&lt;/p&gt;
+&lt;h2 id=&#34;명령형-프로그래밍&#34;&gt;명령형 프로그래밍&lt;/h2&gt;
+&lt;p&gt;선언형 프로그래밍을 알기 위해 기존 명령형 프로그래밍의 특징을 간략하게 알아보겠습니다. 명령형 프로그래밍(Imperative Programming)은 명령어를 명시적으로 지정하여 프로그램 동작 상태를 변경 시키는 프로그래밍 방식 입니다. &lt;strong&gt;프로그램의 동작의 흐름&lt;/strong&gt;에 중점을 두는 특징이 있습니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;
+&lt;span class=&#34;c1&#34;&gt;//DOM에 노출시킬 리스트 변수를 생성한다.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;list&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;foo&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;bar&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;//하위 li 요소를 추가시키기 위한 ul 요소를 생성한다.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;$ul&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;ul&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;//list의 길이 만큼 순회하며 listItem 요소를 생성
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;index&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;index&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;item&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createTextNode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
+  &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;$listItem&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;li&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+  &lt;span class=&#34;nx&#34;&gt;$listItem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;appendChild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;$ul&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;appendChild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$listItem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;//html body에 렌더링
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;appendChild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$ul&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;위의 예시 코드는 명령형 방식의 리스트를 렌더링해주는 코드 입니다.
+명령형 코드의 특징은 다음과 같습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;별도의 모듈 분리 없이 연속적인 계산 과정으로 이루어져 있어 실행 속도가 빠릅니다.&lt;/li&gt;
+&lt;li&gt;세부적인 동작 사항이 명령문의 연속으로 구성되어 있기 때문에, 복잡도가 증가할 수록 이해하는 데 시간과 비용이 상대적으로 더 많이 들 수 있습니다.&lt;/li&gt;
+&lt;li&gt;기능을 변경할 때 변수 값 할당/수정이 불가피하게 필요하기 때문에, 실행 흐름과 부수 효과(Side Effect)에 영향을 미칠 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;요약하자면, 간단하고 단순 계산 애플리케이션에는 빠른 실행과 가독성으로 인한 장점이 있지만, 복잡한 애플리케이션일 수록 관리가 어렵다는 특징이 있습니다.&lt;/p&gt;
+&lt;h2 id=&#34;선언형-프로그래밍&#34;&gt;선언형 프로그래밍&lt;/h2&gt;
+&lt;p&gt;이제 선언형 프로그래밍의 특징을 말씀드리도록 하겠습니다. 선언형 프로그래밍은 추상화 계층과 제어 흐름을 명시적으로 지정하지 않고, 프로그램이 수행하는 작업을 설명하는 데 중점을 둔 패러다임 입니다. &lt;code&gt;JavaScript&lt;/code&gt;에서는 명령형 프로그래밍으로 작성된 코드를 추상화를 통해 선언형 코드로 변환할 수 있습니다. &lt;strong&gt;(다중 패러다임 언어)&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;추상화를-통한-선언형-프로그래밍&#34;&gt;추상화를 통한 선언형 프로그래밍&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//DOM에 노출시킬 리스트 변수를 생성한다.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;list&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;foo&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;bar&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;//요소를 생성한다.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;//list의 길이 만큼 순회하며 listItem 요소를 생성
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;createListItem&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;$ul&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;ul&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;forEach&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;$item&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;li&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;$item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;appendChild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createTextNode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;$ul&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;appendChild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;$ul&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;//렌더링한다.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;render&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;attachElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;attachElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;appendChild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+
+&lt;span class=&#34;nx&#34;&gt;render&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createListItem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;위에 작성했던 코드를 선언형 코드로 재구성해보았습니다. 별도의 함수로 분리하여 추상화를 하였으며, 이는 곧 재사용성이 증가한다는 특징을 갖게 되었습니다. 선언형 프로그래밍의 특징은 추상화 레벨이 높을수록, 사용하는 입장에서는 내부를 신경쓰지 않아도 됩니다.&lt;/p&gt;
+&lt;h3 id=&#34;높은-레벨의-추상화&#34;&gt;높은 레벨의 추상화&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//render
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;render&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;initialState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;renderToApp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;$app&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;$app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;innerHTML&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+
+	&lt;span class=&#34;c1&#34;&gt;//setState함수를 호출하는 순간 renderToApp 호출
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;setState&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;renderToApp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;setState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+
+  &lt;span class=&#34;nx&#34;&gt;setState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;initialState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;//render 호출
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;render&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;foo&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;bar&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;setState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;setState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[...&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;jiny&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;sb&#34;&gt;`&amp;lt;ul&amp;gt;
+&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;map&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+          &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;sb&#34;&gt;`&amp;lt;li&amp;gt;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;&amp;lt;/li&amp;gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;)}
+&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;    &amp;lt;/ul&amp;gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;추상화 레벨이 높을수록, 호출하는 부분에서 구체적인 동작에 대한 정보를 알 필요가 없어집니다. &lt;strong&gt;(가독성과 이해도 향상)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;추상화된 함수를 재사용함으로써 선언적인 코드를 사용할 수 있습니다.&lt;/li&gt;
+&lt;li&gt;함수 호출 방식으로 인해 메모리 할당량이 증가하는 단점은 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;react와-선언형-프로그래밍&#34;&gt;React와 선언형 프로그래밍&lt;/h2&gt;
+&lt;p&gt;이제 위 명령형과 선언형 패러다임을 이해하고, React에서 설명하고 있는 선언형의 장점을 살펴보겠습니다. React에서는 사용자가 UI를 상황에 따라 어떻게 표현할지 선언만 하면 되며, 선언적인 코드로 작성되어 있어 UI 업데이트는 React 내부에서 처리됩니다. 만약에 이 방식을 명령형 프로그래밍으로 작성한다면 어떻게 될까요?&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/** 간단한 텍스트 폼을 제출하는 UI */&lt;/span&gt;
+
+&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;loadingMessage&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;로딩중입니다..&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;successMessage&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;제출을 성공하였습니다.&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;$form&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;form&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;$textarea&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;textarea&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;$status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;status&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;//display 상태 관리
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;setHideElement&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;display&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;?&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;none&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;//text 상태 관리
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;setStatusElementText&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;textContent&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;//network 상황을 가정한 form 제출
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fetchForm&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;formText&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Promise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;resolve&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;reject&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;setTimeout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+      &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;formText&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;resolve&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+      &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+      &lt;span class=&#34;nx&#34;&gt;reject&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Form text is empty&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;//submit event
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;handleSubmit&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;async&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;preventDefault&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;setHideElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$status&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;kr&#34;&gt;await&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fetchForm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$textarea&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;setStatusElementText&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$status&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;successMessage&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt; 내용: &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$textarea&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;catch&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;setStatusElementText&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$status&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;message&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+
+&lt;span class=&#34;nx&#34;&gt;$form&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;onsubmit&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;handleSubmit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;이렇게 UI 상태를 표현하는 것도 이미 코드가 복잡한데, 더 복잡한 UI일수록 상태 별 표현해야하는 관리 소스는 더욱 복잡해지게됩니다. 이를 해결하기 위해, React에서는 여러 경우의 하나의 상태로 두면서 데이터 흐름을 단방향 컴포넌트로 흐르게 하였습니다. 이러한 패턴을 &lt;strong&gt;Single Source of Truth&lt;/strong&gt;라고 합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;각각의 UI별 상태를 명령형 코드로 구성했을 때 상태 관계와 참조하는 DOM Tree 구조는 복잡해져 관리하기 어려워집니다.&lt;/li&gt;
+&lt;li&gt;새로운 UI 요소나 상호작용을 위한 이벤트를 수정하거나 추가하려면 기존 상호작용이 잘 이루어져있는지 세밀한 디버깅이 필요로하게됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;react가-제시한-선언적-ui-제어&#34;&gt;React가 제시한 선언적 UI 제어&lt;/h2&gt;
+&lt;h3 id=&#34;prop을-활용한-시각-상태-식별&#34;&gt;prop을 활용한 시각 상태 식별&lt;/h3&gt;
+&lt;p&gt;컴포넌트를 사용하면 &lt;code&gt;props&lt;/code&gt;을 통해 다양한 UI 상태를 식별할 수 있습니다. React에서는 이미 높은 추상화 수준을 달성했기 때문에, 사용자는 JSX 문법을 통해 UI 상태를 제어하기 위한 속성 값과 상태별로 어떻게 표현할지 작성하기만 하면 됩니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Form&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;({&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;empty&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;success&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;h1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;이미&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;폼을&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;제출하였습니다&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;h1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;h2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Form&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;h2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;form&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;textarea&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;disabled&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;submitting&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;br&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;button&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;disabled&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;empty&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;||&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;submitting&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&amp;gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Submit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;className&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Error&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;에러가&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;발생하였습니다&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;}&lt;/span&gt;
+      &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;form&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;&amp;lt;/&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;위의 컴포넌트 코드는 내부적으로 아래와 같이 변환이 됩니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Form&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;({&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;empty&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;success&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;React&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;h1&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;이미 폼을 제출하였습니다.&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;React&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;React&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Fragment&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+    &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;React&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;h2&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;Form&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;React&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;form&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+      &lt;span class=&#34;nx&#34;&gt;React&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;textarea&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;disabled&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;submitting&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}),&lt;/span&gt;
+      &lt;span class=&#34;nx&#34;&gt;React&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;br&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+      &lt;span class=&#34;nx&#34;&gt;React&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;button&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;disabled&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;empty&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;||&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;submitting&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;Submit&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+      &lt;span class=&#34;nx&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;React&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;p&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;className&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;Error&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;에러가 발생하였습니다.&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+
+&lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Form&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;hook을-활용한-상태-관리&#34;&gt;hook을 활용한 상태 관리&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/506c6b86-4466-4030-ad5a-9969317502db&#34; alt=&#34;ui-state&#34;  /&gt;
+웹에서는 상태 변화가 발생하는 상황은 크게 다음과 같습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;요소 클릭, form 제출 등 &lt;strong&gt;사용자 행위&lt;/strong&gt;에 의한 UI 상태 변화&lt;/li&gt;
+&lt;li&gt;HTTP 요청 및 응답과 같은 &lt;strong&gt;컴퓨팅 요소&lt;/strong&gt;에 의한 UI 상태 변화&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이와 같이 컴포넌트 별 발생하는 여러 상태 변화를 React에서는 hook을 통해 상태 변수를 유지시킬 수 있습니다. &lt;code&gt;useState&lt;/code&gt;를 통해 상태 제어를 선언할 수 있으며, &lt;code&gt;useEffect&lt;/code&gt;를 통해 React 생명주기에서 일어나는 상태 변화도 감지할 수 있습니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;inputContent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;setInputContent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;useState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;setError&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;useState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;hook&lt;/code&gt;의 특징은 다음과 같습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;컴포넌트 함수 내에서 렌더링 간 상태를 유지시키고 보관한다.&lt;/strong&gt;&lt;br&gt;
+각 상태 변수의 인스턴스는 고립되어 있으므로, 각 컴포넌트에서 상태 변수를 선언하고 여러 번 호출하여 상태를 변경하더라도 다른 컴포넌트에게 영향을 주지 않습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;상태 설정 함수를 통해 변수 업데이트와 컴포넌트 리렌더링을 발생&lt;/strong&gt;&lt;br&gt;
+React에서는 &lt;a class=&#34;link&#34; href=&#34;https://react.dev/warnings/invalid-hook-call-warning&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;hook 호출 규칙&lt;/a&gt;을 통해 상태를 체계적으로 관리합니다. 이를 통해 메모리와  hook의 연관성을 유지할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;사용자는 React에서 제공된 hook을 사용하기만하면 됩니다. 물론, React 내부에서는 아래와 같이 상태 감지를 위해 useState 함수를 구현해놓았습니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//react@16.13.1/
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;useState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;initialState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;dispatcher&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;resolveDispatcher&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;dispatcher&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;useState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;initialState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;//react-dom@16.13.1
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;mountState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;initialState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;hook&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;mountWorkInProgressHook&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typeof&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;initialState&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;function&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+      &lt;span class=&#34;c1&#34;&gt;// $FlowFixMe: Flow doesn&amp;#39;t like mixed types
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;      &lt;span class=&#34;nx&#34;&gt;initialState&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;initialState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+    &lt;span class=&#34;nx&#34;&gt;hook&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;memoizedState&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;hook&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;baseState&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;initialState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;queue&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;hook&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;queue&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+      &lt;span class=&#34;nx&#34;&gt;pending&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+      &lt;span class=&#34;nx&#34;&gt;dispatch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+      &lt;span class=&#34;nx&#34;&gt;lastRenderedReducer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;basicStateReducer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+      &lt;span class=&#34;nx&#34;&gt;lastRenderedState&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;initialState&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;dispatch&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;queue&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dispatch&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;dispatchAction&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;bind&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;currentlyRenderingFiber$1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;queue&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;hook&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;memoizedState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;dispatch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;resolveDispatch()&lt;/code&gt; 함수는 현재 렌더링 중인 컴포넌트에 대한 내부 참조를 반환합니다. 이 함수를 통해 컴포넌트가 마운트될 때 mountState 함수를 호출하고, 렌더링될 때 updateState 함수를 통해 상태를 변경시킵니다.&lt;/p&gt;
+&lt;p&gt;중요한 것은 모두 내부적으로 일어나고 있는 일이기 때문에 모든 과정을 알 필요가 없습니다. &lt;strong&gt;높은 레벨의 추상화를 통한 선언적 코드&lt;/strong&gt;를 이루고 있기 때문에 개발자는 인터페이스 규칙에 맞춰 편하게 사용만 하면 됩니다.&lt;/p&gt;
+&lt;h2 id=&#34;react가-선언적임으로써-얻게된-장점들&#34;&gt;React가 선언적임으로써 얻게된 장점들&lt;/h2&gt;
+&lt;h3 id=&#34;가독성과-유지보수성&#34;&gt;가독성과 유지보수성&lt;/h3&gt;
+&lt;p&gt;개발자는 원하는 UI의 최종 상태를 선언적으로 작성하고, React는 내부적으로 해석하여 UI를 업데이트합니다. 이를 통해 코드의 의도 파악이 쉬워지며, 변경 사항에 대한 수정이 용이해져 유지 보수성이 향상됩니다.&lt;/p&gt;
+&lt;h3 id=&#34;재사용성&#34;&gt;재사용성&lt;/h3&gt;
+&lt;p&gt;선언적인 코드는 독립적인 컴포넌트로 구성되어 있으며, 상태가 변경되어 있더라도 고립된 인스턴스 hook을 통해 다른 부분에서 재사용하는 데 문제가 없습니다.&lt;/p&gt;
+&lt;h3 id=&#34;효율적인-관리&#34;&gt;효율적인 관리&lt;/h3&gt;
+&lt;p&gt;React는 선언적 API를 제공하기 때문에 업데이트할 때마다 무엇이 변경되는지에 대해 신경 쓸 필요가 없습니다. &lt;code&gt;reconciliation&lt;/code&gt; 과정을 통해 자체적인 diff 알고리즘으로 서로 다른 트리를 비교하고 갱신합니다.&lt;/p&gt;
+&lt;h2 id=&#34;참고-자료&#34;&gt;참고 자료&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;https://dev.to/ruizb/declarative-vs-imperative-4a7l&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Declarative vs imperative - Benoit Ruiz&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.youtube.com/watch?v=qqVbr_LaCIo&amp;amp;loop=0&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;strong&gt;High Perfomance Functional Programming With React and Meteor - Pete Hunt&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.youtube.com/watch?v=r7M9B_dEbCI&amp;amp;t=440s&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;strong&gt;그래서 DECLARATIVE가 뭔데? - JavaScript is Everywhere 2020(원지혁 님)&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>🦋 Changeset을 활용한 모노레포 자동 배포 구축하기</title>
         <link>https://jinyisland.kr/post/changeset/</link>
         <pubDate>Fri, 09 Jun 2023 21:13:48 +0900</pubDate>
@@ -124,15 +375,15 @@ yarn changeset publish
 &lt;h3 id=&#34;e404-error&#34;&gt;E404 Error&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/7a3d9dac-09f3-41b9-b392-45f3117e3692&#34; alt=&#34;e404-error&#34;  /&gt;
 우선, 먼저 발생했던 오류는 changeset에서 퍼블리싱 대상은 잘 파악하지만, &lt;code&gt;changeset publish&lt;/code&gt;를 수행하는 순간 해당 NPM 레지스트리를 찾을 수 없다는 에러였습니다. 저는 아래와 같이 미흡한 부분을 추가하여 해결할 수 있었습니다.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1.GITHUB_TOKEN 권한 설정&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/d6240d37-c441-4aac-a345-ff77351f76ca&#34; alt=&#34;token&#34;  /&gt;
+&lt;h4 id=&#34;githubtoken-권한&#34;&gt;GithubToken 권한&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/d6240d37-c441-4aac-a345-ff77351f76ca&#34; alt=&#34;token&#34;  /&gt;
 기본적으로 제공되는 GITHUB_TOKEN에도 write 권한을 부여해야 한다는 사실을 알게 되어 권한을 변경했습니다. 권한 변경 방법은 다음과 같습니다.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;레포지토리 설정 → Actions 탭 → General → Workflow Permissions에서 &lt;code&gt;Read and write permissions&lt;/code&gt; 항목으로 변경 후 저장&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2.org 사용자인 경우, email 주소를 입력&lt;/strong&gt;&lt;br&gt;
-제가 구성한 모노레포는 organization 계정으로 되어 있기 때문에, .npmrc 파일에 npm 레지스트리 계정을 입력해야만 404 에러가 발생되지 않았습니다. .npmrc 파일은 npm 설정 파일으로써, 프로젝트에서 관리되는 파일은 프로젝트 외부에서 관리되는 파일보다 우선순위가 높습니다.
-&lt;strong&gt;//registry.npmjs.org/:_authToken=${process.env.NPM_TOKEN}&lt;/strong&gt;
-이 부분에 해당 레포지토리가 배포될 레지스트리 주소를 적으면 됩니다. GitHub Registry를 사용하는 경우도 있지만, 저는 NPM Registry에 배포를 진행하게끔 하였습니다.&lt;br&gt;
-⚠️ 주의 사항으로는 프로젝트에 .npmrc가 이미 존재하는 경우, Actions의 실행 과정에서 생성되는 .npmrc 파일은 덮어쓰지 않습니다. 따라서 NPM 토큰을 .env 파일에서 읽어들일지, 아니면 Actions 스크립트에서 아래와 같이 .npmrc 파일을 생성할지 선택해야 합니다. (저는 퍼블릭 레포지토리로 관리 하고있기 때문에 두 번째 방법을 선택했습니다.)&lt;/p&gt;
+&lt;h4 id=&#34;organization-계정&#34;&gt;organization 계정&lt;/h4&gt;
+&lt;p&gt;제가 구성한 모노레포는 organization 계정으로 되어 있기 때문에, .npmrc 파일에 npm 레지스트리 계정을 입력해야만 404 에러가 발생되지 않았습니다. .npmrc 파일은 npm 설정 파일으로써, 프로젝트에서 관리되는 파일은 프로젝트 외부에서 관리되는 파일보다 우선순위가 높습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;//registry.npmjs.org/:_authToken=${process.env.NPM_TOKEN}&lt;/strong&gt;
+이 부분에 해당 레포지토리가 배포될 레지스트리 주소를 적으면 됩니다. GitHub Registry를 사용하는 경우도 있지만, 저는 NPM Registry에 배포를 진행하게끔 하였습니다.&lt;/p&gt;
+&lt;p&gt;⚠️ 주의 사항으로는 프로젝트에 .npmrc가 이미 존재하는 경우, Actions의 실행 과정에서 생성되는 .npmrc 파일은 덮어쓰지 않습니다. 따라서 NPM 토큰을 .env 파일에서 읽어들일지, 아니면 Actions 스크립트에서 아래와 같이 .npmrc 파일을 생성할지 선택해야 합니다. (저는 퍼블릭 레포지토리로 관리 하고있기 때문에 두 번째 방법을 선택했습니다.)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;옵션1) Project 내부에서 관리하는 방법&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;#./.npmrc
 email=username@registry-email.com
