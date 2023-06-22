@@ -17,7 +17,7 @@
         <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='💄 UI 상태 관리에서 살펴보는 선언형 프로그래밍의 장점에 대해서 소개합니다.'><title>React는 왜 선언형 프로그래밍을 지향할까?</title>
 <link rel='canonical' href='https://jinyisland.kr/post/react-with-declarative/'>
-<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="icon" href="/%20/favicon.png" type="image/png">
 
 <link rel="stylesheet" href="/scss/style.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='React는 왜 선언형 프로그래밍을 지향할까?'>
@@ -349,20 +349,19 @@
 <p>Declarative
 React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.</p>
 </blockquote>
-<p>React에서는 React를 선언적이라고 잘 설명하고 있습니다.  <strong>&ldquo;선언형 뷰는 코드를 예측 가능하고, 디버깅을 쉽게 만든다&rdquo;</strong> 라고 설명하고 있으며, React가 선언형 프로그래밍의 패러다임을 지향하는 이유와 특징에 대해서 알아보았습니다.</p>
+<p>React에서는 React를 선언적이라고 잘 설명하고 있습니다. <strong>&ldquo;선언형 뷰는 코드를 예측 가능하고, 디버깅을 쉽게 만든다&rdquo;</strong> 라고 설명하고 있으며, React가 선언형 프로그래밍의 패러다임을 지향하는 이유와 특징에 대해서 알아보았습니다.</p>
 <h2 id="명령형-프로그래밍">명령형 프로그래밍</h2>
 <p>선언형 프로그래밍을 알기 위해 기존 명령형 프로그래밍의 특징을 간략하게 알아보겠습니다. 명령형 프로그래밍(Imperative Programming)은 명령어를 명시적으로 지정하여 프로그램 동작 상태를 변경 시키는 프로그래밍 방식 입니다. <strong>프로그램의 동작의 흐름</strong>에 중점을 두는 특징이 있습니다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript">
-<span class="c1">//DOM에 노출시킬 리스트 변수를 생성한다.
-</span><span class="c1"></span><span class="kr">const</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;foo&#34;</span><span class="p">,</span> <span class="s2">&#34;bar&#34;</span><span class="p">];</span>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="c1">//DOM에 노출시킬 리스트 변수를 생성한다.
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">];</span>
 
 <span class="c1">//하위 li 요소를 추가시키기 위한 ul 요소를 생성한다.
-</span><span class="c1"></span><span class="kr">const</span> <span class="nx">$ul</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&#34;ul&#34;</span><span class="p">);</span>
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">$ul</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">);</span>
 
 <span class="c1">//list의 길이 만큼 순회하며 listItem 요소를 생성
 </span><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">index</span> <span class="o">&lt;</span> <span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">index</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
   <span class="kr">const</span> <span class="nx">item</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="nx">list</span><span class="p">[</span><span class="nx">index</span><span class="p">]);</span>
-  <span class="kr">const</span> <span class="nx">$listItem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&#34;li&#34;</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">$listItem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">);</span>
 
   <span class="nx">$listItem</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
   <span class="nx">$ul</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">$listItem</span><span class="p">);</span>
@@ -381,8 +380,8 @@ React makes it painless to create interactive UIs. Design simple views for each 
 <h2 id="선언형-프로그래밍">선언형 프로그래밍</h2>
 <p>이제 선언형 프로그래밍의 특징을 말씀드리도록 하겠습니다. 선언형 프로그래밍은 추상화 계층과 제어 흐름을 명시적으로 지정하지 않고, 프로그램이 수행하는 작업을 설명하는 데 중점을 둔 패러다임 입니다. <code>JavaScript</code>에서는 명령형 프로그래밍으로 작성된 코드를 추상화를 통해 선언형 코드로 변환할 수 있습니다. <strong>(다중 패러다임 언어)</strong></p>
 <h3 id="추상화를-통한-선언형-프로그래밍">추상화를 통한 선언형 프로그래밍</h3>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//DOM에 노출시킬 리스트 변수를 생성한다.
-</span><span class="c1"></span><span class="kr">const</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;foo&#34;</span><span class="p">,</span> <span class="s2">&#34;bar&#34;</span><span class="p">];</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//DOM에 노출시킬 리스트 변수를 생성한다.
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">];</span>
 
 <span class="c1">//요소를 생성한다.
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">createElement</span> <span class="o">=</span> <span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
@@ -391,9 +390,9 @@ React makes it painless to create interactive UIs. Design simple views for each 
 
 <span class="c1">//list의 길이 만큼 순회하며 listItem 요소를 생성
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">createListItem</span> <span class="o">=</span> <span class="p">(</span><span class="nx">list</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">$ul</span> <span class="o">=</span> <span class="nx">createElement</span><span class="p">(</span><span class="s2">&#34;ul&#34;</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">$ul</span> <span class="o">=</span> <span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">);</span>
   <span class="nx">list</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="nx">$item</span> <span class="o">=</span> <span class="nx">createElement</span><span class="p">(</span><span class="s2">&#34;li&#34;</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="nx">$item</span> <span class="o">=</span> <span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">);</span>
     <span class="nx">$item</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="nx">item</span><span class="p">));</span>
     <span class="nx">$ul</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">$item</span><span class="p">);</span>
   <span class="p">});</span>
@@ -408,14 +407,14 @@ React makes it painless to create interactive UIs. Design simple views for each 
 <span class="nx">render</span><span class="p">(</span><span class="nx">createListItem</span><span class="p">(</span><span class="nx">list</span><span class="p">),</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
 </code></pre></div><p>위에 작성했던 코드를 선언형 코드로 재구성해보았습니다. 별도의 함수로 분리하여 추상화를 하였으며, 이는 곧 재사용성이 증가한다는 특징을 갖게 되었습니다. 선언형 프로그래밍의 특징은 추상화 레벨이 높을수록, 사용하는 입장에서는 내부를 신경쓰지 않아도 됩니다.</p>
 <h3 id="높은-레벨의-추상화">높은 레벨의 추상화</h3>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//render
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//render
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">render</span> <span class="o">=</span> <span class="p">(</span><span class="nx">initialState</span><span class="p">,</span> <span class="nx">createElement</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="kr">const</span> <span class="nx">renderToApp</span> <span class="o">=</span> <span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="kr">const</span> <span class="nx">$app</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;app&#34;</span><span class="p">);</span>
     <span class="nx">$app</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">element</span><span class="p">;</span>
   <span class="p">};</span>
 
-	<span class="c1">//setState함수를 호출하는 순간 renderToApp 호출
+<span class="c1">//setState함수를 호출하는 순간 renderToApp 호출
 </span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">setState</span> <span class="o">=</span> <span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">renderToApp</span><span class="p">(</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">setState</span><span class="p">));</span>
   <span class="p">};</span>
@@ -442,15 +441,15 @@ React makes it painless to create interactive UIs. Design simple views for each 
 <p>이제 위 명령형과 선언형 패러다임을 이해하고, React에서 설명하고 있는 선언형의 장점을 살펴보겠습니다. React에서는 사용자가 UI를 상황에 따라 어떻게 표현할지 선언만 하면 되며, 선언적인 코드로 작성되어 있어 UI 업데이트는 React 내부에서 처리됩니다. 만약에 이 방식을 명령형 프로그래밍으로 작성한다면 어떻게 될까요?</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="cm">/** 간단한 텍스트 폼을 제출하는 UI */</span>
 
-<span class="kr">const</span> <span class="nx">loadingMessage</span> <span class="o">=</span> <span class="s2">&#34;로딩중입니다..&#34;</span><span class="p">;</span>
-<span class="kr">const</span> <span class="nx">successMessage</span> <span class="o">=</span> <span class="s2">&#34;제출을 성공하였습니다.&#34;</span><span class="p">;</span>
-<span class="kr">const</span> <span class="nx">$form</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;form&#34;</span><span class="p">);</span>
-<span class="kr">const</span> <span class="nx">$textarea</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;textarea&#34;</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">$status</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;status&#34;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">loadingMessage</span> <span class="o">=</span> <span class="s1">&#39;로딩중입니다..&#39;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">successMessage</span> <span class="o">=</span> <span class="s1">&#39;제출을 성공하였습니다.&#39;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">$form</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">$textarea</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;textarea&#39;</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">$status</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">);</span>
 
 <span class="c1">//display 상태 관리
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">setHideElement</span> <span class="o">=</span> <span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">state</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="nx">state</span> <span class="o">?</span> <span class="s2">&#34;none&#34;</span> <span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+  <span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="nx">state</span> <span class="o">?</span> <span class="s1">&#39;none&#39;</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
 <span class="p">};</span>
 
 <span class="c1">//text 상태 관리
@@ -466,7 +465,7 @@ React makes it painless to create interactive UIs. Design simple views for each 
         <span class="nx">resolve</span><span class="p">();</span>
         <span class="k">return</span><span class="p">;</span>
       <span class="p">}</span>
-      <span class="nx">reject</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&#34;Form text is empty&#34;</span><span class="p">));</span>
+      <span class="nx">reject</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Form text is empty&#39;</span><span class="p">));</span>
     <span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">};</span>
@@ -492,36 +491,38 @@ React makes it painless to create interactive UIs. Design simple views for each 
 <h2 id="react가-제시한-선언적-ui-제어">React가 제시한 선언적 UI 제어</h2>
 <h3 id="prop을-활용한-시각-상태-식별">prop을 활용한 시각 상태 식별</h3>
 <p>컴포넌트를 사용하면 <code>props</code>을 통해 다양한 UI 상태를 식별할 수 있습니다. React에서는 이미 높은 추상화 수준을 달성했기 때문에, 사용자는 JSX 문법을 통해 UI 상태를 제어하기 위한 속성 값과 상태별로 어떻게 표현할지 작성하기만 하면 됩니다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">export</span> <span class="k">default</span> <span class="nx">Form</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">status</span> <span class="o">=</span> <span class="s2">&#34;empty&#34;</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">status</span> <span class="o">===</span> <span class="s2">&#34;success&#34;</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">export</span> <span class="k">default</span> <span class="nx">Form</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">status</span> <span class="o">=</span> <span class="s1">&#39;empty&#39;</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">status</span> <span class="o">===</span> <span class="s1">&#39;success&#39;</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="nx">이미</span> <span class="nx">폼을</span> <span class="nx">제출하였습니다</span><span class="p">.&lt;/</span><span class="nt">h1</span><span class="p">&gt;;</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="p">(</span>
     <span class="p">&lt;&gt;</span>
       <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">Form</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">disabled</span><span class="o">=</span><span class="p">{</span><span class="nx">status</span> <span class="o">===</span> <span class="s2">&#34;submitting&#34;</span><span class="p">}</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">disabled</span><span class="o">=</span><span class="p">{</span><span class="nx">status</span> <span class="o">===</span> <span class="s1">&#39;submitting&#39;</span><span class="p">}</span> <span class="p">/&gt;</span>
         <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
-        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">disabled</span><span class="o">=</span><span class="p">{</span><span class="nx">status</span> <span class="o">===</span> <span class="s2">&#34;empty&#34;</span> <span class="o">||</span> <span class="nx">status</span> <span class="o">===</span> <span class="s2">&#34;submitting&#34;</span><span class="p">}&gt;</span><span class="nx">Submit</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-        <span class="p">{</span><span class="nx">status</span> <span class="o">===</span> <span class="s2">&#34;error&#34;</span> <span class="o">&amp;&amp;</span> <span class="p">&lt;</span><span class="nt">p</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;Error&#34;</span><span class="p">&gt;</span><span class="nx">에러가</span> <span class="nx">발생하였습니다</span><span class="p">.&lt;/</span><span class="nt">p</span><span class="p">&gt;}</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">disabled</span><span class="o">=</span><span class="p">{</span><span class="nx">status</span> <span class="o">===</span> <span class="s1">&#39;empty&#39;</span> <span class="o">||</span> <span class="nx">status</span> <span class="o">===</span> <span class="s1">&#39;submitting&#39;</span><span class="p">}&gt;</span><span class="nx">Submit</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">{</span><span class="nx">status</span> <span class="o">===</span> <span class="s1">&#39;error&#39;</span> <span class="o">&amp;&amp;</span> <span class="p">&lt;</span><span class="nt">p</span> <span class="na">className</span><span class="o">=</span><span class="s">&#34;Error&#34;</span><span class="p">&gt;</span><span class="nx">에러가</span> <span class="nx">발생하였습니다</span><span class="p">.&lt;/</span><span class="nt">p</span><span class="p">&gt;}</span>
       <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
     <span class="p">&lt;/&gt;</span>
   <span class="p">);</span>
 <span class="p">};</span>
 </code></pre></div><p>위의 컴포넌트 코드는 내부적으로 아래와 같이 변환이 됩니다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">Form</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">status</span> <span class="o">=</span> <span class="s2">&#34;empty&#34;</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">status</span> <span class="o">===</span> <span class="s2">&#34;success&#34;</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">Form</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">status</span> <span class="o">=</span> <span class="s1">&#39;empty&#39;</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">status</span> <span class="o">===</span> <span class="s1">&#39;success&#39;</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="s1">&#39;이미 폼을 제출하였습니다.&#39;</span><span class="p">);</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span>
     <span class="nx">React</span><span class="p">.</span><span class="nx">Fragment</span><span class="p">,</span>
     <span class="kc">null</span><span class="p">,</span>
     <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;h2&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="s1">&#39;Form&#39;</span><span class="p">),</span>
-    <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;textarea&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">disabled</span><span class="o">:</span> <span class="nx">status</span> <span class="o">===</span> <span class="s2">&#34;submitting&#34;</span> <span class="p">}),</span>
+    <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span>
+      <span class="s1">&#39;form&#39;</span><span class="p">,</span>
+      <span class="kc">null</span><span class="p">,</span>
+      <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;textarea&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">disabled</span><span class="o">:</span> <span class="nx">status</span> <span class="o">===</span> <span class="s1">&#39;submitting&#39;</span> <span class="p">}),</span>
       <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;br&#39;</span><span class="p">),</span>
-      <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">disabled</span><span class="o">:</span> <span class="nx">status</span> <span class="o">===</span> <span class="s2">&#34;empty&#34;</span> <span class="o">||</span> <span class="nx">status</span> <span class="o">===</span> <span class="s2">&#34;submitting&#34;</span> <span class="p">},</span> <span class="s1">&#39;Submit&#39;</span><span class="p">),</span>
-      <span class="nx">status</span> <span class="o">===</span> <span class="s2">&#34;error&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;Error&#39;</span> <span class="p">},</span> <span class="s1">&#39;에러가 발생하였습니다.&#39;</span><span class="p">)</span>
+      <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">disabled</span><span class="o">:</span> <span class="nx">status</span> <span class="o">===</span> <span class="s1">&#39;empty&#39;</span> <span class="o">||</span> <span class="nx">status</span> <span class="o">===</span> <span class="s1">&#39;submitting&#39;</span> <span class="p">},</span> <span class="s1">&#39;Submit&#39;</span><span class="p">),</span>
+      <span class="nx">status</span> <span class="o">===</span> <span class="s1">&#39;error&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;Error&#39;</span> <span class="p">},</span> <span class="s1">&#39;에러가 발생하였습니다.&#39;</span><span class="p">)</span>
     <span class="p">)</span>
   <span class="p">);</span>
 <span class="p">};</span>
@@ -542,7 +543,7 @@ React makes it painless to create interactive UIs. Design simple views for each 
 각 상태 변수의 인스턴스는 고립되어 있으므로, 각 컴포넌트에서 상태 변수를 선언하고 여러 번 호출하여 상태를 변경하더라도 다른 컴포넌트에게 영향을 주지 않습니다.</p>
 <p><strong>상태 설정 함수를 통해 변수 업데이트와 컴포넌트 리렌더링을 발생</strong><br>
 React에서는 <a class="link" href="https://react.dev/warnings/invalid-hook-call-warning"  target="_blank" rel="noopener"
-    >hook 호출 규칙</a>을 통해 상태를 체계적으로 관리합니다. 이를 통해 메모리와  hook의 연관성을 유지할 수 있습니다.</p>
+    >hook 호출 규칙</a>을 통해 상태를 체계적으로 관리합니다. 이를 통해 메모리와 hook의 연관성을 유지할 수 있습니다.</p>
 <p>사용자는 React에서 제공된 hook을 사용하기만하면 됩니다. 물론, React 내부에서는 아래와 같이 상태 감지를 위해 useState 함수를 구현해놓았습니다.</p>
 <div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//react@16.13.1/
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">useState</span><span class="p">(</span><span class="nx">initialState</span><span class="p">)</span> <span class="p">{</span>
@@ -552,23 +553,23 @@ React에서는 <a class="link" href="https://react.dev/warnings/invalid-hook-cal
 
 <span class="c1">//react-dom@16.13.1
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">mountState</span><span class="p">(</span><span class="nx">initialState</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">hook</span> <span class="o">=</span> <span class="nx">mountWorkInProgressHook</span><span class="p">();</span>
+  <span class="kd">var</span> <span class="nx">hook</span> <span class="o">=</span> <span class="nx">mountWorkInProgressHook</span><span class="p">();</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">initialState</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">// $FlowFixMe: Flow doesn&#39;t like mixed types
-</span><span class="c1"></span>      <span class="nx">initialState</span> <span class="o">=</span> <span class="nx">initialState</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="nx">hook</span><span class="p">.</span><span class="nx">memoizedState</span> <span class="o">=</span> <span class="nx">hook</span><span class="p">.</span><span class="nx">baseState</span> <span class="o">=</span> <span class="nx">initialState</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">queue</span> <span class="o">=</span> <span class="nx">hook</span><span class="p">.</span><span class="nx">queue</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="nx">pending</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="nx">dispatch</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="nx">lastRenderedReducer</span><span class="o">:</span> <span class="nx">basicStateReducer</span><span class="p">,</span>
-      <span class="nx">lastRenderedState</span><span class="o">:</span> <span class="nx">initialState</span>
-    <span class="p">};</span>
-    <span class="kd">var</span> <span class="nx">dispatch</span> <span class="o">=</span> <span class="nx">queue</span><span class="p">.</span><span class="nx">dispatch</span> <span class="o">=</span> <span class="nx">dispatchAction</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">currentlyRenderingFiber$1</span><span class="p">,</span> <span class="nx">queue</span><span class="p">);</span>
-    <span class="k">return</span> <span class="p">[</span><span class="nx">hook</span><span class="p">.</span><span class="nx">memoizedState</span><span class="p">,</span> <span class="nx">dispatch</span><span class="p">];</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">initialState</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// $FlowFixMe: Flow doesn&#39;t like mixed types
+</span><span class="c1"></span>    <span class="nx">initialState</span> <span class="o">=</span> <span class="nx">initialState</span><span class="p">();</span>
   <span class="p">}</span>
+
+  <span class="nx">hook</span><span class="p">.</span><span class="nx">memoizedState</span> <span class="o">=</span> <span class="nx">hook</span><span class="p">.</span><span class="nx">baseState</span> <span class="o">=</span> <span class="nx">initialState</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">queue</span> <span class="o">=</span> <span class="p">(</span><span class="nx">hook</span><span class="p">.</span><span class="nx">queue</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">pending</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nx">dispatch</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nx">lastRenderedReducer</span><span class="o">:</span> <span class="nx">basicStateReducer</span><span class="p">,</span>
+    <span class="nx">lastRenderedState</span><span class="o">:</span> <span class="nx">initialState</span>
+  <span class="p">});</span>
+  <span class="kd">var</span> <span class="nx">dispatch</span> <span class="o">=</span> <span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">dispatch</span> <span class="o">=</span> <span class="nx">dispatchAction</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">currentlyRenderingFiber$1</span><span class="p">,</span> <span class="nx">queue</span><span class="p">));</span>
+  <span class="k">return</span> <span class="p">[</span><span class="nx">hook</span><span class="p">.</span><span class="nx">memoizedState</span><span class="p">,</span> <span class="nx">dispatch</span><span class="p">];</span>
+<span class="p">}</span>
 </code></pre></div><p><code>resolveDispatch()</code> 함수는 현재 렌더링 중인 컴포넌트에 대한 내부 참조를 반환합니다. 이 함수를 통해 컴포넌트가 마운트될 때 mountState 함수를 호출하고, 렌더링될 때 updateState 함수를 통해 상태를 변경시킵니다.</p>
 <p>중요한 것은 모두 내부적으로 일어나고 있는 일이기 때문에 모든 과정을 알 필요가 없습니다. <strong>높은 레벨의 추상화를 통한 선언적 코드</strong>를 이루고 있기 때문에 개발자는 인터페이스 규칙에 맞춰 편하게 사용만 하면 됩니다.</p>
 <h2 id="react가-선언적임으로써-얻게된-장점들">React가 선언적임으로써 얻게된 장점들</h2>
