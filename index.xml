@@ -196,9 +196,10 @@ React makes it painless to create interactive UIs. Design simple views for each 
 &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
 
 &lt;span class=&#34;kr&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Form&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;hook을-활용한-상태-관리&#34;&gt;hook을 활용한 상태 관리&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/506c6b86-4466-4030-ad5a-9969317502db&#34; alt=&#34;ui-state&#34;  /&gt;
-웹에서는 상태 변화가 발생하는 상황은 크게 다음과 같습니다.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;선언적인-hook을-통한-상태-제어&#34;&gt;선언적인 hook을 통한 상태 제어&lt;/h3&gt;
+&lt;p&gt;React에서는 &lt;code&gt;hook&lt;/code&gt;을 통해서 컴포넌트 간 상태들을 공유하고, 상태 제어를 할 수 있습니다. 이 부분이 어떻게 선언형으로 이루어져있는지 살펴보도록하겠습니다.&lt;br&gt;
+&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/506c6b86-4466-4030-ad5a-9969317502db&#34; alt=&#34;ui-state&#34;  /&gt;
+우선 상태 관리는 왜 필요할까요? 웹에서는 상태 변화가 발생하는 상황은 크게 다음과 같습니다.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;요소 클릭, form 제출 등 &lt;strong&gt;사용자 행위&lt;/strong&gt;에 의한 UI 상태 변화&lt;/li&gt;
 &lt;li&gt;HTTP 요청 및 응답과 같은 &lt;strong&gt;컴퓨팅 요소&lt;/strong&gt;에 의한 UI 상태 변화&lt;/li&gt;
