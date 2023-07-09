@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TN7PCJZTQ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6TN7PCJZTQ');
+</script>
+
+        <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='유한 상태 머신에 대한 간략한 개념과 UI 핸들링을 위해 사용한 경험을 공유합니다.'><title>JavaScript생태계의 유한 상태기계, XState 도입기</title>
+<link rel='canonical' href='https://jinyisland.kr/post/xstate-react/'>
+<link rel="icon" href="/%20/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='JavaScript생태계의 유한 상태기계, XState 도입기'>
+<meta property='og:description' content='유한 상태 머신에 대한 간략한 개념과 UI 핸들링을 위해 사용한 경험을 공유합니다.'>
+<meta property='og:url' content='https://jinyisland.kr/post/xstate-react/'>
+<meta property='og:site_name' content='Jiny'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='xstate' /><meta property='article:tag' content='fsm' /><meta property='article:published_time' content='2023-07-09T22:40:08&#43;09:00' /><meta property='article:modified_time' content='2023-07-09T22:40:08&#43;09:00' /><meta property='og:image' content='https://jinyisland.kr/../../assets/header/xstate-react.jpg' />
+<meta name="twitter:title" content="JavaScript생태계의 유한 상태기계, XState 도입기">
+<meta name="twitter:description" content="유한 상태 머신에 대한 간략한 개념과 UI 핸들링을 위해 사용한 경험을 공유합니다."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/header/xstate-react.jpg' /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<style>
+    .article-content code {
+        word-wrap: break-word;
+    }
+</style>
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub38313664a67c625b5c64f3cb8dc247e_143597_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny</a></h1>
+        <h2 class="site-description">😎 승진이의 공부 블로그</h2>
+    </header>
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/frontend/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Frontend</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/backend/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Backend</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/web/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Web</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/style/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#7f5345" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Style</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/book/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Book</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/etc/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#d63031" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>ETC</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span></span>
+            </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/xstate-react/">
+                
+                    <img src="../../assets/header/xstate-react.jpg" loading="lazy" alt="Featured image of post JavaScript생태계의 유한 상태기계, XState 도입기" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/frontend/" style="background-color: #ffeaa7; color: #000;">
+                Frontend
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/xstate-react/">JavaScript생태계의 유한 상태기계, XState 도입기</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        유한 상태 머신에 대한 간략한 개념과 UI 핸들링을 위해 사용한 경험을 공유합니다.
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jul 09, 2023</time>
+    </footer></div>
+</header>
+
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
+    <h2 id="xstate-도입기">XState 도입기</h2>
+<p>최근 프로젝트를 진행하면서 복잡한 UI 상태를 제어할 수 있는 클라이언트 기반 상태 관리 라이브러리를 찾게 되었습니다. 현재 프로젝트는 도메인을 기반으로 컴포넌트 디렉토리 구조를 나누고 있어 도메인 별로 Context를 구성하는 방식과 Redux과 같은 중앙 저장 방식을 고민하였습니다. 그러다 FSM 기반의 상태 제어 라이브러리인 <code>XState</code>를 알게 되어 프로젝트에 적용해보았고 간략한 사용 방법과 후기를 한 번 남겨보도록 하겠습니다.</p>
+<h3 id="ui와-유한-상태-머신">UI와 유한 상태 머신</h3>
+<p><a class="link" href="https://xstate.js.org/docs/"  target="_blank" rel="noopener"
+    >XState</a>는 자바스크립트 환경에서 유한 상태 기계(FSM) 모델을 정의할 수 있는 라이브러리입니다. 유한 상태 기계(FSM)는 <a class="link" href="https://en.wikipedia.org/wiki/Finite-state_machine"  target="_blank" rel="noopener"
+    >위키</a>에서 아래와 같이 설명하고 있습니다.</p>
+<blockquote>
+<p><strong>수학적 모델로써, 한 번에 오직 한개의 상태만을 가질 수 있는 유한한 상태들로 이루어져 있는 모델이고 각 상태를 전환할 수 있다.</strong></p>
+</blockquote>
+<p>UI 입장에서 생각해보면, 사용자가 웹 페이지 내에서 취할 수 있는 각 행동들이 하나의 상태 값이 될 수 있으며, 각 상태 전환에 대한 경우의 수를 고려해야 비로소 상태 관리가 가능합니다. 이 개념을 순수 함수로 작성하는 것은 상태 값이 많을수록 복잡하고 높은 난이도를 요구하는데, 이를 해결하기 위해 <code>XState</code>에서 선언적으로 FSM 모델을 생성하고 이를 통한 상태 관리 기능을 제공합니다.</p>
+<h2 id="사용-방법">사용 방법</h2>
+<h3 id="설치하기">설치하기</h3>
+<p>우선 필요한 패키지들을 설치해야 합니다. 저는 <code>React</code>에서 FSM을 도입하였기 때문에 별도의 React 패키지까지 설치하였습니다. (XState에서는 React외에도 Svelte, Vue, Ember 등 다양한 프론트엔드 환경을 지원해주고 있습니다.)</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">npm install xstate @xstate/react --save
+<span class="c1">#or</span>
+yarn add xstate @xstate/react --save
+</code></pre></div><h3 id="상태-정의하기">상태 정의하기</h3>
+<p>이제 상태를 한 번 정의해보도록 하겠습니다. 상태를 정의하려면 <code>createMachine</code> 메서드를 사용하여 하나의 유한 상태 기계 모델을 만들 수 있습니다. 간단하게 구조를 먼저 설명드리자면, 상태를 정의할 states, 머신 범위에서 값을 공유하기 위한 context, 고유한 id와 시작 상태의 값을 정의할 수 있습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createMachine</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;xstate&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">signMachine</span> <span class="o">=</span> <span class="nx">createMachine</span><span class="p">({</span>
+  <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;machineId&#39;</span><span class="p">,</span>
+  <span class="nx">initial</span><span class="o">:</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span>
+  <span class="nx">context</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="nx">states</span><span class="o">:</span> <span class="p">{}</span>
+<span class="p">});</span>
+</code></pre></div><p>프로젝트에서 제일 먼저 유한 상태 머신(FSM)을 적용한 UI 부분은 인증 도메인이었습니다. 모달 UI 형태의 Form으로 구성되어있는데, 아래와 같이 경우에 따라 여러 가지의 상태를 정의를 해보았습니다.
+<img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/71428dc2-c191-47d1-b991-2cd23cf3d937" alt="01-auth-machine"  /></p>
+<ul>
+<li><strong>selction:</strong> 선택 상태 (인증 유형을 선택하는 상태)</li>
+<li><strong>email:</strong> 이메일 인증</li>
+<li><strong>oauth:</strong> 소셜 로그인</li>
+<li><strong>registry:</strong> 등록 완료 (이메일 등록 후 서버에 사용자 정보가 등록되어있는 상태)</li>
+<li><strong>clear:</strong> 인증 완료 (Done)</li>
+</ul>
+<p>이제 각 상태 객체에서 어떤 이벤트를 발생시키거나 어떤 상태로 전이시킬 지 계획을 작성할 수 있습니다. 이를 위해 아래와 같이 머신을 작성하면 됩니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">signMachine</span> <span class="o">=</span> <span class="nx">createMachine</span><span class="p">({</span>
+  <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;sign&#39;</span><span class="p">,</span>
+  <span class="nx">initial</span><span class="o">:</span> <span class="s1">&#39;selection&#39;</span><span class="p">,</span>
+  <span class="nx">context</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">user</span><span class="o">:</span> <span class="kc">null</span>
+  <span class="p">},</span>
+  <span class="nx">states</span><span class="o">:</span> <span class="p">{</span>
+    <span class="c1">// 인증 선택
+</span><span class="c1"></span>    <span class="nx">selection</span><span class="o">:</span> <span class="p">{},</span>
+    <span class="c1">// 소셜 인증
+</span><span class="c1"></span>    <span class="nx">oauth</span><span class="o">:</span> <span class="p">{},</span>
+    <span class="c1">// 이메일 인증
+</span><span class="c1"></span>    <span class="nx">email</span><span class="o">:</span> <span class="p">{},</span>
+    <span class="c1">// 등록 상태
+</span><span class="c1"></span>    <span class="nx">registry</span><span class="o">:</span> <span class="p">{},</span>
+    <span class="c1">// 상태 종료
+</span><span class="c1"></span>    <span class="nx">done</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;final&#39;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div><p>저는 처음 진입하는 상태를 <code>selection</code> 이라고 정의했습니다. 사용자가 ‘이메일 로그인’ 버튼을 클릭하면 <code>email</code> 상태로 전환되고, 다른 로그인 방식을 클릭하면 <code>oauth</code> 상태로 전환됩니다. 반대로 상태의 끝은 <code>final type</code>을 명시하여 해당 상태가 끝이라는 것을 머신에게 알려줄 수 있습니다.
+<img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/d5e79ae8-b49a-4d8f-9de4-81c68ae8810f" alt="02-sign"  /></p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">signMachine</span> <span class="o">=</span> <span class="nx">createMachine</span><span class="p">({</span>
+  <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;sign&#39;</span><span class="p">,</span>
+  <span class="nx">initial</span><span class="o">:</span> <span class="s1">&#39;selection&#39;</span><span class="p">,</span>
+  <span class="nx">predictableActionArguments</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nx">context</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">user</span><span class="o">:</span> <span class="kc">null</span>
+  <span class="p">},</span>
+  <span class="nx">states</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">selection</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">on</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">REGISTRY</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;registry&#39;</span><span class="p">,</span>
+          <span class="nx">actions</span><span class="o">:</span> <span class="s1">&#39;updateUser&#39;</span>
+        <span class="p">},</span>
+        <span class="nx">OAUTH</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;oauth&#39;</span>
+        <span class="p">},</span>
+        <span class="nx">EMAIL</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;email&#39;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">oauth</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">on</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">CLEAR</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;selection&#39;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">email</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">on</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">CLEAR</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;selection&#39;</span>
+        <span class="p">},</span>
+        <span class="nx">REGISTRY</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;registry&#39;</span><span class="p">,</span>
+          <span class="nx">actions</span><span class="o">:</span> <span class="s1">&#39;updateUser&#39;</span>
+        <span class="p">},</span>
+        <span class="nx">DONE</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;done&#39;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1">// 등록 상태
+</span><span class="c1"></span>    <span class="nx">registry</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">on</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">CLEAR</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;done&#39;</span>
+        <span class="p">},</span>
+        <span class="nx">BACK</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;email&#39;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1">// 상태 종료
+</span><span class="c1"></span>    <span class="nx">done</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;final&#39;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div><p>이 상태들을 가지고 실제 컴포넌트에서는 어떻게 수행을 시킬 수 있을까요? <code>xstate/react</code>패키지에서 친절하게 hook을 제공해주고 있습니다. 이를 통해 상태 별 UI를 표현할 수 있습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="p">{</span> <span class="nx">useMachine</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@xstate/react&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">signMachine</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../machines/signMachine&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="p">[</span><span class="nx">state</span><span class="p">,</span> <span class="nx">send</span><span class="p">,</span> <span class="nx">service</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useMachine</span><span class="p">(</span><span class="nx">signMachine</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">currentState</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span> <span class="c1">//state의 value 속성을 통해 현재 상태를 알 수 있습니다.
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">onSend</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">send</span><span class="p">(</span><span class="s1">&#39;REGISTRY&#39;</span><span class="p">);</span> <span class="c1">//send 메서들 활용해 다른 상태로 전이시킬 수 있습니다.
+</span><span class="c1"></span><span class="p">};</span>
+</code></pre></div><p><code>useMachine</code>을 통해 머신의 현재 상태(state)를 확인하고 상태 전이(send)를 발생시킬 수 있습니다.<code> service</code>는 상태의 인스턴스 입니다. 밑에서 설명해드리겠지만 현재 상태를 기록중인 머신을 다른 컴포넌트에서도 사용하려면 service 인스턴스를 prop으로 전달하거나, context를 따로 생성해서 컴포넌트끼리 공유할 수 있습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//SignModal.tsx
+</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">useMachine</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@xstate/react&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">signMachine</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../machines/signMachine&#39;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">SigninModal</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">state</span><span class="p">,</span> <span class="nx">send</span><span class="p">,</span> <span class="nx">service</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useMachine</span><span class="p">(</span><span class="nx">signMachine</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">signState</span><span class="p">,</span> <span class="nx">history</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">state</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="nx">openState</span> <span class="o">=</span> <span class="nx">signState</span> <span class="o">!==</span> <span class="s1">&#39;done&#39;</span> <span class="o">&amp;&amp;</span> <span class="o">!!</span><span class="nx">history</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">isLoading</span><span class="o">:</span> <span class="nx">loadingGithub</span><span class="p">,</span> <span class="nx">mutate</span><span class="o">:</span> <span class="nx">signinGithub</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useSigninWithProvider</span><span class="p">(</span><span class="s1">&#39;GITHUB&#39;</span><span class="p">,</span> <span class="nx">send</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">isLoading</span><span class="o">:</span> <span class="nx">loadingGoogle</span><span class="p">,</span> <span class="nx">mutate</span><span class="o">:</span> <span class="nx">signinGoogle</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useSigninWithProvider</span><span class="p">(</span><span class="s1">&#39;GOOGLE&#39;</span><span class="p">,</span> <span class="nx">send</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">Modal</span>
+      <span class="na">open</span><span class="o">=</span><span class="p">{</span><span class="nx">openState</span><span class="p">}</span>
+      <span class="na">hasCloseIcon</span>
+      <span class="na">onClose</span><span class="o">=</span><span class="p">{()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">send</span><span class="p">(</span><span class="s1">&#39;CLEAR&#39;</span><span class="p">);</span>
+      <span class="p">}}</span>
+    <span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">Modal.Trigger</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">Button</span> <span class="na">variant</span><span class="o">=</span><span class="s">&#34;outline&#34;</span> <span class="na">color</span><span class="o">=</span><span class="s">&#34;primary-500&#34;</span><span class="p">&gt;</span>
+          <span class="nx">로그인</span>
+        <span class="p">&lt;/</span><span class="nt">Button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">Modal.Trigger</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">Modal.Header</span><span class="p">&gt;</span><span class="nx">로그인</span><span class="p">&lt;/</span><span class="nt">Modal.Header</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">Modal.Body</span><span class="p">&gt;</span>
+        <span class="p">{</span><span class="nx">signState</span> <span class="o">===</span> <span class="s1">&#39;selection&#39;</span> <span class="o">&amp;&amp;</span> <span class="p">(</span> <span class="c1">//selection 상태일 때에만 로그인 선택 UI 표현
+</span><span class="c1"></span>          <span class="p">&lt;</span><span class="nt">Stack</span> <span class="na">direction</span><span class="o">=</span><span class="s">&#34;vertical&#34;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">Button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="p">=&gt;</span> <span class="nx">send</span><span class="p">(</span><span class="s1">&#39;EMAIL&#39;</span><span class="p">)}&gt;</span><span class="nx">Email로</span> <span class="nx">로그인</span><span class="p">&lt;/</span><span class="nt">Button</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">Button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="p">=&gt;</span> <span class="nx">signinGithub</span><span class="p">()}&gt;</span><span class="nx">GitHub</span> <span class="nx">계정으로</span> <span class="nx">로그인</span><span class="p">&lt;/</span><span class="nt">Button</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">Button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="p">=&gt;</span> <span class="nx">signinGoogle</span><span class="p">()}&gt;</span><span class="nx">Google</span> <span class="nx">계정으로</span> <span class="nx">로그인</span><span class="p">&lt;/</span><span class="nt">Button</span><span class="p">&gt;</span>
+          <span class="p">&lt;/</span><span class="nt">Stack</span><span class="p">&gt;</span>
+        <span class="p">)}</span>
+        <span class="p">{</span><span class="nx">signState</span> <span class="o">===</span> <span class="s1">&#39;email&#39;</span> <span class="o">&amp;&amp;</span> <span class="p">&lt;</span><span class="nt">EmailPasswordForm</span> <span class="na">signMachine</span><span class="o">=</span><span class="p">{</span><span class="nx">service</span><span class="p">}</span> <span class="na">signup</span><span class="o">=</span><span class="p">{</span><span class="kc">false</span><span class="p">}</span> <span class="p">/&gt;}</span>
+      <span class="p">&lt;/</span><span class="nt">Modal.Body</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">Modal</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div><p>실제 로그인 form 컴포넌트 코드를 축약해서 가져와 보았습니다. state에 따라 어떤 UI를 표현할지 결정하였고, 하위 컴포넌트에 service 인스턴스를 전달하여 상태 전이가 발생해도 유지하도록 하였습니다.</p>
+<h3 id="액션-정의하기">액션 정의하기</h3>
+<p>이제 액션을 소개해 드리겠습니다. 액션은 지정한 특정 상태에서 발생하는 일종의 effect인데 대체로 context를 수정하기 위해서 사용합니다. actions 객체에 액션 함수들을 정의하고 상태의 <code>actions</code>에 호출할 액션 함수를 명시하시면 됩니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">signMachine</span> <span class="o">=</span> <span class="nx">createMachine</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;sign&#39;</span><span class="p">,</span>
+    <span class="nx">initial</span><span class="o">:</span> <span class="s1">&#39;selection&#39;</span><span class="p">,</span>
+    <span class="nx">predictableActionArguments</span>: <span class="kt">true</span><span class="p">,</span>
+    <span class="nx">context</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">user</span>: <span class="kt">null</span>
+    <span class="p">},</span>
+    <span class="nx">states</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">selection</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">on</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">REGISTRY</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;registry&#39;</span><span class="p">,</span>
+            <span class="nx">actions</span><span class="o">:</span> <span class="s1">&#39;updateUser&#39;</span>
+          <span class="p">},</span>
+          <span class="nx">OAUTH</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;oauth&#39;</span>
+          <span class="p">},</span>
+          <span class="nx">EMAIL</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;email&#39;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+    <span class="p">...</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nx">actions</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">updateUser</span><span class="o">:</span> <span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">payload</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">copyContext</span> <span class="o">=</span> <span class="nx">context</span><span class="p">;</span>
+				<span class="c1">//REGISTRY 상태가 되면 로컬스토리지에 User 정보를 저장
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="nx">payload</span><span class="p">.</span><span class="kr">type</span> <span class="o">===</span> <span class="s1">&#39;REGISTRY&#39;</span><span class="p">)</span> <span class="p">{</span>
+          <span class="kr">const</span> <span class="p">{</span> <span class="nx">user</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">payload</span><span class="p">;</span>
+          <span class="nx">setLocalStorageItem</span><span class="p">(</span><span class="nx">STORAGE_KEYS</span><span class="p">.</span><span class="nx">userAuth</span><span class="p">,</span> <span class="nx">user</span><span class="p">);</span>
+          <span class="nx">copyContext</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="kr">export</span> <span class="kr">type</span> <span class="nx">SignMachineType</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">signMachine</span><span class="p">;</span>
+</code></pre></div><p>액션 함수에서는 context와 payload를 매개변수로 받습니다. payload에는 상태 전이시에 전송한 데이터가 포함됩니다. context는 현재 관리 중인 context 값에 접근하여 값을 변경하거나 가공할 수 있습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="p">{</span> <span class="nx">mutate</span><span class="p">,</span> <span class="nx">isLoading</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useMutation</span><span class="p">(</span><span class="nx">fetchFn</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">onSuccess</span><span class="o">:</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="p">{</span> <span class="nx">uid</span><span class="p">,</span> <span class="nx">email</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">signup</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">onSignupSuccess</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">onSignupSuccess</span><span class="p">(</span><span class="nx">uid</span><span class="p">,</span> <span class="nx">email</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="nx">send</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;REGISTRY&#39;</span><span class="p">,</span> <span class="nx">user</span> <span class="p">});</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">clearUserData</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div><p>위의 코드는 이메일 회원가입이 완료되었을 때 <code>REGISTRY</code> 상태로 전이시키고, action 함수를 호출하여 스토리지에 값을 저장하는 코드입니다. <code>send</code> 함수의 두 번째 인자로 payload 객체에서 사용할 값을 전달할 수 있습니다.</p>
+<h3 id="상태-공유하기">상태 공유하기</h3>
+<h4 id="service">service</h4>
+<p>위에서 잠깐 언급드렸던 service 인스턴스를 활용해 하위 컴포넌트에서도 사용 할 수 있는 방법에 대해서 알려드리고자 합니다. 머신 상태는 <code>done</code> 상태로 이어질 때 까지 관련된 모든 컴포넌트들이 정보를 알고 있어야 합니다. service 인스턴스를 하위 컴포넌트에 넘기면 해당 머신 context를 동기화시킬 수 있습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//SignModal.tsx
+</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">useMachine</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@xstate/react&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">signMachine</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../machines/signMachine&#39;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">SigninModal</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">state</span><span class="p">,</span> <span class="nx">send</span><span class="p">,</span> <span class="nx">service</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useMachine</span><span class="p">(</span><span class="nx">signMachine</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">signState</span><span class="p">,</span> <span class="nx">history</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">state</span><span class="p">;</span>
+	<span class="p">...</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">Modal</span>
+      <span class="na">open</span><span class="o">=</span><span class="p">{</span><span class="nx">openState</span><span class="p">}</span>
+      <span class="na">hasCloseIcon</span>
+      <span class="na">onClose</span><span class="o">=</span><span class="p">{()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">send</span><span class="p">(</span><span class="s1">&#39;CLEAR&#39;</span><span class="p">);</span>
+      <span class="p">}}</span>
+    <span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">Modal.Trigger</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">Button</span> <span class="na">variant</span><span class="o">=</span><span class="s">&#34;outline&#34;</span> <span class="na">color</span><span class="o">=</span><span class="s">&#34;primary-500&#34;</span><span class="p">&gt;</span>
+          <span class="nx">로그인</span>
+        <span class="p">&lt;/</span><span class="nt">Button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">Modal.Trigger</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">Modal.Header</span><span class="p">&gt;</span><span class="nx">로그인</span><span class="p">&lt;/</span><span class="nt">Modal.Header</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">Modal.Body</span><span class="p">&gt;</span>
+				<span class="p">...</span>
+        <span class="p">{</span><span class="nx">signState</span> <span class="o">===</span> <span class="s1">&#39;email&#39;</span> <span class="o">&amp;&amp;</span> <span class="p">&lt;</span><span class="nt">EmailPasswordForm</span> <span class="na">signMachine</span><span class="o">=</span><span class="p">{</span><span class="nx">service</span><span class="p">}</span> <span class="na">signup</span><span class="o">=</span><span class="p">{</span><span class="kc">false</span><span class="p">}</span> <span class="p">/&gt;}</span>
+      <span class="p">&lt;/</span><span class="nt">Modal.Body</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">Modal</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div><p><code>useActor</code>에 전달받은 service 인스턴스를 인수로 전달하여 구독중인 머신을 참조할 수 있습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="p">{</span> <span class="nx">useActor</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@xstate/react&#39;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">ChildrenComponent</span> <span class="o">=</span> <span class="p">(</span><span class="nx">machine</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">refState</span><span class="p">,</span> <span class="nx">refSend</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useActor</span><span class="p">(</span><span class="nx">machine</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">currentState</span> <span class="o">=</span> <span class="nx">machine</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">button</span>
+      <span class="na">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">refSend</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;CLEAR&#39;</span> <span class="p">});</span>
+      <span class="p">}}</span>
+    <span class="p">&gt;</span>
+      <span class="nx">Clear</span>
+    <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div><p>하위 컴포넌트에서의 전체 코드 입니다. 정상적으로 회원 가입이 완료된다면 <code>send</code> 메서드를 통해 완료 상태로 전이됩니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-tsx" data-lang="tsx"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Text</span><span class="p">,</span> <span class="nx">TextInput</span><span class="p">,</span> <span class="nx">Button</span><span class="p">,</span> <span class="nx">Modal</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@jdesignlab/react&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">useForm</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;react-hook-form&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">useActor</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@xstate/react&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Flex</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../styles/Profile&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">useAccountEmailWithPassword</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../hooks/useAccountEmailWithPassword&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">useCreateUserMutation</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../hooks/useCreateUserMutation&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="kr">type</span> <span class="p">{</span> <span class="nx">InterpreterFrom</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;xstate&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="kr">type</span> <span class="p">{</span> <span class="nx">SignMachineType</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../machines/signMachine&#39;</span><span class="p">;</span>
+
+<span class="kr">interface</span> <span class="nx">Props</span> <span class="p">{</span>
+  <span class="nx">signMachine</span>: <span class="kt">InterpreterFrom</span><span class="p">&lt;</span><span class="nt">SignMachineType</span><span class="p">&gt;;</span>
+  <span class="nx">signup</span>: <span class="kt">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">EmailPasswordForm</span> <span class="o">=</span> <span class="p">(</span><span class="nx">props</span>: <span class="kt">Props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">{</span>
+    <span class="nx">register</span><span class="p">,</span>
+    <span class="nx">handleSubmit</span><span class="p">,</span>
+    <span class="nx">formState</span><span class="o">:</span> <span class="p">{</span> <span class="nx">errors</span> <span class="p">}</span>
+  <span class="p">}</span> <span class="o">=</span> <span class="nx">useForm</span><span class="p">();</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">signMachine</span><span class="p">,</span> <span class="nx">signup</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">props</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="p">[,</span> <span class="nx">refSend</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useActor</span><span class="p">(</span><span class="nx">signMachine</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">mutate</span>: <span class="kt">createUser</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useCreateUserMutation</span><span class="p">();</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">mutate</span>: <span class="kt">registry</span><span class="p">,</span> <span class="nx">isLoading</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useAccountEmailWithPassword</span><span class="p">(</span><span class="nx">signup</span><span class="p">,</span> <span class="nx">refSend</span><span class="p">,</span> <span class="p">(</span><span class="nx">uid</span><span class="p">,</span> <span class="nx">email</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">createUser</span><span class="p">({</span> <span class="nx">uid</span><span class="p">,</span> <span class="nx">email</span> <span class="p">});</span>
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">form</span>
+      <span class="na">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">handleSubmit</span><span class="p">((</span><span class="nx">userInfo</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">registry</span><span class="p">(</span><span class="nx">userInfo</span> <span class="kr">as</span> <span class="nx">EamilPasswordField</span><span class="p">);</span>
+      <span class="p">})}</span>
+    <span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">TextInput</span>
+        <span class="p">{</span><span class="na">...register</span><span class="err">(&#39;</span><span class="na">email</span><span class="err">&#39;,</span> <span class="p">{</span>
+          <span class="na">required</span><span class="err">:</span> <span class="err">&#39;</span><span class="na">이메일을</span> <span class="na">입력해주세요.</span><span class="err">&#39;,</span>
+          <span class="na">pattern</span><span class="err">:</span> <span class="p">{</span>
+            <span class="na">value</span><span class="err">:</span> <span class="err">/[</span><span class="na">a</span><span class="err">-</span><span class="na">z0</span><span class="err">-</span><span class="na">9</span><span class="err">]+@[</span><span class="na">a</span><span class="err">-</span><span class="na">z</span><span class="err">]+</span><span class="na">.</span><span class="err">[</span><span class="na">a</span><span class="err">-</span><span class="na">z</span><span class="err">]</span><span class="p">{</span><span class="na">2</span><span class="err">,</span><span class="na">3</span><span class="p">}</span><span class="err">/,</span>
+            <span class="na">message</span><span class="err">:</span> <span class="err">&#39;</span><span class="na">이메일</span> <span class="na">형식에</span> <span class="na">맞지</span> <span class="na">않습니다.</span><span class="err">&#39;</span>
+          <span class="p">}</span>
+        <span class="p">}</span><span class="err">)</span><span class="p">}</span>
+        <span class="na">size</span><span class="o">=</span><span class="s">&#34;md&#34;</span>
+        <span class="na">clearable</span>
+      <span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">TextInput.Label</span><span class="p">&gt;</span><span class="nx">Email</span><span class="p">&lt;/</span><span class="nt">TextInput.Label</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">TextInput</span><span class="p">&gt;</span>
+      <span class="p">{</span><span class="nx">errors</span><span class="p">.</span><span class="nx">email</span> <span class="o">&amp;&amp;</span> <span class="p">&lt;</span><span class="nt">Text</span> <span class="na">color</span><span class="o">=</span><span class="s">&#34;red-base&#34;</span><span class="p">&gt;{</span><span class="nx">errors</span><span class="p">.</span><span class="nx">email</span><span class="p">.</span><span class="nx">message</span> <span class="kr">as</span> <span class="kt">string</span><span class="p">}&lt;/</span><span class="nt">Text</span><span class="p">&gt;}</span>
+      <span class="p">&lt;</span><span class="nt">TextInput</span>
+        <span class="p">{</span><span class="na">...register</span><span class="err">(&#39;</span><span class="na">password</span><span class="err">&#39;,</span> <span class="p">{</span>
+          <span class="na">required</span><span class="err">:</span> <span class="err">&#39;</span><span class="na">비밀번호를</span> <span class="na">입력해주세요.</span><span class="err">&#39;,</span>
+          <span class="na">minLength</span><span class="err">:</span> <span class="p">{</span>
+            <span class="na">message</span><span class="err">:</span> <span class="err">&#39;</span><span class="na">비밀번호는</span> <span class="na">최소</span> <span class="na">8자</span> <span class="na">이상으로</span> <span class="na">입력해주세요.</span><span class="err">&#39;,</span>
+            <span class="na">value</span><span class="err">:</span> <span class="na">8</span>
+          <span class="p">}</span>
+        <span class="p">}</span><span class="err">)</span><span class="p">}</span>
+        <span class="na">size</span><span class="o">=</span><span class="s">&#34;md&#34;</span>
+        <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span>
+        <span class="na">clearable</span>
+      <span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">TextInput.Label</span><span class="p">&gt;</span><span class="nx">Password</span><span class="p">&lt;/</span><span class="nt">TextInput.Label</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">TextInput</span><span class="p">&gt;</span>
+      <span class="p">{</span><span class="nx">errors</span><span class="p">.</span><span class="nx">password</span> <span class="o">&amp;&amp;</span> <span class="p">&lt;</span><span class="nt">Text</span> <span class="na">color</span><span class="o">=</span><span class="s">&#34;red-base&#34;</span><span class="p">&gt;{</span><span class="nx">errors</span><span class="p">.</span><span class="nx">password</span><span class="p">.</span><span class="nx">message</span> <span class="kr">as</span> <span class="kt">string</span><span class="p">}&lt;/</span><span class="nt">Text</span><span class="p">&gt;}</span>
+      <span class="p">&lt;</span><span class="nt">Modal.Footer</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">Flex</span><span class="p">&gt;</span>
+          <span class="p">{</span><span class="o">!</span><span class="nx">signup</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
+            <span class="p">&lt;</span><span class="nt">Button</span>
+              <span class="na">variant</span><span class="o">=</span><span class="s">&#34;outline&#34;</span>
+              <span class="na">color</span><span class="o">=</span><span class="s">&#34;red-lighten2&#34;</span>
+              <span class="na">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="nx">refSend</span><span class="p">({</span> <span class="kr">type</span><span class="o">:</span> <span class="s1">&#39;CLEAR&#39;</span> <span class="p">});</span>
+              <span class="p">}}</span>
+            <span class="p">&gt;</span>
+              <span class="err">뒤로가기</span>
+            <span class="p">&lt;/</span><span class="nt">Button</span><span class="p">&gt;</span>
+          <span class="p">)}</span>
+          <span class="p">&lt;</span><span class="nt">Button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">variant</span><span class="o">=</span><span class="s">&#34;outline&#34;</span> <span class="na">color</span><span class="o">=</span><span class="s">&#34;primary-500&#34;</span> <span class="na">disabled</span><span class="o">=</span><span class="p">{</span><span class="nx">isLoading</span><span class="p">}&gt;</span>
+            <span class="p">{</span><span class="nx">signup</span> <span class="o">?</span> <span class="s1">&#39;회원가입&#39;</span> <span class="o">:</span> <span class="s1">&#39;로그인&#39;</span><span class="p">}</span>
+          <span class="p">&lt;/</span><span class="nt">Button</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">Flex</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">Modal.Footer</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div><h4 id="context">context</h4>
+<p>하지만 context의 영역이 점차 커지면 prop을 통해 전달하는 방식도 한계가 올 수 있습니다. 이런 상황에서는 <code>ActorContext</code>를 생성하여 경계를 구축하실 수 있습니다. React에서 제공하는 ContextAPI 구조와 많이 닮아있어 쉽게 사용하실 수 있습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createActorContext</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@xstate/react&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">signMachine</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./signMachine&#39;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">signMachineContext</span> <span class="o">=</span> <span class="nx">createActorContext</span><span class="p">(</span><span class="nx">signMachine</span><span class="p">);</span>
+</code></pre></div><p>생성한 ActorContext의 Provider로 공유 대상을 구성합니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="p">{</span> <span class="nx">useMemo</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">SigninModal</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./SigninModal&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">SignupModal</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./SignupModal&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">signMachineContext</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../machines/signMachineContext&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">SignPage</span> <span class="o">=</span> <span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">signMachineContext.Provider</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">SigninModal</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">SignupModal</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">signMachineContext.Provider</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">SignPage</span><span class="p">;</span>
+</code></pre></div><p>하위 컴포넌트에서는 context의 useActor 메서드를 통해 state, send를 사용하실 수 있습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">import</span> <span class="p">{</span> <span class="nx">signMachineContext</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../../machines/signMachineContext&#39;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">SigninModal</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">state</span><span class="p">,</span> <span class="nx">send</span><span class="p">]</span> <span class="o">=</span> <span class="nx">signMachineContext</span><span class="p">.</span><span class="nx">useActor</span><span class="p">();</span>
+  <span class="k">return</span> <span class="p">&lt;&gt;...&lt;/&gt;;</span>
+<span class="p">};</span>
+</code></pre></div><h3 id="타입-정의하기">타입 정의하기</h3>
+<p>XState는 타입스크립트를 지원합니다. 이를 이용해 context와 event의 타입을 정의할 수 있습니다. 또한 머신 자체를 <code>typeof</code>를 통해 값으로 사용할 수 있어, 컴포넌트 간 인스턴스 공유에도 타입을 맞출 수 있습니다.</p>
+<p><strong>createMachine 타입 정의</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kr">import</span> <span class="p">{</span> <span class="nx">STORAGE_KEYS</span><span class="p">,</span> <span class="nx">setLocalStorageItem</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@shared/storage&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">createMachine</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;xstate&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="kr">type</span> <span class="p">{</span> <span class="nx">User</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;firebase/auth&#39;</span><span class="p">;</span>
+
+<span class="kr">interface</span> <span class="nx">UserContext</span> <span class="p">{</span>
+  <span class="nx">user</span>: <span class="kt">User</span> <span class="o">|</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="kr">type</span> <span class="nx">UserEvent</span> <span class="o">=</span>
+  <span class="o">|</span> <span class="p">{</span> <span class="kr">type</span><span class="o">:</span> <span class="s1">&#39;OAUTH&#39;</span> <span class="p">}</span>
+  <span class="o">|</span> <span class="p">{</span> <span class="kr">type</span><span class="o">:</span> <span class="s1">&#39;EMAIL&#39;</span> <span class="p">}</span>
+  <span class="o">|</span> <span class="p">{</span> <span class="kr">type</span><span class="o">:</span> <span class="s1">&#39;EMAIL&#39;</span> <span class="p">}</span>
+  <span class="o">|</span> <span class="p">{</span> <span class="kr">type</span><span class="o">:</span> <span class="s1">&#39;CLEAR&#39;</span> <span class="p">}</span>
+  <span class="o">|</span> <span class="p">{</span> <span class="kr">type</span><span class="o">:</span> <span class="s1">&#39;REGISTRY&#39;</span><span class="p">;</span> <span class="nx">user</span>: <span class="kt">User</span> <span class="p">}</span>
+  <span class="o">|</span> <span class="p">{</span> <span class="kr">type</span><span class="o">:</span> <span class="s1">&#39;DONE&#39;</span> <span class="p">}</span>
+  <span class="o">|</span> <span class="p">{</span> <span class="kr">type</span><span class="o">:</span> <span class="s1">&#39;BACK&#39;</span> <span class="p">};</span>
+
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">signMachine</span> <span class="o">=</span> <span class="nx">createMachine</span><span class="p">&lt;</span><span class="nt">UserContext</span><span class="err">,</span> <span class="na">UserEvent</span><span class="p">&gt;(</span>
+  <span class="p">{</span>
+    <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;sign&#39;</span><span class="p">,</span>
+    <span class="nx">initial</span><span class="o">:</span> <span class="s1">&#39;selection&#39;</span><span class="p">,</span>
+    <span class="nx">predictableActionArguments</span>: <span class="kt">true</span><span class="p">,</span>
+    <span class="nx">context</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">user</span>: <span class="kt">null</span>
+    <span class="p">},</span>
+    <span class="nx">states</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">selection</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">on</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">REGISTRY</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;registry&#39;</span><span class="p">,</span>
+            <span class="nx">actions</span><span class="o">:</span> <span class="s1">&#39;updateUser&#39;</span>
+          <span class="p">},</span>
+          <span class="nx">OAUTH</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;oauth&#39;</span>
+          <span class="p">},</span>
+          <span class="nx">EMAIL</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;email&#39;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="nx">oauth</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">on</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">CLEAR</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;selection&#39;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="nx">email</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">on</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">CLEAR</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;selection&#39;</span>
+          <span class="p">},</span>
+          <span class="nx">REGISTRY</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;registry&#39;</span><span class="p">,</span>
+            <span class="nx">actions</span><span class="o">:</span> <span class="s1">&#39;updateUser&#39;</span>
+          <span class="p">},</span>
+          <span class="nx">DONE</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;done&#39;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="c1">// 등록 상태
+</span><span class="c1"></span>      <span class="nx">registry</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">on</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">CLEAR</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;done&#39;</span>
+          <span class="p">},</span>
+          <span class="nx">BACK</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;email&#39;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="c1">// 상태 종료
+</span><span class="c1"></span>      <span class="nx">done</span><span class="o">:</span> <span class="p">{</span>
+        <span class="kr">type</span><span class="o">:</span> <span class="s1">&#39;final&#39;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nx">actions</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">updateUser</span><span class="o">:</span> <span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">payload</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">copyContext</span> <span class="o">=</span> <span class="nx">context</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">payload</span><span class="p">.</span><span class="kr">type</span> <span class="o">===</span> <span class="s1">&#39;REGISTRY&#39;</span><span class="p">)</span> <span class="p">{</span>
+          <span class="kr">const</span> <span class="p">{</span> <span class="nx">user</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">payload</span><span class="p">;</span>
+          <span class="nx">setLocalStorageItem</span><span class="p">(</span><span class="nx">STORAGE_KEYS</span><span class="p">.</span><span class="nx">userAuth</span><span class="p">,</span> <span class="nx">user</span><span class="p">);</span>
+          <span class="nx">copyContext</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="kr">export</span> <span class="kr">type</span> <span class="nx">SignMachineType</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">signMachine</span><span class="p">;</span>
+</code></pre></div><p><strong>machine 인스턴스 타입 정의</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-tsx" data-lang="tsx"><span class="kr">import</span> <span class="p">{</span> <span class="nx">useActor</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@xstate/react&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="kr">type</span> <span class="p">{</span> <span class="nx">InterpreterFrom</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;xstate&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="kr">type</span> <span class="p">{</span> <span class="nx">SignMachineType</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../machines/signMachine&#39;</span><span class="p">;</span>
+
+<span class="kr">interface</span> <span class="nx">Props</span> <span class="p">{</span>
+  <span class="nx">signMachine</span>: <span class="kt">InterpreterFrom</span><span class="p">&lt;</span><span class="nt">SignMachineType</span><span class="p">&gt;;</span>
+  <span class="nx">signup</span>: <span class="kt">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">EmailPasswordForm</span> <span class="o">=</span> <span class="p">(</span><span class="nx">props</span>: <span class="kt">Props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">signMachine</span><span class="p">,</span> <span class="nx">signup</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">props</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="p">[,</span> <span class="nx">refSend</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useActor</span><span class="p">(</span><span class="nx">signMachine</span><span class="p">);</span>
+  <span class="k">return</span> <span class="p">&lt;&gt;...&lt;/&gt;;</span>
+<span class="p">};</span>
+</code></pre></div><h2 id="마치며">마치며</h2>
+<p>프로젝트 전반적으로 XState를 적용하지는 않았지만, 회원 관리에서 사용해본 결과 국소적으로 상태 관리를 간편하게 적용할 수 있다는 생각이 들었습니다. 작은 상태를 쪼개서 관리하는 관점에서는 <code>Recoil</code> 라이브러리를 사용하는 것과 유사한 느낌을 받았습니다. 그러나 프로젝트의 구조가 도메인 별로 분리된 경우에 더욱 효율적일 것 같습니다. 상태가 많을수록 각 상태에서 정의해야하는 경우의 수도 증가하기 때문입니다.</p>
+<p>공식 문서를 살펴보니 비동기 동작(invoke)과 상태 머신 간 공유도 가능한 것 같은데 이러한 부분을 추후에 좀 더 세밀하게 사용하게 된다면 2편으로 공유해보도록 하겠습니다. 읽어주셔서 감사합니다.</p>
+<h2 id="참고-자료">참고 자료</h2>
+<ul>
+<li><strong><a class="link" href="https://xstate.js.org/docs/"  target="_blank" rel="noopener"
+    >XState Docs</a></strong></li>
+<li><strong><a class="link" href="https://fe-developers.kakaoent.com/2022/220922-make-cart-with-xstate/"  target="_blank" rel="noopener"
+    >자바스크립트로 만든 유한 상태 기계 XState - Kakao FE 기술블로그 (김성호 님)</a></strong></li>
+</ul>
+
+</section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false
+    });
+</script>
+<style>
+     
+    @media all and (min-width: 1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+
+        .toc-list {
+            padding: 0 4px;
+            width: 180px;
+        }
+    }
+
+    @media all and (max-width: 1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: '목차';
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+    .toc-link::before {
+        width: 0;
+    }
+</style>
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/xstate/">xstate</a>
+        
+            <a href="/tags/fsm/">fsm</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title"></h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/react-with-declarative/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/header/react-declarative.png" loading="lazy" data-key="react-with-declarative" data-hash="../../assets/header/react-declarative.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">React는 왜 선언형 프로그래밍을 지향할까?</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="comments-container">
+    
+    <script src="https://utteranc.es/client.js"
+        repo="yondo123/hugo-blog-comments"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+
+<style>
+    .comments-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 Jiny
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

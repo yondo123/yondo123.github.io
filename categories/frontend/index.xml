@@ -6,7 +6,17 @@
     <description>Recent content in Frontend on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Jun 2023 02:09:54 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/frontend/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 09 Jul 2023 22:40:08 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/frontend/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript생태계의 유한 상태기계, XState 도입기</title>
+      <link>https://jinyisland.kr/post/xstate-react/</link>
+      <pubDate>Sun, 09 Jul 2023 22:40:08 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/xstate-react/</guid>
+      <description>XState 도입기 최근 프로젝트를 진행하면서 복잡한 UI 상태를 제어할 수 있는 클라이언트 기반 상태 관리 라이브러리를 찾게 되었습니다. 현재 프로젝트는 도메인을 기반으로 컴포넌트 디렉토리 구조를 나누고 있어 도메인 별로 Context를 구성하는 방식과 Redux과 같은 중앙 저장 방식을 고민하였습니다. 그러다 FSM 기반의 상태 제어 라이브러리인 XState를 알게 되어 프로젝트에 적용해보았고 간략한 사용 방법과 후기를 한 번 남겨보도록 하겠습니다.
+UI와 유한 상태 머신 XState는 자바스크립트 환경에서 유한 상태 기계(FSM) 모델을 정의할 수 있는 라이브러리입니다.</description>
+    </item>
+    
     <item>
       <title>React는 왜 선언형 프로그래밍을 지향할까?</title>
       <link>https://jinyisland.kr/post/react-with-declarative/</link>
