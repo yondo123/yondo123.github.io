@@ -6,7 +6,18 @@
     <description>Recent content in Web on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Sep 2021 18:49:47 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/web/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 31 Jul 2023 03:19:11 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Critical Rendering Path와 렌더링 최적화 기법</title>
+      <link>https://jinyisland.kr/post/crp/</link>
+      <pubDate>Mon, 31 Jul 2023 03:19:11 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/crp/</guid>
+      <description>개요 CRP (Critical Rendering Path)란 페이지 레이아웃을 생성하거나 변경할 때, 브라우저가 화면을 그리기 위해 수행하는 단계를 의미합니다. 더 세부적으로, Browser Rendering Pipeline이 존재하는데 이는 레이아웃 관점에서 콘텐츠들이 어떻게 표시되는지에 대한 일종의 파이프라인을 의미합니다.
+페이지가 느려지면 최적화가 필요하고, 최적화를 수행하려면 레이아웃이 어떻게 그려지고 그 과정에서 어느정도의 비용이 발생되는지 알고 있어야 합니다. 페이지에 접근할 때 브라우저가 어떤 과정으로 사용자에게 표시하는지,사용할 수 있는 최적화 기법에 대해 알아보고자 합니다.
+Browser Pipe Rendering Step01. DOM, CSSOM 생성 먼저 서버로부터 HTML 리소스를 응답 받으면, HTML 파싱 알고리즘을 사용하여 구문을 분석하고 head 요소에서 CSS 리소스를 찾으면 해당 리소스의 존재를 확인하고 DocumentObjectModel(DOM) 트리를 생성한 후 CSS 구문 분석을 통해 CSSObjectModel(CSSOM) 트리를 생성합니다.</description>
+    </item>
+    
     <item>
       <title>Http 쿠키의 개념과 활용 방법</title>
       <link>https://jinyisland.kr/post/cookies/</link>

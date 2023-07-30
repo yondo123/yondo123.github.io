@@ -4,7 +4,43 @@
   
   <url>
     <loc>https://jinyisland.kr/categories/</loc>
-    <lastmod>2023-07-09T22:40:08+09:00</lastmod>
+    <lastmod>2023-07-31T03:19:11+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/crp/</loc>
+    <lastmod>2023-07-31T03:19:11+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/crp/</loc>
+    <lastmod>2023-07-31T03:19:11+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/</loc>
+    <lastmod>2023-07-31T03:19:11+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/</loc>
+    <lastmod>2023-07-31T03:19:11+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/</loc>
+    <lastmod>2023-07-31T03:19:11+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/categories/web/</loc>
+    <lastmod>2023-07-31T03:19:11+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
@@ -22,24 +58,6 @@
   
   <url>
     <loc>https://jinyisland.kr/post/xstate-react/</loc>
-    <lastmod>2023-07-09T22:40:08+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/</loc>
-    <lastmod>2023-07-09T22:40:08+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/post/</loc>
-    <lastmod>2023-07-09T22:40:08+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/tags/</loc>
     <lastmod>2023-07-09T22:40:08+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -352,12 +370,6 @@
   
   <url>
     <loc>https://jinyisland.kr/post/cookies/</loc>
-    <lastmod>2021-09-20T18:49:47+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/categories/web/</loc>
     <lastmod>2021-09-20T18:49:47+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>

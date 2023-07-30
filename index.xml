@@ -6,7 +6,265 @@
         <description>Recent content on Jiny</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 09 Jul 2023 22:40:08 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 31 Jul 2023 03:19:11 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Critical Rendering Path와 렌더링 최적화 기법</title>
+        <link>https://jinyisland.kr/post/crp/</link>
+        <pubDate>Mon, 31 Jul 2023 03:19:11 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/crp/</guid>
+        <description>&lt;img src="https://jinyisland.kr/../../assets/header/critical-rendering-path.png" alt="Featured image of post Critical Rendering Path와 렌더링 최적화 기법" /&gt;&lt;h2 id=&#34;개요&#34;&gt;개요&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/0c567a12-5d9f-4e51-8c17-6d0d24a88714&#34; alt=&#34;01-crp&#34;  /&gt;&lt;br&gt;
+&lt;strong&gt;CRP (Critical Rendering Path)란&lt;/strong&gt; 페이지 레이아웃을 생성하거나 변경할 때, 브라우저가 화면을 그리기 위해 수행하는 단계를 의미합니다. 더 세부적으로, &lt;strong&gt;Browser Rendering Pipeline&lt;/strong&gt;이 존재하는데 이는 레이아웃 관점에서 콘텐츠들이 어떻게 표시되는지에 대한 일종의 파이프라인을 의미합니다.&lt;/p&gt;
+&lt;p&gt;페이지가 느려지면 최적화가 필요하고, 최적화를 수행하려면 레이아웃이 어떻게 그려지고 그 과정에서 어느정도의 비용이 발생되는지 알고 있어야 합니다. 페이지에 접근할 때 브라우저가 어떤 과정으로 사용자에게 표시하는지,사용할 수 있는 최적화 기법에 대해 알아보고자 합니다.&lt;/p&gt;
+&lt;h2 id=&#34;browser-pipe-rendering&#34;&gt;Browser Pipe Rendering&lt;/h2&gt;
+&lt;h3 id=&#34;step01-dom-cssom-생성&#34;&gt;Step01. DOM, CSSOM 생성&lt;/h3&gt;
+&lt;p&gt;먼저 서버로부터 HTML 리소스를 응답 받으면, HTML 파싱 알고리즘을 사용하여 구문을 분석하고 head 요소에서 CSS 리소스를 찾으면 해당 리소스의 존재를 확인하고 DocumentObjectModel(DOM) 트리를 생성한 후 CSS 구문 분석을 통해 CSSObjectModel(CSSOM) 트리를 생성합니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;link&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;rel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;text/css&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;style.css&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;span&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;Hello&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;span&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;World&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;img&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;image.jpg&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;생성된 Document Object Model&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/196ab59d-8baa-4bee-a8cc-b7fe9ef76efc&#34; alt=&#34;02-dom&#34;  /&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span class=&#34;c&#34;&gt;/** style.css*/&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;font-size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;font-weight&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;bold&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;span&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;display&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;none&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;#ededed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nd&#34;&gt;before&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;Welcome&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;nt&#34;&gt;img&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;float&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;left&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;생성된 CSS Object Model&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/48408b4b-3de2-4f67-b20c-99f0528624a3&#34; alt=&#34;03-cssom&#34;  /&gt;&lt;/p&gt;
+&lt;p&gt;DOM과 CSSOM을 생성하여 렌더 트리까지 도달하는 단계는 다음과 같습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;렌더링 엔진이 HTML에서 원시 바이트를 읽고 개별 문자로 변환&lt;/li&gt;
+&lt;li&gt;문자열을 고유한 토큰으로 변환&lt;/li&gt;
+&lt;li&gt;토큰을 각 정의된 규칙을 갖는 노드 객체로 변환&lt;/li&gt;
+&lt;li&gt;각 노드의 부모-자식 관계를 가지는 트리구조를 생성 &lt;strong&gt;(DOM 트리)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;step02-렌더트리-생성&#34;&gt;Step02. 렌더트리 생성&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/055ffe7f-092e-40ed-a9e0-7e0f5c7a7473&#34; alt=&#34;04-render-tree&#34;  /&gt;
+최종적으로 DOM 트리와 CSSOM을 활용하여 렌더 트리를 생성합니다.&lt;strong&gt;DOM 트리와 렌더 트리는 1:1 대응하지 않고 오로지 사용자에게 시각적으로 보여지는 요소만을 구성&lt;/strong&gt;합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;가상 요소(pesudo-element)는 DOM에는 존재하지 않지만 렌더 트리에는 존재하게됩니다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;title&amp;gt;&lt;/code&gt;,&lt;code&gt;&amp;lt;scirpt&amp;gt;&lt;/code&gt;노드들은 렌더 트리에 포함시키지 않습니다.&lt;/li&gt;
+&lt;li&gt;display 속성 값이 &lt;code&gt;none&lt;/code&gt; 인 요소들도 렌더 트리에 제외합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;이 단계에서는 요소 선택자 매칭을 수행하여 일치하는 선택자의 스타일 규칙 기반으로 최종 스타일을 결정합니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DOM, CSSOM이 생성되는 파이프라인&lt;/strong&gt;
+&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/b3bf07a0-e816-4326-a9c3-6b314f62eef3&#34; alt=&#34;05-parsing&#34;  /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;step03-스타일-계산&#34;&gt;Step03. 스타일 계산&lt;/h3&gt;
+&lt;p&gt;생성된 렌더트리를 빌드시키는 단계 입니다. 이 과정에서 &lt;code&gt;리플로우(Reflow)&lt;/code&gt;와 &lt;code&gt;리페인트(Repaint)&lt;/code&gt; 개념이 등장하는데 최적화를 위해서 꼭 알아야 할 개념이기도 합니다.&lt;/p&gt;
+&lt;h4 id=&#34;layout&#34;&gt;Layout&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/8140b346-35ab-4472-8ecc-64025c1a3e55&#34; alt=&#34;06-box-model&#34;  /&gt;
+레이아웃 단계는 각 HTML 요소의 위치와 크기를 계산하는 과정입니다. 쉽게 말해 &lt;strong&gt;요소의 Box Model을 생성하는 단계&lt;/strong&gt;라고 볼 수 있습니다.(em, rem, 백분율 등 상대적으로 선언한 측정 단위는 절대 단위로 변환됩니다.)&lt;br&gt;
+레이아웃 단계가 발생하는 것은 리플로우가 발생된다는 의미입니다. 자식 요소와 부모 요소까지 재 계산이 필요할 수 있기 때문에 비용이 상대적으로 리페인트 보다 많이 발생할 수 있습니다.&lt;/p&gt;
+&lt;h4 id=&#34;paint&#34;&gt;Paint&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/57f1586a-0c6d-4587-aa67-7802eedb7545&#34; alt=&#34;07-paint&#34;  /&gt;
+페인트는 렌더 트리를 순회하면서 paint 함수를 호출해 시각적인 요소(color, shadow 등)를 실제 화면에 표현하는 단계입니다.&lt;/p&gt;
+&lt;h4 id=&#34;리플로우와-리페인트&#34;&gt;리플로우와 리페인트&lt;/h4&gt;
+&lt;p&gt;리플로우는 변경이 필요한 렌더 트리에 대한 유효성 검사 및 노드의 수치를 다시 계산하는 과정입니다. 리페인트는 변경된 영역의 결과를 표현하기 위해 화면이 갱신되는 것을 의미합니다. &lt;strong&gt;예를 들어 레이아웃 과정이 발생하거나, 단순한 스타일이 변경되는 경우&lt;/strong&gt;가 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;리플로우는 요소 위치와 크기가 변경되기 때문에, 경우에 따라 문서 전체까지 재계산이 필요할 수 있습니다
+&lt;ul&gt;
+&lt;li&gt;DOM 노드가 갱신될 때 (추가, 제거)&lt;/li&gt;
+&lt;li&gt;display 속성을 통해 요소를 숨기는 경우 (hide)&lt;/li&gt;
+&lt;li&gt;폰트 크기의 변화, 브라우저 크기의 변화&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;리페인트는 리플로우가 발생된 이후와 단순한 스타일이 변경될 때 발생합니다. 발생된 요소의 자식 요소까지 전파합니다.
+&lt;ul&gt;
+&lt;li&gt;visibility 속성을 통해 요소를 숨기는 경우 (hidden)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;상대적으로 리플로우 과정이 비용이 많이 들기 때문에 리플로우 발생을 최소화하는 것이 중요합니다.&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;step04-레이어-합성composite-layers&#34;&gt;Step04. 레이어 합성(Composite Layers)&lt;/h3&gt;
+&lt;p&gt;브라우저에서는 여러 &lt;code&gt;layer&lt;/code&gt;가 존재합니다. 브라우저는 요소의 스타일을 분석하여 필요한 레이어의 수를 파악합니다. 그리고 페인팅 후 브라우저는 모든 레이어를 모아서 최종 화면으로 보여줍니다. 이 단계에서 요소들을 겹치지 않게끔 레이어를 형성하고, 분석한 스타일대로 픽셀을 그려넣는 과정이 이루어집니다. 레이어 합성은 아래 두 단계로 이루어져 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;UpdateLayerTree:&lt;/strong&gt; 요소의 스타일을 분석하여 필요한 레이어의 개수 파악&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Composite Layers:&lt;/strong&gt; 페인트 단계 이후 파악된 모든 레이어를 합성후 화면에 표현 (복합 레이어)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;최적화의-필요성&#34;&gt;최적화의 필요성&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/1114d480-916b-4a47-8d05-38149215d0a1&#34; alt=&#34;08-crp&#34;  /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;이상적인-프레임&#34;&gt;이상적인 프레임&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;animation&lt;/code&gt;, &lt;code&gt;hover&lt;/code&gt; 등 레이아웃에 시각적인 변화가 있을 경우 브라우저가 새 프레임을 렌더링합니다. 대부분의 디바이스는 초당 60회(60FPS) 새로고침을 수행하는 것이 부드러운 애니메이션 표현에 이상적입니다. 60 FPS를 유지하려면, 브라우저는 매 16ms(1000ms / 60)마다 한 번씩 새로운 화면을 그려야 합니다. 하지만 브라우저는 단순히 레이아웃만 그리는 역할만 수행하지는 않기에 몹시 제한적입니다.&lt;/p&gt;
+&lt;p&gt;따라서 웹 브라우저에서 사용자가 매끄러운 화면을 유지할 수 있도록 여러 최적화 기법을 통해 프레임을 유지시키는 것이 중요합니다.&lt;/p&gt;
+&lt;h3 id=&#34;간단한-선택자를-사용&#34;&gt;간단한 선택자를 사용&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;nav&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;header&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;ul&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;sidebar&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+		&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;il&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;list_item&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;Item&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;li&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+		...
+	&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;ul&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;nav&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;list_item&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;nav&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;nn&#34;&gt;hader&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;ul&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;sidebar&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;li&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;CSS 구문 분석은 오른쪽에서 왼쪽 요소로 탐색합니다. 따라서 선택자 구성이 복잡할수록 모든 요소를 찾고 상위 요소를 탐색하는 과정을 수행합니다. class 선택자 등을 사용하여 간단하게 구성할수록 DOM에서 노드를 탐색하는 이동 과정을 줄일 수 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;리플로우-최소화&#34;&gt;리플로우 최소화&lt;/h3&gt;
+&lt;p&gt;CSS에서는 리페인트가 발생하는 속성과 리플로우가 발생하는 속성으로 나누어집니다. 예를 들어, 아래 스크린샷에서는 속성에 따른 리페인트 횟수의 차이가 나타납니다. &lt;code&gt;left&lt;/code&gt; 속성을 변경하면 페이지에서 다른 요소의 위치나 크기에 영향을 미치기 때문에 이 과정에서 리플로우가 발생됩니다. 반면에 &lt;code&gt;transform&lt;/code&gt; 속성은 레이아웃 계산 작업이 수행되지 않기 때문에 불필요한 리플로우가 발생하지 않습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;left 속성의 paint 횟수(96회)&lt;/strong&gt;
+&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/1a798169-1a35-4aa7-a3ea-220dcfd0418f&#34; alt=&#34;left-paint&#34;  /&gt;
+&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/df84f3c8-91cf-43e1-90b1-840ad8e5806f&#34; alt=&#34;left-paint-data&#34;  /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;translate 속성의 paint 횟수(24회)&lt;/strong&gt;
+&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/1a0a65e3-bc3b-4b89-a2db-0bf0f0e11219&#34; alt=&#34;translate-paint&#34;  /&gt;
+&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/f1ce21f8-c522-45b3-b45e-6758b9a0bc7e&#34; alt=&#34;translate-paint-data&#34;  /&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;button&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;toggle-sidebar&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;Sidebar&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;nav&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;sidebar&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;ul&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;li&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;#&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;List1&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;li&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;li&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;#&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;List2&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;li&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;li&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;#&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;List3&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;li&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;ul&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;nav&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;toggleButton&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;querySelector&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;.toggle-sidebar&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;sidebar&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;querySelector&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;.sidebar&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+  &lt;span class=&#34;nx&#34;&gt;toggleButton&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;addEventListener&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;sidebar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;classList&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;toggle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;open&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span class=&#34;c&#34;&gt;/*❎ Bad*/&lt;/span&gt;
+
+&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;sidebar&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;left&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;-450&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;width&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;450&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;position&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;absolute&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;transition&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;sidebar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;left&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;c&#34;&gt;/*✅ Good*/&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;sidebar&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;left&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;-450&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;width&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;450&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;transform&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;translateX&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;position&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;absolute&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;transition&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;sidebar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;transform&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;translateX&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;450&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;리플로우 발생 속성&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;left, right, top, bottom&lt;/li&gt;
+&lt;li&gt;padding, width, height, padding, margin&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;리페인트 발생 속성&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;background-color&lt;/li&gt;
+&lt;li&gt;color&lt;/li&gt;
+&lt;li&gt;visibility&lt;/li&gt;
+&lt;li&gt;shadow&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;비슷한 속성에서 대안적인 방법이 있다면, 리플로우를 최소화하는 속성을 사용하는 것이 성능에 좋은 영향을 미칠 수 있습니다. 더 많은 속성들을 확인해보고 싶으시다면 &lt;a class=&#34;link&#34; href=&#34;https://csstriggers.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;csstrigers.com&lt;/a&gt; 사이트에서 확인하실 수 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;레이어-분리&#34;&gt;레이어 분리&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;will-change&lt;/code&gt; 속성을 사용하면, 특정 요소가 변경될 가능성이 있을 때, 브라우저에게 미리 알려줄 수 있습니다. 내부적으로 해당 요소를 새로운 레이어로 분리하는 작업이 이루어지며, 복잡한 애니메이션을 표시하는 요소를 레이어로 분리하면 해당 레이어만 재연산하므로 성능적으로 이점이 있습니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;sidebar&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;left&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;-450&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;width&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;450&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;px&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;transform&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;translateX&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;position&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;absolute&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;transition&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;will-change&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;transform&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;will-change 속성을 활용한 paint 최적화&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/a6a25f5f-b5a8-4356-9bf4-69af90d7a61c&#34; alt=&#34;12-will-change-data&#34;  /&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/c4669113-d933-4d2e-966a-9a373604e21a&#34; alt=&#34;12-will-change&#34;  /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;⚠️ 주의사항&lt;/strong&gt;&lt;br&gt;
+모든 요소에 &lt;code&gt;will-change&lt;/code&gt; 속성을 부여하면 브라우저가 모든 요소의 레이어 관리를 하게 되며, 이는 레이어 합성 단계에서 많은 비용을 발생시킬 수 있으므로 사용에 주의가 필요합니다. 최적화에 필요한 요소에만 속성을 부여하는 것이 좋습니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span class=&#34;nt&#34;&gt;will-change&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;auto&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;will-change&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;scroll-position&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;will-change&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;contents&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;will-change&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;transform&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;will-change&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;top&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;left&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;노출-제어-최소화&#34;&gt;노출 제어 최소화&lt;/h3&gt;
+&lt;p&gt;자바스크립트를 사용하여 노드를 복제하는 방법도 있습니다. 복제된 노드를 수정하면 해당 노드가 DOM 트리에 추가되지 않으므로 리플로우나 리페인트가 발생하지 않습니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;box&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;clone&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cloneNode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//원본 노드를 복제
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;parentNode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;parent&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;index&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;index&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;400&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;clone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;width&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;index&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;px&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;nx&#34;&gt;parentNode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;replaceChild&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;clone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//기존 노드 대치
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;request-animation-frame&#34;&gt;Request Animation Frame&lt;/h3&gt;
+&lt;p&gt;이 API는 자바스크립트 실행을 예약하는 데 사용됩니다. 이를 통해 프레임이 시작될 때 자바스크립트 코드가 실행되도록 보장할 수 있습니다. 브라우저에게 미리 수행하려는 애니메이션을 알리면 브라우저가 스타일 계산, 레이아웃, 페인트, 레이어 합성을 실행할 수 있는 충분한 시간을 확보할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;브라우저에게 수행하기를 원하는 애니메이션을 알리고 다음 리페인트가 진행되기 전에 해당 애니메이션을 업데이트하는 함수를 호출하게 합니다. 이 함수는 리페인트 이전에 실행할 콜백을 인자로 받습니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Sidebar DOM 객체를 가져옵니다.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;sidebar&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;querySelector&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;.sidebar&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;openSidebar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;c1&#34;&gt;// 현재 시간을 가져옵니다. (애니메이션의 시작 시간)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;start&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;performance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;now&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+  &lt;span class=&#34;c1&#34;&gt;// 애니메이션의 전체 지속 시간을 설정합니다. (ms)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;duration&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;c1&#34;&gt;// Sidebar가 이동해야 하는 최종 위치를 설정합니다. (픽셀)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;endPosition&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;450&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+  &lt;span class=&#34;c1&#34;&gt;// 애니메이션을 수행하는 함수입니다.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;animate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;currentTime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// 현재 시간과 시작 시간의 차이를 계산하여 애니메이션이 얼마나 진행되었는지 확인합니다.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;elapsedTime&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;currentTime&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// 애니메이션의 진행률을 계산합니다. (0부터 1까지)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;progress&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Math&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;min&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;elapsedTime&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;duration&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// Sidebar가 이동해야 하는 새 위치를 계산합니다.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;newPosition&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;endPosition&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;progress&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;c1&#34;&gt;// Sidebar를 새 위치로 이동시킵니다. (레이아웃 변경)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;sidebar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;transform&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;sb&#34;&gt;`translateX(&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;newPosition&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;px)`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;c1&#34;&gt;// 애니메이션 진행률이 1 미만이면, 즉 애니메이션이 아직 끝나지 않았으면 다음 프레임을 요청합니다.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;progress&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+      &lt;span class=&#34;nx&#34;&gt;requestAnimationFrame&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;animate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+  &lt;span class=&#34;c1&#34;&gt;// 첫 번째 프레임을 요청하여 애니메이션을 시작합니다.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;nx&#34;&gt;requestAnimationFrame&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;animate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;마치며&#34;&gt;마치며&lt;/h3&gt;
+&lt;p&gt;이번 포스팅에서는 브라우저가 화면 요소를 그리는 과정에서 발생하는 비용과 최적화 기법들에 대해 알아보았습니다. 소개한 최적화 기법은 대중화되어 있지만, 다양한 최적화 기법들이 존재합니다. 중요한 점은 리플로우와 리페인트가 무엇이며 왜 발생하는지, 레이아웃→페인트→레이어 합성 단계를 이해해야 앞으로 등장할 많은 최적화 기법들을 이해하는 데 큰 도움이 될 것 같습니다. 이상으로 글을 읽어주셔서 감사합니다!&lt;/p&gt;
+&lt;h2 id=&#34;참고-자료&#34;&gt;참고 자료&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.udemy.com/course/optimizing-web-performance-and-critical-rendering-path/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Optimizing web performance and critical rendering path - Udemy&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.yes24.com/Product/Goods/7516929&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;자바스크립트 성능 이야기 - 위키북스(박재성, 심상민, 양정권, 황준호 저)&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>JavaScript생태계의 유한 상태기계, XState 도입기</title>
         <link>https://jinyisland.kr/post/xstate-react/</link>
         <pubDate>Sun, 09 Jul 2023 22:40:08 +0900</pubDate>

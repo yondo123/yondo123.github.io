@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TN7PCJZTQ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6TN7PCJZTQ');
+</script>
+
+        <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='웹 브라우저가 화면을 그리기 위해 수행하는 과정과 최적화 기법을 소개합니다.'><title>Critical Rendering Path와 렌더링 최적화 기법</title>
+<link rel='canonical' href='https://jinyisland.kr/post/crp/'>
+<link rel="icon" href="/%20/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='Critical Rendering Path와 렌더링 최적화 기법'>
+<meta property='og:description' content='웹 브라우저가 화면을 그리기 위해 수행하는 과정과 최적화 기법을 소개합니다.'>
+<meta property='og:url' content='https://jinyisland.kr/post/crp/'>
+<meta property='og:site_name' content='Jiny'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='crp' /><meta property='article:published_time' content='2023-07-31T03:19:11&#43;09:00' /><meta property='article:modified_time' content='2023-07-31T03:19:11&#43;09:00' /><meta property='og:image' content='https://jinyisland.kr/../../assets/header/critical-rendering-path.png' />
+<meta name="twitter:title" content="Critical Rendering Path와 렌더링 최적화 기법">
+<meta name="twitter:description" content="웹 브라우저가 화면을 그리기 위해 수행하는 과정과 최적화 기법을 소개합니다."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/header/critical-rendering-path.png' /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<style>
+    .article-content code {
+        word-wrap: break-word;
+    }
+</style>
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub38313664a67c625b5c64f3cb8dc247e_143597_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny</a></h1>
+        <h2 class="site-description">😎 승진이의 공부 블로그</h2>
+    </header>
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/frontend/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Frontend</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/backend/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Backend</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/web/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Web</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/style/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#7f5345" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Style</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/book/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Book</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/etc/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#d63031" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>ETC</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span></span>
+            </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/crp/">
+                
+                    <img src="../../assets/header/critical-rendering-path.png" loading="lazy" alt="Featured image of post Critical Rendering Path와 렌더링 최적화 기법" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/web/" style="background-color: #81ecec; color: #fff;">
+                Web
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/crp/">Critical Rendering Path와 렌더링 최적화 기법</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        웹 브라우저가 화면을 그리기 위해 수행하는 과정과 최적화 기법을 소개합니다.
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jul 31, 2023</time>
+    </footer></div>
+</header>
+
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
+    <h2 id="개요">개요</h2>
+<p><img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/0c567a12-5d9f-4e51-8c17-6d0d24a88714" alt="01-crp"  /><br>
+<strong>CRP (Critical Rendering Path)란</strong> 페이지 레이아웃을 생성하거나 변경할 때, 브라우저가 화면을 그리기 위해 수행하는 단계를 의미합니다. 더 세부적으로, <strong>Browser Rendering Pipeline</strong>이 존재하는데 이는 레이아웃 관점에서 콘텐츠들이 어떻게 표시되는지에 대한 일종의 파이프라인을 의미합니다.</p>
+<p>페이지가 느려지면 최적화가 필요하고, 최적화를 수행하려면 레이아웃이 어떻게 그려지고 그 과정에서 어느정도의 비용이 발생되는지 알고 있어야 합니다. 페이지에 접근할 때 브라우저가 어떤 과정으로 사용자에게 표시하는지,사용할 수 있는 최적화 기법에 대해 알아보고자 합니다.</p>
+<h2 id="browser-pipe-rendering">Browser Pipe Rendering</h2>
+<h3 id="step01-dom-cssom-생성">Step01. DOM, CSSOM 생성</h3>
+<p>먼저 서버로부터 HTML 리소스를 응답 받으면, HTML 파싱 알고리즘을 사용하여 구문을 분석하고 head 요소에서 CSS 리소스를 찾으면 해당 리소스의 존재를 확인하고 DocumentObjectModel(DOM) 트리를 생성한 후 CSS 구문 분석을 통해 CSSObjectModel(CSSOM) 트리를 생성합니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/css&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;style.css&#34;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Hello<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>World<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;image.jpg&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div><p><strong>생성된 Document Object Model</strong><br>
+<img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/196ab59d-8baa-4bee-a8cc-b7fe9ef76efc" alt="02-dom"  /></p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="c">/** style.css*/</span>
+<span class="nt">body</span> <span class="p">{</span>
+  <span class="k">font-size</span><span class="p">:</span> <span class="mi">16</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">p</span> <span class="p">{</span>
+  <span class="k">font-weight</span><span class="p">:</span> <span class="kc">bold</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">p</span> <span class="nt">span</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+  <span class="k">color</span><span class="p">:</span> <span class="mh">#ededed</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">p</span><span class="p">:</span><span class="nd">before</span> <span class="p">{</span>
+  <span class="k">content</span><span class="p">:</span> <span class="s1">&#39;Welcome&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">img</span> <span class="p">{</span>
+  <span class="k">float</span><span class="p">:</span> <span class="kc">left</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p><strong>생성된 CSS Object Model</strong><br>
+<img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/48408b4b-3de2-4f67-b20c-99f0528624a3" alt="03-cssom"  /></p>
+<p>DOM과 CSSOM을 생성하여 렌더 트리까지 도달하는 단계는 다음과 같습니다.</p>
+<ol>
+<li>렌더링 엔진이 HTML에서 원시 바이트를 읽고 개별 문자로 변환</li>
+<li>문자열을 고유한 토큰으로 변환</li>
+<li>토큰을 각 정의된 규칙을 갖는 노드 객체로 변환</li>
+<li>각 노드의 부모-자식 관계를 가지는 트리구조를 생성 <strong>(DOM 트리)</strong></li>
+</ol>
+<h3 id="step02-렌더트리-생성">Step02. 렌더트리 생성</h3>
+<p><img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/055ffe7f-092e-40ed-a9e0-7e0f5c7a7473" alt="04-render-tree"  />
+최종적으로 DOM 트리와 CSSOM을 활용하여 렌더 트리를 생성합니다.<strong>DOM 트리와 렌더 트리는 1:1 대응하지 않고 오로지 사용자에게 시각적으로 보여지는 요소만을 구성</strong>합니다.</p>
+<ul>
+<li>가상 요소(pesudo-element)는 DOM에는 존재하지 않지만 렌더 트리에는 존재하게됩니다.</li>
+<li><code>&lt;head&gt;</code>, <code>&lt;title&gt;</code>,<code>&lt;scirpt&gt;</code>노드들은 렌더 트리에 포함시키지 않습니다.</li>
+<li>display 속성 값이 <code>none</code> 인 요소들도 렌더 트리에 제외합니다.</li>
+</ul>
+<p>이 단계에서는 요소 선택자 매칭을 수행하여 일치하는 선택자의 스타일 규칙 기반으로 최종 스타일을 결정합니다.</p>
+<p><strong>DOM, CSSOM이 생성되는 파이프라인</strong>
+<img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/b3bf07a0-e816-4326-a9c3-6b314f62eef3" alt="05-parsing"  /></p>
+<h3 id="step03-스타일-계산">Step03. 스타일 계산</h3>
+<p>생성된 렌더트리를 빌드시키는 단계 입니다. 이 과정에서 <code>리플로우(Reflow)</code>와 <code>리페인트(Repaint)</code> 개념이 등장하는데 최적화를 위해서 꼭 알아야 할 개념이기도 합니다.</p>
+<h4 id="layout">Layout</h4>
+<p><img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/8140b346-35ab-4472-8ecc-64025c1a3e55" alt="06-box-model"  />
+레이아웃 단계는 각 HTML 요소의 위치와 크기를 계산하는 과정입니다. 쉽게 말해 <strong>요소의 Box Model을 생성하는 단계</strong>라고 볼 수 있습니다.(em, rem, 백분율 등 상대적으로 선언한 측정 단위는 절대 단위로 변환됩니다.)<br>
+레이아웃 단계가 발생하는 것은 리플로우가 발생된다는 의미입니다. 자식 요소와 부모 요소까지 재 계산이 필요할 수 있기 때문에 비용이 상대적으로 리페인트 보다 많이 발생할 수 있습니다.</p>
+<h4 id="paint">Paint</h4>
+<p><img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/57f1586a-0c6d-4587-aa67-7802eedb7545" alt="07-paint"  />
+페인트는 렌더 트리를 순회하면서 paint 함수를 호출해 시각적인 요소(color, shadow 등)를 실제 화면에 표현하는 단계입니다.</p>
+<h4 id="리플로우와-리페인트">리플로우와 리페인트</h4>
+<p>리플로우는 변경이 필요한 렌더 트리에 대한 유효성 검사 및 노드의 수치를 다시 계산하는 과정입니다. 리페인트는 변경된 영역의 결과를 표현하기 위해 화면이 갱신되는 것을 의미합니다. <strong>예를 들어 레이아웃 과정이 발생하거나, 단순한 스타일이 변경되는 경우</strong>가 있습니다.</p>
+<ul>
+<li>리플로우는 요소 위치와 크기가 변경되기 때문에, 경우에 따라 문서 전체까지 재계산이 필요할 수 있습니다
+<ul>
+<li>DOM 노드가 갱신될 때 (추가, 제거)</li>
+<li>display 속성을 통해 요소를 숨기는 경우 (hide)</li>
+<li>폰트 크기의 변화, 브라우저 크기의 변화</li>
+</ul>
+</li>
+<li>리페인트는 리플로우가 발생된 이후와 단순한 스타일이 변경될 때 발생합니다. 발생된 요소의 자식 요소까지 전파합니다.
+<ul>
+<li>visibility 속성을 통해 요소를 숨기는 경우 (hidden)</li>
+</ul>
+</li>
+</ul>
+<p><strong>상대적으로 리플로우 과정이 비용이 많이 들기 때문에 리플로우 발생을 최소화하는 것이 중요합니다.</strong></p>
+<h3 id="step04-레이어-합성composite-layers">Step04. 레이어 합성(Composite Layers)</h3>
+<p>브라우저에서는 여러 <code>layer</code>가 존재합니다. 브라우저는 요소의 스타일을 분석하여 필요한 레이어의 수를 파악합니다. 그리고 페인팅 후 브라우저는 모든 레이어를 모아서 최종 화면으로 보여줍니다. 이 단계에서 요소들을 겹치지 않게끔 레이어를 형성하고, 분석한 스타일대로 픽셀을 그려넣는 과정이 이루어집니다. 레이어 합성은 아래 두 단계로 이루어져 있습니다.</p>
+<ul>
+<li><strong>UpdateLayerTree:</strong> 요소의 스타일을 분석하여 필요한 레이어의 개수 파악</li>
+<li><strong>Composite Layers:</strong> 페인트 단계 이후 파악된 모든 레이어를 합성후 화면에 표현 (복합 레이어)</li>
+</ul>
+<h2 id="최적화의-필요성">최적화의 필요성</h2>
+<p><img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/1114d480-916b-4a47-8d05-38149215d0a1" alt="08-crp"  /></p>
+<h3 id="이상적인-프레임">이상적인 프레임</h3>
+<p><code>animation</code>, <code>hover</code> 등 레이아웃에 시각적인 변화가 있을 경우 브라우저가 새 프레임을 렌더링합니다. 대부분의 디바이스는 초당 60회(60FPS) 새로고침을 수행하는 것이 부드러운 애니메이션 표현에 이상적입니다. 60 FPS를 유지하려면, 브라우저는 매 16ms(1000ms / 60)마다 한 번씩 새로운 화면을 그려야 합니다. 하지만 브라우저는 단순히 레이아웃만 그리는 역할만 수행하지는 않기에 몹시 제한적입니다.</p>
+<p>따라서 웹 브라우저에서 사용자가 매끄러운 화면을 유지할 수 있도록 여러 최적화 기법을 통해 프레임을 유지시키는 것이 중요합니다.</p>
+<h3 id="간단한-선택자를-사용">간단한 선택자를 사용</h3>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">nav</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;header&#34;</span><span class="p">&gt;</span>
+	<span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;sidebar&#34;</span><span class="p">&gt;</span>
+		<span class="p">&lt;</span><span class="nt">il</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;list_item&#34;</span><span class="p">&gt;</span>Item<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+		...
+	<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">list_item</span> <span class="p">{</span>
+<span class="p">}</span>
+<span class="nt">nav</span><span class="p">#</span><span class="nn">hader</span> <span class="nt">ul</span><span class="p">.</span><span class="nc">sidebar</span> <span class="nt">li</span> <span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div><p>CSS 구문 분석은 오른쪽에서 왼쪽 요소로 탐색합니다. 따라서 선택자 구성이 복잡할수록 모든 요소를 찾고 상위 요소를 탐색하는 과정을 수행합니다. class 선택자 등을 사용하여 간단하게 구성할수록 DOM에서 노드를 탐색하는 이동 과정을 줄일 수 있습니다.</p>
+<h3 id="리플로우-최소화">리플로우 최소화</h3>
+<p>CSS에서는 리페인트가 발생하는 속성과 리플로우가 발생하는 속성으로 나누어집니다. 예를 들어, 아래 스크린샷에서는 속성에 따른 리페인트 횟수의 차이가 나타납니다. <code>left</code> 속성을 변경하면 페이지에서 다른 요소의 위치나 크기에 영향을 미치기 때문에 이 과정에서 리플로우가 발생됩니다. 반면에 <code>transform</code> 속성은 레이아웃 계산 작업이 수행되지 않기 때문에 불필요한 리플로우가 발생하지 않습니다.</p>
+<p><strong>left 속성의 paint 횟수(96회)</strong>
+<img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/1a798169-1a35-4aa7-a3ea-220dcfd0418f" alt="left-paint"  />
+<img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/df84f3c8-91cf-43e1-90b1-840ad8e5806f" alt="left-paint-data"  /></p>
+<p><strong>translate 속성의 paint 횟수(24회)</strong>
+<img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/1a0a65e3-bc3b-4b89-a2db-0bf0f0e11219" alt="translate-paint"  />
+<img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/f1ce21f8-c522-45b3-b45e-6758b9a0bc7e" alt="translate-paint-data"  /></p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;toggle-sidebar&#34;</span><span class="p">&gt;</span>Sidebar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">nav</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;sidebar&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span><span class="p">&gt;</span>List1<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span><span class="p">&gt;</span>List2<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span><span class="p">&gt;</span>List3<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="kr">const</span> <span class="nx">toggleButton</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.toggle-sidebar&#39;</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">sidebar</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.sidebar&#39;</span><span class="p">);</span>
+
+  <span class="nx">toggleButton</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">sidebar</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="s1">&#39;open&#39;</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="c">/*❎ Bad*/</span>
+
+<span class="p">.</span><span class="nc">sidebar</span> <span class="p">{</span>
+  <span class="k">left</span><span class="p">:</span> <span class="mi">-450</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">450</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+  <span class="k">transition</span><span class="p">:</span> <span class="mi">1</span><span class="kt">s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">sidebar</span><span class="p">.</span><span class="nc">open</span> <span class="p">{</span>
+  <span class="k">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/*✅ Good*/</span>
+<span class="p">.</span><span class="nc">sidebar</span> <span class="p">{</span>
+  <span class="k">left</span><span class="p">:</span> <span class="mi">-450</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">450</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">transform</span><span class="p">:</span> <span class="nb">translateX</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+  <span class="k">transition</span><span class="p">:</span> <span class="mi">1</span><span class="kt">s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">sidebar</span><span class="p">.</span><span class="nc">open</span> <span class="p">{</span>
+  <span class="k">transform</span><span class="p">:</span> <span class="nb">translateX</span><span class="p">(</span><span class="mi">450</span><span class="kt">px</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><p><strong>리플로우 발생 속성</strong></p>
+<ul>
+<li>left, right, top, bottom</li>
+<li>padding, width, height, padding, margin</li>
+</ul>
+<p><strong>리페인트 발생 속성</strong></p>
+<ul>
+<li>background-color</li>
+<li>color</li>
+<li>visibility</li>
+<li>shadow</li>
+</ul>
+<p>비슷한 속성에서 대안적인 방법이 있다면, 리플로우를 최소화하는 속성을 사용하는 것이 성능에 좋은 영향을 미칠 수 있습니다. 더 많은 속성들을 확인해보고 싶으시다면 <a class="link" href="https://csstriggers.com/"  target="_blank" rel="noopener"
+    >csstrigers.com</a> 사이트에서 확인하실 수 있습니다.</p>
+<h3 id="레이어-분리">레이어 분리</h3>
+<p><code>will-change</code> 속성을 사용하면, 특정 요소가 변경될 가능성이 있을 때, 브라우저에게 미리 알려줄 수 있습니다. 내부적으로 해당 요소를 새로운 레이어로 분리하는 작업이 이루어지며, 복잡한 애니메이션을 표시하는 요소를 레이어로 분리하면 해당 레이어만 재연산하므로 성능적으로 이점이 있습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">sidebar</span> <span class="p">{</span>
+  <span class="k">left</span><span class="p">:</span> <span class="mi">-450</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">450</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">transform</span><span class="p">:</span> <span class="nb">translateX</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+  <span class="k">transition</span><span class="p">:</span> <span class="mi">1</span><span class="kt">s</span><span class="p">;</span>
+  <span class="k">will-change</span><span class="p">:</span> <span class="k">transform</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p><strong>will-change 속성을 활용한 paint 최적화</strong><br>
+<img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/a6a25f5f-b5a8-4356-9bf4-69af90d7a61c" alt="12-will-change-data"  /><br>
+<img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/c4669113-d933-4d2e-966a-9a373604e21a" alt="12-will-change"  /></p>
+<p><strong>⚠️ 주의사항</strong><br>
+모든 요소에 <code>will-change</code> 속성을 부여하면 브라우저가 모든 요소의 레이어 관리를 하게 되며, 이는 레이어 합성 단계에서 많은 비용을 발생시킬 수 있으므로 사용에 주의가 필요합니다. 최적화에 필요한 요소에만 속성을 부여하는 것이 좋습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">will-change</span><span class="o">:</span> <span class="nt">auto</span><span class="o">;</span>
+<span class="nt">will-change</span><span class="o">:</span> <span class="nt">scroll-position</span><span class="o">;</span>
+<span class="nt">will-change</span><span class="o">:</span> <span class="nt">contents</span><span class="o">;</span>
+<span class="nt">will-change</span><span class="o">:</span> <span class="nt">transform</span><span class="o">;</span>
+<span class="nt">will-change</span><span class="o">:</span> <span class="nt">top</span><span class="o">,</span> <span class="nt">left</span><span class="o">;</span>
+</code></pre></div><h3 id="노출-제어-최소화">노출 제어 최소화</h3>
+<p>자바스크립트를 사용하여 노드를 복제하는 방법도 있습니다. 복제된 노드를 수정하면 해당 노드가 DOM 트리에 추가되지 않으므로 리플로우나 리페인트가 발생하지 않습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;box&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">clone</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">//원본 노드를 복제
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">parentNode</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;parent&#39;</span><span class="p">);</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">index</span> <span class="o">&lt;</span> <span class="mi">400</span><span class="p">;</span> <span class="nx">index</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">clone</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">index</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">parentNode</span><span class="p">.</span><span class="nx">replaceChild</span><span class="p">(</span><span class="nx">clone</span><span class="p">,</span> <span class="nx">element</span><span class="p">);</span> <span class="c1">//기존 노드 대치
+</span></code></pre></div><h3 id="request-animation-frame">Request Animation Frame</h3>
+<p>이 API는 자바스크립트 실행을 예약하는 데 사용됩니다. 이를 통해 프레임이 시작될 때 자바스크립트 코드가 실행되도록 보장할 수 있습니다. 브라우저에게 미리 수행하려는 애니메이션을 알리면 브라우저가 스타일 계산, 레이아웃, 페인트, 레이어 합성을 실행할 수 있는 충분한 시간을 확보할 수 있습니다.</p>
+<p>브라우저에게 수행하기를 원하는 애니메이션을 알리고 다음 리페인트가 진행되기 전에 해당 애니메이션을 업데이트하는 함수를 호출하게 합니다. 이 함수는 리페인트 이전에 실행할 콜백을 인자로 받습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// Sidebar DOM 객체를 가져옵니다.
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">sidebar</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.sidebar&#39;</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">openSidebar</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 현재 시간을 가져옵니다. (애니메이션의 시작 시간)
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">start</span> <span class="o">=</span> <span class="nx">performance</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+  <span class="c1">// 애니메이션의 전체 지속 시간을 설정합니다. (ms)
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">duration</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+  <span class="c1">// Sidebar가 이동해야 하는 최종 위치를 설정합니다. (픽셀)
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">endPosition</span> <span class="o">=</span> <span class="mi">450</span><span class="p">;</span>
+
+  <span class="c1">// 애니메이션을 수행하는 함수입니다.
+</span><span class="c1"></span>  <span class="kd">function</span> <span class="nx">animate</span><span class="p">(</span><span class="nx">currentTime</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 현재 시간과 시작 시간의 차이를 계산하여 애니메이션이 얼마나 진행되었는지 확인합니다.
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">elapsedTime</span> <span class="o">=</span> <span class="nx">currentTime</span> <span class="o">-</span> <span class="nx">start</span><span class="p">;</span>
+    <span class="c1">// 애니메이션의 진행률을 계산합니다. (0부터 1까지)
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">progress</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">elapsedTime</span> <span class="o">/</span> <span class="nx">duration</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="c1">// Sidebar가 이동해야 하는 새 위치를 계산합니다.
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">newPosition</span> <span class="o">=</span> <span class="nx">endPosition</span> <span class="o">*</span> <span class="nx">progress</span><span class="p">;</span>
+
+    <span class="c1">// Sidebar를 새 위치로 이동시킵니다. (레이아웃 변경)
+</span><span class="c1"></span>    <span class="nx">sidebar</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span> <span class="o">=</span> <span class="sb">`translateX(</span><span class="si">${</span><span class="nx">newPosition</span><span class="si">}</span><span class="sb">px)`</span><span class="p">;</span>
+
+    <span class="c1">// 애니메이션 진행률이 1 미만이면, 즉 애니메이션이 아직 끝나지 않았으면 다음 프레임을 요청합니다.
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">progress</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">requestAnimationFrame</span><span class="p">(</span><span class="nx">animate</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 첫 번째 프레임을 요청하여 애니메이션을 시작합니다.
+</span><span class="c1"></span>  <span class="nx">requestAnimationFrame</span><span class="p">(</span><span class="nx">animate</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="마치며">마치며</h3>
+<p>이번 포스팅에서는 브라우저가 화면 요소를 그리는 과정에서 발생하는 비용과 최적화 기법들에 대해 알아보았습니다. 소개한 최적화 기법은 대중화되어 있지만, 다양한 최적화 기법들이 존재합니다. 중요한 점은 리플로우와 리페인트가 무엇이며 왜 발생하는지, 레이아웃→페인트→레이어 합성 단계를 이해해야 앞으로 등장할 많은 최적화 기법들을 이해하는 데 큰 도움이 될 것 같습니다. 이상으로 글을 읽어주셔서 감사합니다!</p>
+<h2 id="참고-자료">참고 자료</h2>
+<ul>
+<li><strong><a class="link" href="https://www.udemy.com/course/optimizing-web-performance-and-critical-rendering-path/"  target="_blank" rel="noopener"
+    >Optimizing web performance and critical rendering path - Udemy</a></strong></li>
+<li><strong><a class="link" href="https://www.yes24.com/Product/Goods/7516929"  target="_blank" rel="noopener"
+    >자바스크립트 성능 이야기 - 위키북스(박재성, 심상민, 양정권, 황준호 저)</a></strong></li>
+</ul>
+
+</section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false
+    });
+</script>
+<style>
+     
+    @media all and (min-width: 1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+
+        .toc-list {
+            padding: 0 4px;
+            width: 180px;
+        }
+    }
+
+    @media all and (max-width: 1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: '목차';
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+    .toc-link::before {
+        width: 0;
+    }
+</style>
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/crp/">crp</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title"></h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/cookies/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/thumb/web.png" loading="lazy" data-key="cookies" data-hash="../../assets/thumb/web.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Http 쿠키의 개념과 활용 방법</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/hugo-ga/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/thumb/web.png" loading="lazy" data-key="hugo-ga" data-hash="../../assets/thumb/web.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">GoogleAnalytics 4 휴고 블로그에 적용 시키기</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="comments-container">
+    
+    <script src="https://utteranc.es/client.js"
+        repo="yondo123/hugo-blog-comments"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+
+<style>
+    .comments-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 Jiny
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
