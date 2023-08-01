@@ -386,7 +386,7 @@
   <span class="k">float</span><span class="p">:</span> <span class="kc">left</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div><p><strong>생성된 CSS Object Model</strong><br>
-<img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/48408b4b-3de2-4f67-b20c-99f0528624a3" alt="03-cssom"  /></p>
+<img src="https://github.com/yondo123/yondo123/assets/46988995/39b7e4b0-cbf5-45af-8db3-e2c7f755b539" alt="cssom"  /></p>
 <p>DOM과 CSSOM을 생성하여 렌더 트리까지 도달하는 단계는 다음과 같습니다.</p>
 <ol>
 <li>렌더링 엔진이 HTML에서 원시 바이트를 읽고 개별 문자로 변환</li>
@@ -395,8 +395,7 @@
 <li>각 노드의 부모-자식 관계를 가지는 트리구조를 생성 <strong>(DOM 트리)</strong></li>
 </ol>
 <h3 id="step02-렌더트리-생성">Step02. 렌더트리 생성</h3>
-<p><img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/055ffe7f-092e-40ed-a9e0-7e0f5c7a7473" alt="04-render-tree"  />
-최종적으로 DOM 트리와 CSSOM을 활용하여 렌더 트리를 생성합니다.<strong>DOM 트리와 렌더 트리는 1:1 대응하지 않고 오로지 사용자에게 시각적으로 보여지는 요소만을 구성</strong>합니다.</p>
+<p><img src="https://github.com/yondo123/yondo123/assets/46988995/78a2abb1-bb37-4cbf-8be9-372af4aa5583" alt="render-tree"  /></p>
 <ul>
 <li>가상 요소(pesudo-element)는 DOM에는 존재하지 않지만 렌더 트리에는 존재하게됩니다.</li>
 <li><code>&lt;head&gt;</code>, <code>&lt;title&gt;</code>,<code>&lt;scirpt&gt;</code>노드들은 렌더 트리에 포함시키지 않습니다.</li>
@@ -508,7 +507,7 @@
 </code></pre></div><p><strong>리플로우 발생 속성</strong></p>
 <ul>
 <li>left, right, top, bottom</li>
-<li>padding, width, height, padding, margin</li>
+<li>padding, margin, width, height</li>
 </ul>
 <p><strong>리페인트 발생 속성</strong></p>
 <ul>

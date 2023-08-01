@@ -54,7 +54,7 @@
   &lt;span class=&#34;k&#34;&gt;float&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;left&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;생성된 CSS Object Model&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/48408b4b-3de2-4f67-b20c-99f0528624a3&#34; alt=&#34;03-cssom&#34;  /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://github.com/yondo123/yondo123/assets/46988995/39b7e4b0-cbf5-45af-8db3-e2c7f755b539&#34; alt=&#34;cssom&#34;  /&gt;&lt;/p&gt;
 &lt;p&gt;DOM과 CSSOM을 생성하여 렌더 트리까지 도달하는 단계는 다음과 같습니다.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;렌더링 엔진이 HTML에서 원시 바이트를 읽고 개별 문자로 변환&lt;/li&gt;
@@ -63,8 +63,7 @@
 &lt;li&gt;각 노드의 부모-자식 관계를 가지는 트리구조를 생성 &lt;strong&gt;(DOM 트리)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;step02-렌더트리-생성&#34;&gt;Step02. 렌더트리 생성&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/055ffe7f-092e-40ed-a9e0-7e0f5c7a7473&#34; alt=&#34;04-render-tree&#34;  /&gt;
-최종적으로 DOM 트리와 CSSOM을 활용하여 렌더 트리를 생성합니다.&lt;strong&gt;DOM 트리와 렌더 트리는 1:1 대응하지 않고 오로지 사용자에게 시각적으로 보여지는 요소만을 구성&lt;/strong&gt;합니다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123/assets/46988995/78a2abb1-bb37-4cbf-8be9-372af4aa5583&#34; alt=&#34;render-tree&#34;  /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;가상 요소(pesudo-element)는 DOM에는 존재하지 않지만 렌더 트리에는 존재하게됩니다.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;title&amp;gt;&lt;/code&gt;,&lt;code&gt;&amp;lt;scirpt&amp;gt;&lt;/code&gt;노드들은 렌더 트리에 포함시키지 않습니다.&lt;/li&gt;
@@ -176,7 +175,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;리플로우 발생 속성&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;left, right, top, bottom&lt;/li&gt;
-&lt;li&gt;padding, width, height, padding, margin&lt;/li&gt;
+&lt;li&gt;padding, margin, width, height&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;리페인트 발생 속성&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
