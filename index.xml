@@ -6,7 +6,240 @@
         <description>Recent content on Jiny</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Mon, 31 Jul 2023 03:19:11 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 11 Sep 2023 17:42:01 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>패키저매니저 돌아보기</title>
+        <link>https://jinyisland.kr/post/package-manager/</link>
+        <pubDate>Mon, 11 Sep 2023 17:42:01 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/package-manager/</guid>
+        <description>&lt;img src="https://jinyisland.kr/../../assets/header/package-manager.png" alt="Featured image of post 패키저매니저 돌아보기" /&gt;&lt;h2 id=&#34;자바스크립트-모듈-시스템&#34;&gt;자바스크립트 모듈 시스템&lt;/h2&gt;
+&lt;p&gt;우선 패키지 매니저를 살펴보기 전에, 왜 패키지매니저를 우리가 편히 사용하는지? 배경부터 살펴보도록 하겠습니다.
+&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/3e7be77a-b484-465d-86c1-4309f8687657&#34; alt=&#34;module&#34;  /&gt;
+초창기 자바스크립트 언어는 작게 시작되었기 때문에 웹 페이지에서 보조적인 상호작용 역할을 담당하는 모듈 시스템(현재의 CJS, ESM)은 따로 존재하지 않았습니다. 추후에 모듈 시스템이 탄생하게 되었는데, 이전까지는 &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; 태그를 사용하여 여러 자바스크립트 파일을 로드하고 사용했습니다.&lt;/p&gt;
+&lt;h3 id=&#34;모듈-시스템과-script-로드의-차이&#34;&gt;모듈 시스템과 script 로드의 차이&lt;/h3&gt;
+&lt;p&gt;그럼 script 태그를 사용해서 불러오는 방식으로 잘개 파일을 쪼개서 프로젝트를 구성하면 되지 않을까요? 일단 모듈과 스크립트 로드 방식에 대해서 차이점을 말씀드리도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt;외부에서 작성된 여러 자바스크립트 파일을 불러오는 방식과 모듈 시스템의 차이는 &lt;strong&gt;독립적인 파일 스코프를 가지고 있는지에 대한 차이점이&lt;/strong&gt; 있습니다. &lt;!-- raw HTML omitted --&gt; 태그를 사용하여 로드한 여러 자바스크립트 파일은 결국은 하나의 전역을 공유합니다. 전역 공간 오염을 최소화하기 위해 ESM, CJS 방식의 모듈 시스템이 등장하였으며, 각각의 차이는 다음과 같습니다. &lt;strong&gt;(이 글에서는 모듈에 대해서 깊게 다루지 않으니 이런 특정이 있구나..정도로 이해하시면 좋을 것 같습니다!)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CJS(CommonJS):&lt;/strong&gt; Node.js 진영에서 채택한 모듈 시스템, 동기적으로 이루어지며 종속성 관계를 파악하지 않고 즉시 불어오기 때문에 불러온 즉시 모듈을 변경할 수 있다. (조건부 호출 가능, 불안정적, flat 구조)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ESM(ES Module):&lt;/strong&gt; ES6에서 등장하였으며 비동기적으로 동작한다, 모듈 간 종속성 관계를 파악하고 불러온다. (조건부 호출이 불가능, 안정적, tree 구조)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;패키지매니저&#34;&gt;패키지매니저&lt;/h2&gt;
+&lt;p&gt;현재 자바스크립트 개발 생태계에서는 앞서 말한 &amp;lsquo;모듈&amp;rsquo;을 온라인 저장소(NPM Registry)에 게시하고 필요한 경우 편리하게 다운로드할 수 있는 여러 패키지 매니저가 존재합니다. 먼저 패키지의 정의를 살펴보도록 하겠습니다.&lt;/p&gt;
+&lt;h3 id=&#34;패키지&#34;&gt;패키지&lt;/h3&gt;
+&lt;p&gt;자바스크립트에서 패키지는 하나 이상의 모듈들의 집합으로, 별도의 이름으로 지정됩니다. 파일 시스템과 마찬가지로 하나의 패키지는 여러 하위 패키지로 구성될 수 있습니다. 패키지를 사용하면 재사용성을 높일 수 있으며, 프로그램이 해결하려는 문제를 빠르게 해결할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;프로젝트 내 여러 패키지를 배치할 수 있으며, 이 과정에서 패키지 간 종속성이 발생할 수 있습니다. 하위 종속성이 없거나 간단한 경우에는 &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; 태그를 사용하여 포함할 수 있지만, 복잡한 경우에는 프로젝트 배포시 코드와 종속된 패키지를 함께 묶어주는 번들링 도구가 필요할 수 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;패키지매니저의-필요성&#34;&gt;패키지매니저의 필요성&lt;/h3&gt;
+&lt;p&gt;물론 이론적으로 패키지 매니저는 필수는 아니며, 사용자가 직접 원하는 패키지를 수동으로 관리할 수 있습니다. 하지만 패키지 매니저를 사용하지 않는다면, 아래와 같은 작업들을 사용자가 직접 관리해야 번거로움이 발생합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;패키지 파일을 직접 다운로드하여 원하는 위치에 수동으로 배치&lt;/li&gt;
+&lt;li&gt;올바른 패키지인지 검사 (취약점)&lt;/li&gt;
+&lt;li&gt;설치한 패키지들의 하위 종속성에 대해 동일한 작업(업데이트 등) 필요&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;따라서 패키지 매니저를 사용하면 개발자들이 패키지 관리를 보다 원활하게 할 수 있도록 편의성을 제공할 수 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;의존성-타입&#34;&gt;의존성 타입&lt;/h3&gt;
+&lt;p&gt;각 패키지매니저에서는 패키지 설치시 의존성 타입으로 분류할 수 있습니다. 기본적으로 &lt;code&gt;dependency&lt;/code&gt; 타입으로 분류합니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;dependency&lt;/strong&gt;&lt;br&gt;
+일반적으로 프로젝트에 직접적으로 필요한 패키지들을 설치할 때, 이들은 기본적으로 &lt;code&gt;dependency&lt;/code&gt; 타입으로 분류됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;devDependency&lt;/strong&gt;&lt;br&gt;
+프로젝트에는 필요하지만 실제 사용자들이 필요하지 않은 패키지들은 &lt;code&gt;devDependency&lt;/code&gt; 타입으로 분류할 수 있습니다. 이러한 패키지에는 코드 컨벤션 관리를 위한 패키지나 테스트를 위한 패키지 등이 포함될 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;peerDependency&lt;/strong&gt;&lt;br&gt;
+특정 패키지에 강한 의존성을 가진 경우, 호환성을 표시하기 위해 해당 프로젝트를 분류합니다. &lt;code&gt;npm 3~6&lt;/code&gt; 버전까지는 peerDependency에 포함된 패키지까지 설치되지 않았으며 잘못된 종속성인 경우 경고 메시지가 표시되었습니다. &lt;code&gt;npm 7&lt;/code&gt;부터는 기본적으로 peerDependency에 포함된 패키지도 함께 설치됩니다.&lt;/p&gt;
+&lt;p&gt;일반적으로, 별도의 라이브러리 위에 동작하고 싶은 패키지를 빌드할 때 해당 라이브러리나 플러그인을 명시합니다. 만약 peerDependency 내부 패키지들이 꼭 필요하지 않다면, &lt;code&gt;peerDependenciesMeta&lt;/code&gt; 속성을 사용하여 충족되지 않아도 경고를 발생시키지 않을 수 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;lock-file&#34;&gt;lock file&lt;/h3&gt;
+&lt;p&gt;각 패키지매니저에서는 lock 파일을 가지고 있습니다. 이 파일의 목적은 다른 협업자가 의존성 설치를 할 때 동일한 패키지를 생성하기 위함입니다. package.json 파일만으로는 상황에 따라 업데이트된 패키지를 다운받는 경우도 있습니다. &lt;strong&gt;(버전 차이로 인한 부수효과 방지)&lt;/strong&gt; npm에서는 이전에 제공하지 않다가 추후에 &lt;code&gt;package-lock.json&lt;/code&gt; 파일을 제공하고 있으며 yarn, pnpm에서도 기본적으로 제공하는 기능입니다.&lt;/p&gt;
+&lt;h2 id=&#34;패키지매니저의-조상님-npm&#34;&gt;패키지매니저의 조상님, npm&lt;/h2&gt;
+&lt;p&gt;npm은 Node.js의 표준 패키지 매니저입니다. 초기에는 Node.js의 패키지 종속성을 관리하는 데 사용되었지만, 이후 프론트엔드 전반에서도 사용할 수 있게 되었습니다. &lt;code&gt;package.json&lt;/code&gt; 파일에는 프로젝트에 사용되는 패키지가 정의되며, node_modules 디렉토리 내에는 실제 패키지에서 구성된 여러 모듈이 위치합니다.&lt;/p&gt;
+&lt;h3 id=&#34;특징&#34;&gt;특징&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;호이스팅&lt;/strong&gt;&lt;br&gt;
+패키지 하위에는 수많은 의존 패키지들이 포함되어 있습니다. 이 중에는 동일한 패키지를 사용하는 패키지들도 있습니다. 이러한 경우 충돌을 해결해야 합니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;foo
++-- blerg@1.2.5
++-- bar@1.2.3
+|   +-- blerg@1.x (latest=1.3.7)
+|   +-- baz@2.x
+|   |   `-- quux@3.x
+|   |       `-- bar@1.2.3 (cycle)
+|   `-- asdf@*
+`-- baz@1.2.3
+    `-- quux@3.x
+        `-- bar
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;예를 들어 &lt;code&gt;blerg&lt;/code&gt; 패키지는 프로젝트에 직접적인 의존성을 갖습니다. (node_modules에 설치됨) 이때 각 패키지마다 node_modules 폴더를 순회하며, 이미 상위 위치에 설치된 경우에는 현재 위치에 다시 설치하지 않습니다. 동일한 패키지 의존성 충족이 다른 경우에만 해당 node_modules 위치에 설치합니다.
+위와 같은 상황에서는 다음과 같이 패키지를 설치합니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;foo
++-- node_modules
+    +-- blerg (1.2.5) &amp;lt;---[A]
+    +-- bar (1.2.3) &amp;lt;---[B]
+    |   `-- node_modules
+    |       +-- baz (2.0.2) &amp;lt;---[C]
+    |       |   `-- node_modules
+    |       |       `-- quux (3.2.0)
+    |       `-- asdf (2.3.4)
+    `-- baz (1.2.3) &amp;lt;---[D]
+        `-- node_modules
+            `-- quux (3.2.0) &amp;lt;---[E]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A:&lt;/strong&gt; &lt;code&gt;blerg&lt;/code&gt; 의 최신 버전은 1.3.7이지만, 특정 버전 종속이기에 해당 버전으로 설치한다. (1.2.5)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;B:&lt;/strong&gt; &lt;code&gt;bar&lt;/code&gt; 에서 의존하고 있는 &lt;code&gt;baz&lt;/code&gt;에서 다시 &lt;code&gt;bar&lt;/code&gt; 패키지를 내부적으로 의존하고 있지만 버전이 동일하므로 상위에 설치된 패키지를 의존한다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;C:&lt;/strong&gt; 상위에 &lt;code&gt;baz&lt;/code&gt; 패키지가 존재하지만, 종속성 충족이 되지 않기 때문에(메이저 버전이 다름) 필요한 특정 버전으로 설치한다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;D:&lt;/strong&gt; &lt;code&gt;baz&lt;/code&gt; 패키지 내부의 &lt;code&gt;quux&lt;/code&gt; 디렉터리가 비어져있는데, 이는 상위에 위치한 &lt;code&gt;bar&lt;/code&gt; 복사본이 존재하기 때문에 충족되어 비어져있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;clean install&lt;/strong&gt;&lt;br&gt;
+&lt;code&gt;npm install&lt;/code&gt;은 개별적으로 프로젝트를 설치할 때도 필요하지만, 원격 프로젝트를 초기 설치할 때에도 사용할 수 있습니다. 주의할 점은 기본 설치는 패키지 종속성 정보가 저장되어 있는 package-lock.json 파일을 수정한다는 것입니다. 그러나 npm ci는 기존 lock 파일을 확인하여 저장된 종속성을 기반으로 설치하기 때문에 이미 진행 중인 프로젝트를 설치하거나 빌드 및 배포하는 경우 npm ci 방식이 적합합니다.&lt;/p&gt;
+&lt;h2 id=&#34;google과-meta의-합작-yarn&#34;&gt;Google과 Meta의 합작, Yarn&lt;/h2&gt;
+&lt;p&gt;2016년에 출시된 Yarn은 기존 npm보다 더 빠른 속도와 &lt;code&gt;offline mirror&lt;/code&gt; 라는 오프라인 환경을 지원하게 되었습니다. 패키지 설치 시 기본적으로 사용자 디렉터리 내부에 있는 글로벌 캐시에서 우선적으로 확인하기 때문에 빠른 속도를 보장할 수 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;패키지 설치시 병렬 설치 방식으로 수행하여 성능을 향상&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;yarn.lock&lt;/code&gt; 파일과 자체 설치 알고리즘을 사용하여 패키지 설치시 비결정성 문제를 해결하고자 하였음
+(이 부분은 npm5에서부터 pacakge-lock.json을 통해 해결)&lt;/li&gt;
+&lt;li&gt;설치하지 않은 패키지는 &lt;code&gt;tar&lt;/code&gt; 파일을 가져와 글로벌 캐시에 배치 → 동일한 패키지을 두 번 이상 다운로드 할 필요가 없도록 개선&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;yarn-berry&#34;&gt;Yarn Berry&lt;/h3&gt;
+&lt;p&gt;Yarn Berry는 Yarn v2 이상의 모던한 환경을 말합니다. 이는 기존 yarn 환경에서 몇 가지 기능과 안정성이 추가되었습니다. (현재 Yarn 1.X 버전은 더 이상 유지보수되지 않고 있다고 합니다.) 아래 명령어로 Yarn Berry 버전으로 사용하실 수 있습니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;yarn &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; version stable
+yarn install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;특징-1&#34;&gt;특징&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Yarn Pnp&lt;/strong&gt;&lt;br&gt;
+&lt;code&gt;Yarn Berry&lt;/code&gt;에서 등장한 패키지 설치 전략은 기존 방식과 다르게 node_modules가 존재하지 않으며 별도의 로더파일(.pnp.cjs)을 통해 의존성 트리에 대한 모든 정보를 저장하고 &lt;code&gt;.yarn/cache&lt;/code&gt; 디렉토리에 실제 패키지를 저장합니다. yarn PnP는 아래의 여러 문제를 해결하기 위해 도입되었습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;실제 디스크에서 입출력하지 않고 Node.js 로더 파일을 활용&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;node_modules&lt;/code&gt; 구조에서 사용하던 호이스팅 방식을 사용하지 않음 → 정확한 의존성 정보&lt;br&gt;
+&lt;strong&gt;(모든 패키지와 종속성 정보들을 보유하는 방식)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;단점으로는.. PnP 모드 사용시 VSCode와 인텔리제이에서 TypeScript, ESLint, Prettier 기능을 사용하기 위해 별도의 SDK를 설치해야한다는 부분입니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;yarn dlx @yarnpkg/sdks vscode
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Zero Installs&lt;/strong&gt;
+이 기능은 기존의 &lt;code&gt;offline mirror&lt;/code&gt; 방식보다 한층 발전된 기능입니다. 다른 개발자들과 협업할 때 버전 관리 시스템에서 즉시 yarn 환경을 다운로드 받을 수 있으므로 별도의 패키지 설치를 할 필요가 없어 시간과 비용을 절약할 수 있습니다. (이는 빌드와 배포 단계에서 더욱 이점으로 작용됩니다.)&lt;/p&gt;
+&lt;p&gt;협업으로 &lt;code&gt;.gitignore&lt;/code&gt; 사용시 zero-installs 유무에 따라 다른 협업자와 공유되는 파일 목록에 차이가 있습니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#zero-installs 적용된 프로젝트&lt;/span&gt;
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+&lt;span class=&#34;c1&#34;&gt;#zero-installs를 사용하지 않는 프로젝트&lt;/span&gt;
+.pnp.*
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;효율적인-디스크-공간을-고려한-pnpm&#34;&gt;효율적인 디스크 공간을 고려한 Pnpm&lt;/h2&gt;
+&lt;p&gt;yarn과 npm에서 사용하는 &lt;code&gt;node_modules&lt;/code&gt; 방식은 여러 프로젝트에서 필요한 패키지를 하드디스크에 설치하는 방식입니다. 예를 들어, 로컬에 다수의 React 프로젝트가 있으면 해당 프로젝트 수만큼 React 패키지 복사본이 사용자 하드디스크에 존재합니다. 이러한 문제를 해결하기 위해 pnpm이 등장했습니다.&lt;br&gt;
+또한 기존 Yarn 사용자들이 최대한 불편을 느끼지 않도록, Yarn에서 제공하는 PnP 기능을 사용할 수 있는 선택지를 제공합니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#.pnpmrc&lt;/span&gt;
+node-linker&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;pnp
+&lt;span class=&#34;nv&#34;&gt;symlink&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;특징-2&#34;&gt;특징&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/d37c0003-581a-490c-976e-9c4e76f6c7d5&#34; alt=&#34;pnpm-saving-disk-space&#34;  /&gt;
+&lt;em&gt;pnpm motivation - saving disk space&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Content-Addressable Storage (CAS)&lt;/strong&gt;&lt;br&gt;
+pnpm은 컨텐츠 주소 지정 스토리지(CAS) 방식을 활용합니다. 각 패키지마다 해시 함수를 통해 암호화하여 각각의 패키지 주소 값을 갖습니다. 이는 파일의 이름이나 위치 기반이 아닌 파일 자체를 대상으로 하기 때문에, 공통된 패키지라면 하나의 주소 값을 부여합니다. 이를 통해 여러 프로젝트에서 동일한 패키지를 사용한다면 별도의 사본으로 추가시키는 것이 아니라 단일 파일로 관리할 수 있습니다. (✨ 디스크 공간 절약)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;non-flat structure&lt;/strong&gt;
+pnpm의 디렉토리 구조는 호이스팅 방식처럼 flat한 구조가 아닙니다. &lt;strong&gt;심볼릭 링크 방식&lt;/strong&gt;을 사용하여 non-flat 구조에서도 빠르게 접근할 수 있도록 설계되었습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;flat한 의존성 구조에 대한 문제점&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;모듈이 의존하지 않는 패키지에 접근할 수 있다. &lt;strong&gt;(유령 의존성 문제)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;의존성 트리를 평탄화 시키는 호이스팅 과정에서 사용하는 알고리즘은 매우 복잡하다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;심볼릭 링크&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#node_modules&lt;/span&gt;
+.
+├── @eslint
+│   ├── eslintrc -&amp;gt; ../.pnpm/@eslint+eslintrc@2.1.2/node_modules/@eslint/eslintrc
+│   └── js -&amp;gt; ../.pnpm/@eslint+js@8.47.0/node_modules/@eslint/js
+├── @eslint-community
+│   ├── eslint-utils -&amp;gt; ../.pnpm/@eslint-community+eslint-utils@4.4.0_eslint@8.47.0/node_modules/@eslint-community/eslint-utils
+│   └── regexpp -&amp;gt; ../.pnpm/@eslint-community+regexpp@4.6.2/node_modules/@eslint-community/regexpp
+├── @next
+│   └── eslint-plugin-next -&amp;gt; ../.pnpm/@next+eslint-plugin-next@13.4.16/node_modules/@next/eslint-plugin-next
+├── @rushstack
+│   └── eslint-patch -&amp;gt; ../.pnpm/@rushstack+eslint-patch@1.3.3/node_modules/@rushstack/eslint-patch
+├── @types
+│   ├── node -&amp;gt; ../.pnpm/@types+node@20.5.0/node_modules/@types/node
+│   ├── react -&amp;gt; ../.pnpm/@types+react@18.2.20/node_modules/@types/react
+│   └── react-dom -&amp;gt; ../.pnpm/@types+react-dom@18.2.7/node_modules/@types/react-dom
+├── @typescript-eslint
+│   ├── eslint-plugin -&amp;gt; ../.pnpm/@typescript-eslint+eslint-plugin@6.4.0_ec2ucdo575yoxr55fjuy6wxey4/node_modules/
+...
+├── react-dom -&amp;gt; .pnpm/react-dom@18.2.0_react@18.2.0/node_modules/react-dom
+└── typescript -&amp;gt; .pnpm/typescript@5.1.6/node_modules/typescript
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;앞서 말한대로 pnp에서는 &lt;code&gt;심볼릭 링크(symlink)&lt;/code&gt; 방식의 도입을 통해 링크로만 참조하고 있는 형식상의 &lt;code&gt;node_modules&lt;/code&gt; 디렉토리를 구성하는 방식을 취하고 있어 실제로 의존하고 있는 패키지만 접근하는 이점이 있습니다. 실제로 pnpm 프로젝트 환경에서 node_modules 디렉토리 구조를 살펴보면 겉으로는 일반적인 구조와 비슷해보이더라도 결국은 &lt;code&gt;.pnpm&lt;/code&gt; 디렉토리의 실제 의존성 파일을 가리키는 링크로 이루어져 있습니다.&lt;/p&gt;
+&lt;h2 id=&#34;정리&#34;&gt;정리&lt;/h2&gt;
+&lt;p&gt;이번 글에서는 왜 패키지매니저가 개발 경험을 향상시켰고, &lt;code&gt;npm&lt;/code&gt; 이후에 등장한 여러 패키지매니저들이 어떤 강점을 내세우는지 간략하게 알아보았습니다. 각 패키지매니저가 지원하는 사항은 아래에 표로 간략하게 정리해보았습니다. 무조건적으로 특정 패키지매니저를 써야하는 것 보다는 상황에 맞게, 협업자들과의 트레이드오프를 통해 결정하는 것이 좋은 것 같습니다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;npm&lt;/th&gt;
+&lt;th&gt;Yarn&lt;/th&gt;
+&lt;th&gt;Yarn Berry&lt;/th&gt;
+&lt;th&gt;pnpm&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;디스크 관리&lt;/td&gt;
+&lt;td&gt;copy&lt;/td&gt;
+&lt;td&gt;copy&lt;/td&gt;
+&lt;td&gt;copy&lt;/td&gt;
+&lt;td&gt;CAS&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;의존성 관리&lt;/td&gt;
+&lt;td&gt;호이스팅&lt;/td&gt;
+&lt;td&gt;호이스팅&lt;/td&gt;
+&lt;td&gt;plug’n’play&lt;/td&gt;
+&lt;td&gt;- symlink (기본)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lock file 지원&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;package-lock.json&lt;/code&gt; (verion 5)&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;yarn.lock&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;yarn.lock&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;pnpm-lock.yaml&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;workspaces 지원&lt;/td&gt;
+&lt;td&gt;O (verion 7)&lt;/td&gt;
+&lt;td&gt;O&lt;/td&gt;
+&lt;td&gt;O&lt;/td&gt;
+&lt;td&gt;O&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;zero-installs&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;td&gt;O&lt;/td&gt;
+&lt;td&gt;X&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;저는 개인적인 경험으로 yarn-berry 사용시 sdk를 매번 설치해야하는 문제 때문에 당분간은 pnpm을 적극적으로 활용해볼까 합니다. ㅎ&lt;/p&gt;
+&lt;h2 id=&#34;참고-자료&#34;&gt;참고 자료&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.yes24.com/Product/Goods/92742567&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;모던 자바스크립트 Deep Dive - 자바스크립트와 모듈&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Package_management&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MDN Web Docs - Package management basics.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://docs.npmjs.com/cli/v8/configuring-npm/folders&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;npm docs - folders&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://engineering.fb.com/2016/10/11/web/yarn-a-new-package-manager-for-javascript/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;meta-Yarn: A new package manager for JavaScript&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://yarnpkg.com/migration/overview&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;yarn docs - feature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.kochan.io/nodejs/why-should-we-use-pnpm.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;kochan.io - Why should we use pnpm?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://pnpm.io/blog/2020/05/27/flat-node-modules-is-not-the-only-way&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;pnpm docs - Flat node_modules is not the only way&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>Critical Rendering Path와 렌더링 최적화 기법</title>
         <link>https://jinyisland.kr/post/crp/</link>
         <pubDate>Mon, 31 Jul 2023 03:19:11 +0900</pubDate>

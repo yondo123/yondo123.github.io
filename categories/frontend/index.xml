@@ -6,7 +6,17 @@
     <description>Recent content in Frontend on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Jul 2023 22:40:08 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/frontend/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Sep 2023 17:42:01 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/frontend/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>패키저매니저 돌아보기</title>
+      <link>https://jinyisland.kr/post/package-manager/</link>
+      <pubDate>Mon, 11 Sep 2023 17:42:01 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/package-manager/</guid>
+      <description>자바스크립트 모듈 시스템 우선 패키지 매니저를 살펴보기 전에, 왜 패키지매니저를 우리가 편히 사용하는지? 배경부터 살펴보도록 하겠습니다. 초창기 자바스크립트 언어는 작게 시작되었기 때문에 웹 페이지에서 보조적인 상호작용 역할을 담당하는 모듈 시스템(현재의 CJS, ESM)은 따로 존재하지 않았습니다. 추후에 모듈 시스템이 탄생하게 되었는데, 이전까지는 &amp;lt;script&amp;gt; 태그를 사용하여 여러 자바스크립트 파일을 로드하고 사용했습니다.
+모듈 시스템과 script 로드의 차이 그럼 script 태그를 사용해서 불러오는 방식으로 잘개 파일을 쪼개서 프로젝트를 구성하면 되지 않을까요? 일단 모듈과 스크립트 로드 방식에 대해서 차이점을 말씀드리도록 하겠습니다.</description>
+    </item>
+    
     <item>
       <title>JavaScript생태계의 유한 상태기계, XState 도입기</title>
       <link>https://jinyisland.kr/post/xstate-react/</link>

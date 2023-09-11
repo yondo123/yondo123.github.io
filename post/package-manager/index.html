@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TN7PCJZTQ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6TN7PCJZTQ');
+</script>
+
+        <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='패키지매니저가 필요한 이유, 각각의 특징들'><title>패키저매니저 돌아보기</title>
+<link rel='canonical' href='https://jinyisland.kr/post/package-manager/'>
+<link rel="icon" href="/%20/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='패키저매니저 돌아보기'>
+<meta property='og:description' content='패키지매니저가 필요한 이유, 각각의 특징들'>
+<meta property='og:url' content='https://jinyisland.kr/post/package-manager/'>
+<meta property='og:site_name' content='Jiny'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='es6&#43;' /><meta property='article:published_time' content='2023-09-11T17:42:01&#43;09:00' /><meta property='article:modified_time' content='2023-09-11T17:42:01&#43;09:00' /><meta property='og:image' content='https://jinyisland.kr/../../assets/header/package-manager.png' />
+<meta name="twitter:title" content="패키저매니저 돌아보기">
+<meta name="twitter:description" content="패키지매니저가 필요한 이유, 각각의 특징들"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/header/package-manager.png' /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<style>
+    .article-content code {
+        word-wrap: break-word;
+    }
+</style>
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub38313664a67c625b5c64f3cb8dc247e_143597_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny</a></h1>
+        <h2 class="site-description">😎 승진이의 공부 블로그</h2>
+    </header>
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/frontend/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Frontend</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/backend/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Backend</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/web/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Web</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/style/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#7f5345" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Style</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/book/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Book</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/etc/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#d63031" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>ETC</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span></span>
+            </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/package-manager/">
+                
+                    <img src="../../assets/header/package-manager.png" loading="lazy" alt="Featured image of post 패키저매니저 돌아보기" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/frontend/" style="background-color: #ffeaa7; color: #000;">
+                Frontend
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/package-manager/">패키저매니저 돌아보기</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        패키지매니저가 필요한 이유, 각각의 특징들
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Sep 11, 2023</time>
+    </footer></div>
+</header>
+
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
+    <h2 id="자바스크립트-모듈-시스템">자바스크립트 모듈 시스템</h2>
+<p>우선 패키지 매니저를 살펴보기 전에, 왜 패키지매니저를 우리가 편히 사용하는지? 배경부터 살펴보도록 하겠습니다.
+<img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/3e7be77a-b484-465d-86c1-4309f8687657" alt="module"  />
+초창기 자바스크립트 언어는 작게 시작되었기 때문에 웹 페이지에서 보조적인 상호작용 역할을 담당하는 모듈 시스템(현재의 CJS, ESM)은 따로 존재하지 않았습니다. 추후에 모듈 시스템이 탄생하게 되었는데, 이전까지는 <code>&lt;script&gt;</code> 태그를 사용하여 여러 자바스크립트 파일을 로드하고 사용했습니다.</p>
+<h3 id="모듈-시스템과-script-로드의-차이">모듈 시스템과 script 로드의 차이</h3>
+<p>그럼 script 태그를 사용해서 불러오는 방식으로 잘개 파일을 쪼개서 프로젝트를 구성하면 되지 않을까요? 일단 모듈과 스크립트 로드 방식에 대해서 차이점을 말씀드리도록 하겠습니다.</p>
+<p>외부에서 작성된 여러 자바스크립트 파일을 불러오는 방식과 모듈 시스템의 차이는 <strong>독립적인 파일 스코프를 가지고 있는지에 대한 차이점이</strong> 있습니다. <!-- raw HTML omitted --> 태그를 사용하여 로드한 여러 자바스크립트 파일은 결국은 하나의 전역을 공유합니다. 전역 공간 오염을 최소화하기 위해 ESM, CJS 방식의 모듈 시스템이 등장하였으며, 각각의 차이는 다음과 같습니다. <strong>(이 글에서는 모듈에 대해서 깊게 다루지 않으니 이런 특정이 있구나..정도로 이해하시면 좋을 것 같습니다!)</strong></p>
+<ul>
+<li><strong>CJS(CommonJS):</strong> Node.js 진영에서 채택한 모듈 시스템, 동기적으로 이루어지며 종속성 관계를 파악하지 않고 즉시 불어오기 때문에 불러온 즉시 모듈을 변경할 수 있다. (조건부 호출 가능, 불안정적, flat 구조)</li>
+<li><strong>ESM(ES Module):</strong> ES6에서 등장하였으며 비동기적으로 동작한다, 모듈 간 종속성 관계를 파악하고 불러온다. (조건부 호출이 불가능, 안정적, tree 구조)</li>
+</ul>
+<h2 id="패키지매니저">패키지매니저</h2>
+<p>현재 자바스크립트 개발 생태계에서는 앞서 말한 &lsquo;모듈&rsquo;을 온라인 저장소(NPM Registry)에 게시하고 필요한 경우 편리하게 다운로드할 수 있는 여러 패키지 매니저가 존재합니다. 먼저 패키지의 정의를 살펴보도록 하겠습니다.</p>
+<h3 id="패키지">패키지</h3>
+<p>자바스크립트에서 패키지는 하나 이상의 모듈들의 집합으로, 별도의 이름으로 지정됩니다. 파일 시스템과 마찬가지로 하나의 패키지는 여러 하위 패키지로 구성될 수 있습니다. 패키지를 사용하면 재사용성을 높일 수 있으며, 프로그램이 해결하려는 문제를 빠르게 해결할 수 있습니다.</p>
+<p>프로젝트 내 여러 패키지를 배치할 수 있으며, 이 과정에서 패키지 간 종속성이 발생할 수 있습니다. 하위 종속성이 없거나 간단한 경우에는 <code>&lt;script&gt;</code> 태그를 사용하여 포함할 수 있지만, 복잡한 경우에는 프로젝트 배포시 코드와 종속된 패키지를 함께 묶어주는 번들링 도구가 필요할 수 있습니다.</p>
+<h3 id="패키지매니저의-필요성">패키지매니저의 필요성</h3>
+<p>물론 이론적으로 패키지 매니저는 필수는 아니며, 사용자가 직접 원하는 패키지를 수동으로 관리할 수 있습니다. 하지만 패키지 매니저를 사용하지 않는다면, 아래와 같은 작업들을 사용자가 직접 관리해야 번거로움이 발생합니다.</p>
+<ul>
+<li>패키지 파일을 직접 다운로드하여 원하는 위치에 수동으로 배치</li>
+<li>올바른 패키지인지 검사 (취약점)</li>
+<li>설치한 패키지들의 하위 종속성에 대해 동일한 작업(업데이트 등) 필요</li>
+</ul>
+<p>따라서 패키지 매니저를 사용하면 개발자들이 패키지 관리를 보다 원활하게 할 수 있도록 편의성을 제공할 수 있습니다.</p>
+<h3 id="의존성-타입">의존성 타입</h3>
+<p>각 패키지매니저에서는 패키지 설치시 의존성 타입으로 분류할 수 있습니다. 기본적으로 <code>dependency</code> 타입으로 분류합니다.</p>
+<p><strong>dependency</strong><br>
+일반적으로 프로젝트에 직접적으로 필요한 패키지들을 설치할 때, 이들은 기본적으로 <code>dependency</code> 타입으로 분류됩니다.</p>
+<p><strong>devDependency</strong><br>
+프로젝트에는 필요하지만 실제 사용자들이 필요하지 않은 패키지들은 <code>devDependency</code> 타입으로 분류할 수 있습니다. 이러한 패키지에는 코드 컨벤션 관리를 위한 패키지나 테스트를 위한 패키지 등이 포함될 수 있습니다.</p>
+<p><strong>peerDependency</strong><br>
+특정 패키지에 강한 의존성을 가진 경우, 호환성을 표시하기 위해 해당 프로젝트를 분류합니다. <code>npm 3~6</code> 버전까지는 peerDependency에 포함된 패키지까지 설치되지 않았으며 잘못된 종속성인 경우 경고 메시지가 표시되었습니다. <code>npm 7</code>부터는 기본적으로 peerDependency에 포함된 패키지도 함께 설치됩니다.</p>
+<p>일반적으로, 별도의 라이브러리 위에 동작하고 싶은 패키지를 빌드할 때 해당 라이브러리나 플러그인을 명시합니다. 만약 peerDependency 내부 패키지들이 꼭 필요하지 않다면, <code>peerDependenciesMeta</code> 속성을 사용하여 충족되지 않아도 경고를 발생시키지 않을 수 있습니다.</p>
+<h3 id="lock-file">lock file</h3>
+<p>각 패키지매니저에서는 lock 파일을 가지고 있습니다. 이 파일의 목적은 다른 협업자가 의존성 설치를 할 때 동일한 패키지를 생성하기 위함입니다. package.json 파일만으로는 상황에 따라 업데이트된 패키지를 다운받는 경우도 있습니다. <strong>(버전 차이로 인한 부수효과 방지)</strong> npm에서는 이전에 제공하지 않다가 추후에 <code>package-lock.json</code> 파일을 제공하고 있으며 yarn, pnpm에서도 기본적으로 제공하는 기능입니다.</p>
+<h2 id="패키지매니저의-조상님-npm">패키지매니저의 조상님, npm</h2>
+<p>npm은 Node.js의 표준 패키지 매니저입니다. 초기에는 Node.js의 패키지 종속성을 관리하는 데 사용되었지만, 이후 프론트엔드 전반에서도 사용할 수 있게 되었습니다. <code>package.json</code> 파일에는 프로젝트에 사용되는 패키지가 정의되며, node_modules 디렉토리 내에는 실제 패키지에서 구성된 여러 모듈이 위치합니다.</p>
+<h3 id="특징">특징</h3>
+<p><strong>호이스팅</strong><br>
+패키지 하위에는 수많은 의존 패키지들이 포함되어 있습니다. 이 중에는 동일한 패키지를 사용하는 패키지들도 있습니다. 이러한 경우 충돌을 해결해야 합니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">foo
++-- blerg@1.2.5
++-- bar@1.2.3
+|   +-- blerg@1.x (latest=1.3.7)
+|   +-- baz@2.x
+|   |   `-- quux@3.x
+|   |       `-- bar@1.2.3 (cycle)
+|   `-- asdf@*
+`-- baz@1.2.3
+    `-- quux@3.x
+        `-- bar
+</code></pre></div><p>예를 들어 <code>blerg</code> 패키지는 프로젝트에 직접적인 의존성을 갖습니다. (node_modules에 설치됨) 이때 각 패키지마다 node_modules 폴더를 순회하며, 이미 상위 위치에 설치된 경우에는 현재 위치에 다시 설치하지 않습니다. 동일한 패키지 의존성 충족이 다른 경우에만 해당 node_modules 위치에 설치합니다.
+위와 같은 상황에서는 다음과 같이 패키지를 설치합니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">foo
++-- node_modules
+    +-- blerg (1.2.5) &lt;---[A]
+    +-- bar (1.2.3) &lt;---[B]
+    |   `-- node_modules
+    |       +-- baz (2.0.2) &lt;---[C]
+    |       |   `-- node_modules
+    |       |       `-- quux (3.2.0)
+    |       `-- asdf (2.3.4)
+    `-- baz (1.2.3) &lt;---[D]
+        `-- node_modules
+            `-- quux (3.2.0) &lt;---[E]
+</code></pre></div><ul>
+<li><strong>A:</strong> <code>blerg</code> 의 최신 버전은 1.3.7이지만, 특정 버전 종속이기에 해당 버전으로 설치한다. (1.2.5)</li>
+<li><strong>B:</strong> <code>bar</code> 에서 의존하고 있는 <code>baz</code>에서 다시 <code>bar</code> 패키지를 내부적으로 의존하고 있지만 버전이 동일하므로 상위에 설치된 패키지를 의존한다.</li>
+<li><strong>C:</strong> 상위에 <code>baz</code> 패키지가 존재하지만, 종속성 충족이 되지 않기 때문에(메이저 버전이 다름) 필요한 특정 버전으로 설치한다.</li>
+<li><strong>D:</strong> <code>baz</code> 패키지 내부의 <code>quux</code> 디렉터리가 비어져있는데, 이는 상위에 위치한 <code>bar</code> 복사본이 존재하기 때문에 충족되어 비어져있다.</li>
+</ul>
+<p><strong>clean install</strong><br>
+<code>npm install</code>은 개별적으로 프로젝트를 설치할 때도 필요하지만, 원격 프로젝트를 초기 설치할 때에도 사용할 수 있습니다. 주의할 점은 기본 설치는 패키지 종속성 정보가 저장되어 있는 package-lock.json 파일을 수정한다는 것입니다. 그러나 npm ci는 기존 lock 파일을 확인하여 저장된 종속성을 기반으로 설치하기 때문에 이미 진행 중인 프로젝트를 설치하거나 빌드 및 배포하는 경우 npm ci 방식이 적합합니다.</p>
+<h2 id="google과-meta의-합작-yarn">Google과 Meta의 합작, Yarn</h2>
+<p>2016년에 출시된 Yarn은 기존 npm보다 더 빠른 속도와 <code>offline mirror</code> 라는 오프라인 환경을 지원하게 되었습니다. 패키지 설치 시 기본적으로 사용자 디렉터리 내부에 있는 글로벌 캐시에서 우선적으로 확인하기 때문에 빠른 속도를 보장할 수 있습니다.</p>
+<ul>
+<li>패키지 설치시 병렬 설치 방식으로 수행하여 성능을 향상</li>
+<li><code>yarn.lock</code> 파일과 자체 설치 알고리즘을 사용하여 패키지 설치시 비결정성 문제를 해결하고자 하였음
+(이 부분은 npm5에서부터 pacakge-lock.json을 통해 해결)</li>
+<li>설치하지 않은 패키지는 <code>tar</code> 파일을 가져와 글로벌 캐시에 배치 → 동일한 패키지을 두 번 이상 다운로드 할 필요가 없도록 개선</li>
+</ul>
+<h3 id="yarn-berry">Yarn Berry</h3>
+<p>Yarn Berry는 Yarn v2 이상의 모던한 환경을 말합니다. 이는 기존 yarn 환경에서 몇 가지 기능과 안정성이 추가되었습니다. (현재 Yarn 1.X 버전은 더 이상 유지보수되지 않고 있다고 합니다.) 아래 명령어로 Yarn Berry 버전으로 사용하실 수 있습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">yarn <span class="nb">set</span> version stable
+yarn install
+</code></pre></div><h3 id="특징-1">특징</h3>
+<p><strong>Yarn Pnp</strong><br>
+<code>Yarn Berry</code>에서 등장한 패키지 설치 전략은 기존 방식과 다르게 node_modules가 존재하지 않으며 별도의 로더파일(.pnp.cjs)을 통해 의존성 트리에 대한 모든 정보를 저장하고 <code>.yarn/cache</code> 디렉토리에 실제 패키지를 저장합니다. yarn PnP는 아래의 여러 문제를 해결하기 위해 도입되었습니다.</p>
+<ul>
+<li>실제 디스크에서 입출력하지 않고 Node.js 로더 파일을 활용</li>
+<li><code>node_modules</code> 구조에서 사용하던 호이스팅 방식을 사용하지 않음 → 정확한 의존성 정보<br>
+<strong>(모든 패키지와 종속성 정보들을 보유하는 방식)</strong></li>
+</ul>
+<p>단점으로는.. PnP 모드 사용시 VSCode와 인텔리제이에서 TypeScript, ESLint, Prettier 기능을 사용하기 위해 별도의 SDK를 설치해야한다는 부분입니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">yarn dlx @yarnpkg/sdks vscode
+</code></pre></div><p><strong>Zero Installs</strong>
+이 기능은 기존의 <code>offline mirror</code> 방식보다 한층 발전된 기능입니다. 다른 개발자들과 협업할 때 버전 관리 시스템에서 즉시 yarn 환경을 다운로드 받을 수 있으므로 별도의 패키지 설치를 할 필요가 없어 시간과 비용을 절약할 수 있습니다. (이는 빌드와 배포 단계에서 더욱 이점으로 작용됩니다.)</p>
+<p>협업으로 <code>.gitignore</code> 사용시 zero-installs 유무에 따라 다른 협업자와 공유되는 파일 목록에 차이가 있습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#zero-installs 적용된 프로젝트</span>
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+<span class="c1">#zero-installs를 사용하지 않는 프로젝트</span>
+.pnp.*
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+</code></pre></div><h2 id="효율적인-디스크-공간을-고려한-pnpm">효율적인 디스크 공간을 고려한 Pnpm</h2>
+<p>yarn과 npm에서 사용하는 <code>node_modules</code> 방식은 여러 프로젝트에서 필요한 패키지를 하드디스크에 설치하는 방식입니다. 예를 들어, 로컬에 다수의 React 프로젝트가 있으면 해당 프로젝트 수만큼 React 패키지 복사본이 사용자 하드디스크에 존재합니다. 이러한 문제를 해결하기 위해 pnpm이 등장했습니다.<br>
+또한 기존 Yarn 사용자들이 최대한 불편을 느끼지 않도록, Yarn에서 제공하는 PnP 기능을 사용할 수 있는 선택지를 제공합니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#.pnpmrc</span>
+node-linker<span class="o">=</span>pnp
+<span class="nv">symlink</span><span class="o">=</span><span class="nb">false</span>
+</code></pre></div><h3 id="특징-2">특징</h3>
+<p><img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/d37c0003-581a-490c-976e-9c4e76f6c7d5" alt="pnpm-saving-disk-space"  />
+<em>pnpm motivation - saving disk space</em></p>
+<p><strong>Content-Addressable Storage (CAS)</strong><br>
+pnpm은 컨텐츠 주소 지정 스토리지(CAS) 방식을 활용합니다. 각 패키지마다 해시 함수를 통해 암호화하여 각각의 패키지 주소 값을 갖습니다. 이는 파일의 이름이나 위치 기반이 아닌 파일 자체를 대상으로 하기 때문에, 공통된 패키지라면 하나의 주소 값을 부여합니다. 이를 통해 여러 프로젝트에서 동일한 패키지를 사용한다면 별도의 사본으로 추가시키는 것이 아니라 단일 파일로 관리할 수 있습니다. (✨ 디스크 공간 절약)</p>
+<p><strong>non-flat structure</strong>
+pnpm의 디렉토리 구조는 호이스팅 방식처럼 flat한 구조가 아닙니다. <strong>심볼릭 링크 방식</strong>을 사용하여 non-flat 구조에서도 빠르게 접근할 수 있도록 설계되었습니다.</p>
+<p><strong>flat한 의존성 구조에 대한 문제점</strong></p>
+<ul>
+<li>모듈이 의존하지 않는 패키지에 접근할 수 있다. <strong>(유령 의존성 문제)</strong></li>
+<li>의존성 트리를 평탄화 시키는 호이스팅 과정에서 사용하는 알고리즘은 매우 복잡하다.</li>
+</ul>
+<p><strong>심볼릭 링크</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#node_modules</span>
+.
+├── @eslint
+│   ├── eslintrc -&gt; ../.pnpm/@eslint+eslintrc@2.1.2/node_modules/@eslint/eslintrc
+│   └── js -&gt; ../.pnpm/@eslint+js@8.47.0/node_modules/@eslint/js
+├── @eslint-community
+│   ├── eslint-utils -&gt; ../.pnpm/@eslint-community+eslint-utils@4.4.0_eslint@8.47.0/node_modules/@eslint-community/eslint-utils
+│   └── regexpp -&gt; ../.pnpm/@eslint-community+regexpp@4.6.2/node_modules/@eslint-community/regexpp
+├── @next
+│   └── eslint-plugin-next -&gt; ../.pnpm/@next+eslint-plugin-next@13.4.16/node_modules/@next/eslint-plugin-next
+├── @rushstack
+│   └── eslint-patch -&gt; ../.pnpm/@rushstack+eslint-patch@1.3.3/node_modules/@rushstack/eslint-patch
+├── @types
+│   ├── node -&gt; ../.pnpm/@types+node@20.5.0/node_modules/@types/node
+│   ├── react -&gt; ../.pnpm/@types+react@18.2.20/node_modules/@types/react
+│   └── react-dom -&gt; ../.pnpm/@types+react-dom@18.2.7/node_modules/@types/react-dom
+├── @typescript-eslint
+│   ├── eslint-plugin -&gt; ../.pnpm/@typescript-eslint+eslint-plugin@6.4.0_ec2ucdo575yoxr55fjuy6wxey4/node_modules/
+...
+├── react-dom -&gt; .pnpm/react-dom@18.2.0_react@18.2.0/node_modules/react-dom
+└── typescript -&gt; .pnpm/typescript@5.1.6/node_modules/typescript
+</code></pre></div><p>앞서 말한대로 pnp에서는 <code>심볼릭 링크(symlink)</code> 방식의 도입을 통해 링크로만 참조하고 있는 형식상의 <code>node_modules</code> 디렉토리를 구성하는 방식을 취하고 있어 실제로 의존하고 있는 패키지만 접근하는 이점이 있습니다. 실제로 pnpm 프로젝트 환경에서 node_modules 디렉토리 구조를 살펴보면 겉으로는 일반적인 구조와 비슷해보이더라도 결국은 <code>.pnpm</code> 디렉토리의 실제 의존성 파일을 가리키는 링크로 이루어져 있습니다.</p>
+<h2 id="정리">정리</h2>
+<p>이번 글에서는 왜 패키지매니저가 개발 경험을 향상시켰고, <code>npm</code> 이후에 등장한 여러 패키지매니저들이 어떤 강점을 내세우는지 간략하게 알아보았습니다. 각 패키지매니저가 지원하는 사항은 아래에 표로 간략하게 정리해보았습니다. 무조건적으로 특정 패키지매니저를 써야하는 것 보다는 상황에 맞게, 협업자들과의 트레이드오프를 통해 결정하는 것이 좋은 것 같습니다.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>npm</th>
+<th>Yarn</th>
+<th>Yarn Berry</th>
+<th>pnpm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>디스크 관리</td>
+<td>copy</td>
+<td>copy</td>
+<td>copy</td>
+<td>CAS</td>
+</tr>
+<tr>
+<td>의존성 관리</td>
+<td>호이스팅</td>
+<td>호이스팅</td>
+<td>plug’n’play</td>
+<td>- symlink (기본)</td>
+</tr>
+<tr>
+<td>lock file 지원</td>
+<td><code>package-lock.json</code> (verion 5)</td>
+<td><code>yarn.lock</code></td>
+<td><code>yarn.lock</code></td>
+<td><code>pnpm-lock.yaml</code></td>
+</tr>
+<tr>
+<td>workspaces 지원</td>
+<td>O (verion 7)</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+</tr>
+<tr>
+<td>zero-installs</td>
+<td>X</td>
+<td>X</td>
+<td>O</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<p>저는 개인적인 경험으로 yarn-berry 사용시 sdk를 매번 설치해야하는 문제 때문에 당분간은 pnpm을 적극적으로 활용해볼까 합니다. ㅎ</p>
+<h2 id="참고-자료">참고 자료</h2>
+<ul>
+<li><a class="link" href="https://www.yes24.com/Product/Goods/92742567"  target="_blank" rel="noopener"
+    >모던 자바스크립트 Deep Dive - 자바스크립트와 모듈</a></li>
+<li><a class="link" href="https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Package_management"  target="_blank" rel="noopener"
+    >MDN Web Docs - Package management basics.</a></li>
+<li><a class="link" href="https://docs.npmjs.com/cli/v8/configuring-npm/folders"  target="_blank" rel="noopener"
+    >npm docs - folders</a></li>
+<li><a class="link" href="https://engineering.fb.com/2016/10/11/web/yarn-a-new-package-manager-for-javascript/"  target="_blank" rel="noopener"
+    >meta-Yarn: A new package manager for JavaScript</a></li>
+<li><a class="link" href="https://yarnpkg.com/migration/overview"  target="_blank" rel="noopener"
+    >yarn docs - feature</a></li>
+<li><a class="link" href="https://www.kochan.io/nodejs/why-should-we-use-pnpm.html"  target="_blank" rel="noopener"
+    >kochan.io - Why should we use pnpm?</a></li>
+<li><a class="link" href="https://pnpm.io/blog/2020/05/27/flat-node-modules-is-not-the-only-way"  target="_blank" rel="noopener"
+    >pnpm docs - Flat node_modules is not the only way</a></li>
+</ul>
+
+</section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false
+    });
+</script>
+<style>
+     
+    @media all and (min-width: 1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+
+        .toc-list {
+            padding: 0 4px;
+            width: 180px;
+        }
+    }
+
+    @media all and (max-width: 1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: '목차';
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+    .toc-link::before {
+        width: 0;
+    }
+</style>
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/es6&#43;/">es6&#43;</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title"></h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/post/xstate-react/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/header/xstate-react.jpg" loading="lazy" data-key="xstate-react" data-hash="../../assets/header/xstate-react.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JavaScript생태계의 유한 상태기계, XState 도입기</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/react-with-declarative/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/header/react-declarative.png" loading="lazy" data-key="react-with-declarative" data-hash="../../assets/header/react-declarative.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">React는 왜 선언형 프로그래밍을 지향할까?</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="comments-container">
+    
+    <script src="https://utteranc.es/client.js"
+        repo="yondo123/hugo-blog-comments"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+
+<style>
+    .comments-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 Jiny
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
