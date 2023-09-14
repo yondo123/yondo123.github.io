@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 Sep 2023 17:42:01 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Sep 2023 21:25:25 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[CS 네트워크 스터디] 1주차 학습 내용</title>
+      <link>https://jinyisland.kr/post/network-study-week-1/</link>
+      <pubDate>Thu, 14 Sep 2023 21:25:25 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/network-study-week-1/</guid>
+      <description>들어가면서.. 이 포스팅의 목적은 토마스님이 진행하는 컴퓨터 네트워크 스터디에 참여하면서 지금까지 알고있던 네트워크 지식들을 정리하고 되돌아보기위해 1주일 동안 공부한 내용을 정리하여 올리는 것입니다.
+네트워크 개요 우리는 일상에서 웹 사이트를 들여다보고, 웹 상에서 구현된 유능한 서비스들을 이용하고 있습니다. 바로 인터넷에 수 많은 웹 사이트가 등재되어있기 때문인데요.😄 웹 사이트라는 용어는 다들 친숙하시겠지만 한번 짚고 넘어가자면 웹 서버 애플리케이션이 공개하는 다양한 웹 페이지의 집합이라고 볼 수 있습니다. 여기서 웹 페이지는 일반적으로 HTML이라는 문법으로 작성된 HTML 파일로 이루어져 있고 이 페이지를 요청할 때 항상 한 번으로 끝나는 것은 절대 아닙니다.</description>
+    </item>
+    
     <item>
       <title>패키저매니저 돌아보기</title>
       <link>https://jinyisland.kr/post/package-manager/</link>
