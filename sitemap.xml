@@ -21,13 +21,13 @@
   </url>
   
   <url>
-    <loc>https://jinyisland.kr/tags/http/</loc>
+    <loc>https://jinyisland.kr/</loc>
     <lastmod>2023-09-14T21:25:25+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
-    <loc>https://jinyisland.kr/</loc>
+    <loc>https://jinyisland.kr/tags/network/</loc>
     <lastmod>2023-09-14T21:25:25+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -376,6 +376,12 @@
   
   <url>
     <loc>https://jinyisland.kr/tags/cookie/</loc>
+    <lastmod>2021-09-20T18:49:47+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/http/</loc>
     <lastmod>2021-09-20T18:49:47+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
