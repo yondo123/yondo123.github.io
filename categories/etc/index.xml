@@ -6,7 +6,19 @@
     <description>Recent content in ETC on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 Sep 2023 21:25:25 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/etc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Sep 2023 23:19:27 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/etc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[CS 네트워크 스터디] 2주차 학습 내용</title>
+      <link>https://jinyisland.kr/post/network-study-week-2/</link>
+      <pubDate>Thu, 21 Sep 2023 23:19:27 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/network-study-week-2/</guid>
+      <description>시리즈 👉 CS 네트워크 스터디 1주차
+HTTPS HTTPS란 기존 HTTP 방식에서 보안 계층이 추가된 방식을 의미합니다. 여기서 말하는 보안 계층이란 SSL(Secure Socket Layer), TLS(Transport Layer Security) 프로토콜을 의미합니다.
+HTTPS의 탄생 배경 HTTPS는 기존 HTTP 프로토콜에서 아래와 같은 문제점을 보완하기 위해 도입되었습니다.
+ 기존의 HTTP는 암호화되지 않은 평문 데이터로 인해, 인가되지 않은 사용자도 제약 없이 내용을 볼 수 있습니다. (비암호화) 기존의 HTTP에서는 요청과 응답에서 통신하는 상대방을 확인하지 않기 때문에, URI에 지정된 호스트인지와 요청한 클라이언트가 맞는지 보장하지 않습니다.</description>
+    </item>
+    
     <item>
       <title>[CS 네트워크 스터디] 1주차 학습 내용</title>
       <link>https://jinyisland.kr/post/network-study-week-1/</link>

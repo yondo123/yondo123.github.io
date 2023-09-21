@@ -3,43 +3,49 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://jinyisland.kr/post/network-study-week-1/</loc>
-    <lastmod>2023-09-14T21:25:25+09:00</lastmod>
+    <loc>https://jinyisland.kr/post/network-study-week-2/</loc>
+    <lastmod>2023-09-21T23:19:27+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/categories/</loc>
-    <lastmod>2023-09-14T21:25:25+09:00</lastmod>
+    <lastmod>2023-09-21T23:19:27+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/categories/etc/</loc>
-    <lastmod>2023-09-14T21:25:25+09:00</lastmod>
+    <lastmod>2023-09-21T23:19:27+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/</loc>
-    <lastmod>2023-09-14T21:25:25+09:00</lastmod>
+    <lastmod>2023-09-21T23:19:27+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/tags/network/</loc>
-    <lastmod>2023-09-14T21:25:25+09:00</lastmod>
+    <lastmod>2023-09-21T23:19:27+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/post/</loc>
-    <lastmod>2023-09-14T21:25:25+09:00</lastmod>
+    <lastmod>2023-09-21T23:19:27+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
   <url>
     <loc>https://jinyisland.kr/tags/</loc>
+    <lastmod>2023-09-21T23:19:27+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/network-study-week-1/</loc>
     <lastmod>2023-09-14T21:25:25+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>

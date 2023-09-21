@@ -15,20 +15,20 @@
 </script>
 
         <meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='JAVA에서의 기본 배열 사용방법'><title>JAVA 자료구조 배열</title>
-<link rel='canonical' href='https://jinyisland.kr/post/java-array/'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='HTTPS, DNS, UDP'><title>[CS 네트워크 스터디] 2주차 학습 내용</title>
+<link rel='canonical' href='https://jinyisland.kr/post/network-study-week-2/'>
 <link rel="icon" href="/%20/favicon.png" type="image/png">
 
 <link rel="stylesheet" href="/scss/style.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='JAVA 자료구조 배열'>
-<meta property='og:description' content='JAVA에서의 기본 배열 사용방법'>
-<meta property='og:url' content='https://jinyisland.kr/post/java-array/'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='[CS 네트워크 스터디] 2주차 학습 내용'>
+<meta property='og:description' content='HTTPS, DNS, UDP'>
+<meta property='og:url' content='https://jinyisland.kr/post/network-study-week-2/'>
 <meta property='og:site_name' content='Jiny'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='java' /><meta property='article:tag' content='자료구조' /><meta property='article:published_time' content='2021-09-04T22:57:27&#43;09:00' /><meta property='article:modified_time' content='2021-09-04T22:57:27&#43;09:00' />
-<meta property='og:image' content='https://jinyisland.kr/assets/thumb/java.png' />
-<meta name="twitter:title" content="JAVA 자료구조 배열">
-<meta name="twitter:description" content="JAVA에서의 기본 배열 사용방법"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/thumb/java.png' /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='network' /><meta property='article:published_time' content='2023-09-21T23:19:27&#43;09:00' /><meta property='article:modified_time' content='2023-09-21T23:19:27&#43;09:00' />
+<meta property='og:image' content='https://jinyisland.kr/assets/header/computer-network/week-2.png' />
+<meta name="twitter:title" content="[CS 네트워크 스터디] 2주차 학습 내용">
+<meta name="twitter:description" content="HTTPS, DNS, UDP"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/header/computer-network/week-2.png' /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
@@ -303,9 +303,9 @@
     <article class="has-image main-article">
     <header class="article-header">
     <div class="article-image">
-        <a href="/post/java-array/">
+        <a href="/post/network-study-week-2/">
             
-            <img src="../../assets/thumb/java.png" loading="lazy" alt="Featured image of post JAVA 자료구조 배열" />
+            <img src="../../assets/header/computer-network/week-2.png" loading="lazy" alt="Featured image of post [CS 네트워크 스터디] 2주차 학습 내용" />
             
         </a>
     </div>
@@ -323,12 +323,12 @@
     
 
     <h2 class="article-title">
-        <a href="/post/java-array/">JAVA 자료구조 배열</a>
+        <a href="/post/network-study-week-2/">[CS 네트워크 스터디] 2주차 학습 내용</a>
     </h2>
 
     
     <h3 class="article-subtitle">
-        JAVA에서의 기본 배열 사용방법
+        HTTPS, DNS, UDP
     </h3>
     <footer class="article-time">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -339,103 +339,131 @@
 
 
 
-        <time class="article-time--published">Sep 04, 2021</time>
+        <time class="article-time--published">Sep 21, 2023</time>
     </footer></div>
 </header>
 
     <section class="article-content js-toc-content">
     <div class="js-toc"></div>
-    <h2 id="배열">배열</h2>
-<p>데이터 단위와 데이터 자체 사이의 물리적 또는 논리적인 관계를 뜻한다.
-JAVA 배열의 특징은 다음과 같다.</p>
-<ol>
-<li>같은 타입이어야 한다.</li>
-<li>한번 생성된 배열을 길이를 변경할 수 없다.</li>
-</ol>
-<h3 id="자료형">자료형</h3>
-<p>배열 구성 요소의 자료형은 어떤 형이든 상관 없음</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span><span class="o">[]</span> <span class="n">a</span><span class="o">;</span> <span class="c1">//주로 이렇게 선언
-</span><span class="c1"></span><span class="kt">int</span> <span class="n">a</span><span class="o">[];</span>
-</code></pre></div><h3 id="배열의-초기화">배열의 초기화</h3>
-<p>배열 원소의 기본 값(초기화)은 자료형에 따라 아래와 같이 생성된다. 아래 초깃값 생성 규칙은 배열뿐만아니라 클래스의 필드도 마찬가지이다!<br>
-(메서드 내에서 생성한 지역 변수는 자동 초기화가 되지 않고 컴파일 오류를 출력한다.)</p>
+    <h2 id="시리즈">시리즈</h2>
+<p><strong>👉 <a class="link" href="https://jinyisland.kr/post/network-study-week-1/"  target="_blank" rel="noopener"
+    >CS 네트워크 스터디 1주차</a></strong></p>
+<h2 id="https">HTTPS</h2>
+<p>HTTPS란 기존 <code>HTTP</code> 방식에서 보안 계층이 추가된 방식을 의미합니다. 여기서 말하는 <strong>보안 계층</strong>이란 SSL(Secure Socket Layer), TLS(Transport Layer Security) 프로토콜을 의미합니다.</p>
+<h3 id="https의-탄생-배경">HTTPS의 탄생 배경</h3>
+<p><code>HTTPS</code>는 기존 HTTP 프로토콜에서 아래와 같은 문제점을 보완하기 위해 도입되었습니다.</p>
 <ul>
-<li><strong>byte,short, int :</strong> 0</li>
-<li><strong>long :</strong> 0L</li>
-<li><strong>float :</strong> 0.0f</li>
-<li><strong>double :</strong> 0.0d</li>
-<li><strong>char :</strong> &ldquo;\u0000&rdquo;</li>
-<li><strong>string :</strong> null</li>
-<li><strong>boolean :</strong> false</li>
+<li>기존의 HTTP는 암호화되지 않은 평문 데이터로 인해, 인가되지 않은 사용자도 제약 없이 내용을 볼 수 있습니다. <strong>(비암호화)</strong></li>
+<li>기존의 HTTP에서는 요청과 응답에서 통신하는 상대방을 확인하지 않기 때문에, URI에 지정된 호스트인지와 요청한 클라이언트가 맞는지 보장하지 않습니다. <strong>(인증문제)</strong></li>
+<li>HTTP는 메시지 위변조에 취약하기 때문에 무결성을 보장하지 않습니다. <strong>(무결성)</strong></li>
 </ul>
-<h3 id="배열의-생성">배열의 생성</h3>
-<p>자바에서 배열을 생성할 때 배열에 들어갈 타입을 명시한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span><span class="o">[]</span> <span class="n">numberArray</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">5</span><span class="o">];</span> <span class="c1">//0,0,0,0,0
-</span><span class="c1">//생성과 동시에 초기화
-</span><span class="c1"></span><span class="kt">int</span><span class="o">[]</span> <span class="n">numberArray</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">1</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">3</span><span class="o">,</span><span class="n">4</span><span class="o">,</span><span class="n">5</span><span class="o">};</span> <span class="c1">//1,2,3,4,5
-</span><span class="c1"></span><span class="kt">int</span><span class="o">[]</span> <span class="n">numberArray</span> <span class="o">=</span> <span class="o">{</span><span class="n">1</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">3</span><span class="o">,</span><span class="n">4</span><span class="o">,</span><span class="n">5</span><span class="o">};</span> <span class="c1">//축약형, 위와 동일
-</span><span class="c1"></span><span class="kt">int</span><span class="o">[][]</span> <span class="n">deepNumberArry</span> <span class="o">=</span> <span class="o">{{</span><span class="n">1</span><span class="o">,</span><span class="n">2</span><span class="o">},</span> <span class="o">{</span><span class="n">2</span><span class="o">,</span><span class="n">3</span><span class="o">}};</span> <span class="c1">//2차원 배열 생성
-</span></code></pre></div><h2 id="배열의-복사">배열의 복사</h2>
-<h3 id="clone-메서드-사용">clone() 메서드 사용</h3>
-<p>배열을 복제하고 복제한 배열에 대한 참조를 생성한다.<br>
-주의사항으로는 1차원배열은 깊은 복사를 해주지만, 2차원 배열에서는 깊은복사가 되지 않는다. <strong>(최상위 레벨만 깊은복사 → 나머지는 참조)</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Array</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">String</span><span class="o">[]</span> <span class="n">fruits</span> <span class="o">=</span> <span class="o">{</span><span class="s">&#34;apple&#34;</span><span class="o">,</span> <span class="s">&#34;melon&#34;</span><span class="o">,</span> <span class="s">&#34;banana&#34;</span><span class="o">};</span>
-        <span class="n">String</span><span class="o">[]</span> <span class="n">copyFruits</span> <span class="o">=</span> <span class="n">fruits</span><span class="o">.</span><span class="na">clone</span><span class="o">();</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">fruits</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;fruits : &#34;</span> <span class="o">+</span> <span class="n">fruits</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;copyFruits : &#34;</span> <span class="o">+</span> <span class="n">fruits</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h3 id="arraycopy-메서드-사용">arraycopy() 메서드 사용</h3>
-<p>arraycopy(복사할 배열, 시작 위치, 새 배열, 새 배열 시작 위치, 복수 갯수) 4개의 인수를 받는다.<br>
-지정된 위치를 받기 떼문에 기존 존재하는 배열에 새로 복제하는 경우에 유용하게 사용된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Array</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">String</span><span class="o">[]</span> <span class="n">fruits</span> <span class="o">=</span> <span class="o">{</span><span class="s">&#34;apple&#34;</span><span class="o">,</span> <span class="s">&#34;melon&#34;</span><span class="o">,</span> <span class="s">&#34;banana&#34;</span><span class="o">};</span>
-        <span class="n">String</span><span class="o">[]</span> <span class="n">newFruits</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">5</span><span class="o">];</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">arraycopy</span><span class="o">(</span><span class="n">fruits</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">newFruits</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">newFruits</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;copyFruits : &#34;</span> <span class="o">+</span> <span class="n">newFruits</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="배열의-비교">배열의 비교</h2>
-<p>리스트 형태의 클래스는 <code>equals</code>라는 메서드가 있지만 Array 클래스에는 직접 구현해야한다.. 만약 Array구조에 <code>equals</code>를 사용한다면 Object 클래스의 equals를 사용하게 되어서 단순히 인스턴스만 비교해준다.
-배열을 비교하는 클래스 먼저 두 배열이 달라야한다면 다음과 같은 상태를 만족해야한다.</p>
+<p>이러한 암호화, 인증, 무결성 문제들을 해결하기 위해 <code>HTTPS</code>가 탄생하였습니다. HTTPS는 소켓 통신을 <code>SSL</code>이라는 암호화 프로토콜을 사용합니다. 현재는 <code>SSL</code>을 사용하지 않고 대부분 개선된 프로토콜인 <code>TLS</code>를 사용하고 있습니다.</p>
+<h3 id="ssl">SSL</h3>
+<p>넷스케이프사가 개발한 암호화 프로토콜로, <code>SSL 3.0</code>까지 출시되었습니다. SSL은 HTTP와 독립된 프로토콜으로써 애플리케이션 계층에서 동작하는 다른 프로토콜에서도 사용이 가능하다는 특징을 갖고 있습니다. <strong>공개키 암호화 방식</strong>의 암호화 방식을 채택하였습니다.</p>
+<h3 id="tls">TLS</h3>
+<p><code>SSL 3.0</code>을 기반으로 한 후속 암호화 프로토콜로, 기존 SSL 방식에서 발생한 취약점과 암호화 방식을 개선하였습니다. 프로토콜의 이름은 다르지만 일반적으로 TLS도 SSL이라고 불립니다. (이 글에서도 편의상 SSL으로 표현하도록 하겠습니다.)</p>
+<h2 id="ssl-1">SSL</h2>
+<h3 id="ssl-암호화-방식">SSL 암호화 방식</h3>
+<p>SSL에서는 <code>공통키 암호화 방식</code>과 <code>공개키 암호화 방식</code>을 혼합하여 사용합니다. 이 두 가지 암호화 방식은 서로 갖고 있는 키가 동일한지에 따라 구분할 수 있습니다.</p>
+<p><strong>공통키 암호화 방식</strong><br>
+인코딩할 때 사용하는 키와 디코딩할 때 사용하는 키는 동일한 방식으로 사용되며, 비밀 키를 양쪽(클라이언트-서버)에서 서로 갖고 있습니다. 비밀 키를 갖고 있으면 별다른 절차 없이 디코딩이 가능하기 때문에 디코딩 속도가 빠릅니다. 이 방식의 큰 단점은 비밀 키를 서로 공유해야 한다는 문제입니다.</p>
+<p><strong>공개키 암호화 방식</strong><br>
+공통키 암호화 방식에서의 문제를 해결하기 위해 등장한 암호화 방식으로, 양쪽에서 서로 다른 두 개의 키 페어를 사용하는 방식입니다. 한쪽은 비밀 키라고 부르고, 다른 한쪽은 공개 키라고 합니다. 공개 키는 외부에서 알아도 괜찮은 키이며, 암호를 보내는 측은 상대의 공개 키를 사용해 인코딩을 수행하고 디코딩을 하는 쪽에서는 비밀 키를 사용해 디코딩을 수행합니다. 공통키 암호화 방식보다 처리 절차가 복잡하기 때문에 속도가 상대적으로 늦는다는 단점이 있습니다.</p>
+<h3 id="서버-인증서와-dhe-알고리즘">서버 인증서와 DHE 알고리즘</h3>
+<p>위에서 설명한 <code>공개키 암호화 방식</code> 역시 100% 안전한 암호화 방식은 아닙니다. 외부 공격자가 공개 키인 척하여 전송을 가로채는 등의 탈취 시도가 가능합니다. 이 문제를 해결하기 위해 인증 기관이 발행하는 서버 인증서와 개선된 알고리즘(DHE 알고리즘)을 현재 활용하고 있습니다.</p>
+<p><strong>서버 인증서</strong><br>
+특정 인증된 공인 기관(VeriSign 등)은 웹 서버에서 제출한 공개 키에 디지털 서명을 수행하고, 서명이 완료된 <strong>인증된 공개 키</strong>를 다시 발급해줍니다. 이는 원래 서버의 공개 키와 인증된 공개 키를 활용하여 신뢰성 있는 인증 기관에서 서명되었는지 확인한 후, 더 안전하게 통신할 수 있게 됩니다.</p>
+<p><strong>DHE 알고리즘</strong><br>
+키를 생성하기 위해 매개변수 방식을 사용하는 알고리즘입니다. 매개변수는 외부에 공개되어도 문제가 없으며, 이러한 매개변수를 활용한 비밀 키 생성 방식을 <strong>DH(Diffie-Hellman) 알고리즘</strong>이라고 합니다. 여기서 매개변수의 특성을 이용하여 주기적으로 새로운 비밀 키를 생성하는 방식을 추가한 것이 <strong>DHE 알고리즘</strong>입니다. 이 알고리즘을 사용하면 도중에 생성된 비밀 키가 탈취되더라도 주기적으로 변경되기 때문에 상대적으로 안전하다고 볼 수 있습니다.</p>
+<h3 id="ssl-커넥션-과정">SSL 커넥션 과정</h3>
+<p>SSL 커넥션 과정을 요약하자면, 클라이언트는 먼저 웹 서버의 443 포트(HTTPS 기본 포트)로 연결을 수립하고, 암호법 매개변수와 교환 키를 확인하면서 SSL 계층을 초기화합니다. 이 과정을 <strong>SSL 핸드 셰이크(SSL-Hand Shake)</strong> 라고 하며, 초기화가 완료된 SSL 계층에 비로소 클라이언트가 요청 메시지를 전송합니다. 전송된 메시지는 TCP 계층에 도달하기 전에 암호화됩니다.</p>
 <ol>
-<li>두 배열의 length가 다르다.</li>
-<li>각각의 원소 값이 다르다.</li>
+<li>웹 서버의 443 포트로 TCP 커넥션 수립</li>
+<li>SSL 보안 매개변수 핸드셰이크 수행</li>
+<li>SSL을 통해 TCP 계층에 암호화된 요청 전송 (클라이언트 → 서버)</li>
+<li>SSL을 통해 TCP 계층에 암호화된 응답 전송 (서버 → 클라이언트)</li>
+<li>SSL 클로징</li>
+<li>TCP 커넥션 클로징</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EqualArray</span> <span class="o">{</span>
-    <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isEqueals</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">b</span><span class="o">){</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">a</span><span class="o">.</span><span class="na">length</span> <span class="o">!=</span> <span class="n">b</span><span class="o">.</span><span class="na">length</span><span class="o">){</span>
-            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="o">}</span><span class="k">else</span><span class="o">{</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">!=</span> <span class="n">b</span><span class="o">[</span><span class="n">i</span><span class="o">]){</span>
-                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">arrayA</span> <span class="o">=</span> <span class="o">{</span><span class="n">1</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">3</span><span class="o">,</span><span class="n">4</span><span class="o">,</span><span class="n">5</span><span class="o">};</span>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">arrayB</span> <span class="o">=</span> <span class="o">{</span><span class="n">1</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">3</span><span class="o">,</span><span class="n">4</span><span class="o">,</span><span class="n">5</span><span class="o">};</span>
-
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">isEqueals</span><span class="o">(</span><span class="n">arrayA</span><span class="o">,</span> <span class="n">arrayB</span><span class="o">));</span> <span class="c1">//true
-</span><span class="c1"></span>    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="참고자료">참고자료</h2>
+<h3 id="ssl-핸드셰이크">SSL 핸드셰이크</h3>
+<p>SSL 핸드셰이크는 앞서 말한대로 서버와 클라이언트 간 요청 메시지를 송수신하기전 서로 신원을 인증하기 위한 과정 입니다. 핸드셰이크 단계에서는 아래의 내용을 수행합니다.</p>
 <ul>
-<li><strong>자바의 정석 - 배열 (남궁성 저)</strong></li>
-<li><strong>자료구조와 함께 배우는 알고리즘 입문(JAVA) - 배열 자료구조 (Bohyoh Shibata)</strong></li>
-<li><strong><a class="link" href="https://www.codeit.kr/community/threads/1533"  target="_blank" rel="noopener"
-    >CodeIt</a></strong> - ArrayList와 배열 equals 차이</li>
+<li>프로토콜 버전 확인</li>
+<li>암호화 방식 선택</li>
+<li>신원 인증</li>
+<li>채널을 암호화하기 위한 임시 세션 키 생성</li>
+</ul>
+<h2 id="dns">DNS</h2>
+<p><img src="https://github.com/yondo123/yondo123/assets/46988995/e12955ee-df8e-426c-a816-d4eb3876334c" alt="dns-lookup"  />
+<em>cloudflare.com - DNS Lookup and Webpage Query</em>
+HTTP 프로토콜이 속해있는 <code>TCP/IP</code>에서는 통신 단말 간 IP 주소를 사용하여 데이터를 서로 통신합니다. 일반적으로 웹 서비스를 이용하기 위해서 URL을 입력하는데 내부적으로 호스트 URL에 대응하는 IP 주소를 획득하는 절차가 수행합니다. 이 작업을 바로 DNS가 수행하고 있습니다.</p>
+<h3 id="dns-서버">DNS 서버</h3>
+<p>DNS를 사용하려면 별도의 DNS 서버가 필요로합니다. DNS 서버에 미리 호스트명과 IP 주소의 대응 관계와 여러 정보들을 입력해두고, 실제 웹 서비스를 구성한 호스트에서 해당 DNS 서버의 IP 주소를 설정해둡니다. 이때, DNS 서버에 등록하는 정보들을 <strong>DNS 레코드</strong>라고 합니다.</p>
+<p>웹 서비스를 사용자가 URL을 입력하면 자동으로 DNS 서버에 해당하는 IP 주소를 질의합니다. 이 부분은 OS에 기본적으로 내장되어 있는 기능(DNS 리졸버)입니다. DNS 서버는 계층 구조로 되어 있어서 루트에서부터 질의를 반복하여 IP 주소를 찾아갑니다.</p>
+<h3 id="dns-조회-절차">DNS 조회 절차</h3>
+<ol>
+<li>사용자가 웹 브라우저에 URL을 입력하면 DNS 리졸버가 이를 수신합니다. <strong>(jinyisland.kr)</strong></li>
+<li>DNS 리졸버가 DNS 루트 서버 이름(.)을 질의합니다.</li>
+<li>DNS 루트 서버가 도메인에 대한 정보를 저장하는 최상위 도메인 DNS 서버 (.kr)의 주소로 리졸버에 응답합니다. <strong>(최상위 도메인을 Top-Level-Domain, TLD라고 합니다.)</strong></li>
+<li>리졸버가 최상위 주소 TLD 서버에 질의를 하고, TLD 서버는 도메인 이름 서버의 IP 주소를 응답해줍니다.</li>
+<li>DNS 리졸버가 응답 받은 도메인의 이름을 DNS 서버에 전송합니다.</li>
+<li>DNS 서버에서 요청 받은 도메인 이름과 대조해 IP 주소를 응답합니다.</li>
+<li>최종적으로 응답한 IP 주소를 가지고 브라우저가 HTTP 요청을 수행해 웹 페이지 및 응답 데이터들을 수신합니다.</li>
+</ol>
+<h3 id="주요-dns-리소스-레코드">주요 DNS 리소스 레코드</h3>
+<p>DNS 서버에는 다음과 같은 정보를 등록합니다.</p>
+<table>
+<thead>
+<tr>
+<th>레코드 명</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>호스트명에 대응하는 IPv4 주소</td>
+</tr>
+<tr>
+<td>AAAA</td>
+<td>호스트명에 대응하는 IPv6 주소</td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td>호스트명에 대응하는 별칭</td>
+</tr>
+<tr>
+<td>MX</td>
+<td>도메인명에 대응하는 메일 서버</td>
+</tr>
+<tr>
+<td>NS</td>
+<td>도메인명을 관리하는 DNS 서버</td>
+</tr>
+<tr>
+<td>PTR</td>
+<td>IP 주소에 대응하는 호스트명</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dns-질의">DNS 질의</h3>
+<p>DNS 서버는 루트를 정점으로 계층 구조로 이루어져 있어 하위로 내려가면서 IP 주소를 얻기 위해 재귀적으로 각 각 DNS 서버에 묻는데 이를 <strong>DNS 질의</strong>라고 합니다. 크게 세 가지 종류의 DNS 질의가 존재하며, 여러 질의를 조합하여 최적화된 프로세스를 통해 질의 시간을 단축시킵니다.</p>
+<p><strong>재귀 쿼리</strong><br>
+DNS 리졸버가 레코드를 찾을 수 없는 경우, DNS 서버가 요청한 자원 레코드 또는 오류 메시지를 통해 클라이언트에게 응답하도록 요청합니다.</p>
+<p><strong>반복 쿼리</strong><br>
+클라이언트가 DNS 서버에게 가장 상위 계층의 응답을 반환하도록 요청합니다. 일치하는 레코드가 없는 경우, 해당 DNS 서버는 권한을 가진 하위 계층의 DNS 서버에 요청합니다. 오류 또는 시간 초과가 발생할 때까지 반복적으로 질의합니다.</p>
+<p><strong>비재귀 쿼리</strong><br>
+클라이언트로부터 질의를 받은 DNS 서버가 해당 레코드에 대한 권한이 있거나 해당 레코드를 갖고 있는 경우에 발생합니다. DNS 서버의 부하를 방지하기 위해 일시적으로 레코드들을 캐시합니다.</p>
+<h2 id="참고-자료">참고 자료</h2>
+<ul>
+<li><a class="link" href="https://www.yes24.com/Product/Goods/88244509"  target="_blank" rel="noopener"
+    >그림으로 배우는 네트워크 원리 (Gene 저)</a></li>
+<li><a class="link" href="https://www.yes24.com/Product/Goods/15894097"  target="_blank" rel="noopener"
+    >그림으로 배우는 HTTP&amp;Network (우에노 센 저)</a></li>
+<li><a class="link" href="https://www.yes24.com/Product/Goods/15381085"  target="_blank" rel="noopener"
+    >HTTP 완벽 가이드 - 보안 HTTP (데이빗 고울리 저)</a></li>
+<li><a class="link" href="https://www.cloudflare.com/learning/dns/what-is-dns/"  target="_blank" rel="noopener"
+    >cloudflare - What is DNS?</a></li>
 </ul>
 
 </section>
@@ -509,9 +537,7 @@ JAVA 배열의 특징은 다음과 같다.</p>
     
     <section class="article-tags">
         
-            <a href="/tags/java/">java</a>
-        
-            <a href="/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/">자료구조</a>
+            <a href="/tags/network/">network</a>
         
     </section>
 
@@ -527,24 +553,6 @@ JAVA 배열의 특징은 다음과 같다.</p>
         <h2 class="section-title"></h2>
         <div class="related-contents">
             <div class="flex article-list--tile">
-                
-                    
-<article class="has-image">
-    <a href="/post/network-study-week-2/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="../../assets/header/computer-network/week-2.png" loading="lazy" data-key="network-study-week-2" data-hash="../../assets/header/computer-network/week-2.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">[CS 네트워크 스터디] 2주차 학습 내용</h2>
-        </div>
-    </a>
-</article>
                 
                     
 <article class="has-image">
@@ -596,6 +604,24 @@ JAVA 배열의 특징은 다음과 같다.</p>
 
         <div class="article-details">
             <h2 class="article-title">[mac] tree 명령어</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/post/java-array/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="../../assets/thumb/java.png" loading="lazy" data-key="java-array" data-hash="../../assets/thumb/java.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">JAVA 자료구조 배열</h2>
         </div>
     </a>
 </article>
