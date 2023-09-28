@@ -6,7 +6,19 @@
     <description>Recent content in Posts on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Sep 2023 23:19:27 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 29 Sep 2023 05:15:12 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[CS 네트워크 스터디] 3주차 학습 내용</title>
+      <link>https://jinyisland.kr/post/network-study-week-3/</link>
+      <pubDate>Fri, 29 Sep 2023 05:15:12 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/network-study-week-3/</guid>
+      <description>시리즈 👉 CS 네트워크 스터디 1주차
+👉 CS 네트워크 스터디 2주차
+TCP TCP 프로토콜은 UDP와 마찬가지로 전송 계층에 속하며, 데이터 전송의 신뢰성을 보장하기 위한 프로토콜입니다. 신뢰성이 보장되는 것은 송신자와 수신자가 서로 정상적으로 데이터를 받았는지를 확인할 수 있다는 의미입니다.
+TCP 헤더 형식 RFC 783 - TCP Header Format TCP는 신뢰성 있는 데이터 전송을 위해 시퀀스 번호(Sequence Number)와 ACK 번호(Acknowledge Number)를 사용합니다. 시퀀스 번호는 전송하는 데이터의 순서를 나타내며, ACK 번호를 통해 데이터를 올바르게 수신하였는지 알 수 있습니다.</description>
+    </item>
+    
     <item>
       <title>[CS 네트워크 스터디] 2주차 학습 내용</title>
       <link>https://jinyisland.kr/post/network-study-week-2/</link>

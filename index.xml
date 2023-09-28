@@ -6,7 +6,91 @@
         <description>Recent content on Jiny</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 21 Sep 2023 23:19:27 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 29 Sep 2023 05:15:12 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[CS 네트워크 스터디] 3주차 학습 내용</title>
+        <link>https://jinyisland.kr/post/network-study-week-3/</link>
+        <pubDate>Fri, 29 Sep 2023 05:15:12 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/network-study-week-3/</guid>
+        <description>&lt;img src="https://jinyisland.kr/../../assets/header/computer-network/week-3.png" alt="Featured image of post [CS 네트워크 스터디] 3주차 학습 내용" /&gt;&lt;h2 id=&#34;시리즈&#34;&gt;시리즈&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;👉 &lt;a class=&#34;link&#34; href=&#34;https://jinyisland.kr/post/network-study-week-1/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CS 네트워크 스터디 1주차&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;👉 &lt;a class=&#34;link&#34; href=&#34;http://localhost:1313/post/network-study-week-2/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CS 네트워크 스터디 2주차&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;tcp&#34;&gt;TCP&lt;/h2&gt;
+&lt;p&gt;TCP 프로토콜은 UDP와 마찬가지로 전송 계층에 속하며, &lt;strong&gt;데이터 전송의 신뢰성을 보장하기 위한 프로토콜&lt;/strong&gt;입니다. 신뢰성이 보장되는 것은 송신자와 수신자가 서로 정상적으로 데이터를 받았는지를 확인할 수 있다는 의미입니다.&lt;/p&gt;
+&lt;h3 id=&#34;tcp-헤더-형식&#34;&gt;TCP 헤더 형식&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/bd4eba1d-3ca6-4813-a9b5-57e4896feaec&#34; alt=&#34;01-tcp-header&#34;  /&gt;
+&lt;em&gt;RFC 783 - TCP Header Format&lt;/em&gt;
+TCP는 신뢰성 있는 데이터 전송을 위해 &lt;code&gt;시퀀스 번호(Sequence Number)&lt;/code&gt;와 &lt;code&gt;ACK 번호(Acknowledge Number)&lt;/code&gt;를 사용합니다. 시퀀스 번호는 전송하는 데이터의 순서를 나타내며, ACK 번호를 통해 데이터를 올바르게 수신하였는지 알 수 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;tcp-전송-절차&#34;&gt;TCP 전송 절차&lt;/h3&gt;
+&lt;p&gt;TCP 전송은 &lt;strong&gt;TCP 커넥션 맺기 → 애플리케이션 간 데이터 송수신 → TCP 커넥션 끊기 절차&lt;/strong&gt;로 이루어져 있습니다. 데이터를 신뢰성 있게 송수신하기 위해 애플리케이션 간 데이터 송신/수신 확인 프로세스가 존재합니다. 이를 3-Way Handshake라고 합니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;TCP 커넥션 맺기&lt;/strong&gt;&lt;br&gt;
+상대방 애플리케이션이 정상적으로 데이터를 송수신할 수 있는 상태인지 확인 후 애플리케이션끼리 가상으로 접속하는 단계 입니다. 이 과정에서 &lt;code&gt;3-Way Handshake&lt;/code&gt;를 사용합니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;애플리케이션 간 데이터 송수신&lt;/strong&gt;&lt;br&gt;
+TCP 통신을 수행하기 위해 애플리케이션에서 전송할 데이터에 프로토콜 헤더와 TCP 헤더를 추가하여 전송하는데 이를 &lt;strong&gt;TCP 세그먼트&lt;/strong&gt;라고 합니다. 이 때, 세그먼트의 크기가 크면 분할하여 여러 개의 TCP 세그먼트로 나누어 전송합니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;TCP 커넥션 끊기&lt;/strong&gt;&lt;br&gt;
+애플리케이션의 데이터 전송이 완료되면, TCP 커넥션을 끊습니다. 이 과정에서 &lt;code&gt;4-Way Handshake&lt;/code&gt;를 사용합니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;3-way-handshake&#34;&gt;3-Way Handshake&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/55d7ffca-98f2-4300-bae0-d226d3eb55a7&#34; alt=&#34;02-3-way-handshake&#34;  /&gt;
+&lt;em&gt;Cloudflare - TCP 3-Way Handshake&lt;/em&gt;
+우선 3-Way Handshake를 수행하기 위해 TCP 헤더에 정의된 &lt;code&gt;SYN&lt;/code&gt;과 &lt;code&gt;ACK&lt;/code&gt; 플래그를 사용합니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;클라이언트에서 서버와의 연결을 수행하기 위해 &lt;code&gt;SYN&lt;/code&gt; 플래그가 포함된 세그먼트를 서버에 전송합니다. 이 플래그는 세그먼트를 시작할 때 사용할 시퀀스 번호와 연결 요청이 가능하다는 의미를 가지고 있습니다.&lt;/li&gt;
+&lt;li&gt;서버는 &lt;code&gt;SYN&lt;/code&gt; 요청을 받고, 수신이 잘 되었음을 알리는 &lt;code&gt;ACK&lt;/code&gt; 플래그가 포함된 세그먼트를 다시 클라이언트에게 응답합니다.&lt;/li&gt;
+&lt;li&gt;클라이언트는 서버로부터 응답을 확인하고, 다시 &lt;code&gt;ACK&lt;/code&gt; 플래그가 포함된 세그먼트를 전송하여 웹 서버와 클라이언트(웹 브라우저 등) 모두 정상적인 연결을 확인을 합니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;이 절차들을 모두 수행해야 TCP 통신을 위한 연결 확인 과정이 완료되며, 이후에는 TCP 내의 여러 프로토콜(HTTP 등)을 사용하여 데이터를 서로 송수신할 수 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;4-way-handshake&#34;&gt;4-Way Handshake&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/d50e0985-2f26-4c5d-892a-ad4a732daf1e&#34; alt=&#34;03-4-way-handshake&#34;  /&gt;
+&lt;em&gt;Quora.com - 4-Way Handshake&lt;/em&gt;
+TCP 통신을 끝내기 위해서 클라이언트와 서버는 &lt;code&gt;4-Way Handshake&lt;/code&gt; 방식으로 세그먼트를 통신합니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;클라이언트에서 서버 종료를 요청하기 위해 &lt;code&gt;FIN&lt;/code&gt; 플래그가 포함된 세그먼트를 서버에 전송합니다.&lt;/li&gt;
+&lt;li&gt;서버는 &lt;code&gt;FIN&lt;/code&gt; 요청을 받고, 다시 &lt;code&gt;ACK&lt;/code&gt; 플래그가 포함된 세그먼트를 클라이언트에게 응답합니다.&lt;/li&gt;
+&lt;li&gt;서버는 (2) 응답이 완료되면 연결 종료 신호인 &lt;code&gt;FIN&lt;/code&gt; 플래그가 포함된 세그먼트를 다시 전송합니다.&lt;/li&gt;
+&lt;li&gt;클라이언트는 종료에 대한 최종 승인으로 &lt;code&gt;ACK&lt;/code&gt; 플래그를 전송하고, 이후에 TCP 연결이 완전히 닫히게 됩니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;fast-retransmit&#34;&gt;Fast Retransmit&lt;/h3&gt;
+&lt;p&gt;TCP 통신에서 송신자가 중복 ACK 플래그를 3번 송신하면, 손실된 데이터로 간주하고 재전송 타이머를 만료시키지 않고 해당 데이터를 바로 재전송하는 TCP 프로토콜에서 제공하는 기능 입니다. TCP에서는 세그먼트를 전송할 때 재전송을 위해 재전송 타이머를 가동합니다. 간략한 과정을 설명드리면 아래와 같습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;세 번째 중복 &lt;code&gt;ACK&lt;/code&gt;가 수신되면 송신 윈도우(cwnd)와 수신자의 수용 가능한 윈도우 중 작은 값의 절반으로 임계 값(ssthresh)을 설정합니다.&lt;/li&gt;
+&lt;li&gt;누락된 세그먼트를 재전송하고 &lt;code&gt;cwnd&lt;/code&gt; 크기를 임계 값 + 세그먼트 크기의 3배 합계로 설정합니다.&lt;/li&gt;
+&lt;li&gt;추가로 중복 ACK가 도착하면 세그먼트 크기만큼 &lt;code&gt;cwnd&lt;/code&gt; 크기를 증가시키고, 새 cwnd 값이 허용하는 경우 패킷을 전송합니다.&lt;/li&gt;
+&lt;li&gt;새 데이터를 수신한 다음 &lt;code&gt;ACK&lt;/code&gt;가 도착하면 &lt;code&gt;cwnd&lt;/code&gt;를 임계 값으로 설정합니다. 이 ACK 값은 1단계에서 재전송한 후 한 번의 왕복 시간이 지난 후에 도착해야 하는 ACK입니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;flow-control&#34;&gt;Flow Control&lt;/h3&gt;
+&lt;p&gt;TCP 프로토콜을 사용한 데이터 송수신시, 특정 대역폭을 보장하여 데이터 통신을 수행할 수 있도록 수행하는 기능입니다. 이 기능에서 &lt;code&gt;슬라이딩 윈도우&lt;/code&gt; 방식 또는 &lt;code&gt;전송 후 대기(Stop and Wait Protocol)&lt;/code&gt;방식을 사용합니다. 구체적인 내용은 지난 주 스터디에 공부한 내용이라 &lt;a class=&#34;link&#34; href=&#34;https://jinyisland.kr/post/network-study-week-2/#%EC%8B%A0%EB%A2%B0%EC%A0%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%84%EC%86%A1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;스터디 링크&lt;/a&gt;만 남겨두도록 하겠습니다!&lt;/p&gt;
+&lt;h2 id=&#34;슬라이딩-윈도우란&#34;&gt;슬라이딩 윈도우란?&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/e809f7bc-9925-4d81-a4d9-3ea7c54fa525&#34; alt=&#34;04-sliding-window-protocol&#34;  /&gt;
+&lt;em&gt;educative - Sliding Window Protocol&lt;/em&gt;
+슬라이딩 윈도우 프로토콜이란 패킷을 연속적이고 안정적으로 전송하기 위해 사용되는 프로토콜 방식 입니다.&lt;strong&gt;(주로 전송 계층 TCP 또는 Data Link 계층에서 사용)&lt;/strong&gt; 발신자와 수신자 간 연결을 설정 할 때 두 개의 버퍼가 생성되고 각각 발신 윈도우(Sending Window), 수신 윈도우(Receiving Window)라고 불립니다.&lt;/p&gt;
+&lt;p&gt;마치 실제 창문의 움직임처럼, 일정한 패킷들을 담은 윈도우를 수신자에게 전송하고 올바르게 수신하면 &lt;code&gt;ACK&lt;/code&gt; 플래그 값을 통해 다음 윈도우 크기의 패킷들을 전송합니다. 이미 전송된 패킷은 다시 수신되지 않도록 일정한 윈도우 사이즈를 기반으로 반복적으로 전송하므로써 순서대로 패킷을 전송해야하는 TCP 프로토콜에서 핵심적인 부분이라고 볼 수 있습니다.&lt;/p&gt;
+&lt;h2 id=&#34;참고-자료&#34;&gt;참고 자료&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.yes24.com/Product/Goods/88244509&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;그림으로 배우는 네트워크 원리 - 확실하게 애플리케이션의 데이터를 전송한다. (Gene 저)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cloudflare.com/learning/ddos/glossary/tcp-ip/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Cloudflare - What is TCP/IP?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.geeksforgeeks.org/tcp-3-way-handshake-process/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GeeksforGeeks - TCP 3-Way Handshake Process&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.isi.edu/nsnam/DIRECTED_RESEARCH/DR_HYUNAH/D-Research/fast-retransmit.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;isi.edu - &amp;ldquo;Fast Retransmit&amp;rdquo; in TCP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.educative.io/answers/what-is-the-tcp-flow-control-mechanism&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Educative - What is the TCP Flow Control mechanism?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>[CS 네트워크 스터디] 2주차 학습 내용</title>
         <link>https://jinyisland.kr/post/network-study-week-2/</link>
         <pubDate>Thu, 21 Sep 2023 23:19:27 +0900</pubDate>
