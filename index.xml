@@ -6,7 +6,117 @@
         <description>Recent content on Jiny</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 29 Sep 2023 05:15:12 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 05 Oct 2023 23:50:12 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[CS 네트워크 스터디] 4주차 학습 내용</title>
+        <link>https://jinyisland.kr/post/network-study-week-4/</link>
+        <pubDate>Thu, 05 Oct 2023 23:50:12 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/network-study-week-4/</guid>
+        <description>&lt;img src="https://jinyisland.kr/../../assets/header/computer-network/week-4.png" alt="Featured image of post [CS 네트워크 스터디] 4주차 학습 내용" /&gt;&lt;h2 id=&#34;시리즈&#34;&gt;시리즈&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;👉 &lt;a class=&#34;link&#34; href=&#34;https://jinyisland.kr/post/network-study-week-1/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CS 네트워크 스터디 1주차&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;👉 &lt;a class=&#34;link&#34; href=&#34;https://jinyisland.kr/post/network-study-week-2/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CS 네트워크 스터디 2주차&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;👉 &lt;a class=&#34;link&#34; href=&#34;https://jinyisland.kr/post/network-study-week-3/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CS 네트워크 스터디 3주차&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;ip-프로토콜&#34;&gt;IP 프로토콜&lt;/h2&gt;
+&lt;h3 id=&#34;ip-주소란&#34;&gt;IP 주소란?&lt;/h3&gt;
+&lt;p&gt;일상 생활에서 사용하는 사물 중에 고유의 번호가 있는 것처럼, &lt;code&gt;TCP/IP&lt;/code&gt; 프로토콜 내에서 통신하는 장비들을 구분하기 위해 만들어진 것이 IP 주소입니다. 처음 만들어졌을 때 인터넷이 많이 보편화되지 않을 것이라는 생각에 초창기 등장한 IP 주소의 개수는 총 2의 32제곱입니다. 이를 &lt;code&gt;IPv4&lt;/code&gt;라고 합니다. &lt;strong&gt;(약 42억 개)&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# IPv4 주소 형식
+192.168.1.172
+
+# 실제로는 아래와 같이 2진수로 이루어져 있습니다.
+11000000.10101000.00000001.10101100
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;점차 사용량이 늘어남에 따라 기존 IP 주소 체계의 확장이 필요해졌고, 이후 등장한 프로토콜이 &lt;code&gt;IPv6&lt;/code&gt; 입니다. &lt;code&gt;IPv6&lt;/code&gt;는 128비트 주소 형식을 사용하고 숫자와 문자를 모두 표시합니다. &lt;strong&gt;(기존 IPv4 주소 체계보다 1,028배 할당 가능)&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# IPv6 주소 형식
+3002:0bd6:0000:0000:0000:ee00:0033:6778
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;주소-할당-방식&#34;&gt;주소 할당 방식&lt;/h3&gt;
+&lt;p&gt;IP 주소는 사용자가 직접 입력하는 &lt;code&gt;스태틱 방식&lt;/code&gt;과 DHCP 서버를 통해 자동으로 분배 받는 &lt;code&gt;DHCP 방식&lt;/code&gt;이 있습니다. 스태틱 방식은 직접 IP와 DNS, 서브넷 마스크 등을 입력해야하기 때문에 자신이 속한 네트워크 구조를 잘 알아야한다는 특징과 체계적으로 조직 IP 구성을 할 수 있다는 장점이 있습니다.&lt;/p&gt;
+&lt;p&gt;반면, DHCP 방식은 별도의 DHCP 서버를 통해 현재 사용되지 않는 IP 주소를 자동으로 탐색하여 단말기에게 할당하는 방식입니다. 이는 스태틱 방식보다 편리성이 뛰어나지만, 동일한 IP를 유지하지 않고 임대 시간을 설정하여 할당하는 것이기 때문에 추후에 IP 주소가 변경될 수도 있는 단점이 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;ipv4와-ipv6&#34;&gt;IPv4와 IPv6&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;IPv4&lt;/strong&gt;&lt;br&gt;
+IPv4는 32자리 2진수로 이루어져 있고, 네트워크 부분과 호스트 부분으로 구성되어있습니다. 네트워크 영역은 하나의 브로드캐스트 영역을 의미하며 이는 쉽게 말해 라우터를 거치지 않고 통신이 가능한 영역을 말합니다. &lt;strong&gt;(같은 네트워크 공간)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;호스트 영역은 해당 네트워크 영역 내에서 구분 가능한 고유한 영역입니다. 만약 네트워크 영역과 호스트 영역이 동일하다면, 두 단말기는 서로 충돌이 발생합니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IPv6&lt;/strong&gt;&lt;br&gt;
+&lt;code&gt;IPv4&lt;/code&gt;와 기술적인 차이는 별도의 NAT 프로세스를 제거하고, 네트워크 보안 계층(IPSec)이 내장되어 있다는 것입니다. 또한 멀티캐스팅이 기본으로 채택되어 있어 한 번에 여러 단말에게 패킷을 전송할 수 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;ip-클래스&#34;&gt;IP 클래스&lt;/h3&gt;
+&lt;p&gt;IP 주소 클래스는 네트워크 영역과 호스트 영역을 구분짓기 위한 일종의 약속 체계입니다. A, B, C, D, E 총 5개의 클래스로 구성되어 있으며 주로 사용하는 것은 A~C 클래스입니다. 실생활에서 주로 사용되는 클래스는 A~C 클래스이며 D 클래스는 멀티캐스트용으로, E 클래스는 연구용으로 분류됩니다.&lt;/p&gt;
+&lt;p&gt;클래스에는 각 네트워크가 들어갈 수 있는 주소 영역과 호스트가 들어갈 수 있는 주소 영역이 엄격하게 정해져 있습니다. 여기서 호스트 주소가 모두 1인 경우에는 해당 클래스 네트워크 영역에 존재하는 모든 호스트에게 전송하기 위한 브로드캐스트 주소입니다. 따라서 호스트 주소가 모두 1인 경우는 없습니다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;구분&lt;/th&gt;
+&lt;th&gt;A Class&lt;/th&gt;
+&lt;th&gt;B Class&lt;/th&gt;
+&lt;th&gt;C Class&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;네트워크 IP&lt;/td&gt;
+&lt;td&gt;0 ~ 126&lt;/td&gt;
+&lt;td&gt;128.1 ~ 191.255&lt;/td&gt;
+&lt;td&gt;192.0.0 ~ 223.255.255&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;IP 주소 범위&lt;/td&gt;
+&lt;td&gt;0.0.0.0 ~ 127.255.255.255&lt;/td&gt;
+&lt;td&gt;128.0.0.0 ~ 191.255.255.255&lt;/td&gt;
+&lt;td&gt;192.0.0.0 ~ 223.255.255.255&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;호스트 수&lt;/td&gt;
+&lt;td&gt;16,777,214&lt;/td&gt;
+&lt;td&gt;65,534&lt;/td&gt;
+&lt;td&gt;254&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;각 클래스당 호스트는 실제 IP 범위보다 2개가 적습니다. 만약 호스트 부분이 모두 0이면 해당 네트워크를 나타내고, 모두 1이면 브로드캐스트 전용이므로 실제로 사용 가능한 숫자를 적어두었습니다.&lt;/p&gt;
+&lt;h2 id=&#34;서브넷과-서브넷마스크&#34;&gt;서브넷과 서브넷마스크&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/c1483e47-aeb4-4fbf-9eee-006e2fa6cabc&#34; alt=&#34;01-subnetmask&#34;  /&gt;
+&lt;em&gt;avinetworks.com - Subnet Mask&lt;/em&gt;
+&lt;strong&gt;서브넷 마스크&lt;/strong&gt;&lt;br&gt;
+서브넷 마스크(Subnet Mask)란 어원 그대로 메인이 아닌 어떤 가공을 통한 네트워크를 만들기 위해 가상으로 씌우는 일종의 마스크 역할을 수행하는 기능입니다. 예를 들어 클래스 B의 IP주소를 할당 받았는데, 별도의 가공 없이 그대로 사용한다면 고작 60000여개의 사용자들 밖에 할당을 하지 못합니다. 이런 문제를 해결하기 위해 서브넷 마스크를 사용하여 할당된 IP 주소를 네트워크 환경에 맞게 분배할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;서브넷 마스크로 만들어진 네트워크를 &lt;strong&gt;서브넷&lt;/strong&gt;이라고 하며, 서브넷은 하나의 네트워크이기 때문에 서로 나뉜 서브넷끼리는 &lt;code&gt;라우터&lt;/code&gt;를 통해 통신이 가능합니다. 이를 통해 브로드캐스트 대역을 줄여 제한된 네트워크 주소를 효율적으로 분배할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;서브넷&lt;/strong&gt;&lt;br&gt;
+서브넷은 하나의 물리적 네트워크를 여러 개의 네트워크로 분리하는 것을 의미합니다. 서브넷을 만드는 목적은 IP 주소를 보다 효율적으로 (낭비 없이) 사용하기 위해 호스트에 적절한 주소를 할당하는 것입니다. 모든 IP 주소에는 서브넷 마스크가 존재하는데 서브넷을 하지 않은 상태의 클래스 기본 성질을 사용하는 것은 디폴트 서브넷 마스크를 사용합니다.&lt;/p&gt;
+&lt;h3 id=&#34;공인-ip와-사설-ip&#34;&gt;공인 IP와 사설 IP&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/0e7821ee-9d83-455f-9207-a0297c38e2d1&#34; alt=&#34;02-public-private-ip&#34;  /&gt;
+&lt;em&gt;pragimtech.com - Public IP Address / Private IP Address&lt;/em&gt;
+&lt;strong&gt;공인 IP&lt;/strong&gt;&lt;br&gt;
+공인 IP(Public IP)란 인터넷을 통해 직접 접근할 수 있는 IP 주소로, 인터넷 서비스 제공업체(ISP)가 네트워크 라우터에 할당한 주소 입니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;사설 IP&lt;/strong&gt;&lt;br&gt;
+사설 IP (Private IP)는 하나의 네트워크 라우터 내에서 각 통신 단말기(PC, 인터넷 전화 등)에 할당하는 주소를 의미합니다. 같은 네트워크 라우터 내에서 외부 인터넷에 연결하지 않고도 서로 통신이 가능하며 외부 사용자에게 노출되지 않는 특징을 갖고 있습니다.&lt;/p&gt;
+&lt;h2 id=&#34;라우팅-프로토콜&#34;&gt;라우팅 프로토콜&lt;/h2&gt;
+&lt;h3 id=&#34;라우터의-역할&#34;&gt;라우터의 역할&lt;/h3&gt;
+&lt;p&gt;IP 프로토콜에서 서브넷 마스크를 알게되었고, 서브넷 마스크를 통해 한정된 IP 주소를 쪼개어 라우터 간 통신이 가능해진다는 것도 알게되었습니다. 그러면 &lt;strong&gt;라우터&lt;/strong&gt;라는 것은 어떤 역할을 수행할까요? 라우터는 데이터를 목적지까지 가장 빠르고 효율적인 경로를 찾아 안내하는 역할을 수행합니다.&lt;/p&gt;
+&lt;p&gt;여기서 경로(route)를 찾는 것을 자동으로 수행하는 것은아니고 네트워크 엔지니어가 특별한 세팅을 해주어야 제대로 기능을 수행할 수 있습니다. 라우터가 수행하는 기능 핵심은 아래 두 가지라고 볼 수 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;경로 결정 (Path Determination):&lt;/strong&gt; 데이터 패킷이 목적지까지 갈 수 있는 경로를 검사하고 적절한 경로를 결정&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;스위칭 (Switching):&lt;/strong&gt; 정해진 경로에 따라 데이터 패킷을 배분&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;라우팅-프로토콜-1&#34;&gt;라우팅 프로토콜&lt;/h3&gt;
+&lt;p&gt;라우팅 프로토콜을 다른 의미로 ‘라우팅 알고리즘’이라고도 합니다. 라우팅 알고리즘은 라우터가 보유한 라우팅 테이블에 데이터 패킷의 목적지 경로에 대한 정보를 기록해두는 역할을 합니다. &lt;strong&gt;(목적지, 목적지까지의 거리, 경로 방식)&lt;/strong&gt; 라우팅 프로토콜에는 &lt;code&gt;스태틱 라우팅 프로토콜&lt;/code&gt;과 &lt;code&gt;다이나믹 라우팅 프로토콜&lt;/code&gt;으로 구성됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;스태틱 라우팅 프로토콜&lt;/strong&gt;&lt;br&gt;
+말 그대로 정적인 방식으로, 직접 엔지니어가 라우터에 경로를 일일이 입력해주는 방식입니다. 수동으로 입력하기 때문에 이상적인 경로만 입력한다면 성능에 제약이 없어, 라우팅 속도도 빠르고 외부에서 입력 받기 때문에 라우터 끼리 라우팅 테이블을 교환하는 절차도 필요 없다는 장점이 있습니다. &lt;strong&gt;(메모리, 대역폭 비용 낮음)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;반대로 단점은 일일이 목적지 별 경로를 입력해주어야 한다는 특징 때문에 목적지가 늘어날 때마다 입력해주어야 한다는 점과 잘못된 경로가 입력되면 엔지니어가 직접 수동으로 대응해야 한다는 단점이 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;다이나믹 라우팅 프로토콜&lt;/strong&gt;&lt;br&gt;
+스태틱 라우팅 프로토콜과는 달리, 자동으로 목적지 경로를 결정하고 최적의 경로를 찾아가는 다이내믹 라우팅 프로토콜입니다. 일반적으로 RIP, IGRP, OSPF, EIGRP 등의 프로토콜이 다이내믹 라우팅 프로토콜에 속합니다. 여러 가지 상황에 자동적으로 대응해줄 수 있어 안정성이 높아 많이 사용하지만 해야 할 처리 과정이 많아 스태틱 라우팅에 비해 라우터에 부담을 준다는 단점이 있습니다. &lt;strong&gt;(안정성, 편의성)&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;참조-자료&#34;&gt;참조 자료&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.yes24.com/Product/Goods/113485068&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;후니의 쉽게쓴 CISCO 네트워킹 (진강훈 저)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://kinsta.com/blog/ipv4-vs-ipv6&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;kinsta.com - IPv4 vs IPv6: What’s The Difference Between the Two Protocols?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://avinetworks.com/glossary/subnet-mask/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;avinetworks.com - Subnet Mask Definition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.pragimtech.com/blog/azure/public-ip-address-vs-private-ip-address/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;pragimtech.com - Public IP address vs Private IP address&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>[CS 네트워크 스터디] 3주차 학습 내용</title>
         <link>https://jinyisland.kr/post/network-study-week-3/</link>
         <pubDate>Fri, 29 Sep 2023 05:15:12 +0900</pubDate>

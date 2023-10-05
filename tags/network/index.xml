@@ -6,7 +6,20 @@
     <description>Recent content in network on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 29 Sep 2023 05:15:12 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/network/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Oct 2023 23:50:12 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/tags/network/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[CS 네트워크 스터디] 4주차 학습 내용</title>
+      <link>https://jinyisland.kr/post/network-study-week-4/</link>
+      <pubDate>Thu, 05 Oct 2023 23:50:12 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/network-study-week-4/</guid>
+      <description>시리즈 👉 CS 네트워크 스터디 1주차
+👉 CS 네트워크 스터디 2주차
+👉 CS 네트워크 스터디 3주차
+IP 프로토콜 IP 주소란? 일상 생활에서 사용하는 사물 중에 고유의 번호가 있는 것처럼, TCP/IP 프로토콜 내에서 통신하는 장비들을 구분하기 위해 만들어진 것이 IP 주소입니다. 처음 만들어졌을 때 인터넷이 많이 보편화되지 않을 것이라는 생각에 초창기 등장한 IP 주소의 개수는 총 2의 32제곱입니다. 이를 IPv4라고 합니다. (약 42억 개)
+# IPv4 주소 형식 192.168.1.172 # 실제로는 아래와 같이 2진수로 이루어져 있습니다.</description>
+    </item>
+    
     <item>
       <title>[CS 네트워크 스터디] 3주차 학습 내용</title>
       <link>https://jinyisland.kr/post/network-study-week-3/</link>
