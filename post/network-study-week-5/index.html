@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TN7PCJZTQ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6TN7PCJZTQ');
+</script>
+
+        <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='쿠키와 세션, HTTP 아키텍처와 네트워크 보안'><title>[CS 네트워크 스터디] 5주차 학습 내용</title>
+<link rel='canonical' href='https://jinyisland.kr/post/network-study-week-5/'>
+<link rel="icon" href="/%20/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="/scss/style.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script><meta property='og:title' content='[CS 네트워크 스터디] 5주차 학습 내용'>
+<meta property='og:description' content='쿠키와 세션, HTTP 아키텍처와 네트워크 보안'>
+<meta property='og:url' content='https://jinyisland.kr/post/network-study-week-5/'>
+<meta property='og:site_name' content='Jiny'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='network' /><meta property='article:published_time' content='2023-10-13T05:42:33&#43;09:00' /><meta property='article:modified_time' content='2023-10-13T05:42:33&#43;09:00' />
+<meta property='og:image' content='https://jinyisland.kr/assets/header/computer-network/week-5.png' />
+<meta name="twitter:title" content="[CS 네트워크 스터디] 5주차 학습 내용">
+<meta name="twitter:description" content="쿠키와 세션, HTTP 아키텍처와 네트워크 보안"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jinyisland.kr/../../assets/header/computer-network/week-5.png' /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<style>
+    .article-content code {
+        word-wrap: break-word;
+    }
+</style>
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hub38313664a67c625b5c64f3cb8dc247e_143597_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://jinyisland.kr">Jiny</a></h1>
+        <h2 class="site-description">😎 승진이의 공부 블로그</h2>
+    </header>
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/frontend/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff9300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Frontend</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/backend/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Backend</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/web/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Web</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/style/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#7f5345" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Style</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/book/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>Book</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/etc/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notebook" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#d63031" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-11a1 1 0 0 1 -1 -1v-14a1 1 0 0 1 1 -1m3 0v18" />
+  <line x1="13" y1="8" x2="15" y2="8" />
+  <line x1="13" y1="12" x2="15" y2="12" />
+</svg>
+                
+                <span>ETC</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Categories</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span></span>
+            </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://jinyisland.kr" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+    <div class="article-image">
+        <a href="/post/network-study-week-5/">
+            
+            <img src="../../assets/header/computer-network/week-5.png" loading="lazy" alt="Featured image of post [CS 네트워크 스터디] 5주차 학습 내용" />
+            
+        </a>
+    </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/etc/" style="background-color: #c44c81; color: #fff;">
+                ETC
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/network-study-week-5/">[CS 네트워크 스터디] 5주차 학습 내용</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        쿠키와 세션, HTTP 아키텍처와 네트워크 보안
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Oct 13, 2023</time>
+    </footer></div>
+</header>
+
+    <section class="article-content js-toc-content">
+    <div class="js-toc"></div>
+    <h2 id="시리즈">시리즈</h2>
+<p><strong>👉 <a class="link" href="https://jinyisland.kr/post/network-study-week-1/"  target="_blank" rel="noopener"
+    >CS 네트워크 스터디 1주차</a></strong><br>
+<strong>👉 <a class="link" href="https://jinyisland.kr/post/network-study-week-2/"  target="_blank" rel="noopener"
+    >CS 네트워크 스터디 2주차</a></strong><br>
+<strong>👉 <a class="link" href="https://jinyisland.kr/post/network-study-week-3/"  target="_blank" rel="noopener"
+    >CS 네트워크 스터디 3주차</a></strong><br>
+<strong>👉 <a class="link" href="https://jinyisland.kr/post/network-study-week-4/"  target="_blank" rel="noopener"
+    >CS 네트워크 스터디 4주차</a></strong></p>
+<h2 id="쿠키와-세션">쿠키와 세션</h2>
+<p>HTTP 프로토콜은 기본적으로 상태가 없는 프로토콜입니다. 웹 서비스에서 제공하는 기능들은 개인별로 맞춤화된 서비스가 많습니다. 하지만 HTTP는 상태가 없기 때문에 방문한 개인의 정보를 기억하는 별도의 방법을 사용해야 합니다.<br>
+초기에는 이러한 제약을 해결하기 위해 클라이언트의 IP 주소를 사용한 방식을 사용하였습니다. IP 주소는 사용자가 아닌 통신하는 단말을 가리키기 때문에 개개인이라는 확신을 할 수 없고, 보안상 실제 IP 주소를 쉽게 노출시키지 않기 때문에 한계가 명확하게 존재하는 방식이었습니다. 현재는 쿠키(Cookie)와 세션(Session) 등을 활용하여 HTTP 프로토콜의 이러한 약점을 보완하고 있습니다.</p>
+<h3 id="쿠키">쿠키</h3>
+<p>쿠키는 사용자의 브라우저에 식별 데이터를 보관하는 방식입니다. 세션 쿠키(session cookie)와 지속 쿠키(persistent cookie) 두 가지로 분류됩니다.</p>
+<ul>
+<li><strong>세션 쿠키:</strong> 사용자가 브라우저를 닫으면 삭제됩니다.</li>
+<li><strong>지속 쿠키:</strong> 사용자 디스크에 보관되어 브라우저를 닫거나 PC를 재시작하여도 보존됩니다.</li>
+</ul>
+<p><strong>쿠키의 동작방식</strong><br>
+사용자가 웹 사이트에 접속하면 해당 사용자를 식별하기 위해 개별 값을 쿠키에 할당합니다. 쿠키는 임의의 <code>key=value</code> 형태의 리스트를 가지고 있고 HTTP 응답 헤더에 기술하여 사용자에게 전달할 수 있습니다.<br>
+지난번에 <a class="link" href="https://jinyisland.kr/post/cookies/"  target="_blank" rel="noopener"
+    >HTTP 쿠키의 개념과 활용 방법</a> 포스팅을 통해 대략적으로 웹 서버(Express.js)에서 쿠키를 전송하는 방법에 대해 다룬적이 있습니다. <code>Set-Cookie</code> 필드를 통해 쿠키를 명시할 수 있습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+
+<span class="nx">http</span>
+  <span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kr">async</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">method</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">mtehod</span><span class="p">;</span>
+    <span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">method</span> <span class="o">===</span> <span class="s1">&#39;POST&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">url</span> <span class="o">===</span> <span class="s1">&#39;/signup&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">body</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+      <span class="nx">request</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">body</span> <span class="o">+=</span> <span class="nx">data</span><span class="p">;</span>
+      <span class="p">});</span>
+
+      <span class="k">return</span> <span class="nx">request</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="nx">result</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+          <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;success&#39;</span>
+        <span class="p">};</span>
+        <span class="nx">body</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+        <span class="c1">//응답 헤더에 쿠키 설정
+</span><span class="c1"></span>        <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span>
+          <span class="s1">&#39;content-Type&#39;</span><span class="o">:</span> <span class="s1">&#39;Application/json; charset=utf-8&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;Set-Cookie&#39;</span><span class="o">:</span> <span class="sb">`user-id=</span><span class="si">${</span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">body</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span>
+        <span class="p">});</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">result</span><span class="p">));</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8088</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Server Start!!&#39;</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div><p>브라우저는 방문한 여러 사이트에서 제공하는 쿠키들을 모두 보관할 수 있지만, 모든 사이트마다 쿠키를 전송하지는 않습니다. 그 이유는 성능 저하와 각 사이트마다 서로 다른 쿠키 이름을 설정하기 때문에 효율성이 떨어지기 때문입니다.</p>
+<p><strong>주요 속성(Attributes)</strong></p>
+<ul>
+<li><strong>Domain</strong><br>
+어떤 도메인을 가진 사이트가 쿠키를 읽는지 명시할 수 있습니다.
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Set-Cookie: <span class="nv">user</span><span class="o">=</span><span class="s2">&#34;user123&#34;</span><span class="p">;</span> <span class="nv">domain</span><span class="o">=</span><span class="s2">&#34;jinyisland.kr&#34;</span>
+</code></pre></div></li>
+<li><strong>Path</strong><br>
+특정 경로에서 쿠키를 사용할 때 경로를 명시할 수 있습니다. 예를들어 <code>Path=/user</code> 라면, /user 하위의 URL 요청시에만 쿠키를 사용합니다.</li>
+<li><strong>Expires</strong><br>
+쿠키의 유효시간을 가리키는 날짜 문자열(요일, DD-MM-YY HH:MM:SS GMT)을 명시합니다. <code>Expires</code>를 명시하지 않으면 기본적으로 쿠키는 세션 쿠키로 동작하며 브라우저가 닫힐 때 파기됩니다.
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Set-Cookie: <span class="nv">expries</span><span class="o">=</span>Wed, <span class="m">21</span> Oct <span class="m">2015</span> 07:28:00 GMT
+</code></pre></div></li>
+<li><strong>Secure</strong><br>
+HTTP가 SSL 보안 연결을 사용하는 경우(HTTPS)에만 쿠키를 전송하도록 명시합니다.
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Set-Cookie: <span class="nv">private_key</span><span class="o">=</span>123<span class="p">;</span> secure
+</code></pre></div></li>
+<li><strong>HttpOnly</strong>
+사용자측에서 스크립트를 통한 쿠키 접근을 방지합니다.
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Set-Cookie: <span class="nv">private_key</span><span class="o">=</span>123<span class="p">;</span> secure<span class="p">;</span> HttpOnly<span class="p">;</span>
+</code></pre></div></li>
+</ul>
+<h3 id="세션">세션</h3>
+<p><img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/b0999b2c-a120-4c75-b491-fe115ff6a4d3" alt="01-http-cookie-flow"  />
+<em>출처: Microsoft Ignite - HTTP Cookie (Session ID)</em>
+세션도 본질적으로 쿠키를 활용해서 식별할 수 있는 데이터를 전송하는 방법이지만 쿠키와 다르게 데이터를 서버에 저장하고, 클라이언트에게 세션을 조회할 수 있는 세션 ID을 전송한 뒤 클라이안트가 요청한 <code>session-id</code>를대조하여 서버에 저장되어 있는 세션 데이터를 응답해주는 방식입니다.</p>
+<p>웹 서버에 저장하기 때문에 쿠키에 비해 상대적으로 안전하고 서버 용량에 따라 유동적으로 크기를 설정할 수 있다는 장점이 있습니다. 하지만 별도로 클라이언트에서 전송한 세션 ID를 검증하는 프로세스가 필요하기 때문에 성능은 쿠키와 비교했을 때 상대적으로 느릴 수 있습니다.</p>
+<h2 id="네트워크-보안">네트워크 보안</h2>
+<h3 id="sopsame-origin-policy">SOP(Same-Origin Policy)</h3>
+<p>직역하자면 <strong>동일 출처 정책</strong>이라는 의미로, 다른 출처(호스트, 스킴, 도메인에 따라 분류)에서 가져온 리소스와의 상호 작용을 제한하는 것을 의미합니다. 즉 리소스를 요청할 때에는 동일한 호스트, 스킴, 도메인 서버내에서만 요청이 가능합니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">https://jinyisland.kr/post/express-start/
+https://jinyisland.kr/post/hugo-ga/
+</code></pre></div><p>예를들어 위 두 URL은 다르지만 스킴(https), 도메인(jinyisland.kr)이 같기 때문에 리소스를 서로 요청할 수 있습니다. 만약 한 곳에서 <code>http</code> 프로토콜을 사용하는 경우에는 SOP 정책에 따라 리소스 요청을 불허합니다. SOP 정책이 등장한 배경에는 신뢰되지 않은 다른 출처로부터 악의적인 공격을 방어하기 위함이었습니다.</p>
+<p>하지만 현재 많은 웹 서비스에서는 여러 개의 API 서버를 분리하는 경우도 있으며 외부 API와 협력하여 작업하는 경우도 있습니다. 이를 통해 선택적으로 CORS 정책을 통해 외부 출처로부터 리소스를 요청할 수 있습니다.</p>
+<h3 id="cors-cross-origin-resource-sharing">CORS (Cross-Origin Resource Sharing)</h3>
+<p>앞서 말씀드린대로 외부 도메인으로부터 리소스를 상호 작용할 수 있도록 선택적으로 허용하는 정책 입니다. 이를직역하면 <strong>교차 출처 리소스 공유</strong>라고 합니다. CORS는 세 가지 경우에 따라 동작하는 방식을 설명드릴 수 있습니다.</p>
+<p><strong>단순 요청(Simple Requests)</strong><br>
+HTTP에서 단순 요청이란 다음과 같은 상황을 만족하는 경우 입니다.</p>
+<ul>
+<li>GET, POST, HAED 요청</li>
+<li><a class="link" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent"  target="_blank" rel="noopener"
+    >User-Agent</a>가 자동으로 설정하지 않는 수동으로 설정한 헤더 (Accept, Accept-Language, Content-Type, Content-Language 등)</li>
+<li><code>Content-Type</code>경우 다음의 값들이 포함되는 경우 (application/x-www-form-urlencoded, multipart/form-data, text/plain)</li>
+</ul>
+<p>단순 요청 상황에서는 서버에서 설정한 <code>Access-Control-Allow-Origin</code> 값이 와일드카드(*)이거나 요청한 도메인과 맞는 경우에만 리소스 요청을 허용합니다.</p>
+<p><strong>프리플라이트 요청 (Preflighted Request)</strong><br>
+단순 요청이 아닌 상황에서는 HTTP OPTIONS 메서드를 통해 외부 출처에게 요청을 보내 전송하기 안전한지 미리 확인하는 방식으로 외부 리소스와 상호작용을 수행합니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#Request</span>
+OPTIONS /resources/post-here/ HTTP/1.1
+...
+Access-Control-Request-Method: POST
+Access-Control-Request-Headers: X-PINGOTHER, Content-Type
+
+<span class="c1">#Response</span>
+Access-Control-Allow-Origin: https://foo.example
+Access-Control-Allow-Methods: POST, GET, OPTIONS
+Access-Control-Allow-Headers: X-PINGOTHER, Content-Type
+</code></pre></div><p><code>Access-Control-Request-Method</code> 헤더는 실제 요청을 전송할 때 <code>POST</code>로 전송하는 것임을 알려줍니다. (Preflighted 요청에서만 사용) 만약 응답 헤더에 요청한 메서드가 명시되어 있다면, 이는 안전한 출처로 간주되며 이후에 리소스 요청을 수행할 수 있습니다.</p>
+<p><strong>자격 증명 요청(With Credentialed)</strong><br>
+자격 증명(credentials) 요청은 쿠키를 담아서 보내는 요청이거나, 인증을 위해 헤더에 <code>Authorization</code> 필드를 명시하여 요청하는 것을 의미합니다.<br>
+브라우저에서 리소스 요청 시 <code>XMLHttpRequest</code> 혹은 <code>Fetch</code>를 통해 요청할 수 있는데 이 API는 별도의 옵션을 지정하지 않으면 인증 관련 헤더를 요청 헤더에 명시하지 않습니다. CORS는 <code>Access-Control-Allow-Credentials</code> 헤더를 지원하기 때문에 AJAX 요청 API에 <code>credentials</code> 모드로 설정하면 CORS에서도 자격 증명 요청을 수행할 수 있습니다.</p>
+<ul>
+<li><strong>XMLHttpRequest</strong>
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;http://example.com/&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">withCredentials</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+</code></pre></div></li>
+<li><strong>Fetch</strong>
+만약 동일한 Origin 서버에게만 자격 증명을 보내려면 <code>credentials</code> 속성을 ‘same-origin’으로 명시하면 됩니다.
+<div class="highlight"><pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://example.com&#39;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">credentials</span><span class="o">:</span> <span class="s1">&#39;include&#39;</span>
+<span class="p">});</span>
+</code></pre></div></li>
+</ul>
+<p><strong>CORS 정책 허용 방법</strong><br>
+CORS 정책 위반시 나타나는 오류는 브라우저에서만 발생합니다. 가장 좋은 해결 방법은 리소스를 호출하는 원천 서버에서 헤더 내의<code>Access-Control-Allow-Origin</code> 값을 allow 시키는 것이지만 대다수 외부 API 일 경우, 해당 서버의 권한이 없는 서비스이기 때문에 헤더를 제어하는 것이 불가능합니다.</p>
+<p>이러한 경우에는 CORS를 해결하기 위해 접근 가능한 동일 서버(Origin Server)에서 외부 리소스 서버에서 리소스를 호출하고 다시 클라이언트에게 전달하는 방법이 있습니다. 이 역할을 하는 서버를 프록시 서버라고 하며, 서버 간 CORS 정책이 발생하지 않는 특성을 활용하여 쉽게 해결할 수 있습니다.</p>
+<h3 id="xsscross-site-scripting">XSS(Cross-site scripting)</h3>
+<p>크로스 사이트 스크립팅(XSS)이란 웹 페이지를 방문시 방문한 사용자의 브라우저에서 부정한 HTML 태그나 의도적인 악성 JavaScript 등을 삽입하여 공격하는 행위 입니다. 주로 동적으로 HTML을 생성하는 부분에서 취약성이 발생할 수 있습니다. XSS 공격에 의해 다음과 같은 피해가 발생될 수 있습니다.</p>
+<ul>
+<li>가짜 입력 form에 의해 사용자의 개인 정보를 탈취</li>
+<li>악의적인 스크립트로 인해 사용자의 쿠키 값 탈취 또는 의도치 않은 HTTP 요청 발생</li>
+<li>부적절한 문장 또는 이미지등이 표시</li>
+</ul>
+<p><strong>XSS 보안 방법</strong></p>
+<ul>
+<li>쿠키 값 탈취를 방지하기 위해 쿠키에 <code>HttpOnly</code> 옵션 사용</li>
+<li>스크립트 관련 문자 이스케이프 처리 (&amp; → &amp;amp, &lt; → &amp;lt, &gt; → &amp;gt 등)</li>
+</ul>
+<h3 id="sql-injection">SQL Injection</h3>
+<p>SQL Injection은 애플리케이션이 운영되기 위해 사용되는 데이터베이스에 부정한 SQL을 입력하는 공격입니다. 허용되지 않은 외부 SQL 입력에 대한 특별한 조치가 없다면 치명적인 영향을 받을 수 있습니다.</p>
+<ul>
+<li>데이터베이스 내 인가되지 않은 데이터 부정 열람 및 변조</li>
+<li>인증 회피</li>
+<li>데이터베이스 서버를 경유한 프로그램 실행</li>
+</ul>
+<p><strong>SQL Injection 보안 방법</strong></p>
+<ul>
+<li>사용자에게 입력 받은 파라미터를 SQL에 전달 할 경우 즉시 조합하지 않고 이스케이프 처리</li>
+<li>요청 값 유효성 검사</li>
+</ul>
+<h2 id="http-아키텍처">HTTP 아키텍처</h2>
+<h3 id="url과-urn">URL과 URN</h3>
+<p>URL은 브라우저가 정보를 찾는데 필요한 리소스의 위치를 가리키는 역할입니다. URL을 사용하여 실제 사용자가 애플리케이션에서 필요한 리소스를 찾고 공유할 수 있습니다. URL은 URI라는 통합 자원 식별자의 한 부분으로써, URI는 URL과 URN으로 구성되어 있습니다</p>
+<p><strong>URL 문법</strong><br>
+URL은 스킴(HTTP,FTP,SMTP)에 따라서 문법이 달라집니다. 대부분의 스킴은 일반적으로 9개 부분으로 나눠집니다. 스킴은 리소스에 어떻게 접근하는지 알려주는 정보로써 알파벳으로 시작해야하고 URL에서 첫 번째 <code>:</code> 문자로 구분합니다. 스킴은 대소문자 구별을 하지 않습니다.</p>
+<pre><code>&lt;스킴&gt;://&lt;사용자이름&gt;:&lt;비밀번호&gt;@&lt;호스트주소&gt;:&lt;포트&gt;/&lt;경로&gt;;&lt;파라미터&gt;?&lt;질의&gt;#&lt;프래그먼트&gt;
+</code></pre><table>
+<thead>
+<tr>
+<th>컴포넌트</th>
+<th>설명</th>
+<th>기본값</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>스킴</td>
+<td>리소스를 가져오기 위한 프로토콜 명시</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>사용자 이름</td>
+<td>리소스에 접근 하기 위한 사용자 이름 (몇몇 스킴에서 사용)</td>
+<td>anonymous</td>
+</tr>
+<tr>
+<td>비밀번호</td>
+<td>사용자의 비밀번호</td>
+<td>이메일 주소</td>
+</tr>
+<tr>
+<td>호스트</td>
+<td>리소스를 호스팅하는 서버의 호스트 명 or IP 주소</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>포트</td>
+<td>리소스를 호스팅하는 서버가 열어놓은 비밀번호 <code>HTTP 같은 경우에는 80</code></td>
+<td>스킴에 따라 다름</td>
+</tr>
+<tr>
+<td>경로</td>
+<td>슬래시(/)로 구분하며, 서버 내 리소스가 어디에 있는지 경로를 가리킴</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>파라미터</td>
+<td>특정 스킴에서 입력 파라미터를 기술하는 용도로 사용 <code>이름/값을 세미콜론으로 구분</code></td>
+<td>없음</td>
+</tr>
+<tr>
+<td>질의</td>
+<td>애플리케이션에서 파라미터 전달을 위해서 사용(데이터베이스, 게시판, 검색엔진) URL 끝에 ? 문자로 구분</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>프래그먼트</td>
+<td>리소스의 일부분을 가리키는 이름, 클라이언트 영역에서만 사용한다.</td>
+<td>없음</td>
+</tr>
+</tbody>
+</table>
+<p><strong>URN</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">urn:oasis:names:specification:docbook:dtd:xml:4.1.2
+</code></pre></div><p>URL은 리소스를 찾는데 필요한 포트와 서버 별칭을 제공하기 때문에 리소스가 옮겨지면 수동으로 URL도 다시 설정해야한다는 단점이 존재합니다. 이러한 단점을 해결하기 위해 고안한 방식이 URN(Uniform Resource Name)입니다. URL과 달리 리소스 객체가 옮겨지더라도 항상 동일한 리소스를 가리킬 수 있는 이름을 제공합니다.</p>
+<h3 id="웹-캐시">웹 캐시</h3>
+<p>웹 캐시는 자주 방문하는 웹 페이지(문서)의 사본을 자동으로 보관하는 HTTP의 기능입니다. 웹 요청이 캐시에 도착했을 때 캐시된 사본이 존재한다면 문서는 원 서버가 아니라 캐시로부터 제공합니다. 캐시를 활용하면 다음과 같은 이점을 얻을 수 있습니다.</p>
+<ul>
+<li>불필요한 데이터 전송 최소화 및 네트워크 병목 최소화</li>
+<li>원 서버에 대한 요청 부하 최소화</li>
+</ul>
+<p><strong>웹 캐시 동작과정</strong><br>
+일반적으로 웹 캐시 처리 절차는 다음과 같습니다.</p>
+<ol>
+<li>
+<p><strong>요청</strong><br>
+네트워크 커넥션에서 활동을 감지하고 요청오는 데이터를 읽는 단계 입니다.</p>
+</li>
+<li>
+<p><strong>파싱</strong><br>
+요청 메시지를 여러 부분으로 파싱하여 헤더 부분을 조작하기 쉬운 자료 구조로 담는 단계 입니다.</p>
+</li>
+<li>
+<p><strong>검색</strong><br>
+캐시는 URL을 통해 해당하는 로컬 사본이 존재하는지 검사합니다. 캐시된 사본은 메모리, 디스크 또는 외부 저장소에 저장될 수 있습니다. 고성능 캐시는 빠른 로드를 위해 적절한 알고리즘을 사용하며, 상황에 따라 원 서버나 부모 프락시에서 가져올 수도 있습니다.</p>
+</li>
+<li>
+<p><strong>신선도 검사</strong><br>
+HTTP는 캐시가 일정 시간 동안 리소스 사본을 보유할 수 있도록 합니다. 설정된 기간이 초과되면, 신선하지 않은 리소스로 간주하여 서버와 문서를 다시 검사합니다. 검사 후 리소스가 변경되었다면, 캐시는 새로운 사본을 가져와 기존 사본을 덮어쓰고 클라이언트에게 응답합니다.</p>
+<p>(각 리소스의 유효 기간은 <code>Expires</code>와 <code>Cache-Control</code> 헤더를 통해 설정할 수 있습니다.)</p>
+</li>
+<li>
+<p><strong>응답 생성</strong><br>
+캐시된 응답을 원 서버에서 온 것처럼 일관성을 지켜야하기 때문에, 캐시된 서버 응답을 토대로 응답 헤더를 생성합니다.</p>
+</li>
+<li>
+<p><strong>전송</strong><br>
+응답 헤더가 완성되면 클라이언트에게 돌려줍니다. 일반 HTTP 통신과 마찬가지로 캐시는 클라이언트와 커넥션을 유지합니다.</p>
+</li>
+</ol>
+<p><strong>웹 캐시 제어</strong><br>
+리소스가 만료되기 전까지 얼마나 오랫동안 캐시를 유지할 것인지 <code>Cache-Control</code> 헤더를 통해 명시할 수 있습니다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Header Set Cache-Control <span class="s2">&#34;max-age=60&#34;</span>
+</code></pre></div><ul>
+<li><strong>no-store:</strong> 캐시에 리소스를 저장하지 않음</li>
+<li><strong>no-cache:</strong> 항상 원 서버에 리소스를 재검사하도록 요청</li>
+<li><strong>must-revalidate:</strong> 캐시 만료기간이 지났다면 원 서버어게 리소스를 재검사하도록 요청</li>
+<li><strong>public:</strong> 공유 캐시에 저장함</li>
+<li><strong>private:</strong> 공유 캐시에 저장하지 않음 (브라우저의 로컬 캐시에만 저장)</li>
+<li><strong>max-age:</strong> 캐시의 만료기간 (초)</li>
+</ul>
+<h3 id="프록시">프록시</h3>
+<p>프록시란 클라이언트와 서버 사이에서 HTTP 통신을 중개하는 일종의 중개자입니다. 프록시를 사용하는 이유는 주로 <strong>보안성, 성능, 비용 절감</strong> 등의 이점 때문에 사용합니다. 프록시는 목적에 따라 정방향 프록시와 역방향 프록시로 분류할 수 있습니다.</p>
+<ul>
+<li><strong>보안성</strong><br>
+일부 조직(학교, 정부기관)에서는 부적절한 컨텐츠를 차단하기 위해 제한된 영역의 인터넷에 대해서만 접근 권한을 부여합니다. 프록시를 사용하면 제한된 웹 리소스에 대해 단일 접근 전략을 쉽게 구성할 수 있습니다.</li>
+<li><strong>프록시 캐시</strong><br>
+웹 캐싱을 위해 프록시 서버를 활용하면 리소스 사본을 효율적으로 관리할 수 있고, 원 서버에 직접 접근하는 대신 근처의 프록시 캐시 서버로 접근함으로써 요청에 대한 비용을 줄이고 접근 성능을 개선할 수 있습니다.</li>
+</ul>
+<p><strong>정방향 프록시(Forward Proxy)</strong><br>
+<img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/c6ad9de3-8412-4ea6-bcc7-1ed93c26bf8a" alt="02-forward-proxy-flow"  />
+<em>출처: Cloudflare - Forward Proxy Flow</em>
+정방향 프록시는 일반적인 프록시 서버를 의미합니다. 이 서버는 인터넷 통신 앞에 위치하여 원본 서버가 특정 리소스 위치에 대한 필터링이나 접근 권한을 설정할 수 있게 해줍니다. 또한 사용자 개별 IP를 우회하여 신원 보안에도 이점을 가질 수 있습니다.</p>
+<p><strong>역방향 프록시(Reverse Proxy)</strong>
+<img src="https://github.com/yondo123/yondo123.github.io/assets/46988995/23e115d3-05e5-4da5-97d2-602412d91892" alt="03-reverse-proxy-flow"  />
+<em>출처: Cloudflare - Reverse Proxy Flow</em>
+역방향 프록시는 정방향 프록시와는 반대 개념으로, 원 서버 위치의 앞에 위치한 프록시 구조입니다. 이는 원 서버로 들어오는 트래픽을 분산시키는 효율적인 구조이며, 역방향 프록시도 캐싱을 수행할 수 있어 성능적인 이점도 가질 수 있는 특징이 있습니다.</p>
+<h3 id="rest-api">REST API</h3>
+<p>REST(Representational State Transfer)의 의미는 네트워크 리소스가 정의되고 처리되는 방식을 일련의 원칙을 기반으로하는 API 작동 방식에 대한 일종의 아키텍처 입니다. REST 아키텍처는 몇 가지 원칙이 존재하는데 이러한 원칙을 따르는 API를 REST API(혹은 RESTful API)라고 지칭합니다.</p>
+<p><strong>무상태</strong><br>
+클라이언트는 임의의 순서로 리소스를 요청할 수 있으며 모든 요청은 무상태이거나 다른 요청과 분리됩니다. 이전 요청과 관계 없이 서버가 매번 요청을 완전히 이해할 수 있어야 합니다.</p>
+<p><strong>계층화 시스템</strong><br>
+서버는 요청을 다른 서버로 전달하거나 협력할 수 있습니다. 이러한 특성을 유지하기 위해 보안 및 여러 애플리케이션 및 비즈니스 로직 등을 여러 계층으로 설계할 수 있습니다.</p>
+<p><strong>캐싱</strong><br>
+REST API를 적용한 웹 서비스는 클라이언트 또는 프록시 서버에 일부 리소스 사본을 저장하는 캐싱을 지원하여 효율적인 응답 시간을 달성할 수 있습니다. 요청 상황에 따라 적절히 캐시 또는 캐시 불가능 상황을 사용하여 제어할 수 있습니다.</p>
+<p><strong>균일한 인터페이스</strong><br>
+균일한 인터페이스란 서버가 표준 형식으로 리소스(정보)를 전송하는 것을 나타냅니다. 서버 내에 저장되어 있는 실제 리소스의 표현(데이터 형식)과는 다를 수 있습니다. 예를 들어, 데이터는 텍스트로 저장되지만 HTML 문서 형태로 전송할 수 있습니다.</p>
+<p>균일한 인터페이스는 아래 4가지 제약 조건을 지키는 것입니다.</p>
+<ol>
+<li>요청은 리소스를 식별하는 행위입니다. (균일한 리소스를 사용)</li>
+<li>클라이언트는 원하는 경우 리소스를 수정하거나 삭제하기에 충분한 정보를 확보하기 위해 서버는 리소스에 대한 메타데이터를 전송합니다.</li>
+<li>클라이언트는 데이터를 추가적으로 처리하는 방법에 대한 정보를 수신할 수 있어야합니다.</li>
+<li>클라이언트는 하이퍼링크를 통해 더 많은 리소스를 동적으로 검색할 수 있도록 서버에서 하이퍼링크를 전송할 수 있습니다.</li>
+</ol>
+<p><strong>REST API의 이점</strong><br>
+REST API를 사용하면 클라이언트와 서버가 완전히 분리된 설계를 구축할 수 있습니다. 이는 각 영역이 독립적으로 확장 가능하고 서버 요소들을 다양하게 단순화할 수 있으며, 한 영역의 변경이 다른 영역에 영향을 주지 않습니다. 이를 통해 API 설계에 영향을 받지 않고 다양한 프로그래밍 언어로 서비스를 제공할 수 있으며, 애플리케이션 로직과 관련 없이 데이터베이스 계층도 쉽게 변경할 수 있습니다. <strong>(확장성, 유연성, 독립성)</strong></p>
+<h2 id="참고-자료">참고 자료</h2>
+<ul>
+<li><a class="link" href="https://www.yes24.com/Product/Goods/15381085"  target="_blank" rel="noopener"
+    >HTTP 완벽 가이드 - URL과 리소스</a></li>
+<li><a class="link" href="https://www.yes24.com/Product/Goods/15381085"  target="_blank" rel="noopener"
+    >HTTP 완벽 가이드 - 클라이언트 식별과 쿠키</a></li>
+<li><a class="link" href="https://learn.microsoft.com/en-us/aspnet/web-api/overview/advanced/http-cookies"  target="_blank" rel="noopener"
+    >Microsoft Ignite - HTTP Cookies in ASP.NET Web API</a></li>
+<li><a class="link" href="https://www.cloudflare.com/ko-kr/learning/cdn/glossary/reverse-proxy/"  target="_blank" rel="noopener"
+    >Cloudflare - 프록시 서버 설명</a></li>
+<li><a class="link" href="https://aws.amazon.com/ko/what-is/restful-api/"  target="_blank" rel="noopener"
+    >aws - RESTful API란 무엇입니까?</a></li>
+</ul>
+
+</section>
+<script type="text/javascript">
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h2, h3, h4, h5',
+        orderedList: false
+    });
+</script>
+<style>
+     
+    @media all and (min-width: 1025px) {
+        .js-toc {
+            position: fixed;
+            top: 5%;
+            right: 0;
+        }
+
+        .toc-list {
+            padding: 0 4px;
+            width: 180px;
+        }
+    }
+
+    @media all and (max-width: 1024px) {
+        .js-toc-content {
+            position: relative;
+        }
+
+        .js-toc {
+            margin-left: 2em;
+            position: static;
+        }
+    }
+
+    .js-toc::before {
+        color: #0984e3;
+        content: '목차';
+        font-weight: 700;
+    }
+
+     
+    .toc-list {
+        color: #636e72;
+        list-style: none;
+    }
+
+    .toc-list li {
+        padding-bottom: 5px;
+    }
+
+    .is-active-link::before {
+        background-color: #0984e3;
+    }
+
+    .is-active-li {
+        color: #0984e3;
+    }
+
+    .toc-link::before {
+        width: 0;
+    }
+</style>
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/network/">network</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+
+    
+        
+    <div class="comments-container">
+    
+    <script src="https://utteranc.es/client.js"
+        repo="yondo123/hugo-blog-comments"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+
+<style>
+    .comments-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 Jiny
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

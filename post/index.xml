@@ -6,7 +6,21 @@
     <description>Recent content in Posts on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 Oct 2023 23:50:12 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Oct 2023 05:42:33 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[CS 네트워크 스터디] 5주차 학습 내용</title>
+      <link>https://jinyisland.kr/post/network-study-week-5/</link>
+      <pubDate>Fri, 13 Oct 2023 05:42:33 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/network-study-week-5/</guid>
+      <description>시리즈 👉 CS 네트워크 스터디 1주차
+👉 CS 네트워크 스터디 2주차
+👉 CS 네트워크 스터디 3주차
+👉 CS 네트워크 스터디 4주차
+쿠키와 세션 HTTP 프로토콜은 기본적으로 상태가 없는 프로토콜입니다. 웹 서비스에서 제공하는 기능들은 개인별로 맞춤화된 서비스가 많습니다. 하지만 HTTP는 상태가 없기 때문에 방문한 개인의 정보를 기억하는 별도의 방법을 사용해야 합니다.
+초기에는 이러한 제약을 해결하기 위해 클라이언트의 IP 주소를 사용한 방식을 사용하였습니다. IP 주소는 사용자가 아닌 통신하는 단말을 가리키기 때문에 개개인이라는 확신을 할 수 없고, 보안상 실제 IP 주소를 쉽게 노출시키지 않기 때문에 한계가 명확하게 존재하는 방식이었습니다.</description>
+    </item>
+    
     <item>
       <title>[CS 네트워크 스터디] 4주차 학습 내용</title>
       <link>https://jinyisland.kr/post/network-study-week-4/</link>

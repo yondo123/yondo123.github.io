@@ -6,7 +6,329 @@
         <description>Recent content on Jiny</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 05 Oct 2023 23:50:12 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 13 Oct 2023 05:42:33 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[CS 네트워크 스터디] 5주차 학습 내용</title>
+        <link>https://jinyisland.kr/post/network-study-week-5/</link>
+        <pubDate>Fri, 13 Oct 2023 05:42:33 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/network-study-week-5/</guid>
+        <description>&lt;img src="https://jinyisland.kr/../../assets/header/computer-network/week-5.png" alt="Featured image of post [CS 네트워크 스터디] 5주차 학습 내용" /&gt;&lt;h2 id=&#34;시리즈&#34;&gt;시리즈&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;👉 &lt;a class=&#34;link&#34; href=&#34;https://jinyisland.kr/post/network-study-week-1/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CS 네트워크 스터디 1주차&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;👉 &lt;a class=&#34;link&#34; href=&#34;https://jinyisland.kr/post/network-study-week-2/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CS 네트워크 스터디 2주차&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;👉 &lt;a class=&#34;link&#34; href=&#34;https://jinyisland.kr/post/network-study-week-3/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CS 네트워크 스터디 3주차&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;👉 &lt;a class=&#34;link&#34; href=&#34;https://jinyisland.kr/post/network-study-week-4/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CS 네트워크 스터디 4주차&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;쿠키와-세션&#34;&gt;쿠키와 세션&lt;/h2&gt;
+&lt;p&gt;HTTP 프로토콜은 기본적으로 상태가 없는 프로토콜입니다. 웹 서비스에서 제공하는 기능들은 개인별로 맞춤화된 서비스가 많습니다. 하지만 HTTP는 상태가 없기 때문에 방문한 개인의 정보를 기억하는 별도의 방법을 사용해야 합니다.&lt;br&gt;
+초기에는 이러한 제약을 해결하기 위해 클라이언트의 IP 주소를 사용한 방식을 사용하였습니다. IP 주소는 사용자가 아닌 통신하는 단말을 가리키기 때문에 개개인이라는 확신을 할 수 없고, 보안상 실제 IP 주소를 쉽게 노출시키지 않기 때문에 한계가 명확하게 존재하는 방식이었습니다. 현재는 쿠키(Cookie)와 세션(Session) 등을 활용하여 HTTP 프로토콜의 이러한 약점을 보완하고 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;쿠키&#34;&gt;쿠키&lt;/h3&gt;
+&lt;p&gt;쿠키는 사용자의 브라우저에 식별 데이터를 보관하는 방식입니다. 세션 쿠키(session cookie)와 지속 쿠키(persistent cookie) 두 가지로 분류됩니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;세션 쿠키:&lt;/strong&gt; 사용자가 브라우저를 닫으면 삭제됩니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;지속 쿠키:&lt;/strong&gt; 사용자 디스크에 보관되어 브라우저를 닫거나 PC를 재시작하여도 보존됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;쿠키의 동작방식&lt;/strong&gt;&lt;br&gt;
+사용자가 웹 사이트에 접속하면 해당 사용자를 식별하기 위해 개별 값을 쿠키에 할당합니다. 쿠키는 임의의 &lt;code&gt;key=value&lt;/code&gt; 형태의 리스트를 가지고 있고 HTTP 응답 헤더에 기술하여 사용자에게 전달할 수 있습니다.&lt;br&gt;
+지난번에 &lt;a class=&#34;link&#34; href=&#34;https://jinyisland.kr/post/cookies/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HTTP 쿠키의 개념과 활용 방법&lt;/a&gt; 포스팅을 통해 대략적으로 웹 서버(Express.js)에서 쿠키를 전송하는 방법에 대해 다룬적이 있습니다. &lt;code&gt;Set-Cookie&lt;/code&gt; 필드를 통해 쿠키를 명시할 수 있습니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;http&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+&lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createServer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;async&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;method&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mtehod&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;url&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;method&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;POST&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;url&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;/signup&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+      &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;body&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+      &lt;span class=&#34;nx&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;on&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;data&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;body&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+      &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+
+      &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;on&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;end&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+          &lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+          &lt;span class=&#34;nx&#34;&gt;message&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;success&amp;#39;&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;body&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;JSON&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;parse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;//응답 헤더에 쿠키 설정
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;nx&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;writeHead&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;200&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+          &lt;span class=&#34;s1&#34;&gt;&amp;#39;content-Type&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;Application/json; charset=utf-8&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+          &lt;span class=&#34;s1&#34;&gt;&amp;#39;Set-Cookie&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sb&#34;&gt;`user-id=&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;encodeURIComponent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;body&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;response&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;end&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;JSON&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;stringify&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+      &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;listen&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;8088&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Server Start!!&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;브라우저는 방문한 여러 사이트에서 제공하는 쿠키들을 모두 보관할 수 있지만, 모든 사이트마다 쿠키를 전송하지는 않습니다. 그 이유는 성능 저하와 각 사이트마다 서로 다른 쿠키 이름을 설정하기 때문에 효율성이 떨어지기 때문입니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;주요 속성(Attributes)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Domain&lt;/strong&gt;&lt;br&gt;
+어떤 도메인을 가진 사이트가 쿠키를 읽는지 명시할 수 있습니다.
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;Set-Cookie: &lt;span class=&#34;nv&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;user123&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;domain&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;jinyisland.kr&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Path&lt;/strong&gt;&lt;br&gt;
+특정 경로에서 쿠키를 사용할 때 경로를 명시할 수 있습니다. 예를들어 &lt;code&gt;Path=/user&lt;/code&gt; 라면, /user 하위의 URL 요청시에만 쿠키를 사용합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Expires&lt;/strong&gt;&lt;br&gt;
+쿠키의 유효시간을 가리키는 날짜 문자열(요일, DD-MM-YY HH:MM:SS GMT)을 명시합니다. &lt;code&gt;Expires&lt;/code&gt;를 명시하지 않으면 기본적으로 쿠키는 세션 쿠키로 동작하며 브라우저가 닫힐 때 파기됩니다.
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;Set-Cookie: &lt;span class=&#34;nv&#34;&gt;expries&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Wed, &lt;span class=&#34;m&#34;&gt;21&lt;/span&gt; Oct &lt;span class=&#34;m&#34;&gt;2015&lt;/span&gt; 07:28:00 GMT
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Secure&lt;/strong&gt;&lt;br&gt;
+HTTP가 SSL 보안 연결을 사용하는 경우(HTTPS)에만 쿠키를 전송하도록 명시합니다.
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;Set-Cookie: &lt;span class=&#34;nv&#34;&gt;private_key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;123&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; secure
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HttpOnly&lt;/strong&gt;
+사용자측에서 스크립트를 통한 쿠키 접근을 방지합니다.
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;Set-Cookie: &lt;span class=&#34;nv&#34;&gt;private_key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;123&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; secure&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; HttpOnly&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;세션&#34;&gt;세션&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/b0999b2c-a120-4c75-b491-fe115ff6a4d3&#34; alt=&#34;01-http-cookie-flow&#34;  /&gt;
+&lt;em&gt;출처: Microsoft Ignite - HTTP Cookie (Session ID)&lt;/em&gt;
+세션도 본질적으로 쿠키를 활용해서 식별할 수 있는 데이터를 전송하는 방법이지만 쿠키와 다르게 데이터를 서버에 저장하고, 클라이언트에게 세션을 조회할 수 있는 세션 ID을 전송한 뒤 클라이안트가 요청한 &lt;code&gt;session-id&lt;/code&gt;를대조하여 서버에 저장되어 있는 세션 데이터를 응답해주는 방식입니다.&lt;/p&gt;
+&lt;p&gt;웹 서버에 저장하기 때문에 쿠키에 비해 상대적으로 안전하고 서버 용량에 따라 유동적으로 크기를 설정할 수 있다는 장점이 있습니다. 하지만 별도로 클라이언트에서 전송한 세션 ID를 검증하는 프로세스가 필요하기 때문에 성능은 쿠키와 비교했을 때 상대적으로 느릴 수 있습니다.&lt;/p&gt;
+&lt;h2 id=&#34;네트워크-보안&#34;&gt;네트워크 보안&lt;/h2&gt;
+&lt;h3 id=&#34;sopsame-origin-policy&#34;&gt;SOP(Same-Origin Policy)&lt;/h3&gt;
+&lt;p&gt;직역하자면 &lt;strong&gt;동일 출처 정책&lt;/strong&gt;이라는 의미로, 다른 출처(호스트, 스킴, 도메인에 따라 분류)에서 가져온 리소스와의 상호 작용을 제한하는 것을 의미합니다. 즉 리소스를 요청할 때에는 동일한 호스트, 스킴, 도메인 서버내에서만 요청이 가능합니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;https://jinyisland.kr/post/express-start/
+https://jinyisland.kr/post/hugo-ga/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;예를들어 위 두 URL은 다르지만 스킴(https), 도메인(jinyisland.kr)이 같기 때문에 리소스를 서로 요청할 수 있습니다. 만약 한 곳에서 &lt;code&gt;http&lt;/code&gt; 프로토콜을 사용하는 경우에는 SOP 정책에 따라 리소스 요청을 불허합니다. SOP 정책이 등장한 배경에는 신뢰되지 않은 다른 출처로부터 악의적인 공격을 방어하기 위함이었습니다.&lt;/p&gt;
+&lt;p&gt;하지만 현재 많은 웹 서비스에서는 여러 개의 API 서버를 분리하는 경우도 있으며 외부 API와 협력하여 작업하는 경우도 있습니다. 이를 통해 선택적으로 CORS 정책을 통해 외부 출처로부터 리소스를 요청할 수 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;cors-cross-origin-resource-sharing&#34;&gt;CORS (Cross-Origin Resource Sharing)&lt;/h3&gt;
+&lt;p&gt;앞서 말씀드린대로 외부 도메인으로부터 리소스를 상호 작용할 수 있도록 선택적으로 허용하는 정책 입니다. 이를직역하면 &lt;strong&gt;교차 출처 리소스 공유&lt;/strong&gt;라고 합니다. CORS는 세 가지 경우에 따라 동작하는 방식을 설명드릴 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;단순 요청(Simple Requests)&lt;/strong&gt;&lt;br&gt;
+HTTP에서 단순 요청이란 다음과 같은 상황을 만족하는 경우 입니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GET, POST, HAED 요청&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;User-Agent&lt;/a&gt;가 자동으로 설정하지 않는 수동으로 설정한 헤더 (Accept, Accept-Language, Content-Type, Content-Language 등)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Content-Type&lt;/code&gt;경우 다음의 값들이 포함되는 경우 (application/x-www-form-urlencoded, multipart/form-data, text/plain)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;단순 요청 상황에서는 서버에서 설정한 &lt;code&gt;Access-Control-Allow-Origin&lt;/code&gt; 값이 와일드카드(*)이거나 요청한 도메인과 맞는 경우에만 리소스 요청을 허용합니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;프리플라이트 요청 (Preflighted Request)&lt;/strong&gt;&lt;br&gt;
+단순 요청이 아닌 상황에서는 HTTP OPTIONS 메서드를 통해 외부 출처에게 요청을 보내 전송하기 안전한지 미리 확인하는 방식으로 외부 리소스와 상호작용을 수행합니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Request&lt;/span&gt;
+OPTIONS /resources/post-here/ HTTP/1.1
+...
+Access-Control-Request-Method: POST
+Access-Control-Request-Headers: X-PINGOTHER, Content-Type
+
+&lt;span class=&#34;c1&#34;&gt;#Response&lt;/span&gt;
+Access-Control-Allow-Origin: https://foo.example
+Access-Control-Allow-Methods: POST, GET, OPTIONS
+Access-Control-Allow-Headers: X-PINGOTHER, Content-Type
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;Access-Control-Request-Method&lt;/code&gt; 헤더는 실제 요청을 전송할 때 &lt;code&gt;POST&lt;/code&gt;로 전송하는 것임을 알려줍니다. (Preflighted 요청에서만 사용) 만약 응답 헤더에 요청한 메서드가 명시되어 있다면, 이는 안전한 출처로 간주되며 이후에 리소스 요청을 수행할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;자격 증명 요청(With Credentialed)&lt;/strong&gt;&lt;br&gt;
+자격 증명(credentials) 요청은 쿠키를 담아서 보내는 요청이거나, 인증을 위해 헤더에 &lt;code&gt;Authorization&lt;/code&gt; 필드를 명시하여 요청하는 것을 의미합니다.&lt;br&gt;
+브라우저에서 리소스 요청 시 &lt;code&gt;XMLHttpRequest&lt;/code&gt; 혹은 &lt;code&gt;Fetch&lt;/code&gt;를 통해 요청할 수 있는데 이 API는 별도의 옵션을 지정하지 않으면 인증 관련 헤더를 요청 헤더에 명시하지 않습니다. CORS는 &lt;code&gt;Access-Control-Allow-Credentials&lt;/code&gt; 헤더를 지원하기 때문에 AJAX 요청 API에 &lt;code&gt;credentials&lt;/code&gt; 모드로 설정하면 CORS에서도 자격 증명 요청을 수행할 수 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;XMLHttpRequest&lt;/strong&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xhr&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;XMLHttpRequest&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;xhr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;http://example.com/&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;xhr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;withCredentials&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;xhr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fetch&lt;/strong&gt;
+만약 동일한 Origin 서버에게만 자격 증명을 보내려면 &lt;code&gt;credentials&lt;/code&gt; 속성을 ‘same-origin’으로 명시하면 됩니다.
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span class=&#34;nx&#34;&gt;fetch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;https://example.com&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;credentials&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;include&amp;#39;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;CORS 정책 허용 방법&lt;/strong&gt;&lt;br&gt;
+CORS 정책 위반시 나타나는 오류는 브라우저에서만 발생합니다. 가장 좋은 해결 방법은 리소스를 호출하는 원천 서버에서 헤더 내의&lt;code&gt;Access-Control-Allow-Origin&lt;/code&gt; 값을 allow 시키는 것이지만 대다수 외부 API 일 경우, 해당 서버의 권한이 없는 서비스이기 때문에 헤더를 제어하는 것이 불가능합니다.&lt;/p&gt;
+&lt;p&gt;이러한 경우에는 CORS를 해결하기 위해 접근 가능한 동일 서버(Origin Server)에서 외부 리소스 서버에서 리소스를 호출하고 다시 클라이언트에게 전달하는 방법이 있습니다. 이 역할을 하는 서버를 프록시 서버라고 하며, 서버 간 CORS 정책이 발생하지 않는 특성을 활용하여 쉽게 해결할 수 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;xsscross-site-scripting&#34;&gt;XSS(Cross-site scripting)&lt;/h3&gt;
+&lt;p&gt;크로스 사이트 스크립팅(XSS)이란 웹 페이지를 방문시 방문한 사용자의 브라우저에서 부정한 HTML 태그나 의도적인 악성 JavaScript 등을 삽입하여 공격하는 행위 입니다. 주로 동적으로 HTML을 생성하는 부분에서 취약성이 발생할 수 있습니다. XSS 공격에 의해 다음과 같은 피해가 발생될 수 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;가짜 입력 form에 의해 사용자의 개인 정보를 탈취&lt;/li&gt;
+&lt;li&gt;악의적인 스크립트로 인해 사용자의 쿠키 값 탈취 또는 의도치 않은 HTTP 요청 발생&lt;/li&gt;
+&lt;li&gt;부적절한 문장 또는 이미지등이 표시&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;XSS 보안 방법&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;쿠키 값 탈취를 방지하기 위해 쿠키에 &lt;code&gt;HttpOnly&lt;/code&gt; 옵션 사용&lt;/li&gt;
+&lt;li&gt;스크립트 관련 문자 이스케이프 처리 (&amp;amp; → &amp;amp;amp, &amp;lt; → &amp;amp;lt, &amp;gt; → &amp;amp;gt 등)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;sql-injection&#34;&gt;SQL Injection&lt;/h3&gt;
+&lt;p&gt;SQL Injection은 애플리케이션이 운영되기 위해 사용되는 데이터베이스에 부정한 SQL을 입력하는 공격입니다. 허용되지 않은 외부 SQL 입력에 대한 특별한 조치가 없다면 치명적인 영향을 받을 수 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;데이터베이스 내 인가되지 않은 데이터 부정 열람 및 변조&lt;/li&gt;
+&lt;li&gt;인증 회피&lt;/li&gt;
+&lt;li&gt;데이터베이스 서버를 경유한 프로그램 실행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;SQL Injection 보안 방법&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;사용자에게 입력 받은 파라미터를 SQL에 전달 할 경우 즉시 조합하지 않고 이스케이프 처리&lt;/li&gt;
+&lt;li&gt;요청 값 유효성 검사&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;http-아키텍처&#34;&gt;HTTP 아키텍처&lt;/h2&gt;
+&lt;h3 id=&#34;url과-urn&#34;&gt;URL과 URN&lt;/h3&gt;
+&lt;p&gt;URL은 브라우저가 정보를 찾는데 필요한 리소스의 위치를 가리키는 역할입니다. URL을 사용하여 실제 사용자가 애플리케이션에서 필요한 리소스를 찾고 공유할 수 있습니다. URL은 URI라는 통합 자원 식별자의 한 부분으로써, URI는 URL과 URN으로 구성되어 있습니다&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;URL 문법&lt;/strong&gt;&lt;br&gt;
+URL은 스킴(HTTP,FTP,SMTP)에 따라서 문법이 달라집니다. 대부분의 스킴은 일반적으로 9개 부분으로 나눠집니다. 스킴은 리소스에 어떻게 접근하는지 알려주는 정보로써 알파벳으로 시작해야하고 URL에서 첫 번째 &lt;code&gt;:&lt;/code&gt; 문자로 구분합니다. 스킴은 대소문자 구별을 하지 않습니다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;스킴&amp;gt;://&amp;lt;사용자이름&amp;gt;:&amp;lt;비밀번호&amp;gt;@&amp;lt;호스트주소&amp;gt;:&amp;lt;포트&amp;gt;/&amp;lt;경로&amp;gt;;&amp;lt;파라미터&amp;gt;?&amp;lt;질의&amp;gt;#&amp;lt;프래그먼트&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;컴포넌트&lt;/th&gt;
+&lt;th&gt;설명&lt;/th&gt;
+&lt;th&gt;기본값&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;스킴&lt;/td&gt;
+&lt;td&gt;리소스를 가져오기 위한 프로토콜 명시&lt;/td&gt;
+&lt;td&gt;없음&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;사용자 이름&lt;/td&gt;
+&lt;td&gt;리소스에 접근 하기 위한 사용자 이름 (몇몇 스킴에서 사용)&lt;/td&gt;
+&lt;td&gt;anonymous&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;비밀번호&lt;/td&gt;
+&lt;td&gt;사용자의 비밀번호&lt;/td&gt;
+&lt;td&gt;이메일 주소&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;호스트&lt;/td&gt;
+&lt;td&gt;리소스를 호스팅하는 서버의 호스트 명 or IP 주소&lt;/td&gt;
+&lt;td&gt;없음&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;포트&lt;/td&gt;
+&lt;td&gt;리소스를 호스팅하는 서버가 열어놓은 비밀번호 &lt;code&gt;HTTP 같은 경우에는 80&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;스킴에 따라 다름&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;경로&lt;/td&gt;
+&lt;td&gt;슬래시(/)로 구분하며, 서버 내 리소스가 어디에 있는지 경로를 가리킴&lt;/td&gt;
+&lt;td&gt;없음&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;파라미터&lt;/td&gt;
+&lt;td&gt;특정 스킴에서 입력 파라미터를 기술하는 용도로 사용 &lt;code&gt;이름/값을 세미콜론으로 구분&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;없음&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;질의&lt;/td&gt;
+&lt;td&gt;애플리케이션에서 파라미터 전달을 위해서 사용(데이터베이스, 게시판, 검색엔진) URL 끝에 ? 문자로 구분&lt;/td&gt;
+&lt;td&gt;없음&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;프래그먼트&lt;/td&gt;
+&lt;td&gt;리소스의 일부분을 가리키는 이름, 클라이언트 영역에서만 사용한다.&lt;/td&gt;
+&lt;td&gt;없음&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;URN&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;urn:oasis:names:specification:docbook:dtd:xml:4.1.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;URL은 리소스를 찾는데 필요한 포트와 서버 별칭을 제공하기 때문에 리소스가 옮겨지면 수동으로 URL도 다시 설정해야한다는 단점이 존재합니다. 이러한 단점을 해결하기 위해 고안한 방식이 URN(Uniform Resource Name)입니다. URL과 달리 리소스 객체가 옮겨지더라도 항상 동일한 리소스를 가리킬 수 있는 이름을 제공합니다.&lt;/p&gt;
+&lt;h3 id=&#34;웹-캐시&#34;&gt;웹 캐시&lt;/h3&gt;
+&lt;p&gt;웹 캐시는 자주 방문하는 웹 페이지(문서)의 사본을 자동으로 보관하는 HTTP의 기능입니다. 웹 요청이 캐시에 도착했을 때 캐시된 사본이 존재한다면 문서는 원 서버가 아니라 캐시로부터 제공합니다. 캐시를 활용하면 다음과 같은 이점을 얻을 수 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;불필요한 데이터 전송 최소화 및 네트워크 병목 최소화&lt;/li&gt;
+&lt;li&gt;원 서버에 대한 요청 부하 최소화&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;웹 캐시 동작과정&lt;/strong&gt;&lt;br&gt;
+일반적으로 웹 캐시 처리 절차는 다음과 같습니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;요청&lt;/strong&gt;&lt;br&gt;
+네트워크 커넥션에서 활동을 감지하고 요청오는 데이터를 읽는 단계 입니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;파싱&lt;/strong&gt;&lt;br&gt;
+요청 메시지를 여러 부분으로 파싱하여 헤더 부분을 조작하기 쉬운 자료 구조로 담는 단계 입니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;검색&lt;/strong&gt;&lt;br&gt;
+캐시는 URL을 통해 해당하는 로컬 사본이 존재하는지 검사합니다. 캐시된 사본은 메모리, 디스크 또는 외부 저장소에 저장될 수 있습니다. 고성능 캐시는 빠른 로드를 위해 적절한 알고리즘을 사용하며, 상황에 따라 원 서버나 부모 프락시에서 가져올 수도 있습니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;신선도 검사&lt;/strong&gt;&lt;br&gt;
+HTTP는 캐시가 일정 시간 동안 리소스 사본을 보유할 수 있도록 합니다. 설정된 기간이 초과되면, 신선하지 않은 리소스로 간주하여 서버와 문서를 다시 검사합니다. 검사 후 리소스가 변경되었다면, 캐시는 새로운 사본을 가져와 기존 사본을 덮어쓰고 클라이언트에게 응답합니다.&lt;/p&gt;
+&lt;p&gt;(각 리소스의 유효 기간은 &lt;code&gt;Expires&lt;/code&gt;와 &lt;code&gt;Cache-Control&lt;/code&gt; 헤더를 통해 설정할 수 있습니다.)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;응답 생성&lt;/strong&gt;&lt;br&gt;
+캐시된 응답을 원 서버에서 온 것처럼 일관성을 지켜야하기 때문에, 캐시된 서버 응답을 토대로 응답 헤더를 생성합니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;전송&lt;/strong&gt;&lt;br&gt;
+응답 헤더가 완성되면 클라이언트에게 돌려줍니다. 일반 HTTP 통신과 마찬가지로 캐시는 클라이언트와 커넥션을 유지합니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;웹 캐시 제어&lt;/strong&gt;&lt;br&gt;
+리소스가 만료되기 전까지 얼마나 오랫동안 캐시를 유지할 것인지 &lt;code&gt;Cache-Control&lt;/code&gt; 헤더를 통해 명시할 수 있습니다.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;Header Set Cache-Control &lt;span class=&#34;s2&#34;&gt;&amp;#34;max-age=60&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;no-store:&lt;/strong&gt; 캐시에 리소스를 저장하지 않음&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;no-cache:&lt;/strong&gt; 항상 원 서버에 리소스를 재검사하도록 요청&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;must-revalidate:&lt;/strong&gt; 캐시 만료기간이 지났다면 원 서버어게 리소스를 재검사하도록 요청&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;public:&lt;/strong&gt; 공유 캐시에 저장함&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;private:&lt;/strong&gt; 공유 캐시에 저장하지 않음 (브라우저의 로컬 캐시에만 저장)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;max-age:&lt;/strong&gt; 캐시의 만료기간 (초)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;프록시&#34;&gt;프록시&lt;/h3&gt;
+&lt;p&gt;프록시란 클라이언트와 서버 사이에서 HTTP 통신을 중개하는 일종의 중개자입니다. 프록시를 사용하는 이유는 주로 &lt;strong&gt;보안성, 성능, 비용 절감&lt;/strong&gt; 등의 이점 때문에 사용합니다. 프록시는 목적에 따라 정방향 프록시와 역방향 프록시로 분류할 수 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;보안성&lt;/strong&gt;&lt;br&gt;
+일부 조직(학교, 정부기관)에서는 부적절한 컨텐츠를 차단하기 위해 제한된 영역의 인터넷에 대해서만 접근 권한을 부여합니다. 프록시를 사용하면 제한된 웹 리소스에 대해 단일 접근 전략을 쉽게 구성할 수 있습니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;프록시 캐시&lt;/strong&gt;&lt;br&gt;
+웹 캐싱을 위해 프록시 서버를 활용하면 리소스 사본을 효율적으로 관리할 수 있고, 원 서버에 직접 접근하는 대신 근처의 프록시 캐시 서버로 접근함으로써 요청에 대한 비용을 줄이고 접근 성능을 개선할 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;정방향 프록시(Forward Proxy)&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/c6ad9de3-8412-4ea6-bcc7-1ed93c26bf8a&#34; alt=&#34;02-forward-proxy-flow&#34;  /&gt;
+&lt;em&gt;출처: Cloudflare - Forward Proxy Flow&lt;/em&gt;
+정방향 프록시는 일반적인 프록시 서버를 의미합니다. 이 서버는 인터넷 통신 앞에 위치하여 원본 서버가 특정 리소스 위치에 대한 필터링이나 접근 권한을 설정할 수 있게 해줍니다. 또한 사용자 개별 IP를 우회하여 신원 보안에도 이점을 가질 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;역방향 프록시(Reverse Proxy)&lt;/strong&gt;
+&lt;img src=&#34;https://github.com/yondo123/yondo123.github.io/assets/46988995/23e115d3-05e5-4da5-97d2-602412d91892&#34; alt=&#34;03-reverse-proxy-flow&#34;  /&gt;
+&lt;em&gt;출처: Cloudflare - Reverse Proxy Flow&lt;/em&gt;
+역방향 프록시는 정방향 프록시와는 반대 개념으로, 원 서버 위치의 앞에 위치한 프록시 구조입니다. 이는 원 서버로 들어오는 트래픽을 분산시키는 효율적인 구조이며, 역방향 프록시도 캐싱을 수행할 수 있어 성능적인 이점도 가질 수 있는 특징이 있습니다.&lt;/p&gt;
+&lt;h3 id=&#34;rest-api&#34;&gt;REST API&lt;/h3&gt;
+&lt;p&gt;REST(Representational State Transfer)의 의미는 네트워크 리소스가 정의되고 처리되는 방식을 일련의 원칙을 기반으로하는 API 작동 방식에 대한 일종의 아키텍처 입니다. REST 아키텍처는 몇 가지 원칙이 존재하는데 이러한 원칙을 따르는 API를 REST API(혹은 RESTful API)라고 지칭합니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;무상태&lt;/strong&gt;&lt;br&gt;
+클라이언트는 임의의 순서로 리소스를 요청할 수 있으며 모든 요청은 무상태이거나 다른 요청과 분리됩니다. 이전 요청과 관계 없이 서버가 매번 요청을 완전히 이해할 수 있어야 합니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;계층화 시스템&lt;/strong&gt;&lt;br&gt;
+서버는 요청을 다른 서버로 전달하거나 협력할 수 있습니다. 이러한 특성을 유지하기 위해 보안 및 여러 애플리케이션 및 비즈니스 로직 등을 여러 계층으로 설계할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;캐싱&lt;/strong&gt;&lt;br&gt;
+REST API를 적용한 웹 서비스는 클라이언트 또는 프록시 서버에 일부 리소스 사본을 저장하는 캐싱을 지원하여 효율적인 응답 시간을 달성할 수 있습니다. 요청 상황에 따라 적절히 캐시 또는 캐시 불가능 상황을 사용하여 제어할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;균일한 인터페이스&lt;/strong&gt;&lt;br&gt;
+균일한 인터페이스란 서버가 표준 형식으로 리소스(정보)를 전송하는 것을 나타냅니다. 서버 내에 저장되어 있는 실제 리소스의 표현(데이터 형식)과는 다를 수 있습니다. 예를 들어, 데이터는 텍스트로 저장되지만 HTML 문서 형태로 전송할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;균일한 인터페이스는 아래 4가지 제약 조건을 지키는 것입니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;요청은 리소스를 식별하는 행위입니다. (균일한 리소스를 사용)&lt;/li&gt;
+&lt;li&gt;클라이언트는 원하는 경우 리소스를 수정하거나 삭제하기에 충분한 정보를 확보하기 위해 서버는 리소스에 대한 메타데이터를 전송합니다.&lt;/li&gt;
+&lt;li&gt;클라이언트는 데이터를 추가적으로 처리하는 방법에 대한 정보를 수신할 수 있어야합니다.&lt;/li&gt;
+&lt;li&gt;클라이언트는 하이퍼링크를 통해 더 많은 리소스를 동적으로 검색할 수 있도록 서버에서 하이퍼링크를 전송할 수 있습니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;REST API의 이점&lt;/strong&gt;&lt;br&gt;
+REST API를 사용하면 클라이언트와 서버가 완전히 분리된 설계를 구축할 수 있습니다. 이는 각 영역이 독립적으로 확장 가능하고 서버 요소들을 다양하게 단순화할 수 있으며, 한 영역의 변경이 다른 영역에 영향을 주지 않습니다. 이를 통해 API 설계에 영향을 받지 않고 다양한 프로그래밍 언어로 서비스를 제공할 수 있으며, 애플리케이션 로직과 관련 없이 데이터베이스 계층도 쉽게 변경할 수 있습니다. &lt;strong&gt;(확장성, 유연성, 독립성)&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;참고-자료&#34;&gt;참고 자료&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.yes24.com/Product/Goods/15381085&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HTTP 완벽 가이드 - URL과 리소스&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.yes24.com/Product/Goods/15381085&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HTTP 완벽 가이드 - 클라이언트 식별과 쿠키&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://learn.microsoft.com/en-us/aspnet/web-api/overview/advanced/http-cookies&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Microsoft Ignite - HTTP Cookies in ASP.NET Web API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cloudflare.com/ko-kr/learning/cdn/glossary/reverse-proxy/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Cloudflare - 프록시 서버 설명&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://aws.amazon.com/ko/what-is/restful-api/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;aws - RESTful API란 무엇입니까?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>[CS 네트워크 스터디] 4주차 학습 내용</title>
         <link>https://jinyisland.kr/post/network-study-week-4/</link>
         <pubDate>Thu, 05 Oct 2023 23:50:12 +0900</pubDate>
