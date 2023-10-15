@@ -6,7 +6,41 @@
         <description>Recent content on Jiny</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 13 Oct 2023 05:42:33 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 16 Oct 2023 00:42:20 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>모의면접 기반 CS 네트워크 스터디 참여회고</title>
+        <link>https://jinyisland.kr/post/network-study-finale/</link>
+        <pubDate>Mon, 16 Oct 2023 00:42:20 +0900</pubDate>
+        
+        <guid>https://jinyisland.kr/post/network-study-finale/</guid>
+        <description>&lt;img src="https://jinyisland.kr/../../assets/header/computer-network/finale.png" alt="Featured image of post 모의면접 기반 CS 네트워크 스터디 참여회고" /&gt;&lt;h2 id=&#34;참여-계기&#34;&gt;참여 계기&lt;/h2&gt;
+&lt;p&gt;어느날 모의면접 방식으로 &lt;a class=&#34;link&#34; href=&#34;https://www.notion.so/e7a5eef418f24e83842b331803c34458&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;컴퓨터 네트워크 스터디를 모집&lt;/a&gt;한다는 글을 발견하였습니다. 🧐 마침 네트워크에 대한 CS 공부 필요성을 느끼던 참이기도 했고, 면접 관련 여러 팁들도 얻을 수 있겠다는 생각에 바로 참여를 결정하였습니다~! 한동안 블로그에 네트워크 관련 포스팅을 연속으로 올렸는데요~ 해당 스터디에 참여하면서 일주일마다 주제를 잡고 공부한 내용을 올렸던 것이었습니다..ㅎㅎ 팀원들과 모의 면접을 수행하기 위해 공통된 주제를 잡았으며, 자신 있었던 섹션들도 있고 처음 들어보거나 생소한 개념들도 있었습니다.&lt;/p&gt;
+&lt;h2 id=&#34;진행-방식&#34;&gt;진행 방식&lt;/h2&gt;
+&lt;p&gt;모의 면접은 ZOOM 플랫폼을 이용하는데, 사실 이 스터디는 네트워크뿐만 아니라 운영체제, 데이터베이스 등 여러 CS 주제들도
+동시에 이루어져 각각 도움을 주는 멘토님이 계셨습니다. 3~4명이 팀을 이루어 관찰자, 면접관, 면접 지원자 역할로 나누어 실제 약 20분동안 공부한 내용을 바탕으로 질문을 주고 받는 과정이 이루어졌고 적당한 긴장감이 형성되어 실제 화상 면접을 하는 기분이 들었습니다.&lt;/p&gt;
+&lt;p&gt;주로 &lt;strong&gt;HTTP, TCP/UDP 프로토콜&lt;/strong&gt;에 대해서 학습을 진행했고 각 주제별 학습 키워드는 멘토님이 따로 노션으로 제공해주셔서 섹션 별 학습은 편리했습니다. 네트워크를 공부하다보면 나왔던 개념들이 추후에 또 나오는 상황이 많아 자연스레 중요한 키워드에 대해서도 반복적으로 학습할 수 있었던 것 같습니다.&lt;/p&gt;
+&lt;h2 id=&#34;회고&#34;&gt;회고&lt;/h2&gt;
+&lt;h3 id=&#34;잘했던-점&#34;&gt;잘했던 점&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;주제를 학습하기 위해 여러 책과 블로그, 신뢰할만한 사이트들을 열심히 찾아보았던 것들 👍👍&lt;/li&gt;
+&lt;li&gt;암기의 영역과 이해의 영역을 분리하여 최대한 실제 면접 처럼 머릿속에 떠올리는 키워드 위주로 설명했던 점&lt;/li&gt;
+&lt;li&gt;나의 면접 태도 뿐만 아니라 직접 제 3자가 되어 다른 팀원들의 면접 내용들을 최대한 자세하게 짚어주려고 노력했던 점&lt;/li&gt;
+&lt;li&gt;예상 외 질문들을 제시해보고, 인성&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;아쉬웠던-점&#34;&gt;아쉬웠던 점&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;내 기대만큼 면접관에게 두괄식으로 핵심 내용을 잘 전달하지 못함 😭 (이 부분은 실제 여러 팀원에게 받았던 피드백이라 진지하게 어떻게 잘 전달하면 좋을지 항상 고민하고 있습니다.)&lt;/li&gt;
+&lt;li&gt;시간 및 일정상 주제에 나오는 모든 키워드들을 100% 공부하지는 못함 (미비한 키워드들은 따로 학습 필요..)&lt;/li&gt;
+&lt;li&gt;초반 여러 활동(멘토링 + NextStep)까지 같이 수행하면서 해야 할 일들이 많았고, 시간을 온전히 쏟지 못했던 점..&lt;/li&gt;
+&lt;li&gt;생각보다 방대한 양과 파생된 개념이 많아 깊게는 학습하지 않음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;마무리&#34;&gt;마무리&lt;/h2&gt;
+&lt;p&gt;참여하기 전에는 네트워크라는 주제로 기술 면접만 진행하는 줄 알았지만 충분히 물어볼법한 각종 인성 면접들에 대한 준비도 할 수 있어서 좋았고 종종 예상 질문 외 날카로운 꼬리 질문도 받아볼 수 있는 경험도 있어서 해당 키워드로 어떤 궁금한 점이 발생할지 감을 잡을 수 있어서 좋았던 것 같습니다.
+그동안 공부해왔던 내용들을 한번에 다시 모을 수 있는 기회로 생각했는데 주요적인 내용 위주로 다시 되돌아볼 수 있어서 좋았고 다른 사람에게 이해한 내용들을 최대한 잘 설명할 수 있는 기회를 가질 수 있어 좋았던 활동이었습니다~!!&lt;/p&gt;
+&lt;p&gt;끄읕 😉&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>[CS 네트워크 스터디] 5주차 학습 내용</title>
         <link>https://jinyisland.kr/post/network-study-week-5/</link>
         <pubDate>Fri, 13 Oct 2023 05:42:33 +0900</pubDate>
