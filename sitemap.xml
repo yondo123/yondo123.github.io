@@ -4,7 +4,49 @@
   
   <url>
     <loc>https://jinyisland.kr/categories/</loc>
-    <lastmod>2023-10-16T00:42:20+09:00</lastmod>
+    <lastmod>2023-11-22T03:34:57+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/categories/frontend/</loc>
+    <lastmod>2023-11-22T03:34:57+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/</loc>
+    <lastmod>2023-11-22T03:34:57+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/</loc>
+    <lastmod>2023-11-22T03:34:57+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/rollup/</loc>
+    <lastmod>2023-11-22T03:34:57+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/</loc>
+    <lastmod>2023-11-22T03:34:57+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/tags/webpack/</loc>
+    <lastmod>2023-11-22T03:34:57+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://jinyisland.kr/post/bundle-and-module/</loc>
+    <lastmod>2023-11-22T03:34:57+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   
@@ -15,25 +57,7 @@
   </url>
   
   <url>
-    <loc>https://jinyisland.kr/</loc>
-    <lastmod>2023-10-16T00:42:20+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/post/</loc>
-    <lastmod>2023-10-16T00:42:20+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
     <loc>https://jinyisland.kr/tags/study/</loc>
-    <lastmod>2023-10-16T00:42:20+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/tags/</loc>
     <lastmod>2023-10-16T00:42:20+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -82,12 +106,6 @@
   
   <url>
     <loc>https://jinyisland.kr/tags/es6&#43;/</loc>
-    <lastmod>2023-09-11T17:42:01+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  
-  <url>
-    <loc>https://jinyisland.kr/categories/frontend/</loc>
     <lastmod>2023-09-11T17:42:01+09:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>

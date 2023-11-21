@@ -6,7 +6,17 @@
     <description>Recent content in Frontend on Jiny</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 Sep 2023 17:42:01 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/frontend/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 22 Nov 2023 03:34:57 +0900</lastBuildDate><atom:link href="https://jinyisland.kr/categories/frontend/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>번들러와 모듈 시스템</title>
+      <link>https://jinyisland.kr/post/bundle-and-module/</link>
+      <pubDate>Wed, 22 Nov 2023 03:34:57 +0900</pubDate>
+      
+      <guid>https://jinyisland.kr/post/bundle-and-module/</guid>
+      <description>오랜만에 글을 쓰네요~👋 프론트엔드 개발을 수행하다보면 Webpack, Rollup 등 여러 번들러들을 접해보시거나 들어보셨을 것입니다. 번들러 종류는 너무나 다양하고 동작하는 방식도 세세히 다르기도 합니다. 이 도구들의 역할은 무엇이고, JavaScript 모듈 시스템은 어떻게 구성해야 하는지 정리한 내용들을 공유해보도록 하겠습니다.
+모듈 시스템 우선 지난번 패키지 매니저 돌아보기 포스팅에서 JavaScript 모듈에 대해서 살짝 언급하고 넘어갔었는데요. 다시 한 번 간략히 알려드리자면 전역 공간을 최소화하기 위해 ESModules, CommonJS라는 방식의 모듈 시스템을 활용하여 독립적으로 스코프를 가지는 영역이라고 생각하시면 됩니다.</description>
+    </item>
+    
     <item>
       <title>패키저매니저 돌아보기</title>
       <link>https://jinyisland.kr/post/package-manager/</link>
